@@ -23,11 +23,13 @@ import (
 
 	"github.com/go-logr/logr"
 	tfschema "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	auditlib "go.bytebuilders.dev/audit/lib"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/klog/v2"
 	meta_util "kmodules.xyz/client-go/meta"
 	fsxv1alpha1 "kubeform.dev/provider-aws-api/apis/fsx/v1alpha1"
 	"kubeform.dev/provider-aws-controller/controllers"
@@ -43,10 +45,11 @@ type LustreFileSystemReconciler struct {
 	Log    logr.Logger
 	Scheme *runtime.Scheme
 
-	Gvk      schema.GroupVersionKind // GVK of the Resource
-	Provider *tfschema.Provider      // returns a *schema.Provider from the provider package
-	Resource *tfschema.Resource      // returns *schema.Resource
-	TypeName string                  // resource type
+	Gvk              schema.GroupVersionKind // GVK of the Resource
+	Provider         *tfschema.Provider      // returns a *schema.Provider from the provider package
+	Resource         *tfschema.Resource      // returns *schema.Resource
+	TypeName         string                  // resource type
+	WatchOnlyDefault bool
 }
 
 // +kubebuilder:rbac:groups=fsx.aws.kubeform.com,resources=lustrefilesystems,verbs=get;list;watch;create;update;patch;delete
@@ -55,6 +58,10 @@ type LustreFileSystemReconciler struct {
 func (r *LustreFileSystemReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	log := r.Log.WithValues("lustrefilesystem", req.NamespacedName)
 
+	if r.WatchOnlyDefault && req.Namespace != v1.NamespaceDefault {
+		log.Info("Only default namespace is supported for Kubeform Community, Please upgrade to Kubeform Enterprise to use any namespace.")
+		return ctrl.Result{}, nil
+	}
 	var unstructuredObj unstructured.Unstructured
 	unstructuredObj.SetGroupVersionKind(r.Gvk)
 
@@ -74,7 +81,14 @@ func (r *LustreFileSystemReconciler) Reconcile(ctx context.Context, req ctrl.Req
 	return ctrl.Result{}, err
 }
 
-func (r *LustreFileSystemReconciler) SetupWithManager(mgr ctrl.Manager) error {
+func (r *LustreFileSystemReconciler) SetupWithManager(ctx context.Context, mgr ctrl.Manager, auditor *auditlib.EventPublisher) error {
+	if auditor != nil {
+		if err := auditor.SetupWithManager(ctx, mgr, &fsxv1alpha1.LustreFileSystem{}); err != nil {
+			klog.Error(err, "unable to set up auditor", fsxv1alpha1.LustreFileSystem{}.APIVersion, fsxv1alpha1.LustreFileSystem{}.Kind)
+			return err
+		}
+	}
+
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&fsxv1alpha1.LustreFileSystem{}).
 		WithEventFilter(predicate.Funcs{
