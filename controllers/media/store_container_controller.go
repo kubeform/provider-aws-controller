@@ -23,11 +23,13 @@ import (
 
 	"github.com/go-logr/logr"
 	tfschema "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	auditlib "go.bytebuilders.dev/audit/lib"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/klog/v2"
 	meta_util "kmodules.xyz/client-go/meta"
 	mediav1alpha1 "kubeform.dev/provider-aws-api/apis/media/v1alpha1"
 	"kubeform.dev/provider-aws-controller/controllers"
@@ -43,10 +45,11 @@ type StoreContainerReconciler struct {
 	Log    logr.Logger
 	Scheme *runtime.Scheme
 
-	Gvk      schema.GroupVersionKind // GVK of the Resource
-	Provider *tfschema.Provider      // returns a *schema.Provider from the provider package
-	Resource *tfschema.Resource      // returns *schema.Resource
-	TypeName string                  // resource type
+	Gvk              schema.GroupVersionKind // GVK of the Resource
+	Provider         *tfschema.Provider      // returns a *schema.Provider from the provider package
+	Resource         *tfschema.Resource      // returns *schema.Resource
+	TypeName         string                  // resource type
+	WatchOnlyDefault bool
 }
 
 // +kubebuilder:rbac:groups=media.aws.kubeform.com,resources=storecontainers,verbs=get;list;watch;create;update;patch;delete
@@ -55,6 +58,10 @@ type StoreContainerReconciler struct {
 func (r *StoreContainerReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	log := r.Log.WithValues("storecontainer", req.NamespacedName)
 
+	if r.WatchOnlyDefault && req.Namespace != v1.NamespaceDefault {
+		log.Info("Only default namespace is supported for Kubeform Community, Please upgrade to Kubeform Enterprise to use any namespace.")
+		return ctrl.Result{}, nil
+	}
 	var unstructuredObj unstructured.Unstructured
 	unstructuredObj.SetGroupVersionKind(r.Gvk)
 
@@ -74,7 +81,14 @@ func (r *StoreContainerReconciler) Reconcile(ctx context.Context, req ctrl.Reque
 	return ctrl.Result{}, err
 }
 
-func (r *StoreContainerReconciler) SetupWithManager(mgr ctrl.Manager) error {
+func (r *StoreContainerReconciler) SetupWithManager(ctx context.Context, mgr ctrl.Manager, auditor *auditlib.EventPublisher) error {
+	if auditor != nil {
+		if err := auditor.SetupWithManager(ctx, mgr, &mediav1alpha1.StoreContainer{}); err != nil {
+			klog.Error(err, "unable to set up auditor", mediav1alpha1.StoreContainer{}.APIVersion, mediav1alpha1.StoreContainer{}.Kind)
+			return err
+		}
+	}
+
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&mediav1alpha1.StoreContainer{}).
 		WithEventFilter(predicate.Funcs{
