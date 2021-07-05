@@ -3518,11 +3518,11 @@ func SetupManager(ctx context.Context, mgr manager.Manager, gvk schema.GroupVers
 	case schema.GroupVersionKind{
 		Group:   "config.aws.kubeform.com",
 		Version: "v1alpha1",
-		Kind:    "ConfigurationRecorderStatus_",
+		Kind:    "ConfigurationRecorderStatus",
 	}:
-		if err := (&controllersconfig.ConfigurationRecorderStatus_Reconciler{
+		if err := (&controllersconfig.ConfigurationRecorderStatusReconciler{
 			Client:           mgr.GetClient(),
-			Log:              ctrl.Log.WithName("controllers").WithName("ConfigurationRecorderStatus_"),
+			Log:              ctrl.Log.WithName("controllers").WithName("ConfigurationRecorderStatus"),
 			Scheme:           mgr.GetScheme(),
 			Gvk:              gvk,
 			Provider:         aws.Provider(),
@@ -3530,7 +3530,7 @@ func SetupManager(ctx context.Context, mgr manager.Manager, gvk schema.GroupVers
 			TypeName:         "aws_config_configuration_recorder_status",
 			WatchOnlyDefault: watchOnlyDefault,
 		}).SetupWithManager(ctx, mgr, auditor); err != nil {
-			setupLog.Error(err, "unable to create controller", "controller", "ConfigurationRecorderStatus_")
+			setupLog.Error(err, "unable to create controller", "controller", "ConfigurationRecorderStatus")
 			return err
 		}
 	case schema.GroupVersionKind{
@@ -15552,10 +15552,10 @@ func SetupWebhook(mgr manager.Manager, gvk schema.GroupVersionKind) error {
 	case schema.GroupVersionKind{
 		Group:   "config.aws.kubeform.com",
 		Version: "v1alpha1",
-		Kind:    "ConfigurationRecorderStatus_",
+		Kind:    "ConfigurationRecorderStatus",
 	}:
-		if err := (&configv1alpha1.ConfigurationRecorderStatus_{}).SetupWebhookWithManager(mgr); err != nil {
-			setupLog.Error(err, "unable to create webhook", "webhook", "ConfigurationRecorderStatus_")
+		if err := (&configv1alpha1.ConfigurationRecorderStatus{}).SetupWebhookWithManager(mgr); err != nil {
+			setupLog.Error(err, "unable to create webhook", "webhook", "ConfigurationRecorderStatus")
 			return err
 		}
 	case schema.GroupVersionKind{

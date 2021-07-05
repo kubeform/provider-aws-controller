@@ -39,8 +39,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/predicate"
 )
 
-// ConfigurationRecorderStatus_Reconciler reconciles a ConfigurationRecorderStatus_ object
-type ConfigurationRecorderStatus_Reconciler struct {
+// ConfigurationRecorderStatusReconciler reconciles a ConfigurationRecorderStatus object
+type ConfigurationRecorderStatusReconciler struct {
 	client.Client
 	Log    logr.Logger
 	Scheme *runtime.Scheme
@@ -52,11 +52,11 @@ type ConfigurationRecorderStatus_Reconciler struct {
 	WatchOnlyDefault bool
 }
 
-// +kubebuilder:rbac:groups=config.aws.kubeform.com,resources=configurationrecorderstatus_configurationrecorderstatuses,verbs=get;list;watch;create;update;patch;delete
-// +kubebuilder:rbac:groups=config.aws.kubeform.com,resources=configurationrecorderstatus_configurationrecorderstatuses/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=config.aws.kubeform.com,resources=configurationrecorderstatuses,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=config.aws.kubeform.com,resources=configurationrecorderstatuses/status,verbs=get;update;patch
 
-func (r *ConfigurationRecorderStatus_Reconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-	log := r.Log.WithValues("configurationrecorderstatus_", req.NamespacedName)
+func (r *ConfigurationRecorderStatusReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+	log := r.Log.WithValues("configurationrecorderstatus", req.NamespacedName)
 
 	if r.WatchOnlyDefault && req.Namespace != v1.NamespaceDefault {
 		log.Info("Only default namespace is supported for Kubeform Community, Please upgrade to Kubeform Enterprise to use any namespace.")
@@ -66,7 +66,7 @@ func (r *ConfigurationRecorderStatus_Reconciler) Reconcile(ctx context.Context, 
 	unstructuredObj.SetGroupVersionKind(r.Gvk)
 
 	if err := r.Get(ctx, req.NamespacedName, &unstructuredObj); err != nil {
-		log.Error(err, "unable to fetch ConfigurationRecorderStatus_")
+		log.Error(err, "unable to fetch ConfigurationRecorderStatus")
 		// we'll ignore not-found errors, since they can't be fixed by an immediate
 		// requeue (we'll need to wait for a new notification), and we can get them on deleted requests.
 		return ctrl.Result{}, client.IgnoreNotFound(err)
@@ -81,16 +81,16 @@ func (r *ConfigurationRecorderStatus_Reconciler) Reconcile(ctx context.Context, 
 	return ctrl.Result{}, err
 }
 
-func (r *ConfigurationRecorderStatus_Reconciler) SetupWithManager(ctx context.Context, mgr ctrl.Manager, auditor *auditlib.EventPublisher) error {
+func (r *ConfigurationRecorderStatusReconciler) SetupWithManager(ctx context.Context, mgr ctrl.Manager, auditor *auditlib.EventPublisher) error {
 	if auditor != nil {
-		if err := auditor.SetupWithManager(ctx, mgr, &configv1alpha1.ConfigurationRecorderStatus_{}); err != nil {
-			klog.Error(err, "unable to set up auditor", configv1alpha1.ConfigurationRecorderStatus_{}.APIVersion, configv1alpha1.ConfigurationRecorderStatus_{}.Kind)
+		if err := auditor.SetupWithManager(ctx, mgr, &configv1alpha1.ConfigurationRecorderStatus{}); err != nil {
+			klog.Error(err, "unable to set up auditor", configv1alpha1.ConfigurationRecorderStatus{}.APIVersion, configv1alpha1.ConfigurationRecorderStatus{}.Kind)
 			return err
 		}
 	}
 
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&configv1alpha1.ConfigurationRecorderStatus_{}).
+		For(&configv1alpha1.ConfigurationRecorderStatus{}).
 		WithEventFilter(predicate.Funcs{
 			CreateFunc: func(e event.CreateEvent) bool {
 				return !meta_util.MustAlreadyReconciled(e.Object)
