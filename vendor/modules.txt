@@ -1451,7 +1451,7 @@ kmodules.xyz/resource-metadata/pkg/graph
 # kubeform.dev/apimachinery v0.0.0-20210629153539-7bcd34a30eb5
 ## explicit
 kubeform.dev/apimachinery/api/v1alpha1
-# kubeform.dev/provider-aws-api v0.1.1-0.20210705201747-b5ab9724f0cd
+# kubeform.dev/provider-aws-api v0.1.1-0.20210705205804-80144d77034b
 ## explicit
 kubeform.dev/provider-aws-api/api/provider
 kubeform.dev/provider-aws-api/apis/accessanalyzer
