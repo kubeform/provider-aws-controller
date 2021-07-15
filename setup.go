@@ -451,6 +451,7 @@ func createEmptyVWC(vwcClient *admissionregistrationv1.AdmissionregistrationV1Cl
 			Name: strings.ReplaceAll(strings.ToLower(gvk.Group), ".", "-") + "-vwc",
 			Labels: map[string]string{
 				"app.kubernetes.io/instance": "aws.kubeform.com",
+				"app.kubernetes.io/part-of":  "kubeform.com",
 			},
 		},
 	}
