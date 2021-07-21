@@ -28,7 +28,7 @@ import (
 	"time"
 
 	"github.com/gobuffalo/flect"
-	"github.com/terraform-providers/terraform-provider-aws/aws"
+	aws "github.com/terraform-providers/terraform-provider-aws/aws"
 	auditlib "go.bytebuilders.dev/audit/lib"
 	arv1 "k8s.io/api/admissionregistration/v1"
 	"k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset"
