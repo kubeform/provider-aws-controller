@@ -24,7 +24,6 @@ import (
 	"github.com/go-logr/logr"
 	tfschema "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	auditlib "go.bytebuilders.dev/audit/lib"
-	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -45,11 +44,10 @@ type ProvisioningArtifactReconciler struct {
 	Log    logr.Logger
 	Scheme *runtime.Scheme
 
-	Gvk              schema.GroupVersionKind // GVK of the Resource
-	Provider         *tfschema.Provider      // returns a *schema.Provider from the provider package
-	Resource         *tfschema.Resource      // returns *schema.Resource
-	TypeName         string                  // resource type
-	WatchOnlyDefault bool
+	Gvk      schema.GroupVersionKind // GVK of the Resource
+	Provider *tfschema.Provider      // returns a *schema.Provider from the provider package
+	Resource *tfschema.Resource      // returns *schema.Resource
+	TypeName string                  // resource type
 }
 
 // +kubebuilder:rbac:groups=servicecatalog.aws.kubeform.com,resources=provisioningartifacts,verbs=get;list;watch;create;update;patch;delete
@@ -58,10 +56,6 @@ type ProvisioningArtifactReconciler struct {
 func (r *ProvisioningArtifactReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	log := r.Log.WithValues("provisioningartifact", req.NamespacedName)
 
-	if r.WatchOnlyDefault && req.Namespace != v1.NamespaceDefault {
-		log.Info("Only default namespace is supported for Kubeform Community, Please upgrade to Kubeform Enterprise to use any namespace.")
-		return ctrl.Result{}, nil
-	}
 	var unstructuredObj unstructured.Unstructured
 	unstructuredObj.SetGroupVersionKind(r.Gvk)
 
@@ -81,7 +75,7 @@ func (r *ProvisioningArtifactReconciler) Reconcile(ctx context.Context, req ctrl
 	return ctrl.Result{}, err
 }
 
-func (r *ProvisioningArtifactReconciler) SetupWithManager(ctx context.Context, mgr ctrl.Manager, auditor *auditlib.EventPublisher) error {
+func (r *ProvisioningArtifactReconciler) SetupWithManager(ctx context.Context, mgr ctrl.Manager, auditor *auditlib.EventPublisher, restrictToNamespace string) error {
 	if auditor != nil {
 		if err := auditor.SetupWithManager(ctx, mgr, &servicecatalogv1alpha1.ProvisioningArtifact{}); err != nil {
 			klog.Error(err, "unable to set up auditor", servicecatalogv1alpha1.ProvisioningArtifact{}.APIVersion, servicecatalogv1alpha1.ProvisioningArtifact{}.Kind)
@@ -99,6 +93,12 @@ func (r *ProvisioningArtifactReconciler) SetupWithManager(ctx context.Context, m
 				return (e.ObjectNew.(metav1.Object)).GetDeletionTimestamp() != nil || !meta_util.MustAlreadyReconciled(e.ObjectNew)
 			},
 		}).
-		Owns(&v1.Secret{}).
+		WithEventFilter(predicate.NewPredicateFuncs(func(e client.Object) bool {
+			if restrictToNamespace != "" && e.GetNamespace() != restrictToNamespace {
+				klog.Infof("Only %s namespace is supported for Kubeform Community. Please upgrade to Kubeform Enterprise to use any namespace.", restrictToNamespace)
+				return false
+			}
+			return true
+		})).
 		Complete(r)
 }
