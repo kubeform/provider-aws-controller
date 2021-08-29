@@ -1098,8 +1098,8 @@ kmodules.xyz/resource-metadata v0.5.7 h1:5xjq5pEp5hZK+jdkY/4wGk/FMtTyvQ9LlErh7lQ
 kmodules.xyz/resource-metadata v0.5.7/go.mod h1:Jdi7zBXRwwFTOR0CxwKxqJhsDVIilhrgNipPjnKLyrs=
 kubeform.dev/apimachinery v0.0.0-20210824104859-ba5604d5a1cc h1:YfOjHKKQWrKvmkqtLNoN6mNud5Mw7lkGb7SmLS216jc=
 kubeform.dev/apimachinery v0.0.0-20210824104859-ba5604d5a1cc/go.mod h1:v2f/23RmX0K45i0qdPyWaOvzElhXQPMW84JDFEH5kw8=
-kubeform.dev/provider-aws-api v0.3.1-0.20210825092145-c8e8d89257c9 h1:D0F5b++Jn+dSCpAgbN64tw+SE5GrFFZ8hUFrl0z7hzU=
-kubeform.dev/provider-aws-api v0.3.1-0.20210825092145-c8e8d89257c9/go.mod h1:FAotcbd43RUvTmVXGv4yW9IC6za+MMMsFv4mlaR0FHE=
+kubeform.dev/provider-aws-api v0.3.1-0.20210825100635-59ace45f6027 h1:x9iKPZHdyI6nML4ZThi6CEKqBAfJ7DrrWPMh8jTaiw4=
+kubeform.dev/provider-aws-api v0.3.1-0.20210825100635-59ace45f6027/go.mod h1:FAotcbd43RUvTmVXGv4yW9IC6za+MMMsFv4mlaR0FHE=
 rsc.io/quote/v3 v3.1.0/go.mod h1:yEA65RcK8LyAZtP9Kv3t0HmxON59tX3rD+tICJqUlj0=
 rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=
 sigs.k8s.io/apiserver-network-proxy/konnectivity-client v0.0.15/go.mod h1:LEScyzhFmoF5pso/YSeBstl57mOzx9xlU9n85RGrDQg=

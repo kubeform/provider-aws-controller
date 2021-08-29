@@ -29,7 +29,7 @@ require (
 	kmodules.xyz/client-go v0.0.0-20210822203828-5e9cebbf1dfa
 	kmodules.xyz/constants v0.0.0-20210218100002-2c304bfda278
 	kubeform.dev/apimachinery v0.0.0-20210824104859-ba5604d5a1cc
-	kubeform.dev/provider-aws-api v0.3.1-0.20210825092145-c8e8d89257c9
+	kubeform.dev/provider-aws-api v0.3.1-0.20210825100635-59ace45f6027
 	sigs.k8s.io/cli-utils v0.25.0
 	sigs.k8s.io/controller-runtime v0.9.0
 )
