@@ -1334,8 +1334,8 @@ kmodules.xyz/resource-metrics v0.0.5 h1:an1eaxw8mWX5RfujUMTTkJPGiMlQQUDzT6aveSGN
 kmodules.xyz/resource-metrics v0.0.5/go.mod h1:6Dv63HDgp83DhA+lZNB7GIQR6PLjNrYW6ghQKioQzII=
 kubeform.dev/apimachinery v0.0.0-20210824104859-ba5604d5a1cc h1:YfOjHKKQWrKvmkqtLNoN6mNud5Mw7lkGb7SmLS216jc=
 kubeform.dev/apimachinery v0.0.0-20210824104859-ba5604d5a1cc/go.mod h1:v2f/23RmX0K45i0qdPyWaOvzElhXQPMW84JDFEH5kw8=
-kubeform.dev/provider-aws-api v0.3.1-0.20211020094152-2ef2f8ece43e h1:KM+jMC9jUHN/D77Wrlb1j6lfm7G1LKYU4VjQ4b0wE24=
-kubeform.dev/provider-aws-api v0.3.1-0.20211020094152-2ef2f8ece43e/go.mod h1:FAotcbd43RUvTmVXGv4yW9IC6za+MMMsFv4mlaR0FHE=
+kubeform.dev/provider-aws-api v0.4.0 h1:zint7BI/IO9qDp0ea+ZLKaXDI76MX9zqOvtH8KS/ZG4=
+kubeform.dev/provider-aws-api v0.4.0/go.mod h1:FAotcbd43RUvTmVXGv4yW9IC6za+MMMsFv4mlaR0FHE=
 kubeform.dev/terraform-backend-sdk v0.0.0-20210922115523-21574335f0db h1:DKFRelzW9x+LL69cSXdoAaSLEwkFAcMMli/LVKbIdBU=
 kubeform.dev/terraform-backend-sdk v0.0.0-20210922115523-21574335f0db/go.mod h1:8FeLgJUvYO6iXWGdge1Vh08wdLhppH/dUVxAt8F4G3k=
 rsc.io/quote/v3 v3.1.0/go.mod h1:yEA65RcK8LyAZtP9Kv3t0HmxON59tX3rD+tICJqUlj0=
