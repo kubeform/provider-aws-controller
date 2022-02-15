@@ -1740,7 +1740,7 @@ kmodules.xyz/resource-metrics/api
 ## explicit
 kubeform.dev/apimachinery/api/v1alpha1
 kubeform.dev/apimachinery/pkg/util
-# kubeform.dev/provider-aws-api v0.4.0
+# kubeform.dev/provider-aws-api v0.4.1-0.20220127074657-78200047e1d7
 ## explicit
 kubeform.dev/provider-aws-api/api/provider
 kubeform.dev/provider-aws-api/apis/accessanalyzer
