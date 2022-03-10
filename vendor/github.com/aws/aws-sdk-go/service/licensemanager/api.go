@@ -74,8 +74,8 @@ func (c *LicenseManager) AcceptGrantRequest(input *AcceptGrantInput) (req *reque
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -180,8 +180,8 @@ func (c *LicenseManager) CheckInLicenseRequest(input *CheckInLicenseInput) (req 
 //   There was a conflict processing the request. Try your request again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -291,8 +291,8 @@ func (c *LicenseManager) CheckoutBorrowLicenseRequest(input *CheckoutBorrowLicen
 //   This is not the correct Region for the resource. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -399,8 +399,8 @@ func (c *LicenseManager) CheckoutLicenseRequest(input *CheckoutLicenseInput) (re
 //   This is not the correct Region for the resource. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -478,7 +478,7 @@ func (c *LicenseManager) CreateGrantRequest(input *CreateGrantInput) (req *reque
 // CreateGrant API operation for AWS License Manager.
 //
 // Creates a grant for the specified license. A grant shares the use of license
-// entitlements with specific AWS accounts.
+// entitlements with specific Amazon Web Services accounts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -501,8 +501,8 @@ func (c *LicenseManager) CreateGrantRequest(input *CreateGrantInput) (req *reque
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * RateLimitExceededException
 //   Too many requests have been submitted. Try again after a brief wait.
@@ -599,8 +599,8 @@ func (c *LicenseManager) CreateGrantVersionRequest(input *CreateGrantVersionInpu
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -694,8 +694,8 @@ func (c *LicenseManager) CreateLicenseRequest(input *CreateLicenseInput) (req *r
 //   This is not the correct Region for the resource. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -799,8 +799,8 @@ func (c *LicenseManager) CreateLicenseConfigurationRequest(input *CreateLicenseC
 //   Your resource limits have been exceeded.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -825,6 +825,101 @@ func (c *LicenseManager) CreateLicenseConfiguration(input *CreateLicenseConfigur
 // for more information on using Contexts.
 func (c *LicenseManager) CreateLicenseConfigurationWithContext(ctx aws.Context, input *CreateLicenseConfigurationInput, opts ...request.Option) (*CreateLicenseConfigurationOutput, error) {
 	req, out := c.CreateLicenseConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateLicenseConversionTaskForResource = "CreateLicenseConversionTaskForResource"
+
+// CreateLicenseConversionTaskForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLicenseConversionTaskForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLicenseConversionTaskForResource for more information on using the CreateLicenseConversionTaskForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLicenseConversionTaskForResourceRequest method.
+//    req, resp := client.CreateLicenseConversionTaskForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/CreateLicenseConversionTaskForResource
+func (c *LicenseManager) CreateLicenseConversionTaskForResourceRequest(input *CreateLicenseConversionTaskForResourceInput) (req *request.Request, output *CreateLicenseConversionTaskForResourceOutput) {
+	op := &request.Operation{
+		Name:       opCreateLicenseConversionTaskForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLicenseConversionTaskForResourceInput{}
+	}
+
+	output = &CreateLicenseConversionTaskForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLicenseConversionTaskForResource API operation for AWS License Manager.
+//
+// Creates a new license conversion task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager's
+// API operation CreateLicenseConversionTaskForResource for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
+//
+//   * ValidationException
+//   The provided input is not valid. Try your request again.
+//
+//   * ServerInternalException
+//   The server experienced an internal error. Try again.
+//
+//   * AuthorizationException
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
+//
+//   * AccessDeniedException
+//   Access to resource denied.
+//
+//   * RateLimitExceededException
+//   Too many requests have been submitted. Try again after a brief wait.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/CreateLicenseConversionTaskForResource
+func (c *LicenseManager) CreateLicenseConversionTaskForResource(input *CreateLicenseConversionTaskForResourceInput) (*CreateLicenseConversionTaskForResourceOutput, error) {
+	req, out := c.CreateLicenseConversionTaskForResourceRequest(input)
+	return out, req.Send()
+}
+
+// CreateLicenseConversionTaskForResourceWithContext is the same as CreateLicenseConversionTaskForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLicenseConversionTaskForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManager) CreateLicenseConversionTaskForResourceWithContext(ctx aws.Context, input *CreateLicenseConversionTaskForResourceInput, opts ...request.Option) (*CreateLicenseConversionTaskForResourceOutput, error) {
+	req, out := c.CreateLicenseConversionTaskForResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -874,7 +969,7 @@ func (c *LicenseManager) CreateLicenseManagerReportGeneratorRequest(input *Creat
 
 // CreateLicenseManagerReportGenerator API operation for AWS License Manager.
 //
-// Creates a new report generator.
+// Creates a report generator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -897,8 +992,8 @@ func (c *LicenseManager) CreateLicenseManagerReportGeneratorRequest(input *Creat
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * RateLimitExceededException
 //   Too many requests have been submitted. Try again after a brief wait.
@@ -1004,8 +1099,8 @@ func (c *LicenseManager) CreateLicenseVersionRequest(input *CreateLicenseVersion
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * RateLimitExceededException
 //   Too many requests have been submitted. Try again after a brief wait.
@@ -1094,8 +1189,8 @@ func (c *LicenseManager) CreateTokenRequest(input *CreateTokenInput) (req *reque
 //   The provided input is not valid. Try your request again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1198,8 +1293,8 @@ func (c *LicenseManager) DeleteGrantRequest(input *DeleteGrantInput) (req *reque
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1305,8 +1400,8 @@ func (c *LicenseManager) DeleteLicenseRequest(input *DeleteLicenseInput) (req *r
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1400,8 +1495,8 @@ func (c *LicenseManager) DeleteLicenseConfigurationRequest(input *DeleteLicenseC
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1476,11 +1571,11 @@ func (c *LicenseManager) DeleteLicenseManagerReportGeneratorRequest(input *Delet
 
 // DeleteLicenseManagerReportGenerator API operation for AWS License Manager.
 //
-// Delete an existing report generator.
+// Deletes the specified report generator.
 //
 // This action deletes the report generator, which stops it from generating
-// future reports and cannot be reversed. However, the previous reports from
-// this generator will remain in your S3 bucket.
+// future reports. The action cannot be reversed. It has no effect on the previous
+// reports from this generator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1503,8 +1598,8 @@ func (c *LicenseManager) DeleteLicenseManagerReportGeneratorRequest(input *Delet
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * RateLimitExceededException
 //   Too many requests have been submitted. Try again after a brief wait.
@@ -1596,8 +1691,8 @@ func (c *LicenseManager) DeleteTokenRequest(input *DeleteTokenInput) (req *reque
 //   The provided input is not valid. Try your request again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1697,8 +1792,8 @@ func (c *LicenseManager) ExtendLicenseConsumptionRequest(input *ExtendLicenseCon
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1793,8 +1888,8 @@ func (c *LicenseManager) GetAccessTokenRequest(input *GetAccessTokenInput) (req 
 //   The provided input is not valid. Try your request again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1894,8 +1989,8 @@ func (c *LicenseManager) GetGrantRequest(input *GetGrantInput) (req *request.Req
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1986,8 +2081,8 @@ func (c *LicenseManager) GetLicenseRequest(input *GetLicenseInput) (req *request
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2081,8 +2176,8 @@ func (c *LicenseManager) GetLicenseConfigurationRequest(input *GetLicenseConfigu
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2107,6 +2202,98 @@ func (c *LicenseManager) GetLicenseConfiguration(input *GetLicenseConfigurationI
 // for more information on using Contexts.
 func (c *LicenseManager) GetLicenseConfigurationWithContext(ctx aws.Context, input *GetLicenseConfigurationInput, opts ...request.Option) (*GetLicenseConfigurationOutput, error) {
 	req, out := c.GetLicenseConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetLicenseConversionTask = "GetLicenseConversionTask"
+
+// GetLicenseConversionTaskRequest generates a "aws/request.Request" representing the
+// client's request for the GetLicenseConversionTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLicenseConversionTask for more information on using the GetLicenseConversionTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetLicenseConversionTaskRequest method.
+//    req, resp := client.GetLicenseConversionTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/GetLicenseConversionTask
+func (c *LicenseManager) GetLicenseConversionTaskRequest(input *GetLicenseConversionTaskInput) (req *request.Request, output *GetLicenseConversionTaskOutput) {
+	op := &request.Operation{
+		Name:       opGetLicenseConversionTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetLicenseConversionTaskInput{}
+	}
+
+	output = &GetLicenseConversionTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLicenseConversionTask API operation for AWS License Manager.
+//
+// Gets information about the specified license type conversion task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager's
+// API operation GetLicenseConversionTask for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
+//
+//   * ServerInternalException
+//   The server experienced an internal error. Try again.
+//
+//   * AuthorizationException
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
+//
+//   * AccessDeniedException
+//   Access to resource denied.
+//
+//   * RateLimitExceededException
+//   Too many requests have been submitted. Try again after a brief wait.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/GetLicenseConversionTask
+func (c *LicenseManager) GetLicenseConversionTask(input *GetLicenseConversionTaskInput) (*GetLicenseConversionTaskOutput, error) {
+	req, out := c.GetLicenseConversionTaskRequest(input)
+	return out, req.Send()
+}
+
+// GetLicenseConversionTaskWithContext is the same as GetLicenseConversionTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLicenseConversionTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManager) GetLicenseConversionTaskWithContext(ctx aws.Context, input *GetLicenseConversionTaskInput, opts ...request.Option) (*GetLicenseConversionTaskOutput, error) {
+	req, out := c.GetLicenseConversionTaskRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2156,7 +2343,7 @@ func (c *LicenseManager) GetLicenseManagerReportGeneratorRequest(input *GetLicen
 
 // GetLicenseManagerReportGenerator API operation for AWS License Manager.
 //
-// Gets information on the specified report generator.
+// Gets information about the specified report generator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2179,8 +2366,8 @@ func (c *LicenseManager) GetLicenseManagerReportGeneratorRequest(input *GetLicen
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * RateLimitExceededException
 //   Too many requests have been submitted. Try again after a brief wait.
@@ -2274,8 +2461,8 @@ func (c *LicenseManager) GetLicenseUsageRequest(input *GetLicenseUsageInput) (re
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2366,8 +2553,8 @@ func (c *LicenseManager) GetServiceSettingsRequest(input *GetServiceSettingsInpu
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2465,8 +2652,8 @@ func (c *LicenseManager) ListAssociationsForLicenseConfigurationRequest(input *L
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2563,8 +2750,8 @@ func (c *LicenseManager) ListDistributedGrantsRequest(input *ListDistributedGran
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2655,8 +2842,8 @@ func (c *LicenseManager) ListFailuresForLicenseConfigurationOperationsRequest(in
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2750,8 +2937,8 @@ func (c *LicenseManager) ListLicenseConfigurationsRequest(input *ListLicenseConf
 //   The request uses too many filters or too many filter values.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2776,6 +2963,98 @@ func (c *LicenseManager) ListLicenseConfigurations(input *ListLicenseConfigurati
 // for more information on using Contexts.
 func (c *LicenseManager) ListLicenseConfigurationsWithContext(ctx aws.Context, input *ListLicenseConfigurationsInput, opts ...request.Option) (*ListLicenseConfigurationsOutput, error) {
 	req, out := c.ListLicenseConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListLicenseConversionTasks = "ListLicenseConversionTasks"
+
+// ListLicenseConversionTasksRequest generates a "aws/request.Request" representing the
+// client's request for the ListLicenseConversionTasks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLicenseConversionTasks for more information on using the ListLicenseConversionTasks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListLicenseConversionTasksRequest method.
+//    req, resp := client.ListLicenseConversionTasksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/ListLicenseConversionTasks
+func (c *LicenseManager) ListLicenseConversionTasksRequest(input *ListLicenseConversionTasksInput) (req *request.Request, output *ListLicenseConversionTasksOutput) {
+	op := &request.Operation{
+		Name:       opListLicenseConversionTasks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListLicenseConversionTasksInput{}
+	}
+
+	output = &ListLicenseConversionTasksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLicenseConversionTasks API operation for AWS License Manager.
+//
+// Lists the license type conversion tasks for your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager's
+// API operation ListLicenseConversionTasks for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
+//
+//   * ServerInternalException
+//   The server experienced an internal error. Try again.
+//
+//   * AuthorizationException
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
+//
+//   * AccessDeniedException
+//   Access to resource denied.
+//
+//   * RateLimitExceededException
+//   Too many requests have been submitted. Try again after a brief wait.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/ListLicenseConversionTasks
+func (c *LicenseManager) ListLicenseConversionTasks(input *ListLicenseConversionTasksInput) (*ListLicenseConversionTasksOutput, error) {
+	req, out := c.ListLicenseConversionTasksRequest(input)
+	return out, req.Send()
+}
+
+// ListLicenseConversionTasksWithContext is the same as ListLicenseConversionTasks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLicenseConversionTasks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManager) ListLicenseConversionTasksWithContext(ctx aws.Context, input *ListLicenseConversionTasksInput, opts ...request.Option) (*ListLicenseConversionTasksOutput, error) {
+	req, out := c.ListLicenseConversionTasksRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2848,8 +3127,8 @@ func (c *LicenseManager) ListLicenseManagerReportGeneratorsRequest(input *ListLi
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * RateLimitExceededException
 //   Too many requests have been submitted. Try again after a brief wait.
@@ -2943,8 +3222,8 @@ func (c *LicenseManager) ListLicenseSpecificationsForResourceRequest(input *List
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3032,8 +3311,8 @@ func (c *LicenseManager) ListLicenseVersionsRequest(input *ListLicenseVersionsIn
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3127,8 +3406,8 @@ func (c *LicenseManager) ListLicensesRequest(input *ListLicensesInput) (req *req
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3228,8 +3507,8 @@ func (c *LicenseManager) ListReceivedGrantsRequest(input *ListReceivedGrantsInpu
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3326,8 +3605,8 @@ func (c *LicenseManager) ListReceivedLicensesRequest(input *ListReceivedLicenses
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3424,8 +3703,8 @@ func (c *LicenseManager) ListResourceInventoryRequest(input *ListResourceInvento
 //   A dependency required to run the API is missing.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3516,8 +3795,8 @@ func (c *LicenseManager) ListTagsForResourceRequest(input *ListTagsForResourceIn
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3605,8 +3884,8 @@ func (c *LicenseManager) ListTokensRequest(input *ListTokensInput) (req *request
 //   The provided input is not valid. Try your request again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3705,8 +3984,8 @@ func (c *LicenseManager) ListUsageForLicenseConfigurationRequest(input *ListUsag
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3797,8 +4076,8 @@ func (c *LicenseManager) RejectGrantRequest(input *RejectGrantInput) (req *reque
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3896,8 +4175,8 @@ func (c *LicenseManager) TagResourceRequest(input *TagResourceInput) (req *reque
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3989,8 +4268,8 @@ func (c *LicenseManager) UntagResourceRequest(input *UntagResourceInput) (req *r
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -4082,8 +4361,8 @@ func (c *LicenseManager) UpdateLicenseConfigurationRequest(input *UpdateLicenseC
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -4163,8 +4442,8 @@ func (c *LicenseManager) UpdateLicenseManagerReportGeneratorRequest(input *Updat
 //
 // Updates a report generator.
 //
-// After you make changes to a report generator, it will start generating new
-// reports within 60 minutes of being updated.
+// After you make changes to a report generator, it starts generating new reports
+// within 60 minutes of being updated.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4187,8 +4466,8 @@ func (c *LicenseManager) UpdateLicenseManagerReportGeneratorRequest(input *Updat
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -4266,13 +4545,13 @@ func (c *LicenseManager) UpdateLicenseSpecificationsForResourceRequest(input *Up
 
 // UpdateLicenseSpecificationsForResource API operation for AWS License Manager.
 //
-// Adds or removes the specified license configurations for the specified AWS
-// resource.
+// Adds or removes the specified license configurations for the specified Amazon
+// Web Services resource.
 //
 // You can update the license specifications of AMIs, instances, and hosts.
-// You cannot update the license specifications for launch templates and AWS
-// CloudFormation templates, as they send license configurations to the operation
-// that creates the resource.
+// You cannot update the license specifications for launch templates and CloudFormation
+// templates, as they send license configurations to the operation that creates
+// the resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4298,8 +4577,8 @@ func (c *LicenseManager) UpdateLicenseSpecificationsForResourceRequest(input *Up
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -4391,8 +4670,8 @@ func (c *LicenseManager) UpdateServiceSettingsRequest(input *UpdateServiceSettin
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -4431,12 +4710,20 @@ type AcceptGrantInput struct {
 	GrantArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptGrantInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptGrantInput) GoString() string {
 	return s.String()
 }
@@ -4473,12 +4760,20 @@ type AcceptGrantOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptGrantOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptGrantOutput) GoString() string {
 	return s.String()
 }
@@ -4509,12 +4804,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -4557,8 +4860,8 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The AWS user account does not have permission to perform the action. Check
-// the IAM policy associated with this account.
+// The Amazon Web Services user account does not have permission to perform
+// the action. Check the IAM policy associated with this account.
 type AuthorizationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4566,12 +4869,20 @@ type AuthorizationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AuthorizationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AuthorizationException) GoString() string {
 	return s.String()
 }
@@ -4622,12 +4933,20 @@ type AutomatedDiscoveryInformation struct {
 	LastRunTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutomatedDiscoveryInformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutomatedDiscoveryInformation) GoString() string {
 	return s.String()
 }
@@ -4653,12 +4972,20 @@ type BorrowConfiguration struct {
 	MaxTimeToLiveInMinutes *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BorrowConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BorrowConfiguration) GoString() string {
 	return s.String()
 }
@@ -4703,12 +5030,20 @@ type CheckInLicenseInput struct {
 	LicenseConsumptionToken *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckInLicenseInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckInLicenseInput) GoString() string {
 	return s.String()
 }
@@ -4742,12 +5077,20 @@ type CheckInLicenseOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckInLicenseOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckInLicenseOutput) GoString() string {
 	return s.String()
 }
@@ -4786,12 +5129,20 @@ type CheckoutBorrowLicenseInput struct {
 	NodeId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckoutBorrowLicenseInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckoutBorrowLicenseInput) GoString() string {
 	return s.String()
 }
@@ -4892,12 +5243,20 @@ type CheckoutBorrowLicenseOutput struct {
 	SignedToken *string `min:"4096" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckoutBorrowLicenseOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckoutBorrowLicenseOutput) GoString() string {
 	return s.String()
 }
@@ -4986,12 +5345,20 @@ type CheckoutLicenseInput struct {
 	ProductSKU *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckoutLicenseInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckoutLicenseInput) GoString() string {
 	return s.String()
 }
@@ -5088,6 +5455,9 @@ type CheckoutLicenseOutput struct {
 	// Date and time at which the license checkout is issued.
 	IssuedAt *string `type:"string"`
 
+	// Amazon Resource Name (ARN) of the checkout license.
+	LicenseArn *string `type:"string"`
+
 	// License consumption token.
 	LicenseConsumptionToken *string `type:"string"`
 
@@ -5098,12 +5468,20 @@ type CheckoutLicenseOutput struct {
 	SignedToken *string `min:"4096" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckoutLicenseOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckoutLicenseOutput) GoString() string {
 	return s.String()
 }
@@ -5129,6 +5507,12 @@ func (s *CheckoutLicenseOutput) SetExpiration(v string) *CheckoutLicenseOutput {
 // SetIssuedAt sets the IssuedAt field's value.
 func (s *CheckoutLicenseOutput) SetIssuedAt(v string) *CheckoutLicenseOutput {
 	s.IssuedAt = &v
+	return s
+}
+
+// SetLicenseArn sets the LicenseArn field's value.
+func (s *CheckoutLicenseOutput) SetLicenseArn(v string) *CheckoutLicenseOutput {
+	s.LicenseArn = &v
 	return s
 }
 
@@ -5158,12 +5542,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -5217,12 +5609,20 @@ type ConsumedLicenseSummary struct {
 	ResourceType *string `type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConsumedLicenseSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConsumedLicenseSummary) GoString() string {
 	return s.String()
 }
@@ -5253,12 +5653,20 @@ type ConsumptionConfiguration struct {
 	RenewType *string `type:"string" enum:"RenewType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConsumptionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConsumptionConfiguration) GoString() string {
 	return s.String()
 }
@@ -5336,12 +5744,20 @@ type CreateGrantInput struct {
 	Principals []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGrantInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGrantInput) GoString() string {
 	return s.String()
 }
@@ -5429,12 +5845,20 @@ type CreateGrantOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGrantOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGrantOutput) GoString() string {
 	return s.String()
 }
@@ -5483,15 +5907,24 @@ type CreateGrantVersionInput struct {
 	// Grant status.
 	Status *string `type:"string" enum:"GrantStatus"`
 
+	// Grant status reason.
 	StatusReason *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGrantVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGrantVersionInput) GoString() string {
 	return s.String()
 }
@@ -5570,12 +6003,20 @@ type CreateGrantVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGrantVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGrantVersionOutput) GoString() string {
 	return s.String()
 }
@@ -5652,12 +6093,20 @@ type CreateLicenseConfigurationInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -5749,12 +6198,20 @@ type CreateLicenseConfigurationOutput struct {
 	LicenseConfigurationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -5762,6 +6219,118 @@ func (s CreateLicenseConfigurationOutput) GoString() string {
 // SetLicenseConfigurationArn sets the LicenseConfigurationArn field's value.
 func (s *CreateLicenseConfigurationOutput) SetLicenseConfigurationArn(v string) *CreateLicenseConfigurationOutput {
 	s.LicenseConfigurationArn = &v
+	return s
+}
+
+type CreateLicenseConversionTaskForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Information that identifies the license type you are converting to. For the
+	// structure of the destination license, see Convert a license type using the
+	// AWS CLI (https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli)
+	// in the License Manager User Guide.
+	//
+	// DestinationLicenseContext is a required field
+	DestinationLicenseContext *LicenseConversionContext `type:"structure" required:"true"`
+
+	// Amazon Resource Name (ARN) of the resource you are converting the license
+	// type for.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+
+	// Information that identifies the license type you are converting from. For
+	// the structure of the source license, see Convert a license type using the
+	// AWS CLI (https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli)
+	// in the License Manager User Guide.
+	//
+	// SourceLicenseContext is a required field
+	SourceLicenseContext *LicenseConversionContext `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLicenseConversionTaskForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLicenseConversionTaskForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLicenseConversionTaskForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLicenseConversionTaskForResourceInput"}
+	if s.DestinationLicenseContext == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationLicenseContext"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.SourceLicenseContext == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLicenseContext"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationLicenseContext sets the DestinationLicenseContext field's value.
+func (s *CreateLicenseConversionTaskForResourceInput) SetDestinationLicenseContext(v *LicenseConversionContext) *CreateLicenseConversionTaskForResourceInput {
+	s.DestinationLicenseContext = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *CreateLicenseConversionTaskForResourceInput) SetResourceArn(v string) *CreateLicenseConversionTaskForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSourceLicenseContext sets the SourceLicenseContext field's value.
+func (s *CreateLicenseConversionTaskForResourceInput) SetSourceLicenseContext(v *LicenseConversionContext) *CreateLicenseConversionTaskForResourceInput {
+	s.SourceLicenseContext = v
+	return s
+}
+
+type CreateLicenseConversionTaskForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the created license type conversion task.
+	LicenseConversionTaskId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLicenseConversionTaskForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLicenseConversionTaskForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetLicenseConversionTaskId sets the LicenseConversionTaskId field's value.
+func (s *CreateLicenseConversionTaskForResourceOutput) SetLicenseConversionTaskId(v string) *CreateLicenseConversionTaskForResourceOutput {
+	s.LicenseConversionTaskId = &v
 	return s
 }
 
@@ -5825,12 +6394,20 @@ type CreateLicenseInput struct {
 	Validity *DatetimeRange `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseInput) GoString() string {
 	return s.String()
 }
@@ -5999,22 +6576,30 @@ type CreateLicenseManagerReportGeneratorInput struct {
 
 	// Type of reports to generate. The following report types an be generated:
 	//
-	//    * License configuration report - Reports on the number and details of
-	//    consumed licenses for a license configuration.
+	//    * License configuration report - Reports the number and details of consumed
+	//    licenses for a license configuration.
 	//
-	//    * Resource report - Reports on the tracked licenses and resource consumption
+	//    * Resource report - Reports the tracked licenses and resource consumption
 	//    for a license configuration.
 	//
 	// Type is a required field
 	Type []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseManagerReportGeneratorInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseManagerReportGeneratorInput) GoString() string {
 	return s.String()
 }
@@ -6100,16 +6685,24 @@ func (s *CreateLicenseManagerReportGeneratorInput) SetType(v []*string) *CreateL
 type CreateLicenseManagerReportGeneratorOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Number (ARN) of the new report generator.
+	// The Amazon Resource Name (ARN) of the new report generator.
 	LicenseManagerReportGeneratorArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseManagerReportGeneratorOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseManagerReportGeneratorOutput) GoString() string {
 	return s.String()
 }
@@ -6133,12 +6726,20 @@ type CreateLicenseOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseOutput) GoString() string {
 	return s.String()
 }
@@ -6224,12 +6825,20 @@ type CreateLicenseVersionInput struct {
 	Validity *DatetimeRange `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseVersionInput) GoString() string {
 	return s.String()
 }
@@ -6384,12 +6993,20 @@ type CreateLicenseVersionOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLicenseVersionOutput) GoString() string {
 	return s.String()
 }
@@ -6439,12 +7056,20 @@ type CreateTokenInput struct {
 	TokenProperties []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTokenInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTokenInput) GoString() string {
 	return s.String()
 }
@@ -6508,12 +7133,20 @@ type CreateTokenOutput struct {
 	TokenType *string `type:"string" enum:"TokenType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTokenOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTokenOutput) GoString() string {
 	return s.String()
 }
@@ -6549,12 +7182,20 @@ type DatetimeRange struct {
 	End *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatetimeRange) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DatetimeRange) GoString() string {
 	return s.String()
 }
@@ -6592,6 +7233,7 @@ type DeleteGrantInput struct {
 	// GrantArn is a required field
 	GrantArn *string `type:"string" required:"true"`
 
+	// The Status reason for the delete request.
 	StatusReason *string `type:"string"`
 
 	// Current version of the grant.
@@ -6600,12 +7242,20 @@ type DeleteGrantInput struct {
 	Version *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGrantInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGrantInput) GoString() string {
 	return s.String()
 }
@@ -6657,12 +7307,20 @@ type DeleteGrantOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGrantOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGrantOutput) GoString() string {
 	return s.String()
 }
@@ -6694,12 +7352,20 @@ type DeleteLicenseConfigurationInput struct {
 	LicenseConfigurationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLicenseConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLicenseConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -6727,12 +7393,20 @@ type DeleteLicenseConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLicenseConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLicenseConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -6751,12 +7425,20 @@ type DeleteLicenseInput struct {
 	SourceVersion *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLicenseInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLicenseInput) GoString() string {
 	return s.String()
 }
@@ -6792,18 +7474,26 @@ func (s *DeleteLicenseInput) SetSourceVersion(v string) *DeleteLicenseInput {
 type DeleteLicenseManagerReportGeneratorInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Resource Number (ARN) of the report generator that will be deleted.
+	// Amazon Resource Name (ARN) of the report generator to be deleted.
 	//
 	// LicenseManagerReportGeneratorArn is a required field
 	LicenseManagerReportGeneratorArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLicenseManagerReportGeneratorInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLicenseManagerReportGeneratorInput) GoString() string {
 	return s.String()
 }
@@ -6831,12 +7521,20 @@ type DeleteLicenseManagerReportGeneratorOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLicenseManagerReportGeneratorOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLicenseManagerReportGeneratorOutput) GoString() string {
 	return s.String()
 }
@@ -6844,19 +7542,27 @@ func (s DeleteLicenseManagerReportGeneratorOutput) GoString() string {
 type DeleteLicenseOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Date on which the license is deleted.
+	// Date when the license is deleted.
 	DeletionDate *string `type:"string"`
 
 	// License status.
 	Status *string `type:"string" enum:"LicenseDeletionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLicenseOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLicenseOutput) GoString() string {
 	return s.String()
 }
@@ -6882,12 +7588,20 @@ type DeleteTokenInput struct {
 	TokenId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTokenInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTokenInput) GoString() string {
 	return s.String()
 }
@@ -6915,12 +7629,20 @@ type DeleteTokenOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTokenOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTokenOutput) GoString() string {
 	return s.String()
 }
@@ -6952,12 +7674,20 @@ type Entitlement struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Entitlement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Entitlement) GoString() string {
 	return s.String()
 }
@@ -7032,12 +7762,20 @@ type EntitlementData struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EntitlementData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EntitlementData) GoString() string {
 	return s.String()
 }
@@ -7084,12 +7822,20 @@ type EntitlementNotAllowedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EntitlementNotAllowedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EntitlementNotAllowedException) GoString() string {
 	return s.String()
 }
@@ -7155,12 +7901,20 @@ type EntitlementUsage struct {
 	Unit *string `type:"string" required:"true" enum:"EntitlementDataUnit"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EntitlementUsage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EntitlementUsage) GoString() string {
 	return s.String()
 }
@@ -7203,12 +7957,20 @@ type ExtendLicenseConsumptionInput struct {
 	LicenseConsumptionToken *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExtendLicenseConsumptionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExtendLicenseConsumptionInput) GoString() string {
 	return s.String()
 }
@@ -7248,12 +8010,20 @@ type ExtendLicenseConsumptionOutput struct {
 	LicenseConsumptionToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExtendLicenseConsumptionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExtendLicenseConsumptionOutput) GoString() string {
 	return s.String()
 }
@@ -7280,12 +8050,20 @@ type FailedDependencyException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedDependencyException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedDependencyException) GoString() string {
 	return s.String()
 }
@@ -7341,12 +8119,20 @@ type Filter struct {
 	Values []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) GoString() string {
 	return s.String()
 }
@@ -7371,12 +8157,20 @@ type FilterLimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FilterLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FilterLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -7431,12 +8225,20 @@ type GetAccessTokenInput struct {
 	TokenProperties []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessTokenInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessTokenInput) GoString() string {
 	return s.String()
 }
@@ -7473,12 +8275,20 @@ type GetAccessTokenOutput struct {
 	AccessToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessTokenOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessTokenOutput) GoString() string {
 	return s.String()
 }
@@ -7501,12 +8311,20 @@ type GetGrantInput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGrantInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGrantInput) GoString() string {
 	return s.String()
 }
@@ -7543,12 +8361,20 @@ type GetGrantOutput struct {
 	Grant *Grant `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGrantOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetGrantOutput) GoString() string {
 	return s.String()
 }
@@ -7568,12 +8394,20 @@ type GetLicenseConfigurationInput struct {
 	LicenseConfigurationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -7627,7 +8461,7 @@ type GetLicenseConfigurationOutput struct {
 	// Sets the number of available licenses as a hard limit.
 	LicenseCountHardLimit *bool `type:"boolean"`
 
-	// Dimension on which the licenses are counted.
+	// Dimension for which the licenses are counted.
 	LicenseCountingType *string `type:"string" enum:"LicenseCountingType"`
 
 	// License rules.
@@ -7652,12 +8486,20 @@ type GetLicenseConfigurationOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -7764,6 +8606,156 @@ func (s *GetLicenseConfigurationOutput) SetTags(v []*Tag) *GetLicenseConfigurati
 	return s
 }
 
+type GetLicenseConversionTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of the license type conversion task to retrieve information on.
+	//
+	// LicenseConversionTaskId is a required field
+	LicenseConversionTaskId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLicenseConversionTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLicenseConversionTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetLicenseConversionTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetLicenseConversionTaskInput"}
+	if s.LicenseConversionTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LicenseConversionTaskId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLicenseConversionTaskId sets the LicenseConversionTaskId field's value.
+func (s *GetLicenseConversionTaskInput) SetLicenseConversionTaskId(v string) *GetLicenseConversionTaskInput {
+	s.LicenseConversionTaskId = &v
+	return s
+}
+
+type GetLicenseConversionTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the license type converted to.
+	DestinationLicenseContext *LicenseConversionContext `type:"structure"`
+
+	// Time at which the license type conversion task was completed.
+	EndTime *time.Time `type:"timestamp"`
+
+	// ID of the license type conversion task.
+	LicenseConversionTaskId *string `type:"string"`
+
+	// Amount of time to complete the license type conversion.
+	LicenseConversionTime *time.Time `type:"timestamp"`
+
+	// Amazon Resource Names (ARN) of the resources the license conversion task
+	// is associated with.
+	ResourceArn *string `type:"string"`
+
+	// Information about the license type converted from.
+	SourceLicenseContext *LicenseConversionContext `type:"structure"`
+
+	// Time at which the license type conversion task was started .
+	StartTime *time.Time `type:"timestamp"`
+
+	// Status of the license type conversion task.
+	Status *string `type:"string" enum:"LicenseConversionTaskStatus"`
+
+	// The status message for the conversion task.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLicenseConversionTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLicenseConversionTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetDestinationLicenseContext sets the DestinationLicenseContext field's value.
+func (s *GetLicenseConversionTaskOutput) SetDestinationLicenseContext(v *LicenseConversionContext) *GetLicenseConversionTaskOutput {
+	s.DestinationLicenseContext = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetLicenseConversionTaskOutput) SetEndTime(v time.Time) *GetLicenseConversionTaskOutput {
+	s.EndTime = &v
+	return s
+}
+
+// SetLicenseConversionTaskId sets the LicenseConversionTaskId field's value.
+func (s *GetLicenseConversionTaskOutput) SetLicenseConversionTaskId(v string) *GetLicenseConversionTaskOutput {
+	s.LicenseConversionTaskId = &v
+	return s
+}
+
+// SetLicenseConversionTime sets the LicenseConversionTime field's value.
+func (s *GetLicenseConversionTaskOutput) SetLicenseConversionTime(v time.Time) *GetLicenseConversionTaskOutput {
+	s.LicenseConversionTime = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetLicenseConversionTaskOutput) SetResourceArn(v string) *GetLicenseConversionTaskOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSourceLicenseContext sets the SourceLicenseContext field's value.
+func (s *GetLicenseConversionTaskOutput) SetSourceLicenseContext(v *LicenseConversionContext) *GetLicenseConversionTaskOutput {
+	s.SourceLicenseContext = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetLicenseConversionTaskOutput) SetStartTime(v time.Time) *GetLicenseConversionTaskOutput {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetLicenseConversionTaskOutput) SetStatus(v string) *GetLicenseConversionTaskOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *GetLicenseConversionTaskOutput) SetStatusMessage(v string) *GetLicenseConversionTaskOutput {
+	s.StatusMessage = &v
+	return s
+}
+
 type GetLicenseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7776,12 +8768,20 @@ type GetLicenseInput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseInput) GoString() string {
 	return s.String()
 }
@@ -7814,19 +8814,26 @@ func (s *GetLicenseInput) SetVersion(v string) *GetLicenseInput {
 type GetLicenseManagerReportGeneratorInput struct {
 	_ struct{} `type:"structure"`
 
-	// mazon Resource Number (ARN) of the report generator to retrieve information
-	// on.
+	// Amazon Resource Name (ARN) of the report generator.
 	//
 	// LicenseManagerReportGeneratorArn is a required field
 	LicenseManagerReportGeneratorArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseManagerReportGeneratorInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseManagerReportGeneratorInput) GoString() string {
 	return s.String()
 }
@@ -7853,16 +8860,24 @@ func (s *GetLicenseManagerReportGeneratorInput) SetLicenseManagerReportGenerator
 type GetLicenseManagerReportGeneratorOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A report generator that creates periodic reports on your license configurations.
+	// A report generator that creates periodic reports about your license configurations.
 	ReportGenerator *ReportGenerator `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseManagerReportGeneratorOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseManagerReportGeneratorOutput) GoString() string {
 	return s.String()
 }
@@ -7880,12 +8895,20 @@ type GetLicenseOutput struct {
 	License *License `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseOutput) GoString() string {
 	return s.String()
 }
@@ -7905,12 +8928,20 @@ type GetLicenseUsageInput struct {
 	LicenseArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseUsageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseUsageInput) GoString() string {
 	return s.String()
 }
@@ -7941,12 +8972,20 @@ type GetLicenseUsageOutput struct {
 	LicenseUsage *LicenseUsage `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseUsageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLicenseUsageOutput) GoString() string {
 	return s.String()
 }
@@ -7961,12 +9000,20 @@ type GetServiceSettingsInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetServiceSettingsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetServiceSettingsInput) GoString() string {
 	return s.String()
 }
@@ -7977,12 +9024,12 @@ type GetServiceSettingsOutput struct {
 	// Indicates whether cross-account discovery is enabled.
 	EnableCrossAccountsDiscovery *bool `type:"boolean"`
 
-	// Amazon Resource Name (ARN) of the AWS resource share. The License Manager
-	// management account provides member accounts with access to this share.
+	// Amazon Resource Name (ARN) of the resource share. The License Manager management
+	// account provides member accounts with access to this share.
 	LicenseManagerResourceShareArn *string `type:"string"`
 
-	// Indicates whether AWS Organizations is integrated with License Manager for
-	// cross-account discovery.
+	// Indicates whether Organizations is integrated with License Manager for cross-account
+	// discovery.
 	OrganizationConfiguration *OrganizationConfiguration `type:"structure"`
 
 	// Regional S3 bucket path for storing reports, license trail event data, discovery
@@ -7993,12 +9040,20 @@ type GetServiceSettingsOutput struct {
 	SnsTopicArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetServiceSettingsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetServiceSettingsOutput) GoString() string {
 	return s.String()
 }
@@ -8086,12 +9141,20 @@ type Grant struct {
 	Version *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Grant) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Grant) GoString() string {
 	return s.String()
 }
@@ -8207,12 +9270,20 @@ type GrantedLicense struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrantedLicense) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GrantedLicense) GoString() string {
 	return s.String()
 }
@@ -8315,12 +9386,20 @@ type InvalidParameterValueException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterValueException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterValueException) GoString() string {
 	return s.String()
 }
@@ -8374,12 +9453,20 @@ type InvalidResourceStateException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidResourceStateException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidResourceStateException) GoString() string {
 	return s.String()
 }
@@ -8440,12 +9527,20 @@ type InventoryFilter struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InventoryFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InventoryFilter) GoString() string {
 	return s.String()
 }
@@ -8493,17 +9588,25 @@ type Issuer struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// Asymmetric CMK from AWS Key Management Service. The CMK must have a key usage
-	// of sign and verify, and support the RSASSA-PSS SHA-256 signing algorithm.
+	// Asymmetric KMS key from Key Management Service. The KMS key must have a key
+	// usage of sign and verify, and support the RSASSA-PSS SHA-256 signing algorithm.
 	SignKey *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Issuer) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Issuer) GoString() string {
 	return s.String()
 }
@@ -8543,17 +9646,25 @@ type IssuerDetails struct {
 	// Issuer name.
 	Name *string `type:"string"`
 
-	// Asymmetric CMK from AWS Key Management Service. The CMK must have a key usage
-	// of sign and verify, and support the RSASSA-PSS SHA-256 signing algorithm.
+	// Asymmetric KMS key from Key Management Service. The KMS key must have a key
+	// usage of sign and verify, and support the RSASSA-PSS SHA-256 signing algorithm.
 	SignKey *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IssuerDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IssuerDetails) GoString() string {
 	return s.String()
 }
@@ -8576,7 +9687,7 @@ func (s *IssuerDetails) SetSignKey(v string) *IssuerDetails {
 	return s
 }
 
-// Software license that is managed in AWS License Manager.
+// Software license that is managed in License Manager.
 type License struct {
 	_ struct{} `type:"structure"`
 
@@ -8623,12 +9734,20 @@ type License struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s License) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s License) GoString() string {
 	return s.String()
 }
@@ -8775,12 +9894,20 @@ type LicenseConfiguration struct {
 	Status *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseConfiguration) GoString() string {
 	return s.String()
 }
@@ -8894,19 +10021,27 @@ type LicenseConfigurationAssociation struct {
 	// Amazon Resource Name (ARN) of the resource.
 	ResourceArn *string `type:"string"`
 
-	// ID of the AWS account that owns the resource consuming licenses.
+	// ID of the Amazon Web Services account that owns the resource consuming licenses.
 	ResourceOwnerId *string `type:"string"`
 
 	// Type of server resource.
 	ResourceType *string `type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseConfigurationAssociation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseConfigurationAssociation) GoString() string {
 	return s.String()
 }
@@ -8964,12 +10099,20 @@ type LicenseConfigurationUsage struct {
 	ResourceType *string `type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseConfigurationUsage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseConfigurationUsage) GoString() string {
 	return s.String()
 }
@@ -9010,6 +10153,146 @@ func (s *LicenseConfigurationUsage) SetResourceType(v string) *LicenseConfigurat
 	return s
 }
 
+// Information about a license type conversion task.
+type LicenseConversionContext struct {
+	_ struct{} `type:"structure"`
+
+	// The Usage operation value that corresponds to the license type you are converting
+	// your resource from. For more information about which platforms correspond
+	// to which usage operation values see Sample data: usage operation by platform
+	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info-fields.html#billing-info)
+	UsageOperation *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseConversionContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseConversionContext) GoString() string {
+	return s.String()
+}
+
+// SetUsageOperation sets the UsageOperation field's value.
+func (s *LicenseConversionContext) SetUsageOperation(v string) *LicenseConversionContext {
+	s.UsageOperation = &v
+	return s
+}
+
+// Information about a license type conversion task.
+type LicenseConversionTask struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the license type this conversion task converted to.
+	DestinationLicenseContext *LicenseConversionContext `type:"structure"`
+
+	// The time the conversion task was completed.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The ID of the license type conversion task.
+	LicenseConversionTaskId *string `type:"string"`
+
+	// The time the usage operation value of the resource was changed.
+	LicenseConversionTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the resource associated with the license
+	// type conversion task.
+	ResourceArn *string `type:"string"`
+
+	// Information about the license type this conversion task converted from.
+	SourceLicenseContext *LicenseConversionContext `type:"structure"`
+
+	// The time the conversion task was started at.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The status of the conversion task.
+	Status *string `type:"string" enum:"LicenseConversionTaskStatus"`
+
+	// The status message for the conversion task.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseConversionTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseConversionTask) GoString() string {
+	return s.String()
+}
+
+// SetDestinationLicenseContext sets the DestinationLicenseContext field's value.
+func (s *LicenseConversionTask) SetDestinationLicenseContext(v *LicenseConversionContext) *LicenseConversionTask {
+	s.DestinationLicenseContext = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *LicenseConversionTask) SetEndTime(v time.Time) *LicenseConversionTask {
+	s.EndTime = &v
+	return s
+}
+
+// SetLicenseConversionTaskId sets the LicenseConversionTaskId field's value.
+func (s *LicenseConversionTask) SetLicenseConversionTaskId(v string) *LicenseConversionTask {
+	s.LicenseConversionTaskId = &v
+	return s
+}
+
+// SetLicenseConversionTime sets the LicenseConversionTime field's value.
+func (s *LicenseConversionTask) SetLicenseConversionTime(v time.Time) *LicenseConversionTask {
+	s.LicenseConversionTime = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *LicenseConversionTask) SetResourceArn(v string) *LicenseConversionTask {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSourceLicenseContext sets the SourceLicenseContext field's value.
+func (s *LicenseConversionTask) SetSourceLicenseContext(v *LicenseConversionContext) *LicenseConversionTask {
+	s.SourceLicenseContext = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *LicenseConversionTask) SetStartTime(v time.Time) *LicenseConversionTask {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LicenseConversionTask) SetStatus(v string) *LicenseConversionTask {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *LicenseConversionTask) SetStatusMessage(v string) *LicenseConversionTask {
+	s.StatusMessage = &v
+	return s
+}
+
 // Describes the failure of a license operation.
 type LicenseOperationFailure struct {
 	_ struct{} `type:"structure"`
@@ -9032,19 +10315,27 @@ type LicenseOperationFailure struct {
 	// Amazon Resource Name (ARN) of the resource.
 	ResourceArn *string `type:"string"`
 
-	// ID of the AWS account that owns the resource.
+	// ID of the Amazon Web Services account that owns the resource.
 	ResourceOwnerId *string `type:"string"`
 
 	// Resource type.
 	ResourceType *string `type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseOperationFailure) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseOperationFailure) GoString() string {
 	return s.String()
 }
@@ -9110,12 +10401,20 @@ type LicenseSpecification struct {
 	LicenseConfigurationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseSpecification) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseSpecification) GoString() string {
 	return s.String()
 }
@@ -9153,12 +10452,20 @@ type LicenseUsage struct {
 	EntitlementUsages []*EntitlementUsage `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseUsage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseUsage) GoString() string {
 	return s.String()
 }
@@ -9177,12 +10484,20 @@ type LicenseUsageException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseUsageException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LicenseUsageException) GoString() string {
 	return s.String()
 }
@@ -9240,12 +10555,20 @@ type ListAssociationsForLicenseConfigurationInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociationsForLicenseConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociationsForLicenseConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -9291,12 +10614,20 @@ type ListAssociationsForLicenseConfigurationOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociationsForLicenseConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAssociationsForLicenseConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -9339,12 +10670,20 @@ type ListDistributedGrantsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDistributedGrantsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDistributedGrantsInput) GoString() string {
 	return s.String()
 }
@@ -9396,12 +10735,20 @@ type ListDistributedGrantsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDistributedGrantsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDistributedGrantsOutput) GoString() string {
 	return s.String()
 }
@@ -9433,12 +10780,20 @@ type ListFailuresForLicenseConfigurationOperationsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFailuresForLicenseConfigurationOperationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFailuresForLicenseConfigurationOperationsInput) GoString() string {
 	return s.String()
 }
@@ -9484,12 +10839,20 @@ type ListFailuresForLicenseConfigurationOperationsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFailuresForLicenseConfigurationOperationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFailuresForLicenseConfigurationOperationsOutput) GoString() string {
 	return s.String()
 }
@@ -9512,9 +10875,9 @@ type ListLicenseConfigurationsInput struct {
 	// Filters to scope the results. The following filters and logical operators
 	// are supported:
 	//
-	//    * licenseCountingType - The dimension on which licenses are counted. Possible
-	//    values are vCPU | Instance | Core | Socket. Logical operators are EQUALS
-	//    | NOT_EQUALS.
+	//    * licenseCountingType - The dimension for which licenses are counted.
+	//    Possible values are vCPU | Instance | Core | Socket. Logical operators
+	//    are EQUALS | NOT_EQUALS.
 	//
 	//    * enforceLicenseCount - A Boolean value that indicates whether hard license
 	//    enforcement is used. Logical operators are EQUALS | NOT_EQUALS.
@@ -9533,12 +10896,20 @@ type ListLicenseConfigurationsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseConfigurationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseConfigurationsInput) GoString() string {
 	return s.String()
 }
@@ -9577,12 +10948,20 @@ type ListLicenseConfigurationsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseConfigurationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseConfigurationsOutput) GoString() string {
 	return s.String()
 }
@@ -9595,6 +10974,95 @@ func (s *ListLicenseConfigurationsOutput) SetLicenseConfigurations(v []*LicenseC
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListLicenseConfigurationsOutput) SetNextToken(v string) *ListLicenseConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLicenseConversionTasksInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters to scope the results. Valid filters are ResourceArns and Status.
+	Filters []*Filter `type:"list"`
+
+	// Maximum number of results to return in a single call.
+	MaxResults *int64 `type:"integer"`
+
+	// Token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLicenseConversionTasksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLicenseConversionTasksInput) GoString() string {
+	return s.String()
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListLicenseConversionTasksInput) SetFilters(v []*Filter) *ListLicenseConversionTasksInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLicenseConversionTasksInput) SetMaxResults(v int64) *ListLicenseConversionTasksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLicenseConversionTasksInput) SetNextToken(v string) *ListLicenseConversionTasksInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLicenseConversionTasksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the license configuration tasks for your account.
+	LicenseConversionTasks []*LicenseConversionTask `type:"list"`
+
+	// Token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLicenseConversionTasksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLicenseConversionTasksOutput) GoString() string {
+	return s.String()
+}
+
+// SetLicenseConversionTasks sets the LicenseConversionTasks field's value.
+func (s *ListLicenseConversionTasksOutput) SetLicenseConversionTasks(v []*LicenseConversionTask) *ListLicenseConversionTasksOutput {
+	s.LicenseConversionTasks = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLicenseConversionTasksOutput) SetNextToken(v string) *ListLicenseConversionTasksOutput {
 	s.NextToken = &v
 	return s
 }
@@ -9614,12 +11082,20 @@ type ListLicenseManagerReportGeneratorsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseManagerReportGeneratorsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseManagerReportGeneratorsInput) GoString() string {
 	return s.String()
 }
@@ -9661,16 +11137,24 @@ type ListLicenseManagerReportGeneratorsOutput struct {
 	// Token for the next set of results.
 	NextToken *string `type:"string"`
 
-	// A report generator that creates periodic reports on your license configurations.
+	// A report generator that creates periodic reports about your license configurations.
 	ReportGenerators []*ReportGenerator `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseManagerReportGeneratorsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseManagerReportGeneratorsOutput) GoString() string {
 	return s.String()
 }
@@ -9702,12 +11186,20 @@ type ListLicenseSpecificationsForResourceInput struct {
 	ResourceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseSpecificationsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseSpecificationsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -9753,12 +11245,20 @@ type ListLicenseSpecificationsForResourceOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseSpecificationsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseSpecificationsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -9790,12 +11290,20 @@ type ListLicenseVersionsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseVersionsInput) GoString() string {
 	return s.String()
 }
@@ -9844,12 +11352,20 @@ type ListLicenseVersionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicenseVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -9890,12 +11406,20 @@ type ListLicensesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicensesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicensesInput) GoString() string {
 	return s.String()
 }
@@ -9947,12 +11471,20 @@ type ListLicensesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicensesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLicensesOutput) GoString() string {
 	return s.String()
 }
@@ -9995,12 +11527,20 @@ type ListReceivedGrantsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceivedGrantsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceivedGrantsInput) GoString() string {
 	return s.String()
 }
@@ -10052,12 +11592,20 @@ type ListReceivedGrantsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceivedGrantsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceivedGrantsOutput) GoString() string {
 	return s.String()
 }
@@ -10100,12 +11648,20 @@ type ListReceivedLicensesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceivedLicensesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceivedLicensesInput) GoString() string {
 	return s.String()
 }
@@ -10157,12 +11713,20 @@ type ListReceivedLicensesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceivedLicensesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListReceivedLicensesOutput) GoString() string {
 	return s.String()
 }
@@ -10185,8 +11749,8 @@ type ListResourceInventoryInput struct {
 	// Filters to scope the results. The following filters and logical operators
 	// are supported:
 	//
-	//    * account_id - The ID of the AWS account that owns the resource. Logical
-	//    operators are EQUALS | NOT_EQUALS.
+	//    * account_id - The ID of the Amazon Web Services account that owns the
+	//    resource. Logical operators are EQUALS | NOT_EQUALS.
 	//
 	//    * application_name - The name of the application. Logical operators are
 	//    EQUALS | BEGINS_WITH.
@@ -10213,12 +11777,20 @@ type ListResourceInventoryInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourceInventoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourceInventoryInput) GoString() string {
 	return s.String()
 }
@@ -10271,12 +11843,20 @@ type ListResourceInventoryOutput struct {
 	ResourceInventoryList []*ResourceInventory `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourceInventoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourceInventoryOutput) GoString() string {
 	return s.String()
 }
@@ -10302,12 +11882,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -10338,12 +11926,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -10372,12 +11968,20 @@ type ListTokensInput struct {
 	TokenIds []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTokensInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTokensInput) GoString() string {
 	return s.String()
 }
@@ -10429,12 +12033,20 @@ type ListTokensOutput struct {
 	Tokens []*TokenData `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTokensOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTokensOutput) GoString() string {
 	return s.String()
 }
@@ -10479,12 +12091,20 @@ type ListUsageForLicenseConfigurationInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsageForLicenseConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsageForLicenseConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -10536,12 +12156,20 @@ type ListUsageForLicenseConfigurationOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsageForLicenseConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsageForLicenseConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -10569,12 +12197,20 @@ type ManagedResourceSummary struct {
 	ResourceType *string `type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedResourceSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedResourceSummary) GoString() string {
 	return s.String()
 }
@@ -10602,12 +12238,20 @@ type Metadata struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Metadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Metadata) GoString() string {
 	return s.String()
 }
@@ -10633,12 +12277,20 @@ type NoEntitlementsAllowedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoEntitlementsAllowedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoEntitlementsAllowedException) GoString() string {
 	return s.String()
 }
@@ -10681,22 +12333,30 @@ func (s *NoEntitlementsAllowedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Configuration information for AWS Organizations.
+// Configuration information for Organizations.
 type OrganizationConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Enables AWS Organization integration.
+	// Enables Organizations integration.
 	//
 	// EnableIntegration is a required field
 	EnableIntegration *bool `type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConfiguration) GoString() string {
 	return s.String()
 }
@@ -10747,14 +12407,14 @@ type ProductInformation struct {
 	//
 	//    * Platform Type - The platform type. Logical operator is EQUALS.
 	//
-	//    * Tag:key - The key of a tag attached to an AWS resource you wish to exclude
-	//    from automated discovery. Logical operator is NOT_EQUALS. The key for
-	//    your tag must be appended to Tag: following the example: Tag:name-of-your-key.
+	//    * Tag:key - The key of a tag attached to an Amazon Web Services resource
+	//    you wish to exclude from automated discovery. Logical operator is NOT_EQUALS.
+	//    The key for your tag must be appended to Tag: following the example: Tag:name-of-your-key.
 	//    ProductInformationFilterValue is optional if you are not using values
 	//    for the key.
 	//
-	//    * AccountId - The 12-digit ID of an AWS account you wish to exclude from
-	//    automated discovery. Logical operator is NOT_EQUALS.
+	//    * AccountId - The 12-digit ID of an Amazon Web Services account you wish
+	//    to exclude from automated discovery. Logical operator is NOT_EQUALS.
 	//
 	//    * License Included - The type of license included. Logical operators are
 	//    EQUALS and NOT_EQUALS. Possible values are: sql-server-enterprise | sql-server-standard
@@ -10779,12 +12439,20 @@ type ProductInformation struct {
 	ResourceType *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProductInformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProductInformation) GoString() string {
 	return s.String()
 }
@@ -10845,12 +12513,20 @@ type ProductInformationFilter struct {
 	ProductInformationFilterValue []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProductInformationFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProductInformationFilter) GoString() string {
 	return s.String()
 }
@@ -10899,12 +12575,20 @@ type ProvisionalConfiguration struct {
 	MaxTimeToLiveInMinutes *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionalConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProvisionalConfiguration) GoString() string {
 	return s.String()
 }
@@ -10936,12 +12620,20 @@ type RateLimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RateLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RateLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -10994,15 +12686,24 @@ type ReceivedMetadata struct {
 	// Received status.
 	ReceivedStatus *string `type:"string" enum:"ReceivedStatus"`
 
+	// Received status reason.
 	ReceivedStatusReason *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReceivedMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReceivedMetadata) GoString() string {
 	return s.String()
 }
@@ -11035,12 +12736,20 @@ type RedirectException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RedirectException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RedirectException) GoString() string {
 	return s.String()
 }
@@ -11092,12 +12801,20 @@ type RejectGrantInput struct {
 	GrantArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectGrantInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectGrantInput) GoString() string {
 	return s.String()
 }
@@ -11134,12 +12851,20 @@ type RejectGrantOutput struct {
 	Version *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectGrantOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectGrantOutput) GoString() string {
 	return s.String()
 }
@@ -11166,19 +12891,27 @@ func (s *RejectGrantOutput) SetVersion(v string) *RejectGrantOutput {
 type ReportContext struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Resource Number (ARN) of the license configuration that this generator
+	// Amazon Resource Name (ARN) of the license configuration that this generator
 	// reports on.
 	//
 	// LicenseConfigurationArns is a required field
 	LicenseConfigurationArns []*string `locationName:"licenseConfigurationArns" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReportContext) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReportContext) GoString() string {
 	return s.String()
 }
@@ -11202,24 +12935,32 @@ func (s *ReportContext) SetLicenseConfigurationArns(v []*string) *ReportContext 
 	return s
 }
 
-// Details on how frequently reports are generated.
+// Details about how frequently reports are generated.
 type ReportFrequency struct {
 	_ struct{} `type:"structure"`
 
 	// Time period between each report. The period can be daily, weekly, or monthly.
 	Period *string `locationName:"period" type:"string" enum:"ReportFrequencyType"`
 
-	// Number of times within the frequency period that a report will be generated.
-	// Currently only 1 is supported.
+	// Number of times within the frequency period that a report is generated. The
+	// only supported value is 1.
 	Value *int64 `locationName:"value" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReportFrequency) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReportFrequency) GoString() string {
 	return s.String()
 }
@@ -11255,16 +12996,16 @@ type ReportGenerator struct {
 	// Status of the last report generation attempt.
 	LastRunStatus *string `type:"string"`
 
-	// Amazon Resource Number (ARN) of the report generator.
+	// Amazon Resource Name (ARN) of the report generator.
 	LicenseManagerReportGeneratorArn *string `type:"string"`
 
-	// License configuration type this generator reports on.
+	// License configuration type for this generator.
 	ReportContext *ReportContext `type:"structure"`
 
-	// The AWS account ID used to create the report generator.
+	// The Amazon Web Services account ID used to create the report generator.
 	ReportCreatorAccount *string `type:"string"`
 
-	// Details on how frequently reports are generated.
+	// Details about how frequently reports are generated.
 	ReportFrequency *ReportFrequency `type:"structure"`
 
 	// Name of the report generator.
@@ -11280,12 +13021,20 @@ type ReportGenerator struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReportGenerator) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReportGenerator) GoString() string {
 	return s.String()
 }
@@ -11391,12 +13140,20 @@ type ResourceInventory struct {
 	ResourceType *string `type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInventory) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInventory) GoString() string {
 	return s.String()
 }
@@ -11445,12 +13202,20 @@ type ResourceLimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceLimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceLimitExceededException) GoString() string {
 	return s.String()
 }
@@ -11501,12 +13266,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -11560,12 +13333,20 @@ type S3Location struct {
 	KeyPrefix *string `locationName:"keyPrefix" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Location) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Location) GoString() string {
 	return s.String()
 }
@@ -11590,12 +13371,20 @@ type ServerInternalException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerInternalException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerInternalException) GoString() string {
 	return s.String()
 }
@@ -11649,12 +13438,20 @@ type Tag struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -11685,12 +13482,20 @@ type TagResourceInput struct {
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -11727,12 +13532,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -11763,12 +13576,20 @@ type TokenData struct {
 	TokenType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TokenData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TokenData) GoString() string {
 	return s.String()
 }
@@ -11823,12 +13644,20 @@ type UnsupportedDigitalSignatureMethodException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnsupportedDigitalSignatureMethodException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnsupportedDigitalSignatureMethodException) GoString() string {
 	return s.String()
 }
@@ -11885,12 +13714,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -11927,12 +13764,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -11971,12 +13816,20 @@ type UpdateLicenseConfigurationInput struct {
 	ProductInformationList []*ProductInformation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLicenseConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLicenseConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -12062,12 +13915,20 @@ type UpdateLicenseConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLicenseConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLicenseConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -12084,19 +13945,17 @@ type UpdateLicenseManagerReportGeneratorInput struct {
 	// Description of the report generator.
 	Description *string `type:"string"`
 
-	// Amazon Resource Number (ARN) of the report generator to update.
+	// Amazon Resource Name (ARN) of the report generator to update.
 	//
 	// LicenseManagerReportGeneratorArn is a required field
 	LicenseManagerReportGeneratorArn *string `type:"string" required:"true"`
 
-	// ?
+	// The report context.
 	//
 	// ReportContext is a required field
 	ReportContext *ReportContext `type:"structure" required:"true"`
 
-	// Frequency by which reports are generated. The following options are avaiable:
-	//
-	// ??? What are the APi value options?
+	// Frequency by which reports are generated.
 	//
 	// ReportFrequency is a required field
 	ReportFrequency *ReportFrequency `type:"structure" required:"true"`
@@ -12106,24 +13965,32 @@ type UpdateLicenseManagerReportGeneratorInput struct {
 	// ReportGeneratorName is a required field
 	ReportGeneratorName *string `min:"1" type:"string" required:"true"`
 
-	// Type of reports to generate. The following report types an be generated:
+	// Type of reports to generate. The following report types are supported:
 	//
-	//    * License configuration report - Reports on the number and details of
-	//    consumed licenses for a license configuration.
+	//    * License configuration report - Reports the number and details of consumed
+	//    licenses for a license configuration.
 	//
-	//    * Resource report - Reports on the tracked licenses and resource consumption
+	//    * Resource report - Reports the tracked licenses and resource consumption
 	//    for a license configuration.
 	//
 	// Type is a required field
 	Type []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLicenseManagerReportGeneratorInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLicenseManagerReportGeneratorInput) GoString() string {
 	return s.String()
 }
@@ -12213,12 +14080,20 @@ type UpdateLicenseManagerReportGeneratorOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLicenseManagerReportGeneratorOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLicenseManagerReportGeneratorOutput) GoString() string {
 	return s.String()
 }
@@ -12232,18 +14107,26 @@ type UpdateLicenseSpecificationsForResourceInput struct {
 	// ARNs of the license configurations to remove.
 	RemoveLicenseSpecifications []*LicenseSpecification `type:"list"`
 
-	// Amazon Resource Name (ARN) of the AWS resource.
+	// Amazon Resource Name (ARN) of the Amazon Web Services resource.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLicenseSpecificationsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLicenseSpecificationsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -12303,12 +14186,20 @@ type UpdateLicenseSpecificationsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLicenseSpecificationsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLicenseSpecificationsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -12319,7 +14210,7 @@ type UpdateServiceSettingsInput struct {
 	// Activates cross-account discovery.
 	EnableCrossAccountsDiscovery *bool `type:"boolean"`
 
-	// Enables integration with AWS Organizations for cross-account discovery.
+	// Enables integration with Organizations for cross-account discovery.
 	OrganizationConfiguration *OrganizationConfiguration `type:"structure"`
 
 	// Amazon Resource Name (ARN) of the Amazon S3 bucket where the License Manager
@@ -12331,12 +14222,20 @@ type UpdateServiceSettingsInput struct {
 	SnsTopicArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceSettingsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceSettingsInput) GoString() string {
 	return s.String()
 }
@@ -12384,12 +14283,20 @@ type UpdateServiceSettingsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceSettingsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceSettingsOutput) GoString() string {
 	return s.String()
 }
@@ -12402,12 +14309,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -12827,6 +14742,26 @@ func LicenseConfigurationStatus_Values() []string {
 	return []string{
 		LicenseConfigurationStatusAvailable,
 		LicenseConfigurationStatusDisabled,
+	}
+}
+
+const (
+	// LicenseConversionTaskStatusInProgress is a LicenseConversionTaskStatus enum value
+	LicenseConversionTaskStatusInProgress = "IN_PROGRESS"
+
+	// LicenseConversionTaskStatusSucceeded is a LicenseConversionTaskStatus enum value
+	LicenseConversionTaskStatusSucceeded = "SUCCEEDED"
+
+	// LicenseConversionTaskStatusFailed is a LicenseConversionTaskStatus enum value
+	LicenseConversionTaskStatusFailed = "FAILED"
+)
+
+// LicenseConversionTaskStatus_Values returns all elements of the LicenseConversionTaskStatus enum
+func LicenseConversionTaskStatus_Values() []string {
+	return []string{
+		LicenseConversionTaskStatusInProgress,
+		LicenseConversionTaskStatusSucceeded,
+		LicenseConversionTaskStatusFailed,
 	}
 }
 

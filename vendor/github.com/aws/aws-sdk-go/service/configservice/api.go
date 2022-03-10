@@ -58,10 +58,9 @@ func (c *ConfigService) BatchGetAggregateResourceConfigRequest(input *BatchGetAg
 // BatchGetAggregateResourceConfig API operation for AWS Config.
 //
 // Returns the current configuration items for resources that are present in
-// your AWS Config aggregator. The operation also returns a list of resources
-// that are not processed in the current request. If there are no unprocessed
-// resources, the operation returns an empty unprocessedResourceIdentifiers
-// list.
+// your Config aggregator. The operation also returns a list of resources that
+// are not processed in the current request. If there are no unprocessed resources,
+// the operation returns an empty unprocessedResourceIdentifiers list.
 //
 //    * The API does not return results for deleted resources.
 //
@@ -155,7 +154,7 @@ func (c *ConfigService) BatchGetResourceConfigRequest(input *BatchGetResourceCon
 
 // BatchGetResourceConfig API operation for AWS Config.
 //
-// Returns the current configuration for one or more requested resources. The
+// Returns the BaseConfigurationItem for one or more requested resources. The
 // operation also returns a list of resources that are not processed in the
 // current request. If there are no unprocessed resources, the operation returns
 // an empty unprocessedResourceKeys list.
@@ -337,9 +336,9 @@ func (c *ConfigService) DeleteConfigRuleRequest(input *DeleteConfigRuleInput) (r
 
 // DeleteConfigRule API operation for AWS Config.
 //
-// Deletes the specified AWS Config rule and all of its evaluation results.
+// Deletes the specified Config rule and all of its evaluation results.
 //
-// AWS Config sets the state of a rule to DELETING until the deletion is complete.
+// Config sets the state of a rule to DELETING until the deletion is complete.
 // You cannot update a rule while it is in this state. If you make a PutConfigRule
 // or DeleteConfigRule request for the rule, you will receive a ResourceInUseException.
 //
@@ -354,22 +353,21 @@ func (c *ConfigService) DeleteConfigRuleRequest(input *DeleteConfigRuleInput) (r
 //
 // Returned Error Types:
 //   * NoSuchConfigRuleException
-//   One or more AWS Config rules in the request are invalid. Verify that the
-//   rule names are correct and try again.
+//   One or more Config rules in the request are invalid. Verify that the rule
+//   names are correct and try again.
 //
 //   * ResourceInUseException
 //   You see this exception in the following cases:
 //
-//      * For DeleteConfigRule, AWS Config is deleting this rule. Try your request
+//      * For DeleteConfigRule, Config is deleting this rule. Try your request
 //      again later.
 //
 //      * For DeleteConfigRule, the rule is deleting your evaluation results.
 //      Try your request again later.
 //
 //      * For DeleteConfigRule, a remediation action is associated with the rule
-//      and AWS Config cannot delete this rule. Delete the remediation action
-//      associated with the rule before deleting the rule and try your request
-//      again later.
+//      and Config cannot delete this rule. Delete the remediation action associated
+//      with the rule before deleting the rule and try your request again later.
 //
 //      * For PutConfigOrganizationRule, organization config rule deletion is
 //      in progress. Try your request again later.
@@ -534,14 +532,14 @@ func (c *ConfigService) DeleteConfigurationRecorderRequest(input *DeleteConfigur
 //
 // Deletes the configuration recorder.
 //
-// After the configuration recorder is deleted, AWS Config will not record resource
+// After the configuration recorder is deleted, Config will not record resource
 // configuration changes until you create a new configuration recorder.
 //
 // This action does not delete the configuration information that was previously
 // recorded. You will be able to access the previously recorded information
 // by using the GetResourceConfigHistory action, but you will not be able to
-// access this information in the AWS Config console until you create a new
-// configuration recorder.
+// access this information in the Config console until you create a new configuration
+// recorder.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -621,10 +619,10 @@ func (c *ConfigService) DeleteConformancePackRequest(input *DeleteConformancePac
 
 // DeleteConformancePack API operation for AWS Config.
 //
-// Deletes the specified conformance pack and all the AWS Config rules, remediation
+// Deletes the specified conformance pack and all the Config rules, remediation
 // actions, and all evaluation results within that conformance pack.
 //
-// AWS Config sets the conformance pack to DELETE_IN_PROGRESS until the deletion
+// Config sets the conformance pack to DELETE_IN_PROGRESS until the deletion
 // is complete. You cannot update a conformance pack while it is in this state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -641,16 +639,15 @@ func (c *ConfigService) DeleteConformancePackRequest(input *DeleteConformancePac
 //   * ResourceInUseException
 //   You see this exception in the following cases:
 //
-//      * For DeleteConfigRule, AWS Config is deleting this rule. Try your request
+//      * For DeleteConfigRule, Config is deleting this rule. Try your request
 //      again later.
 //
 //      * For DeleteConfigRule, the rule is deleting your evaluation results.
 //      Try your request again later.
 //
 //      * For DeleteConfigRule, a remediation action is associated with the rule
-//      and AWS Config cannot delete this rule. Delete the remediation action
-//      associated with the rule before deleting the rule and try your request
-//      again later.
+//      and Config cannot delete this rule. Delete the remediation action associated
+//      with the rule before deleting the rule and try your request again later.
 //
 //      * For PutConfigOrganizationRule, organization config rule deletion is
 //      in progress. Try your request again later.
@@ -819,10 +816,10 @@ func (c *ConfigService) DeleteEvaluationResultsRequest(input *DeleteEvaluationRe
 
 // DeleteEvaluationResults API operation for AWS Config.
 //
-// Deletes the evaluation results for the specified AWS Config rule. You can
-// specify one AWS Config rule per request. After you delete the evaluation
-// results, you can call the StartConfigRulesEvaluation API to start evaluating
-// your AWS resources against the rule.
+// Deletes the evaluation results for the specified Config rule. You can specify
+// one Config rule per request. After you delete the evaluation results, you
+// can call the StartConfigRulesEvaluation API to start evaluating your Amazon
+// Web Services resources against the rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -833,22 +830,21 @@ func (c *ConfigService) DeleteEvaluationResultsRequest(input *DeleteEvaluationRe
 //
 // Returned Error Types:
 //   * NoSuchConfigRuleException
-//   One or more AWS Config rules in the request are invalid. Verify that the
-//   rule names are correct and try again.
+//   One or more Config rules in the request are invalid. Verify that the rule
+//   names are correct and try again.
 //
 //   * ResourceInUseException
 //   You see this exception in the following cases:
 //
-//      * For DeleteConfigRule, AWS Config is deleting this rule. Try your request
+//      * For DeleteConfigRule, Config is deleting this rule. Try your request
 //      again later.
 //
 //      * For DeleteConfigRule, the rule is deleting your evaluation results.
 //      Try your request again later.
 //
 //      * For DeleteConfigRule, a remediation action is associated with the rule
-//      and AWS Config cannot delete this rule. Delete the remediation action
-//      associated with the rule before deleting the rule and try your request
-//      again later.
+//      and Config cannot delete this rule. Delete the remediation action associated
+//      with the rule before deleting the rule and try your request again later.
 //
 //      * For PutConfigOrganizationRule, organization config rule deletion is
 //      in progress. Try your request again later.
@@ -935,10 +931,10 @@ func (c *ConfigService) DeleteOrganizationConfigRuleRequest(input *DeleteOrganiz
 //
 // Only a master account and a delegated administrator account can delete an
 // organization config rule. When calling this API with a delegated administrator,
-// you must ensure AWS Organizations ListDelegatedAdministrator permissions
-// are added.
+// you must ensure Organizations ListDelegatedAdministrator permissions are
+// added.
 //
-// AWS Config sets the state of a rule to DELETE_IN_PROGRESS until the deletion
+// Config sets the state of a rule to DELETE_IN_PROGRESS until the deletion
 // is complete. You cannot update a rule while it is in this state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -955,16 +951,15 @@ func (c *ConfigService) DeleteOrganizationConfigRuleRequest(input *DeleteOrganiz
 //   * ResourceInUseException
 //   You see this exception in the following cases:
 //
-//      * For DeleteConfigRule, AWS Config is deleting this rule. Try your request
+//      * For DeleteConfigRule, Config is deleting this rule. Try your request
 //      again later.
 //
 //      * For DeleteConfigRule, the rule is deleting your evaluation results.
 //      Try your request again later.
 //
 //      * For DeleteConfigRule, a remediation action is associated with the rule
-//      and AWS Config cannot delete this rule. Delete the remediation action
-//      associated with the rule before deleting the rule and try your request
-//      again later.
+//      and Config cannot delete this rule. Delete the remediation action associated
+//      with the rule before deleting the rule and try your request again later.
 //
 //      * For PutConfigOrganizationRule, organization config rule deletion is
 //      in progress. Try your request again later.
@@ -985,22 +980,24 @@ func (c *ConfigService) DeleteOrganizationConfigRuleRequest(input *DeleteOrganiz
 //
 //      * No permission to call EnableAWSServiceAccess API
 //
-//      * The configuration aggregator cannot be updated because your AWS Organization
-//      management account or the delegated administrator role changed. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator cannot be updated because your Amazon Web
+//      Services Organization management account or the delegated administrator
+//      role changed. Delete this aggregator and create a new one with the current
+//      Amazon Web Services Organization.
 //
-//      * The configuration aggregator is associated with a previous AWS Organization
-//      and AWS Config cannot aggregate data with current AWS Organization. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator is associated with a previous Amazon Web
+//      Services Organization and Config cannot aggregate data with current Amazon
+//      Web Services Organization. Delete this aggregator and create a new one
+//      with the current Amazon Web Services Organization.
 //
-//      * You are not a registered delegated administrator for AWS Config with
-//      permissions to call ListDelegatedAdministrators API. Ensure that the management
-//      account registers delagated administrator for AWS Config service principle
-//      name before the delegated administrator creates an aggregator.
+//      * You are not a registered delegated administrator for Config with permissions
+//      to call ListDelegatedAdministrators API. Ensure that the management account
+//      registers delagated administrator for Config service principle name before
+//      the delegated administrator creates an aggregator.
 //
-//   For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-//   Config throws an exception if APIs are called from member accounts. All APIs
-//   must be called from organization master account.
+//   For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+//   throws an exception if APIs are called from member accounts. All APIs must
+//   be called from organization master account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteOrganizationConfigRule
 func (c *ConfigService) DeleteOrganizationConfigRule(input *DeleteOrganizationConfigRuleInput) (*DeleteOrganizationConfigRuleOutput, error) {
@@ -1074,12 +1071,12 @@ func (c *ConfigService) DeleteOrganizationConformancePackRequest(input *DeleteOr
 //
 // Only a master account or a delegated administrator account can delete an
 // organization conformance pack. When calling this API with a delegated administrator,
-// you must ensure AWS Organizations ListDelegatedAdministrator permissions
-// are added.
+// you must ensure Organizations ListDelegatedAdministrator permissions are
+// added.
 //
-// AWS Config sets the state of a conformance pack to DELETE_IN_PROGRESS until
-// the deletion is complete. You cannot update a conformance pack while it is
-// in this state.
+// Config sets the state of a conformance pack to DELETE_IN_PROGRESS until the
+// deletion is complete. You cannot update a conformance pack while it is in
+// this state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1090,8 +1087,8 @@ func (c *ConfigService) DeleteOrganizationConformancePackRequest(input *DeleteOr
 //
 // Returned Error Types:
 //   * NoSuchOrganizationConformancePackException
-//   AWS Config organization conformance pack that you passed in the filter does
-//   not exist.
+//   Config organization conformance pack that you passed in the filter does not
+//   exist.
 //
 //   For DeleteOrganizationConformancePack, you tried to delete an organization
 //   conformance pack that does not exist.
@@ -1099,16 +1096,15 @@ func (c *ConfigService) DeleteOrganizationConformancePackRequest(input *DeleteOr
 //   * ResourceInUseException
 //   You see this exception in the following cases:
 //
-//      * For DeleteConfigRule, AWS Config is deleting this rule. Try your request
+//      * For DeleteConfigRule, Config is deleting this rule. Try your request
 //      again later.
 //
 //      * For DeleteConfigRule, the rule is deleting your evaluation results.
 //      Try your request again later.
 //
 //      * For DeleteConfigRule, a remediation action is associated with the rule
-//      and AWS Config cannot delete this rule. Delete the remediation action
-//      associated with the rule before deleting the rule and try your request
-//      again later.
+//      and Config cannot delete this rule. Delete the remediation action associated
+//      with the rule before deleting the rule and try your request again later.
 //
 //      * For PutConfigOrganizationRule, organization config rule deletion is
 //      in progress. Try your request again later.
@@ -1129,22 +1125,24 @@ func (c *ConfigService) DeleteOrganizationConformancePackRequest(input *DeleteOr
 //
 //      * No permission to call EnableAWSServiceAccess API
 //
-//      * The configuration aggregator cannot be updated because your AWS Organization
-//      management account or the delegated administrator role changed. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator cannot be updated because your Amazon Web
+//      Services Organization management account or the delegated administrator
+//      role changed. Delete this aggregator and create a new one with the current
+//      Amazon Web Services Organization.
 //
-//      * The configuration aggregator is associated with a previous AWS Organization
-//      and AWS Config cannot aggregate data with current AWS Organization. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator is associated with a previous Amazon Web
+//      Services Organization and Config cannot aggregate data with current Amazon
+//      Web Services Organization. Delete this aggregator and create a new one
+//      with the current Amazon Web Services Organization.
 //
-//      * You are not a registered delegated administrator for AWS Config with
-//      permissions to call ListDelegatedAdministrators API. Ensure that the management
-//      account registers delagated administrator for AWS Config service principle
-//      name before the delegated administrator creates an aggregator.
+//      * You are not a registered delegated administrator for Config with permissions
+//      to call ListDelegatedAdministrators API. Ensure that the management account
+//      registers delagated administrator for Config service principle name before
+//      the delegated administrator creates an aggregator.
 //
-//   For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-//   Config throws an exception if APIs are called from member accounts. All APIs
-//   must be called from organization master account.
+//   For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+//   throws an exception if APIs are called from member accounts. All APIs must
+//   be called from organization master account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteOrganizationConformancePack
 func (c *ConfigService) DeleteOrganizationConformancePack(input *DeleteOrganizationConformancePackInput) (*DeleteOrganizationConformancePackOutput, error) {
@@ -1306,20 +1304,20 @@ func (c *ConfigService) DeleteRemediationConfigurationRequest(input *DeleteRemed
 //
 // Returned Error Types:
 //   * NoSuchRemediationConfigurationException
-//   You specified an AWS Config rule without a remediation configuration.
+//   You specified an Config rule without a remediation configuration.
 //
 //   * RemediationInProgressException
-//   Remediation action is in progress. You can either cancel execution in AWS
-//   Systems Manager or wait and try again later.
+//   Remediation action is in progress. You can either cancel execution in Amazon
+//   Web Services Systems Manager or wait and try again later.
 //
 //   * InsufficientPermissionsException
 //   Indicates one of the following errors:
 //
 //      * For PutConfigRule, the rule cannot be created because the IAM role assigned
-//      to AWS Config lacks permissions to perform the config:Put* action.
+//      to Config lacks permissions to perform the config:Put* action.
 //
-//      * For PutConfigRule, the AWS Lambda function cannot be invoked. Check
-//      the function ARN, and check the function's permissions.
+//      * For PutConfigRule, the Lambda function cannot be invoked. Check the
+//      function ARN, and check the function's permissions.
 //
 //      * For PutOrganizationConfigRule, organization config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
@@ -1401,7 +1399,7 @@ func (c *ConfigService) DeleteRemediationExceptionsRequest(input *DeleteRemediat
 //
 // Deletes one or more remediation exceptions mentioned in the resource keys.
 //
-// AWS Config generates a remediation exception when a problem occurs executing
+// Config generates a remediation exception when a problem occurs executing
 // a remediation action to a specific resource. Remediation exceptions blocks
 // auto-remediation until the exception is cleared.
 //
@@ -1485,8 +1483,8 @@ func (c *ConfigService) DeleteResourceConfigRequest(input *DeleteResourceConfigI
 //
 // Records the configuration state for a custom resource that has been deleted.
 // This API records a new ConfigurationItem with a ResourceDeleted status. You
-// can retrieve the ConfigurationItems recorded for this resource in your AWS
-// Config History.
+// can retrieve the ConfigurationItems recorded for this resource in your Config
+// History.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1661,7 +1659,8 @@ func (c *ConfigService) DeleteStoredQueryRequest(input *DeleteStoredQueryInput) 
 
 // DeleteStoredQuery API operation for AWS Config.
 //
-// Deletes the stored query for a single AWS account and a single AWS Region.
+// Deletes the stored query for a single Amazon Web Services account and a single
+// Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1752,9 +1751,8 @@ func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapsho
 // DeliverConfigSnapshot API operation for AWS Config.
 //
 // Schedules delivery of a configuration snapshot to the Amazon S3 bucket in
-// the specified delivery channel. After the delivery has started, AWS Config
-// sends the following notifications using an Amazon SNS topic that you have
-// specified.
+// the specified delivery channel. After the delivery has started, Config sends
+// the following notifications using an Amazon SNS topic that you have specified.
 //
 //    * Notification of the start of the delivery.
 //
@@ -1854,7 +1852,8 @@ func (c *ConfigService) DescribeAggregateComplianceByConfigRulesRequest(input *D
 // DescribeAggregateComplianceByConfigRules API operation for AWS Config.
 //
 // Returns a list of compliant and noncompliant rules with the number of resources
-// for compliant and noncompliant rules.
+// for compliant and noncompliant rules. Does not display rules that do not
+// have compliance results.
 //
 // The results can return an empty result page, but if you have a nextToken,
 // the results are displayed on the next page.
@@ -2013,10 +2012,9 @@ func (c *ConfigService) DescribeAggregateComplianceByConformancePacksRequest(inp
 // DescribeAggregateComplianceByConformancePacks API operation for AWS Config.
 //
 // Returns a list of the conformance packs and their associated compliance status
-// with the count of compliant and noncompliant AWS Config rules within each
-// conformance pack. Also returns the total rule count which includes compliant
-// rules, noncompliant rules, and rules that cannot be evaluated due to insufficient
-// data.
+// with the count of compliant and noncompliant Config rules within each conformance
+// pack. Also returns the total rule count which includes compliant rules, noncompliant
+// rules, and rules that cannot be evaluated due to insufficient data.
 //
 // The results can return an empty result page, but if you have a nextToken,
 // the results are displayed on the next page.
@@ -2320,27 +2318,27 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 
 // DescribeComplianceByConfigRule API operation for AWS Config.
 //
-// Indicates whether the specified AWS Config rules are compliant. If a rule
-// is noncompliant, this action returns the number of AWS resources that do
-// not comply with the rule.
+// Indicates whether the specified Config rules are compliant. If a rule is
+// noncompliant, this action returns the number of Amazon Web Services resources
+// that do not comply with the rule.
 //
 // A rule is compliant if all of the evaluated resources comply with it. It
 // is noncompliant if any of these resources do not comply.
 //
-// If AWS Config has no current evaluation results for the rule, it returns
-// INSUFFICIENT_DATA. This result might indicate one of the following conditions:
+// If Config has no current evaluation results for the rule, it returns INSUFFICIENT_DATA.
+// This result might indicate one of the following conditions:
 //
-//    * AWS Config has never invoked an evaluation for the rule. To check whether
+//    * Config has never invoked an evaluation for the rule. To check whether
 //    it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
 //    and LastFailedInvocationTime.
 //
-//    * The rule's AWS Lambda function is failing to send evaluation results
-//    to AWS Config. Verify that the role you assigned to your configuration
-//    recorder includes the config:PutEvaluations permission. If the rule is
-//    a custom rule, verify that the AWS Lambda execution role includes the
-//    config:PutEvaluations permission.
+//    * The rule's Lambda function is failing to send evaluation results to
+//    Config. Verify that the role you assigned to your configuration recorder
+//    includes the config:PutEvaluations permission. If the rule is a custom
+//    rule, verify that the Lambda execution role includes the config:PutEvaluations
+//    permission.
 //
-//    * The rule's AWS Lambda function has returned NOT_APPLICABLE for all evaluation
+//    * The rule's Lambda function has returned NOT_APPLICABLE for all evaluation
 //    results. This can occur if the resources were deleted or removed from
 //    the rule's scope.
 //
@@ -2357,8 +2355,8 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 //   are valid and try again.
 //
 //   * NoSuchConfigRuleException
-//   One or more AWS Config rules in the request are invalid. Verify that the
-//   rule names are correct and try again.
+//   One or more Config rules in the request are invalid. Verify that the rule
+//   names are correct and try again.
 //
 //   * InvalidNextTokenException
 //   The specified next token is invalid. Specify the nextToken string that was
@@ -2488,29 +2486,28 @@ func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeCompl
 
 // DescribeComplianceByResource API operation for AWS Config.
 //
-// Indicates whether the specified AWS resources are compliant. If a resource
-// is noncompliant, this action returns the number of AWS Config rules that
-// the resource does not comply with.
+// Indicates whether the specified Amazon Web Services resources are compliant.
+// If a resource is noncompliant, this action returns the number of Config rules
+// that the resource does not comply with.
 //
-// A resource is compliant if it complies with all the AWS Config rules that
-// evaluate it. It is noncompliant if it does not comply with one or more of
-// these rules.
+// A resource is compliant if it complies with all the Config rules that evaluate
+// it. It is noncompliant if it does not comply with one or more of these rules.
 //
-// If AWS Config has no current evaluation results for the resource, it returns
+// If Config has no current evaluation results for the resource, it returns
 // INSUFFICIENT_DATA. This result might indicate one of the following conditions
 // about the rules that evaluate the resource:
 //
-//    * AWS Config has never invoked an evaluation for the rule. To check whether
+//    * Config has never invoked an evaluation for the rule. To check whether
 //    it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
 //    and LastFailedInvocationTime.
 //
-//    * The rule's AWS Lambda function is failing to send evaluation results
-//    to AWS Config. Verify that the role that you assigned to your configuration
-//    recorder includes the config:PutEvaluations permission. If the rule is
-//    a custom rule, verify that the AWS Lambda execution role includes the
-//    config:PutEvaluations permission.
+//    * The rule's Lambda function is failing to send evaluation results to
+//    Config. Verify that the role that you assigned to your configuration recorder
+//    includes the config:PutEvaluations permission. If the rule is a custom
+//    rule, verify that the Lambda execution role includes the config:PutEvaluations
+//    permission.
 //
-//    * The rule's AWS Lambda function has returned NOT_APPLICABLE for all evaluation
+//    * The rule's Lambda function has returned NOT_APPLICABLE for all evaluation
 //    results. This can occur if the resources were deleted or removed from
 //    the rule's scope.
 //
@@ -2654,10 +2651,10 @@ func (c *ConfigService) DescribeConfigRuleEvaluationStatusRequest(input *Describ
 
 // DescribeConfigRuleEvaluationStatus API operation for AWS Config.
 //
-// Returns status information for each of your AWS managed Config rules. The
-// status includes information such as the last time AWS Config invoked the
-// rule, the last time AWS Config failed to invoke the rule, and the related
-// error for the last failure.
+// Returns status information for each of your Config managed rules. The status
+// includes information such as the last time Config invoked the rule, the last
+// time Config failed to invoke the rule, and the related error for the last
+// failure.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2668,8 +2665,8 @@ func (c *ConfigService) DescribeConfigRuleEvaluationStatusRequest(input *Describ
 //
 // Returned Error Types:
 //   * NoSuchConfigRuleException
-//   One or more AWS Config rules in the request are invalid. Verify that the
-//   rule names are correct and try again.
+//   One or more Config rules in the request are invalid. Verify that the rule
+//   names are correct and try again.
 //
 //   * InvalidParameterValueException
 //   One or more of the specified parameters are invalid. Verify that your parameters
@@ -2803,7 +2800,7 @@ func (c *ConfigService) DescribeConfigRulesRequest(input *DescribeConfigRulesInp
 
 // DescribeConfigRules API operation for AWS Config.
 //
-// Returns details about your AWS Config rules.
+// Returns details about your Config rules.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2814,8 +2811,8 @@ func (c *ConfigService) DescribeConfigRulesRequest(input *DescribeConfigRulesInp
 //
 // Returned Error Types:
 //   * NoSuchConfigRuleException
-//   One or more AWS Config rules in the request are invalid. Verify that the
-//   rule names are correct and try again.
+//   One or more Config rules in the request are invalid. Verify that the rule
+//   names are correct and try again.
 //
 //   * InvalidNextTokenException
 //   The specified next token is invalid. Specify the nextToken string that was
@@ -2946,8 +2943,8 @@ func (c *ConfigService) DescribeConfigurationAggregatorSourcesStatusRequest(inpu
 // DescribeConfigurationAggregatorSourcesStatus API operation for AWS Config.
 //
 // Returns status information for sources within an aggregator. The status includes
-// information about the last time AWS Config verified authorization between
-// the source account and an aggregator account. In case of a failure, the status
+// information about the last time Config verified authorization between the
+// source account and an aggregator account. In case of a failure, the status
 // contains the related error code or message.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3438,7 +3435,7 @@ func (c *ConfigService) DescribeConformancePackComplianceRequest(input *Describe
 //   are valid and try again.
 //
 //   * NoSuchConfigRuleInConformancePackException
-//   AWS Config rule that you passed in the filter does not exist.
+//   Config rule that you passed in the filter does not exist.
 //
 //   * NoSuchConformancePackException
 //   You specified one or more conformance packs that do not exist.
@@ -4063,22 +4060,24 @@ func (c *ConfigService) DescribeOrganizationConfigRuleStatusesRequest(input *Des
 //
 //      * No permission to call EnableAWSServiceAccess API
 //
-//      * The configuration aggregator cannot be updated because your AWS Organization
-//      management account or the delegated administrator role changed. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator cannot be updated because your Amazon Web
+//      Services Organization management account or the delegated administrator
+//      role changed. Delete this aggregator and create a new one with the current
+//      Amazon Web Services Organization.
 //
-//      * The configuration aggregator is associated with a previous AWS Organization
-//      and AWS Config cannot aggregate data with current AWS Organization. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator is associated with a previous Amazon Web
+//      Services Organization and Config cannot aggregate data with current Amazon
+//      Web Services Organization. Delete this aggregator and create a new one
+//      with the current Amazon Web Services Organization.
 //
-//      * You are not a registered delegated administrator for AWS Config with
-//      permissions to call ListDelegatedAdministrators API. Ensure that the management
-//      account registers delagated administrator for AWS Config service principle
-//      name before the delegated administrator creates an aggregator.
+//      * You are not a registered delegated administrator for Config with permissions
+//      to call ListDelegatedAdministrators API. Ensure that the management account
+//      registers delagated administrator for Config service principle name before
+//      the delegated administrator creates an aggregator.
 //
-//   For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-//   Config throws an exception if APIs are called from member accounts. All APIs
-//   must be called from organization master account.
+//   For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+//   throws an exception if APIs are called from member accounts. All APIs must
+//   be called from organization master account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeOrganizationConfigRuleStatuses
 func (c *ConfigService) DescribeOrganizationConfigRuleStatuses(input *DescribeOrganizationConfigRuleStatusesInput) (*DescribeOrganizationConfigRuleStatusesOutput, error) {
@@ -4235,22 +4234,24 @@ func (c *ConfigService) DescribeOrganizationConfigRulesRequest(input *DescribeOr
 //
 //      * No permission to call EnableAWSServiceAccess API
 //
-//      * The configuration aggregator cannot be updated because your AWS Organization
-//      management account or the delegated administrator role changed. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator cannot be updated because your Amazon Web
+//      Services Organization management account or the delegated administrator
+//      role changed. Delete this aggregator and create a new one with the current
+//      Amazon Web Services Organization.
 //
-//      * The configuration aggregator is associated with a previous AWS Organization
-//      and AWS Config cannot aggregate data with current AWS Organization. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator is associated with a previous Amazon Web
+//      Services Organization and Config cannot aggregate data with current Amazon
+//      Web Services Organization. Delete this aggregator and create a new one
+//      with the current Amazon Web Services Organization.
 //
-//      * You are not a registered delegated administrator for AWS Config with
-//      permissions to call ListDelegatedAdministrators API. Ensure that the management
-//      account registers delagated administrator for AWS Config service principle
-//      name before the delegated administrator creates an aggregator.
+//      * You are not a registered delegated administrator for Config with permissions
+//      to call ListDelegatedAdministrators API. Ensure that the management account
+//      registers delagated administrator for Config service principle name before
+//      the delegated administrator creates an aggregator.
 //
-//   For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-//   Config throws an exception if APIs are called from member accounts. All APIs
-//   must be called from organization master account.
+//   For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+//   throws an exception if APIs are called from member accounts. All APIs must
+//   be called from organization master account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeOrganizationConfigRules
 func (c *ConfigService) DescribeOrganizationConfigRules(input *DescribeOrganizationConfigRulesInput) (*DescribeOrganizationConfigRulesOutput, error) {
@@ -4396,8 +4397,8 @@ func (c *ConfigService) DescribeOrganizationConformancePackStatusesRequest(input
 //
 // Returned Error Types:
 //   * NoSuchOrganizationConformancePackException
-//   AWS Config organization conformance pack that you passed in the filter does
-//   not exist.
+//   Config organization conformance pack that you passed in the filter does not
+//   exist.
 //
 //   For DeleteOrganizationConformancePack, you tried to delete an organization
 //   conformance pack that does not exist.
@@ -4415,22 +4416,24 @@ func (c *ConfigService) DescribeOrganizationConformancePackStatusesRequest(input
 //
 //      * No permission to call EnableAWSServiceAccess API
 //
-//      * The configuration aggregator cannot be updated because your AWS Organization
-//      management account or the delegated administrator role changed. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator cannot be updated because your Amazon Web
+//      Services Organization management account or the delegated administrator
+//      role changed. Delete this aggregator and create a new one with the current
+//      Amazon Web Services Organization.
 //
-//      * The configuration aggregator is associated with a previous AWS Organization
-//      and AWS Config cannot aggregate data with current AWS Organization. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator is associated with a previous Amazon Web
+//      Services Organization and Config cannot aggregate data with current Amazon
+//      Web Services Organization. Delete this aggregator and create a new one
+//      with the current Amazon Web Services Organization.
 //
-//      * You are not a registered delegated administrator for AWS Config with
-//      permissions to call ListDelegatedAdministrators API. Ensure that the management
-//      account registers delagated administrator for AWS Config service principle
-//      name before the delegated administrator creates an aggregator.
+//      * You are not a registered delegated administrator for Config with permissions
+//      to call ListDelegatedAdministrators API. Ensure that the management account
+//      registers delagated administrator for Config service principle name before
+//      the delegated administrator creates an aggregator.
 //
-//   For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-//   Config throws an exception if APIs are called from member accounts. All APIs
-//   must be called from organization master account.
+//   For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+//   throws an exception if APIs are called from member accounts. All APIs must
+//   be called from organization master account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeOrganizationConformancePackStatuses
 func (c *ConfigService) DescribeOrganizationConformancePackStatuses(input *DescribeOrganizationConformancePackStatusesInput) (*DescribeOrganizationConformancePackStatusesOutput, error) {
@@ -4573,8 +4576,8 @@ func (c *ConfigService) DescribeOrganizationConformancePacksRequest(input *Descr
 //
 // Returned Error Types:
 //   * NoSuchOrganizationConformancePackException
-//   AWS Config organization conformance pack that you passed in the filter does
-//   not exist.
+//   Config organization conformance pack that you passed in the filter does not
+//   exist.
 //
 //   For DeleteOrganizationConformancePack, you tried to delete an organization
 //   conformance pack that does not exist.
@@ -4592,22 +4595,24 @@ func (c *ConfigService) DescribeOrganizationConformancePacksRequest(input *Descr
 //
 //      * No permission to call EnableAWSServiceAccess API
 //
-//      * The configuration aggregator cannot be updated because your AWS Organization
-//      management account or the delegated administrator role changed. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator cannot be updated because your Amazon Web
+//      Services Organization management account or the delegated administrator
+//      role changed. Delete this aggregator and create a new one with the current
+//      Amazon Web Services Organization.
 //
-//      * The configuration aggregator is associated with a previous AWS Organization
-//      and AWS Config cannot aggregate data with current AWS Organization. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator is associated with a previous Amazon Web
+//      Services Organization and Config cannot aggregate data with current Amazon
+//      Web Services Organization. Delete this aggregator and create a new one
+//      with the current Amazon Web Services Organization.
 //
-//      * You are not a registered delegated administrator for AWS Config with
-//      permissions to call ListDelegatedAdministrators API. Ensure that the management
-//      account registers delagated administrator for AWS Config service principle
-//      name before the delegated administrator creates an aggregator.
+//      * You are not a registered delegated administrator for Config with permissions
+//      to call ListDelegatedAdministrators API. Ensure that the management account
+//      registers delagated administrator for Config service principle name before
+//      the delegated administrator creates an aggregator.
 //
-//   For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-//   Config throws an exception if APIs are called from member accounts. All APIs
-//   must be called from organization master account.
+//   For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+//   throws an exception if APIs are called from member accounts. All APIs must
+//   be called from organization master account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeOrganizationConformancePacks
 func (c *ConfigService) DescribeOrganizationConformancePacks(input *DescribeOrganizationConformancePacksInput) (*DescribeOrganizationConformancePacksOutput, error) {
@@ -4957,7 +4962,7 @@ func (c *ConfigService) DescribeRemediationExceptionsRequest(input *DescribeReme
 // of an exception and the time when the exception will be deleted. When you
 // specify the limit and the next token, you receive a paginated response.
 //
-// AWS Config generates a remediation exception when a problem occurs executing
+// Config generates a remediation exception when a problem occurs executing
 // a remediation action to a specific resource. Remediation exceptions blocks
 // auto-remediation until the exception is cleared.
 //
@@ -5120,7 +5125,7 @@ func (c *ConfigService) DescribeRemediationExecutionStatusRequest(input *Describ
 //
 // Returned Error Types:
 //   * NoSuchRemediationConfigurationException
-//   You specified an AWS Config rule without a remediation configuration.
+//   You specified an Config rule without a remediation configuration.
 //
 //   * InvalidNextTokenException
 //   The specified next token is invalid. Specify the nextToken string that was
@@ -5258,8 +5263,8 @@ func (c *ConfigService) DescribeRetentionConfigurationsRequest(input *DescribeRe
 // configuration name is not specified, this action returns the details for
 // all the retention configurations for that account.
 //
-// Currently, AWS Config supports only one retention configuration per region
-// in your account.
+// Currently, Config supports only one retention configuration per region in
+// your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5404,10 +5409,10 @@ func (c *ConfigService) GetAggregateComplianceDetailsByConfigRuleRequest(input *
 
 // GetAggregateComplianceDetailsByConfigRule API operation for AWS Config.
 //
-// Returns the evaluation results for the specified AWS Config rule for a specific
-// resource in a rule. The results indicate which AWS resources were evaluated
-// by the rule, when each resource was last evaluated, and whether each resource
-// complies with the rule.
+// Returns the evaluation results for the specified Config rule for a specific
+// resource in a rule. The results indicate which Amazon Web Services resources
+// were evaluated by the rule, when each resource was last evaluated, and whether
+// each resource complies with the rule.
 //
 // The results can return an empty result page. But if you have a nextToken,
 // the results are displayed on the next page.
@@ -5725,8 +5730,9 @@ func (c *ConfigService) GetAggregateConformancePackComplianceSummaryRequest(inpu
 // GetAggregateConformancePackComplianceSummary API operation for AWS Config.
 //
 // Returns the count of compliant and noncompliant conformance packs across
-// all AWS Accounts and AWS Regions in an aggregator. You can filter based on
-// AWS Account ID or AWS Region.
+// all Amazon Web Services accounts and Amazon Web Services Regions in an aggregator.
+// You can filter based on Amazon Web Services account ID or Amazon Web Services
+// Region.
 //
 // The results can return an empty result page, but if you have a nextToken,
 // the results are displayed on the next page.
@@ -5885,7 +5891,7 @@ func (c *ConfigService) GetAggregateDiscoveredResourceCountsRequest(input *GetAg
 // GetAggregateDiscoveredResourceCounts API operation for AWS Config.
 //
 // Returns the resource counts across accounts and regions that are present
-// in your AWS Config aggregator. You can request the resource counts by providing
+// in your Config aggregator. You can request the resource counts by providing
 // filters and GroupByKey.
 //
 // For example, if the input contains accountID 12345678910 and region us-east-1
@@ -6144,9 +6150,10 @@ func (c *ConfigService) GetComplianceDetailsByConfigRuleRequest(input *GetCompli
 
 // GetComplianceDetailsByConfigRule API operation for AWS Config.
 //
-// Returns the evaluation results for the specified AWS Config rule. The results
-// indicate which AWS resources were evaluated by the rule, when each resource
-// was last evaluated, and whether each resource complies with the rule.
+// Returns the evaluation results for the specified Config rule. The results
+// indicate which Amazon Web Services resources were evaluated by the rule,
+// when each resource was last evaluated, and whether each resource complies
+// with the rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6165,8 +6172,8 @@ func (c *ConfigService) GetComplianceDetailsByConfigRuleRequest(input *GetCompli
 //   returned in the previous response to get the next page of results.
 //
 //   * NoSuchConfigRuleException
-//   One or more AWS Config rules in the request are invalid. Verify that the
-//   rule names are correct and try again.
+//   One or more Config rules in the request are invalid. Verify that the rule
+//   names are correct and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetComplianceDetailsByConfigRule
 func (c *ConfigService) GetComplianceDetailsByConfigRule(input *GetComplianceDetailsByConfigRuleInput) (*GetComplianceDetailsByConfigRuleOutput, error) {
@@ -6292,9 +6299,10 @@ func (c *ConfigService) GetComplianceDetailsByResourceRequest(input *GetComplian
 
 // GetComplianceDetailsByResource API operation for AWS Config.
 //
-// Returns the evaluation results for the specified AWS resource. The results
-// indicate which AWS Config rules were used to evaluate the resource, when
-// each rule was last used, and whether the resource complies with each rule.
+// Returns the evaluation results for the specified Amazon Web Services resource.
+// The results indicate which Config rules were used to evaluate the resource,
+// when each rule was last used, and whether the resource complies with each
+// rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6426,8 +6434,8 @@ func (c *ConfigService) GetComplianceSummaryByConfigRuleRequest(input *GetCompli
 
 // GetComplianceSummaryByConfigRule API operation for AWS Config.
 //
-// Returns the number of AWS Config rules that are compliant and noncompliant,
-// up to a maximum of 25 for each.
+// Returns the number of Config rules that are compliant and noncompliant, up
+// to a maximum of 25 for each.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6589,8 +6597,8 @@ func (c *ConfigService) GetConformancePackComplianceDetailsRequest(input *GetCon
 
 // GetConformancePackComplianceDetails API operation for AWS Config.
 //
-// Returns compliance details of a conformance pack for all AWS resources that
-// are monitered by conformance pack.
+// Returns compliance details of a conformance pack for all Amazon Web Services
+// resources that are monitered by conformance pack.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6611,7 +6619,7 @@ func (c *ConfigService) GetConformancePackComplianceDetailsRequest(input *GetCon
 //   You specified one or more conformance packs that do not exist.
 //
 //   * NoSuchConfigRuleInConformancePackException
-//   AWS Config rule that you passed in the filter does not exist.
+//   Config rule that you passed in the filter does not exist.
 //
 //   * InvalidParameterValueException
 //   One or more of the specified parameters are invalid. Verify that your parameters
@@ -6887,18 +6895,18 @@ func (c *ConfigService) GetDiscoveredResourceCountsRequest(input *GetDiscoveredR
 // GetDiscoveredResourceCounts API operation for AWS Config.
 //
 // Returns the resource types, the number of each resource type, and the total
-// number of resources that AWS Config is recording in this region for your
-// AWS account.
+// number of resources that Config is recording in this region for your Amazon
+// Web Services account.
 //
 // Example
 //
-// AWS Config is recording three resource types in the US East (Ohio) Region
-// for your account: 25 EC2 instances, 20 IAM users, and 15 S3 buckets.
+// Config is recording three resource types in the US East (Ohio) Region for
+// your account: 25 EC2 instances, 20 IAM users, and 15 S3 buckets.
 //
 // You make a call to the GetDiscoveredResourceCounts action and specify that
 // you want all resource types.
 //
-// AWS Config returns the following:
+// Config returns the following:
 //
 //    * The resource types (EC2 instances, IAM users, and S3 buckets).
 //
@@ -6906,19 +6914,19 @@ func (c *ConfigService) GetDiscoveredResourceCountsRequest(input *GetDiscoveredR
 //
 //    * The total number of all resources (60).
 //
-// The response is paginated. By default, AWS Config lists 100 ResourceCount
-// objects on each page. You can customize this number with the limit parameter.
-// The response includes a nextToken string. To get the next page of results,
-// run the request again and specify the string for the nextToken parameter.
+// The response is paginated. By default, Config lists 100 ResourceCount objects
+// on each page. You can customize this number with the limit parameter. The
+// response includes a nextToken string. To get the next page of results, run
+// the request again and specify the string for the nextToken parameter.
 //
 // If you make a call to the GetDiscoveredResourceCounts action, you might not
 // immediately receive resource counts in the following situations:
 //
-//    * You are a new AWS Config customer.
+//    * You are a new Config customer.
 //
 //    * You just enabled resource recording.
 //
-// It might take a few minutes for AWS Config to record and count your resources.
+// It might take a few minutes for Config to record and count your resources.
 // Wait a few minutes and then retry the GetDiscoveredResourceCounts action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7098,22 +7106,24 @@ func (c *ConfigService) GetOrganizationConfigRuleDetailedStatusRequest(input *Ge
 //
 //      * No permission to call EnableAWSServiceAccess API
 //
-//      * The configuration aggregator cannot be updated because your AWS Organization
-//      management account or the delegated administrator role changed. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator cannot be updated because your Amazon Web
+//      Services Organization management account or the delegated administrator
+//      role changed. Delete this aggregator and create a new one with the current
+//      Amazon Web Services Organization.
 //
-//      * The configuration aggregator is associated with a previous AWS Organization
-//      and AWS Config cannot aggregate data with current AWS Organization. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator is associated with a previous Amazon Web
+//      Services Organization and Config cannot aggregate data with current Amazon
+//      Web Services Organization. Delete this aggregator and create a new one
+//      with the current Amazon Web Services Organization.
 //
-//      * You are not a registered delegated administrator for AWS Config with
-//      permissions to call ListDelegatedAdministrators API. Ensure that the management
-//      account registers delagated administrator for AWS Config service principle
-//      name before the delegated administrator creates an aggregator.
+//      * You are not a registered delegated administrator for Config with permissions
+//      to call ListDelegatedAdministrators API. Ensure that the management account
+//      registers delagated administrator for Config service principle name before
+//      the delegated administrator creates an aggregator.
 //
-//   For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-//   Config throws an exception if APIs are called from member accounts. All APIs
-//   must be called from organization master account.
+//   For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+//   throws an exception if APIs are called from member accounts. All APIs must
+//   be called from organization master account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetOrganizationConfigRuleDetailedStatus
 func (c *ConfigService) GetOrganizationConfigRuleDetailedStatus(input *GetOrganizationConfigRuleDetailedStatusInput) (*GetOrganizationConfigRuleDetailedStatusOutput, error) {
@@ -7251,8 +7261,8 @@ func (c *ConfigService) GetOrganizationConformancePackDetailedStatusRequest(inpu
 //
 // Returned Error Types:
 //   * NoSuchOrganizationConformancePackException
-//   AWS Config organization conformance pack that you passed in the filter does
-//   not exist.
+//   Config organization conformance pack that you passed in the filter does not
+//   exist.
 //
 //   For DeleteOrganizationConformancePack, you tried to delete an organization
 //   conformance pack that does not exist.
@@ -7270,22 +7280,24 @@ func (c *ConfigService) GetOrganizationConformancePackDetailedStatusRequest(inpu
 //
 //      * No permission to call EnableAWSServiceAccess API
 //
-//      * The configuration aggregator cannot be updated because your AWS Organization
-//      management account or the delegated administrator role changed. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator cannot be updated because your Amazon Web
+//      Services Organization management account or the delegated administrator
+//      role changed. Delete this aggregator and create a new one with the current
+//      Amazon Web Services Organization.
 //
-//      * The configuration aggregator is associated with a previous AWS Organization
-//      and AWS Config cannot aggregate data with current AWS Organization. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator is associated with a previous Amazon Web
+//      Services Organization and Config cannot aggregate data with current Amazon
+//      Web Services Organization. Delete this aggregator and create a new one
+//      with the current Amazon Web Services Organization.
 //
-//      * You are not a registered delegated administrator for AWS Config with
-//      permissions to call ListDelegatedAdministrators API. Ensure that the management
-//      account registers delagated administrator for AWS Config service principle
-//      name before the delegated administrator creates an aggregator.
+//      * You are not a registered delegated administrator for Config with permissions
+//      to call ListDelegatedAdministrators API. Ensure that the management account
+//      registers delagated administrator for Config service principle name before
+//      the delegated administrator creates an aggregator.
 //
-//   For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-//   Config throws an exception if APIs are called from member accounts. All APIs
-//   must be called from organization master account.
+//   For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+//   throws an exception if APIs are called from member accounts. All APIs must
+//   be called from organization master account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetOrganizationConformancePackDetailedStatus
 func (c *ConfigService) GetOrganizationConformancePackDetailedStatus(input *GetOrganizationConformancePackDetailedStatusInput) (*GetOrganizationConformancePackDetailedStatusOutput, error) {
@@ -7411,13 +7423,13 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 
 // GetResourceConfigHistory API operation for AWS Config.
 //
-// Returns a list of configuration items for the specified resource. The list
+// Returns a list of ConfigurationItems for the specified resource. The list
 // contains details about each state of the resource during the specified time
 // interval. If you specified a retention period to retain your ConfigurationItems
-// between a minimum of 30 days and a maximum of 7 years (2557 days), AWS Config
+// between a minimum of 30 days and a maximum of 7 years (2557 days), Config
 // returns the ConfigurationItems for the specified retention period.
 //
-// The response is paginated. By default, AWS Config returns a limit of 10 configuration
+// The response is paginated. By default, Config returns a limit of 10 configuration
 // items per page. You can customize this number with the limit parameter. The
 // response includes a nextToken string. To get the next page of results, run
 // the request again and specify the string for the nextToken parameter.
@@ -7844,14 +7856,14 @@ func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredReso
 // Accepts a resource type and returns a list of resource identifiers for the
 // resources of that type. A resource identifier includes the resource type,
 // ID, and (if available) the custom resource name. The results consist of resources
-// that AWS Config has discovered, including those that AWS Config is not currently
+// that Config has discovered, including those that Config is not currently
 // recording. You can narrow the results to include only resources that have
 // specific resource IDs or a resource name.
 //
 // You can specify either resource IDs or a resource name, but not both, in
 // the same request.
 //
-// The response is paginated. By default, AWS Config lists 100 resource identifiers
+// The response is paginated. By default, Config lists 100 resource identifiers
 // on each page. You can customize this number with the limit parameter. The
 // response includes a nextToken string. To get the next page of results, run
 // the request again and specify the string for the nextToken parameter.
@@ -8010,8 +8022,8 @@ func (c *ConfigService) ListStoredQueriesRequest(input *ListStoredQueriesInput) 
 
 // ListStoredQueries API operation for AWS Config.
 //
-// Lists the stored queries for a single AWS account and a single AWS Region.
-// The default is 100.
+// Lists the stored queries for a single Amazon Web Services account and a single
+// Amazon Web Services Region. The default is 100.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8160,7 +8172,7 @@ func (c *ConfigService) ListTagsForResourceRequest(input *ListTagsForResourceInp
 
 // ListTagsForResource API operation for AWS Config.
 //
-// List the tags for AWS Config resource.
+// List the tags for Config resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8391,42 +8403,41 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 
 // PutConfigRule API operation for AWS Config.
 //
-// Adds or updates an AWS Config rule for evaluating whether your AWS resources
-// comply with your desired configurations.
+// Adds or updates an Config rule for evaluating whether your Amazon Web Services
+// resources comply with your desired configurations.
 //
-// You can use this action for custom AWS Config rules and AWS managed Config
-// rules. A custom AWS Config rule is a rule that you develop and maintain.
-// An AWS managed Config rule is a customizable, predefined rule that AWS Config
-// provides.
+// You can use this action for custom Config rules and Config managed rules.
+// A custom Config rule is a rule that you develop and maintain. An Config managed
+// rule is a customizable, predefined rule that Config provides.
 //
-// If you are adding a new custom AWS Config rule, you must first create the
-// AWS Lambda function that the rule invokes to evaluate your resources. When
-// you use the PutConfigRule action to add the rule to AWS Config, you must
-// specify the Amazon Resource Name (ARN) that AWS Lambda assigns to the function.
-// Specify the ARN for the SourceIdentifier key. This key is part of the Source
-// object, which is part of the ConfigRule object.
+// If you are adding a new custom Config rule, you must first create the Lambda
+// function that the rule invokes to evaluate your resources. When you use the
+// PutConfigRule action to add the rule to Config, you must specify the Amazon
+// Resource Name (ARN) that Lambda assigns to the function. Specify the ARN
+// for the SourceIdentifier key. This key is part of the Source object, which
+// is part of the ConfigRule object.
 //
-// If you are adding an AWS managed Config rule, specify the rule's identifier
-// for the SourceIdentifier key. To reference AWS managed Config rule identifiers,
-// see About AWS Managed Config Rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
+// If you are adding an Config managed rule, specify the rule's identifier for
+// the SourceIdentifier key. To reference Config managed rule identifiers, see
+// About Config managed rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
 //
 // For any new rule that you add, specify the ConfigRuleName in the ConfigRule
 // object. Do not specify the ConfigRuleArn or the ConfigRuleId. These values
-// are generated by AWS Config for new rules.
+// are generated by Config for new rules.
 //
 // If you are updating a rule that you added previously, you can specify the
 // rule by ConfigRuleName, ConfigRuleId, or ConfigRuleArn in the ConfigRule
 // data type that you use in this request.
 //
-// The maximum number of rules that AWS Config supports is 150.
+// The maximum number of rules that Config supports is 150.
 //
-// For information about requesting a rule limit increase, see AWS Config Limits
+// For information about requesting a rule limit increase, see Config Limits
 // (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config)
-// in the AWS General Reference Guide.
+// in the Amazon Web Services General Reference Guide.
 //
-// For more information about developing and using AWS Config rules, see Evaluating
-// AWS Resource Configurations with AWS Config (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
-// in the AWS Config Developer Guide.
+// For more information about developing and using Config rules, see Evaluating
+// Amazon Web Services resource Configurations with Config (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
+// in the Config Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8441,23 +8452,22 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 //   are valid and try again.
 //
 //   * MaxNumberOfConfigRulesExceededException
-//   Failed to add the AWS Config rule because the account already contains the
-//   maximum number of 150 rules. Consider deleting any deactivated rules before
-//   you add new rules.
+//   Failed to add the Config rule because the account already contains the maximum
+//   number of 150 rules. Consider deleting any deactivated rules before you add
+//   new rules.
 //
 //   * ResourceInUseException
 //   You see this exception in the following cases:
 //
-//      * For DeleteConfigRule, AWS Config is deleting this rule. Try your request
+//      * For DeleteConfigRule, Config is deleting this rule. Try your request
 //      again later.
 //
 //      * For DeleteConfigRule, the rule is deleting your evaluation results.
 //      Try your request again later.
 //
 //      * For DeleteConfigRule, a remediation action is associated with the rule
-//      and AWS Config cannot delete this rule. Delete the remediation action
-//      associated with the rule before deleting the rule and try your request
-//      again later.
+//      and Config cannot delete this rule. Delete the remediation action associated
+//      with the rule before deleting the rule and try your request again later.
 //
 //      * For PutConfigOrganizationRule, organization config rule deletion is
 //      in progress. Try your request again later.
@@ -8476,10 +8486,10 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 //   Indicates one of the following errors:
 //
 //      * For PutConfigRule, the rule cannot be created because the IAM role assigned
-//      to AWS Config lacks permissions to perform the config:Put* action.
+//      to Config lacks permissions to perform the config:Put* action.
 //
-//      * For PutConfigRule, the AWS Lambda function cannot be invoked. Check
-//      the function ARN, and check the function's permissions.
+//      * For PutConfigRule, the Lambda function cannot be invoked. Check the
+//      function ARN, and check the function's permissions.
 //
 //      * For PutOrganizationConfigRule, organization config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
@@ -8567,19 +8577,19 @@ func (c *ConfigService) PutConfigurationAggregatorRequest(input *PutConfiguratio
 // want to add additional accounts into the aggregator, call DescribeAggregator
 // to get the previous accounts and then append new ones.
 //
-// AWS Config should be enabled in source accounts and regions you want to aggregate.
+// Config should be enabled in source accounts and regions you want to aggregate.
 //
 // If your source type is an organization, you must be signed in to the management
 // account or a registered delegated administrator and all the features must
-// be enabled in your organization. If the caller is a management account, AWS
-// Config calls EnableAwsServiceAccess API to enable integration between AWS
-// Config and AWS Organizations. If the caller is a registered delegated administrator,
-// AWS Config calls ListDelegatedAdministrators API to verify whether the caller
-// is a valid delegated administrator.
+// be enabled in your organization. If the caller is a management account, Config
+// calls EnableAwsServiceAccess API to enable integration between Config and
+// Organizations. If the caller is a registered delegated administrator, Config
+// calls ListDelegatedAdministrators API to verify whether the caller is a valid
+// delegated administrator.
 //
 // To register a delegated administrator, see Register a Delegated Administrator
 // (https://docs.aws.amazon.com/config/latest/developerguide/set-up-aggregator-cli.html#register-a-delegated-administrator-cli)
-// in the AWS Config developer guide.
+// in the Config developer guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8610,29 +8620,31 @@ func (c *ConfigService) PutConfigurationAggregatorRequest(input *PutConfiguratio
 //
 //      * No permission to call EnableAWSServiceAccess API
 //
-//      * The configuration aggregator cannot be updated because your AWS Organization
-//      management account or the delegated administrator role changed. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator cannot be updated because your Amazon Web
+//      Services Organization management account or the delegated administrator
+//      role changed. Delete this aggregator and create a new one with the current
+//      Amazon Web Services Organization.
 //
-//      * The configuration aggregator is associated with a previous AWS Organization
-//      and AWS Config cannot aggregate data with current AWS Organization. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator is associated with a previous Amazon Web
+//      Services Organization and Config cannot aggregate data with current Amazon
+//      Web Services Organization. Delete this aggregator and create a new one
+//      with the current Amazon Web Services Organization.
 //
-//      * You are not a registered delegated administrator for AWS Config with
-//      permissions to call ListDelegatedAdministrators API. Ensure that the management
-//      account registers delagated administrator for AWS Config service principle
-//      name before the delegated administrator creates an aggregator.
+//      * You are not a registered delegated administrator for Config with permissions
+//      to call ListDelegatedAdministrators API. Ensure that the management account
+//      registers delagated administrator for Config service principle name before
+//      the delegated administrator creates an aggregator.
 //
-//   For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-//   Config throws an exception if APIs are called from member accounts. All APIs
-//   must be called from organization master account.
+//   For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+//   throws an exception if APIs are called from member accounts. All APIs must
+//   be called from organization master account.
 //
 //   * NoAvailableOrganizationException
 //   Organization is no longer available.
 //
 //   * OrganizationAllFeaturesNotEnabledException
-//   AWS Config resource cannot be created because your organization does not
-//   have all features enabled.
+//   Config resource cannot be created because your organization does not have
+//   all features enabled.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutConfigurationAggregator
 func (c *ConfigService) PutConfigurationAggregator(input *PutConfigurationAggregatorInput) (*PutConfigurationAggregatorOutput, error) {
@@ -8731,8 +8743,8 @@ func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationR
 //   You have provided a null or empty role ARN.
 //
 //   * InvalidRecordingGroupException
-//   AWS Config throws an exception if the recording group does not contain a
-//   valid list of resource types. Invalid values might also be incorrectly formatted.
+//   Config throws an exception if the recording group does not contain a valid
+//   list of resource types. Invalid values might also be incorrectly formatted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutConfigurationRecorder
 func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorderInput) (*PutConfigurationRecorderOutput, error) {
@@ -8801,15 +8813,15 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 // PutConformancePack API operation for AWS Config.
 //
 // Creates or updates a conformance pack. A conformance pack is a collection
-// of AWS Config rules that can be easily deployed in an account and a region
-// and across AWS Organization.
+// of Config rules that can be easily deployed in an account and a region and
+// across Amazon Web Services Organization.
 //
 // This API creates a service linked role AWSServiceRoleForConfigConforms in
 // your account. The service linked role is created only when the role does
 // not exist in your account.
 //
 // You must specify either the TemplateS3Uri or the TemplateBody parameter,
-// but not both. If you provide both AWS Config uses the TemplateS3Uri parameter
+// but not both. If you provide both Config uses the TemplateS3Uri parameter
 // and ignores the TemplateBody parameter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8824,10 +8836,10 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 //   Indicates one of the following errors:
 //
 //      * For PutConfigRule, the rule cannot be created because the IAM role assigned
-//      to AWS Config lacks permissions to perform the config:Put* action.
+//      to Config lacks permissions to perform the config:Put* action.
 //
-//      * For PutConfigRule, the AWS Lambda function cannot be invoked. Check
-//      the function ARN, and check the function's permissions.
+//      * For PutConfigRule, the Lambda function cannot be invoked. Check the
+//      function ARN, and check the function's permissions.
 //
 //      * For PutOrganizationConfigRule, organization config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
@@ -8843,16 +8855,15 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 //   * ResourceInUseException
 //   You see this exception in the following cases:
 //
-//      * For DeleteConfigRule, AWS Config is deleting this rule. Try your request
+//      * For DeleteConfigRule, Config is deleting this rule. Try your request
 //      again later.
 //
 //      * For DeleteConfigRule, the rule is deleting your evaluation results.
 //      Try your request again later.
 //
 //      * For DeleteConfigRule, a remediation action is associated with the rule
-//      and AWS Config cannot delete this rule. Delete the remediation action
-//      associated with the rule before deleting the rule and try your request
-//      again later.
+//      and Config cannot delete this rule. Delete the remediation action associated
+//      with the rule before deleting the rule and try your request again later.
 //
 //      * For PutConfigOrganizationRule, organization config rule deletion is
 //      in progress. Try your request again later.
@@ -8873,7 +8884,7 @@ func (c *ConfigService) PutConformancePackRequest(input *PutConformancePackInput
 //
 //   * MaxNumberOfConformancePacksExceededException
 //   You have reached the limit (6) of the number of conformance packs in an account
-//   (6 conformance pack with 25 AWS Config rules per pack).
+//   (6 conformance pack with 25 Config rules per pack).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutConformancePack
 func (c *ConfigService) PutConformancePack(input *PutConformancePackInput) (*PutConformancePackOutput, error) {
@@ -8988,7 +8999,7 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 //   The specified Amazon SNS topic does not exist.
 //
 //   * InsufficientDeliveryPolicyException
-//   Your Amazon S3 bucket policy does not permit AWS Config to write to it.
+//   Your Amazon S3 bucket policy does not permit Config to write to it.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutDeliveryChannel
 func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (*PutDeliveryChannelOutput, error) {
@@ -9056,9 +9067,9 @@ func (c *ConfigService) PutEvaluationsRequest(input *PutEvaluationsInput) (req *
 
 // PutEvaluations API operation for AWS Config.
 //
-// Used by an AWS Lambda function to deliver evaluation results to AWS Config.
-// This action is required in every AWS Lambda function that is invoked by an
-// AWS Config rule.
+// Used by an Lambda function to deliver evaluation results to Config. This
+// action is required in every Lambda function that is invoked by an Config
+// rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9076,8 +9087,8 @@ func (c *ConfigService) PutEvaluationsRequest(input *PutEvaluationsInput) (req *
 //   The specified ResultToken is invalid.
 //
 //   * NoSuchConfigRuleException
-//   One or more AWS Config rules in the request are invalid. Verify that the
-//   rule names are correct and try again.
+//   One or more Config rules in the request are invalid. Verify that the rule
+//   names are correct and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutEvaluations
 func (c *ConfigService) PutEvaluations(input *PutEvaluationsInput) (*PutEvaluationsOutput, error) {
@@ -9147,7 +9158,7 @@ func (c *ConfigService) PutExternalEvaluationRequest(input *PutExternalEvaluatio
 // PutExternalEvaluation API operation for AWS Config.
 //
 // Add or updates the evaluations for process checks. This API checks if the
-// rule is a process check when the name of the AWS Config rule is provided.
+// rule is a process check when the name of the Config rule is provided.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9158,8 +9169,8 @@ func (c *ConfigService) PutExternalEvaluationRequest(input *PutExternalEvaluatio
 //
 // Returned Error Types:
 //   * NoSuchConfigRuleException
-//   One or more AWS Config rules in the request are invalid. Verify that the
-//   rule names are correct and try again.
+//   One or more Config rules in the request are invalid. Verify that the rule
+//   names are correct and try again.
 //
 //   * InvalidParameterValueException
 //   One or more of the specified parameters are invalid. Verify that your parameters
@@ -9232,33 +9243,35 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 // PutOrganizationConfigRule API operation for AWS Config.
 //
 // Adds or updates organization config rule for your entire organization evaluating
-// whether your AWS resources comply with your desired configurations.
+// whether your Amazon Web Services resources comply with your desired configurations.
 //
 // Only a master account and a delegated administrator can create or update
 // an organization config rule. When calling this API with a delegated administrator,
-// you must ensure AWS Organizations ListDelegatedAdministrator permissions
-// are added.
+// you must ensure Organizations ListDelegatedAdministrator permissions are
+// added.
 //
 // This API enables organization service access through the EnableAWSServiceAccess
 // action and creates a service linked role AWSServiceRoleForConfigMultiAccountSetup
 // in the master or delegated administrator account of your organization. The
 // service linked role is created only when the role does not exist in the caller
-// account. AWS Config verifies the existence of role with GetRole action.
+// account. Config verifies the existence of role with GetRole action.
 //
 // To use this API with delegated administrator, register a delegated administrator
-// by calling AWS Organization register-delegated-administrator for config-multiaccountsetup.amazonaws.com.
+// by calling Amazon Web Services Organization register-delegated-administrator
+// for config-multiaccountsetup.amazonaws.com.
 //
-// You can use this action to create both custom AWS Config rules and AWS managed
-// Config rules. If you are adding a new custom AWS Config rule, you must first
-// create AWS Lambda function in the master account or a delegated administrator
-// that the rule invokes to evaluate your resources. When you use the PutOrganizationConfigRule
-// action to add the rule to AWS Config, you must specify the Amazon Resource
-// Name (ARN) that AWS Lambda assigns to the function. If you are adding an
-// AWS managed Config rule, specify the rule's identifier for the RuleIdentifier
-// key.
+// You can use this action to create both custom Config rules and Config managed
+// rules. If you are adding a new custom Config rule, you must first create
+// Lambda function in the master account or a delegated administrator that the
+// rule invokes to evaluate your resources. You also need to create an IAM role
+// in the managed-account that can be assumed by the Lambda function. When you
+// use the PutOrganizationConfigRule action to add the rule to Config, you must
+// specify the Amazon Resource Name (ARN) that Lambda assigns to the function.
+// If you are adding an Config managed rule, specify the rule's identifier for
+// the RuleIdentifier key.
 //
-// The maximum number of organization config rules that AWS Config supports
-// is 150 and 3 delegated administrator per organization.
+// The maximum number of organization config rules that Config supports is 150
+// and 3 delegated administrator per organization.
 //
 // Prerequisite: Ensure you call EnableAllFeatures API to enable all features
 // in an organization.
@@ -9280,16 +9293,15 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 //   * ResourceInUseException
 //   You see this exception in the following cases:
 //
-//      * For DeleteConfigRule, AWS Config is deleting this rule. Try your request
+//      * For DeleteConfigRule, Config is deleting this rule. Try your request
 //      again later.
 //
 //      * For DeleteConfigRule, the rule is deleting your evaluation results.
 //      Try your request again later.
 //
 //      * For DeleteConfigRule, a remediation action is associated with the rule
-//      and AWS Config cannot delete this rule. Delete the remediation action
-//      associated with the rule before deleting the rule and try your request
-//      again later.
+//      and Config cannot delete this rule. Delete the remediation action associated
+//      with the rule before deleting the rule and try your request again later.
 //
 //      * For PutConfigOrganizationRule, organization config rule deletion is
 //      in progress. Try your request again later.
@@ -9325,38 +9337,40 @@ func (c *ConfigService) PutOrganizationConfigRuleRequest(input *PutOrganizationC
 //
 //      * No permission to call EnableAWSServiceAccess API
 //
-//      * The configuration aggregator cannot be updated because your AWS Organization
-//      management account or the delegated administrator role changed. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator cannot be updated because your Amazon Web
+//      Services Organization management account or the delegated administrator
+//      role changed. Delete this aggregator and create a new one with the current
+//      Amazon Web Services Organization.
 //
-//      * The configuration aggregator is associated with a previous AWS Organization
-//      and AWS Config cannot aggregate data with current AWS Organization. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator is associated with a previous Amazon Web
+//      Services Organization and Config cannot aggregate data with current Amazon
+//      Web Services Organization. Delete this aggregator and create a new one
+//      with the current Amazon Web Services Organization.
 //
-//      * You are not a registered delegated administrator for AWS Config with
-//      permissions to call ListDelegatedAdministrators API. Ensure that the management
-//      account registers delagated administrator for AWS Config service principle
-//      name before the delegated administrator creates an aggregator.
+//      * You are not a registered delegated administrator for Config with permissions
+//      to call ListDelegatedAdministrators API. Ensure that the management account
+//      registers delagated administrator for Config service principle name before
+//      the delegated administrator creates an aggregator.
 //
-//   For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-//   Config throws an exception if APIs are called from member accounts. All APIs
-//   must be called from organization master account.
+//   For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+//   throws an exception if APIs are called from member accounts. All APIs must
+//   be called from organization master account.
 //
 //   * NoAvailableOrganizationException
 //   Organization is no longer available.
 //
 //   * OrganizationAllFeaturesNotEnabledException
-//   AWS Config resource cannot be created because your organization does not
-//   have all features enabled.
+//   Config resource cannot be created because your organization does not have
+//   all features enabled.
 //
 //   * InsufficientPermissionsException
 //   Indicates one of the following errors:
 //
 //      * For PutConfigRule, the rule cannot be created because the IAM role assigned
-//      to AWS Config lacks permissions to perform the config:Put* action.
+//      to Config lacks permissions to perform the config:Put* action.
 //
-//      * For PutConfigRule, the AWS Lambda function cannot be invoked. Check
-//      the function ARN, and check the function's permissions.
+//      * For PutConfigRule, the Lambda function cannot be invoked. Check the
+//      function ARN, and check the function's permissions.
 //
 //      * For PutOrganizationConfigRule, organization config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
@@ -9432,10 +9446,11 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 
 // PutOrganizationConformancePack API operation for AWS Config.
 //
-// Deploys conformance packs across member accounts in an AWS Organization.
+// Deploys conformance packs across member accounts in an Amazon Web Services
+// Organization.
 //
 // Only a master account and a delegated administrator can call this API. When
-// calling this API with a delegated administrator, you must ensure AWS Organizations
+// calling this API with a delegated administrator, you must ensure Organizations
 // ListDelegatedAdministrator permissions are added.
 //
 // This API enables organization service access for config-multiaccountsetup.amazonaws.com
@@ -9443,22 +9458,22 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 // AWSServiceRoleForConfigMultiAccountSetup in the master or delegated administrator
 // account of your organization. The service linked role is created only when
 // the role does not exist in the caller account. To use this API with delegated
-// administrator, register a delegated administrator by calling AWS Organization
-// register-delegate-admin for config-multiaccountsetup.amazonaws.com.
+// administrator, register a delegated administrator by calling Amazon Web Services
+// Organization register-delegate-admin for config-multiaccountsetup.amazonaws.com.
 //
 // Prerequisite: Ensure you call EnableAllFeatures API to enable all features
 // in an organization.
 //
 // You must specify either the TemplateS3Uri or the TemplateBody parameter,
-// but not both. If you provide both AWS Config uses the TemplateS3Uri parameter
+// but not both. If you provide both Config uses the TemplateS3Uri parameter
 // and ignores the TemplateBody parameter.
 //
-// AWS Config sets the state of a conformance pack to CREATE_IN_PROGRESS and
-// UPDATE_IN_PROGRESS until the conformance pack is created or updated. You
-// cannot update a conformance pack while it is in this state.
+// Config sets the state of a conformance pack to CREATE_IN_PROGRESS and UPDATE_IN_PROGRESS
+// until the conformance pack is created or updated. You cannot update a conformance
+// pack while it is in this state.
 //
-// You can create 50 conformance packs with 25 AWS Config rules in each pack
-// and 3 delegated administrator per organization.
+// You can create 50 conformance packs with 25 Config rules in each pack and
+// 3 delegated administrator per organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9470,22 +9485,21 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 // Returned Error Types:
 //   * MaxNumberOfOrganizationConformancePacksExceededException
 //   You have reached the limit (6) of the number of organization conformance
-//   packs in an account (6 conformance pack with 25 AWS Config rules per pack
-//   per account).
+//   packs in an account (6 conformance pack with 25 Config rules per pack per
+//   account).
 //
 //   * ResourceInUseException
 //   You see this exception in the following cases:
 //
-//      * For DeleteConfigRule, AWS Config is deleting this rule. Try your request
+//      * For DeleteConfigRule, Config is deleting this rule. Try your request
 //      again later.
 //
 //      * For DeleteConfigRule, the rule is deleting your evaluation results.
 //      Try your request again later.
 //
 //      * For DeleteConfigRule, a remediation action is associated with the rule
-//      and AWS Config cannot delete this rule. Delete the remediation action
-//      associated with the rule before deleting the rule and try your request
-//      again later.
+//      and Config cannot delete this rule. Delete the remediation action associated
+//      with the rule before deleting the rule and try your request again later.
 //
 //      * For PutConfigOrganizationRule, organization config rule deletion is
 //      in progress. Try your request again later.
@@ -9517,31 +9531,33 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 //
 //      * No permission to call EnableAWSServiceAccess API
 //
-//      * The configuration aggregator cannot be updated because your AWS Organization
-//      management account or the delegated administrator role changed. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator cannot be updated because your Amazon Web
+//      Services Organization management account or the delegated administrator
+//      role changed. Delete this aggregator and create a new one with the current
+//      Amazon Web Services Organization.
 //
-//      * The configuration aggregator is associated with a previous AWS Organization
-//      and AWS Config cannot aggregate data with current AWS Organization. Delete
-//      this aggregator and create a new one with the current AWS Organization.
+//      * The configuration aggregator is associated with a previous Amazon Web
+//      Services Organization and Config cannot aggregate data with current Amazon
+//      Web Services Organization. Delete this aggregator and create a new one
+//      with the current Amazon Web Services Organization.
 //
-//      * You are not a registered delegated administrator for AWS Config with
-//      permissions to call ListDelegatedAdministrators API. Ensure that the management
-//      account registers delagated administrator for AWS Config service principle
-//      name before the delegated administrator creates an aggregator.
+//      * You are not a registered delegated administrator for Config with permissions
+//      to call ListDelegatedAdministrators API. Ensure that the management account
+//      registers delagated administrator for Config service principle name before
+//      the delegated administrator creates an aggregator.
 //
-//   For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-//   Config throws an exception if APIs are called from member accounts. All APIs
-//   must be called from organization master account.
+//   For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+//   throws an exception if APIs are called from member accounts. All APIs must
+//   be called from organization master account.
 //
 //   * InsufficientPermissionsException
 //   Indicates one of the following errors:
 //
 //      * For PutConfigRule, the rule cannot be created because the IAM role assigned
-//      to AWS Config lacks permissions to perform the config:Put* action.
+//      to Config lacks permissions to perform the config:Put* action.
 //
-//      * For PutConfigRule, the AWS Lambda function cannot be invoked. Check
-//      the function ARN, and check the function's permissions.
+//      * For PutConfigRule, the Lambda function cannot be invoked. Check the
+//      function ARN, and check the function's permissions.
 //
 //      * For PutOrganizationConfigRule, organization config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
@@ -9555,8 +9571,8 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 //   You have specified a template that is not valid or supported.
 //
 //   * OrganizationAllFeaturesNotEnabledException
-//   AWS Config resource cannot be created because your organization does not
-//   have all features enabled.
+//   Config resource cannot be created because your organization does not have
+//   all features enabled.
 //
 //   * NoAvailableOrganizationException
 //   Organization is no longer available.
@@ -9627,18 +9643,18 @@ func (c *ConfigService) PutRemediationConfigurationsRequest(input *PutRemediatio
 
 // PutRemediationConfigurations API operation for AWS Config.
 //
-// Adds or updates the remediation configuration with a specific AWS Config
-// rule with the selected target or action. The API creates the RemediationConfiguration
-// object for the AWS Config rule. The AWS Config rule must already exist for
-// you to add a remediation configuration. The target (SSM document) must exist
-// and have permissions to use the target.
+// Adds or updates the remediation configuration with a specific Config rule
+// with the selected target or action. The API creates the RemediationConfiguration
+// object for the Config rule. The Config rule must already exist for you to
+// add a remediation configuration. The target (SSM document) must exist and
+// have permissions to use the target.
 //
 // If you make backward incompatible changes to the SSM document, you must call
 // this again to ensure the remediations can run.
 //
 // This API does not support adding remediation configurations for service-linked
-// AWS Config Rules such as Organization Config rules, the rules deployed by
-// conformance packs, and rules deployed by AWS Security Hub.
+// Config Rules such as Organization Config rules, the rules deployed by conformance
+// packs, and rules deployed by Amazon Web Services Security Hub.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9652,10 +9668,10 @@ func (c *ConfigService) PutRemediationConfigurationsRequest(input *PutRemediatio
 //   Indicates one of the following errors:
 //
 //      * For PutConfigRule, the rule cannot be created because the IAM role assigned
-//      to AWS Config lacks permissions to perform the config:Put* action.
+//      to Config lacks permissions to perform the config:Put* action.
 //
-//      * For PutConfigRule, the AWS Lambda function cannot be invoked. Check
-//      the function ARN, and check the function's permissions.
+//      * For PutConfigRule, the Lambda function cannot be invoked. Check the
+//      function ARN, and check the function's permissions.
 //
 //      * For PutOrganizationConfigRule, organization config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
@@ -9737,9 +9753,9 @@ func (c *ConfigService) PutRemediationExceptionsRequest(input *PutRemediationExc
 //
 // A remediation exception is when a specific resource is no longer considered
 // for auto-remediation. This API adds a new exception or updates an existing
-// exception for a specific resource with a specific AWS Config rule.
+// exception for a specific resource with a specific Config rule.
 //
-// AWS Config generates a remediation exception when a problem occurs executing
+// Config generates a remediation exception when a problem occurs executing
 // a remediation action to a specific resource. Remediation exceptions blocks
 // auto-remediation until the exception is cleared.
 //
@@ -9759,10 +9775,10 @@ func (c *ConfigService) PutRemediationExceptionsRequest(input *PutRemediationExc
 //   Indicates one of the following errors:
 //
 //      * For PutConfigRule, the rule cannot be created because the IAM role assigned
-//      to AWS Config lacks permissions to perform the config:Put* action.
+//      to Config lacks permissions to perform the config:Put* action.
 //
-//      * For PutConfigRule, the AWS Lambda function cannot be invoked. Check
-//      the function ARN, and check the function's permissions.
+//      * For PutConfigRule, the Lambda function cannot be invoked. Check the
+//      function ARN, and check the function's permissions.
 //
 //      * For PutOrganizationConfigRule, organization config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
@@ -9840,17 +9856,17 @@ func (c *ConfigService) PutResourceConfigRequest(input *PutResourceConfigInput) 
 // PutResourceConfig API operation for AWS Config.
 //
 // Records the configuration state for the resource provided in the request.
-// The configuration state of a resource is represented in AWS Config as Configuration
+// The configuration state of a resource is represented in Config as Configuration
 // Items. Once this API records the configuration item, you can retrieve the
-// list of configuration items for the custom resource type using existing AWS
-// Config APIs.
+// list of configuration items for the custom resource type using existing Config
+// APIs.
 //
-// The custom resource type must be registered with AWS CloudFormation. This
-// API accepts the configuration item registered with AWS CloudFormation.
+// The custom resource type must be registered with CloudFormation. This API
+// accepts the configuration item registered with CloudFormation.
 //
-// When you call this API, AWS Config only stores configuration state of the
-// resource provided in the request. This API does not change or remediate the
-// configuration of the resource.
+// When you call this API, Config only stores configuration state of the resource
+// provided in the request. This API does not change or remediate the configuration
+// of the resource.
 //
 // Write-only schema properites are not recorded as part of the published configuration
 // item.
@@ -9878,10 +9894,10 @@ func (c *ConfigService) PutResourceConfigRequest(input *PutResourceConfigInput) 
 //   Indicates one of the following errors:
 //
 //      * For PutConfigRule, the rule cannot be created because the IAM role assigned
-//      to AWS Config lacks permissions to perform the config:Put* action.
+//      to Config lacks permissions to perform the config:Put* action.
 //
-//      * For PutConfigRule, the AWS Lambda function cannot be invoked. Check
-//      the function ARN, and check the function's permissions.
+//      * For PutConfigRule, the Lambda function cannot be invoked. Check the
+//      function ARN, and check the function's permissions.
 //
 //      * For PutOrganizationConfigRule, organization config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
@@ -9965,13 +9981,13 @@ func (c *ConfigService) PutRetentionConfigurationRequest(input *PutRetentionConf
 // PutRetentionConfiguration API operation for AWS Config.
 //
 // Creates and updates the retention configuration with details about retention
-// period (number of days) that AWS Config stores your historical information.
-// The API creates the RetentionConfiguration object and names the object as
-// default. When you have a RetentionConfiguration object named default, calling
-// the API modifies the default object.
+// period (number of days) that Config stores your historical information. The
+// API creates the RetentionConfiguration object and names the object as default.
+// When you have a RetentionConfiguration object named default, calling the
+// API modifies the default object.
 //
-// Currently, AWS Config supports only one retention configuration per region
-// in your account.
+// Currently, Config supports only one retention configuration per region in
+// your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10056,8 +10072,9 @@ func (c *ConfigService) PutStoredQueryRequest(input *PutStoredQueryInput) (req *
 // PutStoredQuery API operation for AWS Config.
 //
 // Saves a new query or updates an existing saved query. The QueryName must
-// be unique for a single AWS account and a single AWS Region. You can create
-// upto 300 queries in a single AWS account and a single AWS Region.
+// be unique for a single Amazon Web Services account and a single Amazon Web
+// Services Region. You can create upto 300 queries in a single Amazon Web Services
+// account and a single Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10159,12 +10176,22 @@ func (c *ConfigService) SelectAggregateResourceConfigRequest(input *SelectAggreg
 // SelectAggregateResourceConfig API operation for AWS Config.
 //
 // Accepts a structured query language (SQL) SELECT command and an aggregator
-// to query configuration state of AWS resources across multiple accounts and
-// regions, performs the corresponding search, and returns resource configurations
-// matching the properties.
+// to query configuration state of Amazon Web Services resources across multiple
+// accounts and regions, performs the corresponding search, and returns resource
+// configurations matching the properties.
 //
 // For more information about query components, see the Query Components (https://docs.aws.amazon.com/config/latest/developerguide/query-components.html)
-// section in the AWS Config Developer Guide.
+// section in the Config Developer Guide.
+//
+// If you run an aggregation query (i.e., using GROUP BY or using aggregate
+// functions such as COUNT; e.g., SELECT resourceId, COUNT(*) WHERE resourceType
+// = 'AWS::IAM::Role' GROUP BY resourceId) and do not specify the MaxResults
+// or the Limit query parameters, the default page size is set to 500.
+//
+// If you run a non-aggregation query (i.e., not using GROUP BY or aggregate
+// function; e.g., SELECT * WHERE resourceType = 'AWS::IAM::Role') and do not
+// specify the MaxResults or the Limit query parameters, the default page size
+// is set to 25.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10315,7 +10342,7 @@ func (c *ConfigService) SelectResourceConfigRequest(input *SelectResourceConfigI
 // search, and returns resource configurations matching the properties.
 //
 // For more information about query components, see the Query Components (https://docs.aws.amazon.com/config/latest/developerguide/query-components.html)
-// section in the AWS Config Developer Guide.
+// section in the Config Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10454,22 +10481,22 @@ func (c *ConfigService) StartConfigRulesEvaluationRequest(input *StartConfigRule
 
 // StartConfigRulesEvaluation API operation for AWS Config.
 //
-// Runs an on-demand evaluation for the specified AWS Config rules against the
-// last known configuration state of the resources. Use StartConfigRulesEvaluation
+// Runs an on-demand evaluation for the specified Config rules against the last
+// known configuration state of the resources. Use StartConfigRulesEvaluation
 // when you want to test that a rule you updated is working as expected. StartConfigRulesEvaluation
 // does not re-record the latest configuration state for your resources. It
 // re-runs an evaluation against the last known state of your resources.
 //
-// You can specify up to 25 AWS Config rules per request.
+// You can specify up to 25 Config rules per request.
 //
 // An existing StartConfigRulesEvaluation call for the specified rules must
-// complete before you can call the API again. If you chose to have AWS Config
-// stream to an Amazon SNS topic, you will receive a ConfigRuleEvaluationStarted
-// notification when the evaluation starts.
+// complete before you can call the API again. If you chose to have Config stream
+// to an Amazon SNS topic, you will receive a ConfigRuleEvaluationStarted notification
+// when the evaluation starts.
 //
 // You don't need to call the StartConfigRulesEvaluation API to run an evaluation
-// for a new rule. When you create a rule, AWS Config evaluates your resources
-// against the rule automatically.
+// for a new rule. When you create a rule, Config evaluates your resources against
+// the rule automatically.
 //
 // The StartConfigRulesEvaluation API is useful if you want to run on-demand
 // evaluations, such as the following example:
@@ -10481,7 +10508,7 @@ func (c *ConfigService) StartConfigRulesEvaluationRequest(input *StartConfigRule
 // Instead of waiting for the next periodic evaluation, you call the StartConfigRulesEvaluation
 // API.
 //
-// AWS Config invokes your Lambda function and evaluates your IAM resources.
+// Config invokes your Lambda function and evaluates your IAM resources.
 //
 // Your custom rule will still run periodic evaluations every 24 hours.
 //
@@ -10494,8 +10521,8 @@ func (c *ConfigService) StartConfigRulesEvaluationRequest(input *StartConfigRule
 //
 // Returned Error Types:
 //   * NoSuchConfigRuleException
-//   One or more AWS Config rules in the request are invalid. Verify that the
-//   rule names are correct and try again.
+//   One or more Config rules in the request are invalid. Verify that the rule
+//   names are correct and try again.
 //
 //   * LimitExceededException
 //   For StartConfigRulesEvaluation API, this exception is thrown if an evaluation
@@ -10508,16 +10535,15 @@ func (c *ConfigService) StartConfigRulesEvaluationRequest(input *StartConfigRule
 //   * ResourceInUseException
 //   You see this exception in the following cases:
 //
-//      * For DeleteConfigRule, AWS Config is deleting this rule. Try your request
+//      * For DeleteConfigRule, Config is deleting this rule. Try your request
 //      again later.
 //
 //      * For DeleteConfigRule, the rule is deleting your evaluation results.
 //      Try your request again later.
 //
 //      * For DeleteConfigRule, a remediation action is associated with the rule
-//      and AWS Config cannot delete this rule. Delete the remediation action
-//      associated with the rule before deleting the rule and try your request
-//      again later.
+//      and Config cannot delete this rule. Delete the remediation action associated
+//      with the rule before deleting the rule and try your request again later.
 //
 //      * For PutConfigOrganizationRule, organization config rule deletion is
 //      in progress. Try your request again later.
@@ -10603,8 +10629,8 @@ func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurat
 
 // StartConfigurationRecorder API operation for AWS Config.
 //
-// Starts recording configurations of the AWS resources you have selected to
-// record in your AWS account.
+// Starts recording configurations of the Amazon Web Services resources you
+// have selected to record in your Amazon Web Services account.
 //
 // You must have created at least one delivery channel to successfully start
 // the configuration recorder.
@@ -10689,9 +10715,9 @@ func (c *ConfigService) StartRemediationExecutionRequest(input *StartRemediation
 
 // StartRemediationExecution API operation for AWS Config.
 //
-// Runs an on-demand remediation for the specified AWS Config rules against
-// the last known remediation configuration. It runs an execution against the
-// current state of your resources. Remediation execution is asynchronous.
+// Runs an on-demand remediation for the specified Config rules against the
+// last known remediation configuration. It runs an execution against the current
+// state of your resources. Remediation execution is asynchronous.
 //
 // You can specify up to 100 resource keys per request. An existing StartRemediationExecution
 // call for the specified resource keys must complete before you can call the
@@ -10713,10 +10739,10 @@ func (c *ConfigService) StartRemediationExecutionRequest(input *StartRemediation
 //   Indicates one of the following errors:
 //
 //      * For PutConfigRule, the rule cannot be created because the IAM role assigned
-//      to AWS Config lacks permissions to perform the config:Put* action.
+//      to Config lacks permissions to perform the config:Put* action.
 //
-//      * For PutConfigRule, the AWS Lambda function cannot be invoked. Check
-//      the function ARN, and check the function's permissions.
+//      * For PutConfigRule, the Lambda function cannot be invoked. Check the
+//      function ARN, and check the function's permissions.
 //
 //      * For PutOrganizationConfigRule, organization config rule cannot be created
 //      because you do not have permissions to call IAM GetRole action or create
@@ -10727,7 +10753,7 @@ func (c *ConfigService) StartRemediationExecutionRequest(input *StartRemediation
 //      GetRole action or create a service linked role. To read Amazon S3 bucket.
 //
 //   * NoSuchRemediationConfigurationException
-//   You specified an AWS Config rule without a remediation configuration.
+//   You specified an Config rule without a remediation configuration.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/StartRemediationExecution
 func (c *ConfigService) StartRemediationExecution(input *StartRemediationExecutionInput) (*StartRemediationExecutionOutput, error) {
@@ -10796,8 +10822,8 @@ func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfiguratio
 
 // StopConfigurationRecorder API operation for AWS Config.
 //
-// Stops recording configurations of the AWS resources you have selected to
-// record in your AWS account.
+// Stops recording configurations of the Amazon Web Services resources you have
+// selected to record in your Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11030,19 +11056,27 @@ type AccountAggregationSource struct {
 	// AccountIds is a required field
 	AccountIds []*string `min:"1" type:"list" required:"true"`
 
-	// If true, aggregate existing AWS Config regions and future regions.
+	// If true, aggregate existing Config regions and future regions.
 	AllAwsRegions *bool `type:"boolean"`
 
 	// The source regions being aggregated.
 	AwsRegions []*string `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountAggregationSource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountAggregationSource) GoString() string {
 	return s.String()
 }
@@ -11084,7 +11118,7 @@ func (s *AccountAggregationSource) SetAwsRegions(v []*string) *AccountAggregatio
 	return s
 }
 
-// Indicates whether an AWS Config rule is compliant based on account ID, region,
+// Indicates whether an Config rule is compliant based on account ID, region,
 // compliance, and rule name.
 //
 // A rule is compliant if all of the resources that the rule evaluated comply
@@ -11098,20 +11132,28 @@ type AggregateComplianceByConfigRule struct {
 	// The source region from where the data is aggregated.
 	AwsRegion *string `min:"1" type:"string"`
 
-	// Indicates whether an AWS resource or AWS Config rule is compliant and provides
-	// the number of contributors that affect the compliance.
+	// Indicates whether an Amazon Web Services resource or Config rule is compliant
+	// and provides the number of contributors that affect the compliance.
 	Compliance *Compliance `type:"structure"`
 
-	// The name of the AWS Config rule.
+	// The name of the Config rule.
 	ConfigRuleName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateComplianceByConfigRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateComplianceByConfigRule) GoString() string {
 	return s.String()
 }
@@ -11154,10 +11196,10 @@ func (s *AggregateComplianceByConfigRule) SetConfigRuleName(v string) *Aggregate
 type AggregateComplianceByConformancePack struct {
 	_ struct{} `type:"structure"`
 
-	// The 12-digit AWS account ID of the source account.
+	// The 12-digit Amazon Web Services account ID of the source account.
 	AccountId *string `type:"string"`
 
-	// The source AWS Region from where the data is aggregated.
+	// The source Amazon Web Services Region from where the data is aggregated.
 	AwsRegion *string `min:"1" type:"string"`
 
 	// The compliance status of the conformance pack.
@@ -11167,12 +11209,20 @@ type AggregateComplianceByConformancePack struct {
 	ConformancePackName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateComplianceByConformancePack) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateComplianceByConformancePack) GoString() string {
 	return s.String()
 }
@@ -11206,19 +11256,27 @@ func (s *AggregateComplianceByConformancePack) SetConformancePackName(v string) 
 type AggregateComplianceCount struct {
 	_ struct{} `type:"structure"`
 
-	// The number of compliant and noncompliant AWS Config rules.
+	// The number of compliant and noncompliant Config rules.
 	ComplianceSummary *ComplianceSummary `type:"structure"`
 
 	// The 12-digit account ID or region based on the GroupByKey value.
 	GroupName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateComplianceCount) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateComplianceCount) GoString() string {
 	return s.String()
 }
@@ -11253,10 +11311,10 @@ type AggregateConformancePackCompliance struct {
 	// The compliance status of the conformance pack.
 	ComplianceType *string `type:"string" enum:"ConformancePackComplianceType"`
 
-	// The number of compliant AWS Config Rules.
+	// The number of compliant Config Rules.
 	CompliantRuleCount *int64 `type:"integer"`
 
-	// The number of noncompliant AWS Config Rules.
+	// The number of noncompliant Config Rules.
 	NonCompliantRuleCount *int64 `type:"integer"`
 
 	// Total number of compliant rules, noncompliant rules, and the rules that do
@@ -11265,12 +11323,20 @@ type AggregateConformancePackCompliance struct {
 	TotalRuleCount *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateConformancePackCompliance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateConformancePackCompliance) GoString() string {
 	return s.String()
 }
@@ -11310,12 +11376,20 @@ type AggregateConformancePackComplianceCount struct {
 	NonCompliantConformancePackCount *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateConformancePackComplianceCount) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateConformancePackComplianceCount) GoString() string {
 	return s.String()
 }
@@ -11337,10 +11411,10 @@ func (s *AggregateConformancePackComplianceCount) SetNonCompliantConformancePack
 type AggregateConformancePackComplianceFilters struct {
 	_ struct{} `type:"structure"`
 
-	// The 12-digit AWS account ID of the source account.
+	// The 12-digit Amazon Web Services account ID of the source account.
 	AccountId *string `type:"string"`
 
-	// The source AWS Region from where the data is aggregated.
+	// The source Amazon Web Services Region from where the data is aggregated.
 	AwsRegion *string `min:"1" type:"string"`
 
 	// The compliance status of the conformance pack.
@@ -11350,12 +11424,20 @@ type AggregateConformancePackComplianceFilters struct {
 	ConformancePackName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateConformancePackComplianceFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateConformancePackComplianceFilters) GoString() string {
 	return s.String()
 }
@@ -11407,16 +11489,25 @@ type AggregateConformancePackComplianceSummary struct {
 	// Returns an AggregateConformancePackComplianceCount object.
 	ComplianceSummary *AggregateConformancePackComplianceCount `type:"structure"`
 
-	// Groups the result based on AWS Account ID or AWS Region.
+	// Groups the result based on Amazon Web Services account ID or Amazon Web Services
+	// Region.
 	GroupName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateConformancePackComplianceSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateConformancePackComplianceSummary) GoString() string {
 	return s.String()
 }
@@ -11437,19 +11528,27 @@ func (s *AggregateConformancePackComplianceSummary) SetGroupName(v string) *Aggr
 type AggregateConformancePackComplianceSummaryFilters struct {
 	_ struct{} `type:"structure"`
 
-	// The 12-digit AWS account ID of the source account.
+	// The 12-digit Amazon Web Services account ID of the source account.
 	AccountId *string `type:"string"`
 
-	// The source AWS Region from where the data is aggregated.
+	// The source Amazon Web Services Region from where the data is aggregated.
 	AwsRegion *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateConformancePackComplianceSummaryFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateConformancePackComplianceSummaryFilters) GoString() string {
 	return s.String()
 }
@@ -11479,8 +11578,8 @@ func (s *AggregateConformancePackComplianceSummaryFilters) SetAwsRegion(v string
 	return s
 }
 
-// The details of an AWS Config evaluation for an account ID and region in an
-// aggregator. Provides the AWS resource that was evaluated, the compliance
+// The details of an Config evaluation for an account ID and region in an aggregator.
+// Provides the Amazon Web Services resource that was evaluated, the compliance
 // of the resource, related time stamps, and supplementary information.
 type AggregateEvaluationResult struct {
 	_ struct{} `type:"structure"`
@@ -11497,27 +11596,35 @@ type AggregateEvaluationResult struct {
 
 	// The resource compliance status.
 	//
-	// For the AggregationEvaluationResult data type, AWS Config supports only the
-	// COMPLIANT and NON_COMPLIANT. AWS Config does not support the NOT_APPLICABLE
-	// and INSUFFICIENT_DATA value.
+	// For the AggregationEvaluationResult data type, Config supports only the COMPLIANT
+	// and NON_COMPLIANT. Config does not support the NOT_APPLICABLE and INSUFFICIENT_DATA
+	// value.
 	ComplianceType *string `type:"string" enum:"ComplianceType"`
 
-	// The time when the AWS Config rule evaluated the AWS resource.
+	// The time when the Config rule evaluated the Amazon Web Services resource.
 	ConfigRuleInvokedTime *time.Time `type:"timestamp"`
 
 	// Uniquely identifies the evaluation result.
 	EvaluationResultIdentifier *EvaluationResultIdentifier `type:"structure"`
 
-	// The time when AWS Config recorded the aggregate evaluation result.
+	// The time when Config recorded the aggregate evaluation result.
 	ResultRecordedTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateEvaluationResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateEvaluationResult) GoString() string {
 	return s.String()
 }
@@ -11564,21 +11671,21 @@ func (s *AggregateEvaluationResult) SetResultRecordedTime(v time.Time) *Aggregat
 	return s
 }
 
-// The details that identify a resource that is collected by AWS Config aggregator,
+// The details that identify a resource that is collected by Config aggregator,
 // including the resource type, ID, (if available) the custom resource name,
 // the source account, and source region.
 type AggregateResourceIdentifier struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS resource.
+	// The ID of the Amazon Web Services resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
-	// The name of the AWS resource.
+	// The name of the Amazon Web Services resource.
 	ResourceName *string `type:"string"`
 
-	// The type of the AWS resource.
+	// The type of the Amazon Web Services resource.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"ResourceType"`
@@ -11594,12 +11701,20 @@ type AggregateResourceIdentifier struct {
 	SourceRegion *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateResourceIdentifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregateResourceIdentifier) GoString() string {
 	return s.String()
 }
@@ -11669,8 +11784,8 @@ type AggregatedSourceStatus struct {
 	// The region authorized to collect aggregated data.
 	AwsRegion *string `min:"1" type:"string"`
 
-	// The error code that AWS Config returned when the source account aggregation
-	// last failed.
+	// The error code that Config returned when the source account aggregation last
+	// failed.
 	LastErrorCode *string `type:"string"`
 
 	// The message indicating that the source account aggregation failed due to
@@ -11696,12 +11811,20 @@ type AggregatedSourceStatus struct {
 	SourceType *string `type:"string" enum:"AggregatedSourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregatedSourceStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregatedSourceStatus) GoString() string {
 	return s.String()
 }
@@ -11766,12 +11889,20 @@ type AggregationAuthorization struct {
 	CreationTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregationAuthorization) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AggregationAuthorization) GoString() string {
 	return s.String()
 }
@@ -11804,7 +11935,7 @@ func (s *AggregationAuthorization) SetCreationTime(v time.Time) *AggregationAuth
 type BaseConfigurationItem struct {
 	_ struct{} `type:"structure"`
 
-	// The 12-digit AWS account ID associated with the resource.
+	// The 12-digit Amazon Web Services account ID associated with the resource.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the resource.
@@ -11854,23 +11985,31 @@ type BaseConfigurationItem struct {
 	// The custom name of the resource, if available.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 
-	// The type of AWS resource.
+	// The type of Amazon Web Services resource.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 
-	// Configuration attributes that AWS Config returns for certain resource types
-	// to supplement the information returned for the configuration parameter.
+	// Configuration attributes that Config returns for certain resource types to
+	// supplement the information returned for the configuration parameter.
 	SupplementaryConfiguration map[string]*string `locationName:"supplementaryConfiguration" type:"map"`
 
 	// The version number of the resource configuration.
 	Version *string `locationName:"version" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BaseConfigurationItem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BaseConfigurationItem) GoString() string {
 	return s.String()
 }
@@ -11973,12 +12112,20 @@ type BatchGetAggregateResourceConfigInput struct {
 	ResourceIdentifiers []*AggregateResourceIdentifier `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetAggregateResourceConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetAggregateResourceConfigInput) GoString() string {
 	return s.String()
 }
@@ -12038,12 +12185,20 @@ type BatchGetAggregateResourceConfigOutput struct {
 	UnprocessedResourceIdentifiers []*AggregateResourceIdentifier `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetAggregateResourceConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetAggregateResourceConfigOutput) GoString() string {
 	return s.String()
 }
@@ -12070,12 +12225,20 @@ type BatchGetResourceConfigInput struct {
 	ResourceKeys []*ResourceKey `locationName:"resourceKeys" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetResourceConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetResourceConfigInput) GoString() string {
 	return s.String()
 }
@@ -12126,12 +12289,20 @@ type BatchGetResourceConfigOutput struct {
 	UnprocessedResourceKeys []*ResourceKey `locationName:"unprocessedResourceKeys" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetResourceConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BatchGetResourceConfigOutput) GoString() string {
 	return s.String()
 }
@@ -12148,39 +12319,47 @@ func (s *BatchGetResourceConfigOutput) SetUnprocessedResourceKeys(v []*ResourceK
 	return s
 }
 
-// Indicates whether an AWS resource or AWS Config rule is compliant and provides
-// the number of contributors that affect the compliance.
+// Indicates whether an Amazon Web Services resource or Config rule is compliant
+// and provides the number of contributors that affect the compliance.
 type Compliance struct {
 	_ struct{} `type:"structure"`
 
-	// The number of AWS resources or AWS Config rules that cause a result of NON_COMPLIANT,
-	// up to a maximum number.
+	// The number of Amazon Web Services resources or Config rules that cause a
+	// result of NON_COMPLIANT, up to a maximum number.
 	ComplianceContributorCount *ComplianceContributorCount `type:"structure"`
 
-	// Indicates whether an AWS resource or AWS Config rule is compliant.
+	// Indicates whether an Amazon Web Services resource or Config rule is compliant.
 	//
-	// A resource is compliant if it complies with all of the AWS Config rules that
+	// A resource is compliant if it complies with all of the Config rules that
 	// evaluate it. A resource is noncompliant if it does not comply with one or
 	// more of these rules.
 	//
 	// A rule is compliant if all of the resources that the rule evaluates comply
 	// with it. A rule is noncompliant if any of these resources do not comply.
 	//
-	// AWS Config returns the INSUFFICIENT_DATA value when no evaluation results
-	// are available for the AWS resource or AWS Config rule.
+	// Config returns the INSUFFICIENT_DATA value when no evaluation results are
+	// available for the Amazon Web Services resource or Config rule.
 	//
-	// For the Compliance data type, AWS Config supports only COMPLIANT, NON_COMPLIANT,
-	// and INSUFFICIENT_DATA values. AWS Config does not support the NOT_APPLICABLE
+	// For the Compliance data type, Config supports only COMPLIANT, NON_COMPLIANT,
+	// and INSUFFICIENT_DATA values. Config does not support the NOT_APPLICABLE
 	// value for the Compliance data type.
 	ComplianceType *string `type:"string" enum:"ComplianceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Compliance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Compliance) GoString() string {
 	return s.String()
 }
@@ -12197,25 +12376,33 @@ func (s *Compliance) SetComplianceType(v string) *Compliance {
 	return s
 }
 
-// Indicates whether an AWS Config rule is compliant. A rule is compliant if
-// all of the resources that the rule evaluated comply with it. A rule is noncompliant
+// Indicates whether an Config rule is compliant. A rule is compliant if all
+// of the resources that the rule evaluated comply with it. A rule is noncompliant
 // if any of these resources do not comply.
 type ComplianceByConfigRule struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether the AWS Config rule is compliant.
+	// Indicates whether the Config rule is compliant.
 	Compliance *Compliance `type:"structure"`
 
-	// The name of the AWS Config rule.
+	// The name of the Config rule.
 	ConfigRuleName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComplianceByConfigRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComplianceByConfigRule) GoString() string {
 	return s.String()
 }
@@ -12232,30 +12419,38 @@ func (s *ComplianceByConfigRule) SetConfigRuleName(v string) *ComplianceByConfig
 	return s
 }
 
-// Indicates whether an AWS resource that is evaluated according to one or more
-// AWS Config rules is compliant. A resource is compliant if it complies with
-// all of the rules that evaluate it. A resource is noncompliant if it does
-// not comply with one or more of these rules.
+// Indicates whether an Amazon Web Services resource that is evaluated according
+// to one or more Config rules is compliant. A resource is compliant if it complies
+// with all of the rules that evaluate it. A resource is noncompliant if it
+// does not comply with one or more of these rules.
 type ComplianceByResource struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether the AWS resource complies with all of the AWS Config rules
-	// that evaluated it.
+	// Indicates whether the Amazon Web Services resource complies with all of the
+	// Config rules that evaluated it.
 	Compliance *Compliance `type:"structure"`
 
-	// The ID of the AWS resource that was evaluated.
+	// The ID of the Amazon Web Services resource that was evaluated.
 	ResourceId *string `min:"1" type:"string"`
 
-	// The type of the AWS resource that was evaluated.
+	// The type of the Amazon Web Services resource that was evaluated.
 	ResourceType *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComplianceByResource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComplianceByResource) GoString() string {
 	return s.String()
 }
@@ -12278,25 +12473,33 @@ func (s *ComplianceByResource) SetResourceType(v string) *ComplianceByResource {
 	return s
 }
 
-// The number of AWS resources or AWS Config rules responsible for the current
-// compliance of the item, up to a maximum number.
+// The number of Amazon Web Services resources or Config rules responsible for
+// the current compliance of the item, up to a maximum number.
 type ComplianceContributorCount struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates whether the maximum count is reached.
 	CapExceeded *bool `type:"boolean"`
 
-	// The number of AWS resources or AWS Config rules responsible for the current
-	// compliance of the item.
+	// The number of Amazon Web Services resources or Config rules responsible for
+	// the current compliance of the item.
 	CappedCount *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComplianceContributorCount) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComplianceContributorCount) GoString() string {
 	return s.String()
 }
@@ -12313,28 +12516,37 @@ func (s *ComplianceContributorCount) SetCappedCount(v int64) *ComplianceContribu
 	return s
 }
 
-// The number of AWS Config rules or AWS resources that are compliant and noncompliant.
+// The number of Config rules or Amazon Web Services resources that are compliant
+// and noncompliant.
 type ComplianceSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The time that AWS Config created the compliance summary.
+	// The time that Config created the compliance summary.
 	ComplianceSummaryTimestamp *time.Time `type:"timestamp"`
 
-	// The number of AWS Config rules or AWS resources that are compliant, up to
-	// a maximum of 25 for rules and 100 for resources.
+	// The number of Config rules or Amazon Web Services resources that are compliant,
+	// up to a maximum of 25 for rules and 100 for resources.
 	CompliantResourceCount *ComplianceContributorCount `type:"structure"`
 
-	// The number of AWS Config rules or AWS resources that are noncompliant, up
-	// to a maximum of 25 for rules and 100 for resources.
+	// The number of Config rules or Amazon Web Services resources that are noncompliant,
+	// up to a maximum of 25 for rules and 100 for resources.
 	NonCompliantResourceCount *ComplianceContributorCount `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComplianceSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComplianceSummary) GoString() string {
 	return s.String()
 }
@@ -12357,25 +12569,33 @@ func (s *ComplianceSummary) SetNonCompliantResourceCount(v *ComplianceContributo
 	return s
 }
 
-// The number of AWS resources of a specific type that are compliant or noncompliant,
-// up to a maximum of 100 for each.
+// The number of Amazon Web Services resources of a specific type that are compliant
+// or noncompliant, up to a maximum of 100 for each.
 type ComplianceSummaryByResourceType struct {
 	_ struct{} `type:"structure"`
 
-	// The number of AWS resources that are compliant or noncompliant, up to a maximum
-	// of 100 for each.
+	// The number of Amazon Web Services resources that are compliant or noncompliant,
+	// up to a maximum of 100 for each.
 	ComplianceSummary *ComplianceSummary `type:"structure"`
 
-	// The type of AWS resource.
+	// The type of Amazon Web Services resource.
 	ResourceType *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComplianceSummaryByResourceType) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ComplianceSummaryByResourceType) GoString() string {
 	return s.String()
 }
@@ -12417,12 +12637,20 @@ type ConfigExportDeliveryInfo struct {
 	NextDeliveryTime *time.Time `locationName:"nextDeliveryTime" type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigExportDeliveryInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigExportDeliveryInfo) GoString() string {
 	return s.String()
 }
@@ -12463,49 +12691,47 @@ func (s *ConfigExportDeliveryInfo) SetNextDeliveryTime(v time.Time) *ConfigExpor
 	return s
 }
 
-// An AWS Config rule represents an AWS Lambda function that you create for
-// a custom rule or a predefined function for an AWS managed rule. The function
-// evaluates configuration items to assess whether your AWS resources comply
-// with your desired configurations. This function can run when AWS Config detects
-// a configuration change to an AWS resource and at a periodic frequency that
-// you choose (for example, every 24 hours).
+// An Config rule represents an Lambda function that you create for a custom
+// rule or a predefined function for an Config managed rule. The function evaluates
+// configuration items to assess whether your Amazon Web Services resources
+// comply with your desired configurations. This function can run when Config
+// detects a configuration change to an Amazon Web Services resource and at
+// a periodic frequency that you choose (for example, every 24 hours).
 //
-// You can use the AWS CLI and AWS SDKs if you want to create a rule that triggers
-// evaluations for your resources when AWS Config delivers the configuration
-// snapshot. For more information, see ConfigSnapshotDeliveryProperties.
+// You can use the Amazon Web Services CLI and Amazon Web Services SDKs if you
+// want to create a rule that triggers evaluations for your resources when Config
+// delivers the configuration snapshot. For more information, see ConfigSnapshotDeliveryProperties.
 //
-// For more information about developing and using AWS Config rules, see Evaluating
-// AWS Resource Configurations with AWS Config (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
-// in the AWS Config Developer Guide.
+// For more information about developing and using Config rules, see Evaluating
+// Amazon Web Services resource Configurations with Config (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
+// in the Config Developer Guide.
 type ConfigRule struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Config rule.
+	// The Amazon Resource Name (ARN) of the Config rule.
 	ConfigRuleArn *string `min:"1" type:"string"`
 
-	// The ID of the AWS Config rule.
+	// The ID of the Config rule.
 	ConfigRuleId *string `min:"1" type:"string"`
 
-	// The name that you assign to the AWS Config rule. The name is required if
-	// you are adding a new rule.
+	// The name that you assign to the Config rule. The name is required if you
+	// are adding a new rule.
 	ConfigRuleName *string `min:"1" type:"string"`
 
-	// Indicates whether the AWS Config rule is active or is currently being deleted
-	// by AWS Config. It can also indicate the evaluation status for the AWS Config
-	// rule.
+	// Indicates whether the Config rule is active or is currently being deleted
+	// by Config. It can also indicate the evaluation status for the Config rule.
 	//
-	// AWS Config sets the state of the rule to EVALUATING temporarily after you
-	// use the StartConfigRulesEvaluation request to evaluate your resources against
-	// the AWS Config rule.
+	// Config sets the state of the rule to EVALUATING temporarily after you use
+	// the StartConfigRulesEvaluation request to evaluate your resources against
+	// the Config rule.
 	//
-	// AWS Config sets the state of the rule to DELETING_RESULTS temporarily after
-	// you use the DeleteEvaluationResults request to delete the current evaluation
-	// results for the AWS Config rule.
+	// Config sets the state of the rule to DELETING_RESULTS temporarily after you
+	// use the DeleteEvaluationResults request to delete the current evaluation
+	// results for the Config rule.
 	//
-	// AWS Config temporarily sets the state of a rule to DELETING after you use
-	// the DeleteConfigRule request to delete the rule. After AWS Config deletes
-	// the rule, the rule and all of its evaluations are erased and are no longer
-	// available.
+	// Config temporarily sets the state of a rule to DELETING after you use the
+	// DeleteConfigRule request to delete the rule. After Config deletes the rule,
+	// the rule and all of its evaluations are erased and are no longer available.
 	ConfigRuleState *string `type:"string" enum:"ConfigRuleState"`
 
 	// Service principal name of the service that created the rule.
@@ -12514,18 +12740,19 @@ type ConfigRule struct {
 	// The field is empty if you create your own rule.
 	CreatedBy *string `min:"1" type:"string"`
 
-	// The description that you provide for the AWS Config rule.
+	// The description that you provide for the Config rule.
 	Description *string `type:"string"`
 
-	// A string, in JSON format, that is passed to the AWS Config rule Lambda function.
+	// A string, in JSON format, that is passed to the Config rule Lambda function.
 	InputParameters *string `min:"1" type:"string"`
 
-	// The maximum frequency with which AWS Config runs evaluations for a rule.
-	// You can specify a value for MaximumExecutionFrequency when:
+	// The maximum frequency with which Config runs evaluations for a rule. You
+	// can specify a value for MaximumExecutionFrequency when:
 	//
-	//    * You are using an AWS managed rule that is triggered at a periodic frequency.
+	//    * You are using an Config managed rule that is triggered at a periodic
+	//    frequency.
 	//
-	//    * Your custom rule is triggered when AWS Config delivers the configuration
+	//    * Your custom rule is triggered when Config delivers the configuration
 	//    snapshot. For more information, see ConfigSnapshotDeliveryProperties.
 	//
 	// By default, rules with a periodic trigger are evaluated every 24 hours. To
@@ -12543,19 +12770,28 @@ type ConfigRule struct {
 	// The scope can be empty.
 	Scope *Scope `type:"structure"`
 
-	// Provides the rule owner (AWS or customer), the rule identifier, and the notifications
-	// that cause the function to evaluate your AWS resources.
+	// Provides the rule owner (Amazon Web Services or customer), the rule identifier,
+	// and the notifications that cause the function to evaluate your Amazon Web
+	// Services resources.
 	//
 	// Source is a required field
 	Source *Source `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigRule) GoString() string {
 	return s.String()
 }
@@ -12671,21 +12907,29 @@ type ConfigRuleComplianceFilters struct {
 
 	// The rule compliance status.
 	//
-	// For the ConfigRuleComplianceFilters data type, AWS Config supports only COMPLIANT
-	// and NON_COMPLIANT. AWS Config does not support the NOT_APPLICABLE and the
-	// INSUFFICIENT_DATA values.
+	// For the ConfigRuleComplianceFilters data type, Config supports only COMPLIANT
+	// and NON_COMPLIANT. Config does not support the NOT_APPLICABLE and the INSUFFICIENT_DATA
+	// values.
 	ComplianceType *string `type:"string" enum:"ComplianceType"`
 
-	// The name of the AWS Config rule.
+	// The name of the Config rule.
 	ConfigRuleName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigRuleComplianceFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigRuleComplianceFilters) GoString() string {
 	return s.String()
 }
@@ -12741,12 +12985,20 @@ type ConfigRuleComplianceSummaryFilters struct {
 	AwsRegion *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigRuleComplianceSummaryFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigRuleComplianceSummaryFilters) GoString() string {
 	return s.String()
 }
@@ -12776,68 +13028,76 @@ func (s *ConfigRuleComplianceSummaryFilters) SetAwsRegion(v string) *ConfigRuleC
 	return s
 }
 
-// Status information for your AWS managed Config rules. The status includes
-// information such as the last time the rule ran, the last time it failed,
-// and the related error for the last failure.
+// Status information for your Config managed rules. The status includes information
+// such as the last time the rule ran, the last time it failed, and the related
+// error for the last failure.
 //
-// This action does not return status information about custom AWS Config rules.
+// This action does not return status information about custom Config rules.
 type ConfigRuleEvaluationStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Config rule.
+	// The Amazon Resource Name (ARN) of the Config rule.
 	ConfigRuleArn *string `type:"string"`
 
-	// The ID of the AWS Config rule.
+	// The ID of the Config rule.
 	ConfigRuleId *string `type:"string"`
 
-	// The name of the AWS Config rule.
+	// The name of the Config rule.
 	ConfigRuleName *string `min:"1" type:"string"`
 
-	// The time that you first activated the AWS Config rule.
+	// The time that you first activated the Config rule.
 	FirstActivatedTime *time.Time `type:"timestamp"`
 
-	// Indicates whether AWS Config has evaluated your resources against the rule
-	// at least once.
+	// Indicates whether Config has evaluated your resources against the rule at
+	// least once.
 	//
-	//    * true - AWS Config has evaluated your AWS resources against the rule
-	//    at least once.
+	//    * true - Config has evaluated your Amazon Web Services resources against
+	//    the rule at least once.
 	//
-	//    * false - AWS Config has not once finished evaluating your AWS resources
-	//    against the rule.
+	//    * false - Config has not once finished evaluating your Amazon Web Services
+	//    resources against the rule.
 	FirstEvaluationStarted *bool `type:"boolean"`
 
-	// The time that you last turned off the AWS Config rule.
+	// The time that you last turned off the Config rule.
 	LastDeactivatedTime *time.Time `type:"timestamp"`
 
-	// The error code that AWS Config returned when the rule last failed.
+	// The error code that Config returned when the rule last failed.
 	LastErrorCode *string `type:"string"`
 
-	// The error message that AWS Config returned when the rule last failed.
+	// The error message that Config returned when the rule last failed.
 	LastErrorMessage *string `type:"string"`
 
-	// The time that AWS Config last failed to evaluate your AWS resources against
-	// the rule.
+	// The time that Config last failed to evaluate your Amazon Web Services resources
+	// against the rule.
 	LastFailedEvaluationTime *time.Time `type:"timestamp"`
 
-	// The time that AWS Config last failed to invoke the AWS Config rule to evaluate
-	// your AWS resources.
+	// The time that Config last failed to invoke the Config rule to evaluate your
+	// Amazon Web Services resources.
 	LastFailedInvocationTime *time.Time `type:"timestamp"`
 
-	// The time that AWS Config last successfully evaluated your AWS resources against
-	// the rule.
+	// The time that Config last successfully evaluated your Amazon Web Services
+	// resources against the rule.
 	LastSuccessfulEvaluationTime *time.Time `type:"timestamp"`
 
-	// The time that AWS Config last successfully invoked the AWS Config rule to
-	// evaluate your AWS resources.
+	// The time that Config last successfully invoked the Config rule to evaluate
+	// your Amazon Web Services resources.
 	LastSuccessfulInvocationTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigRuleEvaluationStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigRuleEvaluationStatus) GoString() string {
 	return s.String()
 }
@@ -12914,55 +13174,62 @@ func (s *ConfigRuleEvaluationStatus) SetLastSuccessfulInvocationTime(v time.Time
 	return s
 }
 
-// Provides options for how often AWS Config delivers configuration snapshots
-// to the Amazon S3 bucket in your delivery channel.
+// Provides options for how often Config delivers configuration snapshots to
+// the Amazon S3 bucket in your delivery channel.
 //
 // The frequency for a rule that triggers evaluations for your resources when
-// AWS Config delivers the configuration snapshot is set by one of two values,
-// depending on which is less frequent:
+// Config delivers the configuration snapshot is set by one of two values, depending
+// on which is less frequent:
 //
 //    * The value for the deliveryFrequency parameter within the delivery channel
-//    configuration, which sets how often AWS Config delivers configuration
-//    snapshots. This value also sets how often AWS Config invokes evaluations
-//    for AWS Config rules.
+//    configuration, which sets how often Config delivers configuration snapshots.
+//    This value also sets how often Config invokes evaluations for Config rules.
 //
 //    * The value for the MaximumExecutionFrequency parameter, which sets the
-//    maximum frequency with which AWS Config invokes evaluations for the rule.
+//    maximum frequency with which Config invokes evaluations for the rule.
 //    For more information, see ConfigRule.
 //
 // If the deliveryFrequency value is less frequent than the MaximumExecutionFrequency
-// value for a rule, AWS Config invokes the rule only as often as the deliveryFrequency
+// value for a rule, Config invokes the rule only as often as the deliveryFrequency
 // value.
 //
-// For example, you want your rule to run evaluations when AWS Config delivers
-// the configuration snapshot.
+// For example, you want your rule to run evaluations when Config delivers the
+// configuration snapshot.
 //
 // You specify the MaximumExecutionFrequency value for Six_Hours.
 //
 // You then specify the delivery channel deliveryFrequency value for TwentyFour_Hours.
 //
 // Because the value for deliveryFrequency is less frequent than MaximumExecutionFrequency,
-// AWS Config invokes evaluations for the rule every 24 hours.
+// Config invokes evaluations for the rule every 24 hours.
 //
 // You should set the MaximumExecutionFrequency value to be at least as frequent
 // as the deliveryFrequency value. You can view the deliveryFrequency value
 // by using the DescribeDeliveryChannnels action.
 //
-// To update the deliveryFrequency with which AWS Config delivers your configuration
+// To update the deliveryFrequency with which Config delivers your configuration
 // snapshots, use the PutDeliveryChannel action.
 type ConfigSnapshotDeliveryProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The frequency with which AWS Config delivers configuration snapshots.
+	// The frequency with which Config delivers configuration snapshots.
 	DeliveryFrequency *string `locationName:"deliveryFrequency" type:"string" enum:"MaximumExecutionFrequency"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigSnapshotDeliveryProperties) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigSnapshotDeliveryProperties) GoString() string {
 	return s.String()
 }
@@ -12987,7 +13254,7 @@ type ConfigStreamDeliveryInfo struct {
 	// Status of the last attempted delivery.
 	//
 	// Note Providing an SNS topic on a DeliveryChannel (https://docs.aws.amazon.com/config/latest/APIReference/API_DeliveryChannel.html)
-	// for AWS Config is optional. If the SNS delivery is turned off, the last status
+	// for Config is optional. If the SNS delivery is turned off, the last status
 	// will be Not_Applicable.
 	LastStatus *string `locationName:"lastStatus" type:"string" enum:"DeliveryStatus"`
 
@@ -12995,12 +13262,20 @@ type ConfigStreamDeliveryInfo struct {
 	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigStreamDeliveryInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigStreamDeliveryInfo) GoString() string {
 	return s.String()
 }
@@ -13043,7 +13318,7 @@ type ConfigurationAggregator struct {
 	// The name of the aggregator.
 	ConfigurationAggregatorName *string `min:"1" type:"string"`
 
-	// AWS service that created the configuration aggregator.
+	// Amazon Web Services service that created the configuration aggregator.
 	CreatedBy *string `min:"1" type:"string"`
 
 	// The time stamp when the configuration aggregator was created.
@@ -13056,12 +13331,20 @@ type ConfigurationAggregator struct {
 	OrganizationAggregationSource *OrganizationAggregationSource `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationAggregator) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationAggregator) GoString() string {
 	return s.String()
 }
@@ -13112,7 +13395,7 @@ func (s *ConfigurationAggregator) SetOrganizationAggregationSource(v *Organizati
 type ConfigurationItem struct {
 	_ struct{} `type:"structure"`
 
-	// The 12-digit AWS account ID associated with the resource.
+	// The 12-digit Amazon Web Services account ID associated with the resource.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// Amazon Resource Name (ARN) associated with the resource.
@@ -13163,15 +13446,15 @@ type ConfigurationItem struct {
 	//
 	// A populated field indicates that the current configuration was initiated
 	// by the events recorded in the CloudTrail log. For more information about
-	// CloudTrail, see What Is AWS CloudTrail (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/what_is_cloud_trail_top_level.html).
+	// CloudTrail, see What Is CloudTrail (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/what_is_cloud_trail_top_level.html).
 	//
 	// An empty field indicates that the current configuration was not initiated
 	// by any event. As of Version 1.3, the relatedEvents field is empty. You can
 	// access the LookupEvents API (https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_LookupEvents.html)
-	// in the AWS CloudTrail API Reference to retrieve the events for the resource.
+	// in the CloudTrail API Reference to retrieve the events for the resource.
 	RelatedEvents []*string `locationName:"relatedEvents" type:"list"`
 
-	// A list of related AWS resources.
+	// A list of related Amazon Web Services resources.
 	Relationships []*Relationship `locationName:"relationships" type:"list"`
 
 	// The time stamp when the resource was created.
@@ -13183,11 +13466,11 @@ type ConfigurationItem struct {
 	// The custom name of the resource, if available.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 
-	// The type of AWS resource.
+	// The type of Amazon Web Services resource.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 
-	// Configuration attributes that AWS Config returns for certain resource types
-	// to supplement the information returned for the configuration parameter.
+	// Configuration attributes that Config returns for certain resource types to
+	// supplement the information returned for the configuration parameter.
 	SupplementaryConfiguration map[string]*string `locationName:"supplementaryConfiguration" type:"map"`
 
 	// A mapping of key value tags associated with the resource.
@@ -13197,12 +13480,20 @@ type ConfigurationItem struct {
 	Version *string `locationName:"version" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationItem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationItem) GoString() string {
 	return s.String()
 }
@@ -13315,31 +13606,39 @@ func (s *ConfigurationItem) SetVersion(v string) *ConfigurationItem {
 	return s
 }
 
-// An object that represents the recording of configuration changes of an AWS
-// resource.
+// An object that represents the recording of configuration changes of an Amazon
+// Web Services resource.
 type ConfigurationRecorder struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the recorder. By default, AWS Config automatically assigns the
-	// name "default" when creating the configuration recorder. You cannot change
-	// the assigned name.
+	// The name of the recorder. By default, Config automatically assigns the name
+	// "default" when creating the configuration recorder. You cannot change the
+	// assigned name.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// Specifies the types of AWS resources for which AWS Config records configuration
-	// changes.
+	// Specifies the types of Amazon Web Services resources for which Config records
+	// configuration changes.
 	RecordingGroup *RecordingGroup `locationName:"recordingGroup" type:"structure"`
 
-	// Amazon Resource Name (ARN) of the IAM role used to describe the AWS resources
-	// associated with the account.
+	// Amazon Resource Name (ARN) of the IAM role used to describe the Amazon Web
+	// Services resources associated with the account.
 	RoleARN *string `locationName:"roleARN" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationRecorder) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationRecorder) GoString() string {
 	return s.String()
 }
@@ -13404,12 +13703,20 @@ type ConfigurationRecorderStatus struct {
 	Recording *bool `locationName:"recording" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationRecorderStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfigurationRecorderStatus) GoString() string {
 	return s.String()
 }
@@ -13462,7 +13769,7 @@ func (s *ConfigurationRecorderStatus) SetRecording(v bool) *ConfigurationRecorde
 	return s
 }
 
-// Filters the conformance pack by compliance types and AWS Config rule names.
+// Filters the conformance pack by compliance types and Config rule names.
 type ConformancePackComplianceFilters struct {
 	_ struct{} `type:"structure"`
 
@@ -13472,16 +13779,24 @@ type ConformancePackComplianceFilters struct {
 	// not supported.
 	ComplianceType *string `type:"string" enum:"ConformancePackComplianceType"`
 
-	// Filters the results by AWS Config rule names.
+	// Filters the results by Config rule names.
 	ConfigRuleNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackComplianceFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackComplianceFilters) GoString() string {
 	return s.String()
 }
@@ -13514,12 +13829,20 @@ type ConformancePackComplianceSummary struct {
 	ConformancePackName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackComplianceSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackComplianceSummary) GoString() string {
 	return s.String()
 }
@@ -13537,8 +13860,8 @@ func (s *ConformancePackComplianceSummary) SetConformancePackName(v string) *Con
 }
 
 // Returns details of a conformance pack. A conformance pack is a collection
-// of AWS Config rules and remediation actions that can be easily deployed in
-// an account and a region.
+// of Config rules and remediation actions that can be easily deployed in an
+// account and a region.
 type ConformancePackDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -13560,10 +13883,10 @@ type ConformancePackDetail struct {
 	// ConformancePackName is a required field
 	ConformancePackName *string `min:"1" type:"string" required:"true"`
 
-	// AWS service that created the conformance pack.
+	// Amazon Web Services service that created the conformance pack.
 	CreatedBy *string `min:"1" type:"string"`
 
-	// Amazon S3 bucket where AWS Config stores conformance pack templates.
+	// The name of the Amazon S3 bucket where Config stores conformance pack templates.
 	//
 	// This field is optional.
 	DeliveryS3Bucket *string `type:"string"`
@@ -13577,12 +13900,20 @@ type ConformancePackDetail struct {
 	LastUpdateRequestedTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackDetail) GoString() string {
 	return s.String()
 }
@@ -13635,8 +13966,8 @@ func (s *ConformancePackDetail) SetLastUpdateRequestedTime(v time.Time) *Conform
 	return s
 }
 
-// Filters a conformance pack by AWS Config rule names, compliance types, AWS
-// resource types, and resource IDs.
+// Filters a conformance pack by Config rule names, compliance types, Amazon
+// Web Services resource types, and resource IDs.
 type ConformancePackEvaluationFilters struct {
 	_ struct{} `type:"structure"`
 
@@ -13646,7 +13977,7 @@ type ConformancePackEvaluationFilters struct {
 	// not supported.
 	ComplianceType *string `type:"string" enum:"ConformancePackComplianceType"`
 
-	// Filters the results by AWS Config rule names.
+	// Filters the results by Config rule names.
 	ConfigRuleNames []*string `type:"list"`
 
 	// Filters the results by resource IDs.
@@ -13659,12 +13990,20 @@ type ConformancePackEvaluationFilters struct {
 	ResourceType *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackEvaluationFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackEvaluationFilters) GoString() string {
 	return s.String()
 }
@@ -13706,9 +14045,9 @@ func (s *ConformancePackEvaluationFilters) SetResourceType(v string) *Conformanc
 	return s
 }
 
-// The details of a conformance pack evaluation. Provides AWS Config rule and
-// AWS resource type that was evaluated, the compliance of the conformance pack,
-// related time stamps, and supplementary information.
+// The details of a conformance pack evaluation. Provides Config rule and Amazon
+// Web Services resource type that was evaluated, the compliance of the conformance
+// pack, related time stamps, and supplementary information.
 type ConformancePackEvaluationResult struct {
 	_ struct{} `type:"structure"`
 
@@ -13721,7 +14060,7 @@ type ConformancePackEvaluationResult struct {
 	// ComplianceType is a required field
 	ComplianceType *string `type:"string" required:"true" enum:"ConformancePackComplianceType"`
 
-	// The time when AWS Config rule evaluated AWS resource.
+	// The time when Config rule evaluated Amazon Web Services resource.
 	//
 	// ConfigRuleInvokedTime is a required field
 	ConfigRuleInvokedTime *time.Time `type:"timestamp" required:"true"`
@@ -13731,18 +14070,26 @@ type ConformancePackEvaluationResult struct {
 	// EvaluationResultIdentifier is a required field
 	EvaluationResultIdentifier *EvaluationResultIdentifier `type:"structure" required:"true"`
 
-	// The time when AWS Config recorded the evaluation result.
+	// The time when Config recorded the evaluation result.
 	//
 	// ResultRecordedTime is a required field
 	ResultRecordedTime *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackEvaluationResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackEvaluationResult) GoString() string {
 	return s.String()
 }
@@ -13794,12 +14141,20 @@ type ConformancePackInputParameter struct {
 	ParameterValue *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackInputParameter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackInputParameter) GoString() string {
 	return s.String()
 }
@@ -13832,12 +14187,12 @@ func (s *ConformancePackInputParameter) SetParameterValue(v string) *Conformance
 	return s
 }
 
-// Compliance information of one or more AWS Config rules within a conformance
-// pack. You can filter using AWS Config rule names and compliance types.
+// Compliance information of one or more Config rules within a conformance pack.
+// You can filter using Config rule names and compliance types.
 type ConformancePackRuleCompliance struct {
 	_ struct{} `type:"structure"`
 
-	// Compliance of the AWS Config rule.
+	// Compliance of the Config rule.
 	//
 	// The allowed values are COMPLIANT, NON_COMPLIANT, and INSUFFICIENT_DATA.
 	ComplianceType *string `type:"string" enum:"ConformancePackComplianceType"`
@@ -13851,12 +14206,20 @@ type ConformancePackRuleCompliance struct {
 	Controls []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackRuleCompliance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackRuleCompliance) GoString() string {
 	return s.String()
 }
@@ -13900,7 +14263,7 @@ type ConformancePackStatusDetail struct {
 
 	// Indicates deployment status of conformance pack.
 	//
-	// AWS Config sets the state of the conformance pack to:
+	// Config sets the state of the conformance pack to:
 	//
 	//    * CREATE_IN_PROGRESS when a conformance pack creation is in progress for
 	//    an account.
@@ -13928,18 +14291,26 @@ type ConformancePackStatusDetail struct {
 	// LastUpdateRequestedTime is a required field
 	LastUpdateRequestedTime *time.Time `type:"timestamp" required:"true"`
 
-	// Amazon Resource Name (ARN) of AWS CloudFormation stack.
+	// Amazon Resource Name (ARN) of CloudFormation stack.
 	//
 	// StackArn is a required field
 	StackArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackStatusDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackStatusDetail) GoString() string {
 	return s.String()
 }
@@ -14000,12 +14371,20 @@ type ConformancePackTemplateValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackTemplateValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConformancePackTemplateValidationException) GoString() string {
 	return s.String()
 }
@@ -14062,12 +14441,20 @@ type DeleteAggregationAuthorizationInput struct {
 	AuthorizedAwsRegion *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAggregationAuthorizationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAggregationAuthorizationInput) GoString() string {
 	return s.String()
 }
@@ -14107,12 +14494,20 @@ type DeleteAggregationAuthorizationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAggregationAuthorizationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAggregationAuthorizationOutput) GoString() string {
 	return s.String()
 }
@@ -14120,18 +14515,26 @@ func (s DeleteAggregationAuthorizationOutput) GoString() string {
 type DeleteConfigRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS Config rule that you want to delete.
+	// The name of the Config rule that you want to delete.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigRuleInput) GoString() string {
 	return s.String()
 }
@@ -14162,12 +14565,20 @@ type DeleteConfigRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigRuleOutput) GoString() string {
 	return s.String()
 }
@@ -14181,12 +14592,20 @@ type DeleteConfigurationAggregatorInput struct {
 	ConfigurationAggregatorName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationAggregatorInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationAggregatorInput) GoString() string {
 	return s.String()
 }
@@ -14217,12 +14636,20 @@ type DeleteConfigurationAggregatorOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationAggregatorOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationAggregatorOutput) GoString() string {
 	return s.String()
 }
@@ -14239,12 +14666,20 @@ type DeleteConfigurationRecorderInput struct {
 	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationRecorderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationRecorderInput) GoString() string {
 	return s.String()
 }
@@ -14275,12 +14710,20 @@ type DeleteConfigurationRecorderOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationRecorderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConfigurationRecorderOutput) GoString() string {
 	return s.String()
 }
@@ -14294,12 +14737,20 @@ type DeleteConformancePackInput struct {
 	ConformancePackName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConformancePackInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConformancePackInput) GoString() string {
 	return s.String()
 }
@@ -14330,12 +14781,20 @@ type DeleteConformancePackOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConformancePackOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConformancePackOutput) GoString() string {
 	return s.String()
 }
@@ -14351,12 +14810,20 @@ type DeleteDeliveryChannelInput struct {
 	DeliveryChannelName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDeliveryChannelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDeliveryChannelInput) GoString() string {
 	return s.String()
 }
@@ -14387,12 +14854,20 @@ type DeleteDeliveryChannelOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDeliveryChannelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDeliveryChannelOutput) GoString() string {
 	return s.String()
 }
@@ -14400,19 +14875,26 @@ func (s DeleteDeliveryChannelOutput) GoString() string {
 type DeleteEvaluationResultsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS Config rule for which you want to delete the evaluation
-	// results.
+	// The name of the Config rule for which you want to delete the evaluation results.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEvaluationResultsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEvaluationResultsInput) GoString() string {
 	return s.String()
 }
@@ -14439,18 +14921,26 @@ func (s *DeleteEvaluationResultsInput) SetConfigRuleName(v string) *DeleteEvalua
 	return s
 }
 
-// The output when you delete the evaluation results for the specified AWS Config
+// The output when you delete the evaluation results for the specified Config
 // rule.
 type DeleteEvaluationResultsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEvaluationResultsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteEvaluationResultsOutput) GoString() string {
 	return s.String()
 }
@@ -14464,12 +14954,20 @@ type DeleteOrganizationConfigRuleInput struct {
 	OrganizationConfigRuleName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteOrganizationConfigRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteOrganizationConfigRuleInput) GoString() string {
 	return s.String()
 }
@@ -14500,12 +14998,20 @@ type DeleteOrganizationConfigRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteOrganizationConfigRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteOrganizationConfigRuleOutput) GoString() string {
 	return s.String()
 }
@@ -14519,12 +15025,20 @@ type DeleteOrganizationConformancePackInput struct {
 	OrganizationConformancePackName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteOrganizationConformancePackInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteOrganizationConformancePackInput) GoString() string {
 	return s.String()
 }
@@ -14555,12 +15069,20 @@ type DeleteOrganizationConformancePackOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteOrganizationConformancePackOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteOrganizationConformancePackOutput) GoString() string {
 	return s.String()
 }
@@ -14579,12 +15101,20 @@ type DeletePendingAggregationRequestInput struct {
 	RequesterAwsRegion *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePendingAggregationRequestInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePendingAggregationRequestInput) GoString() string {
 	return s.String()
 }
@@ -14624,12 +15154,20 @@ type DeletePendingAggregationRequestOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePendingAggregationRequestOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePendingAggregationRequestOutput) GoString() string {
 	return s.String()
 }
@@ -14637,8 +15175,7 @@ func (s DeletePendingAggregationRequestOutput) GoString() string {
 type DeleteRemediationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS Config rule for which you want to delete remediation
-	// configuration.
+	// The name of the Config rule for which you want to delete remediation configuration.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
@@ -14647,12 +15184,20 @@ type DeleteRemediationConfigurationInput struct {
 	ResourceType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRemediationConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRemediationConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -14689,12 +15234,20 @@ type DeleteRemediationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRemediationConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRemediationConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -14702,26 +15255,34 @@ func (s DeleteRemediationConfigurationOutput) GoString() string {
 type DeleteRemediationExceptionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS Config rule for which you want to delete remediation
-	// exception configuration.
+	// The name of the Config rule for which you want to delete remediation exception
+	// configuration.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 
 	// An exception list of resource exception keys to be processed with the current
-	// request. AWS Config adds exception for each resource key. For example, AWS
-	// Config adds 3 exceptions for 3 resource keys.
+	// request. Config adds exception for each resource key. For example, Config
+	// adds 3 exceptions for 3 resource keys.
 	//
 	// ResourceKeys is a required field
 	ResourceKeys []*RemediationExceptionResourceKey `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRemediationExceptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRemediationExceptionsInput) GoString() string {
 	return s.String()
 }
@@ -14778,12 +15339,20 @@ type DeleteRemediationExceptionsOutput struct {
 	FailedBatches []*FailedDeleteRemediationExceptionsBatch `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRemediationExceptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRemediationExceptionsOutput) GoString() string {
 	return s.String()
 }
@@ -14808,12 +15377,20 @@ type DeleteResourceConfigInput struct {
 	ResourceType *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourceConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourceConfigInput) GoString() string {
 	return s.String()
 }
@@ -14856,12 +15433,20 @@ type DeleteResourceConfigOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourceConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteResourceConfigOutput) GoString() string {
 	return s.String()
 }
@@ -14875,12 +15460,20 @@ type DeleteRetentionConfigurationInput struct {
 	RetentionConfigurationName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRetentionConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRetentionConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -14911,12 +15504,20 @@ type DeleteRetentionConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRetentionConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRetentionConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -14930,12 +15531,20 @@ type DeleteStoredQueryInput struct {
 	QueryName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStoredQueryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStoredQueryInput) GoString() string {
 	return s.String()
 }
@@ -14966,12 +15575,20 @@ type DeleteStoredQueryOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStoredQueryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStoredQueryOutput) GoString() string {
 	return s.String()
 }
@@ -14986,12 +15603,20 @@ type DeliverConfigSnapshotInput struct {
 	DeliveryChannelName *string `locationName:"deliveryChannelName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliverConfigSnapshotInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliverConfigSnapshotInput) GoString() string {
 	return s.String()
 }
@@ -15026,12 +15651,20 @@ type DeliverConfigSnapshotOutput struct {
 	ConfigSnapshotId *string `locationName:"configSnapshotId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliverConfigSnapshotOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliverConfigSnapshotOutput) GoString() string {
 	return s.String()
 }
@@ -15042,55 +15675,63 @@ func (s *DeliverConfigSnapshotOutput) SetConfigSnapshotId(v string) *DeliverConf
 	return s
 }
 
-// The channel through which AWS Config delivers notifications and updated configuration
+// The channel through which Config delivers notifications and updated configuration
 // states.
 type DeliveryChannel struct {
 	_ struct{} `type:"structure"`
 
-	// The options for how often AWS Config delivers configuration snapshots to
-	// the Amazon S3 bucket.
+	// The options for how often Config delivers configuration snapshots to the
+	// Amazon S3 bucket.
 	ConfigSnapshotDeliveryProperties *ConfigSnapshotDeliveryProperties `locationName:"configSnapshotDeliveryProperties" type:"structure"`
 
-	// The name of the delivery channel. By default, AWS Config assigns the name
-	// "default" when creating the delivery channel. To change the delivery channel
-	// name, you must use the DeleteDeliveryChannel action to delete your current
-	// delivery channel, and then you must use the PutDeliveryChannel command to
-	// create a delivery channel that has the desired name.
+	// The name of the delivery channel. By default, Config assigns the name "default"
+	// when creating the delivery channel. To change the delivery channel name,
+	// you must use the DeleteDeliveryChannel action to delete your current delivery
+	// channel, and then you must use the PutDeliveryChannel command to create a
+	// delivery channel that has the desired name.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The name of the Amazon S3 bucket to which AWS Config delivers configuration
-	// snapshots and configuration history files.
+	// The name of the Amazon S3 bucket to which Config delivers configuration snapshots
+	// and configuration history files.
 	//
-	// If you specify a bucket that belongs to another AWS account, that bucket
-	// must have policies that grant access permissions to AWS Config. For more
-	// information, see Permissions for the Amazon S3 Bucket (https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-policy.html)
-	// in the AWS Config Developer Guide.
+	// If you specify a bucket that belongs to another Amazon Web Services account,
+	// that bucket must have policies that grant access permissions to Config. For
+	// more information, see Permissions for the Amazon S3 Bucket (https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-policy.html)
+	// in the Config Developer Guide.
 	S3BucketName *string `locationName:"s3BucketName" type:"string"`
 
 	// The prefix for the specified Amazon S3 bucket.
 	S3KeyPrefix *string `locationName:"s3KeyPrefix" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS) customer
-	// managed key (CMK) used to encrypt objects delivered by AWS Config. Must belong
-	// to the same Region as the destination S3 bucket.
+	// The Amazon Resource Name (ARN) of the Key Management Service (KMS ) KMS key
+	// (KMS key) used to encrypt objects delivered by Config. Must belong to the
+	// same Region as the destination S3 bucket.
 	S3KmsKeyArn *string `locationName:"s3KmsKeyArn" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the Amazon SNS topic to which AWS Config
-	// sends notifications about configuration changes.
+	// The Amazon Resource Name (ARN) of the Amazon SNS topic to which Config sends
+	// notifications about configuration changes.
 	//
 	// If you choose a topic from another account, the topic must have policies
-	// that grant access permissions to AWS Config. For more information, see Permissions
+	// that grant access permissions to Config. For more information, see Permissions
 	// for the Amazon SNS Topic (https://docs.aws.amazon.com/config/latest/developerguide/sns-topic-policy.html)
-	// in the AWS Config Developer Guide.
+	// in the Config Developer Guide.
 	SnsTopicARN *string `locationName:"snsTopicARN" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliveryChannel) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliveryChannel) GoString() string {
 	return s.String()
 }
@@ -15166,12 +15807,20 @@ type DeliveryChannelStatus struct {
 	Name *string `locationName:"name" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliveryChannelStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeliveryChannelStatus) GoString() string {
 	return s.String()
 }
@@ -15212,7 +15861,7 @@ type DescribeAggregateComplianceByConfigRulesInput struct {
 	Filters *ConfigRuleComplianceFilters `type:"structure"`
 
 	// The maximum number of evaluation results returned on each page. The default
-	// is maximum. If you specify 0, AWS Config uses the default.
+	// is maximum. If you specify 0, Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -15220,12 +15869,20 @@ type DescribeAggregateComplianceByConfigRulesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAggregateComplianceByConfigRulesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAggregateComplianceByConfigRulesInput) GoString() string {
 	return s.String()
 }
@@ -15286,12 +15943,20 @@ type DescribeAggregateComplianceByConfigRulesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAggregateComplianceByConfigRulesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAggregateComplianceByConfigRulesOutput) GoString() string {
 	return s.String()
 }
@@ -15320,7 +15985,7 @@ type DescribeAggregateComplianceByConformancePacksInput struct {
 	Filters *AggregateConformancePackComplianceFilters `type:"structure"`
 
 	// The maximum number of conformance packs compliance details returned on each
-	// page. The default is maximum. If you specify 0, AWS Config uses the default.
+	// page. The default is maximum. If you specify 0, Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -15328,12 +15993,20 @@ type DescribeAggregateComplianceByConformancePacksInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAggregateComplianceByConformancePacksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAggregateComplianceByConformancePacksInput) GoString() string {
 	return s.String()
 }
@@ -15394,12 +16067,20 @@ type DescribeAggregateComplianceByConformancePacksOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAggregateComplianceByConformancePacksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAggregateComplianceByConformancePacksOutput) GoString() string {
 	return s.String()
 }
@@ -15420,7 +16101,7 @@ type DescribeAggregationAuthorizationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of AggregationAuthorizations returned on each page. The
-	// default is maximum. If you specify 0, AWS Config uses the default.
+	// default is maximum. If you specify 0, Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -15428,12 +16109,20 @@ type DescribeAggregationAuthorizationsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAggregationAuthorizationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAggregationAuthorizationsInput) GoString() string {
 	return s.String()
 }
@@ -15462,12 +16151,20 @@ type DescribeAggregationAuthorizationsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAggregationAuthorizationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAggregationAuthorizationsOutput) GoString() string {
 	return s.String()
 }
@@ -15492,7 +16189,7 @@ type DescribeComplianceByConfigRuleInput struct {
 	// The allowed values are COMPLIANT and NON_COMPLIANT.
 	ComplianceTypes []*string `type:"list"`
 
-	// Specify one or more AWS Config rule names to filter the results by rule.
+	// Specify one or more Config rule names to filter the results by rule.
 	ConfigRuleNames []*string `type:"list"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -15500,12 +16197,20 @@ type DescribeComplianceByConfigRuleInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComplianceByConfigRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComplianceByConfigRuleInput) GoString() string {
 	return s.String()
 }
@@ -15531,7 +16236,7 @@ func (s *DescribeComplianceByConfigRuleInput) SetNextToken(v string) *DescribeCo
 type DescribeComplianceByConfigRuleOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether each of the specified AWS Config rules is compliant.
+	// Indicates whether each of the specified Config rules is compliant.
 	ComplianceByConfigRules []*ComplianceByConfigRule `type:"list"`
 
 	// The string that you use in a subsequent request to get the next page of results
@@ -15539,12 +16244,20 @@ type DescribeComplianceByConfigRuleOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComplianceByConfigRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComplianceByConfigRuleOutput) GoString() string {
 	return s.String()
 }
@@ -15570,31 +16283,39 @@ type DescribeComplianceByResourceInput struct {
 	ComplianceTypes []*string `type:"list"`
 
 	// The maximum number of evaluation results returned on each page. The default
-	// is 10. You cannot specify a number greater than 100. If you specify 0, AWS
-	// Config uses the default.
+	// is 10. You cannot specify a number greater than 100. If you specify 0, Config
+	// uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
 	// next page of results in a paginated response.
 	NextToken *string `type:"string"`
 
-	// The ID of the AWS resource for which you want compliance information. You
-	// can specify only one resource ID. If you specify a resource ID, you must
-	// also specify a type for ResourceType.
+	// The ID of the Amazon Web Services resource for which you want compliance
+	// information. You can specify only one resource ID. If you specify a resource
+	// ID, you must also specify a type for ResourceType.
 	ResourceId *string `min:"1" type:"string"`
 
-	// The types of AWS resources for which you want compliance information (for
-	// example, AWS::EC2::Instance). For this action, you can specify that the resource
-	// type is an AWS account by specifying AWS::::Account.
+	// The types of Amazon Web Services resources for which you want compliance
+	// information (for example, AWS::EC2::Instance). For this action, you can specify
+	// that the resource type is an Amazon Web Services account by specifying AWS::::Account.
 	ResourceType *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComplianceByResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComplianceByResourceInput) GoString() string {
 	return s.String()
 }
@@ -15648,8 +16369,8 @@ func (s *DescribeComplianceByResourceInput) SetResourceType(v string) *DescribeC
 type DescribeComplianceByResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether the specified AWS resource complies with all of the AWS
-	// Config rules that evaluate it.
+	// Indicates whether the specified Amazon Web Services resource complies with
+	// all of the Config rules that evaluate it.
 	ComplianceByResources []*ComplianceByResource `type:"list"`
 
 	// The string that you use in a subsequent request to get the next page of results
@@ -15657,12 +16378,20 @@ type DescribeComplianceByResourceOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComplianceByResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeComplianceByResourceOutput) GoString() string {
 	return s.String()
 }
@@ -15682,9 +16411,9 @@ func (s *DescribeComplianceByResourceOutput) SetNextToken(v string) *DescribeCom
 type DescribeConfigRuleEvaluationStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS managed Config rules for which you want status information.
-	// If you do not specify any names, AWS Config returns status information for
-	// all AWS managed Config rules that you use.
+	// The name of the Config managed rules for which you want status information.
+	// If you do not specify any names, Config returns status information for all
+	// Config managed rules that you use.
 	ConfigRuleNames []*string `type:"list"`
 
 	// The number of rule evaluation results that you want returned.
@@ -15692,9 +16421,9 @@ type DescribeConfigRuleEvaluationStatusInput struct {
 	// This parameter is required if the rule limit for your account is more than
 	// the default of 150 rules.
 	//
-	// For information about requesting a rule limit increase, see AWS Config Limits
+	// For information about requesting a rule limit increase, see Config Limits
 	// (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config)
-	// in the AWS General Reference Guide.
+	// in the Amazon Web Services General Reference Guide.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -15702,12 +16431,20 @@ type DescribeConfigRuleEvaluationStatusInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigRuleEvaluationStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigRuleEvaluationStatusInput) GoString() string {
 	return s.String()
 }
@@ -15733,7 +16470,7 @@ func (s *DescribeConfigRuleEvaluationStatusInput) SetNextToken(v string) *Descri
 type DescribeConfigRuleEvaluationStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Status information about your AWS managed Config rules.
+	// Status information about your Config managed rules.
 	ConfigRulesEvaluationStatus []*ConfigRuleEvaluationStatus `type:"list"`
 
 	// The string that you use in a subsequent request to get the next page of results
@@ -15741,12 +16478,20 @@ type DescribeConfigRuleEvaluationStatusOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigRuleEvaluationStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigRuleEvaluationStatusOutput) GoString() string {
 	return s.String()
 }
@@ -15766,8 +16511,8 @@ func (s *DescribeConfigRuleEvaluationStatusOutput) SetNextToken(v string) *Descr
 type DescribeConfigRulesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The names of the AWS Config rules for which you want details. If you do not
-	// specify any names, AWS Config returns details for all your rules.
+	// The names of the Config rules for which you want details. If you do not specify
+	// any names, Config returns details for all your rules.
 	ConfigRuleNames []*string `type:"list"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -15775,12 +16520,20 @@ type DescribeConfigRulesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigRulesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigRulesInput) GoString() string {
 	return s.String()
 }
@@ -15800,7 +16553,7 @@ func (s *DescribeConfigRulesInput) SetNextToken(v string) *DescribeConfigRulesIn
 type DescribeConfigRulesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The details about your AWS Config rules.
+	// The details about your Config rules.
 	ConfigRules []*ConfigRule `type:"list"`
 
 	// The string that you use in a subsequent request to get the next page of results
@@ -15808,12 +16561,20 @@ type DescribeConfigRulesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigRulesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigRulesOutput) GoString() string {
 	return s.String()
 }
@@ -15839,7 +16600,7 @@ type DescribeConfigurationAggregatorSourcesStatusInput struct {
 	ConfigurationAggregatorName *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of AggregatorSourceStatus returned on each page. The default
-	// is maximum. If you specify 0, AWS Config uses the default.
+	// is maximum. If you specify 0, Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -15856,12 +16617,20 @@ type DescribeConfigurationAggregatorSourcesStatusInput struct {
 	UpdateStatus []*string `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationAggregatorSourcesStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationAggregatorSourcesStatusInput) GoString() string {
 	return s.String()
 }
@@ -15920,12 +16689,20 @@ type DescribeConfigurationAggregatorSourcesStatusOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationAggregatorSourcesStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationAggregatorSourcesStatusOutput) GoString() string {
 	return s.String()
 }
@@ -15949,7 +16726,7 @@ type DescribeConfigurationAggregatorsInput struct {
 	ConfigurationAggregatorNames []*string `type:"list"`
 
 	// The maximum number of configuration aggregators returned on each page. The
-	// default is maximum. If you specify 0, AWS Config uses the default.
+	// default is maximum. If you specify 0, Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -15957,12 +16734,20 @@ type DescribeConfigurationAggregatorsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationAggregatorsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationAggregatorsInput) GoString() string {
 	return s.String()
 }
@@ -15996,12 +16781,20 @@ type DescribeConfigurationAggregatorsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationAggregatorsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationAggregatorsOutput) GoString() string {
 	return s.String()
 }
@@ -16028,12 +16821,20 @@ type DescribeConfigurationRecorderStatusInput struct {
 	ConfigurationRecorderNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationRecorderStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationRecorderStatusInput) GoString() string {
 	return s.String()
 }
@@ -16052,12 +16853,20 @@ type DescribeConfigurationRecorderStatusOutput struct {
 	ConfigurationRecordersStatus []*ConfigurationRecorderStatus `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationRecorderStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationRecorderStatusOutput) GoString() string {
 	return s.String()
 }
@@ -16076,12 +16885,20 @@ type DescribeConfigurationRecordersInput struct {
 	ConfigurationRecorderNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationRecordersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationRecordersInput) GoString() string {
 	return s.String()
 }
@@ -16100,12 +16917,20 @@ type DescribeConfigurationRecordersOutput struct {
 	ConfigurationRecorders []*ConfigurationRecorder `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationRecordersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConfigurationRecordersOutput) GoString() string {
 	return s.String()
 }
@@ -16127,7 +16952,7 @@ type DescribeConformancePackComplianceInput struct {
 	// A ConformancePackComplianceFilters object.
 	Filters *ConformancePackComplianceFilters `type:"structure"`
 
-	// The maximum number of AWS Config rules within a conformance pack are returned
+	// The maximum number of Config rules within a conformance pack are returned
 	// on each page.
 	Limit *int64 `type:"integer"`
 
@@ -16136,12 +16961,20 @@ type DescribeConformancePackComplianceInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConformancePackComplianceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConformancePackComplianceInput) GoString() string {
 	return s.String()
 }
@@ -16204,12 +17037,20 @@ type DescribeConformancePackComplianceOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConformancePackComplianceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConformancePackComplianceOutput) GoString() string {
 	return s.String()
 }
@@ -16246,12 +17087,20 @@ type DescribeConformancePackStatusInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConformancePackStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConformancePackStatusInput) GoString() string {
 	return s.String()
 }
@@ -16285,12 +17134,20 @@ type DescribeConformancePackStatusOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConformancePackStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConformancePackStatusOutput) GoString() string {
 	return s.String()
 }
@@ -16311,8 +17168,8 @@ type DescribeConformancePacksInput struct {
 	_ struct{} `type:"structure"`
 
 	// Comma-separated list of conformance pack names for which you want details.
-	// If you do not specify any names, AWS Config returns details for all your
-	// conformance packs.
+	// If you do not specify any names, Config returns details for all your conformance
+	// packs.
 	ConformancePackNames []*string `type:"list"`
 
 	// The maximum number of conformance packs returned on each page.
@@ -16323,12 +17180,20 @@ type DescribeConformancePacksInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConformancePacksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConformancePacksInput) GoString() string {
 	return s.String()
 }
@@ -16362,12 +17227,20 @@ type DescribeConformancePacksOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConformancePacksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConformancePacksOutput) GoString() string {
 	return s.String()
 }
@@ -16392,12 +17265,20 @@ type DescribeDeliveryChannelStatusInput struct {
 	DeliveryChannelNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDeliveryChannelStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDeliveryChannelStatusInput) GoString() string {
 	return s.String()
 }
@@ -16416,12 +17297,20 @@ type DescribeDeliveryChannelStatusOutput struct {
 	DeliveryChannelsStatus []*DeliveryChannelStatus `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDeliveryChannelStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDeliveryChannelStatusOutput) GoString() string {
 	return s.String()
 }
@@ -16440,12 +17329,20 @@ type DescribeDeliveryChannelsInput struct {
 	DeliveryChannelNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDeliveryChannelsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDeliveryChannelsInput) GoString() string {
 	return s.String()
 }
@@ -16464,12 +17361,20 @@ type DescribeDeliveryChannelsOutput struct {
 	DeliveryChannels []*DeliveryChannel `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDeliveryChannelsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDeliveryChannelsOutput) GoString() string {
 	return s.String()
 }
@@ -16484,8 +17389,7 @@ type DescribeOrganizationConfigRuleStatusesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of OrganizationConfigRuleStatuses returned on each page.
-	// If you do no specify a number, AWS Config uses the default. The default is
-	// 100.
+	// If you do no specify a number, Config uses the default. The default is 100.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -16493,17 +17397,25 @@ type DescribeOrganizationConfigRuleStatusesInput struct {
 	NextToken *string `type:"string"`
 
 	// The names of organization config rules for which you want status details.
-	// If you do not specify any names, AWS Config returns details for all your
-	// organization AWS Confg rules.
+	// If you do not specify any names, Config returns details for all your organization
+	// Config rules.
 	OrganizationConfigRuleNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConfigRuleStatusesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConfigRuleStatusesInput) GoString() string {
 	return s.String()
 }
@@ -16537,12 +17449,20 @@ type DescribeOrganizationConfigRuleStatusesOutput struct {
 	OrganizationConfigRuleStatuses []*OrganizationConfigRuleStatus `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConfigRuleStatusesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConfigRuleStatusesOutput) GoString() string {
 	return s.String()
 }
@@ -16563,7 +17483,7 @@ type DescribeOrganizationConfigRulesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of organization config rules returned on each page. If
-	// you do no specify a number, AWS Config uses the default. The default is 100.
+	// you do no specify a number, Config uses the default. The default is 100.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -16571,17 +17491,25 @@ type DescribeOrganizationConfigRulesInput struct {
 	NextToken *string `type:"string"`
 
 	// The names of organization config rules for which you want details. If you
-	// do not specify any names, AWS Config returns details for all your organization
+	// do not specify any names, Config returns details for all your organization
 	// config rules.
 	OrganizationConfigRuleNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConfigRulesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConfigRulesInput) GoString() string {
 	return s.String()
 }
@@ -16615,12 +17543,20 @@ type DescribeOrganizationConfigRulesOutput struct {
 	OrganizationConfigRules []*OrganizationConfigRule `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConfigRulesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConfigRulesOutput) GoString() string {
 	return s.String()
 }
@@ -16641,7 +17577,7 @@ type DescribeOrganizationConformancePackStatusesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of OrganizationConformancePackStatuses returned on each
-	// page. If you do no specify a number, AWS Config uses the default. The default
+	// page. If you do no specify a number, Config uses the default. The default
 	// is 100.
 	Limit *int64 `type:"integer"`
 
@@ -16650,17 +17586,25 @@ type DescribeOrganizationConformancePackStatusesInput struct {
 	NextToken *string `type:"string"`
 
 	// The names of organization conformance packs for which you want status details.
-	// If you do not specify any names, AWS Config returns details for all your
-	// organization conformance packs.
+	// If you do not specify any names, Config returns details for all your organization
+	// conformance packs.
 	OrganizationConformancePackNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConformancePackStatusesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConformancePackStatusesInput) GoString() string {
 	return s.String()
 }
@@ -16694,12 +17638,20 @@ type DescribeOrganizationConformancePackStatusesOutput struct {
 	OrganizationConformancePackStatuses []*OrganizationConformancePackStatus `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConformancePackStatusesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConformancePackStatusesOutput) GoString() string {
 	return s.String()
 }
@@ -16720,7 +17672,7 @@ type DescribeOrganizationConformancePacksInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of organization config packs returned on each page. If
-	// you do no specify a number, AWS Config uses the default. The default is 100.
+	// you do no specify a number, Config uses the default. The default is 100.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -16731,12 +17683,20 @@ type DescribeOrganizationConformancePacksInput struct {
 	OrganizationConformancePackNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConformancePacksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConformancePacksInput) GoString() string {
 	return s.String()
 }
@@ -16770,12 +17730,20 @@ type DescribeOrganizationConformancePacksOutput struct {
 	OrganizationConformancePacks []*OrganizationConformancePack `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConformancePacksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOrganizationConformancePacksOutput) GoString() string {
 	return s.String()
 }
@@ -16796,7 +17764,7 @@ type DescribePendingAggregationRequestsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of evaluation results returned on each page. The default
-	// is maximum. If you specify 0, AWS Config uses the default.
+	// is maximum. If you specify 0, Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -16804,12 +17772,20 @@ type DescribePendingAggregationRequestsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePendingAggregationRequestsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePendingAggregationRequestsInput) GoString() string {
 	return s.String()
 }
@@ -16837,12 +17813,20 @@ type DescribePendingAggregationRequestsOutput struct {
 	PendingAggregationRequests []*PendingAggregationRequest `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePendingAggregationRequestsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePendingAggregationRequestsOutput) GoString() string {
 	return s.String()
 }
@@ -16862,19 +17846,27 @@ func (s *DescribePendingAggregationRequestsOutput) SetPendingAggregationRequests
 type DescribeRemediationConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of AWS Config rule names of remediation configurations for which you
-	// want details.
+	// A list of Config rule names of remediation configurations for which you want
+	// details.
 	//
 	// ConfigRuleNames is a required field
 	ConfigRuleNames []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRemediationConfigurationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRemediationConfigurationsInput) GoString() string {
 	return s.String()
 }
@@ -16905,12 +17897,20 @@ type DescribeRemediationConfigurationsOutput struct {
 	RemediationConfigurations []*RemediationConfiguration `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRemediationConfigurationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRemediationConfigurationsOutput) GoString() string {
 	return s.String()
 }
@@ -16924,13 +17924,13 @@ func (s *DescribeRemediationConfigurationsOutput) SetRemediationConfigurations(v
 type DescribeRemediationExceptionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS Config rule.
+	// The name of the Config rule.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of RemediationExceptionResourceKey returned on each page.
-	// The default is 25. If you specify 0, AWS Config uses the default.
+	// The default is 25. If you specify 0, Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned in a previous request that you use to request
@@ -16938,17 +17938,25 @@ type DescribeRemediationExceptionsInput struct {
 	NextToken *string `type:"string"`
 
 	// An exception list of resource exception keys to be processed with the current
-	// request. AWS Config adds exception for each resource key. For example, AWS
-	// Config adds 3 exceptions for 3 resource keys.
+	// request. Config adds exception for each resource key. For example, Config
+	// adds 3 exceptions for 3 resource keys.
 	ResourceKeys []*RemediationExceptionResourceKey `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRemediationExceptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRemediationExceptionsInput) GoString() string {
 	return s.String()
 }
@@ -17017,12 +18025,20 @@ type DescribeRemediationExceptionsOutput struct {
 	RemediationExceptions []*RemediationException `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRemediationExceptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRemediationExceptionsOutput) GoString() string {
 	return s.String()
 }
@@ -17042,13 +18058,13 @@ func (s *DescribeRemediationExceptionsOutput) SetRemediationExceptions(v []*Reme
 type DescribeRemediationExecutionStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of AWS Config rule names.
+	// A list of Config rule names.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of RemediationExecutionStatuses returned on each page.
-	// The default is maximum. If you specify 0, AWS Config uses the default.
+	// The default is maximum. If you specify 0, Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -17060,12 +18076,20 @@ type DescribeRemediationExecutionStatusInput struct {
 	ResourceKeys []*ResourceKey `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRemediationExecutionStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRemediationExecutionStatusInput) GoString() string {
 	return s.String()
 }
@@ -17134,12 +18158,20 @@ type DescribeRemediationExecutionStatusOutput struct {
 	RemediationExecutionStatuses []*RemediationExecutionStatus `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRemediationExecutionStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRemediationExecutionStatusOutput) GoString() string {
 	return s.String()
 }
@@ -17164,20 +18196,28 @@ type DescribeRetentionConfigurationsInput struct {
 	NextToken *string `type:"string"`
 
 	// A list of names of retention configurations for which you want details. If
-	// you do not specify a name, AWS Config returns details for all the retention
-	// configurations for that account.
+	// you do not specify a name, Config returns details for all the retention configurations
+	// for that account.
 	//
-	// Currently, AWS Config supports only one retention configuration per region
-	// in your account.
+	// Currently, Config supports only one retention configuration per region in
+	// your account.
 	RetentionConfigurationNames []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRetentionConfigurationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRetentionConfigurationsInput) GoString() string {
 	return s.String()
 }
@@ -17205,12 +18245,20 @@ type DescribeRetentionConfigurationsOutput struct {
 	RetentionConfigurations []*RetentionConfiguration `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRetentionConfigurationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRetentionConfigurationsOutput) GoString() string {
 	return s.String()
 }
@@ -17227,55 +18275,62 @@ func (s *DescribeRetentionConfigurationsOutput) SetRetentionConfigurations(v []*
 	return s
 }
 
-// Identifies an AWS resource and indicates whether it complies with the AWS
-// Config rule that it was evaluated against.
+// Identifies an Amazon Web Services resource and indicates whether it complies
+// with the Config rule that it was evaluated against.
 type Evaluation struct {
 	_ struct{} `type:"structure"`
 
 	// Supplementary information about how the evaluation determined the compliance.
 	Annotation *string `min:"1" type:"string"`
 
-	// The ID of the AWS resource that was evaluated.
+	// The ID of the Amazon Web Services resource that was evaluated.
 	//
 	// ComplianceResourceId is a required field
 	ComplianceResourceId *string `min:"1" type:"string" required:"true"`
 
-	// The type of AWS resource that was evaluated.
+	// The type of Amazon Web Services resource that was evaluated.
 	//
 	// ComplianceResourceType is a required field
 	ComplianceResourceType *string `min:"1" type:"string" required:"true"`
 
-	// Indicates whether the AWS resource complies with the AWS Config rule that
-	// it was evaluated against.
+	// Indicates whether the Amazon Web Services resource complies with the Config
+	// rule that it was evaluated against.
 	//
-	// For the Evaluation data type, AWS Config supports only the COMPLIANT, NON_COMPLIANT,
-	// and NOT_APPLICABLE values. AWS Config does not support the INSUFFICIENT_DATA
+	// For the Evaluation data type, Config supports only the COMPLIANT, NON_COMPLIANT,
+	// and NOT_APPLICABLE values. Config does not support the INSUFFICIENT_DATA
 	// value for this data type.
 	//
-	// Similarly, AWS Config does not accept INSUFFICIENT_DATA as the value for
-	// ComplianceType from a PutEvaluations request. For example, an AWS Lambda
-	// function for a custom AWS Config rule cannot pass an INSUFFICIENT_DATA value
-	// to AWS Config.
+	// Similarly, Config does not accept INSUFFICIENT_DATA as the value for ComplianceType
+	// from a PutEvaluations request. For example, an Lambda function for a custom
+	// Config rule cannot pass an INSUFFICIENT_DATA value to Config.
 	//
 	// ComplianceType is a required field
 	ComplianceType *string `type:"string" required:"true" enum:"ComplianceType"`
 
-	// The time of the event in AWS Config that triggered the evaluation. For event-based
-	// evaluations, the time indicates when AWS Config created the configuration
-	// item that triggered the evaluation. For periodic evaluations, the time indicates
-	// when AWS Config triggered the evaluation at the frequency that you specified
+	// The time of the event in Config that triggered the evaluation. For event-based
+	// evaluations, the time indicates when Config created the configuration item
+	// that triggered the evaluation. For periodic evaluations, the time indicates
+	// when Config triggered the evaluation at the frequency that you specified
 	// (for example, every 24 hours).
 	//
 	// OrderingTimestamp is a required field
 	OrderingTimestamp *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Evaluation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Evaluation) GoString() string {
 	return s.String()
 }
@@ -17341,44 +18396,52 @@ func (s *Evaluation) SetOrderingTimestamp(v time.Time) *Evaluation {
 	return s
 }
 
-// The details of an AWS Config evaluation. Provides the AWS resource that was
-// evaluated, the compliance of the resource, related time stamps, and supplementary
-// information.
+// The details of an Config evaluation. Provides the Amazon Web Services resource
+// that was evaluated, the compliance of the resource, related time stamps,
+// and supplementary information.
 type EvaluationResult struct {
 	_ struct{} `type:"structure"`
 
 	// Supplementary information about how the evaluation determined the compliance.
 	Annotation *string `min:"1" type:"string"`
 
-	// Indicates whether the AWS resource complies with the AWS Config rule that
-	// evaluated it.
+	// Indicates whether the Amazon Web Services resource complies with the Config
+	// rule that evaluated it.
 	//
-	// For the EvaluationResult data type, AWS Config supports only the COMPLIANT,
-	// NON_COMPLIANT, and NOT_APPLICABLE values. AWS Config does not support the
-	// INSUFFICIENT_DATA value for the EvaluationResult data type.
+	// For the EvaluationResult data type, Config supports only the COMPLIANT, NON_COMPLIANT,
+	// and NOT_APPLICABLE values. Config does not support the INSUFFICIENT_DATA
+	// value for the EvaluationResult data type.
 	ComplianceType *string `type:"string" enum:"ComplianceType"`
 
-	// The time when the AWS Config rule evaluated the AWS resource.
+	// The time when the Config rule evaluated the Amazon Web Services resource.
 	ConfigRuleInvokedTime *time.Time `type:"timestamp"`
 
 	// Uniquely identifies the evaluation result.
 	EvaluationResultIdentifier *EvaluationResultIdentifier `type:"structure"`
 
-	// The time when AWS Config recorded the evaluation result.
+	// The time when Config recorded the evaluation result.
 	ResultRecordedTime *time.Time `type:"timestamp"`
 
-	// An encrypted token that associates an evaluation with an AWS Config rule.
-	// The token identifies the rule, the AWS resource being evaluated, and the
-	// event that triggered the evaluation.
+	// An encrypted token that associates an evaluation with an Config rule. The
+	// token identifies the rule, the Amazon Web Services resource being evaluated,
+	// and the event that triggered the evaluation.
 	ResultToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EvaluationResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EvaluationResult) GoString() string {
 	return s.String()
 }
@@ -17423,23 +18486,31 @@ func (s *EvaluationResult) SetResultToken(v string) *EvaluationResult {
 type EvaluationResultIdentifier struct {
 	_ struct{} `type:"structure"`
 
-	// Identifies an AWS Config rule used to evaluate an AWS resource, and provides
-	// the type and ID of the evaluated resource.
+	// Identifies an Config rule used to evaluate an Amazon Web Services resource,
+	// and provides the type and ID of the evaluated resource.
 	EvaluationResultQualifier *EvaluationResultQualifier `type:"structure"`
 
-	// The time of the event that triggered the evaluation of your AWS resources.
-	// The time can indicate when AWS Config delivered a configuration item change
-	// notification, or it can indicate when AWS Config delivered the configuration
+	// The time of the event that triggered the evaluation of your Amazon Web Services
+	// resources. The time can indicate when Config delivered a configuration item
+	// change notification, or it can indicate when Config delivered the configuration
 	// snapshot, depending on which event triggered the evaluation.
 	OrderingTimestamp *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EvaluationResultIdentifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EvaluationResultIdentifier) GoString() string {
 	return s.String()
 }
@@ -17456,27 +18527,35 @@ func (s *EvaluationResultIdentifier) SetOrderingTimestamp(v time.Time) *Evaluati
 	return s
 }
 
-// Identifies an AWS Config rule that evaluated an AWS resource, and provides
-// the type and ID of the resource that the rule evaluated.
+// Identifies an Config rule that evaluated an Amazon Web Services resource,
+// and provides the type and ID of the resource that the rule evaluated.
 type EvaluationResultQualifier struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS Config rule that was used in the evaluation.
+	// The name of the Config rule that was used in the evaluation.
 	ConfigRuleName *string `min:"1" type:"string"`
 
-	// The ID of the evaluated AWS resource.
+	// The ID of the evaluated Amazon Web Services resource.
 	ResourceId *string `min:"1" type:"string"`
 
-	// The type of AWS resource that was evaluated.
+	// The type of Amazon Web Services resource that was evaluated.
 	ResourceType *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EvaluationResultQualifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EvaluationResultQualifier) GoString() string {
 	return s.String()
 }
@@ -17499,7 +18578,7 @@ func (s *EvaluationResultQualifier) SetResourceType(v string) *EvaluationResultQ
 	return s
 }
 
-// The controls that AWS Config uses for executing remediations.
+// The controls that Config uses for executing remediations.
 type ExecutionControls struct {
 	_ struct{} `type:"structure"`
 
@@ -17507,12 +18586,20 @@ type ExecutionControls struct {
 	SsmControls *SsmControls `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecutionControls) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExecutionControls) GoString() string {
 	return s.String()
 }
@@ -17538,8 +18625,8 @@ func (s *ExecutionControls) SetSsmControls(v *SsmControls) *ExecutionControls {
 	return s
 }
 
-// Identifies an AWS resource and indicates whether it complies with the AWS
-// Config rule that it was evaluated against.
+// Identifies an Amazon Web Services resource and indicates whether it complies
+// with the Config rule that it was evaluated against.
 type ExternalEvaluation struct {
 	_ struct{} `type:"structure"`
 
@@ -17547,20 +18634,20 @@ type ExternalEvaluation struct {
 	// task was completed on a specific date.
 	Annotation *string `min:"1" type:"string"`
 
-	// The evaluated compliance resource ID. AWS Config accepts only AWS account
-	// ID.
+	// The evaluated compliance resource ID. Config accepts only Amazon Web Services
+	// account ID.
 	//
 	// ComplianceResourceId is a required field
 	ComplianceResourceId *string `min:"1" type:"string" required:"true"`
 
-	// The evaluated compliance resource type. AWS Config accepts AWS::::Account
-	// resource type.
+	// The evaluated compliance resource type. Config accepts AWS::::Account resource
+	// type.
 	//
 	// ComplianceResourceType is a required field
 	ComplianceResourceType *string `min:"1" type:"string" required:"true"`
 
-	// The compliance of the AWS resource. The valid values are COMPLIANT, NON_COMPLIANT,
-	// and NOT_APPLICABLE.
+	// The compliance of the Amazon Web Services resource. The valid values are
+	// COMPLIANT, NON_COMPLIANT, and NOT_APPLICABLE.
 	//
 	// ComplianceType is a required field
 	ComplianceType *string `type:"string" required:"true" enum:"ComplianceType"`
@@ -17571,12 +18658,20 @@ type ExternalEvaluation struct {
 	OrderingTimestamp *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExternalEvaluation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExternalEvaluation) GoString() string {
 	return s.String()
 }
@@ -17650,16 +18745,24 @@ type FailedDeleteRemediationExceptionsBatch struct {
 	FailedItems []*RemediationExceptionResourceKey `min:"1" type:"list"`
 
 	// Returns a failure message for delete remediation exception. For example,
-	// AWS Config creates an exception due to an internal error.
+	// Config creates an exception due to an internal error.
 	FailureMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedDeleteRemediationExceptionsBatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedDeleteRemediationExceptionsBatch) GoString() string {
 	return s.String()
 }
@@ -17687,12 +18790,20 @@ type FailedRemediationBatch struct {
 	FailureMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedRemediationBatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedRemediationBatch) GoString() string {
 	return s.String()
 }
@@ -17720,12 +18831,20 @@ type FailedRemediationExceptionBatch struct {
 	FailureMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedRemediationExceptionBatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FailedRemediationExceptionBatch) GoString() string {
 	return s.String()
 }
@@ -17750,12 +18869,20 @@ type FieldInfo struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FieldInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FieldInfo) GoString() string {
 	return s.String()
 }
@@ -17781,12 +18908,12 @@ type GetAggregateComplianceDetailsByConfigRuleInput struct {
 
 	// The resource compliance status.
 	//
-	// For the GetAggregateComplianceDetailsByConfigRuleRequest data type, AWS Config
-	// supports only the COMPLIANT and NON_COMPLIANT. AWS Config does not support
-	// the NOT_APPLICABLE and INSUFFICIENT_DATA values.
+	// For the GetAggregateComplianceDetailsByConfigRuleRequest data type, Config
+	// supports only the COMPLIANT and NON_COMPLIANT. Config does not support the
+	// NOT_APPLICABLE and INSUFFICIENT_DATA values.
 	ComplianceType *string `type:"string" enum:"ComplianceType"`
 
-	// The name of the AWS Config rule for which you want compliance information.
+	// The name of the Config rule for which you want compliance information.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
@@ -17797,8 +18924,8 @@ type GetAggregateComplianceDetailsByConfigRuleInput struct {
 	ConfigurationAggregatorName *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of evaluation results returned on each page. The default
-	// is 50. You cannot specify a number greater than 100. If you specify 0, AWS
-	// Config uses the default.
+	// is 50. You cannot specify a number greater than 100. If you specify 0, Config
+	// uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -17806,12 +18933,20 @@ type GetAggregateComplianceDetailsByConfigRuleInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateComplianceDetailsByConfigRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateComplianceDetailsByConfigRuleInput) GoString() string {
 	return s.String()
 }
@@ -17900,12 +19035,20 @@ type GetAggregateComplianceDetailsByConfigRuleOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateComplianceDetailsByConfigRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateComplianceDetailsByConfigRuleOutput) GoString() string {
 	return s.String()
 }
@@ -17938,7 +19081,7 @@ type GetAggregateConfigRuleComplianceSummaryInput struct {
 
 	// The maximum number of evaluation results returned on each page. The default
 	// is 1000. You cannot specify a number greater than 1000. If you specify 0,
-	// AWS Config uses the default.
+	// Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -17946,12 +19089,20 @@ type GetAggregateConfigRuleComplianceSummaryInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateConfigRuleComplianceSummaryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateConfigRuleComplianceSummaryInput) GoString() string {
 	return s.String()
 }
@@ -18021,12 +19172,20 @@ type GetAggregateConfigRuleComplianceSummaryOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateConfigRuleComplianceSummaryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateConfigRuleComplianceSummaryOutput) GoString() string {
 	return s.String()
 }
@@ -18061,11 +19220,12 @@ type GetAggregateConformancePackComplianceSummaryInput struct {
 	// object.
 	Filters *AggregateConformancePackComplianceSummaryFilters `type:"structure"`
 
-	// Groups the result based on AWS Account ID or AWS Region.
+	// Groups the result based on Amazon Web Services account ID or Amazon Web Services
+	// Region.
 	GroupByKey *string `type:"string" enum:"AggregateConformancePackComplianceSummaryGroupKey"`
 
 	// The maximum number of results returned on each page. The default is maximum.
-	// If you specify 0, AWS Config uses the default.
+	// If you specify 0, Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -18073,12 +19233,20 @@ type GetAggregateConformancePackComplianceSummaryInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateConformancePackComplianceSummaryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateConformancePackComplianceSummaryInput) GoString() string {
 	return s.String()
 }
@@ -18140,7 +19308,8 @@ type GetAggregateConformancePackComplianceSummaryOutput struct {
 	// Returns a list of AggregateConformancePackComplianceSummary object.
 	AggregateConformancePackComplianceSummaries []*AggregateConformancePackComplianceSummary `type:"list"`
 
-	// Groups the result based on AWS Account ID or AWS Region.
+	// Groups the result based on Amazon Web Services account ID or Amazon Web Services
+	// Region.
 	GroupByKey *string `min:"1" type:"string"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -18148,12 +19317,20 @@ type GetAggregateConformancePackComplianceSummaryOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateConformancePackComplianceSummaryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateConformancePackComplianceSummaryOutput) GoString() string {
 	return s.String()
 }
@@ -18192,7 +19369,7 @@ type GetAggregateDiscoveredResourceCountsInput struct {
 
 	// The maximum number of GroupedResourceCount objects returned on each page.
 	// The default is 1000. You cannot specify a number greater than 1000. If you
-	// specify 0, AWS Config uses the default.
+	// specify 0, Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -18200,12 +19377,20 @@ type GetAggregateDiscoveredResourceCountsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateDiscoveredResourceCountsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateDiscoveredResourceCountsInput) GoString() string {
 	return s.String()
 }
@@ -18282,12 +19467,20 @@ type GetAggregateDiscoveredResourceCountsOutput struct {
 	TotalDiscoveredResources *int64 `type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateDiscoveredResourceCountsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateDiscoveredResourceCountsOutput) GoString() string {
 	return s.String()
 }
@@ -18330,12 +19523,20 @@ type GetAggregateResourceConfigInput struct {
 	ResourceIdentifier *AggregateResourceIdentifier `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateResourceConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateResourceConfigInput) GoString() string {
 	return s.String()
 }
@@ -18383,12 +19584,20 @@ type GetAggregateResourceConfigOutput struct {
 	ConfigurationItem *ConfigurationItem `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateResourceConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAggregateResourceConfigOutput) GoString() string {
 	return s.String()
 }
@@ -18407,14 +19616,14 @@ type GetComplianceDetailsByConfigRuleInput struct {
 	// The allowed values are COMPLIANT, NON_COMPLIANT, and NOT_APPLICABLE.
 	ComplianceTypes []*string `type:"list"`
 
-	// The name of the AWS Config rule for which you want compliance information.
+	// The name of the Config rule for which you want compliance information.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of evaluation results returned on each page. The default
-	// is 10. You cannot specify a number greater than 100. If you specify 0, AWS
-	// Config uses the default.
+	// is 10. You cannot specify a number greater than 100. If you specify 0, Config
+	// uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -18422,12 +19631,20 @@ type GetComplianceDetailsByConfigRuleInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceDetailsByConfigRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceDetailsByConfigRuleInput) GoString() string {
 	return s.String()
 }
@@ -18475,8 +19692,8 @@ func (s *GetComplianceDetailsByConfigRuleInput) SetNextToken(v string) *GetCompl
 type GetComplianceDetailsByConfigRuleOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether the AWS resource complies with the specified AWS Config
-	// rule.
+	// Indicates whether the Amazon Web Services resource complies with the specified
+	// Config rule.
 	EvaluationResults []*EvaluationResult `type:"list"`
 
 	// The string that you use in a subsequent request to get the next page of results
@@ -18484,12 +19701,20 @@ type GetComplianceDetailsByConfigRuleOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceDetailsByConfigRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceDetailsByConfigRuleOutput) GoString() string {
 	return s.String()
 }
@@ -18518,23 +19743,33 @@ type GetComplianceDetailsByResourceInput struct {
 	// next page of results in a paginated response.
 	NextToken *string `type:"string"`
 
-	// The ID of the AWS resource for which you want compliance information.
+	// The ID of the Amazon Web Services resource for which you want compliance
+	// information.
 	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
-	// The type of the AWS resource for which you want compliance information.
+	// The type of the Amazon Web Services resource for which you want compliance
+	// information.
 	//
 	// ResourceType is a required field
 	ResourceType *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceDetailsByResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceDetailsByResourceInput) GoString() string {
 	return s.String()
 }
@@ -18588,7 +19823,8 @@ func (s *GetComplianceDetailsByResourceInput) SetResourceType(v string) *GetComp
 type GetComplianceDetailsByResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether the specified AWS resource complies each AWS Config rule.
+	// Indicates whether the specified Amazon Web Services resource complies each
+	// Config rule.
 	EvaluationResults []*EvaluationResult `type:"list"`
 
 	// The string that you use in a subsequent request to get the next page of results
@@ -18596,12 +19832,20 @@ type GetComplianceDetailsByResourceOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceDetailsByResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceDetailsByResourceOutput) GoString() string {
 	return s.String()
 }
@@ -18622,12 +19866,20 @@ type GetComplianceSummaryByConfigRuleInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceSummaryByConfigRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceSummaryByConfigRuleInput) GoString() string {
 	return s.String()
 }
@@ -18635,17 +19887,25 @@ func (s GetComplianceSummaryByConfigRuleInput) GoString() string {
 type GetComplianceSummaryByConfigRuleOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The number of AWS Config rules that are compliant and the number that are
-	// noncompliant, up to a maximum of 25 for each.
+	// The number of Config rules that are compliant and the number that are noncompliant,
+	// up to a maximum of 25 for each.
 	ComplianceSummary *ComplianceSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceSummaryByConfigRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceSummaryByConfigRuleOutput) GoString() string {
 	return s.String()
 }
@@ -18662,17 +19922,26 @@ type GetComplianceSummaryByResourceTypeInput struct {
 	// Specify one or more resource types to get the number of resources that are
 	// compliant and the number that are noncompliant for each resource type.
 	//
-	// For this request, you can specify an AWS resource type such as AWS::EC2::Instance.
-	// You can specify that the resource type is an AWS account by specifying AWS::::Account.
+	// For this request, you can specify an Amazon Web Services resource type such
+	// as AWS::EC2::Instance. You can specify that the resource type is an Amazon
+	// Web Services account by specifying AWS::::Account.
 	ResourceTypes []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceSummaryByResourceTypeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceSummaryByResourceTypeInput) GoString() string {
 	return s.String()
 }
@@ -18692,12 +19961,20 @@ type GetComplianceSummaryByResourceTypeOutput struct {
 	ComplianceSummariesByResourceType []*ComplianceSummaryByResourceType `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceSummaryByResourceTypeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetComplianceSummaryByResourceTypeOutput) GoString() string {
 	return s.String()
 }
@@ -18720,7 +19997,7 @@ type GetConformancePackComplianceDetailsInput struct {
 	Filters *ConformancePackEvaluationFilters `type:"structure"`
 
 	// The maximum number of evaluation results returned on each page. If you do
-	// no specify a number, AWS Config uses the default. The default is 100.
+	// no specify a number, Config uses the default. The default is 100.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned in a previous request that you use to request
@@ -18728,12 +20005,20 @@ type GetConformancePackComplianceDetailsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConformancePackComplianceDetailsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConformancePackComplianceDetailsInput) GoString() string {
 	return s.String()
 }
@@ -18799,12 +20084,20 @@ type GetConformancePackComplianceDetailsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConformancePackComplianceDetailsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConformancePackComplianceDetailsOutput) GoString() string {
 	return s.String()
 }
@@ -18843,12 +20136,20 @@ type GetConformancePackComplianceSummaryInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConformancePackComplianceSummaryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConformancePackComplianceSummaryInput) GoString() string {
 	return s.String()
 }
@@ -18898,12 +20199,20 @@ type GetConformancePackComplianceSummaryOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConformancePackComplianceSummaryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetConformancePackComplianceSummaryOutput) GoString() string {
 	return s.String()
 }
@@ -18924,8 +20233,8 @@ type GetDiscoveredResourceCountsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of ResourceCount objects returned on each page. The default
-	// is 100. You cannot specify a number greater than 100. If you specify 0, AWS
-	// Config uses the default.
+	// is 100. You cannot specify a number greater than 100. If you specify 0, Config
+	// uses the default.
 	Limit *int64 `locationName:"limit" type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -18933,24 +20242,32 @@ type GetDiscoveredResourceCountsInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The comma-separated list that specifies the resource types that you want
-	// AWS Config to return (for example, "AWS::EC2::Instance", "AWS::IAM::User").
+	// Config to return (for example, "AWS::EC2::Instance", "AWS::IAM::User").
 	//
-	// If a value for resourceTypes is not specified, AWS Config returns all resource
-	// types that AWS Config is recording in the region for your account.
+	// If a value for resourceTypes is not specified, Config returns all resource
+	// types that Config is recording in the region for your account.
 	//
-	// If the configuration recorder is turned off, AWS Config returns an empty
-	// list of ResourceCount objects. If the configuration recorder is not recording
+	// If the configuration recorder is turned off, Config returns an empty list
+	// of ResourceCount objects. If the configuration recorder is not recording
 	// a specific resource type (for example, S3 buckets), that resource type is
 	// not returned in the list of ResourceCount objects.
 	ResourceTypes []*string `locationName:"resourceTypes" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDiscoveredResourceCountsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDiscoveredResourceCountsInput) GoString() string {
 	return s.String()
 }
@@ -18984,29 +20301,37 @@ type GetDiscoveredResourceCountsOutput struct {
 	// by the number of resources.
 	ResourceCounts []*ResourceCount `locationName:"resourceCounts" type:"list"`
 
-	// The total number of resources that AWS Config is recording in the region
-	// for your account. If you specify resource types in the request, AWS Config
-	// returns only the total number of resources for those resource types.
+	// The total number of resources that Config is recording in the region for
+	// your account. If you specify resource types in the request, Config returns
+	// only the total number of resources for those resource types.
 	//
 	// Example
 	//
-	// AWS Config is recording three resource types in the US East (Ohio) Region
-	// for your account: 25 EC2 instances, 20 IAM users, and 15 S3 buckets, for
-	// a total of 60 resources.
+	// Config is recording three resource types in the US East (Ohio) Region for
+	// your account: 25 EC2 instances, 20 IAM users, and 15 S3 buckets, for a total
+	// of 60 resources.
 	//
 	// You make a call to the GetDiscoveredResourceCounts action and specify the
 	// resource type, "AWS::EC2::Instances", in the request.
 	//
-	// AWS Config returns 25 for totalDiscoveredResources.
+	// Config returns 25 for totalDiscoveredResources.
 	TotalDiscoveredResources *int64 `locationName:"totalDiscoveredResources" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDiscoveredResourceCountsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDiscoveredResourceCountsOutput) GoString() string {
 	return s.String()
 }
@@ -19036,7 +20361,7 @@ type GetOrganizationConfigRuleDetailedStatusInput struct {
 	Filters *StatusDetailFilters `type:"structure"`
 
 	// The maximum number of OrganizationConfigRuleDetailedStatus returned on each
-	// page. If you do not specify a number, AWS Config uses the default. The default
+	// page. If you do not specify a number, Config uses the default. The default
 	// is 100.
 	Limit *int64 `type:"integer"`
 
@@ -19051,12 +20376,20 @@ type GetOrganizationConfigRuleDetailedStatusInput struct {
 	OrganizationConfigRuleName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOrganizationConfigRuleDetailedStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOrganizationConfigRuleDetailedStatusInput) GoString() string {
 	return s.String()
 }
@@ -19112,12 +20445,20 @@ type GetOrganizationConfigRuleDetailedStatusOutput struct {
 	OrganizationConfigRuleDetailedStatus []*MemberAccountStatus `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOrganizationConfigRuleDetailedStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOrganizationConfigRuleDetailedStatusOutput) GoString() string {
 	return s.String()
 }
@@ -19141,8 +20482,8 @@ type GetOrganizationConformancePackDetailedStatusInput struct {
 	Filters *OrganizationResourceDetailedStatusFilters `type:"structure"`
 
 	// The maximum number of OrganizationConformancePackDetailedStatuses returned
-	// on each page. If you do not specify a number, AWS Config uses the default.
-	// The default is 100.
+	// on each page. If you do not specify a number, Config uses the default. The
+	// default is 100.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -19156,12 +20497,20 @@ type GetOrganizationConformancePackDetailedStatusInput struct {
 	OrganizationConformancePackName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOrganizationConformancePackDetailedStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOrganizationConformancePackDetailedStatusInput) GoString() string {
 	return s.String()
 }
@@ -19217,12 +20566,20 @@ type GetOrganizationConformancePackDetailedStatusOutput struct {
 	OrganizationConformancePackDetailedStatuses []*OrganizationConformancePackDetailedStatus `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOrganizationConformancePackDetailedStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetOrganizationConformancePackDetailedStatusOutput) GoString() string {
 	return s.String()
 }
@@ -19257,8 +20614,8 @@ type GetResourceConfigHistoryInput struct {
 	LaterTime *time.Time `locationName:"laterTime" type:"timestamp"`
 
 	// The maximum number of configuration items returned on each page. The default
-	// is 10. You cannot specify a number greater than 100. If you specify 0, AWS
-	// Config uses the default.
+	// is 10. You cannot specify a number greater than 100. If you specify 0, Config
+	// uses the default.
 	Limit *int64 `locationName:"limit" type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -19276,12 +20633,20 @@ type GetResourceConfigHistoryInput struct {
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceConfigHistoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceConfigHistoryInput) GoString() string {
 	return s.String()
 }
@@ -19359,12 +20724,20 @@ type GetResourceConfigHistoryOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceConfigHistoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetResourceConfigHistoryOutput) GoString() string {
 	return s.String()
 }
@@ -19390,12 +20763,20 @@ type GetStoredQueryInput struct {
 	QueryName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStoredQueryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStoredQueryInput) GoString() string {
 	return s.String()
 }
@@ -19429,12 +20810,20 @@ type GetStoredQueryOutput struct {
 	StoredQuery *StoredQuery `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStoredQueryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStoredQueryOutput) GoString() string {
 	return s.String()
 }
@@ -19461,12 +20850,20 @@ type GroupedResourceCount struct {
 	ResourceCount *int64 `type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupedResourceCount) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupedResourceCount) GoString() string {
 	return s.String()
 }
@@ -19483,7 +20880,7 @@ func (s *GroupedResourceCount) SetResourceCount(v int64) *GroupedResourceCount {
 	return s
 }
 
-// Your Amazon S3 bucket policy does not permit AWS Config to write to it.
+// Your Amazon S3 bucket policy does not permit Config to write to it.
 type InsufficientDeliveryPolicyException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -19491,12 +20888,20 @@ type InsufficientDeliveryPolicyException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsufficientDeliveryPolicyException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsufficientDeliveryPolicyException) GoString() string {
 	return s.String()
 }
@@ -19542,10 +20947,10 @@ func (s *InsufficientDeliveryPolicyException) RequestID() string {
 // Indicates one of the following errors:
 //
 //    * For PutConfigRule, the rule cannot be created because the IAM role assigned
-//    to AWS Config lacks permissions to perform the config:Put* action.
+//    to Config lacks permissions to perform the config:Put* action.
 //
-//    * For PutConfigRule, the AWS Lambda function cannot be invoked. Check
-//    the function ARN, and check the function's permissions.
+//    * For PutConfigRule, the Lambda function cannot be invoked. Check the
+//    function ARN, and check the function's permissions.
 //
 //    * For PutOrganizationConfigRule, organization config rule cannot be created
 //    because you do not have permissions to call IAM GetRole action or create
@@ -19561,12 +20966,20 @@ type InsufficientPermissionsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsufficientPermissionsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InsufficientPermissionsException) GoString() string {
 	return s.String()
 }
@@ -19617,12 +21030,20 @@ type InvalidConfigurationRecorderNameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidConfigurationRecorderNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidConfigurationRecorderNameException) GoString() string {
 	return s.String()
 }
@@ -19673,12 +21094,20 @@ type InvalidDeliveryChannelNameException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidDeliveryChannelNameException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidDeliveryChannelNameException) GoString() string {
 	return s.String()
 }
@@ -19729,12 +21158,20 @@ type InvalidExpressionException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidExpressionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidExpressionException) GoString() string {
 	return s.String()
 }
@@ -19785,12 +21222,20 @@ type InvalidLimitException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidLimitException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidLimitException) GoString() string {
 	return s.String()
 }
@@ -19842,12 +21287,20 @@ type InvalidNextTokenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) GoString() string {
 	return s.String()
 }
@@ -19899,12 +21352,20 @@ type InvalidParameterValueException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterValueException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterValueException) GoString() string {
 	return s.String()
 }
@@ -19947,8 +21408,8 @@ func (s *InvalidParameterValueException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS Config throws an exception if the recording group does not contain a
-// valid list of resource types. Invalid values might also be incorrectly formatted.
+// Config throws an exception if the recording group does not contain a valid
+// list of resource types. Invalid values might also be incorrectly formatted.
 type InvalidRecordingGroupException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -19956,12 +21417,20 @@ type InvalidRecordingGroupException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRecordingGroupException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRecordingGroupException) GoString() string {
 	return s.String()
 }
@@ -20012,12 +21481,20 @@ type InvalidResultTokenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidResultTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidResultTokenException) GoString() string {
 	return s.String()
 }
@@ -20068,12 +21545,20 @@ type InvalidRoleException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRoleException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRoleException) GoString() string {
 	return s.String()
 }
@@ -20124,12 +21609,20 @@ type InvalidS3KeyPrefixException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidS3KeyPrefixException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidS3KeyPrefixException) GoString() string {
 	return s.String()
 }
@@ -20180,12 +21673,20 @@ type InvalidS3KmsKeyArnException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidS3KmsKeyArnException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidS3KmsKeyArnException) GoString() string {
 	return s.String()
 }
@@ -20236,12 +21737,20 @@ type InvalidSNSTopicARNException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidSNSTopicARNException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidSNSTopicARNException) GoString() string {
 	return s.String()
 }
@@ -20293,12 +21802,20 @@ type InvalidTimeRangeException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTimeRangeException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTimeRangeException) GoString() string {
 	return s.String()
 }
@@ -20350,12 +21867,20 @@ type LastDeliveryChannelDeleteFailedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LastDeliveryChannelDeleteFailedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LastDeliveryChannelDeleteFailedException) GoString() string {
 	return s.String()
 }
@@ -20411,12 +21936,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -20471,26 +22004,33 @@ type ListAggregateDiscoveredResourcesInput struct {
 	Filters *ResourceFilters `type:"structure"`
 
 	// The maximum number of resource identifiers returned on each page. You cannot
-	// specify a number greater than 100. If you specify 0, AWS Config uses the
-	// default.
+	// specify a number greater than 100. If you specify 0, Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
 	// next page of results in a paginated response.
 	NextToken *string `type:"string"`
 
-	// The type of resources that you want AWS Config to list in the response.
+	// The type of resources that you want Config to list in the response.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAggregateDiscoveredResourcesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAggregateDiscoveredResourcesInput) GoString() string {
 	return s.String()
 }
@@ -20560,12 +22100,20 @@ type ListAggregateDiscoveredResourcesOutput struct {
 	ResourceIdentifiers []*AggregateResourceIdentifier `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAggregateDiscoveredResourcesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAggregateDiscoveredResourcesOutput) GoString() string {
 	return s.String()
 }
@@ -20585,41 +22133,49 @@ func (s *ListAggregateDiscoveredResourcesOutput) SetResourceIdentifiers(v []*Agg
 type ListDiscoveredResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether AWS Config includes deleted resources in the results. By
-	// default, deleted resources are not included.
+	// Specifies whether Config includes deleted resources in the results. By default,
+	// deleted resources are not included.
 	IncludeDeletedResources *bool `locationName:"includeDeletedResources" type:"boolean"`
 
 	// The maximum number of resource identifiers returned on each page. The default
-	// is 100. You cannot specify a number greater than 100. If you specify 0, AWS
-	// Config uses the default.
+	// is 100. You cannot specify a number greater than 100. If you specify 0, Config
+	// uses the default.
 	Limit *int64 `locationName:"limit" type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
 	// next page of results in a paginated response.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The IDs of only those resources that you want AWS Config to list in the response.
-	// If you do not specify this parameter, AWS Config lists all resources of the
-	// specified type that it has discovered.
+	// The IDs of only those resources that you want Config to list in the response.
+	// If you do not specify this parameter, Config lists all resources of the specified
+	// type that it has discovered.
 	ResourceIds []*string `locationName:"resourceIds" type:"list"`
 
-	// The custom name of only those resources that you want AWS Config to list
-	// in the response. If you do not specify this parameter, AWS Config lists all
-	// resources of the specified type that it has discovered.
+	// The custom name of only those resources that you want Config to list in the
+	// response. If you do not specify this parameter, Config lists all resources
+	// of the specified type that it has discovered.
 	ResourceName *string `locationName:"resourceName" type:"string"`
 
-	// The type of resources that you want AWS Config to list in the response.
+	// The type of resources that you want Config to list in the response.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDiscoveredResourcesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDiscoveredResourcesInput) GoString() string {
 	return s.String()
 }
@@ -20680,17 +22236,25 @@ type ListDiscoveredResourcesOutput struct {
 	// in a paginated response.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The details that identify a resource that is discovered by AWS Config, including
+	// The details that identify a resource that is discovered by Config, including
 	// the resource type, ID, and (if available) the custom resource name.
 	ResourceIdentifiers []*ResourceIdentifier `locationName:"resourceIdentifiers" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDiscoveredResourcesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDiscoveredResourcesOutput) GoString() string {
 	return s.String()
 }
@@ -20718,12 +22282,20 @@ type ListStoredQueriesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStoredQueriesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStoredQueriesInput) GoString() string {
 	return s.String()
 }
@@ -20754,12 +22326,20 @@ type ListStoredQueriesOutput struct {
 	StoredQueryMetadata []*StoredQueryMetadata `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStoredQueriesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStoredQueriesOutput) GoString() string {
 	return s.String()
 }
@@ -20780,8 +22360,8 @@ type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of tags returned on each page. The limit maximum is 50.
-	// You cannot specify a number greater than 50. If you specify 0, AWS Config
-	// uses the default.
+	// You cannot specify a number greater than 50. If you specify 0, Config uses
+	// the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -20796,12 +22376,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -20851,12 +22439,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -20882,12 +22478,20 @@ type MaxActiveResourcesExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxActiveResourcesExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxActiveResourcesExceededException) GoString() string {
 	return s.String()
 }
@@ -20930,9 +22534,9 @@ func (s *MaxActiveResourcesExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Failed to add the AWS Config rule because the account already contains the
-// maximum number of 150 rules. Consider deleting any deactivated rules before
-// you add new rules.
+// Failed to add the Config rule because the account already contains the maximum
+// number of 150 rules. Consider deleting any deactivated rules before you add
+// new rules.
 type MaxNumberOfConfigRulesExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -20940,12 +22544,20 @@ type MaxNumberOfConfigRulesExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfConfigRulesExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfConfigRulesExceededException) GoString() string {
 	return s.String()
 }
@@ -20996,12 +22608,20 @@ type MaxNumberOfConfigurationRecordersExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfConfigurationRecordersExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfConfigurationRecordersExceededException) GoString() string {
 	return s.String()
 }
@@ -21045,7 +22665,7 @@ func (s *MaxNumberOfConfigurationRecordersExceededException) RequestID() string 
 }
 
 // You have reached the limit (6) of the number of conformance packs in an account
-// (6 conformance pack with 25 AWS Config rules per pack).
+// (6 conformance pack with 25 Config rules per pack).
 type MaxNumberOfConformancePacksExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -21053,12 +22673,20 @@ type MaxNumberOfConformancePacksExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfConformancePacksExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfConformancePacksExceededException) GoString() string {
 	return s.String()
 }
@@ -21109,12 +22737,20 @@ type MaxNumberOfDeliveryChannelsExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfDeliveryChannelsExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfDeliveryChannelsExceededException) GoString() string {
 	return s.String()
 }
@@ -21166,12 +22802,20 @@ type MaxNumberOfOrganizationConfigRulesExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfOrganizationConfigRulesExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfOrganizationConfigRulesExceededException) GoString() string {
 	return s.String()
 }
@@ -21215,8 +22859,8 @@ func (s *MaxNumberOfOrganizationConfigRulesExceededException) RequestID() string
 }
 
 // You have reached the limit (6) of the number of organization conformance
-// packs in an account (6 conformance pack with 25 AWS Config rules per pack
-// per account).
+// packs in an account (6 conformance pack with 25 Config rules per pack per
+// account).
 type MaxNumberOfOrganizationConformancePacksExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -21224,12 +22868,20 @@ type MaxNumberOfOrganizationConformancePacksExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfOrganizationConformancePacksExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfOrganizationConformancePacksExceededException) GoString() string {
 	return s.String()
 }
@@ -21281,12 +22933,20 @@ type MaxNumberOfRetentionConfigurationsExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfRetentionConfigurationsExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MaxNumberOfRetentionConfigurationsExceededException) GoString() string {
 	return s.String()
 }
@@ -21363,7 +23023,7 @@ type MemberAccountStatus struct {
 	// Config rule status is deleted when the master account deletes OrganizationConfigRule
 	// and disables service access for config-multiaccountsetup.amazonaws.com.
 	//
-	// AWS Config sets the state of the rule to:
+	// Config sets the state of the rule to:
 	//
 	//    * CREATE_SUCCESSFUL when config rule has been created in the member account.
 	//
@@ -21387,12 +23047,20 @@ type MemberAccountStatus struct {
 	MemberAccountRuleStatus *string `type:"string" required:"true" enum:"MemberAccountRuleStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MemberAccountStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MemberAccountStatus) GoString() string {
 	return s.String()
 }
@@ -21442,12 +23110,20 @@ type NoAvailableConfigurationRecorderException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoAvailableConfigurationRecorderException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoAvailableConfigurationRecorderException) GoString() string {
 	return s.String()
 }
@@ -21498,12 +23174,20 @@ type NoAvailableDeliveryChannelException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoAvailableDeliveryChannelException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoAvailableDeliveryChannelException) GoString() string {
 	return s.String()
 }
@@ -21554,12 +23238,20 @@ type NoAvailableOrganizationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoAvailableOrganizationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoAvailableOrganizationException) GoString() string {
 	return s.String()
 }
@@ -21610,12 +23302,20 @@ type NoRunningConfigurationRecorderException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoRunningConfigurationRecorderException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoRunningConfigurationRecorderException) GoString() string {
 	return s.String()
 }
@@ -21666,12 +23366,20 @@ type NoSuchBucketException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchBucketException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchBucketException) GoString() string {
 	return s.String()
 }
@@ -21714,8 +23422,8 @@ func (s *NoSuchBucketException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// One or more AWS Config rules in the request are invalid. Verify that the
-// rule names are correct and try again.
+// One or more Config rules in the request are invalid. Verify that the rule
+// names are correct and try again.
 type NoSuchConfigRuleException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -21723,12 +23431,20 @@ type NoSuchConfigRuleException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchConfigRuleException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchConfigRuleException) GoString() string {
 	return s.String()
 }
@@ -21771,7 +23487,7 @@ func (s *NoSuchConfigRuleException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS Config rule that you passed in the filter does not exist.
+// Config rule that you passed in the filter does not exist.
 type NoSuchConfigRuleInConformancePackException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -21779,12 +23495,20 @@ type NoSuchConfigRuleInConformancePackException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchConfigRuleInConformancePackException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchConfigRuleInConformancePackException) GoString() string {
 	return s.String()
 }
@@ -21835,12 +23559,20 @@ type NoSuchConfigurationAggregatorException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchConfigurationAggregatorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchConfigurationAggregatorException) GoString() string {
 	return s.String()
 }
@@ -21891,12 +23623,20 @@ type NoSuchConfigurationRecorderException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchConfigurationRecorderException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchConfigurationRecorderException) GoString() string {
 	return s.String()
 }
@@ -21947,12 +23687,20 @@ type NoSuchConformancePackException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchConformancePackException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchConformancePackException) GoString() string {
 	return s.String()
 }
@@ -22003,12 +23751,20 @@ type NoSuchDeliveryChannelException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchDeliveryChannelException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchDeliveryChannelException) GoString() string {
 	return s.String()
 }
@@ -22059,12 +23815,20 @@ type NoSuchOrganizationConfigRuleException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchOrganizationConfigRuleException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchOrganizationConfigRuleException) GoString() string {
 	return s.String()
 }
@@ -22107,8 +23871,8 @@ func (s *NoSuchOrganizationConfigRuleException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS Config organization conformance pack that you passed in the filter does
-// not exist.
+// Config organization conformance pack that you passed in the filter does not
+// exist.
 //
 // For DeleteOrganizationConformancePack, you tried to delete an organization
 // conformance pack that does not exist.
@@ -22119,12 +23883,20 @@ type NoSuchOrganizationConformancePackException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchOrganizationConformancePackException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchOrganizationConformancePackException) GoString() string {
 	return s.String()
 }
@@ -22167,7 +23939,7 @@ func (s *NoSuchOrganizationConformancePackException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// You specified an AWS Config rule without a remediation configuration.
+// You specified an Config rule without a remediation configuration.
 type NoSuchRemediationConfigurationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22175,12 +23947,20 @@ type NoSuchRemediationConfigurationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchRemediationConfigurationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchRemediationConfigurationException) GoString() string {
 	return s.String()
 }
@@ -22231,12 +24011,20 @@ type NoSuchRemediationExceptionException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchRemediationExceptionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchRemediationExceptionException) GoString() string {
 	return s.String()
 }
@@ -22287,12 +24075,20 @@ type NoSuchRetentionConfigurationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchRetentionConfigurationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoSuchRetentionConfigurationException) GoString() string {
 	return s.String()
 }
@@ -22340,22 +24136,24 @@ func (s *NoSuchRetentionConfigurationException) RequestID() string {
 //
 //    * No permission to call EnableAWSServiceAccess API
 //
-//    * The configuration aggregator cannot be updated because your AWS Organization
-//    management account or the delegated administrator role changed. Delete
-//    this aggregator and create a new one with the current AWS Organization.
+//    * The configuration aggregator cannot be updated because your Amazon Web
+//    Services Organization management account or the delegated administrator
+//    role changed. Delete this aggregator and create a new one with the current
+//    Amazon Web Services Organization.
 //
-//    * The configuration aggregator is associated with a previous AWS Organization
-//    and AWS Config cannot aggregate data with current AWS Organization. Delete
-//    this aggregator and create a new one with the current AWS Organization.
+//    * The configuration aggregator is associated with a previous Amazon Web
+//    Services Organization and Config cannot aggregate data with current Amazon
+//    Web Services Organization. Delete this aggregator and create a new one
+//    with the current Amazon Web Services Organization.
 //
-//    * You are not a registered delegated administrator for AWS Config with
-//    permissions to call ListDelegatedAdministrators API. Ensure that the management
-//    account registers delagated administrator for AWS Config service principle
-//    name before the delegated administrator creates an aggregator.
+//    * You are not a registered delegated administrator for Config with permissions
+//    to call ListDelegatedAdministrators API. Ensure that the management account
+//    registers delagated administrator for Config service principle name before
+//    the delegated administrator creates an aggregator.
 //
-// For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-// Config throws an exception if APIs are called from member accounts. All APIs
-// must be called from organization master account.
+// For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+// throws an exception if APIs are called from member accounts. All APIs must
+// be called from organization master account.
 type OrganizationAccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22363,12 +24161,20 @@ type OrganizationAccessDeniedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationAccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationAccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -22416,25 +24222,33 @@ func (s *OrganizationAccessDeniedException) RequestID() string {
 type OrganizationAggregationSource struct {
 	_ struct{} `type:"structure"`
 
-	// If true, aggregate existing AWS Config regions and future regions.
+	// If true, aggregate existing Config regions and future regions.
 	AllAwsRegions *bool `type:"boolean"`
 
 	// The source regions being aggregated.
 	AwsRegions []*string `min:"1" type:"list"`
 
-	// ARN of the IAM role used to retrieve AWS Organization details associated
-	// with the aggregator account.
+	// ARN of the IAM role used to retrieve Amazon Web Services Organization details
+	// associated with the aggregator account.
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationAggregationSource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationAggregationSource) GoString() string {
 	return s.String()
 }
@@ -22473,8 +24287,8 @@ func (s *OrganizationAggregationSource) SetRoleArn(v string) *OrganizationAggreg
 	return s
 }
 
-// AWS Config resource cannot be created because your organization does not
-// have all features enabled.
+// Config resource cannot be created because your organization does not have
+// all features enabled.
 type OrganizationAllFeaturesNotEnabledException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22482,12 +24296,20 @@ type OrganizationAllFeaturesNotEnabledException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationAllFeaturesNotEnabledException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationAllFeaturesNotEnabledException) GoString() string {
 	return s.String()
 }
@@ -22531,7 +24353,7 @@ func (s *OrganizationAllFeaturesNotEnabledException) RequestID() string {
 }
 
 // An organization config rule that has information about config rules that
-// AWS Config creates in member accounts.
+// Config creates in member accounts.
 type OrganizationConfigRule struct {
 	_ struct{} `type:"structure"`
 
@@ -22558,12 +24380,20 @@ type OrganizationConfigRule struct {
 	OrganizationManagedRuleMetadata *OrganizationManagedRuleMetadata `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConfigRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConfigRule) GoString() string {
 	return s.String()
 }
@@ -22633,7 +24463,7 @@ type OrganizationConfigRuleStatus struct {
 	// the master account deletes OrganizationConfigRule in all the member accounts
 	// and disables service access for config-multiaccountsetup.amazonaws.com.
 	//
-	// AWS Config sets the state of the rule to:
+	// Config sets the state of the rule to:
 	//
 	//    * CREATE_SUCCESSFUL when an organization config rule has been successfully
 	//    created in all the member accounts.
@@ -22663,12 +24493,20 @@ type OrganizationConfigRuleStatus struct {
 	OrganizationRuleStatus *string `type:"string" required:"true" enum:"OrganizationRuleStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConfigRuleStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConfigRuleStatus) GoString() string {
 	return s.String()
 }
@@ -22704,14 +24542,14 @@ func (s *OrganizationConfigRuleStatus) SetOrganizationRuleStatus(v string) *Orga
 }
 
 // An organization conformance pack that has information about conformance packs
-// that AWS Config creates in member accounts.
+// that Config creates in member accounts.
 type OrganizationConformancePack struct {
 	_ struct{} `type:"structure"`
 
 	// A list of ConformancePackInputParameter objects.
 	ConformancePackInputParameters []*ConformancePackInputParameter `type:"list"`
 
-	// Amazon S3 bucket where AWS Config stores conformance pack templates.
+	// The name of the Amazon S3 bucket where Config stores conformance pack templates.
 	//
 	// This field is optional.
 	DeliveryS3Bucket *string `type:"string"`
@@ -22741,12 +24579,20 @@ type OrganizationConformancePack struct {
 	OrganizationConformancePackName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConformancePack) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConformancePack) GoString() string {
 	return s.String()
 }
@@ -22828,7 +24674,7 @@ type OrganizationConformancePackDetailedStatus struct {
 	// status is deleted when the master account deletes OrganizationConformancePack
 	// and disables service access for config-multiaccountsetup.amazonaws.com.
 	//
-	// AWS Config sets the state of the conformance pack to:
+	// Config sets the state of the conformance pack to:
 	//
 	//    * CREATE_SUCCESSFUL when conformance pack has been created in the member
 	//    account.
@@ -22861,12 +24707,20 @@ type OrganizationConformancePackDetailedStatus struct {
 	Status *string `type:"string" required:"true" enum:"OrganizationResourceDetailedStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConformancePackDetailedStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConformancePackDetailedStatus) GoString() string {
 	return s.String()
 }
@@ -22936,7 +24790,7 @@ type OrganizationConformancePackStatus struct {
 	// Conformance pack status is deleted when the master account deletes OrganizationConformancePack
 	// in all the member accounts and disables service access for config-multiaccountsetup.amazonaws.com.
 	//
-	// AWS Config sets the state of the conformance pack to:
+	// Config sets the state of the conformance pack to:
 	//
 	//    * CREATE_SUCCESSFUL when an organization conformance pack has been successfully
 	//    created in all the member accounts.
@@ -22969,12 +24823,20 @@ type OrganizationConformancePackStatus struct {
 	Status *string `type:"string" required:"true" enum:"OrganizationResourceStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConformancePackStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConformancePackStatus) GoString() string {
 	return s.String()
 }
@@ -23017,12 +24879,20 @@ type OrganizationConformancePackTemplateValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConformancePackTemplateValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationConformancePackTemplateValidationException) GoString() string {
 	return s.String()
 }
@@ -23066,10 +24936,10 @@ func (s *OrganizationConformancePackTemplateValidationException) RequestID() str
 }
 
 // An object that specifies organization custom rule metadata such as resource
-// type, resource ID of AWS resource, Lamdba function ARN, and organization
-// trigger types that trigger AWS Config to evaluate your AWS resources against
-// a rule. It also provides the frequency with which you want AWS Config to
-// run evaluations for the rule if the trigger type is periodic.
+// type, resource ID of Amazon Web Services resource, Lambda function ARN, and
+// organization trigger types that trigger Config to evaluate your Amazon Web
+// Services resources against a rule. It also provides the frequency with which
+// you want Config to run evaluations for the rule if the trigger type is periodic.
 type OrganizationCustomRuleMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -23085,25 +24955,25 @@ type OrganizationCustomRuleMetadata struct {
 	// LambdaFunctionArn is a required field
 	LambdaFunctionArn *string `min:"1" type:"string" required:"true"`
 
-	// The maximum frequency with which AWS Config runs evaluations for a rule.
-	// Your custom rule is triggered when AWS Config delivers the configuration
-	// snapshot. For more information, see ConfigSnapshotDeliveryProperties.
+	// The maximum frequency with which Config runs evaluations for a rule. Your
+	// custom rule is triggered when Config delivers the configuration snapshot.
+	// For more information, see ConfigSnapshotDeliveryProperties.
 	//
 	// By default, rules with a periodic trigger are evaluated every 24 hours. To
 	// change the frequency, specify a valid value for the MaximumExecutionFrequency
 	// parameter.
 	MaximumExecutionFrequency *string `type:"string" enum:"MaximumExecutionFrequency"`
 
-	// The type of notification that triggers AWS Config to run an evaluation for
-	// a rule. You can specify the following notification types:
+	// The type of notification that triggers Config to run an evaluation for a
+	// rule. You can specify the following notification types:
 	//
-	//    * ConfigurationItemChangeNotification - Triggers an evaluation when AWS
-	//    Config delivers a configuration item as a result of a resource change.
+	//    * ConfigurationItemChangeNotification - Triggers an evaluation when Config
+	//    delivers a configuration item as a result of a resource change.
 	//
 	//    * OversizedConfigurationItemChangeNotification - Triggers an evaluation
-	//    when AWS Config delivers an oversized configuration item. AWS Config may
-	//    generate this notification type when a resource changes and the notification
-	//    exceeds the maximum size allowed by Amazon SNS.
+	//    when Config delivers an oversized configuration item. Config may generate
+	//    this notification type when a resource changes and the notification exceeds
+	//    the maximum size allowed by Amazon SNS.
 	//
 	//    * ScheduledNotification - Triggers a periodic evaluation at the frequency
 	//    specified for MaximumExecutionFrequency.
@@ -23111,10 +24981,10 @@ type OrganizationCustomRuleMetadata struct {
 	// OrganizationConfigRuleTriggerTypes is a required field
 	OrganizationConfigRuleTriggerTypes []*string `type:"list" required:"true"`
 
-	// The ID of the AWS resource that was evaluated.
+	// The ID of the Amazon Web Services resource that was evaluated.
 	ResourceIdScope *string `min:"1" type:"string"`
 
-	// The type of the AWS resource that was evaluated.
+	// The type of the Amazon Web Services resource that was evaluated.
 	ResourceTypesScope []*string `type:"list"`
 
 	// One part of a key-value pair that make up a tag. A key is a general label
@@ -23126,12 +24996,20 @@ type OrganizationCustomRuleMetadata struct {
 	TagValueScope *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationCustomRuleMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationCustomRuleMetadata) GoString() string {
 	return s.String()
 }
@@ -23222,9 +25100,9 @@ func (s *OrganizationCustomRuleMetadata) SetTagValueScope(v string) *Organizatio
 }
 
 // An object that specifies organization managed rule metadata such as resource
-// type and ID of AWS resource along with the rule identifier. It also provides
-// the frequency with which you want AWS Config to run evaluations for the rule
-// if the trigger type is periodic.
+// type and ID of Amazon Web Services resource along with the rule identifier.
+// It also provides the frequency with which you want Config to run evaluations
+// for the rule if the trigger type is periodic.
 type OrganizationManagedRuleMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -23235,23 +25113,23 @@ type OrganizationManagedRuleMetadata struct {
 	// function.
 	InputParameters *string `min:"1" type:"string"`
 
-	// The maximum frequency with which AWS Config runs evaluations for a rule.
-	// You are using an AWS managed rule that is triggered at a periodic frequency.
+	// The maximum frequency with which Config runs evaluations for a rule. You
+	// are using an Config managed rule that is triggered at a periodic frequency.
 	//
 	// By default, rules with a periodic trigger are evaluated every 24 hours. To
 	// change the frequency, specify a valid value for the MaximumExecutionFrequency
 	// parameter.
 	MaximumExecutionFrequency *string `type:"string" enum:"MaximumExecutionFrequency"`
 
-	// The ID of the AWS resource that was evaluated.
+	// The ID of the Amazon Web Services resource that was evaluated.
 	ResourceIdScope *string `min:"1" type:"string"`
 
-	// The type of the AWS resource that was evaluated.
+	// The type of the Amazon Web Services resource that was evaluated.
 	ResourceTypesScope []*string `type:"list"`
 
 	// For organization config managed rules, a predefined identifier from a list.
 	// For example, IAM_PASSWORD_POLICY is a managed rule. To reference a managed
-	// rule, see Using AWS Managed Config Rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
+	// rule, see Using Config managed rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
 	//
 	// RuleIdentifier is a required field
 	RuleIdentifier *string `min:"1" type:"string" required:"true"`
@@ -23265,12 +25143,20 @@ type OrganizationManagedRuleMetadata struct {
 	TagValueScope *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationManagedRuleMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationManagedRuleMetadata) GoString() string {
 	return s.String()
 }
@@ -23367,7 +25253,7 @@ type OrganizationResourceDetailedStatusFilters struct {
 	// status is deleted when the master account deletes OrganizationConformancePack
 	// and disables service access for config-multiaccountsetup.amazonaws.com.
 	//
-	// AWS Config sets the state of the conformance pack to:
+	// Config sets the state of the conformance pack to:
 	//
 	//    * CREATE_SUCCESSFUL when conformance pack has been created in the member
 	//    account.
@@ -23398,12 +25284,20 @@ type OrganizationResourceDetailedStatusFilters struct {
 	Status *string `type:"string" enum:"OrganizationResourceDetailedStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationResourceDetailedStatusFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrganizationResourceDetailedStatusFilters) GoString() string {
 	return s.String()
 }
@@ -23428,12 +25322,20 @@ type OversizedConfigurationItemException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OversizedConfigurationItemException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OversizedConfigurationItemException) GoString() string {
 	return s.String()
 }
@@ -23488,12 +25390,20 @@ type PendingAggregationRequest struct {
 	RequesterAwsRegion *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PendingAggregationRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PendingAggregationRequest) GoString() string {
 	return s.String()
 }
@@ -23527,12 +25437,20 @@ type PutAggregationAuthorizationInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAggregationAuthorizationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAggregationAuthorizationInput) GoString() string {
 	return s.String()
 }
@@ -23591,12 +25509,20 @@ type PutAggregationAuthorizationOutput struct {
 	AggregationAuthorization *AggregationAuthorization `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAggregationAuthorizationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAggregationAuthorizationOutput) GoString() string {
 	return s.String()
 }
@@ -23619,12 +25545,20 @@ type PutConfigRuleInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigRuleInput) GoString() string {
 	return s.String()
 }
@@ -23673,12 +25607,20 @@ type PutConfigRuleOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigRuleOutput) GoString() string {
 	return s.String()
 }
@@ -23701,12 +25643,20 @@ type PutConfigurationAggregatorInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationAggregatorInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationAggregatorInput) GoString() string {
 	return s.String()
 }
@@ -23783,12 +25733,20 @@ type PutConfigurationAggregatorOutput struct {
 	ConfigurationAggregator *ConfigurationAggregator `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationAggregatorOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationAggregatorOutput) GoString() string {
 	return s.String()
 }
@@ -23810,12 +25768,20 @@ type PutConfigurationRecorderInput struct {
 	ConfigurationRecorder *ConfigurationRecorder `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationRecorderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationRecorderInput) GoString() string {
 	return s.String()
 }
@@ -23848,12 +25814,20 @@ type PutConfigurationRecorderOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationRecorderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConfigurationRecorderOutput) GoString() string {
 	return s.String()
 }
@@ -23869,7 +25843,7 @@ type PutConformancePackInput struct {
 	// ConformancePackName is a required field
 	ConformancePackName *string `min:"1" type:"string" required:"true"`
 
-	// Amazon S3 bucket where AWS Config stores conformance pack templates.
+	// The name of the Amazon S3 bucket where Config stores conformance pack templates.
 	//
 	// This field is optional.
 	DeliveryS3Bucket *string `type:"string"`
@@ -23895,12 +25869,20 @@ type PutConformancePackInput struct {
 	TemplateS3Uri *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConformancePackInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConformancePackInput) GoString() string {
 	return s.String()
 }
@@ -23980,12 +25962,20 @@ type PutConformancePackOutput struct {
 	ConformancePackArn *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConformancePackOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutConformancePackOutput) GoString() string {
 	return s.String()
 }
@@ -24007,12 +25997,20 @@ type PutDeliveryChannelInput struct {
 	DeliveryChannel *DeliveryChannel `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDeliveryChannelInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDeliveryChannelInput) GoString() string {
 	return s.String()
 }
@@ -24045,12 +26043,20 @@ type PutDeliveryChannelOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDeliveryChannelOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutDeliveryChannelOutput) GoString() string {
 	return s.String()
 }
@@ -24058,33 +26064,41 @@ func (s PutDeliveryChannelOutput) GoString() string {
 type PutEvaluationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The assessments that the AWS Lambda function performs. Each evaluation identifies
-	// an AWS resource and indicates whether it complies with the AWS Config rule
-	// that invokes the AWS Lambda function.
+	// The assessments that the Lambda function performs. Each evaluation identifies
+	// an Amazon Web Services resource and indicates whether it complies with the
+	// Config rule that invokes the Lambda function.
 	Evaluations []*Evaluation `type:"list"`
 
-	// An encrypted token that associates an evaluation with an AWS Config rule.
-	// Identifies the rule and the event that triggered the evaluation.
+	// An encrypted token that associates an evaluation with an Config rule. Identifies
+	// the rule and the event that triggered the evaluation.
 	//
 	// ResultToken is a required field
 	ResultToken *string `type:"string" required:"true"`
 
 	// Use this parameter to specify a test run for PutEvaluations. You can verify
-	// whether your AWS Lambda function will deliver evaluation results to AWS Config.
-	// No updates occur to your existing evaluations, and evaluation results are
-	// not sent to AWS Config.
+	// whether your Lambda function will deliver evaluation results to Config. No
+	// updates occur to your existing evaluations, and evaluation results are not
+	// sent to Config.
 	//
 	// When TestMode is true, PutEvaluations doesn't require a valid value for the
 	// ResultToken parameter, but the value cannot be null.
 	TestMode *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEvaluationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEvaluationsInput) GoString() string {
 	return s.String()
 }
@@ -24137,12 +26151,20 @@ type PutEvaluationsOutput struct {
 	FailedEvaluations []*Evaluation `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEvaluationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutEvaluationsOutput) GoString() string {
 	return s.String()
 }
@@ -24156,7 +26178,7 @@ func (s *PutEvaluationsOutput) SetFailedEvaluations(v []*Evaluation) *PutEvaluat
 type PutExternalEvaluationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS Config rule.
+	// The name of the Config rule.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
@@ -24167,12 +26189,20 @@ type PutExternalEvaluationInput struct {
 	ExternalEvaluation *ExternalEvaluation `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutExternalEvaluationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutExternalEvaluationInput) GoString() string {
 	return s.String()
 }
@@ -24217,12 +26247,20 @@ type PutExternalEvaluationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutExternalEvaluationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutExternalEvaluationOutput) GoString() string {
 	return s.String()
 }
@@ -24246,12 +26284,20 @@ type PutOrganizationConfigRuleInput struct {
 	OrganizationManagedRuleMetadata *OrganizationManagedRuleMetadata `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutOrganizationConfigRuleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutOrganizationConfigRuleInput) GoString() string {
 	return s.String()
 }
@@ -24313,12 +26359,20 @@ type PutOrganizationConfigRuleOutput struct {
 	OrganizationConfigRuleArn *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutOrganizationConfigRuleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutOrganizationConfigRuleOutput) GoString() string {
 	return s.String()
 }
@@ -24335,7 +26389,7 @@ type PutOrganizationConformancePackInput struct {
 	// A list of ConformancePackInputParameter objects.
 	ConformancePackInputParameters []*ConformancePackInputParameter `type:"list"`
 
-	// Amazon S3 bucket where AWS Config stores conformance pack templates.
+	// The name of the Amazon S3 bucket where Config stores conformance pack templates.
 	//
 	// This field is optional. If used, it must be prefixed with awsconfigconforms.
 	DeliveryS3Bucket *string `type:"string"`
@@ -24345,8 +26399,8 @@ type PutOrganizationConformancePackInput struct {
 	// This field is optional.
 	DeliveryS3KeyPrefix *string `type:"string"`
 
-	// A list of AWS accounts to be excluded from an organization conformance pack
-	// while deploying a conformance pack.
+	// A list of Amazon Web Services accounts to be excluded from an organization
+	// conformance pack while deploying a conformance pack.
 	ExcludedAccounts []*string `type:"list"`
 
 	// Name of the organization conformance pack you want to create.
@@ -24366,12 +26420,20 @@ type PutOrganizationConformancePackInput struct {
 	TemplateS3Uri *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutOrganizationConformancePackInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutOrganizationConformancePackInput) GoString() string {
 	return s.String()
 }
@@ -24457,12 +26519,20 @@ type PutOrganizationConformancePackOutput struct {
 	OrganizationConformancePackArn *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutOrganizationConformancePackOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutOrganizationConformancePackOutput) GoString() string {
 	return s.String()
 }
@@ -24482,12 +26552,20 @@ type PutRemediationConfigurationsInput struct {
 	RemediationConfigurations []*RemediationConfiguration `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRemediationConfigurationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRemediationConfigurationsInput) GoString() string {
 	return s.String()
 }
@@ -24528,12 +26606,20 @@ type PutRemediationConfigurationsOutput struct {
 	FailedBatches []*FailedRemediationBatch `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRemediationConfigurationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRemediationConfigurationsOutput) GoString() string {
 	return s.String()
 }
@@ -24547,8 +26633,7 @@ func (s *PutRemediationConfigurationsOutput) SetFailedBatches(v []*FailedRemedia
 type PutRemediationExceptionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS Config rule for which you want to create remediation
-	// exception.
+	// The name of the Config rule for which you want to create remediation exception.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
@@ -24560,19 +26645,27 @@ type PutRemediationExceptionsInput struct {
 	Message *string `min:"1" type:"string"`
 
 	// An exception list of resource exception keys to be processed with the current
-	// request. AWS Config adds exception for each resource key. For example, AWS
-	// Config adds 3 exceptions for 3 resource keys.
+	// request. Config adds exception for each resource key. For example, Config
+	// adds 3 exceptions for 3 resource keys.
 	//
 	// ResourceKeys is a required field
 	ResourceKeys []*RemediationExceptionResourceKey `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRemediationExceptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRemediationExceptionsInput) GoString() string {
 	return s.String()
 }
@@ -24644,12 +26737,20 @@ type PutRemediationExceptionsOutput struct {
 	FailedBatches []*FailedRemediationExceptionBatch `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRemediationExceptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRemediationExceptionsOutput) GoString() string {
 	return s.String()
 }
@@ -24664,7 +26765,7 @@ type PutResourceConfigInput struct {
 	_ struct{} `type:"structure"`
 
 	// The configuration object of the resource in valid JSON format. It must match
-	// the schema registered with AWS CloudFormation.
+	// the schema registered with CloudFormation.
 	//
 	// The configuration JSON must not exceed 64 KB.
 	//
@@ -24680,16 +26781,16 @@ type PutResourceConfigInput struct {
 	ResourceName *string `type:"string"`
 
 	// The type of the resource. The custom resource type must be registered with
-	// AWS CloudFormation.
+	// CloudFormation.
 	//
-	// You cannot use the organization names “aws”, “amzn”, “amazon”,
-	// “alexa”, “custom” with custom resource types. It is the first part
-	// of the ResourceType up to the first ::.
+	// You cannot use the organization names “amzn”, “amazon”, “alexa”,
+	// “custom” with custom resource types. It is the first part of the ResourceType
+	// up to the first ::.
 	//
 	// ResourceType is a required field
 	ResourceType *string `min:"1" type:"string" required:"true"`
 
-	// Version of the schema registered for the ResourceType in AWS CloudFormation.
+	// Version of the schema registered for the ResourceType in CloudFormation.
 	//
 	// SchemaVersionId is a required field
 	SchemaVersionId *string `min:"1" type:"string" required:"true"`
@@ -24698,12 +26799,20 @@ type PutResourceConfigInput struct {
 	Tags map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResourceConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResourceConfigInput) GoString() string {
 	return s.String()
 }
@@ -24779,12 +26888,20 @@ type PutResourceConfigOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResourceConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutResourceConfigOutput) GoString() string {
 	return s.String()
 }
@@ -24792,7 +26909,7 @@ func (s PutResourceConfigOutput) GoString() string {
 type PutRetentionConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Number of days AWS Config stores your historical information.
+	// Number of days Config stores your historical information.
 	//
 	// Currently, only applicable to the configuration item history.
 	//
@@ -24800,12 +26917,20 @@ type PutRetentionConfigurationInput struct {
 	RetentionPeriodInDays *int64 `min:"30" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRetentionConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRetentionConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -24839,12 +26964,20 @@ type PutRetentionConfigurationOutput struct {
 	RetentionConfiguration *RetentionConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRetentionConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutRetentionConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -24871,12 +27004,20 @@ type PutStoredQueryInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutStoredQueryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutStoredQueryInput) GoString() string {
 	return s.String()
 }
@@ -24928,12 +27069,20 @@ type PutStoredQueryOutput struct {
 	QueryArn *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutStoredQueryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutStoredQueryOutput) GoString() string {
 	return s.String()
 }
@@ -24952,12 +27101,20 @@ type QueryInfo struct {
 	SelectFields []*FieldInfo `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryInfo) GoString() string {
 	return s.String()
 }
@@ -24968,84 +27125,91 @@ func (s *QueryInfo) SetSelectFields(v []*FieldInfo) *QueryInfo {
 	return s
 }
 
-// Specifies the types of AWS resource for which AWS Config records configuration
-// changes.
+// Specifies the types of Amazon Web Services resource for which Config records
+// configuration changes.
 //
 // In the recording group, you specify whether all supported types or specific
 // types of resources are recorded.
 //
-// By default, AWS Config records configuration changes for all supported types
-// of regional resources that AWS Config discovers in the region in which it
-// is running. Regional resources are tied to a region and can be used only
-// in that region. Examples of regional resources are EC2 instances and EBS
-// volumes.
+// By default, Config records configuration changes for all supported types
+// of regional resources that Config discovers in the region in which it is
+// running. Regional resources are tied to a region and can be used only in
+// that region. Examples of regional resources are EC2 instances and EBS volumes.
 //
-// You can also have AWS Config record configuration changes for supported types
+// You can also have Config record configuration changes for supported types
 // of global resources (for example, IAM resources). Global resources are not
 // tied to an individual region and can be used in all regions.
 //
 // The configuration details for any global resource are the same in all regions.
-// If you customize AWS Config in multiple regions to record global resources,
-// it will create multiple configuration items each time a global resource changes:
+// If you customize Config in multiple regions to record global resources, it
+// will create multiple configuration items each time a global resource changes:
 // one configuration item for each region. These configuration items will contain
 // identical data. To prevent duplicate configuration items, you should consider
-// customizing AWS Config in only one region to record global resources, unless
+// customizing Config in only one region to record global resources, unless
 // you want the configuration items to be available in multiple regions.
 //
-// If you don't want AWS Config to record all resources, you can specify which
-// types of resources it will record with the resourceTypes parameter.
+// If you don't want Config to record all resources, you can specify which types
+// of resources it will record with the resourceTypes parameter.
 //
 // For a list of supported resource types, see Supported Resource Types (https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
 //
-// For more information, see Selecting Which Resources AWS Config Records (https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html).
+// For more information, see Selecting Which Resources Config Records (https://docs.aws.amazon.com/config/latest/developerguide/select-resources.html).
 type RecordingGroup struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether AWS Config records configuration changes for every supported
+	// Specifies whether Config records configuration changes for every supported
 	// type of regional resource.
 	//
-	// If you set this option to true, when AWS Config adds support for a new type
-	// of regional resource, it starts recording resources of that type automatically.
+	// If you set this option to true, when Config adds support for a new type of
+	// regional resource, it starts recording resources of that type automatically.
 	//
 	// If you set this option to true, you cannot enumerate a list of resourceTypes.
 	AllSupported *bool `locationName:"allSupported" type:"boolean"`
 
-	// Specifies whether AWS Config includes all supported types of global resources
+	// Specifies whether Config includes all supported types of global resources
 	// (for example, IAM resources) with the resources that it records.
 	//
 	// Before you can set this option to true, you must set the allSupported option
 	// to true.
 	//
-	// If you set this option to true, when AWS Config adds support for a new type
-	// of global resource, it starts recording resources of that type automatically.
+	// If you set this option to true, when Config adds support for a new type of
+	// global resource, it starts recording resources of that type automatically.
 	//
 	// The configuration details for any global resource are the same in all regions.
 	// To prevent duplicate configuration items, you should consider customizing
-	// AWS Config in only one region to record global resources.
+	// Config in only one region to record global resources.
 	IncludeGlobalResourceTypes *bool `locationName:"includeGlobalResourceTypes" type:"boolean"`
 
-	// A comma-separated list that specifies the types of AWS resources for which
-	// AWS Config records configuration changes (for example, AWS::EC2::Instance
+	// A comma-separated list that specifies the types of Amazon Web Services resources
+	// for which Config records configuration changes (for example, AWS::EC2::Instance
 	// or AWS::CloudTrail::Trail).
 	//
 	// To record all configuration changes, you must set the allSupported option
 	// to true.
 	//
-	// If you set this option to false, when AWS Config adds support for a new type
+	// If you set this option to false, when Config adds support for a new type
 	// of resource, it will not record resources of that type unless you manually
 	// add that type to your recording group.
 	//
 	// For a list of valid resourceTypes values, see the resourceType Value column
-	// in Supported AWS Resource Types (https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
+	// in Supported Amazon Web Services resource Types (https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
 	ResourceTypes []*string `locationName:"resourceTypes" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecordingGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecordingGroup) GoString() string {
 	return s.String()
 }
@@ -25085,12 +27249,20 @@ type Relationship struct {
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Relationship) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Relationship) GoString() string {
 	return s.String()
 }
@@ -25131,7 +27303,7 @@ type RemediationConfiguration struct {
 	// The remediation is triggered automatically.
 	Automatic *bool `type:"boolean"`
 
-	// The name of the AWS Config rule.
+	// The name of the Config rule.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
@@ -25146,8 +27318,8 @@ type RemediationConfiguration struct {
 	// select a number, the default is 5.
 	//
 	// For example, if you specify MaximumAutomaticAttempts as 5 with RetryAttemptSeconds
-	// as 50 seconds, AWS Config will put a RemediationException on your behalf
-	// for the failing resource after the 5th failed attempt within 50 seconds.
+	// as 50 seconds, Config will put a RemediationException on your behalf for
+	// the failing resource after the 5th failed attempt within 50 seconds.
 	MaximumAutomaticAttempts *int64 `min:"1" type:"integer"`
 
 	// An object of the RemediationParameterValue.
@@ -25156,11 +27328,11 @@ type RemediationConfiguration struct {
 	// The type of a resource.
 	ResourceType *string `type:"string"`
 
-	// Maximum time in seconds that AWS Config runs auto-remediation. If you do
-	// not select a number, the default is 60 seconds.
+	// Maximum time in seconds that Config runs auto-remediation. If you do not
+	// select a number, the default is 60 seconds.
 	//
 	// For example, if you specify RetryAttemptSeconds as 50 seconds and MaximumAutomaticAttempts
-	// as 5, AWS Config will run auto-remediations 5 times within 50 seconds before
+	// as 5, Config will run auto-remediations 5 times within 50 seconds before
 	// throwing an exception.
 	RetryAttemptSeconds *int64 `min:"1" type:"long"`
 
@@ -25181,12 +27353,20 @@ type RemediationConfiguration struct {
 	TargetVersion *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationConfiguration) GoString() string {
 	return s.String()
 }
@@ -25321,7 +27501,7 @@ func (s *RemediationConfiguration) SetTargetVersion(v string) *RemediationConfig
 type RemediationException struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS Config rule.
+	// The name of the Config rule.
 	//
 	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
@@ -25343,12 +27523,20 @@ type RemediationException struct {
 	ResourceType *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationException) GoString() string {
 	return s.String()
 }
@@ -25383,7 +27571,7 @@ func (s *RemediationException) SetResourceType(v string) *RemediationException {
 	return s
 }
 
-// The details that identify a resource within AWS Config, including the resource
+// The details that identify a resource within Config, including the resource
 // type and resource ID.
 type RemediationExceptionResourceKey struct {
 	_ struct{} `type:"structure"`
@@ -25395,12 +27583,20 @@ type RemediationExceptionResourceKey struct {
 	ResourceType *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationExceptionResourceKey) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationExceptionResourceKey) GoString() string {
 	return s.String()
 }
@@ -25444,7 +27640,7 @@ type RemediationExecutionStatus struct {
 	// The time when the remediation execution was last updated.
 	LastUpdatedTime *time.Time `type:"timestamp"`
 
-	// The details that identify a resource within AWS Config, including the resource
+	// The details that identify a resource within Config, including the resource
 	// type and resource ID.
 	ResourceKey *ResourceKey `type:"structure"`
 
@@ -25455,12 +27651,20 @@ type RemediationExecutionStatus struct {
 	StepDetails []*RemediationExecutionStep `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationExecutionStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationExecutionStatus) GoString() string {
 	return s.String()
 }
@@ -25515,12 +27719,20 @@ type RemediationExecutionStep struct {
 	StopTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationExecutionStep) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationExecutionStep) GoString() string {
 	return s.String()
 }
@@ -25555,8 +27767,8 @@ func (s *RemediationExecutionStep) SetStopTime(v time.Time) *RemediationExecutio
 	return s
 }
 
-// Remediation action is in progress. You can either cancel execution in AWS
-// Systems Manager or wait and try again later.
+// Remediation action is in progress. You can either cancel execution in Amazon
+// Web Services Systems Manager or wait and try again later.
 type RemediationInProgressException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -25564,12 +27776,20 @@ type RemediationInProgressException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationInProgressException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationInProgressException) GoString() string {
 	return s.String()
 }
@@ -25624,12 +27844,20 @@ type RemediationParameterValue struct {
 	StaticValue *StaticValue `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationParameterValue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemediationParameterValue) GoString() string {
 	return s.String()
 }
@@ -25675,12 +27903,20 @@ type ResourceConcurrentModificationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceConcurrentModificationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceConcurrentModificationException) GoString() string {
 	return s.String()
 }
@@ -25734,12 +27970,20 @@ type ResourceCount struct {
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceCount) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceCount) GoString() string {
 	return s.String()
 }
@@ -25766,16 +28010,24 @@ type ResourceCountFilters struct {
 	// The region where the account is located.
 	Region *string `min:"1" type:"string"`
 
-	// The type of the AWS resource.
+	// The type of the Amazon Web Services resource.
 	ResourceType *string `type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceCountFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceCountFilters) GoString() string {
 	return s.String()
 }
@@ -25829,12 +28081,20 @@ type ResourceFilters struct {
 	ResourceName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceFilters) GoString() string {
 	return s.String()
 }
@@ -25879,7 +28139,7 @@ func (s *ResourceFilters) SetResourceName(v string) *ResourceFilters {
 	return s
 }
 
-// The details that identify a resource that is discovered by AWS Config, including
+// The details that identify a resource that is discovered by Config, including
 // the resource type, ID, and (if available) the custom resource name.
 type ResourceIdentifier struct {
 	_ struct{} `type:"structure"`
@@ -25897,12 +28157,20 @@ type ResourceIdentifier struct {
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceIdentifier) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceIdentifier) GoString() string {
 	return s.String()
 }
@@ -25933,16 +28201,15 @@ func (s *ResourceIdentifier) SetResourceType(v string) *ResourceIdentifier {
 
 // You see this exception in the following cases:
 //
-//    * For DeleteConfigRule, AWS Config is deleting this rule. Try your request
+//    * For DeleteConfigRule, Config is deleting this rule. Try your request
 //    again later.
 //
 //    * For DeleteConfigRule, the rule is deleting your evaluation results.
 //    Try your request again later.
 //
 //    * For DeleteConfigRule, a remediation action is associated with the rule
-//    and AWS Config cannot delete this rule. Delete the remediation action
-//    associated with the rule before deleting the rule and try your request
-//    again later.
+//    and Config cannot delete this rule. Delete the remediation action associated
+//    with the rule before deleting the rule and try your request again later.
 //
 //    * For PutConfigOrganizationRule, organization config rule deletion is
 //    in progress. Try your request again later.
@@ -25963,12 +28230,20 @@ type ResourceInUseException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) GoString() string {
 	return s.String()
 }
@@ -26011,7 +28286,7 @@ func (s *ResourceInUseException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The details that identify a resource within AWS Config, including the resource
+// The details that identify a resource within Config, including the resource
 // type and resource ID.
 type ResourceKey struct {
 	_ struct{} `type:"structure"`
@@ -26027,12 +28302,20 @@ type ResourceKey struct {
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceKey) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceKey) GoString() string {
 	return s.String()
 }
@@ -26076,12 +28359,20 @@ type ResourceNotDiscoveredException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotDiscoveredException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotDiscoveredException) GoString() string {
 	return s.String()
 }
@@ -26132,12 +28423,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -26190,12 +28489,20 @@ type ResourceValue struct {
 	Value *string `type:"string" required:"true" enum:"ResourceValueType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceValue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceValue) GoString() string {
 	return s.String()
 }
@@ -26221,7 +28528,7 @@ func (s *ResourceValue) SetValue(v string) *ResourceValue {
 
 // An object with the name of the retention configuration and the retention
 // period in days. The object stores the configuration for data retention in
-// AWS Config.
+// Config.
 type RetentionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -26230,7 +28537,7 @@ type RetentionConfiguration struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Number of days AWS Config stores your historical information.
+	// Number of days Config stores your historical information.
 	//
 	// Currently, only applicable to the configuration item history.
 	//
@@ -26238,12 +28545,20 @@ type RetentionConfiguration struct {
 	RetentionPeriodInDays *int64 `min:"30" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetentionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetentionConfiguration) GoString() string {
 	return s.String()
 }
@@ -26260,41 +28575,49 @@ func (s *RetentionConfiguration) SetRetentionPeriodInDays(v int64) *RetentionCon
 	return s
 }
 
-// Defines which resources trigger an evaluation for an AWS Config rule. The
-// scope can include one or more resource types, a combination of a tag key
-// and value, or a combination of one resource type and one resource ID. Specify
-// a scope to constrain which resources trigger an evaluation for a rule. Otherwise,
+// Defines which resources trigger an evaluation for an Config rule. The scope
+// can include one or more resource types, a combination of a tag key and value,
+// or a combination of one resource type and one resource ID. Specify a scope
+// to constrain which resources trigger an evaluation for a rule. Otherwise,
 // evaluations for the rule are triggered when any resource in your recording
 // group changes in configuration.
 type Scope struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the only AWS resource that you want to trigger an evaluation for
-	// the rule. If you specify a resource ID, you must specify one resource type
-	// for ComplianceResourceTypes.
+	// The ID of the only Amazon Web Services resource that you want to trigger
+	// an evaluation for the rule. If you specify a resource ID, you must specify
+	// one resource type for ComplianceResourceTypes.
 	ComplianceResourceId *string `min:"1" type:"string"`
 
-	// The resource types of only those AWS resources that you want to trigger an
-	// evaluation for the rule. You can only specify one type if you also specify
-	// a resource ID for ComplianceResourceId.
+	// The resource types of only those Amazon Web Services resources that you want
+	// to trigger an evaluation for the rule. You can only specify one type if you
+	// also specify a resource ID for ComplianceResourceId.
 	ComplianceResourceTypes []*string `type:"list"`
 
-	// The tag key that is applied to only those AWS resources that you want to
-	// trigger an evaluation for the rule.
+	// The tag key that is applied to only those Amazon Web Services resources that
+	// you want to trigger an evaluation for the rule.
 	TagKey *string `min:"1" type:"string"`
 
-	// The tag value applied to only those AWS resources that you want to trigger
-	// an evaluation for the rule. If you specify a value for TagValue, you must
-	// also specify a value for TagKey.
+	// The tag value applied to only those Amazon Web Services resources that you
+	// want to trigger an evaluation for the rule. If you specify a value for TagValue,
+	// you must also specify a value for TagKey.
 	TagValue *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Scope) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Scope) GoString() string {
 	return s.String()
 }
@@ -26358,8 +28681,8 @@ type SelectAggregateResourceConfigInput struct {
 	// The maximum number of query results returned on each page.
 	Limit *int64 `type:"integer"`
 
-	// The maximum number of query results returned on each page. AWS Config also
-	// allows the Limit request parameter.
+	// The maximum number of query results returned on each page. Config also allows
+	// the Limit request parameter.
 	MaxResults *int64 `type:"integer"`
 
 	// The nextToken string returned in a previous request that you use to request
@@ -26367,12 +28690,20 @@ type SelectAggregateResourceConfigInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelectAggregateResourceConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelectAggregateResourceConfigInput) GoString() string {
 	return s.String()
 }
@@ -26443,12 +28774,20 @@ type SelectAggregateResourceConfigOutput struct {
 	Results []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelectAggregateResourceConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelectAggregateResourceConfigOutput) GoString() string {
 	return s.String()
 }
@@ -26487,12 +28826,20 @@ type SelectResourceConfigInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelectResourceConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelectResourceConfigInput) GoString() string {
 	return s.String()
 }
@@ -26545,12 +28892,20 @@ type SelectResourceConfigOutput struct {
 	Results []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelectResourceConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelectResourceConfigOutput) GoString() string {
 	return s.String()
 }
@@ -26573,37 +28928,47 @@ func (s *SelectResourceConfigOutput) SetResults(v []*string) *SelectResourceConf
 	return s
 }
 
-// Provides the AWS Config rule owner (AWS or customer), the rule identifier,
-// and the events that trigger the evaluation of your AWS resources.
+// Provides the Config rule owner (Amazon Web Services or customer), the rule
+// identifier, and the events that trigger the evaluation of your Amazon Web
+// Services resources.
 type Source struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether AWS or the customer owns and manages the AWS Config rule.
+	// Indicates whether Amazon Web Services or the customer owns and manages the
+	// Config rule.
 	//
 	// Owner is a required field
 	Owner *string `type:"string" required:"true" enum:"Owner"`
 
-	// Provides the source and type of the event that causes AWS Config to evaluate
-	// your AWS resources.
+	// Provides the source and type of the event that causes Config to evaluate
+	// your Amazon Web Services resources.
 	SourceDetails []*SourceDetail `type:"list"`
 
-	// For AWS Config managed rules, a predefined identifier from a list. For example,
+	// For Config managed rules, a predefined identifier from a list. For example,
 	// IAM_PASSWORD_POLICY is a managed rule. To reference a managed rule, see Using
-	// AWS Managed Config Rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
+	// Config managed rules (https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
 	//
 	// For custom rules, the identifier is the Amazon Resource Name (ARN) of the
-	// rule's AWS Lambda function, such as arn:aws:lambda:us-east-2:123456789012:function:custom_rule_name.
+	// rule's Lambda function, such as arn:aws:lambda:us-east-2:123456789012:function:custom_rule_name.
 	//
 	// SourceIdentifier is a required field
 	SourceIdentifier *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Source) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Source) GoString() string {
 	return s.String()
 }
@@ -26645,48 +29010,48 @@ func (s *Source) SetSourceIdentifier(v string) *Source {
 	return s
 }
 
-// Provides the source and the message types that trigger AWS Config to evaluate
-// your AWS resources against a rule. It also provides the frequency with which
-// you want AWS Config to run evaluations for the rule if the trigger type is
-// periodic. You can specify the parameter values for SourceDetail only for
-// custom rules.
+// Provides the source and the message types that trigger Config to evaluate
+// your Amazon Web Services resources against a rule. It also provides the frequency
+// with which you want Config to run evaluations for the rule if the trigger
+// type is periodic. You can specify the parameter values for SourceDetail only
+// for custom rules.
 type SourceDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The source of the event, such as an AWS service, that triggers AWS Config
-	// to evaluate your AWS resources.
+	// The source of the event, such as an Amazon Web Services service, that triggers
+	// Config to evaluate your Amazon Web Services resources.
 	EventSource *string `type:"string" enum:"EventSource"`
 
-	// The frequency at which you want AWS Config to run evaluations for a custom
-	// rule with a periodic trigger. If you specify a value for MaximumExecutionFrequency,
+	// The frequency at which you want Config to run evaluations for a custom rule
+	// with a periodic trigger. If you specify a value for MaximumExecutionFrequency,
 	// then MessageType must use the ScheduledNotification value.
 	//
 	// By default, rules with a periodic trigger are evaluated every 24 hours. To
 	// change the frequency, specify a valid value for the MaximumExecutionFrequency
 	// parameter.
 	//
-	// Based on the valid value you choose, AWS Config runs evaluations once for
-	// each valid value. For example, if you choose Three_Hours, AWS Config runs
-	// evaluations once every three hours. In this case, Three_Hours is the frequency
-	// of this rule.
+	// Based on the valid value you choose, Config runs evaluations once for each
+	// valid value. For example, if you choose Three_Hours, Config runs evaluations
+	// once every three hours. In this case, Three_Hours is the frequency of this
+	// rule.
 	MaximumExecutionFrequency *string `type:"string" enum:"MaximumExecutionFrequency"`
 
-	// The type of notification that triggers AWS Config to run an evaluation for
-	// a rule. You can specify the following notification types:
+	// The type of notification that triggers Config to run an evaluation for a
+	// rule. You can specify the following notification types:
 	//
-	//    * ConfigurationItemChangeNotification - Triggers an evaluation when AWS
-	//    Config delivers a configuration item as a result of a resource change.
+	//    * ConfigurationItemChangeNotification - Triggers an evaluation when Config
+	//    delivers a configuration item as a result of a resource change.
 	//
 	//    * OversizedConfigurationItemChangeNotification - Triggers an evaluation
-	//    when AWS Config delivers an oversized configuration item. AWS Config may
-	//    generate this notification type when a resource changes and the notification
-	//    exceeds the maximum size allowed by Amazon SNS.
+	//    when Config delivers an oversized configuration item. Config may generate
+	//    this notification type when a resource changes and the notification exceeds
+	//    the maximum size allowed by Amazon SNS.
 	//
 	//    * ScheduledNotification - Triggers a periodic evaluation at the frequency
 	//    specified for MaximumExecutionFrequency.
 	//
 	//    * ConfigurationSnapshotDeliveryCompleted - Triggers a periodic evaluation
-	//    when AWS Config delivers a configuration snapshot.
+	//    when Config delivers a configuration snapshot.
 	//
 	// If you want your custom rule to be triggered by configuration changes, specify
 	// two SourceDetail objects, one for ConfigurationItemChangeNotification and
@@ -26694,12 +29059,20 @@ type SourceDetail struct {
 	MessageType *string `type:"string" enum:"MessageType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceDetail) GoString() string {
 	return s.String()
 }
@@ -26722,7 +29095,7 @@ func (s *SourceDetail) SetMessageType(v string) *SourceDetail {
 	return s
 }
 
-// AWS Systems Manager (SSM) specific remediation controls.
+// Amazon Web Services Systems Manager (SSM) specific remediation controls.
 type SsmControls struct {
 	_ struct{} `type:"structure"`
 
@@ -26740,12 +29113,20 @@ type SsmControls struct {
 	ErrorPercentage *int64 `min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SsmControls) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SsmControls) GoString() string {
 	return s.String()
 }
@@ -26781,16 +29162,24 @@ func (s *SsmControls) SetErrorPercentage(v int64) *SsmControls {
 type StartConfigRulesEvaluationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of names of AWS Config rules that you want to run evaluations for.
+	// The list of names of Config rules that you want to run evaluations for.
 	ConfigRuleNames []*string `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartConfigRulesEvaluationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartConfigRulesEvaluationInput) GoString() string {
 	return s.String()
 }
@@ -26814,17 +29203,25 @@ func (s *StartConfigRulesEvaluationInput) SetConfigRuleNames(v []*string) *Start
 	return s
 }
 
-// The output when you start the evaluation for the specified AWS Config rule.
+// The output when you start the evaluation for the specified Config rule.
 type StartConfigRulesEvaluationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartConfigRulesEvaluationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartConfigRulesEvaluationOutput) GoString() string {
 	return s.String()
 }
@@ -26840,12 +29237,20 @@ type StartConfigurationRecorderInput struct {
 	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartConfigurationRecorderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartConfigurationRecorderInput) GoString() string {
 	return s.String()
 }
@@ -26876,12 +29281,20 @@ type StartConfigurationRecorderOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartConfigurationRecorderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartConfigurationRecorderOutput) GoString() string {
 	return s.String()
 }
@@ -26889,7 +29302,7 @@ func (s StartConfigurationRecorderOutput) GoString() string {
 type StartRemediationExecutionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of names of AWS Config rules that you want to run remediation execution
+	// The list of names of Config rules that you want to run remediation execution
 	// for.
 	//
 	// ConfigRuleName is a required field
@@ -26902,12 +29315,20 @@ type StartRemediationExecutionInput struct {
 	ResourceKeys []*ResourceKey `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartRemediationExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartRemediationExecutionInput) GoString() string {
 	return s.String()
 }
@@ -26967,12 +29388,20 @@ type StartRemediationExecutionOutput struct {
 	FailureMessage *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartRemediationExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartRemediationExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -26999,12 +29428,20 @@ type StaticValue struct {
 	Values []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StaticValue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StaticValue) GoString() string {
 	return s.String()
 }
@@ -27043,7 +29480,7 @@ type StatusDetailFilters struct {
 	// Config rule status is deleted when the master account deletes OrganizationConfigRule
 	// and disables service access for config-multiaccountsetup.amazonaws.com.
 	//
-	// AWS Config sets the state of the rule to:
+	// Config sets the state of the rule to:
 	//
 	//    * CREATE_SUCCESSFUL when config rule has been created in the member account.
 	//
@@ -27065,12 +29502,20 @@ type StatusDetailFilters struct {
 	MemberAccountRuleStatus *string `type:"string" enum:"MemberAccountRuleStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StatusDetailFilters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StatusDetailFilters) GoString() string {
 	return s.String()
 }
@@ -27098,12 +29543,20 @@ type StopConfigurationRecorderInput struct {
 	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopConfigurationRecorderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopConfigurationRecorderInput) GoString() string {
 	return s.String()
 }
@@ -27134,12 +29587,20 @@ type StopConfigurationRecorderOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopConfigurationRecorderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopConfigurationRecorderOutput) GoString() string {
 	return s.String()
 }
@@ -27169,12 +29630,20 @@ type StoredQuery struct {
 	QueryName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StoredQuery) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StoredQuery) GoString() string {
 	return s.String()
 }
@@ -27257,12 +29726,20 @@ type StoredQueryMetadata struct {
 	QueryName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StoredQueryMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StoredQueryMetadata) GoString() string {
 	return s.String()
 }
@@ -27307,12 +29784,20 @@ type Tag struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -27358,12 +29843,20 @@ type TagResourceInput struct {
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -27416,12 +29909,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -27435,12 +29936,20 @@ type TooManyTagsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) GoString() string {
 	return s.String()
 }
@@ -27499,12 +30008,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -27547,12 +30064,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -27573,12 +30098,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -28545,6 +31078,27 @@ const (
 
 	// ResourceTypeAwsEksCluster is a ResourceType enum value
 	ResourceTypeAwsEksCluster = "AWS::EKS::Cluster"
+
+	// ResourceTypeAwsOpenSearchDomain is a ResourceType enum value
+	ResourceTypeAwsOpenSearchDomain = "AWS::OpenSearch::Domain"
+
+	// ResourceTypeAwsEc2TransitGateway is a ResourceType enum value
+	ResourceTypeAwsEc2TransitGateway = "AWS::EC2::TransitGateway"
+
+	// ResourceTypeAwsKinesisStream is a ResourceType enum value
+	ResourceTypeAwsKinesisStream = "AWS::Kinesis::Stream"
+
+	// ResourceTypeAwsKinesisStreamConsumer is a ResourceType enum value
+	ResourceTypeAwsKinesisStreamConsumer = "AWS::Kinesis::StreamConsumer"
+
+	// ResourceTypeAwsCodeDeployApplication is a ResourceType enum value
+	ResourceTypeAwsCodeDeployApplication = "AWS::CodeDeploy::Application"
+
+	// ResourceTypeAwsCodeDeployDeploymentConfig is a ResourceType enum value
+	ResourceTypeAwsCodeDeployDeploymentConfig = "AWS::CodeDeploy::DeploymentConfig"
+
+	// ResourceTypeAwsCodeDeployDeploymentGroup is a ResourceType enum value
+	ResourceTypeAwsCodeDeployDeploymentGroup = "AWS::CodeDeploy::DeploymentGroup"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -28658,6 +31212,13 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsEfsAccessPoint,
 		ResourceTypeAwsEfsFileSystem,
 		ResourceTypeAwsEksCluster,
+		ResourceTypeAwsOpenSearchDomain,
+		ResourceTypeAwsEc2TransitGateway,
+		ResourceTypeAwsKinesisStream,
+		ResourceTypeAwsKinesisStreamConsumer,
+		ResourceTypeAwsCodeDeployApplication,
+		ResourceTypeAwsCodeDeployDeploymentConfig,
+		ResourceTypeAwsCodeDeployDeploymentGroup,
 	}
 }
 

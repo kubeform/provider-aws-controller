@@ -1263,6 +1263,96 @@ func (c *ElasticsearchService) DescribeDomainAutoTunesPagesWithContext(ctx aws.C
 	return p.Err()
 }
 
+const opDescribeDomainChangeProgress = "DescribeDomainChangeProgress"
+
+// DescribeDomainChangeProgressRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDomainChangeProgress operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDomainChangeProgress for more information on using the DescribeDomainChangeProgress
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDomainChangeProgressRequest method.
+//    req, resp := client.DescribeDomainChangeProgressRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *ElasticsearchService) DescribeDomainChangeProgressRequest(input *DescribeDomainChangeProgressInput) (req *request.Request, output *DescribeDomainChangeProgressOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDomainChangeProgress,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2015-01-01/es/domain/{DomainName}/progress",
+	}
+
+	if input == nil {
+		input = &DescribeDomainChangeProgressInput{}
+	}
+
+	output = &DescribeDomainChangeProgressOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDomainChangeProgress API operation for Amazon Elasticsearch Service.
+//
+// Returns information about the current blue/green deployment happening on
+// a domain, including a change ID, status, and progress stages.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation DescribeDomainChangeProgress for usage and error information.
+//
+// Returned Error Types:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
+//   * ResourceNotFoundException
+//   An exception for accessing or deleting a resource that does not exist. Gives
+//   http status code of 400.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
+func (c *ElasticsearchService) DescribeDomainChangeProgress(input *DescribeDomainChangeProgressInput) (*DescribeDomainChangeProgressOutput, error) {
+	req, out := c.DescribeDomainChangeProgressRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDomainChangeProgressWithContext is the same as DescribeDomainChangeProgress with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDomainChangeProgress for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElasticsearchService) DescribeDomainChangeProgressWithContext(ctx aws.Context, input *DescribeDomainChangeProgressInput, opts ...request.Option) (*DescribeDomainChangeProgressOutput, error) {
+	req, out := c.DescribeDomainChangeProgressRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeElasticsearchDomain = "DescribeElasticsearchDomain"
 
 // DescribeElasticsearchDomainRequest generates a "aws/request.Request" representing the
@@ -4363,7 +4453,7 @@ func (c *ElasticsearchService) UpgradeElasticsearchDomainWithContext(ctx aws.Con
 // Container for the parameters to the AcceptInboundCrossClusterSearchConnection
 // operation.
 type AcceptInboundCrossClusterSearchConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The id of the inbound connection that you want to accept.
 	//
@@ -4371,12 +4461,20 @@ type AcceptInboundCrossClusterSearchConnectionInput struct {
 	CrossClusterSearchConnectionId *string `location:"uri" locationName:"ConnectionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptInboundCrossClusterSearchConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptInboundCrossClusterSearchConnectionInput) GoString() string {
 	return s.String()
 }
@@ -4412,12 +4510,20 @@ type AcceptInboundCrossClusterSearchConnectionOutput struct {
 	CrossClusterSearchConnection *InboundCrossClusterSearchConnection `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptInboundCrossClusterSearchConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptInboundCrossClusterSearchConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -4437,12 +4543,20 @@ type AccessDeniedException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -4505,12 +4619,20 @@ type AccessPoliciesStatus struct {
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessPoliciesStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessPoliciesStatus) GoString() string {
 	return s.String()
 }
@@ -4543,12 +4665,20 @@ type AddTagsInput struct {
 	TagList []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddTagsInput) GoString() string {
 	return s.String()
 }
@@ -4595,12 +4725,20 @@ type AddTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AddTagsOutput) GoString() string {
 	return s.String()
 }
@@ -4621,12 +4759,20 @@ type AdditionalLimit struct {
 	LimitValues []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdditionalLimit) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdditionalLimit) GoString() string {
 	return s.String()
 }
@@ -4670,12 +4816,20 @@ type AdvancedOptionsStatus struct {
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdvancedOptionsStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdvancedOptionsStatus) GoString() string {
 	return s.String()
 }
@@ -4697,6 +4851,13 @@ func (s *AdvancedOptionsStatus) SetStatus(v *OptionStatus) *AdvancedOptionsStatu
 type AdvancedSecurityOptions struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the Anonymous Auth Disable Date when Anonymous Auth is enabled.
+	AnonymousAuthDisableDate *time.Time `type:"timestamp"`
+
+	// True if Anonymous auth is enabled. Anonymous auth can be enabled only when
+	// AdvancedSecurity is enabled on existing domains.
+	AnonymousAuthEnabled *bool `type:"boolean"`
+
 	// True if advanced security is enabled.
 	Enabled *bool `type:"boolean"`
 
@@ -4707,14 +4868,34 @@ type AdvancedSecurityOptions struct {
 	SAMLOptions *SAMLOptionsOutput `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdvancedSecurityOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdvancedSecurityOptions) GoString() string {
 	return s.String()
+}
+
+// SetAnonymousAuthDisableDate sets the AnonymousAuthDisableDate field's value.
+func (s *AdvancedSecurityOptions) SetAnonymousAuthDisableDate(v time.Time) *AdvancedSecurityOptions {
+	s.AnonymousAuthDisableDate = &v
+	return s
+}
+
+// SetAnonymousAuthEnabled sets the AnonymousAuthEnabled field's value.
+func (s *AdvancedSecurityOptions) SetAnonymousAuthEnabled(v bool) *AdvancedSecurityOptions {
+	s.AnonymousAuthEnabled = &v
+	return s
 }
 
 // SetEnabled sets the Enabled field's value.
@@ -4742,6 +4923,10 @@ func (s *AdvancedSecurityOptions) SetSAMLOptions(v *SAMLOptionsOutput) *Advanced
 type AdvancedSecurityOptionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// True if Anonymous auth is enabled. Anonymous auth can be enabled only when
+	// AdvancedSecurity is enabled on existing domains.
+	AnonymousAuthEnabled *bool `type:"boolean"`
+
 	// True if advanced security is enabled.
 	Enabled *bool `type:"boolean"`
 
@@ -4755,12 +4940,20 @@ type AdvancedSecurityOptionsInput struct {
 	SAMLOptions *SAMLOptionsInput `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdvancedSecurityOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdvancedSecurityOptionsInput) GoString() string {
 	return s.String()
 }
@@ -4783,6 +4976,12 @@ func (s *AdvancedSecurityOptionsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAnonymousAuthEnabled sets the AnonymousAuthEnabled field's value.
+func (s *AdvancedSecurityOptionsInput) SetAnonymousAuthEnabled(v bool) *AdvancedSecurityOptionsInput {
+	s.AnonymousAuthEnabled = &v
+	return s
 }
 
 // SetEnabled sets the Enabled field's value.
@@ -4825,12 +5024,20 @@ type AdvancedSecurityOptionsStatus struct {
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdvancedSecurityOptionsStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdvancedSecurityOptionsStatus) GoString() string {
 	return s.String()
 }
@@ -4849,7 +5056,7 @@ func (s *AdvancedSecurityOptionsStatus) SetStatus(v *OptionStatus) *AdvancedSecu
 
 // Container for request parameters to AssociatePackage operation.
 type AssociatePackageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Name of the domain that you want to associate the package with.
 	//
@@ -4863,12 +5070,20 @@ type AssociatePackageInput struct {
 	PackageID *string `location:"uri" locationName:"PackageID" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociatePackageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociatePackageInput) GoString() string {
 	return s.String()
 }
@@ -4915,12 +5130,20 @@ type AssociatePackageOutput struct {
 	DomainPackageDetails *DomainPackageDetails `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociatePackageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociatePackageOutput) GoString() string {
 	return s.String()
 }
@@ -4943,12 +5166,20 @@ type AutoTune struct {
 	AutoTuneType *string `type:"string" enum:"AutoTuneType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTune) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTune) GoString() string {
 	return s.String()
 }
@@ -4976,12 +5207,20 @@ type AutoTuneDetails struct {
 	ScheduledAutoTuneDetails *ScheduledAutoTuneDetails `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneDetails) GoString() string {
 	return s.String()
 }
@@ -5011,12 +5250,20 @@ type AutoTuneMaintenanceSchedule struct {
 	StartAt *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneMaintenanceSchedule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneMaintenanceSchedule) GoString() string {
 	return s.String()
 }
@@ -5071,12 +5318,20 @@ type AutoTuneOptions struct {
 	RollbackOnDisable *string `type:"string" enum:"RollbackOnDisable"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneOptions) GoString() string {
 	return s.String()
 }
@@ -5132,12 +5387,20 @@ type AutoTuneOptionsInput struct {
 	MaintenanceSchedules []*AutoTuneMaintenanceSchedule `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneOptionsInput) GoString() string {
 	return s.String()
 }
@@ -5186,12 +5449,20 @@ type AutoTuneOptionsOutput struct {
 	State *string `type:"string" enum:"AutoTuneState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -5221,12 +5492,20 @@ type AutoTuneOptionsStatus struct {
 	Status *AutoTuneStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneOptionsStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneOptionsStatus) GoString() string {
 	return s.String()
 }
@@ -5272,12 +5551,20 @@ type AutoTuneStatus struct {
 	UpdateVersion *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoTuneStatus) GoString() string {
 	return s.String()
 }
@@ -5327,12 +5614,20 @@ type BaseException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BaseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BaseException) GoString() string {
 	return s.String()
 }
@@ -5388,12 +5683,20 @@ type CancelElasticsearchServiceSoftwareUpdateInput struct {
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelElasticsearchServiceSoftwareUpdateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelElasticsearchServiceSoftwareUpdateInput) GoString() string {
 	return s.String()
 }
@@ -5429,12 +5732,20 @@ type CancelElasticsearchServiceSoftwareUpdateOutput struct {
 	ServiceSoftwareOptions *ServiceSoftwareOptions `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelElasticsearchServiceSoftwareUpdateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelElasticsearchServiceSoftwareUpdateOutput) GoString() string {
 	return s.String()
 }
@@ -5442,6 +5753,198 @@ func (s CancelElasticsearchServiceSoftwareUpdateOutput) GoString() string {
 // SetServiceSoftwareOptions sets the ServiceSoftwareOptions field's value.
 func (s *CancelElasticsearchServiceSoftwareUpdateOutput) SetServiceSoftwareOptions(v *ServiceSoftwareOptions) *CancelElasticsearchServiceSoftwareUpdateOutput {
 	s.ServiceSoftwareOptions = v
+	return s
+}
+
+// Specifies change details of the domain configuration change.
+type ChangeProgressDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The unique change identifier associated with a specific domain configuration
+	// change.
+	ChangeId *string `type:"string"`
+
+	// Contains an optional message associated with the domain configuration change.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangeProgressDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangeProgressDetails) GoString() string {
+	return s.String()
+}
+
+// SetChangeId sets the ChangeId field's value.
+func (s *ChangeProgressDetails) SetChangeId(v string) *ChangeProgressDetails {
+	s.ChangeId = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ChangeProgressDetails) SetMessage(v string) *ChangeProgressDetails {
+	s.Message = &v
+	return s
+}
+
+// A progress stage details of a specific domain configuration change.
+type ChangeProgressStage struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the progress stage.
+	Description *string `type:"string"`
+
+	// The last updated timestamp of the progress stage.
+	LastUpdated *time.Time `type:"timestamp"`
+
+	// The name of the specific progress stage.
+	Name *string `min:"1" type:"string"`
+
+	// The overall status of a specific progress stage.
+	Status *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangeProgressStage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangeProgressStage) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ChangeProgressStage) SetDescription(v string) *ChangeProgressStage {
+	s.Description = &v
+	return s
+}
+
+// SetLastUpdated sets the LastUpdated field's value.
+func (s *ChangeProgressStage) SetLastUpdated(v time.Time) *ChangeProgressStage {
+	s.LastUpdated = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ChangeProgressStage) SetName(v string) *ChangeProgressStage {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ChangeProgressStage) SetStatus(v string) *ChangeProgressStage {
+	s.Status = &v
+	return s
+}
+
+// The progress details of a specific domain configuration change.
+type ChangeProgressStatusDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The unique change identifier associated with a specific domain configuration
+	// change.
+	ChangeId *string `type:"string"`
+
+	// The specific stages that the domain is going through to perform the configuration
+	// change.
+	ChangeProgressStages []*ChangeProgressStage `type:"list"`
+
+	// The list of properties involved in the domain configuration change that are
+	// completed.
+	CompletedProperties []*string `type:"list"`
+
+	// The list of properties involved in the domain configuration change that are
+	// still in pending.
+	PendingProperties []*string `type:"list"`
+
+	// The time at which the configuration change is made on the domain.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The overall status of the domain configuration change. This field can take
+	// the following values: PENDING, PROCESSING, COMPLETED and FAILED
+	Status *string `type:"string" enum:"OverallChangeStatus"`
+
+	// The total number of stages required for the configuration change.
+	TotalNumberOfStages *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangeProgressStatusDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangeProgressStatusDetails) GoString() string {
+	return s.String()
+}
+
+// SetChangeId sets the ChangeId field's value.
+func (s *ChangeProgressStatusDetails) SetChangeId(v string) *ChangeProgressStatusDetails {
+	s.ChangeId = &v
+	return s
+}
+
+// SetChangeProgressStages sets the ChangeProgressStages field's value.
+func (s *ChangeProgressStatusDetails) SetChangeProgressStages(v []*ChangeProgressStage) *ChangeProgressStatusDetails {
+	s.ChangeProgressStages = v
+	return s
+}
+
+// SetCompletedProperties sets the CompletedProperties field's value.
+func (s *ChangeProgressStatusDetails) SetCompletedProperties(v []*string) *ChangeProgressStatusDetails {
+	s.CompletedProperties = v
+	return s
+}
+
+// SetPendingProperties sets the PendingProperties field's value.
+func (s *ChangeProgressStatusDetails) SetPendingProperties(v []*string) *ChangeProgressStatusDetails {
+	s.PendingProperties = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ChangeProgressStatusDetails) SetStartTime(v time.Time) *ChangeProgressStatusDetails {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ChangeProgressStatusDetails) SetStatus(v string) *ChangeProgressStatusDetails {
+	s.Status = &v
+	return s
+}
+
+// SetTotalNumberOfStages sets the TotalNumberOfStages field's value.
+func (s *ChangeProgressStatusDetails) SetTotalNumberOfStages(v int64) *ChangeProgressStatusDetails {
+	s.TotalNumberOfStages = &v
 	return s
 }
 
@@ -5464,12 +5967,20 @@ type CognitoOptions struct {
 	UserPoolId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CognitoOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CognitoOptions) GoString() string {
 	return s.String()
 }
@@ -5533,12 +6044,20 @@ type CognitoOptionsStatus struct {
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CognitoOptionsStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CognitoOptionsStatus) GoString() string {
 	return s.String()
 }
@@ -5555,22 +6074,30 @@ func (s *CognitoOptionsStatus) SetStatus(v *OptionStatus) *CognitoOptionsStatus 
 	return s
 }
 
-// Specifies settings for cold storage.
+// Specifies the configuration for cold storage options such as enabled
 type ColdStorageOptions struct {
 	_ struct{} `type:"structure"`
 
-	// True to enable cold storage for an Elasticsearch domain.
+	// Enable cold storage option. Accepted values true or false
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColdStorageOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColdStorageOptions) GoString() string {
 	return s.String()
 }
@@ -5606,12 +6133,20 @@ type CompatibleVersionsMap struct {
 	TargetVersions []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CompatibleVersionsMap) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CompatibleVersionsMap) GoString() string {
 	return s.String()
 }
@@ -5637,12 +6172,20 @@ type ConflictException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -5754,12 +6297,20 @@ type CreateElasticsearchDomainInput struct {
 	VPCOptions *VPCOptions `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateElasticsearchDomainInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateElasticsearchDomainInput) GoString() string {
 	return s.String()
 }
@@ -5925,12 +6476,20 @@ type CreateElasticsearchDomainOutput struct {
 	DomainStatus *ElasticsearchDomainStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateElasticsearchDomainOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateElasticsearchDomainOutput) GoString() string {
 	return s.String()
 }
@@ -5963,12 +6522,20 @@ type CreateOutboundCrossClusterSearchConnectionInput struct {
 	SourceDomainInfo *DomainInformation `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateOutboundCrossClusterSearchConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateOutboundCrossClusterSearchConnectionInput) GoString() string {
 	return s.String()
 }
@@ -6043,12 +6610,20 @@ type CreateOutboundCrossClusterSearchConnectionOutput struct {
 	SourceDomainInfo *DomainInformation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateOutboundCrossClusterSearchConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateOutboundCrossClusterSearchConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -6106,12 +6681,20 @@ type CreatePackageInput struct {
 	PackageType *string `type:"string" required:"true" enum:"PackageType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePackageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePackageInput) GoString() string {
 	return s.String()
 }
@@ -6175,12 +6758,20 @@ type CreatePackageOutput struct {
 	PackageDetails *PackageDetails `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePackageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePackageOutput) GoString() string {
 	return s.String()
 }
@@ -6194,7 +6785,7 @@ func (s *CreatePackageOutput) SetPackageDetails(v *PackageDetails) *CreatePackag
 // Container for the parameters to the DeleteElasticsearchDomain operation.
 // Specifies the name of the Elasticsearch domain that you want to delete.
 type DeleteElasticsearchDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Elasticsearch domain that you want to permanently delete.
 	//
@@ -6202,12 +6793,20 @@ type DeleteElasticsearchDomainInput struct {
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteElasticsearchDomainInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteElasticsearchDomainInput) GoString() string {
 	return s.String()
 }
@@ -6244,12 +6843,20 @@ type DeleteElasticsearchDomainOutput struct {
 	DomainStatus *ElasticsearchDomainStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteElasticsearchDomainOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteElasticsearchDomainOutput) GoString() string {
 	return s.String()
 }
@@ -6261,15 +6868,23 @@ func (s *DeleteElasticsearchDomainOutput) SetDomainStatus(v *ElasticsearchDomain
 }
 
 type DeleteElasticsearchServiceRoleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteElasticsearchServiceRoleInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteElasticsearchServiceRoleInput) GoString() string {
 	return s.String()
 }
@@ -6278,12 +6893,20 @@ type DeleteElasticsearchServiceRoleOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteElasticsearchServiceRoleOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteElasticsearchServiceRoleOutput) GoString() string {
 	return s.String()
 }
@@ -6291,7 +6914,7 @@ func (s DeleteElasticsearchServiceRoleOutput) GoString() string {
 // Container for the parameters to the DeleteInboundCrossClusterSearchConnection
 // operation.
 type DeleteInboundCrossClusterSearchConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The id of the inbound connection that you want to permanently delete.
 	//
@@ -6299,12 +6922,20 @@ type DeleteInboundCrossClusterSearchConnectionInput struct {
 	CrossClusterSearchConnectionId *string `location:"uri" locationName:"ConnectionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInboundCrossClusterSearchConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInboundCrossClusterSearchConnectionInput) GoString() string {
 	return s.String()
 }
@@ -6340,12 +6971,20 @@ type DeleteInboundCrossClusterSearchConnectionOutput struct {
 	CrossClusterSearchConnection *InboundCrossClusterSearchConnection `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInboundCrossClusterSearchConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInboundCrossClusterSearchConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -6359,7 +6998,7 @@ func (s *DeleteInboundCrossClusterSearchConnectionOutput) SetCrossClusterSearchC
 // Container for the parameters to the DeleteOutboundCrossClusterSearchConnection
 // operation.
 type DeleteOutboundCrossClusterSearchConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The id of the outbound connection that you want to permanently delete.
 	//
@@ -6367,12 +7006,20 @@ type DeleteOutboundCrossClusterSearchConnectionInput struct {
 	CrossClusterSearchConnectionId *string `location:"uri" locationName:"ConnectionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteOutboundCrossClusterSearchConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteOutboundCrossClusterSearchConnectionInput) GoString() string {
 	return s.String()
 }
@@ -6408,12 +7055,20 @@ type DeleteOutboundCrossClusterSearchConnectionOutput struct {
 	CrossClusterSearchConnection *OutboundCrossClusterSearchConnection `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteOutboundCrossClusterSearchConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteOutboundCrossClusterSearchConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -6426,7 +7081,7 @@ func (s *DeleteOutboundCrossClusterSearchConnectionOutput) SetCrossClusterSearch
 
 // Container for request parameters to DeletePackage operation.
 type DeletePackageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Internal ID of the package that you want to delete. Use DescribePackages
 	// to find this value.
@@ -6435,12 +7090,20 @@ type DeletePackageInput struct {
 	PackageID *string `location:"uri" locationName:"PackageID" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePackageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePackageInput) GoString() string {
 	return s.String()
 }
@@ -6475,12 +7138,20 @@ type DeletePackageOutput struct {
 	PackageDetails *PackageDetails `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePackageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePackageOutput) GoString() string {
 	return s.String()
 }
@@ -6509,12 +7180,20 @@ type DescribeDomainAutoTunesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDomainAutoTunesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDomainAutoTunesInput) GoString() string {
 	return s.String()
 }
@@ -6567,12 +7246,20 @@ type DescribeDomainAutoTunesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDomainAutoTunesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDomainAutoTunesOutput) GoString() string {
 	return s.String()
 }
@@ -6589,10 +7276,107 @@ func (s *DescribeDomainAutoTunesOutput) SetNextToken(v string) *DescribeDomainAu
 	return s
 }
 
+// Container for the parameters to the DescribeDomainChangeProgress operation.
+// Specifies the domain name and optional change specific identity for which
+// you want progress information.
+type DescribeDomainChangeProgressInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The specific change ID for which you want to get progress information. This
+	// is an optional parameter. If omitted, the service returns information about
+	// the most recent configuration change.
+	ChangeId *string `location:"querystring" locationName:"changeid" type:"string"`
+
+	// The domain you want to get the progress information about.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainChangeProgressInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainChangeProgressInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDomainChangeProgressInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDomainChangeProgressInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChangeId sets the ChangeId field's value.
+func (s *DescribeDomainChangeProgressInput) SetChangeId(v string) *DescribeDomainChangeProgressInput {
+	s.ChangeId = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DescribeDomainChangeProgressInput) SetDomainName(v string) *DescribeDomainChangeProgressInput {
+	s.DomainName = &v
+	return s
+}
+
+// The result of a DescribeDomainChangeProgress request. Contains the progress
+// information of the requested domain change.
+type DescribeDomainChangeProgressOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Progress information for the configuration change that is requested in the
+	// DescribeDomainChangeProgress request.
+	ChangeProgressStatus *ChangeProgressStatusDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainChangeProgressOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDomainChangeProgressOutput) GoString() string {
+	return s.String()
+}
+
+// SetChangeProgressStatus sets the ChangeProgressStatus field's value.
+func (s *DescribeDomainChangeProgressOutput) SetChangeProgressStatus(v *ChangeProgressStatusDetails) *DescribeDomainChangeProgressOutput {
+	s.ChangeProgressStatus = v
+	return s
+}
+
 // Container for the parameters to the DescribeElasticsearchDomainConfig operation.
 // Specifies the domain name for which you want configuration information.
 type DescribeElasticsearchDomainConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Elasticsearch domain that you want to get information about.
 	//
@@ -6600,12 +7384,20 @@ type DescribeElasticsearchDomainConfigInput struct {
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchDomainConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchDomainConfigInput) GoString() string {
 	return s.String()
 }
@@ -6644,12 +7436,20 @@ type DescribeElasticsearchDomainConfigOutput struct {
 	DomainConfig *ElasticsearchDomainConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchDomainConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchDomainConfigOutput) GoString() string {
 	return s.String()
 }
@@ -6662,7 +7462,7 @@ func (s *DescribeElasticsearchDomainConfigOutput) SetDomainConfig(v *Elasticsear
 
 // Container for the parameters to the DescribeElasticsearchDomain operation.
 type DescribeElasticsearchDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Elasticsearch domain for which you want information.
 	//
@@ -6670,12 +7470,20 @@ type DescribeElasticsearchDomainInput struct {
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchDomainInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchDomainInput) GoString() string {
 	return s.String()
 }
@@ -6713,12 +7521,20 @@ type DescribeElasticsearchDomainOutput struct {
 	DomainStatus *ElasticsearchDomainStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchDomainOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchDomainOutput) GoString() string {
 	return s.String()
 }
@@ -6740,12 +7556,20 @@ type DescribeElasticsearchDomainsInput struct {
 	DomainNames []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchDomainsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchDomainsInput) GoString() string {
 	return s.String()
 }
@@ -6780,12 +7604,20 @@ type DescribeElasticsearchDomainsOutput struct {
 	DomainStatusList []*ElasticsearchDomainStatus `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchDomainsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchDomainsOutput) GoString() string {
 	return s.String()
 }
@@ -6798,7 +7630,7 @@ func (s *DescribeElasticsearchDomainsOutput) SetDomainStatusList(v []*Elasticsea
 
 // Container for the parameters to DescribeElasticsearchInstanceTypeLimits operation.
 type DescribeElasticsearchInstanceTypeLimitsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DomainName represents the name of the Domain that we are trying to modify.
 	// This should be present only if we are querying for Elasticsearch Limits for
@@ -6817,12 +7649,20 @@ type DescribeElasticsearchInstanceTypeLimitsInput struct {
 	InstanceType *string `location:"uri" locationName:"InstanceType" type:"string" required:"true" enum:"ESPartitionInstanceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchInstanceTypeLimitsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchInstanceTypeLimitsInput) GoString() string {
 	return s.String()
 }
@@ -6885,12 +7725,20 @@ type DescribeElasticsearchInstanceTypeLimitsOutput struct {
 	LimitsByRole map[string]*Limits `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchInstanceTypeLimitsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeElasticsearchInstanceTypeLimitsOutput) GoString() string {
 	return s.String()
 }
@@ -6928,12 +7776,20 @@ type DescribeInboundCrossClusterSearchConnectionsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInboundCrossClusterSearchConnectionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInboundCrossClusterSearchConnectionsInput) GoString() string {
 	return s.String()
 }
@@ -6990,12 +7846,20 @@ type DescribeInboundCrossClusterSearchConnectionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInboundCrossClusterSearchConnectionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInboundCrossClusterSearchConnectionsOutput) GoString() string {
 	return s.String()
 }
@@ -7039,12 +7903,20 @@ type DescribeOutboundCrossClusterSearchConnectionsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOutboundCrossClusterSearchConnectionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOutboundCrossClusterSearchConnectionsInput) GoString() string {
 	return s.String()
 }
@@ -7101,12 +7973,20 @@ type DescribeOutboundCrossClusterSearchConnectionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOutboundCrossClusterSearchConnectionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeOutboundCrossClusterSearchConnectionsOutput) GoString() string {
 	return s.String()
 }
@@ -7134,12 +8014,20 @@ type DescribePackagesFilter struct {
 	Value []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagesFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagesFilter) GoString() string {
 	return s.String()
 }
@@ -7171,12 +8059,20 @@ type DescribePackagesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagesInput) GoString() string {
 	return s.String()
 }
@@ -7209,12 +8105,20 @@ type DescribePackagesOutput struct {
 	PackageDetailsList []*PackageDetails `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribePackagesOutput) GoString() string {
 	return s.String()
 }
@@ -7233,7 +8137,7 @@ func (s *DescribePackagesOutput) SetPackageDetailsList(v []*PackageDetails) *Des
 
 // Container for parameters to DescribeReservedElasticsearchInstanceOfferings
 type DescribeReservedElasticsearchInstanceOfferingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Set this value to limit the number of results returned. If not specified,
 	// defaults to 100.
@@ -7248,12 +8152,20 @@ type DescribeReservedElasticsearchInstanceOfferingsInput struct {
 	ReservedElasticsearchInstanceOfferingId *string `location:"querystring" locationName:"offeringId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReservedElasticsearchInstanceOfferingsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReservedElasticsearchInstanceOfferingsInput) GoString() string {
 	return s.String()
 }
@@ -7287,12 +8199,20 @@ type DescribeReservedElasticsearchInstanceOfferingsOutput struct {
 	ReservedElasticsearchInstanceOfferings []*ReservedElasticsearchInstanceOffering `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReservedElasticsearchInstanceOfferingsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReservedElasticsearchInstanceOfferingsOutput) GoString() string {
 	return s.String()
 }
@@ -7311,7 +8231,7 @@ func (s *DescribeReservedElasticsearchInstanceOfferingsOutput) SetReservedElasti
 
 // Container for parameters to DescribeReservedElasticsearchInstances
 type DescribeReservedElasticsearchInstancesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Set this value to limit the number of results returned. If not specified,
 	// defaults to 100.
@@ -7327,12 +8247,20 @@ type DescribeReservedElasticsearchInstancesInput struct {
 	ReservedElasticsearchInstanceId *string `location:"querystring" locationName:"reservationId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReservedElasticsearchInstancesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReservedElasticsearchInstancesInput) GoString() string {
 	return s.String()
 }
@@ -7366,12 +8294,20 @@ type DescribeReservedElasticsearchInstancesOutput struct {
 	ReservedElasticsearchInstances []*ReservedElasticsearchInstance `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReservedElasticsearchInstancesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeReservedElasticsearchInstancesOutput) GoString() string {
 	return s.String()
 }
@@ -7397,12 +8333,20 @@ type DisabledOperationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisabledOperationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisabledOperationException) GoString() string {
 	return s.String()
 }
@@ -7447,7 +8391,7 @@ func (s *DisabledOperationException) RequestID() string {
 
 // Container for request parameters to DissociatePackage operation.
 type DissociatePackageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Name of the domain that you want to associate the package with.
 	//
@@ -7461,12 +8405,20 @@ type DissociatePackageInput struct {
 	PackageID *string `location:"uri" locationName:"PackageID" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DissociatePackageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DissociatePackageInput) GoString() string {
 	return s.String()
 }
@@ -7513,12 +8465,20 @@ type DissociatePackageOutput struct {
 	DomainPackageDetails *DomainPackageDetails `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DissociatePackageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DissociatePackageOutput) GoString() string {
 	return s.String()
 }
@@ -7555,12 +8515,20 @@ type DomainEndpointOptions struct {
 	TLSSecurityPolicy *string `type:"string" enum:"TLSSecurityPolicy"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainEndpointOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainEndpointOptions) GoString() string {
 	return s.String()
 }
@@ -7624,12 +8592,20 @@ type DomainEndpointOptionsStatus struct {
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainEndpointOptionsStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainEndpointOptionsStatus) GoString() string {
 	return s.String()
 }
@@ -7651,14 +8627,25 @@ type DomainInfo struct {
 
 	// Specifies the DomainName.
 	DomainName *string `min:"3" type:"string"`
+
+	// Specifies the EngineType of the domain.
+	EngineType *string `type:"string" enum:"EngineType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainInfo) GoString() string {
 	return s.String()
 }
@@ -7666,6 +8653,12 @@ func (s DomainInfo) GoString() string {
 // SetDomainName sets the DomainName field's value.
 func (s *DomainInfo) SetDomainName(v string) *DomainInfo {
 	s.DomainName = &v
+	return s
+}
+
+// SetEngineType sets the EngineType field's value.
+func (s *DomainInfo) SetEngineType(v string) *DomainInfo {
+	s.EngineType = &v
 	return s
 }
 
@@ -7685,12 +8678,20 @@ type DomainInformation struct {
 	Region *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainInformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainInformation) GoString() string {
 	return s.String()
 }
@@ -7764,12 +8765,20 @@ type DomainPackageDetails struct {
 	ReferencePath *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainPackageDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainPackageDetails) GoString() string {
 	return s.String()
 }
@@ -7828,6 +8837,52 @@ func (s *DomainPackageDetails) SetReferencePath(v string) *DomainPackageDetails 
 	return s
 }
 
+type DryRunResults struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the deployment mechanism through which the update shall be applied
+	// on the domain. Possible responses are Blue/Green (The update will require
+	// a blue/green deployment.) DynamicUpdate (The update can be applied in-place
+	// without a Blue/Green deployment required.) Undetermined (The domain is undergoing
+	// an update which needs to complete before the deployment type can be predicted.)
+	// None (The configuration change matches the current configuration and will
+	// not result in any update.)
+	DeploymentType *string `min:"2" type:"string"`
+
+	// Contains an optional message associated with the DryRunResults.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DryRunResults) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DryRunResults) GoString() string {
+	return s.String()
+}
+
+// SetDeploymentType sets the DeploymentType field's value.
+func (s *DryRunResults) SetDeploymentType(v string) *DryRunResults {
+	s.DeploymentType = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *DryRunResults) SetMessage(v string) *DryRunResults {
+	s.Message = &v
+	return s
+}
+
 // Specifies maintenance schedule duration: duration value and duration unit.
 // See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
 // for more information.
@@ -7845,12 +8900,20 @@ type Duration struct {
 	Value *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Duration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Duration) GoString() string {
 	return s.String()
 }
@@ -7898,12 +8961,20 @@ type EBSOptions struct {
 	VolumeType *string `type:"string" enum:"VolumeType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EBSOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EBSOptions) GoString() string {
 	return s.String()
 }
@@ -7947,12 +9018,20 @@ type EBSOptionsStatus struct {
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EBSOptionsStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EBSOptionsStatus) GoString() string {
 	return s.String()
 }
@@ -7974,7 +9053,7 @@ func (s *EBSOptionsStatus) SetStatus(v *OptionStatus) *EBSOptionsStatus {
 type ElasticsearchClusterConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the ColdStorageOptions configuration for an Elasticsearch domain.
+	// Specifies the ColdStorageOptions config for Elasticsearch Domain
 	ColdStorageOptions *ColdStorageOptions `type:"structure"`
 
 	// Total number of dedicated master nodes, active and on standby, for the cluster.
@@ -8014,12 +9093,20 @@ type ElasticsearchClusterConfig struct {
 	ZoneAwarenessEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ElasticsearchClusterConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ElasticsearchClusterConfig) GoString() string {
 	return s.String()
 }
@@ -8121,12 +9208,20 @@ type ElasticsearchClusterConfigStatus struct {
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ElasticsearchClusterConfigStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ElasticsearchClusterConfigStatus) GoString() string {
 	return s.String()
 }
@@ -8161,6 +9256,9 @@ type ElasticsearchDomainConfig struct {
 	// Specifies AutoTuneOptions for the domain.
 	AutoTuneOptions *AutoTuneOptionsStatus `type:"structure"`
 
+	// Specifies change details of the domain configuration change.
+	ChangeProgressDetails *ChangeProgressDetails `type:"structure"`
+
 	// The CognitoOptions for the specified domain. For more information, see Amazon
 	// Cognito Authentication for Kibana (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html).
 	CognitoOptions *CognitoOptionsStatus `type:"structure"`
@@ -8194,12 +9292,20 @@ type ElasticsearchDomainConfig struct {
 	VPCOptions *VPCDerivedInfoStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ElasticsearchDomainConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ElasticsearchDomainConfig) GoString() string {
 	return s.String()
 }
@@ -8225,6 +9331,12 @@ func (s *ElasticsearchDomainConfig) SetAdvancedSecurityOptions(v *AdvancedSecuri
 // SetAutoTuneOptions sets the AutoTuneOptions field's value.
 func (s *ElasticsearchDomainConfig) SetAutoTuneOptions(v *AutoTuneOptionsStatus) *ElasticsearchDomainConfig {
 	s.AutoTuneOptions = v
+	return s
+}
+
+// SetChangeProgressDetails sets the ChangeProgressDetails field's value.
+func (s *ElasticsearchDomainConfig) SetChangeProgressDetails(v *ChangeProgressDetails) *ElasticsearchDomainConfig {
+	s.ChangeProgressDetails = v
 	return s
 }
 
@@ -8311,6 +9423,9 @@ type ElasticsearchDomainStatus struct {
 	// The current status of the Elasticsearch domain's Auto-Tune options.
 	AutoTuneOptions *AutoTuneOptionsOutput `type:"structure"`
 
+	// Specifies change details of the domain configuration change.
+	ChangeProgressDetails *ChangeProgressDetails `type:"structure"`
+
 	// The CognitoOptions for the specified domain. For more information, see Amazon
 	// Cognito Authentication for Kibana (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html).
 	CognitoOptions *CognitoOptions `type:"structure"`
@@ -8390,12 +9505,20 @@ type ElasticsearchDomainStatus struct {
 	VPCOptions *VPCDerivedInfo `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ElasticsearchDomainStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ElasticsearchDomainStatus) GoString() string {
 	return s.String()
 }
@@ -8427,6 +9550,12 @@ func (s *ElasticsearchDomainStatus) SetAdvancedSecurityOptions(v *AdvancedSecuri
 // SetAutoTuneOptions sets the AutoTuneOptions field's value.
 func (s *ElasticsearchDomainStatus) SetAutoTuneOptions(v *AutoTuneOptionsOutput) *ElasticsearchDomainStatus {
 	s.AutoTuneOptions = v
+	return s
+}
+
+// SetChangeProgressDetails sets the ChangeProgressDetails field's value.
+func (s *ElasticsearchDomainStatus) SetChangeProgressDetails(v *ChangeProgressDetails) *ElasticsearchDomainStatus {
+	s.ChangeProgressDetails = v
 	return s
 }
 
@@ -8561,12 +9690,20 @@ type ElasticsearchVersionStatus struct {
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ElasticsearchVersionStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ElasticsearchVersionStatus) GoString() string {
 	return s.String()
 }
@@ -8594,12 +9731,20 @@ type EncryptionAtRestOptions struct {
 	KmsKeyId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionAtRestOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionAtRestOptions) GoString() string {
 	return s.String()
 }
@@ -8647,12 +9792,20 @@ type EncryptionAtRestOptionsStatus struct {
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionAtRestOptionsStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionAtRestOptionsStatus) GoString() string {
 	return s.String()
 }
@@ -8677,12 +9830,20 @@ type ErrorDetails struct {
 	ErrorType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ErrorDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ErrorDetails) GoString() string {
 	return s.String()
 }
@@ -8713,12 +9874,20 @@ type Filter struct {
 	Values []*string `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) GoString() string {
 	return s.String()
 }
@@ -8753,7 +9922,7 @@ func (s *Filter) SetValues(v []*string) *Filter {
 
 // Container for request parameters to GetCompatibleElasticsearchVersions operation.
 type GetCompatibleElasticsearchVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of an Elasticsearch domain. Domain names are unique across the domains
 	// owned by an account within an AWS region. Domain names start with a letter
@@ -8762,12 +9931,20 @@ type GetCompatibleElasticsearchVersionsInput struct {
 	DomainName *string `location:"querystring" locationName:"domainName" min:"3" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCompatibleElasticsearchVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCompatibleElasticsearchVersionsInput) GoString() string {
 	return s.String()
 }
@@ -8800,12 +9977,20 @@ type GetCompatibleElasticsearchVersionsOutput struct {
 	CompatibleElasticsearchVersions []*CompatibleVersionsMap `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCompatibleElasticsearchVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCompatibleElasticsearchVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -8818,7 +10003,7 @@ func (s *GetCompatibleElasticsearchVersionsOutput) SetCompatibleElasticsearchVer
 
 // Container for request parameters to GetPackageVersionHistory operation.
 type GetPackageVersionHistoryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Limits results to a maximum number of versions.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -8833,12 +10018,20 @@ type GetPackageVersionHistoryInput struct {
 	PackageID *string `location:"uri" locationName:"PackageID" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPackageVersionHistoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPackageVersionHistoryInput) GoString() string {
 	return s.String()
 }
@@ -8889,12 +10082,20 @@ type GetPackageVersionHistoryOutput struct {
 	PackageVersionHistoryList []*PackageVersionHistory `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPackageVersionHistoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPackageVersionHistoryOutput) GoString() string {
 	return s.String()
 }
@@ -8919,7 +10120,7 @@ func (s *GetPackageVersionHistoryOutput) SetPackageVersionHistoryList(v []*Packa
 
 // Container for request parameters to GetUpgradeHistory operation.
 type GetUpgradeHistoryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of an Elasticsearch domain. Domain names are unique across the domains
 	// owned by an account within an AWS region. Domain names start with a letter
@@ -8938,12 +10139,20 @@ type GetUpgradeHistoryInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetUpgradeHistoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetUpgradeHistoryInput) GoString() string {
 	return s.String()
 }
@@ -8996,12 +10205,20 @@ type GetUpgradeHistoryOutput struct {
 	UpgradeHistories []*UpgradeHistory `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetUpgradeHistoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetUpgradeHistoryOutput) GoString() string {
 	return s.String()
 }
@@ -9020,7 +10237,7 @@ func (s *GetUpgradeHistoryOutput) SetUpgradeHistories(v []*UpgradeHistory) *GetU
 
 // Container for request parameters to GetUpgradeStatus operation.
 type GetUpgradeStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of an Elasticsearch domain. Domain names are unique across the domains
 	// owned by an account within an AWS region. Domain names start with a letter
@@ -9031,12 +10248,20 @@ type GetUpgradeStatusInput struct {
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetUpgradeStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetUpgradeStatusInput) GoString() string {
 	return s.String()
 }
@@ -9091,12 +10316,20 @@ type GetUpgradeStatusOutput struct {
 	UpgradeStep *string `type:"string" enum:"UpgradeStep"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetUpgradeStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetUpgradeStatusOutput) GoString() string {
 	return s.String()
 }
@@ -9137,12 +10370,20 @@ type InboundCrossClusterSearchConnection struct {
 	SourceDomainInfo *DomainInformation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InboundCrossClusterSearchConnection) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InboundCrossClusterSearchConnection) GoString() string {
 	return s.String()
 }
@@ -9196,12 +10437,20 @@ type InboundCrossClusterSearchConnectionStatus struct {
 	StatusCode *string `type:"string" enum:"InboundCrossClusterSearchConnectionStatusCode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InboundCrossClusterSearchConnectionStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InboundCrossClusterSearchConnectionStatus) GoString() string {
 	return s.String()
 }
@@ -9230,12 +10479,20 @@ type InstanceCountLimits struct {
 	MinimumInstanceCount *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceCountLimits) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceCountLimits) GoString() string {
 	return s.String()
 }
@@ -9262,12 +10519,20 @@ type InstanceLimits struct {
 	InstanceCountLimits *InstanceCountLimits `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceLimits) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceLimits) GoString() string {
 	return s.String()
 }
@@ -9288,12 +10553,20 @@ type InternalException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalException) GoString() string {
 	return s.String()
 }
@@ -9345,12 +10618,20 @@ type InvalidPaginationTokenException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPaginationTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidPaginationTokenException) GoString() string {
 	return s.String()
 }
@@ -9402,12 +10683,20 @@ type InvalidTypeException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTypeException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidTypeException) GoString() string {
 	return s.String()
 }
@@ -9459,12 +10748,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -9525,12 +10822,20 @@ type Limits struct {
 	StorageTypes []*StorageType `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Limits) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Limits) GoString() string {
 	return s.String()
 }
@@ -9553,35 +10858,62 @@ func (s *Limits) SetStorageTypes(v []*StorageType) *Limits {
 	return s
 }
 
+// Container for the parameters to the ListDomainNames operation.
 type ListDomainNamesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Optional parameter to filter the output by domain engine type. Acceptable
+	// values are 'Elasticsearch' and 'OpenSearch'.
+	EngineType *string `location:"querystring" locationName:"engineType" type:"string" enum:"EngineType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainNamesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainNamesInput) GoString() string {
 	return s.String()
 }
 
-// The result of a ListDomainNames operation. Contains the names of all Elasticsearch
-// domains owned by this account.
+// SetEngineType sets the EngineType field's value.
+func (s *ListDomainNamesInput) SetEngineType(v string) *ListDomainNamesInput {
+	s.EngineType = &v
+	return s
+}
+
+// The result of a ListDomainNames operation. Contains the names of all domains
+// owned by this account and their respective engine types.
 type ListDomainNamesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of Elasticsearch domain names.
+	// List of domain names and respective engine types.
 	DomainNames []*DomainInfo `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainNamesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainNamesOutput) GoString() string {
 	return s.String()
 }
@@ -9594,7 +10926,7 @@ func (s *ListDomainNamesOutput) SetDomainNames(v []*DomainInfo) *ListDomainNames
 
 // Container for request parameters to ListDomainsForPackage operation.
 type ListDomainsForPackageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Limits results to a maximum number of domains.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -9609,12 +10941,20 @@ type ListDomainsForPackageInput struct {
 	PackageID *string `location:"uri" locationName:"PackageID" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainsForPackageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainsForPackageInput) GoString() string {
 	return s.String()
 }
@@ -9663,12 +11003,20 @@ type ListDomainsForPackageOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainsForPackageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDomainsForPackageOutput) GoString() string {
 	return s.String()
 }
@@ -9687,7 +11035,7 @@ func (s *ListDomainsForPackageOutput) SetNextToken(v string) *ListDomainsForPack
 
 // Container for the parameters to the ListElasticsearchInstanceTypes operation.
 type ListElasticsearchInstanceTypesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DomainName represents the name of the Domain that we are trying to modify.
 	// This should be present only if we are querying for list of available Elasticsearch
@@ -9709,12 +11057,20 @@ type ListElasticsearchInstanceTypesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListElasticsearchInstanceTypesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListElasticsearchInstanceTypesInput) GoString() string {
 	return s.String()
 }
@@ -9776,12 +11132,20 @@ type ListElasticsearchInstanceTypesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListElasticsearchInstanceTypesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListElasticsearchInstanceTypesOutput) GoString() string {
 	return s.String()
 }
@@ -9805,7 +11169,7 @@ func (s *ListElasticsearchInstanceTypesOutput) SetNextToken(v string) *ListElast
 // Use NextToken in response to retrieve more results. If the received response
 // does not contain a NextToken, then there are no more results to retrieve.
 type ListElasticsearchVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Set this value to limit the number of results returned. Value provided must
 	// be greater than 10 else it wont be honored.
@@ -9817,12 +11181,20 @@ type ListElasticsearchVersionsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListElasticsearchVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListElasticsearchVersionsInput) GoString() string {
 	return s.String()
 }
@@ -9853,12 +11225,20 @@ type ListElasticsearchVersionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListElasticsearchVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListElasticsearchVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -9877,7 +11257,7 @@ func (s *ListElasticsearchVersionsOutput) SetNextToken(v string) *ListElasticsea
 
 // Container for request parameters to ListPackagesForDomain operation.
 type ListPackagesForDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain for which you want to list associated packages.
 	//
@@ -9892,12 +11272,20 @@ type ListPackagesForDomainInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPackagesForDomainInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPackagesForDomainInput) GoString() string {
 	return s.String()
 }
@@ -9948,12 +11336,20 @@ type ListPackagesForDomainOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPackagesForDomainOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPackagesForDomainOutput) GoString() string {
 	return s.String()
 }
@@ -9974,7 +11370,7 @@ func (s *ListPackagesForDomainOutput) SetNextToken(v string) *ListPackagesForDom
 // the Elasticsearch domain to which the tags are attached that you want to
 // view are attached.
 type ListTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specify the ARN for the Elasticsearch domain to which the tags are attached
 	// that you want to view.
@@ -9983,12 +11379,20 @@ type ListTagsInput struct {
 	ARN *string `location:"querystring" locationName:"arn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsInput) GoString() string {
 	return s.String()
 }
@@ -10021,12 +11425,20 @@ type ListTagsOutput struct {
 	TagList []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsOutput) GoString() string {
 	return s.String()
 }
@@ -10054,12 +11466,20 @@ type LogPublishingOption struct {
 	Enabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LogPublishingOption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LogPublishingOption) GoString() string {
 	return s.String()
 }
@@ -10088,12 +11508,20 @@ type LogPublishingOptionsStatus struct {
 	Status *OptionStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LogPublishingOptionsStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LogPublishingOptionsStatus) GoString() string {
 	return s.String()
 }
@@ -10119,19 +11547,35 @@ type MasterUserOptions struct {
 
 	// The master user's username, which is stored in the Amazon Elasticsearch Service
 	// domain's internal database.
+	//
+	// MasterUserName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MasterUserOptions's
+	// String and GoString methods.
 	MasterUserName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The master user's password, which is stored in the Amazon Elasticsearch Service
 	// domain's internal database.
+	//
+	// MasterUserPassword is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MasterUserOptions's
+	// String and GoString methods.
 	MasterUserPassword *string `min:"8" type:"string" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MasterUserOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MasterUserOptions) GoString() string {
 	return s.String()
 }
@@ -10178,12 +11622,20 @@ type NodeToNodeEncryptionOptions struct {
 	Enabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NodeToNodeEncryptionOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NodeToNodeEncryptionOptions) GoString() string {
 	return s.String()
 }
@@ -10212,12 +11664,20 @@ type NodeToNodeEncryptionOptionsStatus struct {
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NodeToNodeEncryptionOptionsStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NodeToNodeEncryptionOptionsStatus) GoString() string {
 	return s.String()
 }
@@ -10260,12 +11720,20 @@ type OptionStatus struct {
 	UpdateVersion *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OptionStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OptionStatus) GoString() string {
 	return s.String()
 }
@@ -10321,12 +11789,20 @@ type OutboundCrossClusterSearchConnection struct {
 	SourceDomainInfo *DomainInformation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutboundCrossClusterSearchConnection) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutboundCrossClusterSearchConnection) GoString() string {
 	return s.String()
 }
@@ -10390,12 +11866,20 @@ type OutboundCrossClusterSearchConnectionStatus struct {
 	StatusCode *string `type:"string" enum:"OutboundCrossClusterSearchConnectionStatusCode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutboundCrossClusterSearchConnectionStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutboundCrossClusterSearchConnectionStatus) GoString() string {
 	return s.String()
 }
@@ -10442,12 +11926,20 @@ type PackageDetails struct {
 	PackageType *string `type:"string" enum:"PackageType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PackageDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PackageDetails) GoString() string {
 	return s.String()
 }
@@ -10517,12 +12009,20 @@ type PackageSource struct {
 	S3Key *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PackageSource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PackageSource) GoString() string {
 	return s.String()
 }
@@ -10566,12 +12066,20 @@ type PackageVersionHistory struct {
 	PackageVersion *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PackageVersionHistory) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PackageVersionHistory) GoString() string {
 	return s.String()
 }
@@ -10612,12 +12120,20 @@ type PurchaseReservedElasticsearchInstanceOfferingInput struct {
 	ReservedElasticsearchInstanceOfferingId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PurchaseReservedElasticsearchInstanceOfferingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PurchaseReservedElasticsearchInstanceOfferingInput) GoString() string {
 	return s.String()
 }
@@ -10674,12 +12190,20 @@ type PurchaseReservedElasticsearchInstanceOfferingOutput struct {
 	ReservedElasticsearchInstanceId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PurchaseReservedElasticsearchInstanceOfferingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PurchaseReservedElasticsearchInstanceOfferingOutput) GoString() string {
 	return s.String()
 }
@@ -10708,12 +12232,20 @@ type RecurringCharge struct {
 	RecurringChargeFrequency *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecurringCharge) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RecurringCharge) GoString() string {
 	return s.String()
 }
@@ -10733,7 +12265,7 @@ func (s *RecurringCharge) SetRecurringChargeFrequency(v string) *RecurringCharge
 // Container for the parameters to the RejectInboundCrossClusterSearchConnection
 // operation.
 type RejectInboundCrossClusterSearchConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The id of the inbound connection that you want to reject.
 	//
@@ -10741,12 +12273,20 @@ type RejectInboundCrossClusterSearchConnectionInput struct {
 	CrossClusterSearchConnectionId *string `location:"uri" locationName:"ConnectionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectInboundCrossClusterSearchConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectInboundCrossClusterSearchConnectionInput) GoString() string {
 	return s.String()
 }
@@ -10782,12 +12322,20 @@ type RejectInboundCrossClusterSearchConnectionOutput struct {
 	CrossClusterSearchConnection *InboundCrossClusterSearchConnection `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectInboundCrossClusterSearchConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RejectInboundCrossClusterSearchConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -10817,12 +12365,20 @@ type RemoveTagsInput struct {
 	TagKeys []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveTagsInput) GoString() string {
 	return s.String()
 }
@@ -10859,12 +12415,20 @@ type RemoveTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RemoveTagsOutput) GoString() string {
 	return s.String()
 }
@@ -10916,12 +12480,20 @@ type ReservedElasticsearchInstance struct {
 	UsagePrice *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReservedElasticsearchInstance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReservedElasticsearchInstance) GoString() string {
 	return s.String()
 }
@@ -11037,12 +12609,20 @@ type ReservedElasticsearchInstanceOffering struct {
 	UsagePrice *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReservedElasticsearchInstanceOffering) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ReservedElasticsearchInstanceOffering) GoString() string {
 	return s.String()
 }
@@ -11104,12 +12684,20 @@ type ResourceAlreadyExistsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAlreadyExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceAlreadyExistsException) GoString() string {
 	return s.String()
 }
@@ -11161,12 +12749,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -11224,12 +12820,20 @@ type SAMLIdp struct {
 	MetadataContent *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SAMLIdp) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SAMLIdp) GoString() string {
 	return s.String()
 }
@@ -11283,6 +12887,10 @@ type SAMLOptionsInput struct {
 
 	// The SAML master username, which is stored in the Amazon Elasticsearch Service
 	// domain's internal database.
+	//
+	// MasterUserName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SAMLOptionsInput's
+	// String and GoString methods.
 	MasterUserName *string `min:"1" type:"string" sensitive:"true"`
 
 	// The key to use for matching the SAML Roles attribute.
@@ -11296,12 +12904,20 @@ type SAMLOptionsInput struct {
 	SubjectKey *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SAMLOptionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SAMLOptionsInput) GoString() string {
 	return s.String()
 }
@@ -11389,12 +13005,20 @@ type SAMLOptionsOutput struct {
 	SubjectKey *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SAMLOptionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SAMLOptionsOutput) GoString() string {
 	return s.String()
 }
@@ -11449,12 +13073,20 @@ type ScheduledAutoTuneDetails struct {
 	Severity *string `type:"string" enum:"ScheduledAutoTuneSeverityType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScheduledAutoTuneDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ScheduledAutoTuneDetails) GoString() string {
 	return s.String()
 }
@@ -11517,12 +13149,20 @@ type ServiceSoftwareOptions struct {
 	UpdateStatus *string `type:"string" enum:"DeploymentStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceSoftwareOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceSoftwareOptions) GoString() string {
 	return s.String()
 }
@@ -11585,12 +13225,20 @@ type SnapshotOptions struct {
 	AutomatedSnapshotStartHour *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnapshotOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnapshotOptions) GoString() string {
 	return s.String()
 }
@@ -11616,12 +13264,20 @@ type SnapshotOptionsStatus struct {
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnapshotOptionsStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnapshotOptionsStatus) GoString() string {
 	return s.String()
 }
@@ -11650,12 +13306,20 @@ type StartElasticsearchServiceSoftwareUpdateInput struct {
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartElasticsearchServiceSoftwareUpdateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartElasticsearchServiceSoftwareUpdateInput) GoString() string {
 	return s.String()
 }
@@ -11691,12 +13355,20 @@ type StartElasticsearchServiceSoftwareUpdateOutput struct {
 	ServiceSoftwareOptions *ServiceSoftwareOptions `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartElasticsearchServiceSoftwareUpdateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartElasticsearchServiceSoftwareUpdateOutput) GoString() string {
 	return s.String()
 }
@@ -11727,12 +13399,20 @@ type StorageType struct {
 	StorageTypeName *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageType) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageType) GoString() string {
 	return s.String()
 }
@@ -11774,12 +13454,20 @@ type StorageTypeLimit struct {
 	LimitValues []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageTypeLimit) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageTypeLimit) GoString() string {
 	return s.String()
 }
@@ -11815,12 +13503,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -11888,6 +13584,13 @@ type UpdateElasticsearchDomainConfigInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
+	// This flag, when set to True, specifies whether the UpdateElasticsearchDomain
+	// request should return the results of validation checks without actually applying
+	// the change. This flag, when set to True, specifies the deployment mechanism
+	// through which the update shall be applied on the domain. This will not actually
+	// perform the Update.
+	DryRun *bool `type:"boolean"`
+
 	// Specify the type and size of the EBS volume that you want to use.
 	EBSOptions *EBSOptions `type:"structure"`
 
@@ -11914,12 +13617,20 @@ type UpdateElasticsearchDomainConfigInput struct {
 	VPCOptions *VPCOptions `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateElasticsearchDomainConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateElasticsearchDomainConfigInput) GoString() string {
 	return s.String()
 }
@@ -12012,6 +13723,12 @@ func (s *UpdateElasticsearchDomainConfigInput) SetDomainName(v string) *UpdateEl
 	return s
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *UpdateElasticsearchDomainConfigInput) SetDryRun(v bool) *UpdateElasticsearchDomainConfigInput {
+	s.DryRun = &v
+	return s
+}
+
 // SetEBSOptions sets the EBSOptions field's value.
 func (s *UpdateElasticsearchDomainConfigInput) SetEBSOptions(v *EBSOptions) *UpdateElasticsearchDomainConfigInput {
 	s.EBSOptions = v
@@ -12063,14 +13780,25 @@ type UpdateElasticsearchDomainConfigOutput struct {
 	//
 	// DomainConfig is a required field
 	DomainConfig *ElasticsearchDomainConfig `type:"structure" required:"true"`
+
+	// Contains result of DryRun.
+	DryRunResults *DryRunResults `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateElasticsearchDomainConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateElasticsearchDomainConfigOutput) GoString() string {
 	return s.String()
 }
@@ -12078,6 +13806,12 @@ func (s UpdateElasticsearchDomainConfigOutput) GoString() string {
 // SetDomainConfig sets the DomainConfig field's value.
 func (s *UpdateElasticsearchDomainConfigOutput) SetDomainConfig(v *ElasticsearchDomainConfig) *UpdateElasticsearchDomainConfigOutput {
 	s.DomainConfig = v
+	return s
+}
+
+// SetDryRunResults sets the DryRunResults field's value.
+func (s *UpdateElasticsearchDomainConfigOutput) SetDryRunResults(v *DryRunResults) *UpdateElasticsearchDomainConfigOutput {
+	s.DryRunResults = v
 	return s
 }
 
@@ -12102,12 +13836,20 @@ type UpdatePackageInput struct {
 	PackageSource *PackageSource `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePackageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePackageInput) GoString() string {
 	return s.String()
 }
@@ -12165,12 +13907,20 @@ type UpdatePackageOutput struct {
 	PackageDetails *PackageDetails `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePackageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdatePackageOutput) GoString() string {
 	return s.String()
 }
@@ -12203,12 +13953,20 @@ type UpgradeElasticsearchDomainInput struct {
 	TargetVersion *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpgradeElasticsearchDomainInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpgradeElasticsearchDomainInput) GoString() string {
 	return s.String()
 }
@@ -12254,6 +14012,9 @@ func (s *UpgradeElasticsearchDomainInput) SetTargetVersion(v string) *UpgradeEla
 type UpgradeElasticsearchDomainOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies change details of the domain configuration change.
+	ChangeProgressDetails *ChangeProgressDetails `type:"structure"`
+
 	// The name of an Elasticsearch domain. Domain names are unique across the domains
 	// owned by an account within an AWS region. Domain names start with a letter
 	// or number and can contain the following characters: a-z (lowercase), 0-9,
@@ -12268,14 +14029,28 @@ type UpgradeElasticsearchDomainOutput struct {
 	TargetVersion *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpgradeElasticsearchDomainOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpgradeElasticsearchDomainOutput) GoString() string {
 	return s.String()
+}
+
+// SetChangeProgressDetails sets the ChangeProgressDetails field's value.
+func (s *UpgradeElasticsearchDomainOutput) SetChangeProgressDetails(v *ChangeProgressDetails) *UpgradeElasticsearchDomainOutput {
+	s.ChangeProgressDetails = v
+	return s
 }
 
 // SetDomainName sets the DomainName field's value.
@@ -12323,12 +14098,20 @@ type UpgradeHistory struct {
 	UpgradeStatus *string `type:"string" enum:"UpgradeStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpgradeHistory) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpgradeHistory) GoString() string {
 	return s.String()
 }
@@ -12390,12 +14173,20 @@ type UpgradeStepItem struct {
 	UpgradeStepStatus *string `type:"string" enum:"UpgradeStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpgradeStepItem) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpgradeStepItem) GoString() string {
 	return s.String()
 }
@@ -12445,12 +14236,20 @@ type VPCDerivedInfo struct {
 	VPCId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VPCDerivedInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VPCDerivedInfo) GoString() string {
 	return s.String()
 }
@@ -12494,12 +14293,20 @@ type VPCDerivedInfoStatus struct {
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VPCDerivedInfoStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VPCDerivedInfoStatus) GoString() string {
 	return s.String()
 }
@@ -12529,12 +14336,20 @@ type VPCOptions struct {
 	SubnetIds []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VPCOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VPCOptions) GoString() string {
 	return s.String()
 }
@@ -12560,12 +14375,20 @@ type ValidationException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationException) GoString() string {
 	return s.String()
 }
@@ -12619,12 +14442,20 @@ type ZoneAwarenessConfig struct {
 	AvailabilityZoneCount *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ZoneAwarenessConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ZoneAwarenessConfig) GoString() string {
 	return s.String()
 }
@@ -13044,6 +14875,22 @@ func ESWarmPartitionInstanceType_Values() []string {
 }
 
 const (
+	// EngineTypeOpenSearch is a EngineType enum value
+	EngineTypeOpenSearch = "OpenSearch"
+
+	// EngineTypeElasticsearch is a EngineType enum value
+	EngineTypeElasticsearch = "Elasticsearch"
+)
+
+// EngineType_Values returns all elements of the EngineType enum
+func EngineType_Values() []string {
+	return []string{
+		EngineTypeOpenSearch,
+		EngineTypeElasticsearch,
+	}
+}
+
+const (
 	// InboundCrossClusterSearchConnectionStatusCodePendingAcceptance is a InboundCrossClusterSearchConnectionStatusCode enum value
 	InboundCrossClusterSearchConnectionStatusCodePendingAcceptance = "PENDING_ACCEPTANCE"
 
@@ -13175,6 +15022,31 @@ func OutboundCrossClusterSearchConnectionStatusCode_Values() []string {
 		OutboundCrossClusterSearchConnectionStatusCodeRejected,
 		OutboundCrossClusterSearchConnectionStatusCodeDeleting,
 		OutboundCrossClusterSearchConnectionStatusCodeDeleted,
+	}
+}
+
+// The overall status value of the domain configuration change.
+const (
+	// OverallChangeStatusPending is a OverallChangeStatus enum value
+	OverallChangeStatusPending = "PENDING"
+
+	// OverallChangeStatusProcessing is a OverallChangeStatus enum value
+	OverallChangeStatusProcessing = "PROCESSING"
+
+	// OverallChangeStatusCompleted is a OverallChangeStatus enum value
+	OverallChangeStatusCompleted = "COMPLETED"
+
+	// OverallChangeStatusFailed is a OverallChangeStatus enum value
+	OverallChangeStatusFailed = "FAILED"
+)
+
+// OverallChangeStatus_Values returns all elements of the OverallChangeStatus enum
+func OverallChangeStatus_Values() []string {
+	return []string{
+		OverallChangeStatusPending,
+		OverallChangeStatusProcessing,
+		OverallChangeStatusCompleted,
+		OverallChangeStatusFailed,
 	}
 }
 

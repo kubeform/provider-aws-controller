@@ -66,8 +66,8 @@ func (c *DataSync) CancelTaskExecutionRequest(input *CancelTaskExecutionInput) (
 // start a new task execution on the same task and you allow the task execution
 // to complete, file content on the destination is complete and consistent.
 // This applies to other unexpected failures that interrupt a task execution.
-// In all of these cases, AWS DataSync successfully complete the transfer when
-// you start the next task execution.
+// In all of these cases, DataSync successfully complete the transfer when you
+// start the next task execution.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -81,7 +81,7 @@ func (c *DataSync) CancelTaskExecutionRequest(input *CancelTaskExecutionInput) (
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CancelTaskExecution
 func (c *DataSync) CancelTaskExecution(input *CancelTaskExecutionInput) (*CancelTaskExecutionOutput, error) {
@@ -149,12 +149,12 @@ func (c *DataSync) CreateAgentRequest(input *CreateAgentInput) (req *request.Req
 
 // CreateAgent API operation for AWS DataSync.
 //
-// Activates an AWS DataSync agent that you have deployed on your host. The
-// activation process associates your agent with your account. In the activation
-// process, you specify information such as the AWS Region that you want to
-// activate the agent in. You activate the agent in the AWS Region where your
-// target locations (in Amazon S3 or Amazon EFS) reside. Your tasks are created
-// in this AWS Region.
+// Activates an DataSync agent that you have deployed on your host. The activation
+// process associates your agent with your account. In the activation process,
+// you specify information such as the Amazon Web Services Region that you want
+// to activate the agent in. You activate the agent in the Amazon Web Services
+// Region where your target locations (in Amazon S3 or Amazon EFS) reside. Your
+// tasks are created in this Amazon Web Services Region.
 //
 // You can activate the agent in a VPC (virtual private cloud) or provide the
 // agent access to a VPC endpoint so you can run tasks without going over the
@@ -165,8 +165,8 @@ func (c *DataSync) CreateAgentRequest(input *CreateAgentInput) (req *request.Req
 // you use multiple agents for a source location, the status of all the agents
 // must be AVAILABLE for the task to run.
 //
-// Agents are automatically updated by AWS on a regular basis, using a mechanism
-// that ensures minimal interruption to your tasks.
+// Agents are automatically updated by Amazon Web Services on a regular basis,
+// using a mechanism that ensures minimal interruption to your tasks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -180,7 +180,7 @@ func (c *DataSync) CreateAgentRequest(input *CreateAgentInput) (req *request.Req
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateAgent
 func (c *DataSync) CreateAgent(input *CreateAgentInput) (*CreateAgentOutput, error) {
@@ -262,7 +262,7 @@ func (c *DataSync) CreateLocationEfsRequest(input *CreateLocationEfsInput) (req 
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationEfs
 func (c *DataSync) CreateLocationEfs(input *CreateLocationEfsInput) (*CreateLocationEfsOutput, error) {
@@ -281,6 +281,88 @@ func (c *DataSync) CreateLocationEfs(input *CreateLocationEfsInput) (*CreateLoca
 // for more information on using Contexts.
 func (c *DataSync) CreateLocationEfsWithContext(ctx aws.Context, input *CreateLocationEfsInput, opts ...request.Option) (*CreateLocationEfsOutput, error) {
 	req, out := c.CreateLocationEfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateLocationFsxLustre = "CreateLocationFsxLustre"
+
+// CreateLocationFsxLustreRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLocationFsxLustre operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLocationFsxLustre for more information on using the CreateLocationFsxLustre
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLocationFsxLustreRequest method.
+//    req, resp := client.CreateLocationFsxLustreRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxLustre
+func (c *DataSync) CreateLocationFsxLustreRequest(input *CreateLocationFsxLustreInput) (req *request.Request, output *CreateLocationFsxLustreOutput) {
+	op := &request.Operation{
+		Name:       opCreateLocationFsxLustre,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLocationFsxLustreInput{}
+	}
+
+	output = &CreateLocationFsxLustreOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLocationFsxLustre API operation for AWS DataSync.
+//
+// Creates an endpoint for an Amazon FSx for Lustre file system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation CreateLocationFsxLustre for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxLustre
+func (c *DataSync) CreateLocationFsxLustre(input *CreateLocationFsxLustreInput) (*CreateLocationFsxLustreOutput, error) {
+	req, out := c.CreateLocationFsxLustreRequest(input)
+	return out, req.Send()
+}
+
+// CreateLocationFsxLustreWithContext is the same as CreateLocationFsxLustre with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLocationFsxLustre for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) CreateLocationFsxLustreWithContext(ctx aws.Context, input *CreateLocationFsxLustreInput, opts ...request.Option) (*CreateLocationFsxLustreOutput, error) {
+	req, out := c.CreateLocationFsxLustreRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -344,7 +426,7 @@ func (c *DataSync) CreateLocationFsxWindowsRequest(input *CreateLocationFsxWindo
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationFsxWindows
 func (c *DataSync) CreateLocationFsxWindows(input *CreateLocationFsxWindowsInput) (*CreateLocationFsxWindowsOutput, error) {
@@ -363,6 +445,88 @@ func (c *DataSync) CreateLocationFsxWindows(input *CreateLocationFsxWindowsInput
 // for more information on using Contexts.
 func (c *DataSync) CreateLocationFsxWindowsWithContext(ctx aws.Context, input *CreateLocationFsxWindowsInput, opts ...request.Option) (*CreateLocationFsxWindowsOutput, error) {
 	req, out := c.CreateLocationFsxWindowsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateLocationHdfs = "CreateLocationHdfs"
+
+// CreateLocationHdfsRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLocationHdfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLocationHdfs for more information on using the CreateLocationHdfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLocationHdfsRequest method.
+//    req, resp := client.CreateLocationHdfsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationHdfs
+func (c *DataSync) CreateLocationHdfsRequest(input *CreateLocationHdfsInput) (req *request.Request, output *CreateLocationHdfsOutput) {
+	op := &request.Operation{
+		Name:       opCreateLocationHdfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLocationHdfsInput{}
+	}
+
+	output = &CreateLocationHdfsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLocationHdfs API operation for AWS DataSync.
+//
+// Creates an endpoint for a Hadoop Distributed File System (HDFS).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation CreateLocationHdfs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationHdfs
+func (c *DataSync) CreateLocationHdfs(input *CreateLocationHdfsInput) (*CreateLocationHdfsOutput, error) {
+	req, out := c.CreateLocationHdfsRequest(input)
+	return out, req.Send()
+}
+
+// CreateLocationHdfsWithContext is the same as CreateLocationHdfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLocationHdfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) CreateLocationHdfsWithContext(ctx aws.Context, input *CreateLocationHdfsInput, opts ...request.Option) (*CreateLocationHdfsOutput, error) {
+	req, out := c.CreateLocationHdfsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -427,7 +591,7 @@ func (c *DataSync) CreateLocationNfsRequest(input *CreateLocationNfsInput) (req 
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationNfs
 func (c *DataSync) CreateLocationNfs(input *CreateLocationNfsInput) (*CreateLocationNfsOutput, error) {
@@ -511,7 +675,7 @@ func (c *DataSync) CreateLocationObjectStorageRequest(input *CreateLocationObjec
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationObjectStorage
 func (c *DataSync) CreateLocationObjectStorage(input *CreateLocationObjectStorageInput) (*CreateLocationObjectStorageOutput, error) {
@@ -581,8 +745,8 @@ func (c *DataSync) CreateLocationS3Request(input *CreateLocationS3Input) (req *r
 //
 // Creates an endpoint for an Amazon S3 bucket.
 //
-// For more information, see https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli
-// in the AWS DataSync User Guide.
+// For more information, see Create an Amazon S3 location (https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli)
+// in the DataSync User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -596,7 +760,7 @@ func (c *DataSync) CreateLocationS3Request(input *CreateLocationS3Input) (req *r
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationS3
 func (c *DataSync) CreateLocationS3(input *CreateLocationS3Input) (*CreateLocationS3Output, error) {
@@ -679,7 +843,7 @@ func (c *DataSync) CreateLocationSmbRequest(input *CreateLocationSmbInput) (req 
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationSmb
 func (c *DataSync) CreateLocationSmb(input *CreateLocationSmbInput) (*CreateLocationSmbOutput, error) {
@@ -755,18 +919,18 @@ func (c *DataSync) CreateTaskRequest(input *CreateTaskInput) (req *request.Reque
 // options such as task scheduling, bandwidth limits, etc. A task is the complete
 // definition of a data transfer.
 //
-// When you create a task that transfers data between AWS services in different
-// AWS Regions, one of the two locations that you specify must reside in the
-// Region where DataSync is being used. The other location must be specified
-// in a different Region.
+// When you create a task that transfers data between Amazon Web Services services
+// in different Amazon Web Services Regions, one of the two locations that you
+// specify must reside in the Region where DataSync is being used. The other
+// location must be specified in a different Region.
 //
-// You can transfer data between commercial AWS Regions except for China, or
-// between AWS GovCloud (US-East and US-West) Regions.
+// You can transfer data between commercial Amazon Web Services Regions except
+// for China, or between Amazon Web Services GovCloud (US) Regions.
 //
-// When you use DataSync to copy files or objects between AWS Regions, you pay
-// for data transfer between Regions. This is billed as data transfer OUT from
-// your source Region to your destination Region. For more information, see
-// Data Transfer pricing (http://aws.amazon.com/ec2/pricing/on-demand/#Data_Transfer).
+// When you use DataSync to copy files or objects between Amazon Web Services
+// Regions, you pay for data transfer between Regions. This is billed as data
+// transfer OUT from your source Region to your destination Region. For more
+// information, see Data Transfer pricing (http://aws.amazon.com/ec2/pricing/on-demand/#Data_Transfer).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -780,7 +944,7 @@ func (c *DataSync) CreateTaskRequest(input *CreateTaskInput) (req *request.Reque
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateTask
 func (c *DataSync) CreateTask(input *CreateTaskInput) (*CreateTaskOutput, error) {
@@ -851,8 +1015,8 @@ func (c *DataSync) DeleteAgentRequest(input *DeleteAgentInput) (req *request.Req
 //
 // Deletes an agent. To specify which agent to delete, use the Amazon Resource
 // Name (ARN) of the agent in your request. The operation disassociates the
-// agent from your AWS account. However, it doesn't delete the agent virtual
-// machine (VM) from your on-premises environment.
+// agent from your Amazon Web Services account. However, it doesn't delete the
+// agent virtual machine (VM) from your on-premises environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -866,7 +1030,7 @@ func (c *DataSync) DeleteAgentRequest(input *DeleteAgentInput) (req *request.Req
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DeleteAgent
 func (c *DataSync) DeleteAgent(input *DeleteAgentInput) (*DeleteAgentOutput, error) {
@@ -935,7 +1099,7 @@ func (c *DataSync) DeleteLocationRequest(input *DeleteLocationInput) (req *reque
 
 // DeleteLocation API operation for AWS DataSync.
 //
-// Deletes the configuration of a location used by AWS DataSync.
+// Deletes the configuration of a location used by DataSync.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -949,7 +1113,7 @@ func (c *DataSync) DeleteLocationRequest(input *DeleteLocationInput) (req *reque
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DeleteLocation
 func (c *DataSync) DeleteLocation(input *DeleteLocationInput) (*DeleteLocationOutput, error) {
@@ -1032,7 +1196,7 @@ func (c *DataSync) DeleteTaskRequest(input *DeleteTaskInput) (req *request.Reque
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DeleteTask
 func (c *DataSync) DeleteTask(input *DeleteTaskInput) (*DeleteTaskOutput, error) {
@@ -1117,7 +1281,7 @@ func (c *DataSync) DescribeAgentRequest(input *DescribeAgentInput) (req *request
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeAgent
 func (c *DataSync) DescribeAgent(input *DescribeAgentInput) (*DescribeAgentOutput, error) {
@@ -1199,7 +1363,7 @@ func (c *DataSync) DescribeLocationEfsRequest(input *DescribeLocationEfsInput) (
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationEfs
 func (c *DataSync) DescribeLocationEfs(input *DescribeLocationEfsInput) (*DescribeLocationEfsOutput, error) {
@@ -1218,6 +1382,89 @@ func (c *DataSync) DescribeLocationEfs(input *DescribeLocationEfsInput) (*Descri
 // for more information on using Contexts.
 func (c *DataSync) DescribeLocationEfsWithContext(ctx aws.Context, input *DescribeLocationEfsInput, opts ...request.Option) (*DescribeLocationEfsOutput, error) {
 	req, out := c.DescribeLocationEfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLocationFsxLustre = "DescribeLocationFsxLustre"
+
+// DescribeLocationFsxLustreRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocationFsxLustre operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLocationFsxLustre for more information on using the DescribeLocationFsxLustre
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeLocationFsxLustreRequest method.
+//    req, resp := client.DescribeLocationFsxLustreRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxLustre
+func (c *DataSync) DescribeLocationFsxLustreRequest(input *DescribeLocationFsxLustreInput) (req *request.Request, output *DescribeLocationFsxLustreOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLocationFsxLustre,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLocationFsxLustreInput{}
+	}
+
+	output = &DescribeLocationFsxLustreOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLocationFsxLustre API operation for AWS DataSync.
+//
+// Returns metadata, such as the path information about an Amazon FSx for Lustre
+// location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeLocationFsxLustre for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxLustre
+func (c *DataSync) DescribeLocationFsxLustre(input *DescribeLocationFsxLustreInput) (*DescribeLocationFsxLustreOutput, error) {
+	req, out := c.DescribeLocationFsxLustreRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLocationFsxLustreWithContext is the same as DescribeLocationFsxLustre with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLocationFsxLustre for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeLocationFsxLustreWithContext(ctx aws.Context, input *DescribeLocationFsxLustreInput, opts ...request.Option) (*DescribeLocationFsxLustreOutput, error) {
+	req, out := c.DescribeLocationFsxLustreRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1282,7 +1529,7 @@ func (c *DataSync) DescribeLocationFsxWindowsRequest(input *DescribeLocationFsxW
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationFsxWindows
 func (c *DataSync) DescribeLocationFsxWindows(input *DescribeLocationFsxWindowsInput) (*DescribeLocationFsxWindowsOutput, error) {
@@ -1301,6 +1548,89 @@ func (c *DataSync) DescribeLocationFsxWindows(input *DescribeLocationFsxWindowsI
 // for more information on using Contexts.
 func (c *DataSync) DescribeLocationFsxWindowsWithContext(ctx aws.Context, input *DescribeLocationFsxWindowsInput, opts ...request.Option) (*DescribeLocationFsxWindowsOutput, error) {
 	req, out := c.DescribeLocationFsxWindowsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLocationHdfs = "DescribeLocationHdfs"
+
+// DescribeLocationHdfsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocationHdfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLocationHdfs for more information on using the DescribeLocationHdfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeLocationHdfsRequest method.
+//    req, resp := client.DescribeLocationHdfsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationHdfs
+func (c *DataSync) DescribeLocationHdfsRequest(input *DescribeLocationHdfsInput) (req *request.Request, output *DescribeLocationHdfsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLocationHdfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLocationHdfsInput{}
+	}
+
+	output = &DescribeLocationHdfsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLocationHdfs API operation for AWS DataSync.
+//
+// Returns metadata, such as the authentication information about the Hadoop
+// Distributed File System (HDFS) location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeLocationHdfs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationHdfs
+func (c *DataSync) DescribeLocationHdfs(input *DescribeLocationHdfsInput) (*DescribeLocationHdfsOutput, error) {
+	req, out := c.DescribeLocationHdfsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLocationHdfsWithContext is the same as DescribeLocationHdfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLocationHdfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeLocationHdfsWithContext(ctx aws.Context, input *DescribeLocationHdfsInput, opts ...request.Option) (*DescribeLocationHdfsOutput, error) {
+	req, out := c.DescribeLocationHdfsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1364,7 +1694,7 @@ func (c *DataSync) DescribeLocationNfsRequest(input *DescribeLocationNfsInput) (
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationNfs
 func (c *DataSync) DescribeLocationNfs(input *DescribeLocationNfsInput) (*DescribeLocationNfsOutput, error) {
@@ -1448,7 +1778,7 @@ func (c *DataSync) DescribeLocationObjectStorageRequest(input *DescribeLocationO
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationObjectStorage
 func (c *DataSync) DescribeLocationObjectStorage(input *DescribeLocationObjectStorageInput) (*DescribeLocationObjectStorageOutput, error) {
@@ -1530,7 +1860,7 @@ func (c *DataSync) DescribeLocationS3Request(input *DescribeLocationS3Input) (re
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationS3
 func (c *DataSync) DescribeLocationS3(input *DescribeLocationS3Input) (*DescribeLocationS3Output, error) {
@@ -1612,7 +1942,7 @@ func (c *DataSync) DescribeLocationSmbRequest(input *DescribeLocationSmbInput) (
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationSmb
 func (c *DataSync) DescribeLocationSmb(input *DescribeLocationSmbInput) (*DescribeLocationSmbOutput, error) {
@@ -1694,7 +2024,7 @@ func (c *DataSync) DescribeTaskRequest(input *DescribeTaskInput) (req *request.R
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeTask
 func (c *DataSync) DescribeTask(input *DescribeTaskInput) (*DescribeTaskOutput, error) {
@@ -1776,7 +2106,7 @@ func (c *DataSync) DescribeTaskExecutionRequest(input *DescribeTaskExecutionInpu
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeTaskExecution
 func (c *DataSync) DescribeTaskExecution(input *DescribeTaskExecutionInput) (*DescribeTaskExecutionOutput, error) {
@@ -1850,9 +2180,9 @@ func (c *DataSync) ListAgentsRequest(input *ListAgentsInput) (req *request.Reque
 
 // ListAgents API operation for AWS DataSync.
 //
-// Returns a list of agents owned by an AWS account in the AWS Region specified
-// in the request. The returned list is ordered by agent Amazon Resource Name
-// (ARN).
+// Returns a list of agents owned by an Amazon Web Services account in the Amazon
+// Web Services Region specified in the request. The returned list is ordered
+// by agent Amazon Resource Name (ARN).
 //
 // By default, this operation returns a maximum of 100 agents. This operation
 // supports pagination that enables you to optionally reduce the number of agents
@@ -1874,7 +2204,7 @@ func (c *DataSync) ListAgentsRequest(input *ListAgentsInput) (req *request.Reque
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListAgents
 func (c *DataSync) ListAgents(input *ListAgentsInput) (*ListAgentsOutput, error) {
@@ -2019,7 +2349,7 @@ func (c *DataSync) ListLocationsRequest(input *ListLocationsInput) (req *request
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListLocations
 func (c *DataSync) ListLocations(input *ListLocationsInput) (*ListLocationsOutput, error) {
@@ -2159,7 +2489,7 @@ func (c *DataSync) ListTagsForResourceRequest(input *ListTagsForResourceInput) (
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListTagsForResource
 func (c *DataSync) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2299,7 +2629,7 @@ func (c *DataSync) ListTaskExecutionsRequest(input *ListTaskExecutionsInput) (re
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListTaskExecutions
 func (c *DataSync) ListTaskExecutions(input *ListTaskExecutionsInput) (*ListTaskExecutionsOutput, error) {
@@ -2439,7 +2769,7 @@ func (c *DataSync) ListTasksRequest(input *ListTasksInput) (req *request.Request
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/ListTasks
 func (c *DataSync) ListTasks(input *ListTasksInput) (*ListTasksOutput, error) {
@@ -2567,7 +2897,7 @@ func (c *DataSync) StartTaskExecutionRequest(input *StartTaskExecutionInput) (re
 // | TRANSFERRING | VERIFYING | SUCCESS/FAILURE.
 //
 // For detailed information, see the Task Execution section in the Components
-// and Terminology topic in the AWS DataSync User Guide.
+// and Terminology topic in the DataSync User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2581,7 +2911,7 @@ func (c *DataSync) StartTaskExecutionRequest(input *StartTaskExecutionInput) (re
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/StartTaskExecution
 func (c *DataSync) StartTaskExecution(input *StartTaskExecutionInput) (*StartTaskExecutionOutput, error) {
@@ -2650,7 +2980,7 @@ func (c *DataSync) TagResourceRequest(input *TagResourceInput) (req *request.Req
 
 // TagResource API operation for AWS DataSync.
 //
-// Applies a key-value pair to an AWS resource.
+// Applies a key-value pair to an Amazon Web Services resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2664,7 +2994,7 @@ func (c *DataSync) TagResourceRequest(input *TagResourceInput) (req *request.Req
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/TagResource
 func (c *DataSync) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2733,7 +3063,7 @@ func (c *DataSync) UntagResourceRequest(input *UntagResourceInput) (req *request
 
 // UntagResource API operation for AWS DataSync.
 //
-// Removes a tag from an AWS resource.
+// Removes a tag from an Amazon Web Services resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2747,7 +3077,7 @@ func (c *DataSync) UntagResourceRequest(input *UntagResourceInput) (req *request
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UntagResource
 func (c *DataSync) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2830,7 +3160,7 @@ func (c *DataSync) UpdateAgentRequest(input *UpdateAgentInput) (req *request.Req
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateAgent
 func (c *DataSync) UpdateAgent(input *UpdateAgentInput) (*UpdateAgentOutput, error) {
@@ -2849,6 +3179,90 @@ func (c *DataSync) UpdateAgent(input *UpdateAgentInput) (*UpdateAgentOutput, err
 // for more information on using Contexts.
 func (c *DataSync) UpdateAgentWithContext(ctx aws.Context, input *UpdateAgentInput, opts ...request.Option) (*UpdateAgentOutput, error) {
 	req, out := c.UpdateAgentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateLocationHdfs = "UpdateLocationHdfs"
+
+// UpdateLocationHdfsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLocationHdfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLocationHdfs for more information on using the UpdateLocationHdfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateLocationHdfsRequest method.
+//    req, resp := client.UpdateLocationHdfsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationHdfs
+func (c *DataSync) UpdateLocationHdfsRequest(input *UpdateLocationHdfsInput) (req *request.Request, output *UpdateLocationHdfsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLocationHdfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLocationHdfsInput{}
+	}
+
+	output = &UpdateLocationHdfsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLocationHdfs API operation for AWS DataSync.
+//
+// Updates some parameters of a previously created location for a Hadoop Distributed
+// File System cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateLocationHdfs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationHdfs
+func (c *DataSync) UpdateLocationHdfs(input *UpdateLocationHdfsInput) (*UpdateLocationHdfsOutput, error) {
+	req, out := c.UpdateLocationHdfsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLocationHdfsWithContext is the same as UpdateLocationHdfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLocationHdfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateLocationHdfsWithContext(ctx aws.Context, input *UpdateLocationHdfsInput, opts ...request.Option) (*UpdateLocationHdfsOutput, error) {
+	req, out := c.UpdateLocationHdfsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2915,7 +3329,7 @@ func (c *DataSync) UpdateLocationNfsRequest(input *UpdateLocationNfsInput) (req 
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationNfs
 func (c *DataSync) UpdateLocationNfs(input *UpdateLocationNfsInput) (*UpdateLocationNfsOutput, error) {
@@ -3000,7 +3414,7 @@ func (c *DataSync) UpdateLocationObjectStorageRequest(input *UpdateLocationObjec
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationObjectStorage
 func (c *DataSync) UpdateLocationObjectStorage(input *UpdateLocationObjectStorageInput) (*UpdateLocationObjectStorageOutput, error) {
@@ -3085,7 +3499,7 @@ func (c *DataSync) UpdateLocationSmbRequest(input *UpdateLocationSmbInput) (req 
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationSmb
 func (c *DataSync) UpdateLocationSmb(input *UpdateLocationSmbInput) (*UpdateLocationSmbOutput, error) {
@@ -3168,7 +3582,7 @@ func (c *DataSync) UpdateTaskRequest(input *UpdateTaskInput) (req *request.Reque
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateTask
 func (c *DataSync) UpdateTask(input *UpdateTaskInput) (*UpdateTaskOutput, error) {
@@ -3258,7 +3672,7 @@ func (c *DataSync) UpdateTaskExecutionRequest(input *UpdateTaskExecutionInput) (
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * InternalException
-//   This exception is thrown when an error occurs in the AWS DataSync service.
+//   This exception is thrown when an error occurs in the DataSync service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateTaskExecution
 func (c *DataSync) UpdateTaskExecution(input *UpdateTaskExecutionInput) (*UpdateTaskExecutionOutput, error) {
@@ -3298,12 +3712,20 @@ type AgentListEntry struct {
 	Status *string `type:"string" enum:"AgentStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AgentListEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AgentListEntry) GoString() string {
 	return s.String()
 }
@@ -3336,12 +3758,20 @@ type CancelTaskExecutionInput struct {
 	TaskExecutionArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelTaskExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelTaskExecutionInput) GoString() string {
 	return s.String()
 }
@@ -3369,12 +3799,20 @@ type CancelTaskExecutionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelTaskExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelTaskExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -3385,7 +3823,7 @@ type CreateAgentInput struct {
 
 	// Your agent activation key. You can get the activation key either by sending
 	// an HTTP GET request with redirects that enable you to get the agent IP address
-	// (port 80). Alternatively, you can get it from the AWS DataSync console.
+	// (port 80). Alternatively, you can get it from the DataSync console.
 	//
 	// The redirect URL returned in the response provides you the activation key
 	// for your agent in the query string parameter activationKey. It might also
@@ -3393,7 +3831,7 @@ type CreateAgentInput struct {
 	// The arguments you pass to this API call determine the actual configuration
 	// of your agent.
 	//
-	// For more information, see Activating an Agent in the AWS DataSync User Guide.
+	// For more information, see Activating an Agent in the DataSync User Guide.
 	//
 	// ActivationKey is a required field
 	ActivationKey *string `type:"string" required:"true"`
@@ -3433,12 +3871,20 @@ type CreateAgentInput struct {
 	VpcEndpointId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAgentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAgentInput) GoString() string {
 	return s.String()
 }
@@ -3516,16 +3962,24 @@ type CreateAgentOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the agent. Use the ListAgents operation
-	// to return a list of agents for your account and AWS Region.
+	// to return a list of agents for your account and Amazon Web Services Region.
 	AgentArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAgentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAgentOutput) GoString() string {
 	return s.String()
 }
@@ -3570,7 +4024,7 @@ type CreateLocationEfsInput struct {
 
 	// A subdirectory in the location’s path. This subdirectory in the EFS file
 	// system is used to read data from the EFS source location or write data to
-	// the EFS destination. By default, AWS DataSync uses the root directory.
+	// the EFS destination. By default, DataSync uses the root directory.
 	//
 	// Subdirectory must be specified with forward slashes. For example, /path/to/folder.
 	Subdirectory *string `type:"string"`
@@ -3582,12 +4036,20 @@ type CreateLocationEfsInput struct {
 	Tags []*TagListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationEfsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationEfsInput) GoString() string {
 	return s.String()
 }
@@ -3656,18 +4118,155 @@ type CreateLocationEfsOutput struct {
 	LocationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationEfsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationEfsOutput) GoString() string {
 	return s.String()
 }
 
 // SetLocationArn sets the LocationArn field's value.
 func (s *CreateLocationEfsOutput) SetLocationArn(v string) *CreateLocationEfsOutput {
+	s.LocationArn = &v
+	return s
+}
+
+type CreateLocationFsxLustreInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the FSx for Lustre file system.
+	//
+	// FsxFilesystemArn is a required field
+	FsxFilesystemArn *string `type:"string" required:"true"`
+
+	// The Amazon Resource Names (ARNs) of the security groups that are used to
+	// configure the FSx for Lustre file system.
+	//
+	// SecurityGroupArns is a required field
+	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
+
+	// A subdirectory in the location's path. This subdirectory in the FSx for Lustre
+	// file system is used to read data from the FSx for Lustre source location
+	// or write data to the FSx for Lustre destination.
+	Subdirectory *string `type:"string"`
+
+	// The key-value pair that represents a tag that you want to add to the resource.
+	// The value can be an empty string. This value helps you manage, filter, and
+	// search for your resources. We recommend that you create a name tag for your
+	// location.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxLustreInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxLustreInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLocationFsxLustreInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLocationFsxLustreInput"}
+	if s.FsxFilesystemArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FsxFilesystemArn"))
+	}
+	if s.SecurityGroupArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupArns"))
+	}
+	if s.SecurityGroupArns != nil && len(s.SecurityGroupArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupArns", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFsxFilesystemArn sets the FsxFilesystemArn field's value.
+func (s *CreateLocationFsxLustreInput) SetFsxFilesystemArn(v string) *CreateLocationFsxLustreInput {
+	s.FsxFilesystemArn = &v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *CreateLocationFsxLustreInput) SetSecurityGroupArns(v []*string) *CreateLocationFsxLustreInput {
+	s.SecurityGroupArns = v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateLocationFsxLustreInput) SetSubdirectory(v string) *CreateLocationFsxLustreInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLocationFsxLustreInput) SetTags(v []*TagListEntry) *CreateLocationFsxLustreInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLocationFsxLustreOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the FSx for Lustre file system location
+	// that's created.
+	LocationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxLustreOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationFsxLustreOutput) GoString() string {
+	return s.String()
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *CreateLocationFsxLustreOutput) SetLocationArn(v string) *CreateLocationFsxLustreOutput {
 	s.LocationArn = &v
 	return s
 }
@@ -3687,17 +4286,21 @@ type CreateLocationFsxWindowsInput struct {
 	// The password of the user who has the permissions to access files and folders
 	// in the FSx for Windows File Server file system.
 	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateLocationFsxWindowsInput's
+	// String and GoString methods.
+	//
 	// Password is a required field
 	Password *string `type:"string" required:"true" sensitive:"true"`
 
-	// The Amazon Resource Names (ARNs) of the security groups that are to use to
+	// The Amazon Resource Names (ARNs) of the security groups that are used to
 	// configure the FSx for Windows File Server file system.
 	//
 	// SecurityGroupArns is a required field
 	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
 
-	// A subdirectory in the location’s path. This subdirectory in the Amazon
-	// FSx for Windows File Server file system is used to read data from the Amazon
+	// A subdirectory in the location's path. This subdirectory in the Amazon FSx
+	// for Windows File Server file system is used to read data from the Amazon
 	// FSx for Windows File Server source location or write data to the FSx for
 	// Windows File Server destination.
 	Subdirectory *string `type:"string"`
@@ -3718,12 +4321,20 @@ type CreateLocationFsxWindowsInput struct {
 	User *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationFsxWindowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationFsxWindowsInput) GoString() string {
 	return s.String()
 }
@@ -3813,18 +4424,291 @@ type CreateLocationFsxWindowsOutput struct {
 	LocationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationFsxWindowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationFsxWindowsOutput) GoString() string {
 	return s.String()
 }
 
 // SetLocationArn sets the LocationArn field's value.
 func (s *CreateLocationFsxWindowsOutput) SetLocationArn(v string) *CreateLocationFsxWindowsOutput {
+	s.LocationArn = &v
+	return s
+}
+
+type CreateLocationHdfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Names (ARNs) of the agents that are used to connect to
+	// the HDFS cluster.
+	//
+	// AgentArns is a required field
+	AgentArns []*string `min:"1" type:"list" required:"true"`
+
+	// The type of authentication used to determine the identity of the user.
+	//
+	// AuthenticationType is a required field
+	AuthenticationType *string `type:"string" required:"true" enum:"HdfsAuthenticationType"`
+
+	// The size of data blocks to write into the HDFS cluster. The block size must
+	// be a multiple of 512 bytes. The default block size is 128 mebibytes (MiB).
+	BlockSize *int64 `min:"1.048576e+06" type:"integer"`
+
+	// The Kerberos key table (keytab) that contains mappings between the defined
+	// Kerberos principal and the encrypted keys. You can load the keytab from a
+	// file by providing the file's address. If you're using the CLI, it performs
+	// base64 encoding for you. Otherwise, provide the base64-encoded text.
+	//
+	// If KERBEROS is specified for AuthenticationType, this parameter is required.
+	// KerberosKeytab is automatically base64 encoded/decoded by the SDK.
+	KerberosKeytab []byte `type:"blob"`
+
+	// The krb5.conf file that contains the Kerberos configuration information.
+	// You can load the krb5.conf file by providing the file's address. If you're
+	// using the CLI, it performs the base64 encoding for you. Otherwise, provide
+	// the base64-encoded text.
+	//
+	// If KERBEROS is specified for AuthenticationType, this parameter is required.
+	// KerberosKrb5Conf is automatically base64 encoded/decoded by the SDK.
+	KerberosKrb5Conf []byte `type:"blob"`
+
+	// The Kerberos principal with access to the files and folders on the HDFS cluster.
+	//
+	// If KERBEROS is specified for AuthenticationType, this parameter is required.
+	KerberosPrincipal *string `min:"1" type:"string"`
+
+	// The URI of the HDFS cluster's Key Management Server (KMS).
+	KmsKeyProviderUri *string `min:"1" type:"string"`
+
+	// The NameNode that manages the HDFS namespace. The NameNode performs operations
+	// such as opening, closing, and renaming files and directories. The NameNode
+	// contains the information to map blocks of data to the DataNodes. You can
+	// use only one NameNode.
+	//
+	// NameNodes is a required field
+	NameNodes []*HdfsNameNode `min:"1" type:"list" required:"true"`
+
+	// The Quality of Protection (QOP) configuration specifies the Remote Procedure
+	// Call (RPC) and data transfer protection settings configured on the Hadoop
+	// Distributed File System (HDFS) cluster. If QopConfiguration isn't specified,
+	// RpcProtection and DataTransferProtection default to PRIVACY. If you set RpcProtection
+	// or DataTransferProtection, the other parameter assumes the same value.
+	QopConfiguration *QopConfiguration `type:"structure"`
+
+	// The number of DataNodes to replicate the data to when writing to the HDFS
+	// cluster. By default, data is replicated to three DataNodes.
+	ReplicationFactor *int64 `min:"1" type:"integer"`
+
+	// The user name used to identify the client on the host operating system.
+	//
+	// If SIMPLE is specified for AuthenticationType, this parameter is required.
+	SimpleUser *string `min:"1" type:"string"`
+
+	// A subdirectory in the HDFS cluster. This subdirectory is used to read data
+	// from or write data to the HDFS cluster. If the subdirectory isn't specified,
+	// it will default to /.
+	Subdirectory *string `type:"string"`
+
+	// The key-value pair that represents the tag that you want to add to the location.
+	// The value can be an empty string. We recommend using tags to name your resources.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationHdfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationHdfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLocationHdfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLocationHdfsInput"}
+	if s.AgentArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentArns"))
+	}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.AuthenticationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthenticationType"))
+	}
+	if s.BlockSize != nil && *s.BlockSize < 1.048576e+06 {
+		invalidParams.Add(request.NewErrParamMinValue("BlockSize", 1.048576e+06))
+	}
+	if s.KerberosPrincipal != nil && len(*s.KerberosPrincipal) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KerberosPrincipal", 1))
+	}
+	if s.KmsKeyProviderUri != nil && len(*s.KmsKeyProviderUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyProviderUri", 1))
+	}
+	if s.NameNodes == nil {
+		invalidParams.Add(request.NewErrParamRequired("NameNodes"))
+	}
+	if s.NameNodes != nil && len(s.NameNodes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NameNodes", 1))
+	}
+	if s.ReplicationFactor != nil && *s.ReplicationFactor < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ReplicationFactor", 1))
+	}
+	if s.SimpleUser != nil && len(*s.SimpleUser) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SimpleUser", 1))
+	}
+	if s.NameNodes != nil {
+		for i, v := range s.NameNodes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "NameNodes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *CreateLocationHdfsInput) SetAgentArns(v []*string) *CreateLocationHdfsInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *CreateLocationHdfsInput) SetAuthenticationType(v string) *CreateLocationHdfsInput {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetBlockSize sets the BlockSize field's value.
+func (s *CreateLocationHdfsInput) SetBlockSize(v int64) *CreateLocationHdfsInput {
+	s.BlockSize = &v
+	return s
+}
+
+// SetKerberosKeytab sets the KerberosKeytab field's value.
+func (s *CreateLocationHdfsInput) SetKerberosKeytab(v []byte) *CreateLocationHdfsInput {
+	s.KerberosKeytab = v
+	return s
+}
+
+// SetKerberosKrb5Conf sets the KerberosKrb5Conf field's value.
+func (s *CreateLocationHdfsInput) SetKerberosKrb5Conf(v []byte) *CreateLocationHdfsInput {
+	s.KerberosKrb5Conf = v
+	return s
+}
+
+// SetKerberosPrincipal sets the KerberosPrincipal field's value.
+func (s *CreateLocationHdfsInput) SetKerberosPrincipal(v string) *CreateLocationHdfsInput {
+	s.KerberosPrincipal = &v
+	return s
+}
+
+// SetKmsKeyProviderUri sets the KmsKeyProviderUri field's value.
+func (s *CreateLocationHdfsInput) SetKmsKeyProviderUri(v string) *CreateLocationHdfsInput {
+	s.KmsKeyProviderUri = &v
+	return s
+}
+
+// SetNameNodes sets the NameNodes field's value.
+func (s *CreateLocationHdfsInput) SetNameNodes(v []*HdfsNameNode) *CreateLocationHdfsInput {
+	s.NameNodes = v
+	return s
+}
+
+// SetQopConfiguration sets the QopConfiguration field's value.
+func (s *CreateLocationHdfsInput) SetQopConfiguration(v *QopConfiguration) *CreateLocationHdfsInput {
+	s.QopConfiguration = v
+	return s
+}
+
+// SetReplicationFactor sets the ReplicationFactor field's value.
+func (s *CreateLocationHdfsInput) SetReplicationFactor(v int64) *CreateLocationHdfsInput {
+	s.ReplicationFactor = &v
+	return s
+}
+
+// SetSimpleUser sets the SimpleUser field's value.
+func (s *CreateLocationHdfsInput) SetSimpleUser(v string) *CreateLocationHdfsInput {
+	s.SimpleUser = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateLocationHdfsInput) SetSubdirectory(v string) *CreateLocationHdfsInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLocationHdfsInput) SetTags(v []*TagListEntry) *CreateLocationHdfsInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLocationHdfsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the source HDFS cluster location that's created.
+	LocationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationHdfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationHdfsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *CreateLocationHdfsOutput) SetLocationArn(v string) *CreateLocationHdfsOutput {
 	s.LocationArn = &v
 	return s
 }
@@ -3839,8 +4723,8 @@ type CreateLocationNfsInput struct {
 	// Contains a list of Amazon Resource Names (ARNs) of agents that are used to
 	// connect to an NFS server.
 	//
-	// If you are copying data to or from your AWS Snowcone device, see NFS Server
-	// on AWS Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
+	// If you are copying data to or from your Snowcone device, see NFS Server on
+	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
 	// for more information.
 	//
 	// OnPremConfig is a required field
@@ -3850,8 +4734,8 @@ type CreateLocationNfsInput struct {
 	// (DNS) name of the NFS server. An agent that is installed on-premises uses
 	// this host name to mount the NFS server in a network.
 	//
-	// If you are copying data to or from your AWS Snowcone device, see NFS Server
-	// on AWS Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
+	// If you are copying data to or from your Snowcone device, see NFS Server on
+	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
 	// for more information.
 	//
 	// This name must either be DNS-compliant or must be an IP version 4 (IPv4)
@@ -3878,8 +4762,8 @@ type CreateLocationNfsInput struct {
 	// enables the agent to read the files. For the agent to access directories,
 	// you must additionally enable all execute access.
 	//
-	// If you are copying data to or from your AWS Snowcone device, see NFS Server
-	// on AWS Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
+	// If you are copying data to or from your Snowcone device, see NFS Server on
+	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
 	// for more information.
 	//
 	// For information about NFS export configuration, see 18.7. The /etc/exports
@@ -3893,12 +4777,20 @@ type CreateLocationNfsInput struct {
 	Tags []*TagListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationNfsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationNfsInput) GoString() string {
 	return s.String()
 }
@@ -3976,12 +4868,20 @@ type CreateLocationNfsOutput struct {
 	LocationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationNfsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationNfsOutput) GoString() string {
 	return s.String()
 }
@@ -4018,6 +4918,10 @@ type CreateLocationObjectStorageInput struct {
 	// self-managed object storage server. If your object storage requires a user
 	// name and password to authenticate, use AccessKey and SecretKey to provide
 	// the user name and password, respectively.
+	//
+	// SecretKey is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateLocationObjectStorageInput's
+	// String and GoString methods.
 	SecretKey *string `min:"8" type:"string" sensitive:"true"`
 
 	// The name of the self-managed object storage server. This value is the IP
@@ -4046,12 +4950,20 @@ type CreateLocationObjectStorageInput struct {
 	Tags []*TagListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationObjectStorageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationObjectStorageInput) GoString() string {
 	return s.String()
 }
@@ -4163,12 +5075,20 @@ type CreateLocationObjectStorageOutput struct {
 	LocationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationObjectStorageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationObjectStorageOutput) GoString() string {
 	return s.String()
 }
@@ -4183,31 +5103,31 @@ func (s *CreateLocationObjectStorageOutput) SetLocationArn(v string) *CreateLoca
 type CreateLocationS3Input struct {
 	_ struct{} `type:"structure"`
 
-	// If you are using DataSync on an AWS Outpost, specify the Amazon Resource
-	// Names (ARNs) of the DataSync agents deployed on your Outpost. For more information
-	// about launching a DataSync agent on an AWS Outpost, see Deploy your DataSync
-	// agent on AWS Outposts (https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#outposts-agent).
+	// If you are using DataSync on an Amazon Web Services Outpost, specify the
+	// Amazon Resource Names (ARNs) of the DataSync agents deployed on your Outpost.
+	// For more information about launching a DataSync agent on an Amazon Web Services
+	// Outpost, see Deploy your DataSync agent on Outposts (https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#outposts-agent).
 	AgentArns []*string `min:"1" type:"list"`
 
-	// The ARN of the Amazon S3 bucket. If the bucket is on an AWS Outpost, this
-	// must be an access point ARN.
+	// The ARN of the Amazon S3 bucket. If the bucket is on an Amazon Web Services
+	// Outpost, this must be an access point ARN.
 	//
 	// S3BucketArn is a required field
 	S3BucketArn *string `type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role that is used to access an Amazon S3 bucket.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that is used to access an Amazon S3 bucket.
 	//
 	// For detailed information about using such a role, see Creating a Location
-	// for Amazon S3 in the AWS DataSync User Guide.
+	// for Amazon S3 in the DataSync User Guide.
 	//
 	// S3Config is a required field
 	S3Config *S3Config `type:"structure" required:"true"`
 
 	// The Amazon S3 storage class that you want to store your files in when this
-	// location is used as a task destination. For buckets in AWS Regions, the storage
-	// class defaults to Standard. For buckets on AWS Outposts, the storage class
-	// defaults to AWS S3 Outposts.
+	// location is used as a task destination. For buckets in Amazon Web Services
+	// Regions, the storage class defaults to Standard. For buckets on Outposts,
+	// the storage class defaults to Amazon Web Services S3 Outposts.
 	//
 	// For more information about S3 storage classes, see Amazon S3 Storage Classes
 	// (http://aws.amazon.com/s3/storage-classes/). Some storage classes have behaviors
@@ -4224,12 +5144,20 @@ type CreateLocationS3Input struct {
 	Tags []*TagListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationS3Input) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationS3Input) GoString() string {
 	return s.String()
 }
@@ -4313,12 +5241,20 @@ type CreateLocationS3Output struct {
 	LocationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationS3Output) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationS3Output) GoString() string {
 	return s.String()
 }
@@ -4347,6 +5283,10 @@ type CreateLocationSmbInput struct {
 
 	// The password of the user who can mount the share, has the permissions to
 	// access files and folders in the SMB share.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateLocationSmbInput's
+	// String and GoString methods.
 	//
 	// Password is a required field
 	Password *string `type:"string" required:"true" sensitive:"true"`
@@ -4395,12 +5335,20 @@ type CreateLocationSmbInput struct {
 	User *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationSmbInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationSmbInput) GoString() string {
 	return s.String()
 }
@@ -4500,12 +5448,20 @@ type CreateLocationSmbOutput struct {
 	LocationArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationSmbOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLocationSmbOutput) GoString() string {
 	return s.String()
 }
@@ -4524,7 +5480,8 @@ type CreateTaskInput struct {
 	// used to monitor and log events in the task.
 	CloudWatchLogGroupArn *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of an AWS storage resource's location.
+	// The Amazon Resource Name (ARN) of an Amazon Web Services storage resource's
+	// location.
 	//
 	// DestinationLocationArn is a required field
 	DestinationLocationArn *string `type:"string" required:"true"`
@@ -4534,6 +5491,12 @@ type CreateTaskInput struct {
 	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example,
 	// "/folder1|/folder2".
 	Excludes []*FilterRule `type:"list"`
+
+	// A list of filter rules that determines which files to include when running
+	// a task. The pattern contains a single filter string that consists of the
+	// patterns to include. The patterns are delimited by "|" (that is, a pipe),
+	// for example, "/folder1|/folder2".
+	Includes []*FilterRule `type:"list"`
 
 	// The name of a task. This value is a text reference that is used to identify
 	// the task in the console.
@@ -4565,12 +5528,20 @@ type CreateTaskInput struct {
 	Tags []*TagListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTaskInput) GoString() string {
 	return s.String()
 }
@@ -4632,6 +5603,12 @@ func (s *CreateTaskInput) SetExcludes(v []*FilterRule) *CreateTaskInput {
 	return s
 }
 
+// SetIncludes sets the Includes field's value.
+func (s *CreateTaskInput) SetIncludes(v []*FilterRule) *CreateTaskInput {
+	s.Includes = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateTaskInput) SetName(v string) *CreateTaskInput {
 	s.Name = &v
@@ -4670,12 +5647,20 @@ type CreateTaskOutput struct {
 	TaskArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTaskOutput) GoString() string {
 	return s.String()
 }
@@ -4691,18 +5676,27 @@ type DeleteAgentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the agent to delete. Use the ListAgents
-	// operation to return a list of agents for your account and AWS Region.
+	// operation to return a list of agents for your account and Amazon Web Services
+	// Region.
 	//
 	// AgentArn is a required field
 	AgentArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAgentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAgentInput) GoString() string {
 	return s.String()
 }
@@ -4730,12 +5724,20 @@ type DeleteAgentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAgentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAgentOutput) GoString() string {
 	return s.String()
 }
@@ -4750,12 +5752,20 @@ type DeleteLocationInput struct {
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLocationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLocationInput) GoString() string {
 	return s.String()
 }
@@ -4783,12 +5793,20 @@ type DeleteLocationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLocationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLocationOutput) GoString() string {
 	return s.String()
 }
@@ -4803,12 +5821,20 @@ type DeleteTaskInput struct {
 	TaskArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTaskInput) GoString() string {
 	return s.String()
 }
@@ -4836,12 +5862,20 @@ type DeleteTaskOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTaskOutput) GoString() string {
 	return s.String()
 }
@@ -4856,12 +5890,20 @@ type DescribeAgentInput struct {
 	AgentArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAgentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAgentInput) GoString() string {
 	return s.String()
 }
@@ -4916,12 +5958,20 @@ type DescribeAgentOutput struct {
 	Status *string `type:"string" enum:"AgentStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAgentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAgentOutput) GoString() string {
 	return s.String()
 }
@@ -4978,12 +6028,20 @@ type DescribeLocationEfsInput struct {
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationEfsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationEfsInput) GoString() string {
 	return s.String()
 }
@@ -5027,12 +6085,20 @@ type DescribeLocationEfsOutput struct {
 	LocationUri *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationEfsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationEfsOutput) GoString() string {
 	return s.String()
 }
@@ -5061,6 +6127,111 @@ func (s *DescribeLocationEfsOutput) SetLocationUri(v string) *DescribeLocationEf
 	return s
 }
 
+type DescribeLocationFsxLustreInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the FSx for Lustre location to describe.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxLustreInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxLustreInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLocationFsxLustreInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLocationFsxLustreInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxLustreInput) SetLocationArn(v string) *DescribeLocationFsxLustreInput {
+	s.LocationArn = &v
+	return s
+}
+
+type DescribeLocationFsxLustreOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the FSx for Lustre location was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the FSx for Lustre location that was described.
+	LocationArn *string `type:"string"`
+
+	// The URI of the FSx for Lustre location that was described.
+	LocationUri *string `type:"string"`
+
+	// The Amazon Resource Names (ARNs) of the security groups that are configured
+	// for the FSx for Lustre file system.
+	SecurityGroupArns []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxLustreOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationFsxLustreOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLocationFsxLustreOutput) SetCreationTime(v time.Time) *DescribeLocationFsxLustreOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationFsxLustreOutput) SetLocationArn(v string) *DescribeLocationFsxLustreOutput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetLocationUri sets the LocationUri field's value.
+func (s *DescribeLocationFsxLustreOutput) SetLocationUri(v string) *DescribeLocationFsxLustreOutput {
+	s.LocationUri = &v
+	return s
+}
+
+// SetSecurityGroupArns sets the SecurityGroupArns field's value.
+func (s *DescribeLocationFsxLustreOutput) SetSecurityGroupArns(v []*string) *DescribeLocationFsxLustreOutput {
+	s.SecurityGroupArns = v
+	return s
+}
+
 type DescribeLocationFsxWindowsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5071,12 +6242,20 @@ type DescribeLocationFsxWindowsInput struct {
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationFsxWindowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationFsxWindowsInput) GoString() string {
 	return s.String()
 }
@@ -5126,12 +6305,20 @@ type DescribeLocationFsxWindowsOutput struct {
 	User *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationFsxWindowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationFsxWindowsOutput) GoString() string {
 	return s.String()
 }
@@ -5172,6 +6359,187 @@ func (s *DescribeLocationFsxWindowsOutput) SetUser(v string) *DescribeLocationFs
 	return s
 }
 
+type DescribeLocationHdfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the HDFS cluster location to describe.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationHdfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationHdfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLocationHdfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLocationHdfsInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationHdfsInput) SetLocationArn(v string) *DescribeLocationHdfsInput {
+	s.LocationArn = &v
+	return s
+}
+
+type DescribeLocationHdfsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARNs of the agents that are used to connect to the HDFS cluster.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The type of authentication used to determine the identity of the user.
+	AuthenticationType *string `type:"string" enum:"HdfsAuthenticationType"`
+
+	// The size of the data blocks to write into the HDFS cluster.
+	BlockSize *int64 `min:"1.048576e+06" type:"integer"`
+
+	// The time that the HDFS location was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Kerberos principal with access to the files and folders on the HDFS cluster.
+	// This parameter is used if the AuthenticationType is defined as KERBEROS.
+	KerberosPrincipal *string `min:"1" type:"string"`
+
+	// The URI of the HDFS cluster's Key Management Server (KMS).
+	KmsKeyProviderUri *string `min:"1" type:"string"`
+
+	// The ARN of the HDFS cluster location.
+	LocationArn *string `type:"string"`
+
+	// The URI of the HDFS cluster location.
+	LocationUri *string `type:"string"`
+
+	// The NameNode that manage the HDFS namespace.
+	NameNodes []*HdfsNameNode `min:"1" type:"list"`
+
+	// The Quality of Protection (QOP) configuration specifies the Remote Procedure
+	// Call (RPC) and data transfer protection settings configured on the Hadoop
+	// Distributed File System (HDFS) cluster.
+	QopConfiguration *QopConfiguration `type:"structure"`
+
+	// The number of DataNodes to replicate the data to when writing to the HDFS
+	// cluster.
+	ReplicationFactor *int64 `min:"1" type:"integer"`
+
+	// The user name used to identify the client on the host operating system. This
+	// parameter is used if the AuthenticationType is defined as SIMPLE.
+	SimpleUser *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationHdfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationHdfsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *DescribeLocationHdfsOutput) SetAgentArns(v []*string) *DescribeLocationHdfsOutput {
+	s.AgentArns = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *DescribeLocationHdfsOutput) SetAuthenticationType(v string) *DescribeLocationHdfsOutput {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetBlockSize sets the BlockSize field's value.
+func (s *DescribeLocationHdfsOutput) SetBlockSize(v int64) *DescribeLocationHdfsOutput {
+	s.BlockSize = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLocationHdfsOutput) SetCreationTime(v time.Time) *DescribeLocationHdfsOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetKerberosPrincipal sets the KerberosPrincipal field's value.
+func (s *DescribeLocationHdfsOutput) SetKerberosPrincipal(v string) *DescribeLocationHdfsOutput {
+	s.KerberosPrincipal = &v
+	return s
+}
+
+// SetKmsKeyProviderUri sets the KmsKeyProviderUri field's value.
+func (s *DescribeLocationHdfsOutput) SetKmsKeyProviderUri(v string) *DescribeLocationHdfsOutput {
+	s.KmsKeyProviderUri = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationHdfsOutput) SetLocationArn(v string) *DescribeLocationHdfsOutput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetLocationUri sets the LocationUri field's value.
+func (s *DescribeLocationHdfsOutput) SetLocationUri(v string) *DescribeLocationHdfsOutput {
+	s.LocationUri = &v
+	return s
+}
+
+// SetNameNodes sets the NameNodes field's value.
+func (s *DescribeLocationHdfsOutput) SetNameNodes(v []*HdfsNameNode) *DescribeLocationHdfsOutput {
+	s.NameNodes = v
+	return s
+}
+
+// SetQopConfiguration sets the QopConfiguration field's value.
+func (s *DescribeLocationHdfsOutput) SetQopConfiguration(v *QopConfiguration) *DescribeLocationHdfsOutput {
+	s.QopConfiguration = v
+	return s
+}
+
+// SetReplicationFactor sets the ReplicationFactor field's value.
+func (s *DescribeLocationHdfsOutput) SetReplicationFactor(v int64) *DescribeLocationHdfsOutput {
+	s.ReplicationFactor = &v
+	return s
+}
+
+// SetSimpleUser sets the SimpleUser field's value.
+func (s *DescribeLocationHdfsOutput) SetSimpleUser(v string) *DescribeLocationHdfsOutput {
+	s.SimpleUser = &v
+	return s
+}
+
 // DescribeLocationNfsRequest
 type DescribeLocationNfsInput struct {
 	_ struct{} `type:"structure"`
@@ -5182,12 +6550,20 @@ type DescribeLocationNfsInput struct {
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationNfsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationNfsInput) GoString() string {
 	return s.String()
 }
@@ -5232,12 +6608,20 @@ type DescribeLocationNfsOutput struct {
 	OnPremConfig *OnPremConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationNfsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationNfsOutput) GoString() string {
 	return s.String()
 }
@@ -5283,12 +6667,20 @@ type DescribeLocationObjectStorageInput struct {
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationObjectStorageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationObjectStorageInput) GoString() string {
 	return s.String()
 }
@@ -5347,12 +6739,20 @@ type DescribeLocationObjectStorageOutput struct {
 	ServerProtocol *string `type:"string" enum:"ObjectStorageServerProtocol"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationObjectStorageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationObjectStorageOutput) GoString() string {
 	return s.String()
 }
@@ -5409,12 +6809,20 @@ type DescribeLocationS3Input struct {
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationS3Input) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationS3Input) GoString() string {
 	return s.String()
 }
@@ -5442,10 +6850,10 @@ func (s *DescribeLocationS3Input) SetLocationArn(v string) *DescribeLocationS3In
 type DescribeLocationS3Output struct {
 	_ struct{} `type:"structure"`
 
-	// If you are using DataSync on an AWS Outpost, the Amazon Resource Name (ARNs)
-	// of the EC2 agents deployed on your Outpost. For more information about launching
-	// a DataSync agent on an AWS Outpost, see Deploy your DataSync agent on AWS
-	// Outposts (https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#outposts-agent).
+	// If you are using DataSync on an Amazon Web Services Outpost, the Amazon Resource
+	// Name (ARNs) of the EC2 agents deployed on your Outpost. For more information
+	// about launching a DataSync agent on an Amazon Web Services Outpost, see Deploy
+	// your DataSync agent on Outposts (https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#outposts-agent).
 	AgentArns []*string `min:"1" type:"list"`
 
 	// The time that the Amazon S3 bucket location was created.
@@ -5457,11 +6865,11 @@ type DescribeLocationS3Output struct {
 	// The URL of the Amazon S3 location that was described.
 	LocationUri *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role that is used to access an Amazon S3 bucket.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role that is used to access an Amazon S3 bucket.
 	//
 	// For detailed information about using such a role, see Creating a Location
-	// for Amazon S3 in the AWS DataSync User Guide.
+	// for Amazon S3 in the DataSync User Guide.
 	S3Config *S3Config `type:"structure"`
 
 	// The Amazon S3 storage class that you chose to store your files in when this
@@ -5473,12 +6881,20 @@ type DescribeLocationS3Output struct {
 	S3StorageClass *string `type:"string" enum:"S3StorageClass"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationS3Output) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationS3Output) GoString() string {
 	return s.String()
 }
@@ -5529,12 +6945,20 @@ type DescribeLocationSmbInput struct {
 	LocationArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationSmbInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationSmbInput) GoString() string {
 	return s.String()
 }
@@ -5587,12 +7011,20 @@ type DescribeLocationSmbOutput struct {
 	User *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationSmbOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationSmbOutput) GoString() string {
 	return s.String()
 }
@@ -5649,12 +7081,20 @@ type DescribeTaskExecutionInput struct {
 	TaskExecutionArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskExecutionInput) GoString() string {
 	return s.String()
 }
@@ -5685,7 +7125,8 @@ type DescribeTaskExecutionOutput struct {
 	// The physical number of bytes transferred over the network.
 	BytesTransferred *int64 `type:"long"`
 
-	// The number of logical bytes written to the destination AWS storage resource.
+	// The number of logical bytes written to the destination Amazon Web Services
+	// storage resource.
 	BytesWritten *int64 `type:"long"`
 
 	// The estimated physical number of bytes that is to be transferred over the
@@ -5745,7 +7186,7 @@ type DescribeTaskExecutionOutput struct {
 	// The status of the task execution.
 	//
 	// For detailed information about task execution statuses, see Understanding
-	// Task Statuses in the AWS DataSync User Guide.
+	// Task Statuses in the DataSync User Guide.
 	Status *string `type:"string" enum:"TaskExecutionStatus"`
 
 	// The Amazon Resource Name (ARN) of the task execution that was described.
@@ -5757,12 +7198,20 @@ type DescribeTaskExecutionOutput struct {
 	TaskExecutionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -5849,12 +7298,20 @@ type DescribeTaskInput struct {
 	TaskArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskInput) GoString() string {
 	return s.String()
 }
@@ -5895,15 +7352,16 @@ type DescribeTaskOutput struct {
 	// The Amazon Resource Name (ARN) of the task execution that is syncing files.
 	CurrentTaskExecutionArn *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the AWS storage resource's location.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services storage resource's
+	// location.
 	DestinationLocationArn *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the destination ENIs (Elastic Network Interface)
-	// that was created for your subnet.
+	// The Amazon Resource Names (ARNs) of the destination elastic network interfaces
+	// (ENIs) that were created for your subnet.
 	DestinationNetworkInterfaceArns []*string `type:"list"`
 
-	// Errors that AWS DataSync encountered during execution of the task. You can
-	// use this error code to help troubleshoot issues.
+	// Errors that DataSync encountered during execution of the task. You can use
+	// this error code to help troubleshoot issues.
 	ErrorCode *string `type:"string"`
 
 	// Detailed description of an error that was encountered during the task execution.
@@ -5912,9 +7370,15 @@ type DescribeTaskOutput struct {
 
 	// A list of filter rules that determines which files to exclude from a task.
 	// The list should contain a single filter string that consists of the patterns
-	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example:
-	// "/folder1|/folder2"
+	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example,
+	// "/folder1|/folder2".
 	Excludes []*FilterRule `type:"list"`
+
+	// A list of filter rules that determines which files to include when running
+	// a task. The pattern contains a single filter string that consists of the
+	// patterns to include. The patterns are delimited by "|" (that is, a pipe),
+	// for example, "/folder1|/folder2".
+	Includes []*FilterRule `type:"list"`
 
 	// The name of the task that was described.
 	Name *string `min:"1" type:"string"`
@@ -5936,26 +7400,34 @@ type DescribeTaskOutput struct {
 	// The Amazon Resource Name (ARN) of the source file system's location.
 	SourceLocationArn *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the source ENIs (Elastic Network Interface)
-	// that was created for your subnet.
+	// The Amazon Resource Names (ARNs) of the source elastic network interfaces
+	// (ENIs) that were created for your subnet.
 	SourceNetworkInterfaceArns []*string `type:"list"`
 
 	// The status of the task that was described.
 	//
 	// For detailed information about task execution statuses, see Understanding
-	// Task Statuses in the AWS DataSync User Guide.
+	// Task Statuses in the DataSync User Guide.
 	Status *string `type:"string" enum:"TaskStatus"`
 
 	// The Amazon Resource Name (ARN) of the task that was described.
 	TaskArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTaskOutput) GoString() string {
 	return s.String()
 }
@@ -6005,6 +7477,12 @@ func (s *DescribeTaskOutput) SetErrorDetail(v string) *DescribeTaskOutput {
 // SetExcludes sets the Excludes field's value.
 func (s *DescribeTaskOutput) SetExcludes(v []*FilterRule) *DescribeTaskOutput {
 	s.Excludes = v
+	return s
+}
+
+// SetIncludes sets the Includes field's value.
+func (s *DescribeTaskOutput) SetIncludes(v []*FilterRule) *DescribeTaskOutput {
+	s.Includes = v
 	return s
 }
 
@@ -6070,12 +7548,20 @@ type Ec2Config struct {
 	SubnetArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Ec2Config) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Ec2Config) GoString() string {
 	return s.String()
 }
@@ -6116,7 +7602,7 @@ func (s *Ec2Config) SetSubnetArn(v string) *Ec2Config {
 type FilterRule struct {
 	_ struct{} `type:"structure"`
 
-	// The type of filter rule to apply. AWS DataSync only supports the SIMPLE_PATTERN
+	// The type of filter rule to apply. DataSync only supports the SIMPLE_PATTERN
 	// rule type.
 	FilterType *string `type:"string" enum:"FilterType"`
 
@@ -6125,12 +7611,20 @@ type FilterRule struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FilterRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FilterRule) GoString() string {
 	return s.String()
 }
@@ -6147,7 +7641,79 @@ func (s *FilterRule) SetValue(v string) *FilterRule {
 	return s
 }
 
-// This exception is thrown when an error occurs in the AWS DataSync service.
+// The NameNode of the Hadoop Distributed File System (HDFS). The NameNode manages
+// the file system's namespace. The NameNode performs operations such as opening,
+// closing, and renaming files and directories. The NameNode contains the information
+// to map blocks of data to the DataNodes.
+type HdfsNameNode struct {
+	_ struct{} `type:"structure"`
+
+	// The hostname of the NameNode in the HDFS cluster. This value is the IP address
+	// or Domain Name Service (DNS) name of the NameNode. An agent that's installed
+	// on-premises uses this hostname to communicate with the NameNode in the network.
+	//
+	// Hostname is a required field
+	Hostname *string `min:"1" type:"string" required:"true"`
+
+	// The port that the NameNode uses to listen to client requests.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HdfsNameNode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HdfsNameNode) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HdfsNameNode) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HdfsNameNode"}
+	if s.Hostname == nil {
+		invalidParams.Add(request.NewErrParamRequired("Hostname"))
+	}
+	if s.Hostname != nil && len(*s.Hostname) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Hostname", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *HdfsNameNode) SetHostname(v string) *HdfsNameNode {
+	s.Hostname = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *HdfsNameNode) SetPort(v int64) *HdfsNameNode {
+	s.Port = &v
+	return s
+}
+
+// This exception is thrown when an error occurs in the DataSync service.
 type InternalException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6157,12 +7723,20 @@ type InternalException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalException) GoString() string {
 	return s.String()
 }
@@ -6215,12 +7789,20 @@ type InvalidRequestException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -6275,12 +7857,20 @@ type ListAgentsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAgentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAgentsInput) GoString() string {
 	return s.String()
 }
@@ -6309,12 +7899,20 @@ type ListAgentsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAgentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAgentsOutput) GoString() string {
 	return s.String()
 }
@@ -6348,12 +7946,20 @@ type ListLocationsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLocationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLocationsInput) GoString() string {
 	return s.String()
 }
@@ -6408,12 +8014,20 @@ type ListLocationsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLocationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLocationsOutput) GoString() string {
 	return s.String()
 }
@@ -6447,12 +8061,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -6500,12 +8122,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*TagListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -6537,12 +8167,20 @@ type ListTaskExecutionsInput struct {
 	TaskArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTaskExecutionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTaskExecutionsInput) GoString() string {
 	return s.String()
 }
@@ -6577,12 +8215,20 @@ type ListTaskExecutionsOutput struct {
 	TaskExecutions []*TaskExecutionListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTaskExecutionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTaskExecutionsOutput) GoString() string {
 	return s.String()
 }
@@ -6617,12 +8263,20 @@ type ListTasksInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTasksInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTasksInput) GoString() string {
 	return s.String()
 }
@@ -6677,12 +8331,20 @@ type ListTasksOutput struct {
 	Tasks []*TaskListEntry `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTasksOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTasksOutput) GoString() string {
 	return s.String()
 }
@@ -6725,12 +8387,20 @@ type LocationFilter struct {
 	Values []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LocationFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LocationFilter) GoString() string {
 	return s.String()
 }
@@ -6783,7 +8453,7 @@ type LocationListEntry struct {
 	// is the prefix path that you want to mount and use as the root of the location.
 	LocationArn *string `type:"string"`
 
-	// Represents a list of URLs of a location. LocationUri returns an array that
+	// Represents a list of URIs of a location. LocationUri returns an array that
 	// contains a list of locations when the ListLocations (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListLocations.html)
 	// operation is called.
 	//
@@ -6803,12 +8473,20 @@ type LocationListEntry struct {
 	LocationUri *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LocationListEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LocationListEntry) GoString() string {
 	return s.String()
 }
@@ -6842,7 +8520,7 @@ type NfsMountOptions struct {
 	//    that allows for asynchronous writes on the server.
 	//
 	//    * NFSv4.0 (https://tools.ietf.org/html/rfc3530) - stateful, firewall-friendly
-	//    protocol version that supports delegations and pseudo filesystems.
+	//    protocol version that supports delegations and pseudo file systems.
 	//
 	//    * NFSv4.1 (https://tools.ietf.org/html/rfc5661) - stateful protocol version
 	//    that supports sessions, directory delegations, and parallel data processing.
@@ -6850,12 +8528,20 @@ type NfsMountOptions struct {
 	Version *string `type:"string" enum:"NfsVersion"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NfsMountOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NfsMountOptions) GoString() string {
 	return s.String()
 }
@@ -6877,12 +8563,20 @@ type OnPremConfig struct {
 	AgentArns []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OnPremConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OnPremConfig) GoString() string {
 	return s.String()
 }
@@ -6927,8 +8621,8 @@ type Options struct {
 	// is, when the file was read or written to). If you set Atime to BEST_EFFORT,
 	// DataSync attempts to preserve the original Atime attribute on all source
 	// files (that is, the version before the PREPARING phase). However, Atime's
-	// behavior is not fully standard across platforms, so AWS DataSync can only
-	// do this on a best-effort basis.
+	// behavior is not fully standard across platforms, so DataSync can only do
+	// this on a best-effort basis.
 	//
 	// Default value: BEST_EFFORT.
 	//
@@ -6941,8 +8635,8 @@ type Options struct {
 	// If Atime is set to NONE, Mtime must also be NONE.
 	Atime *string `type:"string" enum:"Atime"`
 
-	// A value that limits the bandwidth used by AWS DataSync. For example, if you
-	// want AWS DataSync to use a maximum of 1 MB, set this value to 1048576 (=1024*1024).
+	// A value that limits the bandwidth used by DataSync. For example, if you want
+	// DataSync to use a maximum of 1 MB, set this value to 1048576 (=1024*1024).
 	BytesPerSecond *int64 `type:"long"`
 
 	// The POSIX group ID (GID) of the file's owners. This option should only be
@@ -6988,7 +8682,7 @@ type Options struct {
 	// Some storage classes have specific behaviors that can affect your S3 storage
 	// cost. For detailed information, see Considerations when working with Amazon
 	// S3 storage classes in DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes)
-	// in the AWS DataSync User Guide.
+	// in the DataSync User Guide.
 	OverwriteMode *string `type:"string" enum:"OverwriteMode"`
 
 	// A value that determines which users or groups can access a file for a specific
@@ -7002,7 +8696,7 @@ type Options struct {
 	//
 	// NONE: Ignore permissions.
 	//
-	// AWS DataSync can preserve extant permissions of a source location.
+	// DataSync can preserve extant permissions of a source location.
 	PosixPermissions *string `type:"string" enum:"PosixPermissions"`
 
 	// A value that specifies whether files in the destination that don't exist
@@ -7010,7 +8704,7 @@ type Options struct {
 	// storage cost. If your task deletes objects, you might incur minimum storage
 	// duration charges for certain storage classes. For detailed information, see
 	// Considerations when working with Amazon S3 storage classes in DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes)
-	// in the AWS DataSync User Guide.
+	// in the DataSync User Guide.
 	//
 	// Default value: PRESERVE.
 	//
@@ -7019,13 +8713,13 @@ type Options struct {
 	// REMOVE: Delete destination files that aren’t present in the source.
 	PreserveDeletedFiles *string `type:"string" enum:"PreserveDeletedFiles"`
 
-	// A value that determines whether AWS DataSync should preserve the metadata
-	// of block and character devices in the source file system, and re-create the
+	// A value that determines whether DataSync should preserve the metadata of
+	// block and character devices in the source file system, and re-create the
 	// files with that device name and metadata on the destination. DataSync does
 	// not copy the contents of such devices, only the name and metadata.
 	//
-	// AWS DataSync can't sync the actual contents of such devices, because they
-	// are nonterminal and don't return an end-of-file (EOF) marker.
+	// DataSync can't sync the actual contents of such devices, because they are
+	// nonterminal and don't return an end-of-file (EOF) marker.
 	//
 	// Default value: NONE.
 	//
@@ -7126,12 +8820,20 @@ type Options struct {
 	VerifyMode *string `type:"string" enum:"VerifyMode"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Options) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Options) GoString() string {
 	return s.String()
 }
@@ -7259,12 +8961,20 @@ type PrivateLinkConfig struct {
 	VpcEndpointId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PrivateLinkConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PrivateLinkConfig) GoString() string {
 	return s.String()
 }
@@ -7293,11 +9003,58 @@ func (s *PrivateLinkConfig) SetVpcEndpointId(v string) *PrivateLinkConfig {
 	return s
 }
 
-// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-// (IAM) role that is used to access an Amazon S3 bucket.
+// The Quality of Protection (QOP) configuration specifies the Remote Procedure
+// Call (RPC) and data transfer privacy settings configured on the Hadoop Distributed
+// File System (HDFS) cluster.
+type QopConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The data transfer protection setting configured on the HDFS cluster. This
+	// setting corresponds to your dfs.data.transfer.protection setting in the hdfs-site.xml
+	// file on your Hadoop cluster.
+	DataTransferProtection *string `type:"string" enum:"HdfsDataTransferProtection"`
+
+	// The RPC protection setting configured on the HDFS cluster. This setting corresponds
+	// to your hadoop.rpc.protection setting in your core-site.xml file on your
+	// Hadoop cluster.
+	RpcProtection *string `type:"string" enum:"HdfsRpcProtection"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QopConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QopConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDataTransferProtection sets the DataTransferProtection field's value.
+func (s *QopConfiguration) SetDataTransferProtection(v string) *QopConfiguration {
+	s.DataTransferProtection = &v
+	return s
+}
+
+// SetRpcProtection sets the RpcProtection field's value.
+func (s *QopConfiguration) SetRpcProtection(v string) *QopConfiguration {
+	s.RpcProtection = &v
+	return s
+}
+
+// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+// role that is used to access an Amazon S3 bucket.
 //
 // For detailed information about using such a role, see Creating a Location
-// for Amazon S3 in the AWS DataSync User Guide.
+// for Amazon S3 in the DataSync User Guide.
 type S3Config struct {
 	_ struct{} `type:"structure"`
 
@@ -7309,12 +9066,20 @@ type S3Config struct {
 	BucketAccessRoleArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Config) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Config) GoString() string {
 	return s.String()
 }
@@ -7350,12 +9115,20 @@ type SmbMountOptions struct {
 	Version *string `type:"string" enum:"SmbVersion"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SmbMountOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SmbMountOptions) GoString() string {
 	return s.String()
 }
@@ -7370,10 +9143,16 @@ func (s *SmbMountOptions) SetVersion(v string) *SmbMountOptions {
 type StartTaskExecutionInput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of filter rules that determines which files to exclude from a task.
+	// The list contains a single filter string that consists of the patterns to
+	// exclude. The patterns are delimited by "|" (that is, a pipe), for example,
+	// "/folder1|/folder2".
+	Excludes []*FilterRule `type:"list"`
+
 	// A list of filter rules that determines which files to include when running
 	// a task. The pattern should contain a single filter string that consists of
-	// the patterns to include. The patterns are delimited by "|" (that is, a pipe).
-	// For example: "/folder1|/folder2"
+	// the patterns to include. The patterns are delimited by "|" (that is, a pipe),
+	// for example, "/folder1|/folder2".
 	Includes []*FilterRule `type:"list"`
 
 	// Represents the options that are available to control the behavior of a StartTaskExecution
@@ -7395,12 +9174,20 @@ type StartTaskExecutionInput struct {
 	TaskArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTaskExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTaskExecutionInput) GoString() string {
 	return s.String()
 }
@@ -7421,6 +9208,12 @@ func (s *StartTaskExecutionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetExcludes sets the Excludes field's value.
+func (s *StartTaskExecutionInput) SetExcludes(v []*FilterRule) *StartTaskExecutionInput {
+	s.Excludes = v
+	return s
 }
 
 // SetIncludes sets the Includes field's value.
@@ -7449,12 +9242,20 @@ type StartTaskExecutionOutput struct {
 	TaskExecutionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTaskExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTaskExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -7465,27 +9266,36 @@ func (s *StartTaskExecutionOutput) SetTaskExecutionArn(v string) *StartTaskExecu
 	return s
 }
 
-// Represents a single entry in a list of AWS resource tags. TagListEntry returns
-// an array that contains a list of tasks when the ListTagsForResource (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTagsForResource.html)
+// Represents a single entry in a list of Amazon Web Services resource tags.
+// TagListEntry returns an array that contains a list of tasks when the ListTagsForResource
+// (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTagsForResource.html)
 // operation is called.
 type TagListEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The key for an AWS resource tag.
+	// The key for an Amazon Web Services resource tag.
 	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// The value for an AWS resource tag.
+	// The value for an Amazon Web Services resource tag.
 	Value *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagListEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagListEntry) GoString() string {
 	return s.String()
 }
@@ -7536,12 +9346,20 @@ type TagResourceInput struct {
 	Tags []*TagListEntry `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -7588,12 +9406,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -7612,12 +9438,20 @@ type TaskExecutionListEntry struct {
 	TaskExecutionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskExecutionListEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskExecutionListEntry) GoString() string {
 	return s.String()
 }
@@ -7640,44 +9474,51 @@ func (s *TaskExecutionListEntry) SetTaskExecutionArn(v string) *TaskExecutionLis
 type TaskExecutionResultDetail struct {
 	_ struct{} `type:"structure"`
 
-	// Errors that AWS DataSync encountered during execution of the task. You can
-	// use this error code to help troubleshoot issues.
+	// Errors that DataSync encountered during execution of the task. You can use
+	// this error code to help troubleshoot issues.
 	ErrorCode *string `type:"string"`
 
 	// Detailed description of an error that was encountered during the task execution.
 	// You can use this information to help troubleshoot issues.
 	ErrorDetail *string `type:"string"`
 
-	// The total time in milliseconds that AWS DataSync spent in the PREPARING phase.
+	// The total time in milliseconds that DataSync spent in the PREPARING phase.
 	PrepareDuration *int64 `type:"long"`
 
 	// The status of the PREPARING phase.
 	PrepareStatus *string `type:"string" enum:"PhaseStatus"`
 
-	// The total time in milliseconds that AWS DataSync took to transfer the file
-	// from the source to the destination location.
+	// The total time in milliseconds that DataSync took to transfer the file from
+	// the source to the destination location.
 	TotalDuration *int64 `type:"long"`
 
-	// The total time in milliseconds that AWS DataSync spent in the TRANSFERRING
-	// phase.
+	// The total time in milliseconds that DataSync spent in the TRANSFERRING phase.
 	TransferDuration *int64 `type:"long"`
 
 	// The status of the TRANSFERRING phase.
 	TransferStatus *string `type:"string" enum:"PhaseStatus"`
 
-	// The total time in milliseconds that AWS DataSync spent in the VERIFYING phase.
+	// The total time in milliseconds that DataSync spent in the VERIFYING phase.
 	VerifyDuration *int64 `type:"long"`
 
 	// The status of the VERIFYING phase.
 	VerifyStatus *string `type:"string" enum:"PhaseStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskExecutionResultDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskExecutionResultDetail) GoString() string {
 	return s.String()
 }
@@ -7763,12 +9604,20 @@ type TaskFilter struct {
 	Values []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskFilter) GoString() string {
 	return s.String()
 }
@@ -7827,12 +9676,20 @@ type TaskListEntry struct {
 	TaskArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskListEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskListEntry) GoString() string {
 	return s.String()
 }
@@ -7860,19 +9717,27 @@ func (s *TaskListEntry) SetTaskArn(v string) *TaskListEntry {
 type TaskSchedule struct {
 	_ struct{} `type:"structure"`
 
-	// A cron expression that specifies when AWS DataSync initiates a scheduled
-	// transfer from a source to a destination location.
+	// A cron expression that specifies when DataSync initiates a scheduled transfer
+	// from a source to a destination location.
 	//
 	// ScheduleExpression is a required field
 	ScheduleExpression *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskSchedule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TaskSchedule) GoString() string {
 	return s.String()
 }
@@ -7911,12 +9776,20 @@ type UntagResourceInput struct {
 	ResourceArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -7956,12 +9829,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -7979,12 +9860,20 @@ type UpdateAgentInput struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAgentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAgentInput) GoString() string {
 	return s.String()
 }
@@ -8021,13 +9910,243 @@ type UpdateAgentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAgentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAgentOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateLocationHdfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARNs of the agents that are used to connect to the HDFS cluster.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The type of authentication used to determine the identity of the user.
+	AuthenticationType *string `type:"string" enum:"HdfsAuthenticationType"`
+
+	// The size of the data blocks to write into the HDFS cluster.
+	BlockSize *int64 `min:"1.048576e+06" type:"integer"`
+
+	// The Kerberos key table (keytab) that contains mappings between the defined
+	// Kerberos principal and the encrypted keys. You can load the keytab from a
+	// file by providing the file's address. If you use the AWS CLI, it performs
+	// base64 encoding for you. Otherwise, provide the base64-encoded text.
+	// KerberosKeytab is automatically base64 encoded/decoded by the SDK.
+	KerberosKeytab []byte `type:"blob"`
+
+	// The krb5.conf file that contains the Kerberos configuration information.
+	// You can load the krb5.conf file by providing the file's address. If you're
+	// using the AWS CLI, it performs the base64 encoding for you. Otherwise, provide
+	// the base64-encoded text.
+	// KerberosKrb5Conf is automatically base64 encoded/decoded by the SDK.
+	KerberosKrb5Conf []byte `type:"blob"`
+
+	// The Kerberos principal with access to the files and folders on the HDFS cluster.
+	KerberosPrincipal *string `min:"1" type:"string"`
+
+	// The URI of the HDFS cluster's Key Management Server (KMS).
+	KmsKeyProviderUri *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the source HDFS cluster location.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+
+	// The NameNode that manages the HDFS namespace. The NameNode performs operations
+	// such as opening, closing, and renaming files and directories. The NameNode
+	// contains the information to map blocks of data to the DataNodes. You can
+	// use only one NameNode.
+	NameNodes []*HdfsNameNode `min:"1" type:"list"`
+
+	// The Quality of Protection (QOP) configuration specifies the Remote Procedure
+	// Call (RPC) and data transfer privacy settings configured on the Hadoop Distributed
+	// File System (HDFS) cluster.
+	QopConfiguration *QopConfiguration `type:"structure"`
+
+	// The number of DataNodes to replicate the data to when writing to the HDFS
+	// cluster.
+	ReplicationFactor *int64 `min:"1" type:"integer"`
+
+	// The user name used to identify the client on the host operating system.
+	SimpleUser *string `min:"1" type:"string"`
+
+	// A subdirectory in the HDFS cluster. This subdirectory is used to read data
+	// from or write data to the HDFS cluster.
+	Subdirectory *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationHdfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationHdfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLocationHdfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLocationHdfsInput"}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.BlockSize != nil && *s.BlockSize < 1.048576e+06 {
+		invalidParams.Add(request.NewErrParamMinValue("BlockSize", 1.048576e+06))
+	}
+	if s.KerberosPrincipal != nil && len(*s.KerberosPrincipal) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KerberosPrincipal", 1))
+	}
+	if s.KmsKeyProviderUri != nil && len(*s.KmsKeyProviderUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyProviderUri", 1))
+	}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+	if s.NameNodes != nil && len(s.NameNodes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NameNodes", 1))
+	}
+	if s.ReplicationFactor != nil && *s.ReplicationFactor < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ReplicationFactor", 1))
+	}
+	if s.SimpleUser != nil && len(*s.SimpleUser) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SimpleUser", 1))
+	}
+	if s.NameNodes != nil {
+		for i, v := range s.NameNodes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "NameNodes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *UpdateLocationHdfsInput) SetAgentArns(v []*string) *UpdateLocationHdfsInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *UpdateLocationHdfsInput) SetAuthenticationType(v string) *UpdateLocationHdfsInput {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetBlockSize sets the BlockSize field's value.
+func (s *UpdateLocationHdfsInput) SetBlockSize(v int64) *UpdateLocationHdfsInput {
+	s.BlockSize = &v
+	return s
+}
+
+// SetKerberosKeytab sets the KerberosKeytab field's value.
+func (s *UpdateLocationHdfsInput) SetKerberosKeytab(v []byte) *UpdateLocationHdfsInput {
+	s.KerberosKeytab = v
+	return s
+}
+
+// SetKerberosKrb5Conf sets the KerberosKrb5Conf field's value.
+func (s *UpdateLocationHdfsInput) SetKerberosKrb5Conf(v []byte) *UpdateLocationHdfsInput {
+	s.KerberosKrb5Conf = v
+	return s
+}
+
+// SetKerberosPrincipal sets the KerberosPrincipal field's value.
+func (s *UpdateLocationHdfsInput) SetKerberosPrincipal(v string) *UpdateLocationHdfsInput {
+	s.KerberosPrincipal = &v
+	return s
+}
+
+// SetKmsKeyProviderUri sets the KmsKeyProviderUri field's value.
+func (s *UpdateLocationHdfsInput) SetKmsKeyProviderUri(v string) *UpdateLocationHdfsInput {
+	s.KmsKeyProviderUri = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *UpdateLocationHdfsInput) SetLocationArn(v string) *UpdateLocationHdfsInput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetNameNodes sets the NameNodes field's value.
+func (s *UpdateLocationHdfsInput) SetNameNodes(v []*HdfsNameNode) *UpdateLocationHdfsInput {
+	s.NameNodes = v
+	return s
+}
+
+// SetQopConfiguration sets the QopConfiguration field's value.
+func (s *UpdateLocationHdfsInput) SetQopConfiguration(v *QopConfiguration) *UpdateLocationHdfsInput {
+	s.QopConfiguration = v
+	return s
+}
+
+// SetReplicationFactor sets the ReplicationFactor field's value.
+func (s *UpdateLocationHdfsInput) SetReplicationFactor(v int64) *UpdateLocationHdfsInput {
+	s.ReplicationFactor = &v
+	return s
+}
+
+// SetSimpleUser sets the SimpleUser field's value.
+func (s *UpdateLocationHdfsInput) SetSimpleUser(v string) *UpdateLocationHdfsInput {
+	s.SimpleUser = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *UpdateLocationHdfsInput) SetSubdirectory(v string) *UpdateLocationHdfsInput {
+	s.Subdirectory = &v
+	return s
+}
+
+type UpdateLocationHdfsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationHdfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationHdfsOutput) GoString() string {
 	return s.String()
 }
 
@@ -8065,8 +10184,8 @@ type UpdateLocationNfsInput struct {
 	// option enables the agent to read the files. For the agent to access directories,
 	// you must additionally enable all execute access.
 	//
-	// If you are copying data to or from your AWS Snowcone device, see NFS Server
-	// on AWS Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
+	// If you are copying data to or from your Snowcone device, see NFS Server on
+	// Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
 	// for more information.
 	//
 	// For information about NFS export configuration, see 18.7. The /etc/exports
@@ -8074,12 +10193,20 @@ type UpdateLocationNfsInput struct {
 	Subdirectory *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLocationNfsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLocationNfsInput) GoString() string {
 	return s.String()
 }
@@ -8130,12 +10257,20 @@ type UpdateLocationNfsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLocationNfsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLocationNfsOutput) GoString() string {
 	return s.String()
 }
@@ -8163,6 +10298,10 @@ type UpdateLocationObjectStorageInput struct {
 	// self-managed object storage server. If your object storage requires a user
 	// name and password to authenticate, use AccessKey and SecretKey to provide
 	// the user name and password, respectively.
+	//
+	// SecretKey is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateLocationObjectStorageInput's
+	// String and GoString methods.
 	SecretKey *string `min:"8" type:"string" sensitive:"true"`
 
 	// The port that your self-managed object storage server accepts inbound network
@@ -8180,12 +10319,20 @@ type UpdateLocationObjectStorageInput struct {
 	Subdirectory *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLocationObjectStorageInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLocationObjectStorageInput) GoString() string {
 	return s.String()
 }
@@ -8261,12 +10408,20 @@ type UpdateLocationObjectStorageOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLocationObjectStorageOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLocationObjectStorageOutput) GoString() string {
 	return s.String()
 }
@@ -8292,6 +10447,10 @@ type UpdateLocationSmbInput struct {
 
 	// The password of the user who can mount the share has the permissions to access
 	// files and folders in the SMB share.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateLocationSmbInput's
+	// String and GoString methods.
 	Password *string `type:"string" sensitive:"true"`
 
 	// The subdirectory in the SMB file system that is used to read data from the
@@ -8322,12 +10481,20 @@ type UpdateLocationSmbInput struct {
 	User *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLocationSmbInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLocationSmbInput) GoString() string {
 	return s.String()
 }
@@ -8394,12 +10561,20 @@ type UpdateLocationSmbOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLocationSmbOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLocationSmbOutput) GoString() string {
 	return s.String()
 }
@@ -8429,12 +10604,20 @@ type UpdateTaskExecutionInput struct {
 	TaskExecutionArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTaskExecutionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTaskExecutionInput) GoString() string {
 	return s.String()
 }
@@ -8476,12 +10659,20 @@ type UpdateTaskExecutionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTaskExecutionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTaskExecutionOutput) GoString() string {
 	return s.String()
 }
@@ -8490,14 +10681,21 @@ func (s UpdateTaskExecutionOutput) GoString() string {
 type UpdateTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource name of the CloudWatch LogGroup.
+	// The Amazon Resource Name (ARN) of the resource name of the Amazon CloudWatch
+	// log group.
 	CloudWatchLogGroupArn *string `type:"string"`
 
 	// A list of filter rules that determines which files to exclude from a task.
 	// The list should contain a single filter string that consists of the patterns
-	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example:
-	// "/folder1|/folder2"
+	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example,
+	// "/folder1|/folder2".
 	Excludes []*FilterRule `type:"list"`
+
+	// A list of filter rules that determines which files to include when running
+	// a task. The pattern contains a single filter string that consists of the
+	// patterns to include. The patterns are delimited by "|" (that is, a pipe),
+	// for example, "/folder1|/folder2".
+	Includes []*FilterRule `type:"list"`
 
 	// The name of the task to update.
 	Name *string `min:"1" type:"string"`
@@ -8528,12 +10726,20 @@ type UpdateTaskInput struct {
 	TaskArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTaskInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTaskInput) GoString() string {
 	return s.String()
 }
@@ -8576,6 +10782,12 @@ func (s *UpdateTaskInput) SetExcludes(v []*FilterRule) *UpdateTaskInput {
 	return s
 }
 
+// SetIncludes sets the Includes field's value.
+func (s *UpdateTaskInput) SetIncludes(v []*FilterRule) *UpdateTaskInput {
+	s.Includes = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *UpdateTaskInput) SetName(v string) *UpdateTaskInput {
 	s.Name = &v
@@ -8604,12 +10816,20 @@ type UpdateTaskOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTaskOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTaskOutput) GoString() string {
 	return s.String()
 }
@@ -8699,6 +10919,70 @@ func Gid_Values() []string {
 		GidIntValue,
 		GidName,
 		GidBoth,
+	}
+}
+
+const (
+	// HdfsAuthenticationTypeSimple is a HdfsAuthenticationType enum value
+	HdfsAuthenticationTypeSimple = "SIMPLE"
+
+	// HdfsAuthenticationTypeKerberos is a HdfsAuthenticationType enum value
+	HdfsAuthenticationTypeKerberos = "KERBEROS"
+)
+
+// HdfsAuthenticationType_Values returns all elements of the HdfsAuthenticationType enum
+func HdfsAuthenticationType_Values() []string {
+	return []string{
+		HdfsAuthenticationTypeSimple,
+		HdfsAuthenticationTypeKerberos,
+	}
+}
+
+const (
+	// HdfsDataTransferProtectionDisabled is a HdfsDataTransferProtection enum value
+	HdfsDataTransferProtectionDisabled = "DISABLED"
+
+	// HdfsDataTransferProtectionAuthentication is a HdfsDataTransferProtection enum value
+	HdfsDataTransferProtectionAuthentication = "AUTHENTICATION"
+
+	// HdfsDataTransferProtectionIntegrity is a HdfsDataTransferProtection enum value
+	HdfsDataTransferProtectionIntegrity = "INTEGRITY"
+
+	// HdfsDataTransferProtectionPrivacy is a HdfsDataTransferProtection enum value
+	HdfsDataTransferProtectionPrivacy = "PRIVACY"
+)
+
+// HdfsDataTransferProtection_Values returns all elements of the HdfsDataTransferProtection enum
+func HdfsDataTransferProtection_Values() []string {
+	return []string{
+		HdfsDataTransferProtectionDisabled,
+		HdfsDataTransferProtectionAuthentication,
+		HdfsDataTransferProtectionIntegrity,
+		HdfsDataTransferProtectionPrivacy,
+	}
+}
+
+const (
+	// HdfsRpcProtectionDisabled is a HdfsRpcProtection enum value
+	HdfsRpcProtectionDisabled = "DISABLED"
+
+	// HdfsRpcProtectionAuthentication is a HdfsRpcProtection enum value
+	HdfsRpcProtectionAuthentication = "AUTHENTICATION"
+
+	// HdfsRpcProtectionIntegrity is a HdfsRpcProtection enum value
+	HdfsRpcProtectionIntegrity = "INTEGRITY"
+
+	// HdfsRpcProtectionPrivacy is a HdfsRpcProtection enum value
+	HdfsRpcProtectionPrivacy = "PRIVACY"
+)
+
+// HdfsRpcProtection_Values returns all elements of the HdfsRpcProtection enum
+func HdfsRpcProtection_Values() []string {
+	return []string{
+		HdfsRpcProtectionDisabled,
+		HdfsRpcProtectionAuthentication,
+		HdfsRpcProtectionIntegrity,
+		HdfsRpcProtectionPrivacy,
 	}
 }
 

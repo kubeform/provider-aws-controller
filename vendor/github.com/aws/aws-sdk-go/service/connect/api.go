@@ -214,6 +214,100 @@ func (c *Connect) AssociateBotWithContext(ctx aws.Context, input *AssociateBotIn
 	return out, req.Send()
 }
 
+const opAssociateDefaultVocabulary = "AssociateDefaultVocabulary"
+
+// AssociateDefaultVocabularyRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateDefaultVocabulary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateDefaultVocabulary for more information on using the AssociateDefaultVocabulary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateDefaultVocabularyRequest method.
+//    req, resp := client.AssociateDefaultVocabularyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateDefaultVocabulary
+func (c *Connect) AssociateDefaultVocabularyRequest(input *AssociateDefaultVocabularyInput) (req *request.Request, output *AssociateDefaultVocabularyOutput) {
+	op := &request.Operation{
+		Name:       opAssociateDefaultVocabulary,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/default-vocabulary/{InstanceId}/{LanguageCode}",
+	}
+
+	if input == nil {
+		input = &AssociateDefaultVocabularyInput{}
+	}
+
+	output = &AssociateDefaultVocabularyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateDefaultVocabulary API operation for Amazon Connect Service.
+//
+// Associates an existing vocabulary as the default. Contact Lens for Amazon
+// Connect uses the vocabulary in post-call and real-time analysis sessions
+// for the given language.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateDefaultVocabulary for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateDefaultVocabulary
+func (c *Connect) AssociateDefaultVocabulary(input *AssociateDefaultVocabularyInput) (*AssociateDefaultVocabularyOutput, error) {
+	req, out := c.AssociateDefaultVocabularyRequest(input)
+	return out, req.Send()
+}
+
+// AssociateDefaultVocabularyWithContext is the same as AssociateDefaultVocabulary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateDefaultVocabulary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateDefaultVocabularyWithContext(ctx aws.Context, input *AssociateDefaultVocabularyInput, opts ...request.Option) (*AssociateDefaultVocabularyOutput, error) {
+	req, out := c.AssociateDefaultVocabularyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateInstanceStorageConfig = "AssociateInstanceStorageConfig"
 
 // AssociateInstanceStorageConfigRequest generates a "aws/request.Request" representing the
@@ -1009,6 +1103,112 @@ func (c *Connect) CreateContactFlowWithContext(ctx aws.Context, input *CreateCon
 	return out, req.Send()
 }
 
+const opCreateContactFlowModule = "CreateContactFlowModule"
+
+// CreateContactFlowModuleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateContactFlowModule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateContactFlowModule for more information on using the CreateContactFlowModule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateContactFlowModuleRequest method.
+//    req, resp := client.CreateContactFlowModuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateContactFlowModule
+func (c *Connect) CreateContactFlowModuleRequest(input *CreateContactFlowModuleInput) (req *request.Request, output *CreateContactFlowModuleOutput) {
+	op := &request.Operation{
+		Name:       opCreateContactFlowModule,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/contact-flow-modules/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateContactFlowModuleInput{}
+	}
+
+	output = &CreateContactFlowModuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateContactFlowModule API operation for Amazon Connect Service.
+//
+// Creates a contact flow module for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateContactFlowModule for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidContactFlowModuleException
+//   The problems with the module. Please fix before trying again.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * IdempotencyException
+//   An entity with the same name already exists.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateContactFlowModule
+func (c *Connect) CreateContactFlowModule(input *CreateContactFlowModuleInput) (*CreateContactFlowModuleOutput, error) {
+	req, out := c.CreateContactFlowModuleRequest(input)
+	return out, req.Send()
+}
+
+// CreateContactFlowModuleWithContext is the same as CreateContactFlowModule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateContactFlowModule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateContactFlowModuleWithContext(ctx aws.Context, input *CreateContactFlowModuleInput, opts ...request.Option) (*CreateContactFlowModuleOutput, error) {
+	req, out := c.CreateContactFlowModuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateHoursOfOperation = "CreateHoursOfOperation"
 
 // CreateHoursOfOperationRequest generates a "aws/request.Request" representing the
@@ -1254,7 +1454,8 @@ func (c *Connect) CreateIntegrationAssociationRequest(input *CreateIntegrationAs
 
 // CreateIntegrationAssociation API operation for Amazon Connect Service.
 //
-// Create an AppIntegration association with an Amazon Connect instance.
+// Creates an Amazon Web Services resource association with an Amazon Connect
+// instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1594,6 +1795,105 @@ func (c *Connect) CreateRoutingProfileWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateSecurityProfile = "CreateSecurityProfile"
+
+// CreateSecurityProfileRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSecurityProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSecurityProfile for more information on using the CreateSecurityProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateSecurityProfileRequest method.
+//    req, resp := client.CreateSecurityProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateSecurityProfile
+func (c *Connect) CreateSecurityProfileRequest(input *CreateSecurityProfileInput) (req *request.Request, output *CreateSecurityProfileOutput) {
+	op := &request.Operation{
+		Name:       opCreateSecurityProfile,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/security-profiles/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateSecurityProfileInput{}
+	}
+
+	output = &CreateSecurityProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSecurityProfile API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Creates a security profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateSecurityProfile for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateSecurityProfile
+func (c *Connect) CreateSecurityProfile(input *CreateSecurityProfileInput) (*CreateSecurityProfileOutput, error) {
+	req, out := c.CreateSecurityProfileRequest(input)
+	return out, req.Send()
+}
+
+// CreateSecurityProfileWithContext is the same as CreateSecurityProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSecurityProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateSecurityProfileWithContext(ctx aws.Context, input *CreateSecurityProfileInput, opts ...request.Option) (*CreateSecurityProfileOutput, error) {
+	req, out := c.CreateSecurityProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateUseCase = "CreateUseCase"
 
 // CreateUseCaseRequest generates a "aws/request.Request" representing the
@@ -1638,7 +1938,7 @@ func (c *Connect) CreateUseCaseRequest(input *CreateUseCaseInput) (req *request.
 
 // CreateUseCase API operation for Amazon Connect Service.
 //
-// Creates a use case for an AppIntegration association.
+// Creates a use case for an integration association.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1883,6 +2183,296 @@ func (c *Connect) CreateUserHierarchyGroupWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
+const opCreateVocabulary = "CreateVocabulary"
+
+// CreateVocabularyRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVocabulary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVocabulary for more information on using the CreateVocabulary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateVocabularyRequest method.
+//    req, resp := client.CreateVocabularyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateVocabulary
+func (c *Connect) CreateVocabularyRequest(input *CreateVocabularyInput) (req *request.Request, output *CreateVocabularyOutput) {
+	op := &request.Operation{
+		Name:       opCreateVocabulary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/vocabulary/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateVocabularyInput{}
+	}
+
+	output = &CreateVocabularyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVocabulary API operation for Amazon Connect Service.
+//
+// Creates a custom vocabulary associated with your Amazon Connect instance.
+// You can set a custom vocabulary to be your default vocabulary for a given
+// language. Contact Lens for Amazon Connect uses the default vocabulary in
+// post-call and real-time contact analysis sessions for that language.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateVocabulary for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * ResourceConflictException
+//   A resource already has that name.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateVocabulary
+func (c *Connect) CreateVocabulary(input *CreateVocabularyInput) (*CreateVocabularyOutput, error) {
+	req, out := c.CreateVocabularyRequest(input)
+	return out, req.Send()
+}
+
+// CreateVocabularyWithContext is the same as CreateVocabulary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVocabulary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateVocabularyWithContext(ctx aws.Context, input *CreateVocabularyInput, opts ...request.Option) (*CreateVocabularyOutput, error) {
+	req, out := c.CreateVocabularyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteContactFlow = "DeleteContactFlow"
+
+// DeleteContactFlowRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContactFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContactFlow for more information on using the DeleteContactFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteContactFlowRequest method.
+//    req, resp := client.DeleteContactFlowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactFlow
+func (c *Connect) DeleteContactFlowRequest(input *DeleteContactFlowInput) (req *request.Request, output *DeleteContactFlowOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContactFlow,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/contact-flows/{InstanceId}/{ContactFlowId}",
+	}
+
+	if input == nil {
+		input = &DeleteContactFlowInput{}
+	}
+
+	output = &DeleteContactFlowOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteContactFlow API operation for Amazon Connect Service.
+//
+// Deletes a contact flow for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteContactFlow for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactFlow
+func (c *Connect) DeleteContactFlow(input *DeleteContactFlowInput) (*DeleteContactFlowOutput, error) {
+	req, out := c.DeleteContactFlowRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContactFlowWithContext is the same as DeleteContactFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContactFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteContactFlowWithContext(ctx aws.Context, input *DeleteContactFlowInput, opts ...request.Option) (*DeleteContactFlowOutput, error) {
+	req, out := c.DeleteContactFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteContactFlowModule = "DeleteContactFlowModule"
+
+// DeleteContactFlowModuleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContactFlowModule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContactFlowModule for more information on using the DeleteContactFlowModule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteContactFlowModuleRequest method.
+//    req, resp := client.DeleteContactFlowModuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactFlowModule
+func (c *Connect) DeleteContactFlowModuleRequest(input *DeleteContactFlowModuleInput) (req *request.Request, output *DeleteContactFlowModuleOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContactFlowModule,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}",
+	}
+
+	if input == nil {
+		input = &DeleteContactFlowModuleInput{}
+	}
+
+	output = &DeleteContactFlowModuleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteContactFlowModule API operation for Amazon Connect Service.
+//
+// Deletes the specified contact flow module.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteContactFlowModule for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactFlowModule
+func (c *Connect) DeleteContactFlowModule(input *DeleteContactFlowModuleInput) (*DeleteContactFlowModuleOutput, error) {
+	req, out := c.DeleteContactFlowModuleRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContactFlowModuleWithContext is the same as DeleteContactFlowModule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContactFlowModule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteContactFlowModuleWithContext(ctx aws.Context, input *DeleteContactFlowModuleInput, opts ...request.Option) (*DeleteContactFlowModuleOutput, error) {
+	req, out := c.DeleteContactFlowModuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteHoursOfOperation = "DeleteHoursOfOperation"
 
 // DeleteHoursOfOperationRequest generates a "aws/request.Request" representing the
@@ -2116,8 +2706,8 @@ func (c *Connect) DeleteIntegrationAssociationRequest(input *DeleteIntegrationAs
 
 // DeleteIntegrationAssociation API operation for Amazon Connect Service.
 //
-// Deletes an AppIntegration association from an Amazon Connect instance. The
-// association must not have any use cases associated with it.
+// Deletes an Amazon Web Services resource association from an Amazon Connect
+// instance. The association must not have any use cases associated with it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2253,6 +2843,106 @@ func (c *Connect) DeleteQuickConnectWithContext(ctx aws.Context, input *DeleteQu
 	return out, req.Send()
 }
 
+const opDeleteSecurityProfile = "DeleteSecurityProfile"
+
+// DeleteSecurityProfileRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSecurityProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSecurityProfile for more information on using the DeleteSecurityProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSecurityProfileRequest method.
+//    req, resp := client.DeleteSecurityProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteSecurityProfile
+func (c *Connect) DeleteSecurityProfileRequest(input *DeleteSecurityProfileInput) (req *request.Request, output *DeleteSecurityProfileOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSecurityProfile,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/security-profiles/{InstanceId}/{SecurityProfileId}",
+	}
+
+	if input == nil {
+		input = &DeleteSecurityProfileInput{}
+	}
+
+	output = &DeleteSecurityProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteSecurityProfile API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Deletes a security profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteSecurityProfile for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * ResourceInUseException
+//   That resource is already in use. Please try another.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteSecurityProfile
+func (c *Connect) DeleteSecurityProfile(input *DeleteSecurityProfileInput) (*DeleteSecurityProfileOutput, error) {
+	req, out := c.DeleteSecurityProfileRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSecurityProfileWithContext is the same as DeleteSecurityProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSecurityProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteSecurityProfileWithContext(ctx aws.Context, input *DeleteSecurityProfileInput, opts ...request.Option) (*DeleteSecurityProfileOutput, error) {
+	req, out := c.DeleteSecurityProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteUseCase = "DeleteUseCase"
 
 // DeleteUseCaseRequest generates a "aws/request.Request" representing the
@@ -2298,7 +2988,7 @@ func (c *Connect) DeleteUseCaseRequest(input *DeleteUseCaseInput) (req *request.
 
 // DeleteUseCase API operation for Amazon Connect Service.
 //
-// Deletes a use case from an AppIntegration association.
+// Deletes a use case from an integration association.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2534,6 +3224,100 @@ func (c *Connect) DeleteUserHierarchyGroupWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opDeleteVocabulary = "DeleteVocabulary"
+
+// DeleteVocabularyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVocabulary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVocabulary for more information on using the DeleteVocabulary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteVocabularyRequest method.
+//    req, resp := client.DeleteVocabularyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteVocabulary
+func (c *Connect) DeleteVocabularyRequest(input *DeleteVocabularyInput) (req *request.Request, output *DeleteVocabularyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVocabulary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/vocabulary-remove/{InstanceId}/{VocabularyId}",
+	}
+
+	if input == nil {
+		input = &DeleteVocabularyInput{}
+	}
+
+	output = &DeleteVocabularyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteVocabulary API operation for Amazon Connect Service.
+//
+// Deletes the vocabulary that has the given identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteVocabulary for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * ResourceInUseException
+//   That resource is already in use. Please try another.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteVocabulary
+func (c *Connect) DeleteVocabulary(input *DeleteVocabularyInput) (*DeleteVocabularyOutput, error) {
+	req, out := c.DeleteVocabularyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVocabularyWithContext is the same as DeleteVocabulary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVocabulary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteVocabularyWithContext(ctx aws.Context, input *DeleteVocabularyInput, opts ...request.Option) (*DeleteVocabularyOutput, error) {
+	req, out := c.DeleteVocabularyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeAgentStatus = "DescribeAgentStatus"
 
 // DescribeAgentStatusRequest generates a "aws/request.Request" representing the
@@ -2622,6 +3406,102 @@ func (c *Connect) DescribeAgentStatus(input *DescribeAgentStatusInput) (*Describ
 // for more information on using Contexts.
 func (c *Connect) DescribeAgentStatusWithContext(ctx aws.Context, input *DescribeAgentStatusInput, opts ...request.Option) (*DescribeAgentStatusOutput, error) {
 	req, out := c.DescribeAgentStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeContact = "DescribeContact"
+
+// DescribeContactRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeContact for more information on using the DescribeContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeContactRequest method.
+//    req, resp := client.DescribeContactRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContact
+func (c *Connect) DescribeContactRequest(input *DescribeContactInput) (req *request.Request, output *DescribeContactOutput) {
+	op := &request.Operation{
+		Name:       opDescribeContact,
+		HTTPMethod: "GET",
+		HTTPPath:   "/contacts/{InstanceId}/{ContactId}",
+	}
+
+	if input == nil {
+		input = &DescribeContactInput{}
+	}
+
+	output = &DescribeContactOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeContact API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Describes the specified contact.
+//
+// Contact information remains available in Amazon Connect for 24 months, and
+// then it is deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeContact for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContact
+func (c *Connect) DescribeContact(input *DescribeContactInput) (*DescribeContactOutput, error) {
+	req, out := c.DescribeContactRequest(input)
+	return out, req.Send()
+}
+
+// DescribeContactWithContext is the same as DescribeContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeContactWithContext(ctx aws.Context, input *DescribeContactInput, opts ...request.Option) (*DescribeContactOutput, error) {
+	req, out := c.DescribeContactRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2719,6 +3599,100 @@ func (c *Connect) DescribeContactFlow(input *DescribeContactFlowInput) (*Describ
 // for more information on using Contexts.
 func (c *Connect) DescribeContactFlowWithContext(ctx aws.Context, input *DescribeContactFlowInput, opts ...request.Option) (*DescribeContactFlowOutput, error) {
 	req, out := c.DescribeContactFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeContactFlowModule = "DescribeContactFlowModule"
+
+// DescribeContactFlowModuleRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeContactFlowModule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeContactFlowModule for more information on using the DescribeContactFlowModule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeContactFlowModuleRequest method.
+//    req, resp := client.DescribeContactFlowModuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactFlowModule
+func (c *Connect) DescribeContactFlowModuleRequest(input *DescribeContactFlowModuleInput) (req *request.Request, output *DescribeContactFlowModuleOutput) {
+	op := &request.Operation{
+		Name:       opDescribeContactFlowModule,
+		HTTPMethod: "GET",
+		HTTPPath:   "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}",
+	}
+
+	if input == nil {
+		input = &DescribeContactFlowModuleInput{}
+	}
+
+	output = &DescribeContactFlowModuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeContactFlowModule API operation for Amazon Connect Service.
+//
+// Describes the specified contact flow module.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeContactFlowModule for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactFlowModule
+func (c *Connect) DescribeContactFlowModule(input *DescribeContactFlowModuleInput) (*DescribeContactFlowModuleOutput, error) {
+	req, out := c.DescribeContactFlowModuleRequest(input)
+	return out, req.Send()
+}
+
+// DescribeContactFlowModuleWithContext is the same as DescribeContactFlowModule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeContactFlowModule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeContactFlowModuleWithContext(ctx aws.Context, input *DescribeContactFlowModuleInput, opts ...request.Option) (*DescribeContactFlowModuleOutput, error) {
+	req, out := c.DescribeContactFlowModuleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3371,6 +4345,99 @@ func (c *Connect) DescribeRoutingProfileWithContext(ctx aws.Context, input *Desc
 	return out, req.Send()
 }
 
+const opDescribeSecurityProfile = "DescribeSecurityProfile"
+
+// DescribeSecurityProfileRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSecurityProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSecurityProfile for more information on using the DescribeSecurityProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeSecurityProfileRequest method.
+//    req, resp := client.DescribeSecurityProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeSecurityProfile
+func (c *Connect) DescribeSecurityProfileRequest(input *DescribeSecurityProfileInput) (req *request.Request, output *DescribeSecurityProfileOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSecurityProfile,
+		HTTPMethod: "GET",
+		HTTPPath:   "/security-profiles/{InstanceId}/{SecurityProfileId}",
+	}
+
+	if input == nil {
+		input = &DescribeSecurityProfileInput{}
+	}
+
+	output = &DescribeSecurityProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSecurityProfile API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Gets basic information about the security profle.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeSecurityProfile for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeSecurityProfile
+func (c *Connect) DescribeSecurityProfile(input *DescribeSecurityProfileInput) (*DescribeSecurityProfileOutput, error) {
+	req, out := c.DescribeSecurityProfileRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSecurityProfileWithContext is the same as DescribeSecurityProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSecurityProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeSecurityProfileWithContext(ctx aws.Context, input *DescribeSecurityProfileInput, opts ...request.Option) (*DescribeSecurityProfileOutput, error) {
+	req, out := c.DescribeSecurityProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeUser = "DescribeUser"
 
 // DescribeUserRequest generates a "aws/request.Request" representing the
@@ -3641,6 +4708,97 @@ func (c *Connect) DescribeUserHierarchyStructure(input *DescribeUserHierarchyStr
 // for more information on using Contexts.
 func (c *Connect) DescribeUserHierarchyStructureWithContext(ctx aws.Context, input *DescribeUserHierarchyStructureInput, opts ...request.Option) (*DescribeUserHierarchyStructureOutput, error) {
 	req, out := c.DescribeUserHierarchyStructureRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeVocabulary = "DescribeVocabulary"
+
+// DescribeVocabularyRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVocabulary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeVocabulary for more information on using the DescribeVocabulary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeVocabularyRequest method.
+//    req, resp := client.DescribeVocabularyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeVocabulary
+func (c *Connect) DescribeVocabularyRequest(input *DescribeVocabularyInput) (req *request.Request, output *DescribeVocabularyOutput) {
+	op := &request.Operation{
+		Name:       opDescribeVocabulary,
+		HTTPMethod: "GET",
+		HTTPPath:   "/vocabulary/{InstanceId}/{VocabularyId}",
+	}
+
+	if input == nil {
+		input = &DescribeVocabularyInput{}
+	}
+
+	output = &DescribeVocabularyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeVocabulary API operation for Amazon Connect Service.
+//
+// Describes the specified vocabulary.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeVocabulary for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeVocabulary
+func (c *Connect) DescribeVocabulary(input *DescribeVocabularyInput) (*DescribeVocabularyOutput, error) {
+	req, out := c.DescribeVocabularyRequest(input)
+	return out, req.Send()
+}
+
+// DescribeVocabularyWithContext is the same as DescribeVocabulary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeVocabulary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeVocabularyWithContext(ctx aws.Context, input *DescribeVocabularyInput, opts ...request.Option) (*DescribeVocabularyOutput, error) {
+	req, out := c.DescribeVocabularyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5338,6 +6496,159 @@ func (c *Connect) ListBotsPagesWithContext(ctx aws.Context, input *ListBotsInput
 	return p.Err()
 }
 
+const opListContactFlowModules = "ListContactFlowModules"
+
+// ListContactFlowModulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListContactFlowModules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListContactFlowModules for more information on using the ListContactFlowModules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListContactFlowModulesRequest method.
+//    req, resp := client.ListContactFlowModulesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactFlowModules
+func (c *Connect) ListContactFlowModulesRequest(input *ListContactFlowModulesInput) (req *request.Request, output *ListContactFlowModulesOutput) {
+	op := &request.Operation{
+		Name:       opListContactFlowModules,
+		HTTPMethod: "GET",
+		HTTPPath:   "/contact-flow-modules-summary/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListContactFlowModulesInput{}
+	}
+
+	output = &ListContactFlowModulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListContactFlowModules API operation for Amazon Connect Service.
+//
+// Provides information about the contact flow modules for the specified Amazon
+// Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListContactFlowModules for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactFlowModules
+func (c *Connect) ListContactFlowModules(input *ListContactFlowModulesInput) (*ListContactFlowModulesOutput, error) {
+	req, out := c.ListContactFlowModulesRequest(input)
+	return out, req.Send()
+}
+
+// ListContactFlowModulesWithContext is the same as ListContactFlowModules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListContactFlowModules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListContactFlowModulesWithContext(ctx aws.Context, input *ListContactFlowModulesInput, opts ...request.Option) (*ListContactFlowModulesOutput, error) {
+	req, out := c.ListContactFlowModulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListContactFlowModulesPages iterates over the pages of a ListContactFlowModules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListContactFlowModules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListContactFlowModules operation.
+//    pageNum := 0
+//    err := client.ListContactFlowModulesPages(params,
+//        func(page *connect.ListContactFlowModulesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListContactFlowModulesPages(input *ListContactFlowModulesInput, fn func(*ListContactFlowModulesOutput, bool) bool) error {
+	return c.ListContactFlowModulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListContactFlowModulesPagesWithContext same as ListContactFlowModulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListContactFlowModulesPagesWithContext(ctx aws.Context, input *ListContactFlowModulesInput, fn func(*ListContactFlowModulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListContactFlowModulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListContactFlowModulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListContactFlowModulesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListContactFlows = "ListContactFlows"
 
 // ListContactFlowsRequest generates a "aws/request.Request" representing the
@@ -5487,6 +6798,304 @@ func (c *Connect) ListContactFlowsPagesWithContext(ctx aws.Context, input *ListC
 
 	for p.Next() {
 		if !fn(p.Page().(*ListContactFlowsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListContactReferences = "ListContactReferences"
+
+// ListContactReferencesRequest generates a "aws/request.Request" representing the
+// client's request for the ListContactReferences operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListContactReferences for more information on using the ListContactReferences
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListContactReferencesRequest method.
+//    req, resp := client.ListContactReferencesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactReferences
+func (c *Connect) ListContactReferencesRequest(input *ListContactReferencesInput) (req *request.Request, output *ListContactReferencesOutput) {
+	op := &request.Operation{
+		Name:       opListContactReferences,
+		HTTPMethod: "GET",
+		HTTPPath:   "/contact/references/{InstanceId}/{ContactId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListContactReferencesInput{}
+	}
+
+	output = &ListContactReferencesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListContactReferences API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// For the specified referenceTypes, returns a list of references associated
+// with the contact.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListContactReferences for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactReferences
+func (c *Connect) ListContactReferences(input *ListContactReferencesInput) (*ListContactReferencesOutput, error) {
+	req, out := c.ListContactReferencesRequest(input)
+	return out, req.Send()
+}
+
+// ListContactReferencesWithContext is the same as ListContactReferences with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListContactReferences for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListContactReferencesWithContext(ctx aws.Context, input *ListContactReferencesInput, opts ...request.Option) (*ListContactReferencesOutput, error) {
+	req, out := c.ListContactReferencesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListContactReferencesPages iterates over the pages of a ListContactReferences operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListContactReferences method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListContactReferences operation.
+//    pageNum := 0
+//    err := client.ListContactReferencesPages(params,
+//        func(page *connect.ListContactReferencesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListContactReferencesPages(input *ListContactReferencesInput, fn func(*ListContactReferencesOutput, bool) bool) error {
+	return c.ListContactReferencesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListContactReferencesPagesWithContext same as ListContactReferencesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListContactReferencesPagesWithContext(ctx aws.Context, input *ListContactReferencesInput, fn func(*ListContactReferencesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListContactReferencesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListContactReferencesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListContactReferencesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDefaultVocabularies = "ListDefaultVocabularies"
+
+// ListDefaultVocabulariesRequest generates a "aws/request.Request" representing the
+// client's request for the ListDefaultVocabularies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDefaultVocabularies for more information on using the ListDefaultVocabularies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDefaultVocabulariesRequest method.
+//    req, resp := client.ListDefaultVocabulariesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListDefaultVocabularies
+func (c *Connect) ListDefaultVocabulariesRequest(input *ListDefaultVocabulariesInput) (req *request.Request, output *ListDefaultVocabulariesOutput) {
+	op := &request.Operation{
+		Name:       opListDefaultVocabularies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/default-vocabulary-summary/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDefaultVocabulariesInput{}
+	}
+
+	output = &ListDefaultVocabulariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDefaultVocabularies API operation for Amazon Connect Service.
+//
+// Lists the default vocabularies for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListDefaultVocabularies for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListDefaultVocabularies
+func (c *Connect) ListDefaultVocabularies(input *ListDefaultVocabulariesInput) (*ListDefaultVocabulariesOutput, error) {
+	req, out := c.ListDefaultVocabulariesRequest(input)
+	return out, req.Send()
+}
+
+// ListDefaultVocabulariesWithContext is the same as ListDefaultVocabularies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDefaultVocabularies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListDefaultVocabulariesWithContext(ctx aws.Context, input *ListDefaultVocabulariesInput, opts ...request.Option) (*ListDefaultVocabulariesOutput, error) {
+	req, out := c.ListDefaultVocabulariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDefaultVocabulariesPages iterates over the pages of a ListDefaultVocabularies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDefaultVocabularies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDefaultVocabularies operation.
+//    pageNum := 0
+//    err := client.ListDefaultVocabulariesPages(params,
+//        func(page *connect.ListDefaultVocabulariesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListDefaultVocabulariesPages(input *ListDefaultVocabulariesInput, fn func(*ListDefaultVocabulariesOutput, bool) bool) error {
+	return c.ListDefaultVocabulariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDefaultVocabulariesPagesWithContext same as ListDefaultVocabulariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListDefaultVocabulariesPagesWithContext(ctx aws.Context, input *ListDefaultVocabulariesInput, fn func(*ListDefaultVocabulariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDefaultVocabulariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDefaultVocabulariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDefaultVocabulariesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6146,8 +7755,8 @@ func (c *Connect) ListIntegrationAssociationsRequest(input *ListIntegrationAssoc
 
 // ListIntegrationAssociations API operation for Amazon Connect Service.
 //
-// Provides summary information about the AppIntegration associations for the
-// specified Amazon Connect instance.
+// Provides summary information about the Amazon Web Services resource associations
+// for the specified Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7762,6 +9371,157 @@ func (c *Connect) ListSecurityKeysPagesWithContext(ctx aws.Context, input *ListS
 	return p.Err()
 }
 
+const opListSecurityProfilePermissions = "ListSecurityProfilePermissions"
+
+// ListSecurityProfilePermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSecurityProfilePermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSecurityProfilePermissions for more information on using the ListSecurityProfilePermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSecurityProfilePermissionsRequest method.
+//    req, resp := client.ListSecurityProfilePermissionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityProfilePermissions
+func (c *Connect) ListSecurityProfilePermissionsRequest(input *ListSecurityProfilePermissionsInput) (req *request.Request, output *ListSecurityProfilePermissionsOutput) {
+	op := &request.Operation{
+		Name:       opListSecurityProfilePermissions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/security-profiles-permissions/{InstanceId}/{SecurityProfileId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSecurityProfilePermissionsInput{}
+	}
+
+	output = &ListSecurityProfilePermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSecurityProfilePermissions API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Lists the permissions granted to a security profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListSecurityProfilePermissions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityProfilePermissions
+func (c *Connect) ListSecurityProfilePermissions(input *ListSecurityProfilePermissionsInput) (*ListSecurityProfilePermissionsOutput, error) {
+	req, out := c.ListSecurityProfilePermissionsRequest(input)
+	return out, req.Send()
+}
+
+// ListSecurityProfilePermissionsWithContext is the same as ListSecurityProfilePermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSecurityProfilePermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListSecurityProfilePermissionsWithContext(ctx aws.Context, input *ListSecurityProfilePermissionsInput, opts ...request.Option) (*ListSecurityProfilePermissionsOutput, error) {
+	req, out := c.ListSecurityProfilePermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSecurityProfilePermissionsPages iterates over the pages of a ListSecurityProfilePermissions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSecurityProfilePermissions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSecurityProfilePermissions operation.
+//    pageNum := 0
+//    err := client.ListSecurityProfilePermissionsPages(params,
+//        func(page *connect.ListSecurityProfilePermissionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListSecurityProfilePermissionsPages(input *ListSecurityProfilePermissionsInput, fn func(*ListSecurityProfilePermissionsOutput, bool) bool) error {
+	return c.ListSecurityProfilePermissionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSecurityProfilePermissionsPagesWithContext same as ListSecurityProfilePermissionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListSecurityProfilePermissionsPagesWithContext(ctx aws.Context, input *ListSecurityProfilePermissionsInput, fn func(*ListSecurityProfilePermissionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSecurityProfilePermissionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSecurityProfilePermissionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSecurityProfilePermissionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSecurityProfiles = "ListSecurityProfiles"
 
 // ListSecurityProfilesRequest generates a "aws/request.Request" representing the
@@ -8060,7 +9820,7 @@ func (c *Connect) ListUseCasesRequest(input *ListUseCasesInput) (req *request.Re
 
 // ListUseCases API operation for Amazon Connect Service.
 //
-// Lists the use cases.
+// Lists the use cases for the integration association.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8549,6 +10309,153 @@ func (c *Connect) ResumeContactRecordingWithContext(ctx aws.Context, input *Resu
 	return out, req.Send()
 }
 
+const opSearchVocabularies = "SearchVocabularies"
+
+// SearchVocabulariesRequest generates a "aws/request.Request" representing the
+// client's request for the SearchVocabularies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchVocabularies for more information on using the SearchVocabularies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchVocabulariesRequest method.
+//    req, resp := client.SearchVocabulariesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchVocabularies
+func (c *Connect) SearchVocabulariesRequest(input *SearchVocabulariesInput) (req *request.Request, output *SearchVocabulariesOutput) {
+	op := &request.Operation{
+		Name:       opSearchVocabularies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/vocabulary-summary/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchVocabulariesInput{}
+	}
+
+	output = &SearchVocabulariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchVocabularies API operation for Amazon Connect Service.
+//
+// Searches for vocabularies within a specific Amazon Connect instance using
+// State, NameStartsWith, and LanguageCode.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation SearchVocabularies for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SearchVocabularies
+func (c *Connect) SearchVocabularies(input *SearchVocabulariesInput) (*SearchVocabulariesOutput, error) {
+	req, out := c.SearchVocabulariesRequest(input)
+	return out, req.Send()
+}
+
+// SearchVocabulariesWithContext is the same as SearchVocabularies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchVocabularies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchVocabulariesWithContext(ctx aws.Context, input *SearchVocabulariesInput, opts ...request.Option) (*SearchVocabulariesOutput, error) {
+	req, out := c.SearchVocabulariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchVocabulariesPages iterates over the pages of a SearchVocabularies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchVocabularies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SearchVocabularies operation.
+//    pageNum := 0
+//    err := client.SearchVocabulariesPages(params,
+//        func(page *connect.SearchVocabulariesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) SearchVocabulariesPages(input *SearchVocabulariesInput, fn func(*SearchVocabulariesOutput, bool) bool) error {
+	return c.SearchVocabulariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchVocabulariesPagesWithContext same as SearchVocabulariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) SearchVocabulariesPagesWithContext(ctx aws.Context, input *SearchVocabulariesInput, fn func(*SearchVocabulariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchVocabulariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchVocabulariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchVocabulariesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opStartChatContact = "StartChatContact"
 
 // StartChatContactRequest generates a "aws/request.Request" representing the
@@ -8603,13 +10510,17 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 // is achieved by invoking CreateParticipantConnection (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html)
 // with WEBSOCKET and CONNECTION_CREDENTIALS.
 //
-// A 429 error occurs in two situations:
+// A 429 error occurs in the following situations:
 //
 //    * API rate limit is exceeded. API TPS throttling returns a TooManyRequests
 //    exception.
 //
 //    * The quota for concurrent active chats (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
 //    is exceeded. Active chat throttling returns a LimitExceededException.
+//
+// If you use the ChatDurationInMinutes parameter and receive a 400 error, your
+// account may not support the ability to configure custom chat durations. For
+// more information, contact Amazon Web Services Support.
 //
 // For more information about chat, see Chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat.html)
 // in the Amazon Connect Administrator Guide.
@@ -8759,6 +10670,101 @@ func (c *Connect) StartContactRecordingWithContext(ctx aws.Context, input *Start
 	return out, req.Send()
 }
 
+const opStartContactStreaming = "StartContactStreaming"
+
+// StartContactStreamingRequest generates a "aws/request.Request" representing the
+// client's request for the StartContactStreaming operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartContactStreaming for more information on using the StartContactStreaming
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartContactStreamingRequest method.
+//    req, resp := client.StartContactStreamingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactStreaming
+func (c *Connect) StartContactStreamingRequest(input *StartContactStreamingInput) (req *request.Request, output *StartContactStreamingOutput) {
+	op := &request.Operation{
+		Name:       opStartContactStreaming,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/start-streaming",
+	}
+
+	if input == nil {
+		input = &StartContactStreamingInput{}
+	}
+
+	output = &StartContactStreamingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartContactStreaming API operation for Amazon Connect Service.
+//
+// Initiates real-time message streaming for a new chat contact.
+//
+// For more information about message streaming, see Enable real-time chat message
+// streaming (https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html)
+// in the Amazon Connect Administrator Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation StartContactStreaming for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactStreaming
+func (c *Connect) StartContactStreaming(input *StartContactStreamingInput) (*StartContactStreamingOutput, error) {
+	req, out := c.StartContactStreamingRequest(input)
+	return out, req.Send()
+}
+
+// StartContactStreamingWithContext is the same as StartContactStreaming with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartContactStreaming for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) StartContactStreamingWithContext(ctx aws.Context, input *StartContactStreamingInput, opts ...request.Option) (*StartContactStreamingOutput, error) {
+	req, out := c.StartContactStreamingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartOutboundVoiceContact = "StartOutboundVoiceContact"
 
 // StartOutboundVoiceContactRequest generates a "aws/request.Request" representing the
@@ -8816,6 +10822,11 @@ func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceCont
 //
 // UK numbers with a 447 prefix are not allowed by default. Before you can dial
 // these UK mobile numbers, you must submit a service quota increase request.
+// For more information, see Amazon Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
+// in the Amazon Connect Administrator Guide.
+//
+// Campaign calls are not allowed by default. Before you can make a call with
+// TrafficType = CAMPAIGN, you must submit a service quota increase request.
 // For more information, see Amazon Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
 // in the Amazon Connect Administrator Guide.
 //
@@ -9144,6 +11155,97 @@ func (c *Connect) StopContactRecording(input *StopContactRecordingInput) (*StopC
 // for more information on using Contexts.
 func (c *Connect) StopContactRecordingWithContext(ctx aws.Context, input *StopContactRecordingInput, opts ...request.Option) (*StopContactRecordingOutput, error) {
 	req, out := c.StopContactRecordingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopContactStreaming = "StopContactStreaming"
+
+// StopContactStreamingRequest generates a "aws/request.Request" representing the
+// client's request for the StopContactStreaming operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopContactStreaming for more information on using the StopContactStreaming
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopContactStreamingRequest method.
+//    req, resp := client.StopContactStreamingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContactStreaming
+func (c *Connect) StopContactStreamingRequest(input *StopContactStreamingInput) (req *request.Request, output *StopContactStreamingOutput) {
+	op := &request.Operation{
+		Name:       opStopContactStreaming,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/stop-streaming",
+	}
+
+	if input == nil {
+		input = &StopContactStreamingInput{}
+	}
+
+	output = &StopContactStreamingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopContactStreaming API operation for Amazon Connect Service.
+//
+// Ends message streaming on a specified contact. To restart message streaming
+// on that contact, call the StartContactStreaming (https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html)
+// API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation StopContactStreaming for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContactStreaming
+func (c *Connect) StopContactStreaming(input *StopContactStreamingInput) (*StopContactStreamingOutput, error) {
+	req, out := c.StopContactStreamingRequest(input)
+	return out, req.Send()
+}
+
+// StopContactStreamingWithContext is the same as StopContactStreaming with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopContactStreaming for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) StopContactStreamingWithContext(ctx aws.Context, input *StopContactStreamingInput, opts ...request.Option) (*StopContactStreamingOutput, error) {
+	req, out := c.StopContactStreamingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9534,6 +11636,104 @@ func (c *Connect) UpdateAgentStatusWithContext(ctx aws.Context, input *UpdateAge
 	return out, req.Send()
 }
 
+const opUpdateContact = "UpdateContact"
+
+// UpdateContactRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContact for more information on using the UpdateContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactRequest method.
+//    req, resp := client.UpdateContactRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContact
+func (c *Connect) UpdateContactRequest(input *UpdateContactInput) (req *request.Request, output *UpdateContactOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContact,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contacts/{InstanceId}/{ContactId}",
+	}
+
+	if input == nil {
+		input = &UpdateContactInput{}
+	}
+
+	output = &UpdateContactOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContact API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Adds or updates user-defined contact information associated with the specified
+// contact. At least one field to be updated must be present in the request.
+//
+// You can add or update user-defined contact information for both ongoing and
+// completed contacts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContact for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContact
+func (c *Connect) UpdateContact(input *UpdateContactInput) (*UpdateContactOutput, error) {
+	req, out := c.UpdateContactRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactWithContext is the same as UpdateContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactWithContext(ctx aws.Context, input *UpdateContactInput, opts ...request.Option) (*UpdateContactOutput, error) {
+	req, out := c.UpdateContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateContactAttributes = "UpdateContactAttributes"
 
 // UpdateContactAttributesRequest generates a "aws/request.Request" representing the
@@ -9744,6 +11944,294 @@ func (c *Connect) UpdateContactFlowContentWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
+const opUpdateContactFlowMetadata = "UpdateContactFlowMetadata"
+
+// UpdateContactFlowMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactFlowMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactFlowMetadata for more information on using the UpdateContactFlowMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactFlowMetadataRequest method.
+//    req, resp := client.UpdateContactFlowMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowMetadata
+func (c *Connect) UpdateContactFlowMetadataRequest(input *UpdateContactFlowMetadataInput) (req *request.Request, output *UpdateContactFlowMetadataOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactFlowMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact-flows/{InstanceId}/{ContactFlowId}/metadata",
+	}
+
+	if input == nil {
+		input = &UpdateContactFlowMetadataInput{}
+	}
+
+	output = &UpdateContactFlowMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContactFlowMetadata API operation for Amazon Connect Service.
+//
+// Updates metadata about specified contact flow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContactFlowMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowMetadata
+func (c *Connect) UpdateContactFlowMetadata(input *UpdateContactFlowMetadataInput) (*UpdateContactFlowMetadataOutput, error) {
+	req, out := c.UpdateContactFlowMetadataRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactFlowMetadataWithContext is the same as UpdateContactFlowMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactFlowMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactFlowMetadataWithContext(ctx aws.Context, input *UpdateContactFlowMetadataInput, opts ...request.Option) (*UpdateContactFlowMetadataOutput, error) {
+	req, out := c.UpdateContactFlowMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateContactFlowModuleContent = "UpdateContactFlowModuleContent"
+
+// UpdateContactFlowModuleContentRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactFlowModuleContent operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactFlowModuleContent for more information on using the UpdateContactFlowModuleContent
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactFlowModuleContentRequest method.
+//    req, resp := client.UpdateContactFlowModuleContentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowModuleContent
+func (c *Connect) UpdateContactFlowModuleContentRequest(input *UpdateContactFlowModuleContentInput) (req *request.Request, output *UpdateContactFlowModuleContentOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactFlowModuleContent,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/content",
+	}
+
+	if input == nil {
+		input = &UpdateContactFlowModuleContentInput{}
+	}
+
+	output = &UpdateContactFlowModuleContentOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContactFlowModuleContent API operation for Amazon Connect Service.
+//
+// Updates specified contact flow module for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContactFlowModuleContent for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidContactFlowModuleException
+//   The problems with the module. Please fix before trying again.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowModuleContent
+func (c *Connect) UpdateContactFlowModuleContent(input *UpdateContactFlowModuleContentInput) (*UpdateContactFlowModuleContentOutput, error) {
+	req, out := c.UpdateContactFlowModuleContentRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactFlowModuleContentWithContext is the same as UpdateContactFlowModuleContent with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactFlowModuleContent for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactFlowModuleContentWithContext(ctx aws.Context, input *UpdateContactFlowModuleContentInput, opts ...request.Option) (*UpdateContactFlowModuleContentOutput, error) {
+	req, out := c.UpdateContactFlowModuleContentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateContactFlowModuleMetadata = "UpdateContactFlowModuleMetadata"
+
+// UpdateContactFlowModuleMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactFlowModuleMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactFlowModuleMetadata for more information on using the UpdateContactFlowModuleMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactFlowModuleMetadataRequest method.
+//    req, resp := client.UpdateContactFlowModuleMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowModuleMetadata
+func (c *Connect) UpdateContactFlowModuleMetadataRequest(input *UpdateContactFlowModuleMetadataInput) (req *request.Request, output *UpdateContactFlowModuleMetadataOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactFlowModuleMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/metadata",
+	}
+
+	if input == nil {
+		input = &UpdateContactFlowModuleMetadataInput{}
+	}
+
+	output = &UpdateContactFlowModuleMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContactFlowModuleMetadata API operation for Amazon Connect Service.
+//
+// Updates metadata about specified contact flow module.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContactFlowModuleMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowModuleMetadata
+func (c *Connect) UpdateContactFlowModuleMetadata(input *UpdateContactFlowModuleMetadataInput) (*UpdateContactFlowModuleMetadataOutput, error) {
+	req, out := c.UpdateContactFlowModuleMetadataRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactFlowModuleMetadataWithContext is the same as UpdateContactFlowModuleMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactFlowModuleMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactFlowModuleMetadataWithContext(ctx aws.Context, input *UpdateContactFlowModuleMetadataInput, opts ...request.Option) (*UpdateContactFlowModuleMetadataOutput, error) {
+	req, out := c.UpdateContactFlowModuleMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateContactFlowName = "UpdateContactFlowName"
 
 // UpdateContactFlowNameRequest generates a "aws/request.Request" representing the
@@ -9837,6 +12325,101 @@ func (c *Connect) UpdateContactFlowName(input *UpdateContactFlowNameInput) (*Upd
 // for more information on using Contexts.
 func (c *Connect) UpdateContactFlowNameWithContext(ctx aws.Context, input *UpdateContactFlowNameInput, opts ...request.Option) (*UpdateContactFlowNameOutput, error) {
 	req, out := c.UpdateContactFlowNameRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateContactSchedule = "UpdateContactSchedule"
+
+// UpdateContactScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactSchedule for more information on using the UpdateContactSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactScheduleRequest method.
+//    req, resp := client.UpdateContactScheduleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactSchedule
+func (c *Connect) UpdateContactScheduleRequest(input *UpdateContactScheduleInput) (req *request.Request, output *UpdateContactScheduleOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactSchedule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/schedule",
+	}
+
+	if input == nil {
+		input = &UpdateContactScheduleInput{}
+	}
+
+	output = &UpdateContactScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContactSchedule API operation for Amazon Connect Service.
+//
+// Updates the scheduled time of a task contact that is already scheduled.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContactSchedule for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactSchedule
+func (c *Connect) UpdateContactSchedule(input *UpdateContactScheduleInput) (*UpdateContactScheduleOutput, error) {
+	req, out := c.UpdateContactScheduleRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactScheduleWithContext is the same as UpdateContactSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactScheduleWithContext(ctx aws.Context, input *UpdateContactScheduleInput, opts ...request.Option) (*UpdateContactScheduleOutput, error) {
+	req, out := c.UpdateContactScheduleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11161,6 +13744,100 @@ func (c *Connect) UpdateRoutingProfileQueuesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opUpdateSecurityProfile = "UpdateSecurityProfile"
+
+// UpdateSecurityProfileRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSecurityProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSecurityProfile for more information on using the UpdateSecurityProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSecurityProfileRequest method.
+//    req, resp := client.UpdateSecurityProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateSecurityProfile
+func (c *Connect) UpdateSecurityProfileRequest(input *UpdateSecurityProfileInput) (req *request.Request, output *UpdateSecurityProfileOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSecurityProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/security-profiles/{InstanceId}/{SecurityProfileId}",
+	}
+
+	if input == nil {
+		input = &UpdateSecurityProfileInput{}
+	}
+
+	output = &UpdateSecurityProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateSecurityProfile API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Updates a security profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateSecurityProfile for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateSecurityProfile
+func (c *Connect) UpdateSecurityProfile(input *UpdateSecurityProfileInput) (*UpdateSecurityProfileOutput, error) {
+	req, out := c.UpdateSecurityProfileRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSecurityProfileWithContext is the same as UpdateSecurityProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSecurityProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateSecurityProfileWithContext(ctx aws.Context, input *UpdateSecurityProfileInput, opts ...request.Option) (*UpdateSecurityProfileOutput, error) {
+	req, out := c.UpdateSecurityProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateUserHierarchy = "UpdateUserHierarchy"
 
 // UpdateUserHierarchyRequest generates a "aws/request.Request" representing the
@@ -11820,6 +14497,111 @@ func (c *Connect) UpdateUserSecurityProfilesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+// You do not have sufficient permissions to perform this action.
+type AccessDeniedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s *AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s *AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccessDeniedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccessDeniedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Information about the agent who accepted the contact.
+type AgentInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp when the contact was connected to the agent.
+	ConnectedToAgentTimestamp *time.Time `type:"timestamp"`
+
+	// The identifier of the agent who accepted the contact.
+	Id *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AgentInfo) GoString() string {
+	return s.String()
+}
+
+// SetConnectedToAgentTimestamp sets the ConnectedToAgentTimestamp field's value.
+func (s *AgentInfo) SetConnectedToAgentTimestamp(v time.Time) *AgentInfo {
+	s.ConnectedToAgentTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AgentInfo) SetId(v string) *AgentInfo {
+	s.Id = &v
+	return s
+}
+
 // Contains information about an agent status.
 type AgentStatus struct {
 	_ struct{} `type:"structure"`
@@ -11842,19 +14624,27 @@ type AgentStatus struct {
 	// The state of the agent status.
 	State *string `type:"string" enum:"AgentStatusState"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The type of agent status.
 	Type *string `type:"string" enum:"AgentStatusType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AgentStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AgentStatus) GoString() string {
 	return s.String()
 }
@@ -11924,12 +14714,20 @@ type AgentStatusSummary struct {
 	Type *string `type:"string" enum:"AgentStatusType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AgentStatusSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AgentStatusSummary) GoString() string {
 	return s.String()
 }
@@ -11958,6 +14756,48 @@ func (s *AgentStatusSummary) SetType(v string) *AgentStatusSummary {
 	return s
 }
 
+// Configuration of the answering machine detection.
+type AnswerMachineDetectionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Wait for the answering machine prompt.
+	AwaitAnswerMachinePrompt *bool `type:"boolean"`
+
+	// The flag to indicate if answer machine detection analysis needs to be performed
+	// for a voice call. If set to true, TrafficType must be set as CAMPAIGN.
+	EnableAnswerMachineDetection *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnswerMachineDetectionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnswerMachineDetectionConfig) GoString() string {
+	return s.String()
+}
+
+// SetAwaitAnswerMachinePrompt sets the AwaitAnswerMachinePrompt field's value.
+func (s *AnswerMachineDetectionConfig) SetAwaitAnswerMachinePrompt(v bool) *AnswerMachineDetectionConfig {
+	s.AwaitAnswerMachinePrompt = &v
+	return s
+}
+
+// SetEnableAnswerMachineDetection sets the EnableAnswerMachineDetection field's value.
+func (s *AnswerMachineDetectionConfig) SetEnableAnswerMachineDetection(v bool) *AnswerMachineDetectionConfig {
+	s.EnableAnswerMachineDetection = &v
+	return s
+}
+
 type AssociateApprovedOriginInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11973,12 +14813,20 @@ type AssociateApprovedOriginInput struct {
 	Origin *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateApprovedOriginInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateApprovedOriginInput) GoString() string {
 	return s.String()
 }
@@ -12018,12 +14866,20 @@ type AssociateApprovedOriginOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateApprovedOriginOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateApprovedOriginOutput) GoString() string {
 	return s.String()
 }
@@ -12044,12 +14900,20 @@ type AssociateBotInput struct {
 	LexV2Bot *LexV2Bot `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateBotInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateBotInput) GoString() string {
 	return s.String()
 }
@@ -12097,13 +14961,124 @@ type AssociateBotOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateBotOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateBotOutput) GoString() string {
+	return s.String()
+}
+
+type AssociateDefaultVocabularyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `location:"uri" locationName:"LanguageCode" type:"string" required:"true" enum:"VocabularyLanguageCode"`
+
+	// The identifier of the custom vocabulary. If this is empty, the default is
+	// set to none.
+	VocabularyId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateDefaultVocabularyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateDefaultVocabularyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateDefaultVocabularyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateDefaultVocabularyInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.LanguageCode != nil && len(*s.LanguageCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageCode", 1))
+	}
+	if s.VocabularyId != nil && len(*s.VocabularyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateDefaultVocabularyInput) SetInstanceId(v string) *AssociateDefaultVocabularyInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *AssociateDefaultVocabularyInput) SetLanguageCode(v string) *AssociateDefaultVocabularyInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetVocabularyId sets the VocabularyId field's value.
+func (s *AssociateDefaultVocabularyInput) SetVocabularyId(v string) *AssociateDefaultVocabularyInput {
+	s.VocabularyId = &v
+	return s
+}
+
+type AssociateDefaultVocabularyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateDefaultVocabularyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateDefaultVocabularyOutput) GoString() string {
 	return s.String()
 }
 
@@ -12127,12 +15102,20 @@ type AssociateInstanceStorageConfigInput struct {
 	StorageConfig *InstanceStorageConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateInstanceStorageConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateInstanceStorageConfigInput) GoString() string {
 	return s.String()
 }
@@ -12190,12 +15173,20 @@ type AssociateInstanceStorageConfigOutput struct {
 	AssociationId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateInstanceStorageConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateInstanceStorageConfigOutput) GoString() string {
 	return s.String()
 }
@@ -12222,12 +15213,20 @@ type AssociateLambdaFunctionInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateLambdaFunctionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateLambdaFunctionInput) GoString() string {
 	return s.String()
 }
@@ -12270,12 +15269,20 @@ type AssociateLambdaFunctionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateLambdaFunctionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateLambdaFunctionOutput) GoString() string {
 	return s.String()
 }
@@ -12295,12 +15302,20 @@ type AssociateLexBotInput struct {
 	LexBot *LexBot `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateLexBotInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateLexBotInput) GoString() string {
 	return s.String()
 }
@@ -12340,12 +15355,20 @@ type AssociateLexBotOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateLexBotOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateLexBotOutput) GoString() string {
 	return s.String()
 }
@@ -12370,12 +15393,20 @@ type AssociateQueueQuickConnectsInput struct {
 	QuickConnectIds []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateQueueQuickConnectsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateQueueQuickConnectsInput) GoString() string {
 	return s.String()
 }
@@ -12430,12 +15461,20 @@ type AssociateQueueQuickConnectsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateQueueQuickConnectsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateQueueQuickConnectsOutput) GoString() string {
 	return s.String()
 }
@@ -12460,12 +15499,20 @@ type AssociateRoutingProfileQueuesInput struct {
 	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateRoutingProfileQueuesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateRoutingProfileQueuesInput) GoString() string {
 	return s.String()
 }
@@ -12530,12 +15577,20 @@ type AssociateRoutingProfileQueuesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateRoutingProfileQueuesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateRoutingProfileQueuesOutput) GoString() string {
 	return s.String()
 }
@@ -12555,12 +15610,20 @@ type AssociateSecurityKeyInput struct {
 	Key *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateSecurityKeyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateSecurityKeyInput) GoString() string {
 	return s.String()
 }
@@ -12607,12 +15670,20 @@ type AssociateSecurityKeyOutput struct {
 	AssociationId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateSecurityKeyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateSecurityKeyOutput) GoString() string {
 	return s.String()
 }
@@ -12620,6 +15691,57 @@ func (s AssociateSecurityKeyOutput) GoString() string {
 // SetAssociationId sets the AssociationId field's value.
 func (s *AssociateSecurityKeyOutput) SetAssociationId(v string) *AssociateSecurityKeyOutput {
 	s.AssociationId = &v
+	return s
+}
+
+// Information about the attachment reference if the referenceType is ATTACHMENT.
+// Otherwise, null.
+type AttachmentReference struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier of the attachment reference.
+	Name *string `min:"1" type:"string"`
+
+	// Status of an attachment reference type.
+	Status *string `type:"string" enum:"ReferenceStatus"`
+
+	// Contains the location path of the attachment reference.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttachmentReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AttachmentReference) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AttachmentReference) SetName(v string) *AttachmentReference {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AttachmentReference) SetStatus(v string) *AttachmentReference {
+	s.Status = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AttachmentReference) SetValue(v string) *AttachmentReference {
+	s.Value = &v
 	return s
 }
 
@@ -12634,12 +15756,20 @@ type Attribute struct {
 	Value *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Attribute) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Attribute) GoString() string {
 	return s.String()
 }
@@ -12671,12 +15801,20 @@ type ChatMessage struct {
 	ContentType *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChatMessage) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ChatMessage) GoString() string {
 	return s.String()
 }
@@ -12715,6 +15853,214 @@ func (s *ChatMessage) SetContentType(v string) *ChatMessage {
 	return s
 }
 
+// The streaming configuration, such as the Amazon SNS streaming endpoint.
+type ChatStreamingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the standard Amazon SNS topic. The Amazon
+	// Resource Name (ARN) of the streaming endpoint that is used to publish real-time
+	// message streaming for chat conversations.
+	//
+	// StreamingEndpointArn is a required field
+	StreamingEndpointArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChatStreamingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChatStreamingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChatStreamingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChatStreamingConfiguration"}
+	if s.StreamingEndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreamingEndpointArn"))
+	}
+	if s.StreamingEndpointArn != nil && len(*s.StreamingEndpointArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamingEndpointArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStreamingEndpointArn sets the StreamingEndpointArn field's value.
+func (s *ChatStreamingConfiguration) SetStreamingEndpointArn(v string) *ChatStreamingConfiguration {
+	s.StreamingEndpointArn = &v
+	return s
+}
+
+// Contains information about a contact.
+type Contact struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the agent who accepted the contact.
+	AgentInfo *AgentInfo `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the contact.
+	Arn *string `type:"string"`
+
+	// How the contact reached your contact center.
+	Channel *string `type:"string" enum:"Channel"`
+
+	// The description of the contact.
+	Description *string `type:"string"`
+
+	// The timestamp when the customer endpoint disconnected from Amazon Connect.
+	DisconnectTimestamp *time.Time `type:"timestamp"`
+
+	// The identifier for the contact.
+	Id *string `min:"1" type:"string"`
+
+	// If this contact is related to other contacts, this is the ID of the initial
+	// contact.
+	InitialContactId *string `min:"1" type:"string"`
+
+	// Indicates how the contact was initiated.
+	InitiationMethod *string `type:"string" enum:"ContactInitiationMethod"`
+
+	// The date and time this contact was initiated, in UTC time. For INBOUND, this
+	// is when the contact arrived. For OUTBOUND, this is when the agent began dialing.
+	// For CALLBACK, this is when the callback contact was created. For TRANSFER
+	// and QUEUE_TRANSFER, this is when the transfer was initiated. For API, this
+	// is when the request arrived.
+	InitiationTimestamp *time.Time `type:"timestamp"`
+
+	// The timestamp when contact was last updated.
+	LastUpdateTimestamp *time.Time `type:"timestamp"`
+
+	// The name of the contact.
+	Name *string `type:"string"`
+
+	// If this contact is not the first contact, this is the ID of the previous
+	// contact.
+	PreviousContactId *string `min:"1" type:"string"`
+
+	// If this contact was queued, this contains information about the queue.
+	QueueInfo *QueueInfo `type:"structure"`
+
+	// The timestamp, in Unix epoch time format, at which to start running the inbound
+	// flow.
+	ScheduledTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Contact) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Contact) GoString() string {
+	return s.String()
+}
+
+// SetAgentInfo sets the AgentInfo field's value.
+func (s *Contact) SetAgentInfo(v *AgentInfo) *Contact {
+	s.AgentInfo = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *Contact) SetArn(v string) *Contact {
+	s.Arn = &v
+	return s
+}
+
+// SetChannel sets the Channel field's value.
+func (s *Contact) SetChannel(v string) *Contact {
+	s.Channel = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Contact) SetDescription(v string) *Contact {
+	s.Description = &v
+	return s
+}
+
+// SetDisconnectTimestamp sets the DisconnectTimestamp field's value.
+func (s *Contact) SetDisconnectTimestamp(v time.Time) *Contact {
+	s.DisconnectTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Contact) SetId(v string) *Contact {
+	s.Id = &v
+	return s
+}
+
+// SetInitialContactId sets the InitialContactId field's value.
+func (s *Contact) SetInitialContactId(v string) *Contact {
+	s.InitialContactId = &v
+	return s
+}
+
+// SetInitiationMethod sets the InitiationMethod field's value.
+func (s *Contact) SetInitiationMethod(v string) *Contact {
+	s.InitiationMethod = &v
+	return s
+}
+
+// SetInitiationTimestamp sets the InitiationTimestamp field's value.
+func (s *Contact) SetInitiationTimestamp(v time.Time) *Contact {
+	s.InitiationTimestamp = &v
+	return s
+}
+
+// SetLastUpdateTimestamp sets the LastUpdateTimestamp field's value.
+func (s *Contact) SetLastUpdateTimestamp(v time.Time) *Contact {
+	s.LastUpdateTimestamp = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Contact) SetName(v string) *Contact {
+	s.Name = &v
+	return s
+}
+
+// SetPreviousContactId sets the PreviousContactId field's value.
+func (s *Contact) SetPreviousContactId(v string) *Contact {
+	s.PreviousContactId = &v
+	return s
+}
+
+// SetQueueInfo sets the QueueInfo field's value.
+func (s *Contact) SetQueueInfo(v *QueueInfo) *Contact {
+	s.QueueInfo = v
+	return s
+}
+
+// SetScheduledTimestamp sets the ScheduledTimestamp field's value.
+func (s *Contact) SetScheduledTimestamp(v time.Time) *Contact {
+	s.ScheduledTimestamp = &v
+	return s
+}
+
 // Contains information about a contact flow.
 type ContactFlow struct {
 	_ struct{} `type:"structure"`
@@ -12734,6 +16080,9 @@ type ContactFlow struct {
 	// The name of the contact flow.
 	Name *string `min:"1" type:"string"`
 
+	// The type of contact flow.
+	State *string `type:"string" enum:"ContactFlowState"`
+
 	// One or more tags.
 	Tags map[string]*string `min:"1" type:"map"`
 
@@ -12743,12 +16092,20 @@ type ContactFlow struct {
 	Type *string `type:"string" enum:"ContactFlowType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContactFlow) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContactFlow) GoString() string {
 	return s.String()
 }
@@ -12783,6 +16140,12 @@ func (s *ContactFlow) SetName(v string) *ContactFlow {
 	return s
 }
 
+// SetState sets the State field's value.
+func (s *ContactFlow) SetState(v string) *ContactFlow {
+	s.State = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *ContactFlow) SetTags(v map[string]*string) *ContactFlow {
 	s.Tags = v
@@ -12795,6 +16158,160 @@ func (s *ContactFlow) SetType(v string) *ContactFlow {
 	return s
 }
 
+// Contains information about a contact flow module.
+type ContactFlowModule struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The content of the contact flow module.
+	Content *string `min:"1" type:"string"`
+
+	// The description of the contact flow module.
+	Description *string `type:"string"`
+
+	// The identifier of the contact flow module.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the contact flow module.
+	Name *string `min:"1" type:"string"`
+
+	// The type of contact flow module.
+	State *string `type:"string" enum:"ContactFlowModuleState"`
+
+	// The status of the contact flow module.
+	Status *string `type:"string" enum:"ContactFlowModuleStatus"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowModule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowModule) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ContactFlowModule) SetArn(v string) *ContactFlowModule {
+	s.Arn = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *ContactFlowModule) SetContent(v string) *ContactFlowModule {
+	s.Content = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ContactFlowModule) SetDescription(v string) *ContactFlowModule {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ContactFlowModule) SetId(v string) *ContactFlowModule {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContactFlowModule) SetName(v string) *ContactFlowModule {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ContactFlowModule) SetState(v string) *ContactFlowModule {
+	s.State = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ContactFlowModule) SetStatus(v string) *ContactFlowModule {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ContactFlowModule) SetTags(v map[string]*string) *ContactFlowModule {
+	s.Tags = v
+	return s
+}
+
+// Contains summary information about a contact flow.
+type ContactFlowModuleSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the contact flow module.
+	Arn *string `type:"string"`
+
+	// The identifier of the contact flow module.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the contact flow module.
+	Name *string `min:"1" type:"string"`
+
+	// The type of contact flow module.
+	State *string `type:"string" enum:"ContactFlowModuleState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowModuleSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowModuleSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ContactFlowModuleSummary) SetArn(v string) *ContactFlowModuleSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ContactFlowModuleSummary) SetId(v string) *ContactFlowModuleSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContactFlowModuleSummary) SetName(v string) *ContactFlowModuleSummary {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ContactFlowModuleSummary) SetState(v string) *ContactFlowModuleSummary {
+	s.State = &v
+	return s
+}
+
 // The contact flow has not been published.
 type ContactFlowNotPublishedException struct {
 	_            struct{}                  `type:"structure"`
@@ -12803,12 +16320,20 @@ type ContactFlowNotPublishedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContactFlowNotPublishedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContactFlowNotPublishedException) GoString() string {
 	return s.String()
 }
@@ -12862,6 +16387,9 @@ type ContactFlowSummary struct {
 	Arn *string `type:"string"`
 
 	// The type of contact flow.
+	ContactFlowState *string `type:"string" enum:"ContactFlowState"`
+
+	// The type of contact flow.
 	ContactFlowType *string `type:"string" enum:"ContactFlowType"`
 
 	// The identifier of the contact flow.
@@ -12871,12 +16399,20 @@ type ContactFlowSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContactFlowSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContactFlowSummary) GoString() string {
 	return s.String()
 }
@@ -12884,6 +16420,12 @@ func (s ContactFlowSummary) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *ContactFlowSummary) SetArn(v string) *ContactFlowSummary {
 	s.Arn = &v
+	return s
+}
+
+// SetContactFlowState sets the ContactFlowState field's value.
+func (s *ContactFlowSummary) SetContactFlowState(v string) *ContactFlowSummary {
+	s.ContactFlowState = &v
 	return s
 }
 
@@ -12914,12 +16456,20 @@ type ContactNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContactNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ContactNotFoundException) GoString() string {
 	return s.String()
 }
@@ -12987,16 +16537,24 @@ type CreateAgentStatusInput struct {
 	// State is a required field
 	State *string `type:"string" required:"true" enum:"AgentStatusState"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAgentStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAgentStatusInput) GoString() string {
 	return s.String()
 }
@@ -13081,12 +16639,20 @@ type CreateAgentStatusOutput struct {
 	AgentStatusId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAgentStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAgentStatusOutput) GoString() string {
 	return s.String()
 }
@@ -13135,12 +16701,20 @@ type CreateContactFlowInput struct {
 	Type *string `type:"string" required:"true" enum:"ContactFlowType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateContactFlowInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateContactFlowInput) GoString() string {
 	return s.String()
 }
@@ -13212,6 +16786,161 @@ func (s *CreateContactFlowInput) SetType(v string) *CreateContactFlowInput {
 	return s
 }
 
+type CreateContactFlowModuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The content of the contact flow module.
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true"`
+
+	// The description of the contact flow module.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the contact flow module.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContactFlowModuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContactFlowModuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateContactFlowModuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateContactFlowModuleInput"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateContactFlowModuleInput) SetClientToken(v string) *CreateContactFlowModuleInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *CreateContactFlowModuleInput) SetContent(v string) *CreateContactFlowModuleInput {
+	s.Content = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateContactFlowModuleInput) SetDescription(v string) *CreateContactFlowModuleInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateContactFlowModuleInput) SetInstanceId(v string) *CreateContactFlowModuleInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateContactFlowModuleInput) SetName(v string) *CreateContactFlowModuleInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateContactFlowModuleInput) SetTags(v map[string]*string) *CreateContactFlowModuleInput {
+	s.Tags = v
+	return s
+}
+
+type CreateContactFlowModuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the contact flow module.
+	Arn *string `type:"string"`
+
+	// The identifier of the contact flow module.
+	Id *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContactFlowModuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContactFlowModuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateContactFlowModuleOutput) SetArn(v string) *CreateContactFlowModuleOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateContactFlowModuleOutput) SetId(v string) *CreateContactFlowModuleOutput {
+	s.Id = &v
+	return s
+}
+
 type CreateContactFlowOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13222,12 +16951,20 @@ type CreateContactFlowOutput struct {
 	ContactFlowId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateContactFlowOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateContactFlowOutput) GoString() string {
 	return s.String()
 }
@@ -13267,7 +17004,7 @@ type CreateHoursOfOperationInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The time zone of the hours of operation.
@@ -13276,12 +17013,20 @@ type CreateHoursOfOperationInput struct {
 	TimeZone *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateHoursOfOperationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateHoursOfOperationInput) GoString() string {
 	return s.String()
 }
@@ -13376,12 +17121,20 @@ type CreateHoursOfOperationOutput struct {
 	HoursOfOperationId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateHoursOfOperationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateHoursOfOperationOutput) GoString() string {
 	return s.String()
 }
@@ -13418,6 +17171,10 @@ type CreateInstanceInput struct {
 	InboundCallsEnabled *bool `type:"boolean" required:"true"`
 
 	// The name for your instance.
+	//
+	// InstanceAlias is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateInstanceInput's
+	// String and GoString methods.
 	InstanceAlias *string `min:"1" type:"string" sensitive:"true"`
 
 	// Your contact center allows outbound calls.
@@ -13426,12 +17183,20 @@ type CreateInstanceInput struct {
 	OutboundCallsEnabled *bool `type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInstanceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInstanceInput) GoString() string {
 	return s.String()
 }
@@ -13507,12 +17272,20 @@ type CreateInstanceOutput struct {
 	Id *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInstanceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInstanceOutput) GoString() string {
 	return s.String()
 }
@@ -13548,31 +17321,36 @@ type CreateIntegrationAssociationInput struct {
 	// IntegrationType is a required field
 	IntegrationType *string `type:"string" required:"true" enum:"IntegrationType"`
 
-	// The name of the external application.
-	//
-	// SourceApplicationName is a required field
-	SourceApplicationName *string `min:"1" type:"string" required:"true"`
+	// The name of the external application. This field is only required for the
+	// EVENT integration type.
+	SourceApplicationName *string `min:"1" type:"string"`
 
-	// The URL for the external application.
-	//
-	// SourceApplicationUrl is a required field
-	SourceApplicationUrl *string `min:"1" type:"string" required:"true"`
+	// The URL for the external application. This field is only required for the
+	// EVENT integration type.
+	SourceApplicationUrl *string `min:"1" type:"string"`
 
-	// The type of the data source.
-	//
-	// SourceType is a required field
-	SourceType *string `type:"string" required:"true" enum:"SourceType"`
+	// The type of the data source. This field is only required for the EVENT integration
+	// type.
+	SourceType *string `type:"string" enum:"SourceType"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIntegrationAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIntegrationAssociationInput) GoString() string {
 	return s.String()
 }
@@ -13592,20 +17370,11 @@ func (s *CreateIntegrationAssociationInput) Validate() error {
 	if s.IntegrationType == nil {
 		invalidParams.Add(request.NewErrParamRequired("IntegrationType"))
 	}
-	if s.SourceApplicationName == nil {
-		invalidParams.Add(request.NewErrParamRequired("SourceApplicationName"))
-	}
 	if s.SourceApplicationName != nil && len(*s.SourceApplicationName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SourceApplicationName", 1))
 	}
-	if s.SourceApplicationUrl == nil {
-		invalidParams.Add(request.NewErrParamRequired("SourceApplicationUrl"))
-	}
 	if s.SourceApplicationUrl != nil && len(*s.SourceApplicationUrl) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SourceApplicationUrl", 1))
-	}
-	if s.SourceType == nil {
-		invalidParams.Add(request.NewErrParamRequired("SourceType"))
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
@@ -13665,16 +17434,24 @@ type CreateIntegrationAssociationOutput struct {
 	// The Amazon Resource Name (ARN) for the association.
 	IntegrationAssociationArn *string `type:"string"`
 
-	// The identifier for the association.
+	// The identifier for the integration association.
 	IntegrationAssociationId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIntegrationAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIntegrationAssociationOutput) GoString() string {
 	return s.String()
 }
@@ -13723,16 +17500,24 @@ type CreateQueueInput struct {
 	// The quick connects available to agents who are working the queue.
 	QuickConnectIds []*string `min:"1" type:"list"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateQueueInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateQueueInput) GoString() string {
 	return s.String()
 }
@@ -13834,12 +17619,20 @@ type CreateQueueOutput struct {
 	QueueId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateQueueOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateQueueOutput) GoString() string {
 	return s.String()
 }
@@ -13878,16 +17671,24 @@ type CreateQuickConnectInput struct {
 	// QuickConnectConfig is a required field
 	QuickConnectConfig *QuickConnectConfig `type:"structure" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateQuickConnectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateQuickConnectInput) GoString() string {
 	return s.String()
 }
@@ -13968,12 +17769,20 @@ type CreateQuickConnectOutput struct {
 	QuickConnectId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateQuickConnectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateQuickConnectOutput) GoString() string {
 	return s.String()
 }
@@ -14028,12 +17837,20 @@ type CreateRoutingProfileInput struct {
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRoutingProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRoutingProfileInput) GoString() string {
 	return s.String()
 }
@@ -14150,12 +17967,20 @@ type CreateRoutingProfileOutput struct {
 	RoutingProfileId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRoutingProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRoutingProfileOutput) GoString() string {
 	return s.String()
 }
@@ -14172,6 +17997,140 @@ func (s *CreateRoutingProfileOutput) SetRoutingProfileId(v string) *CreateRoutin
 	return s
 }
 
+type CreateSecurityProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the security profile.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// Permissions assigned to the security profile.
+	Permissions []*string `type:"list"`
+
+	// The name of the security profile.
+	//
+	// SecurityProfileName is a required field
+	SecurityProfileName *string `type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSecurityProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSecurityProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSecurityProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSecurityProfileInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.SecurityProfileName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityProfileName"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateSecurityProfileInput) SetDescription(v string) *CreateSecurityProfileInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateSecurityProfileInput) SetInstanceId(v string) *CreateSecurityProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *CreateSecurityProfileInput) SetPermissions(v []*string) *CreateSecurityProfileInput {
+	s.Permissions = v
+	return s
+}
+
+// SetSecurityProfileName sets the SecurityProfileName field's value.
+func (s *CreateSecurityProfileInput) SetSecurityProfileName(v string) *CreateSecurityProfileInput {
+	s.SecurityProfileName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSecurityProfileInput) SetTags(v map[string]*string) *CreateSecurityProfileInput {
+	s.Tags = v
+	return s
+}
+
+type CreateSecurityProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the security profile.
+	SecurityProfileArn *string `type:"string"`
+
+	// The identifier for the security profle.
+	SecurityProfileId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSecurityProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSecurityProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetSecurityProfileArn sets the SecurityProfileArn field's value.
+func (s *CreateSecurityProfileOutput) SetSecurityProfileArn(v string) *CreateSecurityProfileOutput {
+	s.SecurityProfileArn = &v
+	return s
+}
+
+// SetSecurityProfileId sets the SecurityProfileId field's value.
+func (s *CreateSecurityProfileOutput) SetSecurityProfileId(v string) *CreateSecurityProfileOutput {
+	s.SecurityProfileId = &v
+	return s
+}
+
 type CreateUseCaseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14181,27 +18140,35 @@ type CreateUseCaseInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The identifier for the AppIntegration association.
+	// The identifier for the integration association.
 	//
 	// IntegrationAssociationId is a required field
 	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
-	// The type of use case to associate to the AppIntegration association. Each
-	// AppIntegration association can have only one of each use case type.
+	// The type of use case to associate to the integration association. Each integration
+	// association can have only one of each use case type.
 	//
 	// UseCaseType is a required field
 	UseCaseType *string `type:"string" required:"true" enum:"UseCaseType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUseCaseInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUseCaseInput) GoString() string {
 	return s.String()
 }
@@ -14268,12 +18235,20 @@ type CreateUseCaseOutput struct {
 	UseCaseId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUseCaseOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUseCaseOutput) GoString() string {
 	return s.String()
 }
@@ -14307,14 +18282,25 @@ type CreateUserHierarchyGroupInput struct {
 	// The identifier for the parent hierarchy group. The user hierarchy is created
 	// at level one if the parent group ID is null.
 	ParentGroupId *string `type:"string"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserHierarchyGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserHierarchyGroupInput) GoString() string {
 	return s.String()
 }
@@ -14330,6 +18316,9 @@ func (s *CreateUserHierarchyGroupInput) Validate() error {
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -14356,6 +18345,12 @@ func (s *CreateUserHierarchyGroupInput) SetParentGroupId(v string) *CreateUserHi
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateUserHierarchyGroupInput) SetTags(v map[string]*string) *CreateUserHierarchyGroupInput {
+	s.Tags = v
+	return s
+}
+
 type CreateUserHierarchyGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14366,12 +18361,20 @@ type CreateUserHierarchyGroupOutput struct {
 	HierarchyGroupId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserHierarchyGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserHierarchyGroupOutput) GoString() string {
 	return s.String()
 }
@@ -14447,12 +18450,20 @@ type CreateUserInput struct {
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserInput) GoString() string {
 	return s.String()
 }
@@ -14574,12 +18585,20 @@ type CreateUserOutput struct {
 	UserId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateUserOutput) GoString() string {
 	return s.String()
 }
@@ -14596,11 +18615,197 @@ func (s *CreateUserOutput) SetUserId(v string) *CreateUserOutput {
 	return s
 }
 
+type CreateVocabularyInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If a create request is received more than once with same
+	// client token, subsequent requests return the previous response without creating
+	// a vocabulary again.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The content of the custom vocabulary in plain-text format with a table of
+	// values. Each row in the table represents a word or a phrase, described with
+	// Phrase, IPA, SoundsLike, and DisplayAs fields. Separate the fields with TAB
+	// characters. The size limit is 50KB. For more information, see Create a custom
+	// vocabulary using a table (https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html#create-vocabulary-table).
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"VocabularyLanguageCode"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// A unique name of the custom vocabulary.
+	//
+	// VocabularyName is a required field
+	VocabularyName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVocabularyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVocabularyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVocabularyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVocabularyInput"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.VocabularyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VocabularyName"))
+	}
+	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateVocabularyInput) SetClientToken(v string) *CreateVocabularyInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *CreateVocabularyInput) SetContent(v string) *CreateVocabularyInput {
+	s.Content = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateVocabularyInput) SetInstanceId(v string) *CreateVocabularyInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *CreateVocabularyInput) SetLanguageCode(v string) *CreateVocabularyInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVocabularyInput) SetTags(v map[string]*string) *CreateVocabularyInput {
+	s.Tags = v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *CreateVocabularyInput) SetVocabularyName(v string) *CreateVocabularyInput {
+	s.VocabularyName = &v
+	return s
+}
+
+type CreateVocabularyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current state of the custom vocabulary.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"VocabularyState"`
+
+	// The Amazon Resource Name (ARN) of the custom vocabulary.
+	//
+	// VocabularyArn is a required field
+	VocabularyArn *string `type:"string" required:"true"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// VocabularyId is a required field
+	VocabularyId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVocabularyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVocabularyOutput) GoString() string {
+	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *CreateVocabularyOutput) SetState(v string) *CreateVocabularyOutput {
+	s.State = &v
+	return s
+}
+
+// SetVocabularyArn sets the VocabularyArn field's value.
+func (s *CreateVocabularyOutput) SetVocabularyArn(v string) *CreateVocabularyOutput {
+	s.VocabularyArn = &v
+	return s
+}
+
+// SetVocabularyId sets the VocabularyId field's value.
+func (s *CreateVocabularyOutput) SetVocabularyId(v string) *CreateVocabularyOutput {
+	s.VocabularyId = &v
+	return s
+}
+
 // Contains credentials to use for federation.
 type Credentials struct {
 	_ struct{} `type:"structure"`
 
 	// An access token generated for a federated user to access Amazon Connect.
+	//
+	// AccessToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Credentials's
+	// String and GoString methods.
 	AccessToken *string `type:"string" sensitive:"true"`
 
 	// A token generated with an expiration time for the session a user is logged
@@ -14608,18 +18813,30 @@ type Credentials struct {
 	AccessTokenExpiration *time.Time `type:"timestamp"`
 
 	// Renews a token generated for a user to access the Amazon Connect instance.
+	//
+	// RefreshToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Credentials's
+	// String and GoString methods.
 	RefreshToken *string `type:"string" sensitive:"true"`
 
 	// Renews the expiration timer for a generated token.
 	RefreshTokenExpiration *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Credentials) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Credentials) GoString() string {
 	return s.String()
 }
@@ -14661,12 +18878,20 @@ type CurrentMetric struct {
 	Unit *string `type:"string" enum:"Unit"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CurrentMetric) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CurrentMetric) GoString() string {
 	return s.String()
 }
@@ -14694,12 +18919,20 @@ type CurrentMetricData struct {
 	Value *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CurrentMetricData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CurrentMetricData) GoString() string {
 	return s.String()
 }
@@ -14727,12 +18960,20 @@ type CurrentMetricResult struct {
 	Dimensions *Dimensions `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CurrentMetricResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CurrentMetricResult) GoString() string {
 	return s.String()
 }
@@ -14749,8 +18990,255 @@ func (s *CurrentMetricResult) SetDimensions(v *Dimensions) *CurrentMetricResult 
 	return s
 }
 
-type DeleteHoursOfOperationInput struct {
+// Contains information about a default vocabulary.
+type DefaultVocabulary struct {
 	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"VocabularyLanguageCode"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// VocabularyId is a required field
+	VocabularyId *string `min:"1" type:"string" required:"true"`
+
+	// A unique name of the custom vocabulary.
+	//
+	// VocabularyName is a required field
+	VocabularyName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultVocabulary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultVocabulary) GoString() string {
+	return s.String()
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DefaultVocabulary) SetInstanceId(v string) *DefaultVocabulary {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *DefaultVocabulary) SetLanguageCode(v string) *DefaultVocabulary {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetVocabularyId sets the VocabularyId field's value.
+func (s *DefaultVocabulary) SetVocabularyId(v string) *DefaultVocabulary {
+	s.VocabularyId = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *DefaultVocabulary) SetVocabularyName(v string) *DefaultVocabulary {
+	s.VocabularyName = &v
+	return s
+}
+
+type DeleteContactFlowInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the contact flow.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContactFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContactFlowInput"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.ContactFlowId != nil && len(*s.ContactFlowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *DeleteContactFlowInput) SetContactFlowId(v string) *DeleteContactFlowInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteContactFlowInput) SetInstanceId(v string) *DeleteContactFlowInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DeleteContactFlowModuleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the contact flow module.
+	//
+	// ContactFlowModuleId is a required field
+	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowModuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowModuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContactFlowModuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContactFlowModuleInput"}
+	if s.ContactFlowModuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowModuleId"))
+	}
+	if s.ContactFlowModuleId != nil && len(*s.ContactFlowModuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowModuleId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowModuleId sets the ContactFlowModuleId field's value.
+func (s *DeleteContactFlowModuleInput) SetContactFlowModuleId(v string) *DeleteContactFlowModuleInput {
+	s.ContactFlowModuleId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteContactFlowModuleInput) SetInstanceId(v string) *DeleteContactFlowModuleInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DeleteContactFlowModuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowModuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowModuleOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteContactFlowOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteHoursOfOperationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the hours of operation.
 	//
@@ -14764,12 +19252,20 @@ type DeleteHoursOfOperationInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHoursOfOperationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHoursOfOperationInput) GoString() string {
 	return s.String()
 }
@@ -14812,18 +19308,26 @@ type DeleteHoursOfOperationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHoursOfOperationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteHoursOfOperationOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteInstanceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -14832,12 +19336,20 @@ type DeleteInstanceInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInstanceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInstanceInput) GoString() string {
 	return s.String()
 }
@@ -14868,18 +19380,26 @@ type DeleteInstanceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInstanceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInstanceOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteIntegrationAssociationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -14887,18 +19407,26 @@ type DeleteIntegrationAssociationInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The identifier for the AppIntegration association.
+	// The identifier for the integration association.
 	//
 	// IntegrationAssociationId is a required field
 	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIntegrationAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIntegrationAssociationInput) GoString() string {
 	return s.String()
 }
@@ -14941,18 +19469,26 @@ type DeleteIntegrationAssociationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIntegrationAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIntegrationAssociationOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteQuickConnectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -14966,12 +19502,20 @@ type DeleteQuickConnectInput struct {
 	QuickConnectId *string `location:"uri" locationName:"QuickConnectId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteQuickConnectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteQuickConnectInput) GoString() string {
 	return s.String()
 }
@@ -15014,18 +19558,26 @@ type DeleteQuickConnectOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteQuickConnectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteQuickConnectOutput) GoString() string {
 	return s.String()
 }
 
-type DeleteUseCaseInput struct {
-	_ struct{} `type:"structure"`
+type DeleteSecurityProfileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -15033,7 +19585,96 @@ type DeleteUseCaseInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The identifier for the AppIntegration association.
+	// The identifier for the security profle.
+	//
+	// SecurityProfileId is a required field
+	SecurityProfileId *string `location:"uri" locationName:"SecurityProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSecurityProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSecurityProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSecurityProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSecurityProfileInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.SecurityProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityProfileId"))
+	}
+	if s.SecurityProfileId != nil && len(*s.SecurityProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteSecurityProfileInput) SetInstanceId(v string) *DeleteSecurityProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetSecurityProfileId sets the SecurityProfileId field's value.
+func (s *DeleteSecurityProfileInput) SetSecurityProfileId(v string) *DeleteSecurityProfileInput {
+	s.SecurityProfileId = &v
+	return s
+}
+
+type DeleteSecurityProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSecurityProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSecurityProfileOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteUseCaseInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the integration association.
 	//
 	// IntegrationAssociationId is a required field
 	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
@@ -15044,12 +19685,20 @@ type DeleteUseCaseInput struct {
 	UseCaseId *string `location:"uri" locationName:"UseCaseId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUseCaseInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUseCaseInput) GoString() string {
 	return s.String()
 }
@@ -15104,18 +19753,26 @@ type DeleteUseCaseOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUseCaseOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUseCaseOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteUserHierarchyGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the hierarchy group.
 	//
@@ -15129,12 +19786,20 @@ type DeleteUserHierarchyGroupInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserHierarchyGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserHierarchyGroupInput) GoString() string {
 	return s.String()
 }
@@ -15177,18 +19842,26 @@ type DeleteUserHierarchyGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserHierarchyGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserHierarchyGroupOutput) GoString() string {
 	return s.String()
 }
 
 type DeleteUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -15202,12 +19875,20 @@ type DeleteUserInput struct {
 	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserInput) GoString() string {
 	return s.String()
 }
@@ -15250,18 +19931,148 @@ type DeleteUserOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserOutput) GoString() string {
 	return s.String()
 }
 
-type DescribeAgentStatusInput struct {
+type DeleteVocabularyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// VocabularyId is a required field
+	VocabularyId *string `location:"uri" locationName:"VocabularyId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVocabularyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVocabularyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVocabularyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVocabularyInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.VocabularyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VocabularyId"))
+	}
+	if s.VocabularyId != nil && len(*s.VocabularyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteVocabularyInput) SetInstanceId(v string) *DeleteVocabularyInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetVocabularyId sets the VocabularyId field's value.
+func (s *DeleteVocabularyInput) SetVocabularyId(v string) *DeleteVocabularyInput {
+	s.VocabularyId = &v
+	return s
+}
+
+type DeleteVocabularyOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The current state of the custom vocabulary.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"VocabularyState"`
+
+	// The Amazon Resource Name (ARN) of the custom vocabulary.
+	//
+	// VocabularyArn is a required field
+	VocabularyArn *string `type:"string" required:"true"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// VocabularyId is a required field
+	VocabularyId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVocabularyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVocabularyOutput) GoString() string {
+	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *DeleteVocabularyOutput) SetState(v string) *DeleteVocabularyOutput {
+	s.State = &v
+	return s
+}
+
+// SetVocabularyArn sets the VocabularyArn field's value.
+func (s *DeleteVocabularyOutput) SetVocabularyArn(v string) *DeleteVocabularyOutput {
+	s.VocabularyArn = &v
+	return s
+}
+
+// SetVocabularyId sets the VocabularyId field's value.
+func (s *DeleteVocabularyOutput) SetVocabularyId(v string) *DeleteVocabularyOutput {
+	s.VocabularyId = &v
+	return s
+}
+
+type DescribeAgentStatusInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the agent status.
 	//
@@ -15275,12 +20086,20 @@ type DescribeAgentStatusInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAgentStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAgentStatusInput) GoString() string {
 	return s.String()
 }
@@ -15326,12 +20145,20 @@ type DescribeAgentStatusOutput struct {
 	AgentStatus *AgentStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAgentStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAgentStatusOutput) GoString() string {
 	return s.String()
 }
@@ -15343,7 +20170,7 @@ func (s *DescribeAgentStatusOutput) SetAgentStatus(v *AgentStatus) *DescribeAgen
 }
 
 type DescribeContactFlowInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the contact flow.
 	//
@@ -15356,12 +20183,20 @@ type DescribeContactFlowInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeContactFlowInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeContactFlowInput) GoString() string {
 	return s.String()
 }
@@ -15400,6 +20235,104 @@ func (s *DescribeContactFlowInput) SetInstanceId(v string) *DescribeContactFlowI
 	return s
 }
 
+type DescribeContactFlowModuleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the contact flow module.
+	//
+	// ContactFlowModuleId is a required field
+	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactFlowModuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactFlowModuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeContactFlowModuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeContactFlowModuleInput"}
+	if s.ContactFlowModuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowModuleId"))
+	}
+	if s.ContactFlowModuleId != nil && len(*s.ContactFlowModuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowModuleId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowModuleId sets the ContactFlowModuleId field's value.
+func (s *DescribeContactFlowModuleInput) SetContactFlowModuleId(v string) *DescribeContactFlowModuleInput {
+	s.ContactFlowModuleId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeContactFlowModuleInput) SetInstanceId(v string) *DescribeContactFlowModuleInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DescribeContactFlowModuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the contact flow module.
+	ContactFlowModule *ContactFlowModule `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactFlowModuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactFlowModuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactFlowModule sets the ContactFlowModule field's value.
+func (s *DescribeContactFlowModuleOutput) SetContactFlowModule(v *ContactFlowModule) *DescribeContactFlowModuleOutput {
+	s.ContactFlowModule = v
+	return s
+}
+
 type DescribeContactFlowOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15407,12 +20340,20 @@ type DescribeContactFlowOutput struct {
 	ContactFlow *ContactFlow `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeContactFlowOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeContactFlowOutput) GoString() string {
 	return s.String()
 }
@@ -15423,8 +20364,106 @@ func (s *DescribeContactFlowOutput) SetContactFlow(v *ContactFlow) *DescribeCont
 	return s
 }
 
-type DescribeHoursOfOperationInput struct {
+type DescribeContactInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the contact.
+	//
+	// ContactId is a required field
+	ContactId *string `location:"uri" locationName:"ContactId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeContactInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *DescribeContactInput) SetContactId(v string) *DescribeContactInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeContactInput) SetInstanceId(v string) *DescribeContactInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DescribeContactOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Information about the contact.
+	Contact *Contact `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactOutput) GoString() string {
+	return s.String()
+}
+
+// SetContact sets the Contact field's value.
+func (s *DescribeContactOutput) SetContact(v *Contact) *DescribeContactOutput {
+	s.Contact = v
+	return s
+}
+
+type DescribeHoursOfOperationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the hours of operation.
 	//
@@ -15438,12 +20477,20 @@ type DescribeHoursOfOperationInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeHoursOfOperationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeHoursOfOperationInput) GoString() string {
 	return s.String()
 }
@@ -15489,12 +20536,20 @@ type DescribeHoursOfOperationOutput struct {
 	HoursOfOperation *HoursOfOperation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeHoursOfOperationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeHoursOfOperationOutput) GoString() string {
 	return s.String()
 }
@@ -15506,7 +20561,7 @@ func (s *DescribeHoursOfOperationOutput) SetHoursOfOperation(v *HoursOfOperation
 }
 
 type DescribeInstanceAttributeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The type of attribute.
 	//
@@ -15520,12 +20575,20 @@ type DescribeInstanceAttributeInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstanceAttributeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstanceAttributeInput) GoString() string {
 	return s.String()
 }
@@ -15571,12 +20634,20 @@ type DescribeInstanceAttributeOutput struct {
 	Attribute *Attribute `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstanceAttributeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstanceAttributeOutput) GoString() string {
 	return s.String()
 }
@@ -15588,7 +20659,7 @@ func (s *DescribeInstanceAttributeOutput) SetAttribute(v *Attribute) *DescribeIn
 }
 
 type DescribeInstanceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -15597,12 +20668,20 @@ type DescribeInstanceInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstanceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstanceInput) GoString() string {
 	return s.String()
 }
@@ -15636,12 +20715,20 @@ type DescribeInstanceOutput struct {
 	Instance *Instance `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstanceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstanceOutput) GoString() string {
 	return s.String()
 }
@@ -15653,7 +20740,7 @@ func (s *DescribeInstanceOutput) SetInstance(v *Instance) *DescribeInstanceOutpu
 }
 
 type DescribeInstanceStorageConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The existing association identifier that uniquely identifies the resource
 	// type and storage config for the given instance ID.
@@ -15673,12 +20760,20 @@ type DescribeInstanceStorageConfigInput struct {
 	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"InstanceStorageResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstanceStorageConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstanceStorageConfigInput) GoString() string {
 	return s.String()
 }
@@ -15733,12 +20828,20 @@ type DescribeInstanceStorageConfigOutput struct {
 	StorageConfig *InstanceStorageConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstanceStorageConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInstanceStorageConfigOutput) GoString() string {
 	return s.String()
 }
@@ -15750,7 +20853,7 @@ func (s *DescribeInstanceStorageConfigOutput) SetStorageConfig(v *InstanceStorag
 }
 
 type DescribeQueueInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -15764,12 +20867,20 @@ type DescribeQueueInput struct {
 	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeQueueInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeQueueInput) GoString() string {
 	return s.String()
 }
@@ -15815,12 +20926,20 @@ type DescribeQueueOutput struct {
 	Queue *Queue `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeQueueOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeQueueOutput) GoString() string {
 	return s.String()
 }
@@ -15832,7 +20951,7 @@ func (s *DescribeQueueOutput) SetQueue(v *Queue) *DescribeQueueOutput {
 }
 
 type DescribeQuickConnectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -15846,12 +20965,20 @@ type DescribeQuickConnectInput struct {
 	QuickConnectId *string `location:"uri" locationName:"QuickConnectId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeQuickConnectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeQuickConnectInput) GoString() string {
 	return s.String()
 }
@@ -15897,12 +21024,20 @@ type DescribeQuickConnectOutput struct {
 	QuickConnect *QuickConnect `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeQuickConnectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeQuickConnectOutput) GoString() string {
 	return s.String()
 }
@@ -15914,7 +21049,7 @@ func (s *DescribeQuickConnectOutput) SetQuickConnect(v *QuickConnect) *DescribeQ
 }
 
 type DescribeRoutingProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -15928,12 +21063,20 @@ type DescribeRoutingProfileInput struct {
 	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRoutingProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRoutingProfileInput) GoString() string {
 	return s.String()
 }
@@ -15979,12 +21122,20 @@ type DescribeRoutingProfileOutput struct {
 	RoutingProfile *RoutingProfile `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRoutingProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeRoutingProfileOutput) GoString() string {
 	return s.String()
 }
@@ -15995,8 +21146,106 @@ func (s *DescribeRoutingProfileOutput) SetRoutingProfile(v *RoutingProfile) *Des
 	return s
 }
 
-type DescribeUserHierarchyGroupInput struct {
+type DescribeSecurityProfileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the security profle.
+	//
+	// SecurityProfileId is a required field
+	SecurityProfileId *string `location:"uri" locationName:"SecurityProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSecurityProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSecurityProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSecurityProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSecurityProfileInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.SecurityProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityProfileId"))
+	}
+	if s.SecurityProfileId != nil && len(*s.SecurityProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeSecurityProfileInput) SetInstanceId(v string) *DescribeSecurityProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetSecurityProfileId sets the SecurityProfileId field's value.
+func (s *DescribeSecurityProfileInput) SetSecurityProfileId(v string) *DescribeSecurityProfileInput {
+	s.SecurityProfileId = &v
+	return s
+}
+
+type DescribeSecurityProfileOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The security profile.
+	SecurityProfile *SecurityProfile `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSecurityProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSecurityProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetSecurityProfile sets the SecurityProfile field's value.
+func (s *DescribeSecurityProfileOutput) SetSecurityProfile(v *SecurityProfile) *DescribeSecurityProfileOutput {
+	s.SecurityProfile = v
+	return s
+}
+
+type DescribeUserHierarchyGroupInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the hierarchy group.
 	//
@@ -16010,12 +21259,20 @@ type DescribeUserHierarchyGroupInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserHierarchyGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserHierarchyGroupInput) GoString() string {
 	return s.String()
 }
@@ -16061,12 +21318,20 @@ type DescribeUserHierarchyGroupOutput struct {
 	HierarchyGroup *HierarchyGroup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserHierarchyGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserHierarchyGroupOutput) GoString() string {
 	return s.String()
 }
@@ -16078,7 +21343,7 @@ func (s *DescribeUserHierarchyGroupOutput) SetHierarchyGroup(v *HierarchyGroup) 
 }
 
 type DescribeUserHierarchyStructureInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -16087,12 +21352,20 @@ type DescribeUserHierarchyStructureInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserHierarchyStructureInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserHierarchyStructureInput) GoString() string {
 	return s.String()
 }
@@ -16126,12 +21399,20 @@ type DescribeUserHierarchyStructureOutput struct {
 	HierarchyStructure *HierarchyStructure `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserHierarchyStructureOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserHierarchyStructureOutput) GoString() string {
 	return s.String()
 }
@@ -16143,7 +21424,7 @@ func (s *DescribeUserHierarchyStructureOutput) SetHierarchyStructure(v *Hierarch
 }
 
 type DescribeUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -16157,12 +21438,20 @@ type DescribeUserInput struct {
 	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserInput) GoString() string {
 	return s.String()
 }
@@ -16208,12 +21497,20 @@ type DescribeUserOutput struct {
 	User *User `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserOutput) GoString() string {
 	return s.String()
 }
@@ -16221,6 +21518,108 @@ func (s DescribeUserOutput) GoString() string {
 // SetUser sets the User field's value.
 func (s *DescribeUserOutput) SetUser(v *User) *DescribeUserOutput {
 	s.User = v
+	return s
+}
+
+type DescribeVocabularyInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// VocabularyId is a required field
+	VocabularyId *string `location:"uri" locationName:"VocabularyId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVocabularyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVocabularyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVocabularyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVocabularyInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.VocabularyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VocabularyId"))
+	}
+	if s.VocabularyId != nil && len(*s.VocabularyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeVocabularyInput) SetInstanceId(v string) *DescribeVocabularyInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetVocabularyId sets the VocabularyId field's value.
+func (s *DescribeVocabularyInput) SetVocabularyId(v string) *DescribeVocabularyInput {
+	s.VocabularyId = &v
+	return s
+}
+
+type DescribeVocabularyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of specific words that you want Contact Lens for Amazon Connect to
+	// recognize in your audio input. They are generally domain-specific words and
+	// phrases, words that Contact Lens is not recognizing, or proper nouns.
+	//
+	// Vocabulary is a required field
+	Vocabulary *Vocabulary `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVocabularyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVocabularyOutput) GoString() string {
+	return s.String()
+}
+
+// SetVocabulary sets the Vocabulary field's value.
+func (s *DescribeVocabularyOutput) SetVocabulary(v *Vocabulary) *DescribeVocabularyOutput {
+	s.Vocabulary = v
 	return s
 }
 
@@ -16233,12 +21632,20 @@ type DestinationNotAllowedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DestinationNotAllowedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DestinationNotAllowedException) GoString() string {
 	return s.String()
 }
@@ -16292,12 +21699,20 @@ type Dimensions struct {
 	Queue *QueueReference `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Dimensions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Dimensions) GoString() string {
 	return s.String()
 }
@@ -16315,7 +21730,7 @@ func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 }
 
 type DisassociateApprovedOriginInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -16329,12 +21744,20 @@ type DisassociateApprovedOriginInput struct {
 	Origin *string `location:"querystring" locationName:"origin" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateApprovedOriginInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateApprovedOriginInput) GoString() string {
 	return s.String()
 }
@@ -16374,12 +21797,20 @@ type DisassociateApprovedOriginOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateApprovedOriginOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateApprovedOriginOutput) GoString() string {
 	return s.String()
 }
@@ -16400,12 +21831,20 @@ type DisassociateBotInput struct {
 	LexV2Bot *LexV2Bot `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateBotInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateBotInput) GoString() string {
 	return s.String()
 }
@@ -16453,18 +21892,26 @@ type DisassociateBotOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateBotOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateBotOutput) GoString() string {
 	return s.String()
 }
 
 type DisassociateInstanceStorageConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The existing association identifier that uniquely identifies the resource
 	// type and storage config for the given instance ID.
@@ -16484,12 +21931,20 @@ type DisassociateInstanceStorageConfigInput struct {
 	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"InstanceStorageResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateInstanceStorageConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateInstanceStorageConfigInput) GoString() string {
 	return s.String()
 }
@@ -16541,18 +21996,26 @@ type DisassociateInstanceStorageConfigOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateInstanceStorageConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateInstanceStorageConfigOutput) GoString() string {
 	return s.String()
 }
 
 type DisassociateLambdaFunctionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the Lambda function being disassociated.
 	//
@@ -16566,12 +22029,20 @@ type DisassociateLambdaFunctionInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateLambdaFunctionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateLambdaFunctionInput) GoString() string {
 	return s.String()
 }
@@ -16614,18 +22085,26 @@ type DisassociateLambdaFunctionOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateLambdaFunctionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateLambdaFunctionOutput) GoString() string {
 	return s.String()
 }
 
 type DisassociateLexBotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Amazon Lex bot. Maximum character limit of 50.
 	//
@@ -16644,12 +22123,20 @@ type DisassociateLexBotInput struct {
 	LexRegion *string `location:"querystring" locationName:"lexRegion" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateLexBotInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateLexBotInput) GoString() string {
 	return s.String()
 }
@@ -16698,12 +22185,20 @@ type DisassociateLexBotOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateLexBotOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateLexBotOutput) GoString() string {
 	return s.String()
 }
@@ -16728,12 +22223,20 @@ type DisassociateQueueQuickConnectsInput struct {
 	QuickConnectIds []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateQueueQuickConnectsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateQueueQuickConnectsInput) GoString() string {
 	return s.String()
 }
@@ -16788,12 +22291,20 @@ type DisassociateQueueQuickConnectsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateQueueQuickConnectsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateQueueQuickConnectsOutput) GoString() string {
 	return s.String()
 }
@@ -16818,12 +22329,20 @@ type DisassociateRoutingProfileQueuesInput struct {
 	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateRoutingProfileQueuesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateRoutingProfileQueuesInput) GoString() string {
 	return s.String()
 }
@@ -16885,18 +22404,26 @@ type DisassociateRoutingProfileQueuesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateRoutingProfileQueuesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateRoutingProfileQueuesOutput) GoString() string {
 	return s.String()
 }
 
 type DisassociateSecurityKeyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The existing association identifier that uniquely identifies the resource
 	// type and storage config for the given instance ID.
@@ -16911,12 +22438,20 @@ type DisassociateSecurityKeyInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateSecurityKeyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateSecurityKeyInput) GoString() string {
 	return s.String()
 }
@@ -16959,12 +22494,20 @@ type DisassociateSecurityKeyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateSecurityKeyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateSecurityKeyOutput) GoString() string {
 	return s.String()
 }
@@ -16977,12 +22520,20 @@ type DuplicateResourceException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DuplicateResourceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DuplicateResourceException) GoString() string {
 	return s.String()
 }
@@ -17034,18 +22585,28 @@ type EncryptionConfig struct {
 	// EncryptionType is a required field
 	EncryptionType *string `type:"string" required:"true" enum:"EncryptionType"`
 
-	// The identifier of the encryption key.
+	// The full ARN of the encryption key.
+	//
+	// Be sure to provide the full ARN of the encryption key, not just the ID.
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionConfig) GoString() string {
 	return s.String()
 }
@@ -17088,17 +22649,26 @@ type Filters struct {
 	// The channel to use to filter the metrics.
 	Channels []*string `type:"list"`
 
-	// The queues to use to filter the metrics. You can specify up to 100 queues
-	// per request.
+	// The queues to use to filter the metrics. You should specify at least one
+	// queue, and can specify up to 100 queues per request. The GetCurrentMetricsData
+	// API in particular requires a queue when you include a Filter in your request.
 	Queues []*string `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filters) GoString() string {
 	return s.String()
 }
@@ -17129,7 +22699,7 @@ func (s *Filters) SetQueues(v []*string) *Filters {
 }
 
 type GetContactAttributesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the initial contact.
 	//
@@ -17142,12 +22712,20 @@ type GetContactAttributesInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetContactAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetContactAttributesInput) GoString() string {
 	return s.String()
 }
@@ -17193,12 +22771,20 @@ type GetContactAttributesOutput struct {
 	Attributes map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetContactAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetContactAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -17281,8 +22867,10 @@ type GetCurrentMetricDataInput struct {
 	//
 	// Unit: SECONDS
 	//
-	// When you use groupings, Unit says SECONDS but the Value is returned in MILLISECONDS.
-	// For example, if you get a response like this:
+	// When you use groupings, Unit says SECONDS and the Value is returned in SECONDS.
+	//
+	// When you do not use groupings, Unit says SECONDS but the Value is returned
+	// in MILLISECONDS. For example, if you get a response like this:
 	//
 	// { "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value":
 	// 24113.0 }
@@ -17340,12 +22928,20 @@ type GetCurrentMetricDataInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCurrentMetricDataInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCurrentMetricDataInput) GoString() string {
 	return s.String()
 }
@@ -17433,12 +23029,20 @@ type GetCurrentMetricDataOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCurrentMetricDataOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetCurrentMetricDataOutput) GoString() string {
 	return s.String()
 }
@@ -17462,7 +23066,7 @@ func (s *GetCurrentMetricDataOutput) SetNextToken(v string) *GetCurrentMetricDat
 }
 
 type GetFederationTokenInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -17471,12 +23075,20 @@ type GetFederationTokenInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFederationTokenInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFederationTokenInput) GoString() string {
 	return s.String()
 }
@@ -17510,12 +23122,20 @@ type GetFederationTokenOutput struct {
 	Credentials *Credentials `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFederationTokenOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetFederationTokenOutput) GoString() string {
 	return s.String()
 }
@@ -17746,12 +23366,20 @@ type GetMetricDataInput struct {
 	StartTime *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMetricDataInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMetricDataInput) GoString() string {
 	return s.String()
 }
@@ -17856,12 +23484,20 @@ type GetMetricDataOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMetricDataOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetMetricDataOutput) GoString() string {
 	return s.String()
 }
@@ -17896,14 +23532,25 @@ type HierarchyGroup struct {
 
 	// The name of the hierarchy group.
 	Name *string `type:"string"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyGroup) GoString() string {
 	return s.String()
 }
@@ -17938,6 +23585,12 @@ func (s *HierarchyGroup) SetName(v string) *HierarchyGroup {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *HierarchyGroup) SetTags(v map[string]*string) *HierarchyGroup {
+	s.Tags = v
+	return s
+}
+
 // Contains summary information about a hierarchy group.
 type HierarchyGroupSummary struct {
 	_ struct{} `type:"structure"`
@@ -17952,12 +23605,20 @@ type HierarchyGroupSummary struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyGroupSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyGroupSummary) GoString() string {
 	return s.String()
 }
@@ -17994,12 +23655,20 @@ type HierarchyLevel struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyLevel) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyLevel) GoString() string {
 	return s.String()
 }
@@ -18032,12 +23701,20 @@ type HierarchyLevelUpdate struct {
 	Name *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyLevelUpdate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyLevelUpdate) GoString() string {
 	return s.String()
 }
@@ -18081,12 +23758,20 @@ type HierarchyPath struct {
 	LevelTwo *HierarchyGroupSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyPath) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyPath) GoString() string {
 	return s.String()
 }
@@ -18141,12 +23826,20 @@ type HierarchyStructure struct {
 	LevelTwo *HierarchyLevel `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyStructure) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyStructure) GoString() string {
 	return s.String()
 }
@@ -18201,12 +23894,20 @@ type HierarchyStructureUpdate struct {
 	LevelTwo *HierarchyLevelUpdate `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyStructureUpdate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HierarchyStructureUpdate) GoString() string {
 	return s.String()
 }
@@ -18295,12 +23996,20 @@ type HistoricalMetric struct {
 	Unit *string `type:"string" enum:"Unit"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HistoricalMetric) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HistoricalMetric) GoString() string {
 	return s.String()
 }
@@ -18340,12 +24049,20 @@ type HistoricalMetricData struct {
 	Value *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HistoricalMetricData) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HistoricalMetricData) GoString() string {
 	return s.String()
 }
@@ -18373,12 +24090,20 @@ type HistoricalMetricResult struct {
 	Dimensions *Dimensions `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HistoricalMetricResult) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HistoricalMetricResult) GoString() string {
 	return s.String()
 }
@@ -18414,19 +24139,27 @@ type HoursOfOperation struct {
 	// The name for the hours of operation.
 	Name *string `min:"1" type:"string"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The time zone for the hours of operation.
 	TimeZone *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HoursOfOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HoursOfOperation) GoString() string {
 	return s.String()
 }
@@ -18482,23 +24215,31 @@ type HoursOfOperationConfig struct {
 	// Day is a required field
 	Day *string `type:"string" required:"true" enum:"HoursOfOperationDays"`
 
-	// The end time that your contact center is closes.
+	// The end time that your contact center closes.
 	//
 	// EndTime is a required field
 	EndTime *HoursOfOperationTimeSlice `type:"structure" required:"true"`
 
-	// The start time that your contact center is open.
+	// The start time that your contact center opens.
 	//
 	// StartTime is a required field
 	StartTime *HoursOfOperationTimeSlice `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HoursOfOperationConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HoursOfOperationConfig) GoString() string {
 	return s.String()
 }
@@ -18564,12 +24305,20 @@ type HoursOfOperationSummary struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HoursOfOperationSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HoursOfOperationSummary) GoString() string {
 	return s.String()
 }
@@ -18607,12 +24356,20 @@ type HoursOfOperationTimeSlice struct {
 	Minutes *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HoursOfOperationTimeSlice) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HoursOfOperationTimeSlice) GoString() string {
 	return s.String()
 }
@@ -18645,6 +24402,70 @@ func (s *HoursOfOperationTimeSlice) SetMinutes(v int64) *HoursOfOperationTimeSli
 	return s
 }
 
+// An entity with the same name already exists.
+type IdempotencyException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdempotencyException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdempotencyException) GoString() string {
+	return s.String()
+}
+
+func newErrorIdempotencyException(v protocol.ResponseMetadata) error {
+	return &IdempotencyException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *IdempotencyException) Code() string {
+	return "IdempotencyException"
+}
+
+// Message returns the exception's message.
+func (s *IdempotencyException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *IdempotencyException) OrigErr() error {
+	return nil
+}
+
+func (s *IdempotencyException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *IdempotencyException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *IdempotencyException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The Amazon Connect instance.
 type Instance struct {
 	_ struct{} `type:"structure"`
@@ -18666,6 +24487,10 @@ type Instance struct {
 	InboundCallsEnabled *bool `type:"boolean"`
 
 	// The alias of instance.
+	//
+	// InstanceAlias is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Instance's
+	// String and GoString methods.
 	InstanceAlias *string `min:"1" type:"string" sensitive:"true"`
 
 	// The state of the instance.
@@ -18681,12 +24506,20 @@ type Instance struct {
 	StatusReason *InstanceStatusReason `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Instance) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Instance) GoString() string {
 	return s.String()
 }
@@ -18759,12 +24592,20 @@ type InstanceStatusReason struct {
 	Message *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceStatusReason) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceStatusReason) GoString() string {
 	return s.String()
 }
@@ -18801,12 +24642,20 @@ type InstanceStorageConfig struct {
 	StorageType *string `type:"string" required:"true" enum:"StorageType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceStorageConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceStorageConfig) GoString() string {
 	return s.String()
 }
@@ -18903,6 +24752,10 @@ type InstanceSummary struct {
 	InboundCallsEnabled *bool `type:"boolean"`
 
 	// The alias of the instance.
+	//
+	// InstanceAlias is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InstanceSummary's
+	// String and GoString methods.
 	InstanceAlias *string `min:"1" type:"string" sensitive:"true"`
 
 	// The state of the instance.
@@ -18915,12 +24768,20 @@ type InstanceSummary struct {
 	ServiceRole *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceSummary) GoString() string {
 	return s.String()
 }
@@ -19009,12 +24870,20 @@ type IntegrationAssociationSummary struct {
 	SourceType *string `type:"string" enum:"SourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IntegrationAssociationSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IntegrationAssociationSummary) GoString() string {
 	return s.String()
 }
@@ -19076,12 +24945,20 @@ type InternalServiceException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceException) GoString() string {
 	return s.String()
 }
@@ -19135,12 +25012,20 @@ type InvalidContactFlowException struct {
 	Problems []*ProblemDetail `locationName:"problems" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidContactFlowException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidContactFlowException) GoString() string {
 	return s.String()
 }
@@ -19183,6 +25068,72 @@ func (s *InvalidContactFlowException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The problems with the module. Please fix before trying again.
+type InvalidContactFlowModuleException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	Problems []*ProblemDetail `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidContactFlowModuleException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidContactFlowModuleException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidContactFlowModuleException(v protocol.ResponseMetadata) error {
+	return &InvalidContactFlowModuleException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidContactFlowModuleException) Code() string {
+	return "InvalidContactFlowModuleException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidContactFlowModuleException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidContactFlowModuleException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidContactFlowModuleException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidContactFlowModuleException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidContactFlowModuleException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // One or more of the specified parameters are not valid.
 type InvalidParameterException struct {
 	_            struct{}                  `type:"structure"`
@@ -19192,12 +25143,20 @@ type InvalidParameterException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterException) GoString() string {
 	return s.String()
 }
@@ -19249,12 +25208,20 @@ type InvalidRequestException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -19307,12 +25274,20 @@ type KinesisFirehoseConfig struct {
 	FirehoseArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KinesisFirehoseConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KinesisFirehoseConfig) GoString() string {
 	return s.String()
 }
@@ -19346,12 +25321,20 @@ type KinesisStreamConfig struct {
 	StreamArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KinesisStreamConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KinesisStreamConfig) GoString() string {
 	return s.String()
 }
@@ -19398,12 +25381,20 @@ type KinesisVideoStreamConfig struct {
 	RetentionPeriodHours *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KinesisVideoStreamConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s KinesisVideoStreamConfig) GoString() string {
 	return s.String()
 }
@@ -19464,12 +25455,20 @@ type LexBot struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LexBot) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LexBot) GoString() string {
 	return s.String()
 }
@@ -19497,12 +25496,20 @@ type LexBotConfig struct {
 	LexV2Bot *LexV2Bot `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LexBotConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LexBotConfig) GoString() string {
 	return s.String()
 }
@@ -19527,12 +25534,20 @@ type LexV2Bot struct {
 	AliasArn *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LexV2Bot) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LexV2Bot) GoString() string {
 	return s.String()
 }
@@ -19565,12 +25580,20 @@ type LimitExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -19614,7 +25637,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListAgentStatusesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Available agent status types.
 	AgentStatusTypes []*string `location:"querystring" locationName:"AgentStatusTypes" type:"list"`
@@ -19633,12 +25656,20 @@ type ListAgentStatusesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAgentStatusesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAgentStatusesInput) GoString() string {
 	return s.String()
 }
@@ -19696,12 +25727,20 @@ type ListAgentStatusesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAgentStatusesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAgentStatusesOutput) GoString() string {
 	return s.String()
 }
@@ -19719,7 +25758,7 @@ func (s *ListAgentStatusesOutput) SetNextToken(v string) *ListAgentStatusesOutpu
 }
 
 type ListApprovedOriginsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -19735,12 +25774,20 @@ type ListApprovedOriginsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApprovedOriginsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApprovedOriginsInput) GoString() string {
 	return s.String()
 }
@@ -19792,12 +25839,20 @@ type ListApprovedOriginsOutput struct {
 	Origins []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApprovedOriginsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListApprovedOriginsOutput) GoString() string {
 	return s.String()
 }
@@ -19815,7 +25870,7 @@ func (s *ListApprovedOriginsOutput) SetOrigins(v []*string) *ListApprovedOrigins
 }
 
 type ListBotsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -19836,12 +25891,20 @@ type ListBotsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBotsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBotsInput) GoString() string {
 	return s.String()
 }
@@ -19903,12 +25966,20 @@ type ListBotsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBotsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListBotsOutput) GoString() string {
 	return s.String()
 }
@@ -19925,8 +25996,129 @@ func (s *ListBotsOutput) SetNextToken(v string) *ListBotsOutput {
 	return s
 }
 
-type ListContactFlowsInput struct {
+type ListContactFlowModulesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The state of the contact flow module.
+	ContactFlowModuleState *string `location:"querystring" locationName:"state" type:"string" enum:"ContactFlowModuleState"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactFlowModulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactFlowModulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListContactFlowModulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListContactFlowModulesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowModuleState sets the ContactFlowModuleState field's value.
+func (s *ListContactFlowModulesInput) SetContactFlowModuleState(v string) *ListContactFlowModulesInput {
+	s.ContactFlowModuleState = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListContactFlowModulesInput) SetInstanceId(v string) *ListContactFlowModulesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListContactFlowModulesInput) SetMaxResults(v int64) *ListContactFlowModulesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContactFlowModulesInput) SetNextToken(v string) *ListContactFlowModulesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListContactFlowModulesOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Information about the contact flow module.
+	ContactFlowModulesSummaryList []*ContactFlowModuleSummary `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactFlowModulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactFlowModulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactFlowModulesSummaryList sets the ContactFlowModulesSummaryList field's value.
+func (s *ListContactFlowModulesOutput) SetContactFlowModulesSummaryList(v []*ContactFlowModuleSummary) *ListContactFlowModulesOutput {
+	s.ContactFlowModulesSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContactFlowModulesOutput) SetNextToken(v string) *ListContactFlowModulesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListContactFlowsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The type of contact flow.
 	ContactFlowTypes []*string `location:"querystring" locationName:"contactFlowTypes" type:"list"`
@@ -19945,12 +26137,20 @@ type ListContactFlowsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListContactFlowsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListContactFlowsInput) GoString() string {
 	return s.String()
 }
@@ -20008,12 +26208,20 @@ type ListContactFlowsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListContactFlowsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListContactFlowsOutput) GoString() string {
 	return s.String()
 }
@@ -20030,8 +26238,271 @@ func (s *ListContactFlowsOutput) SetNextToken(v string) *ListContactFlowsOutput 
 	return s
 }
 
-type ListHoursOfOperationsInput struct {
+type ListContactReferencesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the initial contact.
+	//
+	// ContactId is a required field
+	ContactId *string `location:"uri" locationName:"ContactId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	//
+	// This is not expected to be set, because the value returned in the previous
+	// response is always null.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The type of reference.
+	//
+	// ReferenceTypes is a required field
+	ReferenceTypes []*string `location:"querystring" locationName:"referenceTypes" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactReferencesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactReferencesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListContactReferencesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListContactReferencesInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ReferenceTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReferenceTypes"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *ListContactReferencesInput) SetContactId(v string) *ListContactReferencesInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListContactReferencesInput) SetInstanceId(v string) *ListContactReferencesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContactReferencesInput) SetNextToken(v string) *ListContactReferencesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReferenceTypes sets the ReferenceTypes field's value.
+func (s *ListContactReferencesInput) SetReferenceTypes(v []*string) *ListContactReferencesInput {
+	s.ReferenceTypes = v
+	return s
+}
+
+type ListContactReferencesOutput struct {
 	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	//
+	// This is always returned as null in the response.
+	NextToken *string `type:"string"`
+
+	// Information about the contact flows.
+	ReferenceSummaryList []*ReferenceSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactReferencesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactReferencesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContactReferencesOutput) SetNextToken(v string) *ListContactReferencesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReferenceSummaryList sets the ReferenceSummaryList field's value.
+func (s *ListContactReferencesOutput) SetReferenceSummaryList(v []*ReferenceSummary) *ListContactReferencesOutput {
+	s.ReferenceSummaryList = v
+	return s
+}
+
+type ListDefaultVocabulariesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	LanguageCode *string `type:"string" enum:"VocabularyLanguageCode"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDefaultVocabulariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDefaultVocabulariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDefaultVocabulariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDefaultVocabulariesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListDefaultVocabulariesInput) SetInstanceId(v string) *ListDefaultVocabulariesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *ListDefaultVocabulariesInput) SetLanguageCode(v string) *ListDefaultVocabulariesInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDefaultVocabulariesInput) SetMaxResults(v int64) *ListDefaultVocabulariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDefaultVocabulariesInput) SetNextToken(v string) *ListDefaultVocabulariesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDefaultVocabulariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of default vocabularies.
+	//
+	// DefaultVocabularyList is a required field
+	DefaultVocabularyList []*DefaultVocabulary `type:"list" required:"true"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDefaultVocabulariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDefaultVocabulariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDefaultVocabularyList sets the DefaultVocabularyList field's value.
+func (s *ListDefaultVocabulariesOutput) SetDefaultVocabularyList(v []*DefaultVocabulary) *ListDefaultVocabulariesOutput {
+	s.DefaultVocabularyList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDefaultVocabulariesOutput) SetNextToken(v string) *ListDefaultVocabulariesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListHoursOfOperationsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -20047,12 +26518,20 @@ type ListHoursOfOperationsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListHoursOfOperationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListHoursOfOperationsInput) GoString() string {
 	return s.String()
 }
@@ -20104,12 +26583,20 @@ type ListHoursOfOperationsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListHoursOfOperationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListHoursOfOperationsOutput) GoString() string {
 	return s.String()
 }
@@ -20127,7 +26614,7 @@ func (s *ListHoursOfOperationsOutput) SetNextToken(v string) *ListHoursOfOperati
 }
 
 type ListInstanceAttributesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -20143,12 +26630,20 @@ type ListInstanceAttributesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceAttributesInput) GoString() string {
 	return s.String()
 }
@@ -20200,12 +26695,20 @@ type ListInstanceAttributesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -20223,7 +26726,7 @@ func (s *ListInstanceAttributesOutput) SetNextToken(v string) *ListInstanceAttri
 }
 
 type ListInstanceStorageConfigsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -20244,12 +26747,20 @@ type ListInstanceStorageConfigsInput struct {
 	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"InstanceStorageResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceStorageConfigsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceStorageConfigsInput) GoString() string {
 	return s.String()
 }
@@ -20310,12 +26821,20 @@ type ListInstanceStorageConfigsOutput struct {
 	StorageConfigs []*InstanceStorageConfig `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceStorageConfigsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstanceStorageConfigsOutput) GoString() string {
 	return s.String()
 }
@@ -20333,7 +26852,7 @@ func (s *ListInstanceStorageConfigsOutput) SetStorageConfigs(v []*InstanceStorag
 }
 
 type ListInstancesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -20343,12 +26862,20 @@ type ListInstancesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstancesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstancesInput) GoString() string {
 	return s.String()
 }
@@ -20388,12 +26915,20 @@ type ListInstancesOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstancesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListInstancesOutput) GoString() string {
 	return s.String()
 }
@@ -20411,13 +26946,16 @@ func (s *ListInstancesOutput) SetNextToken(v string) *ListInstancesOutput {
 }
 
 type ListIntegrationAssociationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The integration type.
+	IntegrationType *string `location:"querystring" locationName:"integrationType" type:"string" enum:"IntegrationType"`
 
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -20427,12 +26965,20 @@ type ListIntegrationAssociationsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIntegrationAssociationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIntegrationAssociationsInput) GoString() string {
 	return s.String()
 }
@@ -20462,6 +27008,12 @@ func (s *ListIntegrationAssociationsInput) SetInstanceId(v string) *ListIntegrat
 	return s
 }
 
+// SetIntegrationType sets the IntegrationType field's value.
+func (s *ListIntegrationAssociationsInput) SetIntegrationType(v string) *ListIntegrationAssociationsInput {
+	s.IntegrationType = &v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListIntegrationAssociationsInput) SetMaxResults(v int64) *ListIntegrationAssociationsInput {
 	s.MaxResults = &v
@@ -20477,19 +27029,27 @@ func (s *ListIntegrationAssociationsInput) SetNextToken(v string) *ListIntegrati
 type ListIntegrationAssociationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AppIntegration associations.
+	// The associations.
 	IntegrationAssociationSummaryList []*IntegrationAssociationSummary `type:"list"`
 
 	// If there are additional results, this is the token for the next set of results.
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIntegrationAssociationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIntegrationAssociationsOutput) GoString() string {
 	return s.String()
 }
@@ -20507,7 +27067,7 @@ func (s *ListIntegrationAssociationsOutput) SetNextToken(v string) *ListIntegrat
 }
 
 type ListLambdaFunctionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -20523,12 +27083,20 @@ type ListLambdaFunctionsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLambdaFunctionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLambdaFunctionsInput) GoString() string {
 	return s.String()
 }
@@ -20580,12 +27148,20 @@ type ListLambdaFunctionsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLambdaFunctionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLambdaFunctionsOutput) GoString() string {
 	return s.String()
 }
@@ -20603,7 +27179,7 @@ func (s *ListLambdaFunctionsOutput) SetNextToken(v string) *ListLambdaFunctionsO
 }
 
 type ListLexBotsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -20611,7 +27187,8 @@ type ListLexBotsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. If no value is specified,
+	// the default is 10.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -20619,12 +27196,20 @@ type ListLexBotsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLexBotsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLexBotsInput) GoString() string {
 	return s.String()
 }
@@ -20677,12 +27262,20 @@ type ListLexBotsOutput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLexBotsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLexBotsOutput) GoString() string {
 	return s.String()
 }
@@ -20700,7 +27293,7 @@ func (s *ListLexBotsOutput) SetNextToken(v string) *ListLexBotsOutput {
 }
 
 type ListPhoneNumbersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -20722,12 +27315,20 @@ type ListPhoneNumbersInput struct {
 	PhoneNumberTypes []*string `location:"querystring" locationName:"phoneNumberTypes" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPhoneNumbersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPhoneNumbersInput) GoString() string {
 	return s.String()
 }
@@ -20791,12 +27392,20 @@ type ListPhoneNumbersOutput struct {
 	PhoneNumberSummaryList []*PhoneNumberSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPhoneNumbersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPhoneNumbersOutput) GoString() string {
 	return s.String()
 }
@@ -20814,7 +27423,7 @@ func (s *ListPhoneNumbersOutput) SetPhoneNumberSummaryList(v []*PhoneNumberSumma
 }
 
 type ListPromptsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance.
 	//
@@ -20829,12 +27438,20 @@ type ListPromptsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPromptsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPromptsInput) GoString() string {
 	return s.String()
 }
@@ -20886,12 +27503,20 @@ type ListPromptsOutput struct {
 	PromptSummaryList []*PromptSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPromptsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListPromptsOutput) GoString() string {
 	return s.String()
 }
@@ -20909,7 +27534,7 @@ func (s *ListPromptsOutput) SetPromptSummaryList(v []*PromptSummary) *ListPrompt
 }
 
 type ListQueueQuickConnectsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -20930,12 +27555,20 @@ type ListQueueQuickConnectsInput struct {
 	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListQueueQuickConnectsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListQueueQuickConnectsInput) GoString() string {
 	return s.String()
 }
@@ -20999,12 +27632,20 @@ type ListQueueQuickConnectsOutput struct {
 	QuickConnectSummaryList []*QuickConnectSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListQueueQuickConnectsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListQueueQuickConnectsOutput) GoString() string {
 	return s.String()
 }
@@ -21022,7 +27663,7 @@ func (s *ListQueueQuickConnectsOutput) SetQuickConnectSummaryList(v []*QuickConn
 }
 
 type ListQueuesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21041,12 +27682,20 @@ type ListQueuesInput struct {
 	QueueTypes []*string `location:"querystring" locationName:"queueTypes" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListQueuesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListQueuesInput) GoString() string {
 	return s.String()
 }
@@ -21104,12 +27753,20 @@ type ListQueuesOutput struct {
 	QueueSummaryList []*QueueSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListQueuesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListQueuesOutput) GoString() string {
 	return s.String()
 }
@@ -21127,7 +27784,7 @@ func (s *ListQueuesOutput) SetQueueSummaryList(v []*QueueSummary) *ListQueuesOut
 }
 
 type ListQuickConnectsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21148,12 +27805,20 @@ type ListQuickConnectsInput struct {
 	QuickConnectTypes []*string `location:"querystring" locationName:"QuickConnectTypes" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListQuickConnectsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListQuickConnectsInput) GoString() string {
 	return s.String()
 }
@@ -21211,12 +27876,20 @@ type ListQuickConnectsOutput struct {
 	QuickConnectSummaryList []*QuickConnectSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListQuickConnectsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListQuickConnectsOutput) GoString() string {
 	return s.String()
 }
@@ -21234,7 +27907,7 @@ func (s *ListQuickConnectsOutput) SetQuickConnectSummaryList(v []*QuickConnectSu
 }
 
 type ListRoutingProfileQueuesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21255,12 +27928,20 @@ type ListRoutingProfileQueuesInput struct {
 	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRoutingProfileQueuesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRoutingProfileQueuesInput) GoString() string {
 	return s.String()
 }
@@ -21324,12 +28005,20 @@ type ListRoutingProfileQueuesOutput struct {
 	RoutingProfileQueueConfigSummaryList []*RoutingProfileQueueConfigSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRoutingProfileQueuesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRoutingProfileQueuesOutput) GoString() string {
 	return s.String()
 }
@@ -21347,7 +28036,7 @@ func (s *ListRoutingProfileQueuesOutput) SetRoutingProfileQueueConfigSummaryList
 }
 
 type ListRoutingProfilesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21363,12 +28052,20 @@ type ListRoutingProfilesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRoutingProfilesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRoutingProfilesInput) GoString() string {
 	return s.String()
 }
@@ -21420,12 +28117,20 @@ type ListRoutingProfilesOutput struct {
 	RoutingProfileSummaryList []*RoutingProfileSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRoutingProfilesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRoutingProfilesOutput) GoString() string {
 	return s.String()
 }
@@ -21443,7 +28148,7 @@ func (s *ListRoutingProfilesOutput) SetRoutingProfileSummaryList(v []*RoutingPro
 }
 
 type ListSecurityKeysInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21459,12 +28164,20 @@ type ListSecurityKeysInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSecurityKeysInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSecurityKeysInput) GoString() string {
 	return s.String()
 }
@@ -21516,12 +28229,20 @@ type ListSecurityKeysOutput struct {
 	SecurityKeys []*SecurityKey `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSecurityKeysOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSecurityKeysOutput) GoString() string {
 	return s.String()
 }
@@ -21538,8 +28259,137 @@ func (s *ListSecurityKeysOutput) SetSecurityKeys(v []*SecurityKey) *ListSecurity
 	return s
 }
 
-type ListSecurityProfilesInput struct {
+type ListSecurityProfilePermissionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The identifier for the security profle.
+	//
+	// SecurityProfileId is a required field
+	SecurityProfileId *string `location:"uri" locationName:"SecurityProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityProfilePermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityProfilePermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSecurityProfilePermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSecurityProfilePermissionsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SecurityProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityProfileId"))
+	}
+	if s.SecurityProfileId != nil && len(*s.SecurityProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListSecurityProfilePermissionsInput) SetInstanceId(v string) *ListSecurityProfilePermissionsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSecurityProfilePermissionsInput) SetMaxResults(v int64) *ListSecurityProfilePermissionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSecurityProfilePermissionsInput) SetNextToken(v string) *ListSecurityProfilePermissionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSecurityProfileId sets the SecurityProfileId field's value.
+func (s *ListSecurityProfilePermissionsInput) SetSecurityProfileId(v string) *ListSecurityProfilePermissionsInput {
+	s.SecurityProfileId = &v
+	return s
+}
+
+type ListSecurityProfilePermissionsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// The permissions granted to the security profile.
+	Permissions []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityProfilePermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityProfilePermissionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSecurityProfilePermissionsOutput) SetNextToken(v string) *ListSecurityProfilePermissionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *ListSecurityProfilePermissionsOutput) SetPermissions(v []*string) *ListSecurityProfilePermissionsOutput {
+	s.Permissions = v
+	return s
+}
+
+type ListSecurityProfilesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21555,12 +28405,20 @@ type ListSecurityProfilesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSecurityProfilesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSecurityProfilesInput) GoString() string {
 	return s.String()
 }
@@ -21612,12 +28470,20 @@ type ListSecurityProfilesOutput struct {
 	SecurityProfileSummaryList []*SecurityProfileSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSecurityProfilesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListSecurityProfilesOutput) GoString() string {
 	return s.String()
 }
@@ -21635,7 +28501,7 @@ func (s *ListSecurityProfilesOutput) SetSecurityProfileSummaryList(v []*Security
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -21643,12 +28509,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -21682,12 +28556,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -21698,10 +28580,10 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Provides summary information about the use cases for the specified Amazon
-// Connect AppIntegration association.
+// Provides summary information about the use cases for the specified integration
+// association.
 type ListUseCasesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21722,12 +28604,20 @@ type ListUseCasesInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUseCasesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUseCasesInput) GoString() string {
 	return s.String()
 }
@@ -21791,12 +28681,20 @@ type ListUseCasesOutput struct {
 	UseCaseSummaryList []*UseCase `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUseCasesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUseCasesOutput) GoString() string {
 	return s.String()
 }
@@ -21814,7 +28712,7 @@ func (s *ListUseCasesOutput) SetUseCaseSummaryList(v []*UseCase) *ListUseCasesOu
 }
 
 type ListUserHierarchyGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21830,12 +28728,20 @@ type ListUserHierarchyGroupsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUserHierarchyGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUserHierarchyGroupsInput) GoString() string {
 	return s.String()
 }
@@ -21887,12 +28793,20 @@ type ListUserHierarchyGroupsOutput struct {
 	UserHierarchyGroupSummaryList []*HierarchyGroupSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUserHierarchyGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUserHierarchyGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -21910,7 +28824,7 @@ func (s *ListUserHierarchyGroupsOutput) SetUserHierarchyGroupSummaryList(v []*Hi
 }
 
 type ListUsersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21926,12 +28840,20 @@ type ListUsersInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsersInput) GoString() string {
 	return s.String()
 }
@@ -21983,12 +28905,20 @@ type ListUsersOutput struct {
 	UserSummaryList []*UserSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsersOutput) GoString() string {
 	return s.String()
 }
@@ -22027,12 +28957,20 @@ type MediaConcurrency struct {
 	Concurrency *int64 `min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MediaConcurrency) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MediaConcurrency) GoString() string {
 	return s.String()
 }
@@ -22082,12 +29020,20 @@ type OutboundCallerConfig struct {
 	OutboundFlowId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutboundCallerConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutboundCallerConfig) GoString() string {
 	return s.String()
 }
@@ -22132,12 +29078,20 @@ type OutboundContactNotPermittedException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutboundContactNotPermittedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutboundContactNotPermittedException) GoString() string {
 	return s.String()
 }
@@ -22190,12 +29144,20 @@ type ParticipantDetails struct {
 	DisplayName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParticipantDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ParticipantDetails) GoString() string {
 	return s.String()
 }
@@ -22232,12 +29194,20 @@ type PhoneNumberQuickConnectConfig struct {
 	PhoneNumber *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PhoneNumberQuickConnectConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PhoneNumberQuickConnectConfig) GoString() string {
 	return s.String()
 }
@@ -22281,12 +29251,20 @@ type PhoneNumberSummary struct {
 	PhoneNumberType *string `type:"string" enum:"PhoneNumberType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PhoneNumberSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PhoneNumberSummary) GoString() string {
 	return s.String()
 }
@@ -22329,12 +29307,20 @@ type ProblemDetail struct {
 	Message *string `locationName:"message" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProblemDetail) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProblemDetail) GoString() string {
 	return s.String()
 }
@@ -22359,12 +29345,20 @@ type PromptSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PromptSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PromptSummary) GoString() string {
 	return s.String()
 }
@@ -22416,16 +29410,24 @@ type Queue struct {
 	// The status of the queue.
 	Status *string `type:"string" enum:"QueueStatus"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Queue) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Queue) GoString() string {
 	return s.String()
 }
@@ -22484,6 +29486,47 @@ func (s *Queue) SetTags(v map[string]*string) *Queue {
 	return s
 }
 
+// If this contact was queued, this contains information about the queue.
+type QueueInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp when the contact was added to the queue.
+	EnqueueTimestamp *time.Time `type:"timestamp"`
+
+	// The identifier of the agent who accepted the contact.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueueInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueueInfo) GoString() string {
+	return s.String()
+}
+
+// SetEnqueueTimestamp sets the EnqueueTimestamp field's value.
+func (s *QueueInfo) SetEnqueueTimestamp(v time.Time) *QueueInfo {
+	s.EnqueueTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *QueueInfo) SetId(v string) *QueueInfo {
+	s.Id = &v
+	return s
+}
+
 // Contains information about a queue for a quick connect. The contact flow
 // must be of type Transfer to Queue.
 type QueueQuickConnectConfig struct {
@@ -22500,12 +29543,20 @@ type QueueQuickConnectConfig struct {
 	QueueId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueueQuickConnectConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueueQuickConnectConfig) GoString() string {
 	return s.String()
 }
@@ -22549,12 +29600,20 @@ type QueueReference struct {
 	Id *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueueReference) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueueReference) GoString() string {
 	return s.String()
 }
@@ -22588,12 +29647,20 @@ type QueueSummary struct {
 	QueueType *string `type:"string" enum:"QueueType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueueSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueueSummary) GoString() string {
 	return s.String()
 }
@@ -22641,16 +29708,24 @@ type QuickConnect struct {
 	// The identifier for the quick connect.
 	QuickConnectId *string `type:"string"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QuickConnect) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QuickConnect) GoString() string {
 	return s.String()
 }
@@ -22712,12 +29787,20 @@ type QuickConnectConfig struct {
 	UserConfig *UserQuickConnectConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QuickConnectConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QuickConnectConfig) GoString() string {
 	return s.String()
 }
@@ -22793,12 +29876,20 @@ type QuickConnectSummary struct {
 	QuickConnectType *string `type:"string" enum:"QuickConnectType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QuickConnectSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QuickConnectSummary) GoString() string {
 	return s.String()
 }
@@ -22832,23 +29923,32 @@ func (s *QuickConnectSummary) SetQuickConnectType(v string) *QuickConnectSummary
 type Reference struct {
 	_ struct{} `type:"structure"`
 
-	// A valid URL.
+	// The type of the reference. Only URL type can be added or updated on a contact.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"ReferenceType"`
 
-	// A formatted URL that displays to an agent in the Contact Control Panel (CCP)
+	// A valid value for the reference. For example, for a URL reference, a formatted
+	// URL that is displayed to an agent in the Contact Control Panel (CCP).
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Reference) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Reference) GoString() string {
 	return s.String()
 }
@@ -22881,6 +29981,51 @@ func (s *Reference) SetValue(v string) *Reference {
 	return s
 }
 
+// Contains summary information about a reference. ReferenceSummary contains
+// only one non null field between the URL and attachment based on the reference
+// type.
+type ReferenceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the attachment reference if the referenceType is ATTACHMENT.
+	// Otherwise, null.
+	Attachment *AttachmentReference `type:"structure"`
+
+	// Information about the URL reference if the referenceType is URL. Otherwise,
+	// null.
+	Url *UrlReference `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReferenceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReferenceSummary) GoString() string {
+	return s.String()
+}
+
+// SetAttachment sets the Attachment field's value.
+func (s *ReferenceSummary) SetAttachment(v *AttachmentReference) *ReferenceSummary {
+	s.Attachment = v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *ReferenceSummary) SetUrl(v *UrlReference) *ReferenceSummary {
+	s.Url = v
+	return s
+}
+
 // A resource already has that name.
 type ResourceConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -22889,12 +30034,20 @@ type ResourceConflictException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceConflictException) GoString() string {
 	return s.String()
 }
@@ -22951,12 +30104,20 @@ type ResourceInUseException struct {
 	ResourceType *string `type:"string" enum:"ResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceInUseException) GoString() string {
 	return s.String()
 }
@@ -23008,12 +30169,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -23077,12 +30246,20 @@ type ResumeContactRecordingInput struct {
 	InstanceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResumeContactRecordingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResumeContactRecordingInput) GoString() string {
 	return s.String()
 }
@@ -23137,12 +30314,20 @@ type ResumeContactRecordingOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResumeContactRecordingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResumeContactRecordingOutput) GoString() string {
 	return s.String()
 }
@@ -23178,12 +30363,20 @@ type RoutingProfile struct {
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoutingProfile) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoutingProfile) GoString() string {
 	return s.String()
 }
@@ -23261,12 +30454,20 @@ type RoutingProfileQueueConfig struct {
 	QueueReference *RoutingProfileQueueReference `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoutingProfileQueueConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoutingProfileQueueConfig) GoString() string {
 	return s.String()
 }
@@ -23355,12 +30556,20 @@ type RoutingProfileQueueConfigSummary struct {
 	QueueName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoutingProfileQueueConfigSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoutingProfileQueueConfigSummary) GoString() string {
 	return s.String()
 }
@@ -23417,12 +30626,20 @@ type RoutingProfileQueueReference struct {
 	QueueId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoutingProfileQueueReference) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoutingProfileQueueReference) GoString() string {
 	return s.String()
 }
@@ -23469,12 +30686,20 @@ type RoutingProfileSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoutingProfileSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RoutingProfileSummary) GoString() string {
 	return s.String()
 }
@@ -23515,12 +30740,20 @@ type S3Config struct {
 	EncryptionConfig *EncryptionConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Config) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Config) GoString() string {
 	return s.String()
 }
@@ -23570,6 +30803,152 @@ func (s *S3Config) SetEncryptionConfig(v *EncryptionConfig) *S3Config {
 	return s
 }
 
+type SearchVocabulariesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	LanguageCode *string `type:"string" enum:"VocabularyLanguageCode"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The starting pattern of the name of the vocabulary.
+	NameStartsWith *string `min:"1" type:"string"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The current state of the custom vocabulary.
+	State *string `type:"string" enum:"VocabularyState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVocabulariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVocabulariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchVocabulariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchVocabulariesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NameStartsWith != nil && len(*s.NameStartsWith) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NameStartsWith", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SearchVocabulariesInput) SetInstanceId(v string) *SearchVocabulariesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *SearchVocabulariesInput) SetLanguageCode(v string) *SearchVocabulariesInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchVocabulariesInput) SetMaxResults(v int64) *SearchVocabulariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameStartsWith sets the NameStartsWith field's value.
+func (s *SearchVocabulariesInput) SetNameStartsWith(v string) *SearchVocabulariesInput {
+	s.NameStartsWith = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchVocabulariesInput) SetNextToken(v string) *SearchVocabulariesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *SearchVocabulariesInput) SetState(v string) *SearchVocabulariesInput {
+	s.State = &v
+	return s
+}
+
+type SearchVocabulariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The list of the available custom vocabularies.
+	VocabularySummaryList []*VocabularySummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVocabulariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchVocabulariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchVocabulariesOutput) SetNextToken(v string) *SearchVocabulariesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVocabularySummaryList sets the VocabularySummaryList field's value.
+func (s *SearchVocabulariesOutput) SetVocabularySummaryList(v []*VocabularySummary) *SearchVocabulariesOutput {
+	s.VocabularySummaryList = v
+	return s
+}
+
 // Configuration information of the security key.
 type SecurityKey struct {
 	_ struct{} `type:"structure"`
@@ -23585,12 +30964,20 @@ type SecurityKey struct {
 	Key *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SecurityKey) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SecurityKey) GoString() string {
 	return s.String()
 }
@@ -23614,6 +31001,83 @@ func (s *SecurityKey) SetKey(v string) *SecurityKey {
 }
 
 // Contains information about a security profile.
+type SecurityProfile struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the secruity profile.
+	Arn *string `type:"string"`
+
+	// The description of the security profile.
+	Description *string `type:"string"`
+
+	// The identifier for the security profile.
+	Id *string `type:"string"`
+
+	// The organization resource identifier for the security profile.
+	OrganizationResourceId *string `min:"1" type:"string"`
+
+	// The name for the security profile.
+	SecurityProfileName *string `type:"string"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityProfile) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *SecurityProfile) SetArn(v string) *SecurityProfile {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *SecurityProfile) SetDescription(v string) *SecurityProfile {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *SecurityProfile) SetId(v string) *SecurityProfile {
+	s.Id = &v
+	return s
+}
+
+// SetOrganizationResourceId sets the OrganizationResourceId field's value.
+func (s *SecurityProfile) SetOrganizationResourceId(v string) *SecurityProfile {
+	s.OrganizationResourceId = &v
+	return s
+}
+
+// SetSecurityProfileName sets the SecurityProfileName field's value.
+func (s *SecurityProfile) SetSecurityProfileName(v string) *SecurityProfile {
+	s.SecurityProfileName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SecurityProfile) SetTags(v map[string]*string) *SecurityProfile {
+	s.Tags = v
+	return s
+}
+
+// Contains information about a security profile.
 type SecurityProfileSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -23627,12 +31091,20 @@ type SecurityProfileSummary struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SecurityProfileSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SecurityProfileSummary) GoString() string {
 	return s.String()
 }
@@ -23663,12 +31135,20 @@ type ServiceQuotaExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -23722,6 +31202,11 @@ type StartChatContactInput struct {
 	// Attribute keys can include only alphanumeric, dash, and underscore characters.
 	Attributes map[string]*string `type:"map"`
 
+	// The total duration of the newly started chat session. If not specified, the
+	// chat session duration defaults to 25 hour. The minumum configurable time
+	// is 60 minutes. The maximum configurable time is 10,080 minutes (7 days).
+	ChatDurationInMinutes *int64 `min:"60" type:"integer"`
+
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
@@ -23752,12 +31237,20 @@ type StartChatContactInput struct {
 	ParticipantDetails *ParticipantDetails `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartChatContactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartChatContactInput) GoString() string {
 	return s.String()
 }
@@ -23765,6 +31258,9 @@ func (s StartChatContactInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartChatContactInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartChatContactInput"}
+	if s.ChatDurationInMinutes != nil && *s.ChatDurationInMinutes < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("ChatDurationInMinutes", 60))
+	}
 	if s.ContactFlowId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
 	}
@@ -23797,6 +31293,12 @@ func (s *StartChatContactInput) Validate() error {
 // SetAttributes sets the Attributes field's value.
 func (s *StartChatContactInput) SetAttributes(v map[string]*string) *StartChatContactInput {
 	s.Attributes = v
+	return s
+}
+
+// SetChatDurationInMinutes sets the ChatDurationInMinutes field's value.
+func (s *StartChatContactInput) SetChatDurationInMinutes(v int64) *StartChatContactInput {
+	s.ChatDurationInMinutes = &v
 	return s
 }
 
@@ -23846,12 +31348,20 @@ type StartChatContactOutput struct {
 	ParticipantToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartChatContactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartChatContactOutput) GoString() string {
 	return s.String()
 }
@@ -23900,12 +31410,20 @@ type StartContactRecordingInput struct {
 	VoiceRecordingConfiguration *VoiceRecordingConfiguration `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartContactRecordingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartContactRecordingInput) GoString() string {
 	return s.String()
 }
@@ -23969,18 +31487,159 @@ type StartContactRecordingOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartContactRecordingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartContactRecordingOutput) GoString() string {
 	return s.String()
 }
 
+type StartContactStreamingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The streaming configuration, such as the Amazon SNS streaming endpoint.
+	//
+	// ChatStreamingConfiguration is a required field
+	ChatStreamingConfiguration *ChatStreamingConfiguration `type:"structure" required:"true"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The identifier of the contact. This is the identifier of the contact associated
+	// with the first interaction with the contact center.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartContactStreamingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartContactStreamingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartContactStreamingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartContactStreamingInput"}
+	if s.ChatStreamingConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChatStreamingConfiguration"))
+	}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ChatStreamingConfiguration != nil {
+		if err := s.ChatStreamingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ChatStreamingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChatStreamingConfiguration sets the ChatStreamingConfiguration field's value.
+func (s *StartContactStreamingInput) SetChatStreamingConfiguration(v *ChatStreamingConfiguration) *StartContactStreamingInput {
+	s.ChatStreamingConfiguration = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartContactStreamingInput) SetClientToken(v string) *StartContactStreamingInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *StartContactStreamingInput) SetContactId(v string) *StartContactStreamingInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *StartContactStreamingInput) SetInstanceId(v string) *StartContactStreamingInput {
+	s.InstanceId = &v
+	return s
+}
+
+type StartContactStreamingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the streaming configuration enabled.
+	//
+	// StreamingId is a required field
+	StreamingId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartContactStreamingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartContactStreamingOutput) GoString() string {
+	return s.String()
+}
+
+// SetStreamingId sets the StreamingId field's value.
+func (s *StartContactStreamingOutput) SetStreamingId(v string) *StartContactStreamingOutput {
+	s.StreamingId = &v
+	return s
+}
+
 type StartOutboundVoiceContactInput struct {
 	_ struct{} `type:"structure"`
+
+	// Configuration of the answering machine detection for this outbound call.
+	AnswerMachineDetectionConfig *AnswerMachineDetectionConfig `type:"structure"`
 
 	// A custom key-value pair using an attribute map. The attributes are standard
 	// Amazon Connect attributes, and can be accessed in contact flows just like
@@ -23989,6 +31648,9 @@ type StartOutboundVoiceContactInput struct {
 	// There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact.
 	// Attribute keys can include only alphanumeric, dash, and underscore characters.
 	Attributes map[string]*string `type:"map"`
+
+	// The campaign identifier of the outbound communication.
+	CampaignId *string `min:"1" type:"string"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request. The token is valid for 7 days after creation. If a contact
@@ -24026,14 +31688,28 @@ type StartOutboundVoiceContactInput struct {
 	// The phone number associated with the Amazon Connect instance, in E.164 format.
 	// If you do not specify a source phone number, you must specify a queue.
 	SourcePhoneNumber *string `type:"string"`
+
+	// Denotes the class of traffic. Calls with different traffic types are handled
+	// differently by Amazon Connect. The default value is GENERAL. Use CAMPAIGN
+	// if EnableAnswerMachineDetection is set to true. For all other cases, use
+	// GENERAL.
+	TrafficType *string `type:"string" enum:"TrafficType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartOutboundVoiceContactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartOutboundVoiceContactInput) GoString() string {
 	return s.String()
 }
@@ -24041,6 +31717,9 @@ func (s StartOutboundVoiceContactInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartOutboundVoiceContactInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartOutboundVoiceContactInput"}
+	if s.CampaignId != nil && len(*s.CampaignId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CampaignId", 1))
+	}
 	if s.ContactFlowId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
 	}
@@ -24060,9 +31739,21 @@ func (s *StartOutboundVoiceContactInput) Validate() error {
 	return nil
 }
 
+// SetAnswerMachineDetectionConfig sets the AnswerMachineDetectionConfig field's value.
+func (s *StartOutboundVoiceContactInput) SetAnswerMachineDetectionConfig(v *AnswerMachineDetectionConfig) *StartOutboundVoiceContactInput {
+	s.AnswerMachineDetectionConfig = v
+	return s
+}
+
 // SetAttributes sets the Attributes field's value.
 func (s *StartOutboundVoiceContactInput) SetAttributes(v map[string]*string) *StartOutboundVoiceContactInput {
 	s.Attributes = v
+	return s
+}
+
+// SetCampaignId sets the CampaignId field's value.
+func (s *StartOutboundVoiceContactInput) SetCampaignId(v string) *StartOutboundVoiceContactInput {
+	s.CampaignId = &v
 	return s
 }
 
@@ -24102,6 +31793,12 @@ func (s *StartOutboundVoiceContactInput) SetSourcePhoneNumber(v string) *StartOu
 	return s
 }
 
+// SetTrafficType sets the TrafficType field's value.
+func (s *StartOutboundVoiceContactInput) SetTrafficType(v string) *StartOutboundVoiceContactInput {
+	s.TrafficType = &v
+	return s
+}
+
 type StartOutboundVoiceContactOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -24109,12 +31806,20 @@ type StartOutboundVoiceContactOutput struct {
 	ContactId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartOutboundVoiceContactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartOutboundVoiceContactOutput) GoString() string {
 	return s.String()
 }
@@ -24172,14 +31877,27 @@ type StartTaskContactInput struct {
 
 	// A formatted URL that is shown to an agent in the Contact Control Panel (CCP).
 	References map[string]*Reference `type:"map"`
+
+	// The timestamp, in Unix Epoch seconds format, at which to start running the
+	// inbound contact flow. The scheduled time cannot be in the past. It must be
+	// within up to 6 days in future.
+	ScheduledTime *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTaskContactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTaskContactInput) GoString() string {
 	return s.String()
 }
@@ -24267,6 +31985,12 @@ func (s *StartTaskContactInput) SetReferences(v map[string]*Reference) *StartTas
 	return s
 }
 
+// SetScheduledTime sets the ScheduledTime field's value.
+func (s *StartTaskContactInput) SetScheduledTime(v time.Time) *StartTaskContactInput {
+	s.ScheduledTime = &v
+	return s
+}
+
 type StartTaskContactOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -24274,12 +31998,20 @@ type StartTaskContactOutput struct {
 	ContactId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTaskContactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartTaskContactOutput) GoString() string {
 	return s.String()
 }
@@ -24305,12 +32037,20 @@ type StopContactInput struct {
 	InstanceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopContactInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopContactInput) GoString() string {
 	return s.String()
 }
@@ -24353,12 +32093,20 @@ type StopContactOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopContactOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopContactOutput) GoString() string {
 	return s.String()
 }
@@ -24384,12 +32132,20 @@ type StopContactRecordingInput struct {
 	InstanceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopContactRecordingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopContactRecordingInput) GoString() string {
 	return s.String()
 }
@@ -24444,13 +32200,128 @@ type StopContactRecordingOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopContactRecordingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopContactRecordingOutput) GoString() string {
+	return s.String()
+}
+
+type StopContactStreamingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact. This is the identifier of the contact that
+	// is associated with the first interaction with the contact center.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the streaming configuration enabled.
+	//
+	// StreamingId is a required field
+	StreamingId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopContactStreamingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopContactStreamingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopContactStreamingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopContactStreamingInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.StreamingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreamingId"))
+	}
+	if s.StreamingId != nil && len(*s.StreamingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamingId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *StopContactStreamingInput) SetContactId(v string) *StopContactStreamingInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *StopContactStreamingInput) SetInstanceId(v string) *StopContactStreamingInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetStreamingId sets the StreamingId field's value.
+func (s *StopContactStreamingInput) SetStreamingId(v string) *StopContactStreamingInput {
+	s.StreamingId = &v
+	return s
+}
+
+type StopContactStreamingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopContactStreamingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopContactStreamingOutput) GoString() string {
 	return s.String()
 }
 
@@ -24475,12 +32346,20 @@ type SuspendContactRecordingInput struct {
 	InstanceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuspendContactRecordingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuspendContactRecordingInput) GoString() string {
 	return s.String()
 }
@@ -24535,12 +32414,20 @@ type SuspendContactRecordingOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuspendContactRecordingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SuspendContactRecordingOutput) GoString() string {
 	return s.String()
 }
@@ -24560,12 +32447,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -24608,12 +32503,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -24629,12 +32532,20 @@ type Threshold struct {
 	ThresholdValue *float64 `type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Threshold) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Threshold) GoString() string {
 	return s.String()
 }
@@ -24659,12 +32570,20 @@ type ThrottlingException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -24708,7 +32627,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -24721,12 +32640,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -24769,12 +32696,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -24809,12 +32744,20 @@ type UpdateAgentStatusInput struct {
 	State *string `type:"string" enum:"AgentStatusState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAgentStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAgentStatusInput) GoString() string {
 	return s.String()
 }
@@ -24893,12 +32836,20 @@ type UpdateAgentStatusOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAgentStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAgentStatusOutput) GoString() string {
 	return s.String()
 }
@@ -24928,12 +32879,20 @@ type UpdateContactAttributesInput struct {
 	InstanceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateContactAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateContactAttributesInput) GoString() string {
 	return s.String()
 }
@@ -24985,12 +32944,20 @@ type UpdateContactAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateContactAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateContactAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -25016,12 +32983,20 @@ type UpdateContactFlowContentInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateContactFlowContentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateContactFlowContentInput) GoString() string {
 	return s.String()
 }
@@ -25073,13 +33048,365 @@ type UpdateContactFlowContentOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateContactFlowContentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateContactFlowContentOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactFlowMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact flow.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
+
+	// The state of contact flow.
+	ContactFlowState *string `type:"string" enum:"ContactFlowState"`
+
+	// The description of the contact flow.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// TThe name of the contact flow.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactFlowMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactFlowMetadataInput"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.ContactFlowId != nil && len(*s.ContactFlowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *UpdateContactFlowMetadataInput) SetContactFlowId(v string) *UpdateContactFlowMetadataInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetContactFlowState sets the ContactFlowState field's value.
+func (s *UpdateContactFlowMetadataInput) SetContactFlowState(v string) *UpdateContactFlowMetadataInput {
+	s.ContactFlowState = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateContactFlowMetadataInput) SetDescription(v string) *UpdateContactFlowMetadataInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactFlowMetadataInput) SetInstanceId(v string) *UpdateContactFlowMetadataInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateContactFlowMetadataInput) SetName(v string) *UpdateContactFlowMetadataInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateContactFlowMetadataOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowMetadataOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactFlowModuleContentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact flow module.
+	//
+	// ContactFlowModuleId is a required field
+	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
+
+	// The content of the contact flow module.
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleContentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleContentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactFlowModuleContentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactFlowModuleContentInput"}
+	if s.ContactFlowModuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowModuleId"))
+	}
+	if s.ContactFlowModuleId != nil && len(*s.ContactFlowModuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowModuleId", 1))
+	}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowModuleId sets the ContactFlowModuleId field's value.
+func (s *UpdateContactFlowModuleContentInput) SetContactFlowModuleId(v string) *UpdateContactFlowModuleContentInput {
+	s.ContactFlowModuleId = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *UpdateContactFlowModuleContentInput) SetContent(v string) *UpdateContactFlowModuleContentInput {
+	s.Content = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactFlowModuleContentInput) SetInstanceId(v string) *UpdateContactFlowModuleContentInput {
+	s.InstanceId = &v
+	return s
+}
+
+type UpdateContactFlowModuleContentOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleContentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleContentOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactFlowModuleMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact flow module.
+	//
+	// ContactFlowModuleId is a required field
+	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
+
+	// The description of the contact flow module.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the contact flow module.
+	Name *string `min:"1" type:"string"`
+
+	// The state of contact flow module.
+	State *string `type:"string" enum:"ContactFlowModuleState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactFlowModuleMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactFlowModuleMetadataInput"}
+	if s.ContactFlowModuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowModuleId"))
+	}
+	if s.ContactFlowModuleId != nil && len(*s.ContactFlowModuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowModuleId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowModuleId sets the ContactFlowModuleId field's value.
+func (s *UpdateContactFlowModuleMetadataInput) SetContactFlowModuleId(v string) *UpdateContactFlowModuleMetadataInput {
+	s.ContactFlowModuleId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateContactFlowModuleMetadataInput) SetDescription(v string) *UpdateContactFlowModuleMetadataInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactFlowModuleMetadataInput) SetInstanceId(v string) *UpdateContactFlowModuleMetadataInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateContactFlowModuleMetadataInput) SetName(v string) *UpdateContactFlowModuleMetadataInput {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *UpdateContactFlowModuleMetadataInput) SetState(v string) *UpdateContactFlowModuleMetadataInput {
+	s.State = &v
+	return s
+}
+
+type UpdateContactFlowModuleMetadataOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleMetadataOutput) GoString() string {
 	return s.String()
 }
 
@@ -25103,12 +33430,20 @@ type UpdateContactFlowNameInput struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateContactFlowNameInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateContactFlowNameInput) GoString() string {
 	return s.String()
 }
@@ -25166,13 +33501,253 @@ type UpdateContactFlowNameOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateContactFlowNameOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateContactFlowNameOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact. This is the identifier of the contact associated
+	// with the first interaction with your contact center.
+	//
+	// ContactId is a required field
+	ContactId *string `location:"uri" locationName:"ContactId" min:"1" type:"string" required:"true"`
+
+	// The description of the contact.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the contact.
+	Name *string `type:"string"`
+
+	// A formatted URL that is shown to an agent in the Contact Control Panel (CCP).
+	References map[string]*Reference `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.References != nil {
+		for i, v := range s.References {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "References", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *UpdateContactInput) SetContactId(v string) *UpdateContactInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateContactInput) SetDescription(v string) *UpdateContactInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactInput) SetInstanceId(v string) *UpdateContactInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateContactInput) SetName(v string) *UpdateContactInput {
+	s.Name = &v
+	return s
+}
+
+// SetReferences sets the References field's value.
+func (s *UpdateContactInput) SetReferences(v map[string]*Reference) *UpdateContactInput {
+	s.References = v
+	return s
+}
+
+type UpdateContactOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactScheduleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The timestamp, in Unix Epoch seconds format, at which to start running the
+	// inbound contact flow. The scheduled time cannot be in the past. It must be
+	// within up to 6 days in future.
+	//
+	// ScheduledTime is a required field
+	ScheduledTime *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactScheduleInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ScheduledTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduledTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *UpdateContactScheduleInput) SetContactId(v string) *UpdateContactScheduleInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactScheduleInput) SetInstanceId(v string) *UpdateContactScheduleInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetScheduledTime sets the ScheduledTime field's value.
+func (s *UpdateContactScheduleInput) SetScheduledTime(v time.Time) *UpdateContactScheduleInput {
+	s.ScheduledTime = &v
+	return s
+}
+
+type UpdateContactScheduleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactScheduleOutput) GoString() string {
 	return s.String()
 }
 
@@ -25203,12 +33778,20 @@ type UpdateHoursOfOperationInput struct {
 	TimeZone *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateHoursOfOperationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateHoursOfOperationInput) GoString() string {
 	return s.String()
 }
@@ -25288,12 +33871,20 @@ type UpdateHoursOfOperationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateHoursOfOperationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateHoursOfOperationOutput) GoString() string {
 	return s.String()
 }
@@ -25302,6 +33893,9 @@ type UpdateInstanceAttributeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of attribute.
+	//
+	// Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access this
+	// feature, contact Amazon Web Services Support for allowlisting.
 	//
 	// AttributeType is a required field
 	AttributeType *string `location:"uri" locationName:"AttributeType" type:"string" required:"true" enum:"InstanceAttributeType"`
@@ -25318,12 +33912,20 @@ type UpdateInstanceAttributeInput struct {
 	Value *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInstanceAttributeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInstanceAttributeInput) GoString() string {
 	return s.String()
 }
@@ -25378,12 +33980,20 @@ type UpdateInstanceAttributeOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInstanceAttributeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInstanceAttributeOutput) GoString() string {
 	return s.String()
 }
@@ -25414,12 +34024,20 @@ type UpdateInstanceStorageConfigInput struct {
 	StorageConfig *InstanceStorageConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInstanceStorageConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInstanceStorageConfigInput) GoString() string {
 	return s.String()
 }
@@ -25485,12 +34103,20 @@ type UpdateInstanceStorageConfigOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInstanceStorageConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateInstanceStorageConfigOutput) GoString() string {
 	return s.String()
 }
@@ -25515,12 +34141,20 @@ type UpdateQueueHoursOfOperationInput struct {
 	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueHoursOfOperationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueHoursOfOperationInput) GoString() string {
 	return s.String()
 }
@@ -25572,12 +34206,20 @@ type UpdateQueueHoursOfOperationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueHoursOfOperationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueHoursOfOperationOutput) GoString() string {
 	return s.String()
 }
@@ -25601,12 +34243,20 @@ type UpdateQueueMaxContactsInput struct {
 	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueMaxContactsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueMaxContactsInput) GoString() string {
 	return s.String()
 }
@@ -25655,12 +34305,20 @@ type UpdateQueueMaxContactsOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueMaxContactsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueMaxContactsOutput) GoString() string {
 	return s.String()
 }
@@ -25686,12 +34344,20 @@ type UpdateQueueNameInput struct {
 	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueNameInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueNameInput) GoString() string {
 	return s.String()
 }
@@ -25752,12 +34418,20 @@ type UpdateQueueNameOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueNameOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueNameOutput) GoString() string {
 	return s.String()
 }
@@ -25782,12 +34456,20 @@ type UpdateQueueOutboundCallerConfigInput struct {
 	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueOutboundCallerConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueOutboundCallerConfigInput) GoString() string {
 	return s.String()
 }
@@ -25844,12 +34526,20 @@ type UpdateQueueOutboundCallerConfigOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueOutboundCallerConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueOutboundCallerConfigOutput) GoString() string {
 	return s.String()
 }
@@ -25874,12 +34564,20 @@ type UpdateQueueStatusInput struct {
 	Status *string `type:"string" required:"true" enum:"QueueStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueStatusInput) GoString() string {
 	return s.String()
 }
@@ -25931,12 +34629,20 @@ type UpdateQueueStatusOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQueueStatusOutput) GoString() string {
 	return s.String()
 }
@@ -25961,12 +34667,20 @@ type UpdateQuickConnectConfigInput struct {
 	QuickConnectId *string `location:"uri" locationName:"QuickConnectId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQuickConnectConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQuickConnectConfigInput) GoString() string {
 	return s.String()
 }
@@ -26023,12 +34737,20 @@ type UpdateQuickConnectConfigOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQuickConnectConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQuickConnectConfigOutput) GoString() string {
 	return s.String()
 }
@@ -26054,12 +34776,20 @@ type UpdateQuickConnectNameInput struct {
 	QuickConnectId *string `location:"uri" locationName:"QuickConnectId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQuickConnectNameInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQuickConnectNameInput) GoString() string {
 	return s.String()
 }
@@ -26117,12 +34847,20 @@ type UpdateQuickConnectNameOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQuickConnectNameOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateQuickConnectNameOutput) GoString() string {
 	return s.String()
 }
@@ -26147,12 +34885,20 @@ type UpdateRoutingProfileConcurrencyInput struct {
 	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileConcurrencyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileConcurrencyInput) GoString() string {
 	return s.String()
 }
@@ -26214,12 +34960,20 @@ type UpdateRoutingProfileConcurrencyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileConcurrencyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileConcurrencyOutput) GoString() string {
 	return s.String()
 }
@@ -26244,12 +34998,20 @@ type UpdateRoutingProfileDefaultOutboundQueueInput struct {
 	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileDefaultOutboundQueueInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileDefaultOutboundQueueInput) GoString() string {
 	return s.String()
 }
@@ -26301,12 +35063,20 @@ type UpdateRoutingProfileDefaultOutboundQueueOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileDefaultOutboundQueueOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileDefaultOutboundQueueOutput) GoString() string {
 	return s.String()
 }
@@ -26332,12 +35102,20 @@ type UpdateRoutingProfileNameInput struct {
 	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileNameInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileNameInput) GoString() string {
 	return s.String()
 }
@@ -26398,12 +35176,20 @@ type UpdateRoutingProfileNameOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileNameOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileNameOutput) GoString() string {
 	return s.String()
 }
@@ -26429,12 +35215,20 @@ type UpdateRoutingProfileQueuesInput struct {
 	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileQueuesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileQueuesInput) GoString() string {
 	return s.String()
 }
@@ -26499,13 +35293,128 @@ type UpdateRoutingProfileQueuesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileQueuesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRoutingProfileQueuesOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateSecurityProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the security profile.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The permissions granted to a security profile.
+	Permissions []*string `type:"list"`
+
+	// The identifier for the security profle.
+	//
+	// SecurityProfileId is a required field
+	SecurityProfileId *string `location:"uri" locationName:"SecurityProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSecurityProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSecurityProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSecurityProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSecurityProfileInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.SecurityProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityProfileId"))
+	}
+	if s.SecurityProfileId != nil && len(*s.SecurityProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateSecurityProfileInput) SetDescription(v string) *UpdateSecurityProfileInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateSecurityProfileInput) SetInstanceId(v string) *UpdateSecurityProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *UpdateSecurityProfileInput) SetPermissions(v []*string) *UpdateSecurityProfileInput {
+	s.Permissions = v
+	return s
+}
+
+// SetSecurityProfileId sets the SecurityProfileId field's value.
+func (s *UpdateSecurityProfileInput) SetSecurityProfileId(v string) *UpdateSecurityProfileInput {
+	s.SecurityProfileId = &v
+	return s
+}
+
+type UpdateSecurityProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSecurityProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSecurityProfileOutput) GoString() string {
 	return s.String()
 }
 
@@ -26529,12 +35438,20 @@ type UpdateUserHierarchyGroupNameInput struct {
 	Name *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserHierarchyGroupNameInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserHierarchyGroupNameInput) GoString() string {
 	return s.String()
 }
@@ -26586,12 +35503,20 @@ type UpdateUserHierarchyGroupNameOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserHierarchyGroupNameOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserHierarchyGroupNameOutput) GoString() string {
 	return s.String()
 }
@@ -26614,12 +35539,20 @@ type UpdateUserHierarchyInput struct {
 	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserHierarchyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserHierarchyInput) GoString() string {
 	return s.String()
 }
@@ -26668,12 +35601,20 @@ type UpdateUserHierarchyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserHierarchyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserHierarchyOutput) GoString() string {
 	return s.String()
 }
@@ -26693,12 +35634,20 @@ type UpdateUserHierarchyStructureInput struct {
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserHierarchyStructureInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserHierarchyStructureInput) GoString() string {
 	return s.String()
 }
@@ -26743,12 +35692,20 @@ type UpdateUserHierarchyStructureOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserHierarchyStructureOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserHierarchyStructureOutput) GoString() string {
 	return s.String()
 }
@@ -26773,12 +35730,20 @@ type UpdateUserIdentityInfoInput struct {
 	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserIdentityInfoInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserIdentityInfoInput) GoString() string {
 	return s.String()
 }
@@ -26835,12 +35800,20 @@ type UpdateUserIdentityInfoOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserIdentityInfoOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserIdentityInfoOutput) GoString() string {
 	return s.String()
 }
@@ -26865,12 +35838,20 @@ type UpdateUserPhoneConfigInput struct {
 	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserPhoneConfigInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserPhoneConfigInput) GoString() string {
 	return s.String()
 }
@@ -26927,12 +35908,20 @@ type UpdateUserPhoneConfigOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserPhoneConfigOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserPhoneConfigOutput) GoString() string {
 	return s.String()
 }
@@ -26957,12 +35946,20 @@ type UpdateUserRoutingProfileInput struct {
 	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserRoutingProfileInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserRoutingProfileInput) GoString() string {
 	return s.String()
 }
@@ -27014,12 +36011,20 @@ type UpdateUserRoutingProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserRoutingProfileOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserRoutingProfileOutput) GoString() string {
 	return s.String()
 }
@@ -27044,12 +36049,20 @@ type UpdateUserSecurityProfilesInput struct {
 	UserId *string `location:"uri" locationName:"UserId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserSecurityProfilesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserSecurityProfilesInput) GoString() string {
 	return s.String()
 }
@@ -27104,14 +36117,63 @@ type UpdateUserSecurityProfilesOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserSecurityProfilesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserSecurityProfilesOutput) GoString() string {
 	return s.String()
+}
+
+// The URL reference.
+type UrlReference struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier of the URL reference.
+	Name *string `min:"1" type:"string"`
+
+	// A valid URL.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UrlReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UrlReference) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *UrlReference) SetName(v string) *UrlReference {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *UrlReference) SetValue(v string) *UrlReference {
+	s.Value = &v
+	return s
 }
 
 // Contains the use case.
@@ -27124,17 +36186,25 @@ type UseCase struct {
 	// The identifier for the use case.
 	UseCaseId *string `min:"1" type:"string"`
 
-	// The type of use case to associate to the AppIntegration association. Each
-	// AppIntegration association can have only one of each use case type.
+	// The type of use case to associate to the integration association. Each integration
+	// association can have only one of each use case type.
 	UseCaseType *string `type:"string" enum:"UseCaseType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UseCase) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UseCase) GoString() string {
 	return s.String()
 }
@@ -27192,12 +36262,20 @@ type User struct {
 	Username *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s User) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s User) GoString() string {
 	return s.String()
 }
@@ -27279,12 +36357,20 @@ type UserIdentityInfo struct {
 	LastName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserIdentityInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserIdentityInfo) GoString() string {
 	return s.String()
 }
@@ -27331,12 +36417,20 @@ type UserNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserNotFoundException) GoString() string {
 	return s.String()
 }
@@ -27398,12 +36492,20 @@ type UserPhoneConfig struct {
 	PhoneType *string `type:"string" required:"true" enum:"PhoneType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserPhoneConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserPhoneConfig) GoString() string {
 	return s.String()
 }
@@ -27461,12 +36563,20 @@ type UserQuickConnectConfig struct {
 	UserId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserQuickConnectConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserQuickConnectConfig) GoString() string {
 	return s.String()
 }
@@ -27513,12 +36623,20 @@ type UserSummary struct {
 	Username *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserSummary) GoString() string {
 	return s.String()
 }
@@ -27541,6 +36659,226 @@ func (s *UserSummary) SetUsername(v string) *UserSummary {
 	return s
 }
 
+// Contains information about a custom vocabulary.
+type Vocabulary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the custom vocabulary.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The content of the custom vocabulary in plain-text format with a table of
+	// values. Each row in the table represents a word or a phrase, described with
+	// Phrase, IPA, SoundsLike, and DisplayAs fields. Separate the fields with TAB
+	// characters. For more information, see Create a custom vocabulary using a
+	// table (https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html#create-vocabulary-table).
+	Content *string `min:"1" type:"string"`
+
+	// The reason why the custom vocabulary was not created.
+	FailureReason *string `type:"string"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"VocabularyLanguageCode"`
+
+	// The timestamp when the custom vocabulary was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// A unique name of the custom vocabulary.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The current state of the custom vocabulary.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"VocabularyState"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Vocabulary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Vocabulary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Vocabulary) SetArn(v string) *Vocabulary {
+	s.Arn = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *Vocabulary) SetContent(v string) *Vocabulary {
+	s.Content = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *Vocabulary) SetFailureReason(v string) *Vocabulary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Vocabulary) SetId(v string) *Vocabulary {
+	s.Id = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *Vocabulary) SetLanguageCode(v string) *Vocabulary {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Vocabulary) SetLastModifiedTime(v time.Time) *Vocabulary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Vocabulary) SetName(v string) *Vocabulary {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Vocabulary) SetState(v string) *Vocabulary {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Vocabulary) SetTags(v map[string]*string) *Vocabulary {
+	s.Tags = v
+	return s
+}
+
+// Contains summary information about the custom vocabulary.
+type VocabularySummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the custom vocabulary.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The reason why the custom vocabulary was not created.
+	FailureReason *string `type:"string"`
+
+	// The identifier of the custom vocabulary.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see What is Amazon Transcribe? (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-whatis.html)
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"VocabularyLanguageCode"`
+
+	// The timestamp when the custom vocabulary was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// A unique name of the custom vocabulary.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The current state of the custom vocabulary.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"VocabularyState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VocabularySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VocabularySummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *VocabularySummary) SetArn(v string) *VocabularySummary {
+	s.Arn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *VocabularySummary) SetFailureReason(v string) *VocabularySummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *VocabularySummary) SetId(v string) *VocabularySummary {
+	s.Id = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *VocabularySummary) SetLanguageCode(v string) *VocabularySummary {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *VocabularySummary) SetLastModifiedTime(v time.Time) *VocabularySummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *VocabularySummary) SetName(v string) *VocabularySummary {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *VocabularySummary) SetState(v string) *VocabularySummary {
+	s.State = &v
+	return s
+}
+
 // Contains information about the recording configuration settings.
 type VoiceRecordingConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -27549,12 +36887,20 @@ type VoiceRecordingConfiguration struct {
 	VoiceRecordingTrack *string `type:"string" enum:"VoiceRecordingTrack"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VoiceRecordingConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VoiceRecordingConfiguration) GoString() string {
 	return s.String()
 }
@@ -27634,6 +36980,54 @@ func Comparison_Values() []string {
 }
 
 const (
+	// ContactFlowModuleStateActive is a ContactFlowModuleState enum value
+	ContactFlowModuleStateActive = "ACTIVE"
+
+	// ContactFlowModuleStateArchived is a ContactFlowModuleState enum value
+	ContactFlowModuleStateArchived = "ARCHIVED"
+)
+
+// ContactFlowModuleState_Values returns all elements of the ContactFlowModuleState enum
+func ContactFlowModuleState_Values() []string {
+	return []string{
+		ContactFlowModuleStateActive,
+		ContactFlowModuleStateArchived,
+	}
+}
+
+const (
+	// ContactFlowModuleStatusPublished is a ContactFlowModuleStatus enum value
+	ContactFlowModuleStatusPublished = "PUBLISHED"
+
+	// ContactFlowModuleStatusSaved is a ContactFlowModuleStatus enum value
+	ContactFlowModuleStatusSaved = "SAVED"
+)
+
+// ContactFlowModuleStatus_Values returns all elements of the ContactFlowModuleStatus enum
+func ContactFlowModuleStatus_Values() []string {
+	return []string{
+		ContactFlowModuleStatusPublished,
+		ContactFlowModuleStatusSaved,
+	}
+}
+
+const (
+	// ContactFlowStateActive is a ContactFlowState enum value
+	ContactFlowStateActive = "ACTIVE"
+
+	// ContactFlowStateArchived is a ContactFlowState enum value
+	ContactFlowStateArchived = "ARCHIVED"
+)
+
+// ContactFlowState_Values returns all elements of the ContactFlowState enum
+func ContactFlowState_Values() []string {
+	return []string{
+		ContactFlowStateActive,
+		ContactFlowStateArchived,
+	}
+}
+
+const (
 	// ContactFlowTypeContactFlow is a ContactFlowType enum value
 	ContactFlowTypeContactFlow = "CONTACT_FLOW"
 
@@ -27674,6 +37068,38 @@ func ContactFlowType_Values() []string {
 		ContactFlowTypeOutboundWhisper,
 		ContactFlowTypeAgentTransfer,
 		ContactFlowTypeQueueTransfer,
+	}
+}
+
+const (
+	// ContactInitiationMethodInbound is a ContactInitiationMethod enum value
+	ContactInitiationMethodInbound = "INBOUND"
+
+	// ContactInitiationMethodOutbound is a ContactInitiationMethod enum value
+	ContactInitiationMethodOutbound = "OUTBOUND"
+
+	// ContactInitiationMethodTransfer is a ContactInitiationMethod enum value
+	ContactInitiationMethodTransfer = "TRANSFER"
+
+	// ContactInitiationMethodQueueTransfer is a ContactInitiationMethod enum value
+	ContactInitiationMethodQueueTransfer = "QUEUE_TRANSFER"
+
+	// ContactInitiationMethodCallback is a ContactInitiationMethod enum value
+	ContactInitiationMethodCallback = "CALLBACK"
+
+	// ContactInitiationMethodApi is a ContactInitiationMethod enum value
+	ContactInitiationMethodApi = "API"
+)
+
+// ContactInitiationMethod_Values returns all elements of the ContactInitiationMethod enum
+func ContactInitiationMethod_Values() []string {
+	return []string{
+		ContactInitiationMethodInbound,
+		ContactInitiationMethodOutbound,
+		ContactInitiationMethodTransfer,
+		ContactInitiationMethodQueueTransfer,
+		ContactInitiationMethodCallback,
+		ContactInitiationMethodApi,
 	}
 }
 
@@ -28022,12 +37448,28 @@ func InstanceStorageResourceType_Values() []string {
 const (
 	// IntegrationTypeEvent is a IntegrationType enum value
 	IntegrationTypeEvent = "EVENT"
+
+	// IntegrationTypeVoiceId is a IntegrationType enum value
+	IntegrationTypeVoiceId = "VOICE_ID"
+
+	// IntegrationTypePinpointApp is a IntegrationType enum value
+	IntegrationTypePinpointApp = "PINPOINT_APP"
+
+	// IntegrationTypeWisdomAssistant is a IntegrationType enum value
+	IntegrationTypeWisdomAssistant = "WISDOM_ASSISTANT"
+
+	// IntegrationTypeWisdomKnowledgeBase is a IntegrationType enum value
+	IntegrationTypeWisdomKnowledgeBase = "WISDOM_KNOWLEDGE_BASE"
 )
 
 // IntegrationType_Values returns all elements of the IntegrationType enum
 func IntegrationType_Values() []string {
 	return []string{
 		IntegrationTypeEvent,
+		IntegrationTypeVoiceId,
+		IntegrationTypePinpointApp,
+		IntegrationTypeWisdomAssistant,
+		IntegrationTypeWisdomKnowledgeBase,
 	}
 }
 
@@ -29088,14 +38530,34 @@ func QuickConnectType_Values() []string {
 }
 
 const (
+	// ReferenceStatusApproved is a ReferenceStatus enum value
+	ReferenceStatusApproved = "APPROVED"
+
+	// ReferenceStatusRejected is a ReferenceStatus enum value
+	ReferenceStatusRejected = "REJECTED"
+)
+
+// ReferenceStatus_Values returns all elements of the ReferenceStatus enum
+func ReferenceStatus_Values() []string {
+	return []string{
+		ReferenceStatusApproved,
+		ReferenceStatusRejected,
+	}
+}
+
+const (
 	// ReferenceTypeUrl is a ReferenceType enum value
 	ReferenceTypeUrl = "URL"
+
+	// ReferenceTypeAttachment is a ReferenceType enum value
+	ReferenceTypeAttachment = "ATTACHMENT"
 )
 
 // ReferenceType_Values returns all elements of the ReferenceType enum
 func ReferenceType_Values() []string {
 	return []string{
 		ReferenceTypeUrl,
+		ReferenceTypeAttachment,
 	}
 }
 
@@ -29196,6 +38658,22 @@ func StorageType_Values() []string {
 }
 
 const (
+	// TrafficTypeGeneral is a TrafficType enum value
+	TrafficTypeGeneral = "GENERAL"
+
+	// TrafficTypeCampaign is a TrafficType enum value
+	TrafficTypeCampaign = "CAMPAIGN"
+)
+
+// TrafficType_Values returns all elements of the TrafficType enum
+func TrafficType_Values() []string {
+	return []string{
+		TrafficTypeGeneral,
+		TrafficTypeCampaign,
+	}
+}
+
+const (
 	// UnitSeconds is a Unit enum value
 	UnitSeconds = "SECONDS"
 
@@ -29218,12 +38696,132 @@ func Unit_Values() []string {
 const (
 	// UseCaseTypeRulesEvaluation is a UseCaseType enum value
 	UseCaseTypeRulesEvaluation = "RULES_EVALUATION"
+
+	// UseCaseTypeConnectCampaigns is a UseCaseType enum value
+	UseCaseTypeConnectCampaigns = "CONNECT_CAMPAIGNS"
 )
 
 // UseCaseType_Values returns all elements of the UseCaseType enum
 func UseCaseType_Values() []string {
 	return []string{
 		UseCaseTypeRulesEvaluation,
+		UseCaseTypeConnectCampaigns,
+	}
+}
+
+const (
+	// VocabularyLanguageCodeArAe is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeArAe = "ar-AE"
+
+	// VocabularyLanguageCodeDeCh is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeDeCh = "de-CH"
+
+	// VocabularyLanguageCodeDeDe is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeDeDe = "de-DE"
+
+	// VocabularyLanguageCodeEnAb is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnAb = "en-AB"
+
+	// VocabularyLanguageCodeEnAu is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnAu = "en-AU"
+
+	// VocabularyLanguageCodeEnGb is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnGb = "en-GB"
+
+	// VocabularyLanguageCodeEnIe is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnIe = "en-IE"
+
+	// VocabularyLanguageCodeEnIn is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnIn = "en-IN"
+
+	// VocabularyLanguageCodeEnUs is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnUs = "en-US"
+
+	// VocabularyLanguageCodeEnWl is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEnWl = "en-WL"
+
+	// VocabularyLanguageCodeEsEs is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEsEs = "es-ES"
+
+	// VocabularyLanguageCodeEsUs is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeEsUs = "es-US"
+
+	// VocabularyLanguageCodeFrCa is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeFrCa = "fr-CA"
+
+	// VocabularyLanguageCodeFrFr is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeFrFr = "fr-FR"
+
+	// VocabularyLanguageCodeHiIn is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeHiIn = "hi-IN"
+
+	// VocabularyLanguageCodeItIt is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeItIt = "it-IT"
+
+	// VocabularyLanguageCodeJaJp is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeJaJp = "ja-JP"
+
+	// VocabularyLanguageCodeKoKr is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeKoKr = "ko-KR"
+
+	// VocabularyLanguageCodePtBr is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodePtBr = "pt-BR"
+
+	// VocabularyLanguageCodePtPt is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodePtPt = "pt-PT"
+
+	// VocabularyLanguageCodeZhCn is a VocabularyLanguageCode enum value
+	VocabularyLanguageCodeZhCn = "zh-CN"
+)
+
+// VocabularyLanguageCode_Values returns all elements of the VocabularyLanguageCode enum
+func VocabularyLanguageCode_Values() []string {
+	return []string{
+		VocabularyLanguageCodeArAe,
+		VocabularyLanguageCodeDeCh,
+		VocabularyLanguageCodeDeDe,
+		VocabularyLanguageCodeEnAb,
+		VocabularyLanguageCodeEnAu,
+		VocabularyLanguageCodeEnGb,
+		VocabularyLanguageCodeEnIe,
+		VocabularyLanguageCodeEnIn,
+		VocabularyLanguageCodeEnUs,
+		VocabularyLanguageCodeEnWl,
+		VocabularyLanguageCodeEsEs,
+		VocabularyLanguageCodeEsUs,
+		VocabularyLanguageCodeFrCa,
+		VocabularyLanguageCodeFrFr,
+		VocabularyLanguageCodeHiIn,
+		VocabularyLanguageCodeItIt,
+		VocabularyLanguageCodeJaJp,
+		VocabularyLanguageCodeKoKr,
+		VocabularyLanguageCodePtBr,
+		VocabularyLanguageCodePtPt,
+		VocabularyLanguageCodeZhCn,
+	}
+}
+
+const (
+	// VocabularyStateCreationInProgress is a VocabularyState enum value
+	VocabularyStateCreationInProgress = "CREATION_IN_PROGRESS"
+
+	// VocabularyStateActive is a VocabularyState enum value
+	VocabularyStateActive = "ACTIVE"
+
+	// VocabularyStateCreationFailed is a VocabularyState enum value
+	VocabularyStateCreationFailed = "CREATION_FAILED"
+
+	// VocabularyStateDeleteInProgress is a VocabularyState enum value
+	VocabularyStateDeleteInProgress = "DELETE_IN_PROGRESS"
+)
+
+// VocabularyState_Values returns all elements of the VocabularyState enum
+func VocabularyState_Values() []string {
+	return []string{
+		VocabularyStateCreationInProgress,
+		VocabularyStateActive,
+		VocabularyStateCreationFailed,
+		VocabularyStateDeleteInProgress,
 	}
 }
 
