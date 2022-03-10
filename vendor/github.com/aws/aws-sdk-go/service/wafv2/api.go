@@ -1792,6 +1792,114 @@ func (c *WAFV2) DisassociateWebACLWithContext(ctx aws.Context, input *Disassocia
 	return out, req.Send()
 }
 
+const opGenerateMobileSdkReleaseUrl = "GenerateMobileSdkReleaseUrl"
+
+// GenerateMobileSdkReleaseUrlRequest generates a "aws/request.Request" representing the
+// client's request for the GenerateMobileSdkReleaseUrl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GenerateMobileSdkReleaseUrl for more information on using the GenerateMobileSdkReleaseUrl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GenerateMobileSdkReleaseUrlRequest method.
+//    req, resp := client.GenerateMobileSdkReleaseUrlRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GenerateMobileSdkReleaseUrl
+func (c *WAFV2) GenerateMobileSdkReleaseUrlRequest(input *GenerateMobileSdkReleaseUrlInput) (req *request.Request, output *GenerateMobileSdkReleaseUrlOutput) {
+	op := &request.Operation{
+		Name:       opGenerateMobileSdkReleaseUrl,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GenerateMobileSdkReleaseUrlInput{}
+	}
+
+	output = &GenerateMobileSdkReleaseUrlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GenerateMobileSdkReleaseUrl API operation for AWS WAFV2.
+//
+// Generates a presigned download URL for the specified release of the mobile
+// SDK.
+//
+// The mobile SDK is not generally available. Customers who have access to the
+// mobile SDK can use it to establish and manage Security Token Service (STS)
+// security tokens for use in HTTP(S) requests from a mobile device to WAF.
+// For more information, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation GenerateMobileSdkReleaseUrl for usage and error information.
+//
+// Returned Error Types:
+//   * WAFInternalErrorException
+//   Your request is valid, but WAF couldn’t perform the operation because of
+//   a system problem. Retry your request.
+//
+//   * WAFNonexistentItemException
+//   WAF couldn’t perform the operation because your resource doesn’t exist.
+//
+//   * WAFInvalidParameterException
+//   The operation failed because WAF didn't recognize a parameter in the request.
+//   For example:
+//
+//      * You specified a parameter name or value that isn't valid.
+//
+//      * Your nested statement isn't valid. You might have tried to nest a statement
+//      that can’t be nested.
+//
+//      * You tried to update a WebACL with a DefaultAction that isn't among the
+//      types available at DefaultAction.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource with which a web ACL can't be associated.
+//
+//   * WAFInvalidOperationException
+//   The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GenerateMobileSdkReleaseUrl
+func (c *WAFV2) GenerateMobileSdkReleaseUrl(input *GenerateMobileSdkReleaseUrlInput) (*GenerateMobileSdkReleaseUrlOutput, error) {
+	req, out := c.GenerateMobileSdkReleaseUrlRequest(input)
+	return out, req.Send()
+}
+
+// GenerateMobileSdkReleaseUrlWithContext is the same as GenerateMobileSdkReleaseUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GenerateMobileSdkReleaseUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) GenerateMobileSdkReleaseUrlWithContext(ctx aws.Context, input *GenerateMobileSdkReleaseUrlInput, opts ...request.Option) (*GenerateMobileSdkReleaseUrlOutput, error) {
+	req, out := c.GenerateMobileSdkReleaseUrlRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetIPSet = "GetIPSet"
 
 // GetIPSetRequest generates a "aws/request.Request" representing the
@@ -2041,7 +2149,7 @@ func (c *WAFV2) GetManagedRuleSetRequest(input *GetManagedRuleSetInput) (req *re
 // Retrieves the specified managed rule set.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -2098,6 +2206,114 @@ func (c *WAFV2) GetManagedRuleSet(input *GetManagedRuleSetInput) (*GetManagedRul
 // for more information on using Contexts.
 func (c *WAFV2) GetManagedRuleSetWithContext(ctx aws.Context, input *GetManagedRuleSetInput, opts ...request.Option) (*GetManagedRuleSetOutput, error) {
 	req, out := c.GetManagedRuleSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMobileSdkRelease = "GetMobileSdkRelease"
+
+// GetMobileSdkReleaseRequest generates a "aws/request.Request" representing the
+// client's request for the GetMobileSdkRelease operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMobileSdkRelease for more information on using the GetMobileSdkRelease
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMobileSdkReleaseRequest method.
+//    req, resp := client.GetMobileSdkReleaseRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetMobileSdkRelease
+func (c *WAFV2) GetMobileSdkReleaseRequest(input *GetMobileSdkReleaseInput) (req *request.Request, output *GetMobileSdkReleaseOutput) {
+	op := &request.Operation{
+		Name:       opGetMobileSdkRelease,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetMobileSdkReleaseInput{}
+	}
+
+	output = &GetMobileSdkReleaseOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMobileSdkRelease API operation for AWS WAFV2.
+//
+// Retrieves information for the specified mobile SDK release, including release
+// notes and tags.
+//
+// The mobile SDK is not generally available. Customers who have access to the
+// mobile SDK can use it to establish and manage Security Token Service (STS)
+// security tokens for use in HTTP(S) requests from a mobile device to WAF.
+// For more information, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation GetMobileSdkRelease for usage and error information.
+//
+// Returned Error Types:
+//   * WAFInternalErrorException
+//   Your request is valid, but WAF couldn’t perform the operation because of
+//   a system problem. Retry your request.
+//
+//   * WAFNonexistentItemException
+//   WAF couldn’t perform the operation because your resource doesn’t exist.
+//
+//   * WAFInvalidParameterException
+//   The operation failed because WAF didn't recognize a parameter in the request.
+//   For example:
+//
+//      * You specified a parameter name or value that isn't valid.
+//
+//      * Your nested statement isn't valid. You might have tried to nest a statement
+//      that can’t be nested.
+//
+//      * You tried to update a WebACL with a DefaultAction that isn't among the
+//      types available at DefaultAction.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource with which a web ACL can't be associated.
+//
+//   * WAFInvalidOperationException
+//   The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetMobileSdkRelease
+func (c *WAFV2) GetMobileSdkRelease(input *GetMobileSdkReleaseInput) (*GetMobileSdkReleaseOutput, error) {
+	req, out := c.GetMobileSdkReleaseRequest(input)
+	return out, req.Send()
+}
+
+// GetMobileSdkReleaseWithContext is the same as GetMobileSdkRelease with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMobileSdkRelease for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) GetMobileSdkReleaseWithContext(ctx aws.Context, input *GetMobileSdkReleaseInput, opts ...request.Option) (*GetMobileSdkReleaseOutput, error) {
+	req, out := c.GetMobileSdkReleaseRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2247,10 +2463,22 @@ func (c *WAFV2) GetRateBasedStatementManagedKeysRequest(input *GetRateBasedState
 
 // GetRateBasedStatementManagedKeys API operation for AWS WAFV2.
 //
-// Retrieves the keys that are currently blocked by a rate-based rule. The maximum
-// number of managed keys that can be blocked for a single rate-based rule is
-// 10,000. If more than 10,000 addresses exceed the rate limit, those with the
-// highest rates are blocked.
+// Retrieves the keys that are currently blocked by a rate-based rule instance.
+// The maximum number of managed keys that can be blocked for a single rate-based
+// rule instance is 10,000. If more than 10,000 addresses exceed the rate limit,
+// those with the highest rates are blocked.
+//
+// For a rate-based rule that you've defined inside a rule group, provide the
+// name of the rule group reference statement in your request, in addition to
+// the rate-based rule name and the web ACL name.
+//
+// WAF monitors web requests and manages keys independently for each unique
+// combination of web ACL, optional rule group, and rate-based rule. For example,
+// if you define a rate-based rule inside a rule group, and then use the rule
+// group in a web ACL, WAF monitors web requests and manages keys for that web
+// ACL, rule group reference statement, and rate-based rule instance. If you
+// use the same rule group in a second web ACL, WAF monitors web requests and
+// manages keys for this second usage completely independent of your first.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2966,7 +3194,8 @@ func (c *WAFV2) ListAvailableManagedRuleGroupsRequest(input *ListAvailableManage
 //
 // Retrieves an array of managed rule groups that are available for you to use.
 // This list includes all Amazon Web Services Managed Rules rule groups and
-// all of the Marketplace managed rule groups that you're subscribed to.
+// all of the Amazon Web Services Marketplace managed rule groups that you're
+// subscribed to.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3263,7 +3492,7 @@ func (c *WAFV2) ListManagedRuleSetsRequest(input *ListManagedRuleSetsInput) (req
 // Retrieves the managed rule sets that you own.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -3317,6 +3546,111 @@ func (c *WAFV2) ListManagedRuleSets(input *ListManagedRuleSetsInput) (*ListManag
 // for more information on using Contexts.
 func (c *WAFV2) ListManagedRuleSetsWithContext(ctx aws.Context, input *ListManagedRuleSetsInput, opts ...request.Option) (*ListManagedRuleSetsOutput, error) {
 	req, out := c.ListManagedRuleSetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListMobileSdkReleases = "ListMobileSdkReleases"
+
+// ListMobileSdkReleasesRequest generates a "aws/request.Request" representing the
+// client's request for the ListMobileSdkReleases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMobileSdkReleases for more information on using the ListMobileSdkReleases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMobileSdkReleasesRequest method.
+//    req, resp := client.ListMobileSdkReleasesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListMobileSdkReleases
+func (c *WAFV2) ListMobileSdkReleasesRequest(input *ListMobileSdkReleasesInput) (req *request.Request, output *ListMobileSdkReleasesOutput) {
+	op := &request.Operation{
+		Name:       opListMobileSdkReleases,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListMobileSdkReleasesInput{}
+	}
+
+	output = &ListMobileSdkReleasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMobileSdkReleases API operation for AWS WAFV2.
+//
+// Retrieves a list of the available releases for the mobile SDK and the specified
+// device platform.
+//
+// The mobile SDK is not generally available. Customers who have access to the
+// mobile SDK can use it to establish and manage Security Token Service (STS)
+// security tokens for use in HTTP(S) requests from a mobile device to WAF.
+// For more information, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation ListMobileSdkReleases for usage and error information.
+//
+// Returned Error Types:
+//   * WAFInternalErrorException
+//   Your request is valid, but WAF couldn’t perform the operation because of
+//   a system problem. Retry your request.
+//
+//   * WAFInvalidParameterException
+//   The operation failed because WAF didn't recognize a parameter in the request.
+//   For example:
+//
+//      * You specified a parameter name or value that isn't valid.
+//
+//      * Your nested statement isn't valid. You might have tried to nest a statement
+//      that can’t be nested.
+//
+//      * You tried to update a WebACL with a DefaultAction that isn't among the
+//      types available at DefaultAction.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource with which a web ACL can't be associated.
+//
+//   * WAFInvalidOperationException
+//   The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListMobileSdkReleases
+func (c *WAFV2) ListMobileSdkReleases(input *ListMobileSdkReleasesInput) (*ListMobileSdkReleasesOutput, error) {
+	req, out := c.ListMobileSdkReleasesRequest(input)
+	return out, req.Send()
+}
+
+// ListMobileSdkReleasesWithContext is the same as ListMobileSdkReleases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMobileSdkReleases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) ListMobileSdkReleasesWithContext(ctx aws.Context, input *ListMobileSdkReleasesInput, opts ...request.Option) (*ListMobileSdkReleasesOutput, error) {
+	req, out := c.ListMobileSdkReleasesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3884,26 +4218,30 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 // Enables the specified LoggingConfiguration, to start logging from a web ACL,
 // according to the configuration provided.
 //
-// You can access information about all traffic that WAF inspects using the
+// You can define one logging destination per web ACL.
+//
+// You can access information about the traffic that WAF inspects using the
 // following steps:
 //
-// Create an Amazon Kinesis Data Firehose.
+// Create your logging destination. You can use an Amazon CloudWatch Logs log
+// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
+// Kinesis Data Firehose. For information about configuring logging destinations
+// and the permissions that are required for each, see Logging web ACL traffic
+// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// in the WAF Developer Guide.
 //
-// Create the data firehose with a PUT source and in the Region that you are
-// operating. If you are capturing logs for Amazon CloudFront, always create
-// the firehose in US East (N. Virginia).
-//
-// Give the data firehose a name that starts with the prefix aws-waf-logs-.
-// For example, aws-waf-logs-us-east-2-analytics.
-//
-// Do not create the data firehose using a Kinesis stream as your source.
-//
-// Associate that firehose to your web ACL using a PutLoggingConfiguration request.
+// Associate your logging destination to your web ACL using a PutLoggingConfiguration
+// request.
 //
 // When you successfully enable logging using a PutLoggingConfiguration request,
-// WAF will create a service linked role with the necessary permissions to write
-// logs to the Amazon Kinesis Data Firehose. For more information, see Logging
-// Web ACL Traffic Information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// WAF creates an additional role or policy that is required to write logs to
+// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates
+// a resource policy on the log group. For an Amazon S3 bucket, WAF creates
+// a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
+// role.
+//
+// For additional information about web ACL logging, see Logging web ACL traffic
+// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
 // in the WAF Developer Guide.
 //
 // This operation completely replaces the mutable specifications that you already
@@ -3965,6 +4303,12 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 //   For example, the maximum number of WebACL objects that you can create for
 //   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
+//
+//   * WAFLogDestinationPermissionIssueException
+//   The operation failed because you don't have the permissions that your logging
+//   configuration requires. For information, see Logging web ACL traffic information
+//   (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html) in the
+//   WAF Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/PutLoggingConfiguration
 func (c *WAFV2) PutLoggingConfiguration(input *PutLoggingConfigurationInput) (*PutLoggingConfigurationOutput, error) {
@@ -4036,7 +4380,7 @@ func (c *WAFV2) PutManagedRuleSetVersionsRequest(input *PutManagedRuleSetVersion
 // customers. Customers see your offerings as managed rule groups with versioning.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -4649,7 +4993,7 @@ func (c *WAFV2) UpdateManagedRuleSetVersionExpiryDateRequest(input *UpdateManage
 // for the managed rule group.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -5130,12 +5474,20 @@ type ActionCondition struct {
 	Action *string `type:"string" required:"true" enum:"ActionValue"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionCondition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActionCondition) GoString() string {
 	return s.String()
 }
@@ -5165,16 +5517,26 @@ func (s *ActionCondition) SetAction(v string) *ActionCondition {
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// JSON specification: "All": {}
 type All struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s All) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s All) GoString() string {
 	return s.String()
 }
@@ -5183,16 +5545,26 @@ func (s All) GoString() string {
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// JSON specification: "AllQueryArguments": {}
 type AllQueryArguments struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllQueryArguments) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllQueryArguments) GoString() string {
 	return s.String()
 }
@@ -5213,12 +5585,20 @@ type AllowAction struct {
 	CustomRequestHandling *CustomRequestHandling `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllowAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllowAction) GoString() string {
 	return s.String()
 }
@@ -5256,12 +5636,20 @@ type AndStatement struct {
 	Statements []*Statement `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AndStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AndStatement) GoString() string {
 	return s.String()
 }
@@ -5309,12 +5697,20 @@ type AssociateWebACLInput struct {
 	WebACLArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateWebACLInput) GoString() string {
 	return s.String()
 }
@@ -5357,12 +5753,20 @@ type AssociateWebACLOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateWebACLOutput) GoString() string {
 	return s.String()
 }
@@ -5383,12 +5787,20 @@ type BlockAction struct {
 	CustomResponse *CustomResponse `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlockAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BlockAction) GoString() string {
 	return s.String()
 }
@@ -5418,16 +5830,26 @@ func (s *BlockAction) SetCustomResponse(v *CustomResponse) *BlockAction {
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// JSON specification: "Body": {}
 type Body struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Body) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Body) GoString() string {
 	return s.String()
 }
@@ -5517,7 +5939,6 @@ type ByteMatchStatement struct {
 	//
 	// The value that you want WAF to search for. The SDK automatically base64 encodes
 	// the value.
-	//
 	// SearchString is automatically base64 encoded/decoded by the SDK.
 	//
 	// SearchString is a required field
@@ -5533,12 +5954,20 @@ type ByteMatchStatement struct {
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ByteMatchStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ByteMatchStatement) GoString() string {
 	return s.String()
 }
@@ -5607,6 +6036,179 @@ func (s *ByteMatchStatement) SetTextTransformations(v []*TextTransformation) *By
 	return s
 }
 
+// Specifies that WAF should run a CAPTCHA check against the request:
+//
+//    * If the request includes a valid, unexpired CAPTCHA token, WAF allows
+//    the web request inspection to proceed to the next rule, similar to a CountAction.
+//
+//    * If the request doesn't include a valid, unexpired CAPTCHA token, WAF
+//    discontinues the web ACL evaluation of the request and blocks it from
+//    going to its intended destination. WAF generates a response that it sends
+//    back to the client, which includes the following: The header x-amzn-waf-action
+//    with a value of captcha. The HTTP status code 405 Method Not Allowed.
+//    If the request contains an Accept header with a value of text/html, the
+//    response includes a CAPTCHA challenge.
+//
+// You can configure the expiration time in the CaptchaConfig ImmunityTimeProperty
+// setting at the rule and web ACL level. The rule setting overrides the web
+// ACL setting.
+//
+// This action option is available for rules. It isn't available for web ACL
+// default actions.
+//
+// This is used in the context of other settings, for example to specify values
+// for RuleAction and web ACL DefaultAction.
+type CaptchaAction struct {
+	_ struct{} `type:"structure"`
+
+	// Defines custom handling for the web request.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomRequestHandling *CustomRequestHandling `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CaptchaAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CaptchaAction"}
+	if s.CustomRequestHandling != nil {
+		if err := s.CustomRequestHandling.Validate(); err != nil {
+			invalidParams.AddNested("CustomRequestHandling", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomRequestHandling sets the CustomRequestHandling field's value.
+func (s *CaptchaAction) SetCustomRequestHandling(v *CustomRequestHandling) *CaptchaAction {
+	s.CustomRequestHandling = v
+	return s
+}
+
+// Specifies how WAF should handle CAPTCHA evaluations. This is available at
+// the web ACL level and in each rule.
+type CaptchaConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Determines how long a CAPTCHA token remains valid after the client successfully
+	// solves a CAPTCHA puzzle.
+	ImmunityTimeProperty *ImmunityTimeProperty `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CaptchaConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CaptchaConfig"}
+	if s.ImmunityTimeProperty != nil {
+		if err := s.ImmunityTimeProperty.Validate(); err != nil {
+			invalidParams.AddNested("ImmunityTimeProperty", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImmunityTimeProperty sets the ImmunityTimeProperty field's value.
+func (s *CaptchaConfig) SetImmunityTimeProperty(v *ImmunityTimeProperty) *CaptchaConfig {
+	s.ImmunityTimeProperty = v
+	return s
+}
+
+// The result from the inspection of the web request for a valid CAPTCHA token.
+type CaptchaResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The reason for failure, populated when the evaluation of the token fails.
+	FailureReason *string `type:"string" enum:"FailureReason"`
+
+	// The HTTP response code indicating the status of the CAPTCHA token in the
+	// web request. If the token is missing, invalid, or expired, this code is 405
+	// Method Not Allowed.
+	ResponseCode *int64 `type:"integer"`
+
+	// The time that the CAPTCHA puzzle was solved for the supplied token.
+	SolveTimestamp *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaResponse) GoString() string {
+	return s.String()
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *CaptchaResponse) SetFailureReason(v string) *CaptchaResponse {
+	s.FailureReason = &v
+	return s
+}
+
+// SetResponseCode sets the ResponseCode field's value.
+func (s *CaptchaResponse) SetResponseCode(v int64) *CaptchaResponse {
+	s.ResponseCode = &v
+	return s
+}
+
+// SetSolveTimestamp sets the SolveTimestamp field's value.
+func (s *CaptchaResponse) SetSolveTimestamp(v int64) *CaptchaResponse {
+	s.SolveTimestamp = &v
+	return s
+}
+
 type CheckCapacityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5631,12 +6233,20 @@ type CheckCapacityInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckCapacityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckCapacityInput) GoString() string {
 	return s.String()
 }
@@ -5686,12 +6296,20 @@ type CheckCapacityOutput struct {
 	Capacity *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckCapacityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CheckCapacityOutput) GoString() string {
 	return s.String()
 }
@@ -5713,12 +6331,20 @@ type Condition struct {
 	LabelNameCondition *LabelNameCondition `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Condition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Condition) GoString() string {
 	return s.String()
 }
@@ -5771,12 +6397,20 @@ type CountAction struct {
 	CustomRequestHandling *CustomRequestHandling `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CountAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CountAction) GoString() string {
 	return s.String()
 }
@@ -5805,11 +6439,11 @@ func (s *CountAction) SetCustomRequestHandling(v *CustomRequestHandling) *CountA
 type CreateIPSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains an array of strings that specify one or more IP addresses or blocks
-	// of IP addresses in Classless Inter-Domain Routing (CIDR) notation. WAF supports
-	// all IPv4 and IPv6 CIDR ranges except for /0.
+	// Contains an array of strings that specifies zero or more IP addresses or
+	// blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
+	// WAF supports all IPv4 and IPv6 CIDR ranges except for /0.
 	//
-	// Examples:
+	// Example address strings:
 	//
 	//    * To configure WAF to allow, block, or count requests that originated
 	//    from the IP address 192.0.2.44, specify 192.0.2.44/32.
@@ -5826,6 +6460,17 @@ type CreateIPSetInput struct {
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+	//
+	// Example JSON Addresses specifications:
+	//
+	//    * Empty array: "Addresses": []
+	//
+	//    * Array with one address: "Addresses": ["192.0.2.44/32"]
+	//
+	//    * Array with three addresses: "Addresses": ["192.0.2.44/32", "192.0.2.0/24",
+	//    "192.0.0.0/16"]
+	//
+	//    * INVALID specification: "Addresses": [""] INVALID
 	//
 	// Addresses is a required field
 	Addresses []*string `type:"list" required:"true"`
@@ -5863,12 +6508,20 @@ type CreateIPSetInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIPSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIPSetInput) GoString() string {
 	return s.String()
 }
@@ -5960,12 +6613,20 @@ type CreateIPSetOutput struct {
 	Summary *IPSetSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIPSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIPSetOutput) GoString() string {
 	return s.String()
 }
@@ -6011,12 +6672,20 @@ type CreateRegexPatternSetInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRegexPatternSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRegexPatternSetInput) GoString() string {
 	return s.String()
 }
@@ -6109,12 +6778,20 @@ type CreateRegexPatternSetOutput struct {
 	Summary *RegexPatternSetSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRegexPatternSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRegexPatternSetOutput) GoString() string {
 	return s.String()
 }
@@ -6199,12 +6876,20 @@ type CreateRuleGroupInput struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -6339,12 +7024,20 @@ type CreateRuleGroupOutput struct {
 	Summary *RuleGroupSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -6357,6 +7050,11 @@ func (s *CreateRuleGroupOutput) SetSummary(v *RuleGroupSummary) *CreateRuleGroup
 
 type CreateWebACLInput struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
+	// have their own CaptchaConfig settings. If you don't specify this, WAF uses
+	// its default settings for CaptchaConfig.
+	CaptchaConfig *CaptchaConfig `type:"structure"`
 
 	// A map of custom response keys and content bodies. When you create a rule
 	// with a block action, you can send a custom response to the web request. You
@@ -6416,12 +7114,20 @@ type CreateWebACLInput struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWebACLInput) GoString() string {
 	return s.String()
 }
@@ -6452,6 +7158,11 @@ func (s *CreateWebACLInput) Validate() error {
 	}
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
+	}
+	if s.CaptchaConfig != nil {
+		if err := s.CaptchaConfig.Validate(); err != nil {
+			invalidParams.AddNested("CaptchaConfig", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.CustomResponseBodies != nil {
 		for i, v := range s.CustomResponseBodies {
@@ -6498,6 +7209,12 @@ func (s *CreateWebACLInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *CreateWebACLInput) SetCaptchaConfig(v *CaptchaConfig) *CreateWebACLInput {
+	s.CaptchaConfig = v
+	return s
 }
 
 // SetCustomResponseBodies sets the CustomResponseBodies field's value.
@@ -6557,12 +7274,20 @@ type CreateWebACLOutput struct {
 	Summary *WebACLSummary `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateWebACLOutput) GoString() string {
 	return s.String()
 }
@@ -6594,12 +7319,20 @@ type CustomHTTPHeader struct {
 	Value *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomHTTPHeader) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomHTTPHeader) GoString() string {
 	return s.String()
 }
@@ -6658,12 +7391,20 @@ type CustomRequestHandling struct {
 	InsertHeaders []*CustomHTTPHeader `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomRequestHandling) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomRequestHandling) GoString() string {
 	return s.String()
 }
@@ -6734,12 +7475,20 @@ type CustomResponse struct {
 	ResponseHeaders []*CustomHTTPHeader `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomResponse) GoString() string {
 	return s.String()
 }
@@ -6817,12 +7566,20 @@ type CustomResponseBody struct {
 	ContentType *string `type:"string" required:"true" enum:"ResponseContentType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomResponseBody) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomResponseBody) GoString() string {
 	return s.String()
 }
@@ -6871,12 +7628,20 @@ type DefaultAction struct {
 	Block *BlockAction `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DefaultAction) GoString() string {
 	return s.String()
 }
@@ -6934,12 +7699,20 @@ type DeleteFirewallManagerRuleGroupsInput struct {
 	WebACLLockToken *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallManagerRuleGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallManagerRuleGroupsInput) GoString() string {
 	return s.String()
 }
@@ -6992,12 +7765,20 @@ type DeleteFirewallManagerRuleGroupsOutput struct {
 	NextWebACLLockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallManagerRuleGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFirewallManagerRuleGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -7051,12 +7832,20 @@ type DeleteIPSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIPSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIPSetInput) GoString() string {
 	return s.String()
 }
@@ -7120,12 +7909,20 @@ type DeleteIPSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIPSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIPSetOutput) GoString() string {
 	return s.String()
 }
@@ -7140,12 +7937,20 @@ type DeleteLoggingConfigurationInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLoggingConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLoggingConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -7176,12 +7981,20 @@ type DeleteLoggingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLoggingConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLoggingConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -7198,12 +8011,20 @@ type DeletePermissionPolicyInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePermissionPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePermissionPolicyInput) GoString() string {
 	return s.String()
 }
@@ -7234,12 +8055,20 @@ type DeletePermissionPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePermissionPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePermissionPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -7286,12 +8115,20 @@ type DeleteRegexPatternSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegexPatternSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegexPatternSetInput) GoString() string {
 	return s.String()
 }
@@ -7355,12 +8192,20 @@ type DeleteRegexPatternSetOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegexPatternSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRegexPatternSetOutput) GoString() string {
 	return s.String()
 }
@@ -7409,12 +8254,20 @@ type DeleteRuleGroupInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -7478,12 +8331,20 @@ type DeleteRuleGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -7532,12 +8393,20 @@ type DeleteWebACLInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebACLInput) GoString() string {
 	return s.String()
 }
@@ -7601,12 +8470,20 @@ type DeleteWebACLOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteWebACLOutput) GoString() string {
 	return s.String()
 }
@@ -7647,12 +8524,20 @@ type DescribeManagedRuleGroupInput struct {
 	VersionName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeManagedRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeManagedRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -7756,12 +8641,20 @@ type DescribeManagedRuleGroupOutput struct {
 	VersionName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeManagedRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeManagedRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -7826,12 +8719,20 @@ type DisassociateWebACLInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateWebACLInput) GoString() string {
 	return s.String()
 }
@@ -7862,34 +8763,51 @@ type DisassociateWebACLOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateWebACLOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies a single rule to exclude from the rule group. Excluding a rule
-// overrides its action setting for the rule group in the web ACL, setting it
-// to COUNT. This effectively excludes the rule from acting on web requests.
+// Specifies a single rule in a rule group whose action you want to override
+// to Count. When you exclude a rule, WAF evaluates it exactly as it would if
+// the rule action setting were Count. This is a useful option for testing the
+// rules in a rule group without modifying how they handle your web traffic.
 type ExcludedRule struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the rule to exclude.
+	// The name of the rule whose action you want to override to Count.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExcludedRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExcludedRule) GoString() string {
 	return s.String()
 }
@@ -7922,6 +8840,14 @@ func (s *ExcludedRule) SetName(v string) *ExcludedRule {
 // in FieldToMatch for each rule statement that requires it. To inspect more
 // than one component of a web request, create a separate rule statement for
 // each component.
+//
+// JSON specification for a QueryString field to match:
+//
+// "FieldToMatch": { "QueryString": {} }
+//
+// Example JSON for a Method field to match specification:
+//
+// "FieldToMatch": { "Method": { "Name": "DELETE" } }
 type FieldToMatch struct {
 	_ struct{} `type:"structure"`
 
@@ -7987,12 +8913,20 @@ type FieldToMatch struct {
 	UriPath *UriPath `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FieldToMatch) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FieldToMatch) GoString() string {
 	return s.String()
 }
@@ -8092,12 +9026,20 @@ type Filter struct {
 	Requirement *string `type:"string" required:"true" enum:"FilterRequirement"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Filter) GoString() string {
 	return s.String()
 }
@@ -8168,21 +9110,17 @@ type FirewallManagerRuleGroup struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The override action to apply to the rules in a rule group. Used only for
-	// rule statements that reference a rule group, like RuleGroupReferenceStatement
-	// and ManagedRuleGroupStatement.
+	// The action to use in the place of the action that results from the rule group
+	// evaluation. Set the override action to none to leave the result of the rule
+	// group alone. Set it to count to override the result to count only.
 	//
-	// Set the override action to none to leave the rule actions in effect. Set
-	// it to count to only count matches, regardless of the rule action settings.
+	// You can only use this for rule statements that reference a rule group, like
+	// RuleGroupReferenceStatement and ManagedRuleGroupStatement.
 	//
-	// In a Rule, you must specify either this OverrideAction setting or the rule
-	// Action setting, but not both:
-	//
-	//    * If the rule statement references a rule group, use this override action
-	//    setting and not the action setting.
-	//
-	//    * If the rule statement does not reference a rule group, use the rule
-	//    action setting and not this rule override action setting.
+	// This option is usually set to none. It does not affect how the rules in the
+	// rule group are evaluated. If you want the rules in the rule group to only
+	// count matches, do not use this and instead exclude those rules in your rule
+	// group reference statement settings.
 	//
 	// OverrideAction is a required field
 	OverrideAction *OverrideAction `type:"structure" required:"true"`
@@ -8201,12 +9139,20 @@ type FirewallManagerRuleGroup struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallManagerRuleGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallManagerRuleGroup) GoString() string {
 	return s.String()
 }
@@ -8260,17 +9206,25 @@ type FirewallManagerStatement struct {
 	// rule group in this statement.
 	//
 	// You cannot nest a RuleGroupReferenceStatement, for example for use inside
-	// a NotStatement or OrStatement. It can only be referenced as a top-level statement
-	// within a rule.
+	// a NotStatement or OrStatement. You can only use a rule group reference statement
+	// at the top level inside a web ACL.
 	RuleGroupReferenceStatement *RuleGroupReferenceStatement `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallManagerStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FirewallManagerStatement) GoString() string {
 	return s.String()
 }
@@ -8328,12 +9282,20 @@ type ForwardedIPConfig struct {
 	HeaderName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForwardedIPConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ForwardedIPConfig) GoString() string {
 	return s.String()
 }
@@ -8369,6 +9331,100 @@ func (s *ForwardedIPConfig) SetHeaderName(v string) *ForwardedIPConfig {
 	return s
 }
 
+type GenerateMobileSdkReleaseUrlInput struct {
+	_ struct{} `type:"structure"`
+
+	// The device platform.
+	//
+	// Platform is a required field
+	Platform *string `type:"string" required:"true" enum:"Platform"`
+
+	// The release version. For the latest available version, specify LATEST.
+	//
+	// ReleaseVersion is a required field
+	ReleaseVersion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateMobileSdkReleaseUrlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateMobileSdkReleaseUrlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GenerateMobileSdkReleaseUrlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GenerateMobileSdkReleaseUrlInput"}
+	if s.Platform == nil {
+		invalidParams.Add(request.NewErrParamRequired("Platform"))
+	}
+	if s.ReleaseVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReleaseVersion"))
+	}
+	if s.ReleaseVersion != nil && len(*s.ReleaseVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReleaseVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *GenerateMobileSdkReleaseUrlInput) SetPlatform(v string) *GenerateMobileSdkReleaseUrlInput {
+	s.Platform = &v
+	return s
+}
+
+// SetReleaseVersion sets the ReleaseVersion field's value.
+func (s *GenerateMobileSdkReleaseUrlInput) SetReleaseVersion(v string) *GenerateMobileSdkReleaseUrlInput {
+	s.ReleaseVersion = &v
+	return s
+}
+
+type GenerateMobileSdkReleaseUrlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The presigned download URL for the specified SDK release.
+	Url *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateMobileSdkReleaseUrlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GenerateMobileSdkReleaseUrlOutput) GoString() string {
+	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *GenerateMobileSdkReleaseUrlOutput) SetUrl(v string) *GenerateMobileSdkReleaseUrlOutput {
+	s.Url = &v
+	return s
+}
+
 // A rule statement used to identify web requests based on country of origin.
 type GeoMatchStatement struct {
 	_ struct{} `type:"structure"`
@@ -8387,12 +9443,20 @@ type GeoMatchStatement struct {
 	ForwardedIPConfig *ForwardedIPConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GeoMatchStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GeoMatchStatement) GoString() string {
 	return s.String()
 }
@@ -8458,12 +9522,20 @@ type GetIPSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIPSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIPSetInput) GoString() string {
 	return s.String()
 }
@@ -8514,7 +9586,7 @@ func (s *GetIPSetInput) SetScope(v string) *GetIPSetInput {
 type GetIPSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains one or more IP addresses or blocks of IP addresses specified in
+	// Contains zero or more IP addresses or blocks of IP addresses specified in
 	// Classless Inter-Domain Routing (CIDR) notation. WAF supports all IPv4 and
 	// IPv6 CIDR ranges except for /0. For information about CIDR notation, see
 	// the Wikipedia entry Classless Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
@@ -8534,12 +9606,20 @@ type GetIPSetOutput struct {
 	LockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIPSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetIPSetOutput) GoString() string {
 	return s.String()
 }
@@ -8566,12 +9646,20 @@ type GetLoggingConfigurationInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggingConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggingConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -8605,12 +9693,20 @@ type GetLoggingConfigurationOutput struct {
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggingConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLoggingConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -8655,12 +9751,20 @@ type GetManagedRuleSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetManagedRuleSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetManagedRuleSetInput) GoString() string {
 	return s.String()
 }
@@ -8725,12 +9829,20 @@ type GetManagedRuleSetOutput struct {
 	ManagedRuleSet *ManagedRuleSet `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetManagedRuleSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetManagedRuleSetOutput) GoString() string {
 	return s.String()
 }
@@ -8747,6 +9859,100 @@ func (s *GetManagedRuleSetOutput) SetManagedRuleSet(v *ManagedRuleSet) *GetManag
 	return s
 }
 
+type GetMobileSdkReleaseInput struct {
+	_ struct{} `type:"structure"`
+
+	// The device platform.
+	//
+	// Platform is a required field
+	Platform *string `type:"string" required:"true" enum:"Platform"`
+
+	// The release version. For the latest available version, specify LATEST.
+	//
+	// ReleaseVersion is a required field
+	ReleaseVersion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileSdkReleaseInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileSdkReleaseInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMobileSdkReleaseInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMobileSdkReleaseInput"}
+	if s.Platform == nil {
+		invalidParams.Add(request.NewErrParamRequired("Platform"))
+	}
+	if s.ReleaseVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReleaseVersion"))
+	}
+	if s.ReleaseVersion != nil && len(*s.ReleaseVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReleaseVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *GetMobileSdkReleaseInput) SetPlatform(v string) *GetMobileSdkReleaseInput {
+	s.Platform = &v
+	return s
+}
+
+// SetReleaseVersion sets the ReleaseVersion field's value.
+func (s *GetMobileSdkReleaseInput) SetReleaseVersion(v string) *GetMobileSdkReleaseInput {
+	s.ReleaseVersion = &v
+	return s
+}
+
+type GetMobileSdkReleaseOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information for a specified SDK release, including release notes and tags.
+	MobileSdkRelease *MobileSdkRelease `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileSdkReleaseOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileSdkReleaseOutput) GoString() string {
+	return s.String()
+}
+
+// SetMobileSdkRelease sets the MobileSdkRelease field's value.
+func (s *GetMobileSdkReleaseOutput) SetMobileSdkRelease(v *MobileSdkRelease) *GetMobileSdkReleaseOutput {
+	s.MobileSdkRelease = v
+	return s
+}
+
 type GetPermissionPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8757,12 +9963,20 @@ type GetPermissionPolicyInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPermissionPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPermissionPolicyInput) GoString() string {
 	return s.String()
 }
@@ -8796,12 +10010,20 @@ type GetPermissionPolicyOutput struct {
 	Policy *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPermissionPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPermissionPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -8815,7 +10037,13 @@ func (s *GetPermissionPolicyOutput) SetPolicy(v string) *GetPermissionPolicyOutp
 type GetRateBasedStatementManagedKeysInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the rate-based rule to get the keys for.
+	// The name of the rule group reference statement in your web ACL. This is required
+	// only when you have the rate-based rule nested inside a rule group.
+	RuleGroupRuleName *string `min:"1" type:"string"`
+
+	// The name of the rate-based rule to get the keys for. If you have the rule
+	// defined inside a rule group that you're using in your web ACL, also provide
+	// the name of the rule group reference statement in the request parameter RuleGroupRuleName.
 	//
 	// RuleName is a required field
 	RuleName *string `min:"1" type:"string" required:"true"`
@@ -8849,12 +10077,20 @@ type GetRateBasedStatementManagedKeysInput struct {
 	WebACLName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRateBasedStatementManagedKeysInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRateBasedStatementManagedKeysInput) GoString() string {
 	return s.String()
 }
@@ -8862,6 +10098,9 @@ func (s GetRateBasedStatementManagedKeysInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetRateBasedStatementManagedKeysInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetRateBasedStatementManagedKeysInput"}
+	if s.RuleGroupRuleName != nil && len(*s.RuleGroupRuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleGroupRuleName", 1))
+	}
 	if s.RuleName == nil {
 		invalidParams.Add(request.NewErrParamRequired("RuleName"))
 	}
@@ -8888,6 +10127,12 @@ func (s *GetRateBasedStatementManagedKeysInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetRuleGroupRuleName sets the RuleGroupRuleName field's value.
+func (s *GetRateBasedStatementManagedKeysInput) SetRuleGroupRuleName(v string) *GetRateBasedStatementManagedKeysInput {
+	s.RuleGroupRuleName = &v
+	return s
 }
 
 // SetRuleName sets the RuleName field's value.
@@ -8924,12 +10169,20 @@ type GetRateBasedStatementManagedKeysOutput struct {
 	ManagedKeysIPV6 *RateBasedStatementManagedKeysIPSet `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRateBasedStatementManagedKeysOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRateBasedStatementManagedKeysOutput) GoString() string {
 	return s.String()
 }
@@ -8976,12 +10229,20 @@ type GetRegexPatternSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRegexPatternSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRegexPatternSetInput) GoString() string {
 	return s.String()
 }
@@ -9049,12 +10310,20 @@ type GetRegexPatternSetOutput struct {
 	RegexPatternSet *RegexPatternSet `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRegexPatternSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRegexPatternSetOutput) GoString() string {
 	return s.String()
 }
@@ -9100,12 +10369,20 @@ type GetRuleGroupInput struct {
 	Scope *string `type:"string" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -9174,12 +10451,20 @@ type GetRuleGroupOutput struct {
 	RuleGroup *RuleGroup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -9245,12 +10530,20 @@ type GetSampledRequestsInput struct {
 	WebAclArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSampledRequestsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSampledRequestsInput) GoString() string {
 	return s.String()
 }
@@ -9345,12 +10638,20 @@ type GetSampledRequestsOutput struct {
 	TimeWindow *TimeWindow `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSampledRequestsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSampledRequestsOutput) GoString() string {
 	return s.String()
 }
@@ -9382,12 +10683,20 @@ type GetWebACLForResourceInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLForResourceInput) GoString() string {
 	return s.String()
 }
@@ -9422,12 +10731,20 @@ type GetWebACLForResourceOutput struct {
 	WebACL *WebACL `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -9470,12 +10787,20 @@ type GetWebACLInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLInput) GoString() string {
 	return s.String()
 }
@@ -9526,6 +10851,15 @@ func (s *GetWebACLInput) SetScope(v string) *GetWebACLInput {
 type GetWebACLOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The URL to use in SDK integrations with Amazon Web Services managed rule
+	// groups. For example, you can use the integration SDKs with the account takeover
+	// prevention managed rule group AWSManagedRulesATPRuleSet. This is only populated
+	// if you are using a rule group in your web ACL that integrates with your applications
+	// in this way. For more information, see WAF client application integration
+	// (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+	// in the WAF Developer Guide.
+	ApplicationIntegrationURL *string `type:"string"`
+
 	// A token used for optimistic locking. WAF returns a token to your get and
 	// list requests, to mark the state of the entity at the time of the request.
 	// To make changes to the entity associated with the token, you provide the
@@ -9541,14 +10875,28 @@ type GetWebACLOutput struct {
 	WebACL *WebACL `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetWebACLOutput) GoString() string {
 	return s.String()
+}
+
+// SetApplicationIntegrationURL sets the ApplicationIntegrationURL field's value.
+func (s *GetWebACLOutput) SetApplicationIntegrationURL(v string) *GetWebACLOutput {
+	s.ApplicationIntegrationURL = &v
+	return s
 }
 
 // SetLockToken sets the LockToken field's value.
@@ -9576,12 +10924,20 @@ type HTTPHeader struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HTTPHeader) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HTTPHeader) GoString() string {
 	return s.String()
 }
@@ -9635,12 +10991,20 @@ type HTTPRequest struct {
 	URI *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HTTPRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HTTPRequest) GoString() string {
 	return s.String()
 }
@@ -9681,7 +11045,7 @@ func (s *HTTPRequest) SetURI(v string) *HTTPRequest {
 	return s
 }
 
-// Contains one or more IP addresses or blocks of IP addresses specified in
+// Contains zero or more IP addresses or blocks of IP addresses specified in
 // Classless Inter-Domain Routing (CIDR) notation. WAF supports all IPv4 and
 // IPv6 CIDR ranges except for /0. For information about CIDR notation, see
 // the Wikipedia entry Classless Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
@@ -9696,11 +11060,11 @@ type IPSet struct {
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// Contains an array of strings that specify one or more IP addresses or blocks
-	// of IP addresses in Classless Inter-Domain Routing (CIDR) notation. WAF supports
-	// all IPv4 and IPv6 CIDR ranges except for /0.
+	// Contains an array of strings that specifies zero or more IP addresses or
+	// blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
+	// WAF supports all IPv4 and IPv6 CIDR ranges except for /0.
 	//
-	// Examples:
+	// Example address strings:
 	//
 	//    * To configure WAF to allow, block, or count requests that originated
 	//    from the IP address 192.0.2.44, specify 192.0.2.44/32.
@@ -9717,6 +11081,17 @@ type IPSet struct {
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+	//
+	// Example JSON Addresses specifications:
+	//
+	//    * Empty array: "Addresses": []
+	//
+	//    * Array with one address: "Addresses": ["192.0.2.44/32"]
+	//
+	//    * Array with three addresses: "Addresses": ["192.0.2.44/32", "192.0.2.0/24",
+	//    "192.0.0.0/16"]
+	//
+	//    * INVALID specification: "Addresses": [""] INVALID
 	//
 	// Addresses is a required field
 	Addresses []*string `type:"list" required:"true"`
@@ -9742,12 +11117,20 @@ type IPSet struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSet) GoString() string {
 	return s.String()
 }
@@ -9847,12 +11230,20 @@ type IPSetForwardedIPConfig struct {
 	Position *string `type:"string" required:"true" enum:"ForwardedIPPosition"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSetForwardedIPConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSetForwardedIPConfig) GoString() string {
 	return s.String()
 }
@@ -9924,12 +11315,20 @@ type IPSetReferenceStatement struct {
 	IPSetForwardedIPConfig *IPSetForwardedIPConfig `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSetReferenceStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSetReferenceStatement) GoString() string {
 	return s.String()
 }
@@ -9999,12 +11398,20 @@ type IPSetSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSetSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IPSetSummary) GoString() string {
 	return s.String()
 }
@@ -10039,12 +11446,67 @@ func (s *IPSetSummary) SetName(v string) *IPSetSummary {
 	return s
 }
 
+// Determines how long a CAPTCHA token remains valid after the client successfully
+// solves a CAPTCHA puzzle.
+type ImmunityTimeProperty struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of time, in seconds, that a CAPTCHA token is valid. The default
+	// setting is 300.
+	//
+	// ImmunityTime is a required field
+	ImmunityTime *int64 `min:"60" type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImmunityTimeProperty) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImmunityTimeProperty) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImmunityTimeProperty) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImmunityTimeProperty"}
+	if s.ImmunityTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImmunityTime"))
+	}
+	if s.ImmunityTime != nil && *s.ImmunityTime < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("ImmunityTime", 60))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImmunityTime sets the ImmunityTime field's value.
+func (s *ImmunityTimeProperty) SetImmunityTime(v int64) *ImmunityTimeProperty {
+	s.ImmunityTime = &v
+	return s
+}
+
 // The body of a web request, inspected as JSON. The body immediately follows
 // the request headers. This is used in the FieldToMatch specification.
 //
 // Use the specifications in this object to indicate which parts of the JSON
 // body to inspect using the rule's inspection criteria. WAF inspects only the
 // parts of the JSON that result from the matches that you indicate.
+//
+// Example JSON: "JsonBody": { "MatchPattern": { "All": {} }, "MatchScope":
+// "ALL" }
 type JsonBody struct {
 	_ struct{} `type:"structure"`
 
@@ -10089,12 +11551,20 @@ type JsonBody struct {
 	MatchScope *string `type:"string" required:"true" enum:"JsonMatchScope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JsonBody) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JsonBody) GoString() string {
 	return s.String()
 }
@@ -10163,12 +11633,20 @@ type JsonMatchPattern struct {
 	IncludedPaths []*string `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JsonMatchPattern) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JsonMatchPattern) GoString() string {
 	return s.String()
 }
@@ -10210,12 +11688,20 @@ type Label struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Label) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Label) GoString() string {
 	return s.String()
 }
@@ -10280,12 +11766,20 @@ type LabelMatchStatement struct {
 	Scope *string `type:"string" required:"true" enum:"LabelMatchScope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LabelMatchStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LabelMatchStatement) GoString() string {
 	return s.String()
 }
@@ -10334,12 +11828,20 @@ type LabelNameCondition struct {
 	LabelName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LabelNameCondition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LabelNameCondition) GoString() string {
 	return s.String()
 }
@@ -10382,12 +11884,20 @@ type LabelSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LabelSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LabelSummary) GoString() string {
 	return s.String()
 }
@@ -10440,12 +11950,20 @@ type ListAvailableManagedRuleGroupVersionsInput struct {
 	VendorName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupVersionsInput) GoString() string {
 	return s.String()
 }
@@ -10525,12 +12043,20 @@ type ListAvailableManagedRuleGroupVersionsOutput struct {
 	Versions []*ManagedRuleGroupVersion `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -10577,12 +12103,20 @@ type ListAvailableManagedRuleGroupsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupsInput) GoString() string {
 	return s.String()
 }
@@ -10636,12 +12170,20 @@ type ListAvailableManagedRuleGroupsOutput struct {
 	NextMarker *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAvailableManagedRuleGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -10688,12 +12230,20 @@ type ListIPSetsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIPSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIPSetsInput) GoString() string {
 	return s.String()
 }
@@ -10749,12 +12299,20 @@ type ListIPSetsOutput struct {
 	NextMarker *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIPSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIPSetsOutput) GoString() string {
 	return s.String()
 }
@@ -10796,15 +12354,25 @@ type ListLoggingConfigurationsInput struct {
 	//    --region=us-east-1.
 	//
 	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
-	Scope *string `type:"string" enum:"Scope"`
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggingConfigurationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggingConfigurationsInput) GoString() string {
 	return s.String()
 }
@@ -10817,6 +12385,9 @@ func (s *ListLoggingConfigurationsInput) Validate() error {
 	}
 	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -10855,12 +12426,20 @@ type ListLoggingConfigurationsOutput struct {
 	NextMarker *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggingConfigurationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListLoggingConfigurationsOutput) GoString() string {
 	return s.String()
 }
@@ -10907,12 +12486,20 @@ type ListManagedRuleSetsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListManagedRuleSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListManagedRuleSetsInput) GoString() string {
 	return s.String()
 }
@@ -10967,12 +12554,20 @@ type ListManagedRuleSetsOutput struct {
 	NextMarker *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListManagedRuleSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListManagedRuleSetsOutput) GoString() string {
 	return s.String()
 }
@@ -10986,6 +12581,124 @@ func (s *ListManagedRuleSetsOutput) SetManagedRuleSets(v []*ManagedRuleSetSummar
 // SetNextMarker sets the NextMarker field's value.
 func (s *ListManagedRuleSetsOutput) SetNextMarker(v string) *ListManagedRuleSetsOutput {
 	s.NextMarker = &v
+	return s
+}
+
+type ListMobileSdkReleasesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
+	// value that you can use in a subsequent call to get the next batch of objects.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// The device platform to retrieve the list for.
+	//
+	// Platform is a required field
+	Platform *string `type:"string" required:"true" enum:"Platform"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileSdkReleasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileSdkReleasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMobileSdkReleasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMobileSdkReleasesInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+	if s.Platform == nil {
+		invalidParams.Add(request.NewErrParamRequired("Platform"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListMobileSdkReleasesInput) SetLimit(v int64) *ListMobileSdkReleasesInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListMobileSdkReleasesInput) SetNextMarker(v string) *ListMobileSdkReleasesInput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ListMobileSdkReleasesInput) SetPlatform(v string) *ListMobileSdkReleasesInput {
+	s.Platform = &v
+	return s
+}
+
+type ListMobileSdkReleasesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// High level information for the available SDK releases.
+	ReleaseSummaries []*ReleaseSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileSdkReleasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileSdkReleasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListMobileSdkReleasesOutput) SetNextMarker(v string) *ListMobileSdkReleasesOutput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetReleaseSummaries sets the ReleaseSummaries field's value.
+func (s *ListMobileSdkReleasesOutput) SetReleaseSummaries(v []*ReleaseSummary) *ListMobileSdkReleasesOutput {
+	s.ReleaseSummaries = v
 	return s
 }
 
@@ -11019,12 +12732,20 @@ type ListRegexPatternSetsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegexPatternSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegexPatternSetsInput) GoString() string {
 	return s.String()
 }
@@ -11078,12 +12799,20 @@ type ListRegexPatternSetsOutput struct {
 	RegexPatternSets []*RegexPatternSetSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegexPatternSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegexPatternSetsOutput) GoString() string {
 	return s.String()
 }
@@ -11114,12 +12843,20 @@ type ListResourcesForWebACLInput struct {
 	WebACLArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourcesForWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourcesForWebACLInput) GoString() string {
 	return s.String()
 }
@@ -11159,12 +12896,20 @@ type ListResourcesForWebACLOutput struct {
 	ResourceArns []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourcesForWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListResourcesForWebACLOutput) GoString() string {
 	return s.String()
 }
@@ -11205,12 +12950,20 @@ type ListRuleGroupsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRuleGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRuleGroupsInput) GoString() string {
 	return s.String()
 }
@@ -11264,12 +13017,20 @@ type ListRuleGroupsOutput struct {
 	RuleGroups []*RuleGroupSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRuleGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRuleGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -11306,12 +13067,20 @@ type ListTagsForResourceInput struct {
 	ResourceARN *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -11369,12 +13138,20 @@ type ListTagsForResourceOutput struct {
 	TagInfoForResource *TagInfoForResource `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -11421,12 +13198,20 @@ type ListWebACLsInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebACLsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebACLsInput) GoString() string {
 	return s.String()
 }
@@ -11480,12 +13265,20 @@ type ListWebACLsOutput struct {
 	WebACLs []*WebACLSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebACLsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListWebACLsOutput) GoString() string {
 	return s.String()
 }
@@ -11502,16 +13295,43 @@ func (s *ListWebACLsOutput) SetWebACLs(v []*WebACLSummary) *ListWebACLsOutput {
 	return s
 }
 
-// Defines an association between Amazon Kinesis Data Firehose destinations
-// and a web ACL resource, for logging from WAF. As part of the association,
-// you can specify parts of the standard logging fields to keep out of the logs
-// and you can specify filters so that you log only a subset of the logging
-// records.
+// Defines an association between logging destinations and a web ACL resource,
+// for logging from WAF. As part of the association, you can specify parts of
+// the standard logging fields to keep out of the logs and you can specify filters
+// so that you log only a subset of the logging records.
+//
+// You can define one logging destination per web ACL.
+//
+// You can access information about the traffic that WAF inspects using the
+// following steps:
+//
+// Create your logging destination. You can use an Amazon CloudWatch Logs log
+// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
+// Kinesis Data Firehose. For information about configuring logging destinations
+// and the permissions that are required for each, see Logging web ACL traffic
+// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// in the WAF Developer Guide.
+//
+// Associate your logging destination to your web ACL using a PutLoggingConfiguration
+// request.
+//
+// When you successfully enable logging using a PutLoggingConfiguration request,
+// WAF creates an additional role or policy that is required to write logs to
+// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates
+// a resource policy on the log group. For an Amazon S3 bucket, WAF creates
+// a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
+// role.
+//
+// For additional information about web ACL logging, see Logging web ACL traffic
+// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// in the WAF Developer Guide.
 type LoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Kinesis Data Firehose Amazon Resource Name (ARNs) that you want
-	// to associate with the web ACL.
+	// The logging destination configuration that you want to associate with the
+	// web ACL.
+	//
+	// You can associate one logging destination to a web ACL.
 	//
 	// LogDestinationConfigs is a required field
 	LogDestinationConfigs []*string `min:"1" type:"list" required:"true"`
@@ -11527,10 +13347,11 @@ type LoggingConfiguration struct {
 	ManagedByFirewallManager *bool `type:"boolean"`
 
 	// The parts of the request that you want to keep out of the logs. For example,
-	// if you redact the HEADER field, the HEADER field in the firehose will be
+	// if you redact the SingleHeader field, the HEADER field in the logs will be
 	// xxx.
 	//
-	// You must use one of the following values: URI, QUERY_STRING, HEADER, or METHOD.
+	// You can specify only the following fields for redaction: UriPath, QueryString,
+	// SingleHeader, Method, and JsonBody.
 	RedactedFields []*FieldToMatch `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the web ACL that you want to associate
@@ -11540,12 +13361,20 @@ type LoggingConfiguration struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoggingConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoggingConfiguration) GoString() string {
 	return s.String()
 }
@@ -11637,12 +13466,20 @@ type LoggingFilter struct {
 	Filters []*Filter `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoggingFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LoggingFilter) GoString() string {
 	return s.String()
 }
@@ -11688,6 +13525,93 @@ func (s *LoggingFilter) SetFilters(v []*Filter) *LoggingFilter {
 	return s
 }
 
+// Additional information that's used by a managed rule group. Most managed
+// rule groups don't require this.
+//
+// Use this for the account takeover prevention managed rule group AWSManagedRulesATPRuleSet,
+// to provide information about the sign-in page of your application.
+type ManagedRuleGroupConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The path of the login endpoint for your application. For example, for the
+	// URL https://example.com/web/login, you would provide the path /web/login.
+	LoginPath *string `min:"1" type:"string"`
+
+	// Details about your login page password field.
+	PasswordField *PasswordField `type:"structure"`
+
+	// The payload type for your login endpoint, either JSON or form encoded.
+	PayloadType *string `type:"string" enum:"PayloadType"`
+
+	// Details about your login page username field.
+	UsernameField *UsernameField `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleGroupConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedRuleGroupConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ManagedRuleGroupConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ManagedRuleGroupConfig"}
+	if s.LoginPath != nil && len(*s.LoginPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LoginPath", 1))
+	}
+	if s.PasswordField != nil {
+		if err := s.PasswordField.Validate(); err != nil {
+			invalidParams.AddNested("PasswordField", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UsernameField != nil {
+		if err := s.UsernameField.Validate(); err != nil {
+			invalidParams.AddNested("UsernameField", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLoginPath sets the LoginPath field's value.
+func (s *ManagedRuleGroupConfig) SetLoginPath(v string) *ManagedRuleGroupConfig {
+	s.LoginPath = &v
+	return s
+}
+
+// SetPasswordField sets the PasswordField field's value.
+func (s *ManagedRuleGroupConfig) SetPasswordField(v *PasswordField) *ManagedRuleGroupConfig {
+	s.PasswordField = v
+	return s
+}
+
+// SetPayloadType sets the PayloadType field's value.
+func (s *ManagedRuleGroupConfig) SetPayloadType(v string) *ManagedRuleGroupConfig {
+	s.PayloadType = &v
+	return s
+}
+
+// SetUsernameField sets the UsernameField field's value.
+func (s *ManagedRuleGroupConfig) SetUsernameField(v *UsernameField) *ManagedRuleGroupConfig {
+	s.UsernameField = v
+	return s
+}
+
 // A rule statement used to run the rules that are defined in a managed rule
 // group. To use this, provide the vendor name and the name of the rule group
 // in this statement. You can retrieve the required names by calling ListAvailableManagedRuleGroups.
@@ -11698,10 +13622,18 @@ func (s *LoggingFilter) SetFilters(v []*Filter) *LoggingFilter {
 type ManagedRuleGroupStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The rules whose actions are set to COUNT by the web ACL, regardless of the
-	// action that is set on the rule. This effectively excludes the rule from acting
-	// on web requests.
+	// The rules in the referenced rule group whose actions are set to Count. When
+	// you exclude a rule, WAF evaluates it exactly as it would if the rule action
+	// setting were Count. This is a useful option for testing the rules in a rule
+	// group without modifying how they handle your web traffic.
 	ExcludedRules []*ExcludedRule `type:"list"`
+
+	// Additional information that's used by a managed rule group. Most managed
+	// rule groups don't require this.
+	//
+	// Use this for the account takeover prevention managed rule group AWSManagedRulesATPRuleSet,
+	// to provide information about the sign-in page of your application.
+	ManagedRuleGroupConfigs []*ManagedRuleGroupConfig `min:"1" type:"list"`
 
 	// The name of the managed rule group. You use this, along with the vendor name,
 	// to identify the rule group.
@@ -11729,12 +13661,20 @@ type ManagedRuleGroupStatement struct {
 	Version *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleGroupStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleGroupStatement) GoString() string {
 	return s.String()
 }
@@ -11742,6 +13682,9 @@ func (s ManagedRuleGroupStatement) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ManagedRuleGroupStatement) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ManagedRuleGroupStatement"}
+	if s.ManagedRuleGroupConfigs != nil && len(s.ManagedRuleGroupConfigs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ManagedRuleGroupConfigs", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -11767,6 +13710,16 @@ func (s *ManagedRuleGroupStatement) Validate() error {
 			}
 		}
 	}
+	if s.ManagedRuleGroupConfigs != nil {
+		for i, v := range s.ManagedRuleGroupConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ManagedRuleGroupConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.ScopeDownStatement != nil {
 		if err := s.ScopeDownStatement.Validate(); err != nil {
 			invalidParams.AddNested("ScopeDownStatement", err.(request.ErrInvalidParams))
@@ -11782,6 +13735,12 @@ func (s *ManagedRuleGroupStatement) Validate() error {
 // SetExcludedRules sets the ExcludedRules field's value.
 func (s *ManagedRuleGroupStatement) SetExcludedRules(v []*ExcludedRule) *ManagedRuleGroupStatement {
 	s.ExcludedRules = v
+	return s
+}
+
+// SetManagedRuleGroupConfigs sets the ManagedRuleGroupConfigs field's value.
+func (s *ManagedRuleGroupStatement) SetManagedRuleGroupConfigs(v []*ManagedRuleGroupConfig) *ManagedRuleGroupStatement {
+	s.ManagedRuleGroupConfigs = v
 	return s
 }
 
@@ -11813,13 +13772,13 @@ func (s *ManagedRuleGroupStatement) SetVersion(v string) *ManagedRuleGroupStatem
 // This provides information like the name and vendor name, that you provide
 // when you add a ManagedRuleGroupStatement to a web ACL. Managed rule groups
 // include Amazon Web Services Managed Rules rule groups, which are free of
-// charge to WAF customers, and Marketplace managed rule groups, which you can
-// subscribe to through Marketplace.
+// charge to WAF customers, and Amazon Web Services Marketplace managed rule
+// groups, which you can subscribe to through Amazon Web Services Marketplace.
 type ManagedRuleGroupSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The description of the managed rule group, provided by Amazon Web Services
-	// Managed Rules or the Marketplace seller who manages it.
+	// Managed Rules or the Amazon Web Services Marketplace seller who manages it.
 	Description *string `min:"1" type:"string"`
 
 	// The name of the managed rule group. You use this, along with the vendor name,
@@ -11831,12 +13790,20 @@ type ManagedRuleGroupSummary struct {
 	VendorName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleGroupSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleGroupSummary) GoString() string {
 	return s.String()
 }
@@ -11871,12 +13838,20 @@ type ManagedRuleGroupVersion struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleGroupVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleGroupVersion) GoString() string {
 	return s.String()
 }
@@ -11893,11 +13868,12 @@ func (s *ManagedRuleGroupVersion) SetName(v string) *ManagedRuleGroupVersion {
 	return s
 }
 
-// A set of rules that is managed by Amazon Web Services and Marketplace sellers
-// to provide versioned managed rule groups for customers of WAF.
+// A set of rules that is managed by Amazon Web Services and Amazon Web Services
+// Marketplace sellers to provide versioned managed rule groups for customers
+// of WAF.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -11950,12 +13926,20 @@ type ManagedRuleSet struct {
 	RecommendedVersion *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleSet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleSet) GoString() string {
 	return s.String()
 }
@@ -12005,7 +13989,7 @@ func (s *ManagedRuleSet) SetRecommendedVersion(v string) *ManagedRuleSet {
 // High-level information for a managed rule set.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -12056,12 +14040,20 @@ type ManagedRuleSetSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleSetSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleSetSummary) GoString() string {
 	return s.String()
 }
@@ -12105,7 +14097,7 @@ func (s *ManagedRuleSetSummary) SetName(v string) *ManagedRuleSetSummary {
 // Information for a single version of a managed rule set.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -12152,12 +14144,20 @@ type ManagedRuleSetVersion struct {
 	PublishTimestamp *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleSetVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManagedRuleSetVersion) GoString() string {
 	return s.String()
 }
@@ -12203,35 +14203,121 @@ func (s *ManagedRuleSetVersion) SetPublishTimestamp(v time.Time) *ManagedRuleSet
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// JSON specification: "Method": {}
 type Method struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Method) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Method) GoString() string {
 	return s.String()
 }
 
-// Specifies that WAF should do nothing. This is generally used to try out a
-// rule without performing any actions. You set the OverrideAction on the Rule.
+// Information for a release of the mobile SDK, including release notes and
+// tags.
+//
+// The mobile SDK is not generally available. Customers who have access to the
+// mobile SDK can use it to establish and manage Security Token Service (STS)
+// security tokens for use in HTTP(S) requests from a mobile device to WAF.
+// For more information, see WAF client application integration (https://docs.aws.amazon.com/waf/latest/developerguide/waf-application-integration.html)
+// in the WAF Developer Guide.
+type MobileSdkRelease struct {
+	_ struct{} `type:"structure"`
+
+	// Notes describing the release.
+	ReleaseNotes *string `type:"string"`
+
+	// The release version.
+	ReleaseVersion *string `min:"1" type:"string"`
+
+	// Tags that are associated with the release.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The timestamp of the release.
+	Timestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MobileSdkRelease) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MobileSdkRelease) GoString() string {
+	return s.String()
+}
+
+// SetReleaseNotes sets the ReleaseNotes field's value.
+func (s *MobileSdkRelease) SetReleaseNotes(v string) *MobileSdkRelease {
+	s.ReleaseNotes = &v
+	return s
+}
+
+// SetReleaseVersion sets the ReleaseVersion field's value.
+func (s *MobileSdkRelease) SetReleaseVersion(v string) *MobileSdkRelease {
+	s.ReleaseVersion = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *MobileSdkRelease) SetTags(v []*Tag) *MobileSdkRelease {
+	s.Tags = v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *MobileSdkRelease) SetTimestamp(v time.Time) *MobileSdkRelease {
+	s.Timestamp = &v
+	return s
+}
+
+// Specifies that WAF should do nothing. This is used for the OverrideAction
+// setting on a Rule when the rule uses a rule group reference statement.
 //
 // This is used in the context of other settings, for example to specify values
 // for RuleAction and web ACL DefaultAction.
+//
+// JSON specification: "None": {}
 type NoneAction struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoneAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoneAction) GoString() string {
 	return s.String()
 }
@@ -12247,12 +14333,20 @@ type NotStatement struct {
 	Statement *Statement `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NotStatement) GoString() string {
 	return s.String()
 }
@@ -12293,12 +14387,20 @@ type OrStatement struct {
 	Statements []*Statement `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OrStatement) GoString() string {
 	return s.String()
 }
@@ -12332,37 +14434,47 @@ func (s *OrStatement) SetStatements(v []*Statement) *OrStatement {
 	return s
 }
 
-// The override action to apply to the rules in a rule group. Used only for
-// rule statements that reference a rule group, like RuleGroupReferenceStatement
-// and ManagedRuleGroupStatement.
+// The action to use in the place of the action that results from the rule group
+// evaluation. Set the override action to none to leave the result of the rule
+// group alone. Set it to count to override the result to count only.
 //
-// Set the override action to none to leave the rule actions in effect. Set
-// it to count to only count matches, regardless of the rule action settings.
+// You can only use this for rule statements that reference a rule group, like
+// RuleGroupReferenceStatement and ManagedRuleGroupStatement.
 //
-// In a Rule, you must specify either this OverrideAction setting or the rule
-// Action setting, but not both:
-//
-//    * If the rule statement references a rule group, use this override action
-//    setting and not the action setting.
-//
-//    * If the rule statement does not reference a rule group, use the rule
-//    action setting and not this rule override action setting.
+// This option is usually set to none. It does not affect how the rules in the
+// rule group are evaluated. If you want the rules in the rule group to only
+// count matches, do not use this and instead exclude those rules in your rule
+// group reference statement settings.
 type OverrideAction struct {
 	_ struct{} `type:"structure"`
 
-	// Override the rule action setting to count.
+	// Override the rule group evaluation result to count only.
+	//
+	// This option is usually set to none. It does not affect how the rules in the
+	// rule group are evaluated. If you want the rules in the rule group to only
+	// count matches, do not use this and instead exclude those rules in your rule
+	// group reference statement settings.
 	Count *CountAction `type:"structure"`
 
-	// Don't override the rule action setting.
+	// Don't override the rule group evaluation result. This is the most common
+	// setting.
 	None *NoneAction `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverrideAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OverrideAction) GoString() string {
 	return s.String()
 }
@@ -12394,25 +14506,108 @@ func (s *OverrideAction) SetNone(v *NoneAction) *OverrideAction {
 	return s
 }
 
+// Details about your login page password field, used in a ManagedRuleGroupConfig.
+type PasswordField struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the password field. For example /form/password.
+	//
+	// Identifier is a required field
+	Identifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PasswordField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PasswordField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PasswordField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PasswordField"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *PasswordField) SetIdentifier(v string) *PasswordField {
+	s.Identifier = &v
+	return s
+}
+
 type PutLoggingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Defines an association between Amazon Kinesis Data Firehose destinations
-	// and a web ACL resource, for logging from WAF. As part of the association,
-	// you can specify parts of the standard logging fields to keep out of the logs
-	// and you can specify filters so that you log only a subset of the logging
-	// records.
+	// Defines an association between logging destinations and a web ACL resource,
+	// for logging from WAF. As part of the association, you can specify parts of
+	// the standard logging fields to keep out of the logs and you can specify filters
+	// so that you log only a subset of the logging records.
+	//
+	// You can define one logging destination per web ACL.
+	//
+	// You can access information about the traffic that WAF inspects using the
+	// following steps:
+	//
+	// Create your logging destination. You can use an Amazon CloudWatch Logs log
+	// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
+	// Kinesis Data Firehose. For information about configuring logging destinations
+	// and the permissions that are required for each, see Logging web ACL traffic
+	// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// in the WAF Developer Guide.
+	//
+	// Associate your logging destination to your web ACL using a PutLoggingConfiguration
+	// request.
+	//
+	// When you successfully enable logging using a PutLoggingConfiguration request,
+	// WAF creates an additional role or policy that is required to write logs to
+	// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates
+	// a resource policy on the log group. For an Amazon S3 bucket, WAF creates
+	// a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
+	// role.
+	//
+	// For additional information about web ACL logging, see Logging web ACL traffic
+	// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// in the WAF Developer Guide.
 	//
 	// LoggingConfiguration is a required field
 	LoggingConfiguration *LoggingConfiguration `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLoggingConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLoggingConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -12444,20 +14639,53 @@ func (s *PutLoggingConfigurationInput) SetLoggingConfiguration(v *LoggingConfigu
 type PutLoggingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Defines an association between Amazon Kinesis Data Firehose destinations
-	// and a web ACL resource, for logging from WAF. As part of the association,
-	// you can specify parts of the standard logging fields to keep out of the logs
-	// and you can specify filters so that you log only a subset of the logging
-	// records.
+	// Defines an association between logging destinations and a web ACL resource,
+	// for logging from WAF. As part of the association, you can specify parts of
+	// the standard logging fields to keep out of the logs and you can specify filters
+	// so that you log only a subset of the logging records.
+	//
+	// You can define one logging destination per web ACL.
+	//
+	// You can access information about the traffic that WAF inspects using the
+	// following steps:
+	//
+	// Create your logging destination. You can use an Amazon CloudWatch Logs log
+	// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
+	// Kinesis Data Firehose. For information about configuring logging destinations
+	// and the permissions that are required for each, see Logging web ACL traffic
+	// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// in the WAF Developer Guide.
+	//
+	// Associate your logging destination to your web ACL using a PutLoggingConfiguration
+	// request.
+	//
+	// When you successfully enable logging using a PutLoggingConfiguration request,
+	// WAF creates an additional role or policy that is required to write logs to
+	// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates
+	// a resource policy on the log group. For an Amazon S3 bucket, WAF creates
+	// a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
+	// role.
+	//
+	// For additional information about web ACL logging, see Logging web ACL traffic
+	// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// in the WAF Developer Guide.
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLoggingConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutLoggingConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -12522,12 +14750,20 @@ type PutManagedRuleSetVersionsInput struct {
 	VersionsToPublish map[string]*VersionToPublish `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutManagedRuleSetVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutManagedRuleSetVersionsInput) GoString() string {
 	return s.String()
 }
@@ -12626,12 +14862,20 @@ type PutManagedRuleSetVersionsOutput struct {
 	NextLockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutManagedRuleSetVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutManagedRuleSetVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -12673,12 +14917,20 @@ type PutPermissionPolicyInput struct {
 	ResourceArn *string `min:"20" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPermissionPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPermissionPolicyInput) GoString() string {
 	return s.String()
 }
@@ -12721,12 +14973,20 @@ type PutPermissionPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPermissionPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPermissionPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -12736,16 +14996,26 @@ func (s PutPermissionPolicyOutput) GoString() string {
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// JSON specification: "QueryString": {}
 type QueryString struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryString) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueryString) GoString() string {
 	return s.String()
 }
@@ -12755,6 +15025,14 @@ func (s QueryString) GoString() string {
 // on the number of requests in any 5-minute time span. You can use this to
 // put a temporary block on requests from an IP address that is sending excessive
 // requests.
+//
+// WAF tracks and manages web requests separately for each instance of a rate-based
+// rule that you use. For example, if you provide the same rate-based rule settings
+// in two web ACLs, each of the two rule statements represents a separate instance
+// of the rate-based rule and gets its own tracking and management by WAF. If
+// you define a rate-based rule inside a rule group, and then use that rule
+// group in multiple places, each use creates a separate instance of the rate-based
+// rule that gets its own tracking and management by WAF.
 //
 // When the rule action triggers, WAF blocks additional requests from the IP
 // address until the request rate falls below the limit.
@@ -12776,9 +15054,9 @@ func (s QueryString) GoString() string {
 // the rule action triggers. Requests that do not meet both conditions are not
 // counted towards the rate limit and are not affected by this rule.
 //
-// You cannot nest a RateBasedStatement, for example for use inside a NotStatement
-// or OrStatement. It can only be referenced as a top-level statement within
-// a rule.
+// You cannot nest a RateBasedStatement inside another statement, for example
+// inside a NotStatement or OrStatement. You can define a RateBasedStatement
+// inside a web ACL and inside a rule group.
 type RateBasedStatement struct {
 	_ struct{} `type:"structure"`
 
@@ -12821,12 +15099,20 @@ type RateBasedStatement struct {
 	ScopeDownStatement *Statement `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RateBasedStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RateBasedStatement) GoString() string {
 	return s.String()
 }
@@ -12884,7 +15170,7 @@ func (s *RateBasedStatement) SetScopeDownStatement(v *Statement) *RateBasedState
 	return s
 }
 
-// The set of IP addresses that are currently blocked for a rate-based statement.
+// The set of IP addresses that are currently blocked for a RateBasedStatement.
 type RateBasedStatementManagedKeysIPSet struct {
 	_ struct{} `type:"structure"`
 
@@ -12895,12 +15181,20 @@ type RateBasedStatementManagedKeysIPSet struct {
 	IPAddressVersion *string `type:"string" enum:"IPAddressVersion"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RateBasedStatementManagedKeysIPSet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RateBasedStatementManagedKeysIPSet) GoString() string {
 	return s.String()
 }
@@ -12925,12 +15219,20 @@ type Regex struct {
 	RegexString *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Regex) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Regex) GoString() string {
 	return s.String()
 }
@@ -12951,6 +15253,108 @@ func (s *Regex) Validate() error {
 // SetRegexString sets the RegexString field's value.
 func (s *Regex) SetRegexString(v string) *Regex {
 	s.RegexString = &v
+	return s
+}
+
+// A rule statement used to search web request components for a match against
+// a single regular expression.
+type RegexMatchStatement struct {
+	_ struct{} `type:"structure"`
+
+	// The part of a web request that you want WAF to inspect. For more information,
+	// see FieldToMatch.
+	//
+	// FieldToMatch is a required field
+	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
+
+	// The string representing the regular expression.
+	//
+	// RegexString is a required field
+	RegexString *string `min:"1" type:"string" required:"true"`
+
+	// Text transformations eliminate some of the unusual formatting that attackers
+	// use in web requests in an effort to bypass detection. If you specify one
+	// or more transformations in a rule statement, WAF performs all transformations
+	// on the content of the request component identified by FieldToMatch, starting
+	// from the lowest priority setting, before inspecting the content for a match.
+	//
+	// TextTransformations is a required field
+	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegexMatchStatement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegexMatchStatement) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegexMatchStatement) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegexMatchStatement"}
+	if s.FieldToMatch == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldToMatch"))
+	}
+	if s.RegexString == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegexString"))
+	}
+	if s.RegexString != nil && len(*s.RegexString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RegexString", 1))
+	}
+	if s.TextTransformations == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextTransformations"))
+	}
+	if s.TextTransformations != nil && len(s.TextTransformations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextTransformations", 1))
+	}
+	if s.FieldToMatch != nil {
+		if err := s.FieldToMatch.Validate(); err != nil {
+			invalidParams.AddNested("FieldToMatch", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TextTransformations != nil {
+		for i, v := range s.TextTransformations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TextTransformations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFieldToMatch sets the FieldToMatch field's value.
+func (s *RegexMatchStatement) SetFieldToMatch(v *FieldToMatch) *RegexMatchStatement {
+	s.FieldToMatch = v
+	return s
+}
+
+// SetRegexString sets the RegexString field's value.
+func (s *RegexMatchStatement) SetRegexString(v string) *RegexMatchStatement {
+	s.RegexString = &v
+	return s
+}
+
+// SetTextTransformations sets the TextTransformations field's value.
+func (s *RegexMatchStatement) SetTextTransformations(v []*TextTransformation) *RegexMatchStatement {
+	s.TextTransformations = v
 	return s
 }
 
@@ -12978,12 +15382,20 @@ type RegexPatternSet struct {
 	RegularExpressionList []*Regex `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegexPatternSet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegexPatternSet) GoString() string {
 	return s.String()
 }
@@ -13054,12 +15466,20 @@ type RegexPatternSetReferenceStatement struct {
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegexPatternSetReferenceStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegexPatternSetReferenceStatement) GoString() string {
 	return s.String()
 }
@@ -13154,12 +15574,20 @@ type RegexPatternSetSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegexPatternSetSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegexPatternSetSummary) GoString() string {
 	return s.String()
 }
@@ -13194,6 +15622,47 @@ func (s *RegexPatternSetSummary) SetName(v string) *RegexPatternSetSummary {
 	return s
 }
 
+// High level information for an SDK release.
+type ReleaseSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The release version.
+	ReleaseVersion *string `min:"1" type:"string"`
+
+	// The timestamp of the release.
+	Timestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReleaseSummary) GoString() string {
+	return s.String()
+}
+
+// SetReleaseVersion sets the ReleaseVersion field's value.
+func (s *ReleaseSummary) SetReleaseVersion(v string) *ReleaseSummary {
+	s.ReleaseVersion = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *ReleaseSummary) SetTimestamp(v time.Time) *ReleaseSummary {
+	s.Timestamp = &v
+	return s
+}
+
 // A single rule, which you can use in a WebACL or RuleGroup to identify web
 // requests that you want to allow, block, or count. Each rule includes one
 // top-level Statement that WAF uses to identify matching web requests, and
@@ -13218,27 +15687,27 @@ type Rule struct {
 	//    setting and not this action setting.
 	Action *RuleAction `type:"structure"`
 
+	// Specifies how WAF should handle CAPTCHA evaluations. If you don't specify
+	// this, WAF uses the CAPTCHA configuration that's defined for the web ACL.
+	CaptchaConfig *CaptchaConfig `type:"structure"`
+
 	// The name of the rule. You can't change the name of a Rule after you create
 	// it.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The override action to apply to the rules in a rule group. Used only for
-	// rule statements that reference a rule group, like RuleGroupReferenceStatement
-	// and ManagedRuleGroupStatement.
+	// The action to use in the place of the action that results from the rule group
+	// evaluation. Set the override action to none to leave the result of the rule
+	// group alone. Set it to count to override the result to count only.
 	//
-	// Set the override action to none to leave the rule actions in effect. Set
-	// it to count to only count matches, regardless of the rule action settings.
+	// You can only use this for rule statements that reference a rule group, like
+	// RuleGroupReferenceStatement and ManagedRuleGroupStatement.
 	//
-	// In a Rule, you must specify either this OverrideAction setting or the rule
-	// Action setting, but not both:
-	//
-	//    * If the rule statement references a rule group, use this override action
-	//    setting and not the action setting.
-	//
-	//    * If the rule statement does not reference a rule group, use the rule
-	//    action setting and not this rule override action setting.
+	// This option is usually set to none. It does not affect how the rules in the
+	// rule group are evaluated. If you want the rules in the rule group to only
+	// count matches, do not use this and instead exclude those rules in your rule
+	// group reference statement settings.
 	OverrideAction *OverrideAction `type:"structure"`
 
 	// If you define more than one Rule in a WebACL, WAF evaluates each request
@@ -13284,12 +15753,20 @@ type Rule struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Rule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Rule) GoString() string {
 	return s.String()
 }
@@ -13315,6 +15792,11 @@ func (s *Rule) Validate() error {
 	if s.Action != nil {
 		if err := s.Action.Validate(); err != nil {
 			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CaptchaConfig != nil {
+		if err := s.CaptchaConfig.Validate(); err != nil {
+			invalidParams.AddNested("CaptchaConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.OverrideAction != nil {
@@ -13352,6 +15834,12 @@ func (s *Rule) Validate() error {
 // SetAction sets the Action field's value.
 func (s *Rule) SetAction(v *RuleAction) *Rule {
 	s.Action = v
+	return s
+}
+
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *Rule) SetCaptchaConfig(v *CaptchaConfig) *Rule {
+	s.CaptchaConfig = v
 	return s
 }
 
@@ -13402,16 +15890,27 @@ type RuleAction struct {
 	// Instructs WAF to block the web request.
 	Block *BlockAction `type:"structure"`
 
+	// Instructs WAF to run a CAPTCHA check against the web request.
+	Captcha *CaptchaAction `type:"structure"`
+
 	// Instructs WAF to count the web request and allow it.
 	Count *CountAction `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleAction) GoString() string {
 	return s.String()
 }
@@ -13427,6 +15926,11 @@ func (s *RuleAction) Validate() error {
 	if s.Block != nil {
 		if err := s.Block.Validate(); err != nil {
 			invalidParams.AddNested("Block", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Captcha != nil {
+		if err := s.Captcha.Validate(); err != nil {
+			invalidParams.AddNested("Captcha", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Count != nil {
@@ -13450,6 +15954,12 @@ func (s *RuleAction) SetAllow(v *AllowAction) *RuleAction {
 // SetBlock sets the Block field's value.
 func (s *RuleAction) SetBlock(v *BlockAction) *RuleAction {
 	s.Block = v
+	return s
+}
+
+// SetCaptcha sets the Captcha field's value.
+func (s *RuleAction) SetCaptcha(v *CaptchaAction) *RuleAction {
+	s.Captcha = v
 	return s
 }
 
@@ -13554,12 +16064,20 @@ type RuleGroup struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleGroup) GoString() string {
 	return s.String()
 }
@@ -13635,8 +16153,8 @@ func (s *RuleGroup) SetVisibilityConfig(v *VisibilityConfig) *RuleGroup {
 // rule group in this statement.
 //
 // You cannot nest a RuleGroupReferenceStatement, for example for use inside
-// a NotStatement or OrStatement. It can only be referenced as a top-level statement
-// within a rule.
+// a NotStatement or OrStatement. You can only use a rule group reference statement
+// at the top level inside a web ACL.
 type RuleGroupReferenceStatement struct {
 	_ struct{} `type:"structure"`
 
@@ -13645,17 +16163,27 @@ type RuleGroupReferenceStatement struct {
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// The names of rules that are in the referenced rule group, but that you want
-	// WAF to exclude from processing for this rule statement.
+	// The rules in the referenced rule group whose actions are set to Count. When
+	// you exclude a rule, WAF evaluates it exactly as it would if the rule action
+	// setting were Count. This is a useful option for testing the rules in a rule
+	// group without modifying how they handle your web traffic.
 	ExcludedRules []*ExcludedRule `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleGroupReferenceStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleGroupReferenceStatement) GoString() string {
 	return s.String()
 }
@@ -13731,12 +16259,20 @@ type RuleGroupSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleGroupSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleGroupSummary) GoString() string {
 	return s.String()
 }
@@ -13786,12 +16322,20 @@ type RuleSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RuleSummary) GoString() string {
 	return s.String()
 }
@@ -13815,8 +16359,11 @@ func (s *RuleSummary) SetName(v string) *RuleSummary {
 type SampledHTTPRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The action for the Rule that the request matched: ALLOW, BLOCK, or COUNT.
+	// The action for the Rule that the request matched: Allow, Block, or Count.
 	Action *string `type:"string"`
+
+	// The CAPTCHA response for the request.
+	CaptchaResponse *CaptchaResponse `type:"structure"`
 
 	// Labels applied to the web request by matching rules. WAF applies fully qualified
 	// labels to matching web requests. A fully qualified label is the concatenation
@@ -13858,12 +16405,20 @@ type SampledHTTPRequest struct {
 	Weight *int64 `type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SampledHTTPRequest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SampledHTTPRequest) GoString() string {
 	return s.String()
 }
@@ -13871,6 +16426,12 @@ func (s SampledHTTPRequest) GoString() string {
 // SetAction sets the Action field's value.
 func (s *SampledHTTPRequest) SetAction(v string) *SampledHTTPRequest {
 	s.Action = &v
+	return s
+}
+
+// SetCaptchaResponse sets the CaptchaResponse field's value.
+func (s *SampledHTTPRequest) SetCaptchaResponse(v *CaptchaResponse) *SampledHTTPRequest {
+	s.CaptchaResponse = v
 	return s
 }
 
@@ -13921,6 +16482,8 @@ func (s *SampledHTTPRequest) SetWeight(v int64) *SampledHTTPRequest {
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// Example JSON: "SingleHeader": { "Name": "haystack" }
 type SingleHeader struct {
 	_ struct{} `type:"structure"`
 
@@ -13930,12 +16493,20 @@ type SingleHeader struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleHeader) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleHeader) GoString() string {
 	return s.String()
 }
@@ -13964,6 +16535,8 @@ func (s *SingleHeader) SetName(v string) *SingleHeader {
 
 // One query argument in a web request, identified by name, for example UserName
 // or SalesRegion. The name can be up to 30 characters long and isn't case sensitive.
+//
+// Example JSON: "SingleQueryArgument": { "Name": "myArgument" }
 type SingleQueryArgument struct {
 	_ struct{} `type:"structure"`
 
@@ -13973,12 +16546,20 @@ type SingleQueryArgument struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleQueryArgument) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SingleQueryArgument) GoString() string {
 	return s.String()
 }
@@ -14047,12 +16628,20 @@ type SizeConstraintStatement struct {
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SizeConstraintStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SizeConstraintStatement) GoString() string {
 	return s.String()
 }
@@ -14147,12 +16736,20 @@ type SqliMatchStatement struct {
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SqliMatchStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SqliMatchStatement) GoString() string {
 	return s.String()
 }
@@ -14270,6 +16867,14 @@ type Statement struct {
 	// put a temporary block on requests from an IP address that is sending excessive
 	// requests.
 	//
+	// WAF tracks and manages web requests separately for each instance of a rate-based
+	// rule that you use. For example, if you provide the same rate-based rule settings
+	// in two web ACLs, each of the two rule statements represents a separate instance
+	// of the rate-based rule and gets its own tracking and management by WAF. If
+	// you define a rate-based rule inside a rule group, and then use that rule
+	// group in multiple places, each use creates a separate instance of the rate-based
+	// rule that gets its own tracking and management by WAF.
+	//
 	// When the rule action triggers, WAF blocks additional requests from the IP
 	// address until the request rate falls below the limit.
 	//
@@ -14290,10 +16895,14 @@ type Statement struct {
 	// the rule action triggers. Requests that do not meet both conditions are not
 	// counted towards the rate limit and are not affected by this rule.
 	//
-	// You cannot nest a RateBasedStatement, for example for use inside a NotStatement
-	// or OrStatement. It can only be referenced as a top-level statement within
-	// a rule.
+	// You cannot nest a RateBasedStatement inside another statement, for example
+	// inside a NotStatement or OrStatement. You can define a RateBasedStatement
+	// inside a web ACL and inside a rule group.
 	RateBasedStatement *RateBasedStatement `type:"structure"`
+
+	// A rule statement used to search web request components for a match against
+	// a single regular expression.
+	RegexMatchStatement *RegexMatchStatement `type:"structure"`
 
 	// A rule statement used to search web request components for matches with regular
 	// expressions. To use this, create a RegexPatternSet that specifies the expressions
@@ -14313,8 +16922,8 @@ type Statement struct {
 	// rule group in this statement.
 	//
 	// You cannot nest a RuleGroupReferenceStatement, for example for use inside
-	// a NotStatement or OrStatement. It can only be referenced as a top-level statement
-	// within a rule.
+	// a NotStatement or OrStatement. You can only use a rule group reference statement
+	// at the top level inside a web ACL.
 	RuleGroupReferenceStatement *RuleGroupReferenceStatement `type:"structure"`
 
 	// A rule statement that compares a number of bytes against the size of a request
@@ -14351,12 +16960,20 @@ type Statement struct {
 	XssMatchStatement *XssMatchStatement `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Statement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Statement) GoString() string {
 	return s.String()
 }
@@ -14407,6 +17024,11 @@ func (s *Statement) Validate() error {
 	if s.RateBasedStatement != nil {
 		if err := s.RateBasedStatement.Validate(); err != nil {
 			invalidParams.AddNested("RateBasedStatement", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RegexMatchStatement != nil {
+		if err := s.RegexMatchStatement.Validate(); err != nil {
+			invalidParams.AddNested("RegexMatchStatement", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.RegexPatternSetReferenceStatement != nil {
@@ -14495,6 +17117,12 @@ func (s *Statement) SetRateBasedStatement(v *RateBasedStatement) *Statement {
 	return s
 }
 
+// SetRegexMatchStatement sets the RegexMatchStatement field's value.
+func (s *Statement) SetRegexMatchStatement(v *RegexMatchStatement) *Statement {
+	s.RegexMatchStatement = v
+	return s
+}
+
 // SetRegexPatternSetReferenceStatement sets the RegexPatternSetReferenceStatement field's value.
 func (s *Statement) SetRegexPatternSetReferenceStatement(v *RegexPatternSetReferenceStatement) *Statement {
 	s.RegexPatternSetReferenceStatement = v
@@ -14554,12 +17182,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -14617,12 +17253,20 @@ type TagInfoForResource struct {
 	TagList []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagInfoForResource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagInfoForResource) GoString() string {
 	return s.String()
 }
@@ -14653,12 +17297,20 @@ type TagResourceInput struct {
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -14711,12 +17363,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -14849,12 +17509,20 @@ type TextTransformation struct {
 	Type *string `type:"string" required:"true" enum:"TextTransformationType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TextTransformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TextTransformation) GoString() string {
 	return s.String()
 }
@@ -14923,12 +17591,20 @@ type TimeWindow struct {
 	StartTime *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TimeWindow) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TimeWindow) GoString() string {
 	return s.String()
 }
@@ -14975,12 +17651,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -15023,12 +17707,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -15036,11 +17728,11 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateIPSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains an array of strings that specify one or more IP addresses or blocks
-	// of IP addresses in Classless Inter-Domain Routing (CIDR) notation. WAF supports
-	// all IPv4 and IPv6 CIDR ranges except for /0.
+	// Contains an array of strings that specifies zero or more IP addresses or
+	// blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation.
+	// WAF supports all IPv4 and IPv6 CIDR ranges except for /0.
 	//
-	// Examples:
+	// Example address strings:
 	//
 	//    * To configure WAF to allow, block, or count requests that originated
 	//    from the IP address 192.0.2.44, specify 192.0.2.44/32.
@@ -15057,6 +17749,17 @@ type UpdateIPSetInput struct {
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+	//
+	// Example JSON Addresses specifications:
+	//
+	//    * Empty array: "Addresses": []
+	//
+	//    * Array with one address: "Addresses": ["192.0.2.44/32"]
+	//
+	//    * Array with three addresses: "Addresses": ["192.0.2.44/32", "192.0.2.0/24",
+	//    "192.0.0.0/16"]
+	//
+	//    * INVALID specification: "Addresses": [""] INVALID
 	//
 	// Addresses is a required field
 	Addresses []*string `type:"list" required:"true"`
@@ -15104,12 +17807,20 @@ type UpdateIPSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIPSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIPSetInput) GoString() string {
 	return s.String()
 }
@@ -15195,12 +17906,20 @@ type UpdateIPSetOutput struct {
 	NextLockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIPSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIPSetOutput) GoString() string {
 	return s.String()
 }
@@ -15271,12 +17990,20 @@ type UpdateManagedRuleSetVersionExpiryDateInput struct {
 	VersionToExpire *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateManagedRuleSetVersionExpiryDateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateManagedRuleSetVersionExpiryDateInput) GoString() string {
 	return s.String()
 }
@@ -15380,12 +18107,20 @@ type UpdateManagedRuleSetVersionExpiryDateOutput struct {
 	NextLockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateManagedRuleSetVersionExpiryDateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateManagedRuleSetVersionExpiryDateOutput) GoString() string {
 	return s.String()
 }
@@ -15456,12 +18191,20 @@ type UpdateRegexPatternSetInput struct {
 	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRegexPatternSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRegexPatternSetInput) GoString() string {
 	return s.String()
 }
@@ -15557,12 +18300,20 @@ type UpdateRegexPatternSetOutput struct {
 	NextLockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRegexPatternSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRegexPatternSetOutput) GoString() string {
 	return s.String()
 }
@@ -15645,12 +18396,20 @@ type UpdateRuleGroupInput struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRuleGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRuleGroupInput) GoString() string {
 	return s.String()
 }
@@ -15776,12 +18535,20 @@ type UpdateRuleGroupOutput struct {
 	NextLockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRuleGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateRuleGroupOutput) GoString() string {
 	return s.String()
 }
@@ -15794,6 +18561,11 @@ func (s *UpdateRuleGroupOutput) SetNextLockToken(v string) *UpdateRuleGroupOutpu
 
 type UpdateWebACLInput struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
+	// have their own CaptchaConfig settings. If you don't specify this, WAF uses
+	// its default settings for CaptchaConfig.
+	CaptchaConfig *CaptchaConfig `type:"structure"`
 
 	// A map of custom response keys and content bodies. When you create a rule
 	// with a block action, you can send a custom response to the web request. You
@@ -15869,12 +18641,20 @@ type UpdateWebACLInput struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWebACLInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWebACLInput) GoString() string {
 	return s.String()
 }
@@ -15915,6 +18695,11 @@ func (s *UpdateWebACLInput) Validate() error {
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
 	}
+	if s.CaptchaConfig != nil {
+		if err := s.CaptchaConfig.Validate(); err != nil {
+			invalidParams.AddNested("CaptchaConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.CustomResponseBodies != nil {
 		for i, v := range s.CustomResponseBodies {
 			if v == nil {
@@ -15950,6 +18735,12 @@ func (s *UpdateWebACLInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *UpdateWebACLInput) SetCaptchaConfig(v *CaptchaConfig) *UpdateWebACLInput {
+	s.CaptchaConfig = v
+	return s
 }
 
 // SetCustomResponseBodies sets the CustomResponseBodies field's value.
@@ -16014,12 +18805,20 @@ type UpdateWebACLOutput struct {
 	NextLockToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWebACLOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateWebACLOutput) GoString() string {
 	return s.String()
 }
@@ -16035,25 +18834,85 @@ func (s *UpdateWebACLOutput) SetNextLockToken(v string) *UpdateWebACLOutput {
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// JSON specification: "UriPath": {}
 type UriPath struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UriPath) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UriPath) GoString() string {
 	return s.String()
+}
+
+// Details about your login page username field, used in a ManagedRuleGroupConfig.
+type UsernameField struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the username field. For example /form/username.
+	//
+	// Identifier is a required field
+	Identifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UsernameField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UsernameField) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UsernameField) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UsernameField"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *UsernameField) SetIdentifier(v string) *UsernameField {
+	s.Identifier = &v
+	return s
 }
 
 // A version of the named managed rule group, that the rule group's vendor publishes
 // for use by customers.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -16071,12 +18930,20 @@ type VersionToPublish struct {
 	ForecastedLifetime *int64 `min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VersionToPublish) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VersionToPublish) GoString() string {
 	return s.String()
 }
@@ -16134,12 +19001,20 @@ type VisibilityConfig struct {
 	SampledRequestsEnabled *bool `type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VisibilityConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VisibilityConfig) GoString() string {
 	return s.String()
 }
@@ -16193,12 +19068,20 @@ type WAFAssociatedItemException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFAssociatedItemException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFAssociatedItemException) GoString() string {
 	return s.String()
 }
@@ -16250,12 +19133,20 @@ type WAFDuplicateItemException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFDuplicateItemException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFDuplicateItemException) GoString() string {
 	return s.String()
 }
@@ -16308,12 +19199,20 @@ type WAFExpiredManagedRuleGroupVersionException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFExpiredManagedRuleGroupVersionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFExpiredManagedRuleGroupVersionException) GoString() string {
 	return s.String()
 }
@@ -16365,12 +19264,20 @@ type WAFInternalErrorException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInternalErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInternalErrorException) GoString() string {
 	return s.String()
 }
@@ -16421,12 +19328,20 @@ type WAFInvalidOperationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidOperationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidOperationException) GoString() string {
 	return s.String()
 }
@@ -16498,12 +19413,20 @@ type WAFInvalidParameterException struct {
 	Reason *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidParameterException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidParameterException) GoString() string {
 	return s.String()
 }
@@ -16570,12 +19493,20 @@ type WAFInvalidPermissionPolicyException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidPermissionPolicyException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidPermissionPolicyException) GoString() string {
 	return s.String()
 }
@@ -16627,12 +19558,20 @@ type WAFInvalidResourceException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidResourceException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFInvalidResourceException) GoString() string {
 	return s.String()
 }
@@ -16686,12 +19625,20 @@ type WAFLimitsExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFLimitsExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFLimitsExceededException) GoString() string {
 	return s.String()
 }
@@ -16734,6 +19681,73 @@ func (s *WAFLimitsExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The operation failed because you don't have the permissions that your logging
+// configuration requires. For information, see Logging web ACL traffic information
+// (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html) in the
+// WAF Developer Guide.
+type WAFLogDestinationPermissionIssueException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFLogDestinationPermissionIssueException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFLogDestinationPermissionIssueException) GoString() string {
+	return s.String()
+}
+
+func newErrorWAFLogDestinationPermissionIssueException(v protocol.ResponseMetadata) error {
+	return &WAFLogDestinationPermissionIssueException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *WAFLogDestinationPermissionIssueException) Code() string {
+	return "WAFLogDestinationPermissionIssueException"
+}
+
+// Message returns the exception's message.
+func (s *WAFLogDestinationPermissionIssueException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *WAFLogDestinationPermissionIssueException) OrigErr() error {
+	return nil
+}
+
+func (s *WAFLogDestinationPermissionIssueException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *WAFLogDestinationPermissionIssueException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *WAFLogDestinationPermissionIssueException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // WAF couldn’t perform the operation because your resource doesn’t exist.
 type WAFNonexistentItemException struct {
 	_            struct{}                  `type:"structure"`
@@ -16742,12 +19756,20 @@ type WAFNonexistentItemException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFNonexistentItemException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFNonexistentItemException) GoString() string {
 	return s.String()
 }
@@ -16800,12 +19822,20 @@ type WAFOptimisticLockException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFOptimisticLockException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFOptimisticLockException) GoString() string {
 	return s.String()
 }
@@ -16863,12 +19893,20 @@ type WAFServiceLinkedRoleErrorException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFServiceLinkedRoleErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFServiceLinkedRoleErrorException) GoString() string {
 	return s.String()
 }
@@ -16920,12 +19958,20 @@ type WAFSubscriptionNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFSubscriptionNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFSubscriptionNotFoundException) GoString() string {
 	return s.String()
 }
@@ -16976,12 +20022,20 @@ type WAFTagOperationException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFTagOperationException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFTagOperationException) GoString() string {
 	return s.String()
 }
@@ -17033,12 +20087,20 @@ type WAFTagOperationInternalErrorException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFTagOperationInternalErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFTagOperationInternalErrorException) GoString() string {
 	return s.String()
 }
@@ -17089,12 +20151,20 @@ type WAFUnavailableEntityException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFUnavailableEntityException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WAFUnavailableEntityException) GoString() string {
 	return s.String()
 }
@@ -17165,6 +20235,11 @@ type WebACL struct {
 	// plan their web ACL WCU usage when they use a rule group. The WCU limit for
 	// web ACLs is 1,500.
 	Capacity *int64 `type:"long"`
+
+	// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
+	// have their own CaptchaConfig settings. If you don't specify this, WAF uses
+	// its default settings for CaptchaConfig.
+	CaptchaConfig *CaptchaConfig `type:"structure"`
 
 	// A map of custom response keys and content bodies. When you create a rule
 	// with a block action, you can send a custom response to the web request. You
@@ -17253,12 +20328,20 @@ type WebACL struct {
 	VisibilityConfig *VisibilityConfig `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebACL) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebACL) GoString() string {
 	return s.String()
 }
@@ -17272,6 +20355,12 @@ func (s *WebACL) SetARN(v string) *WebACL {
 // SetCapacity sets the Capacity field's value.
 func (s *WebACL) SetCapacity(v int64) *WebACL {
 	s.Capacity = &v
+	return s
+}
+
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *WebACL) SetCaptchaConfig(v *CaptchaConfig) *WebACL {
+	s.CaptchaConfig = v
 	return s
 }
 
@@ -17373,12 +20462,20 @@ type WebACLSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebACLSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s WebACLSummary) GoString() string {
 	return s.String()
 }
@@ -17439,12 +20536,20 @@ type XssMatchStatement struct {
 	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s XssMatchStatement) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s XssMatchStatement) GoString() string {
 	return s.String()
 }
@@ -17504,6 +20609,12 @@ const (
 
 	// ActionValueCount is a ActionValue enum value
 	ActionValueCount = "COUNT"
+
+	// ActionValueCaptcha is a ActionValue enum value
+	ActionValueCaptcha = "CAPTCHA"
+
+	// ActionValueExcludedAsCount is a ActionValue enum value
+	ActionValueExcludedAsCount = "EXCLUDED_AS_COUNT"
 )
 
 // ActionValue_Values returns all elements of the ActionValue enum
@@ -17512,6 +20623,8 @@ func ActionValue_Values() []string {
 		ActionValueAllow,
 		ActionValueBlock,
 		ActionValueCount,
+		ActionValueCaptcha,
+		ActionValueExcludedAsCount,
 	}
 }
 
@@ -18572,6 +21685,22 @@ func CountryCode_Values() []string {
 }
 
 const (
+	// FailureReasonTokenMissing is a FailureReason enum value
+	FailureReasonTokenMissing = "TOKEN_MISSING"
+
+	// FailureReasonTokenExpired is a FailureReason enum value
+	FailureReasonTokenExpired = "TOKEN_EXPIRED"
+)
+
+// FailureReason_Values returns all elements of the FailureReason enum
+func FailureReason_Values() []string {
+	return []string{
+		FailureReasonTokenMissing,
+		FailureReasonTokenExpired,
+	}
+}
+
+const (
 	// FallbackBehaviorMatch is a FallbackBehavior enum value
 	FallbackBehaviorMatch = "MATCH"
 
@@ -18850,6 +21979,24 @@ const (
 
 	// ParameterExceptionFieldFilterCondition is a ParameterExceptionField enum value
 	ParameterExceptionFieldFilterCondition = "FILTER_CONDITION"
+
+	// ParameterExceptionFieldExpireTimestamp is a ParameterExceptionField enum value
+	ParameterExceptionFieldExpireTimestamp = "EXPIRE_TIMESTAMP"
+
+	// ParameterExceptionFieldChangePropagationStatus is a ParameterExceptionField enum value
+	ParameterExceptionFieldChangePropagationStatus = "CHANGE_PROPAGATION_STATUS"
+
+	// ParameterExceptionFieldAssociableResource is a ParameterExceptionField enum value
+	ParameterExceptionFieldAssociableResource = "ASSOCIABLE_RESOURCE"
+
+	// ParameterExceptionFieldLogDestination is a ParameterExceptionField enum value
+	ParameterExceptionFieldLogDestination = "LOG_DESTINATION"
+
+	// ParameterExceptionFieldManagedRuleGroupConfig is a ParameterExceptionField enum value
+	ParameterExceptionFieldManagedRuleGroupConfig = "MANAGED_RULE_GROUP_CONFIG"
+
+	// ParameterExceptionFieldPayloadType is a ParameterExceptionField enum value
+	ParameterExceptionFieldPayloadType = "PAYLOAD_TYPE"
 )
 
 // ParameterExceptionField_Values returns all elements of the ParameterExceptionField enum
@@ -18908,6 +22055,44 @@ func ParameterExceptionField_Values() []string {
 		ParameterExceptionFieldBodyParsingFallbackBehavior,
 		ParameterExceptionFieldLoggingFilter,
 		ParameterExceptionFieldFilterCondition,
+		ParameterExceptionFieldExpireTimestamp,
+		ParameterExceptionFieldChangePropagationStatus,
+		ParameterExceptionFieldAssociableResource,
+		ParameterExceptionFieldLogDestination,
+		ParameterExceptionFieldManagedRuleGroupConfig,
+		ParameterExceptionFieldPayloadType,
+	}
+}
+
+const (
+	// PayloadTypeJson is a PayloadType enum value
+	PayloadTypeJson = "JSON"
+
+	// PayloadTypeFormEncoded is a PayloadType enum value
+	PayloadTypeFormEncoded = "FORM_ENCODED"
+)
+
+// PayloadType_Values returns all elements of the PayloadType enum
+func PayloadType_Values() []string {
+	return []string{
+		PayloadTypeJson,
+		PayloadTypeFormEncoded,
+	}
+}
+
+const (
+	// PlatformIos is a Platform enum value
+	PlatformIos = "IOS"
+
+	// PlatformAndroid is a Platform enum value
+	PlatformAndroid = "ANDROID"
+)
+
+// Platform_Values returns all elements of the Platform enum
+func Platform_Values() []string {
+	return []string{
+		PlatformIos,
+		PlatformAndroid,
 	}
 }
 
