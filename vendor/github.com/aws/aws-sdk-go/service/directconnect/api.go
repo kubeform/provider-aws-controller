@@ -335,7 +335,8 @@ func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePr
 
 // AllocatePrivateVirtualInterface API operation for AWS Direct Connect.
 //
-// Provisions a private virtual interface to be owned by the specified account.
+// Provisions a private virtual interface to be owned by the specified Amazon
+// Web Services account.
 //
 // Virtual interfaces created using this action must be confirmed by the owner
 // using ConfirmPrivateVirtualInterface. Until then, the virtual interface is
@@ -427,10 +428,11 @@ func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePub
 
 // AllocatePublicVirtualInterface API operation for AWS Direct Connect.
 //
-// Provisions a public virtual interface to be owned by the specified account.
+// Provisions a public virtual interface to be owned by the specified Amazon
+// Web Services account.
 //
 // The owner of a connection calls this function to provision a public virtual
-// interface to be owned by the specified account.
+// interface to be owned by the specified Amazon Web Services account.
 //
 // Virtual interfaces created using this function must be confirmed by the owner
 // using ConfirmPublicVirtualInterface. Until this step has been completed,
@@ -527,12 +529,12 @@ func (c *DirectConnect) AllocateTransitVirtualInterfaceRequest(input *AllocateTr
 
 // AllocateTransitVirtualInterface API operation for AWS Direct Connect.
 //
-// Provisions a transit virtual interface to be owned by the specified account.
-// Use this type of interface to connect a transit gateway to your Direct Connect
-// gateway.
+// Provisions a transit virtual interface to be owned by the specified Amazon
+// Web Services account. Use this type of interface to connect a transit gateway
+// to your Direct Connect gateway.
 //
 // The owner of a connection provisions a transit virtual interface to be owned
-// by the specified account.
+// by the specified Amazon Web Services account.
 //
 // After you create a transit virtual interface, it must be confirmed by the
 // owner using ConfirmTransitVirtualInterface. Until this step has been completed,
@@ -1038,6 +1040,89 @@ func (c *DirectConnect) ConfirmConnectionWithContext(ctx aws.Context, input *Con
 	return out, req.Send()
 }
 
+const opConfirmCustomerAgreement = "ConfirmCustomerAgreement"
+
+// ConfirmCustomerAgreementRequest generates a "aws/request.Request" representing the
+// client's request for the ConfirmCustomerAgreement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ConfirmCustomerAgreement for more information on using the ConfirmCustomerAgreement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ConfirmCustomerAgreementRequest method.
+//    req, resp := client.ConfirmCustomerAgreementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/ConfirmCustomerAgreement
+func (c *DirectConnect) ConfirmCustomerAgreementRequest(input *ConfirmCustomerAgreementInput) (req *request.Request, output *ConfirmCustomerAgreementOutput) {
+	op := &request.Operation{
+		Name:       opConfirmCustomerAgreement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ConfirmCustomerAgreementInput{}
+	}
+
+	output = &ConfirmCustomerAgreementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ConfirmCustomerAgreement API operation for AWS Direct Connect.
+//
+// The confirmation of the terms of agreement when creating the connection/link
+// aggregation group (LAG).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation ConfirmCustomerAgreement for usage and error information.
+//
+// Returned Error Types:
+//   * ServerException
+//   A server-side error occurred.
+//
+//   * ClientException
+//   One or more parameters are not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/ConfirmCustomerAgreement
+func (c *DirectConnect) ConfirmCustomerAgreement(input *ConfirmCustomerAgreementInput) (*ConfirmCustomerAgreementOutput, error) {
+	req, out := c.ConfirmCustomerAgreementRequest(input)
+	return out, req.Send()
+}
+
+// ConfirmCustomerAgreementWithContext is the same as ConfirmCustomerAgreement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ConfirmCustomerAgreement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectConnect) ConfirmCustomerAgreementWithContext(ctx aws.Context, input *ConfirmCustomerAgreementInput, opts ...request.Option) (*ConfirmCustomerAgreementOutput, error) {
+	req, out := c.ConfirmCustomerAgreementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opConfirmPrivateVirtualInterface = "ConfirmPrivateVirtualInterface"
 
 // ConfirmPrivateVirtualInterfaceRequest generates a "aws/request.Request" representing the
@@ -1082,7 +1167,8 @@ func (c *DirectConnect) ConfirmPrivateVirtualInterfaceRequest(input *ConfirmPriv
 
 // ConfirmPrivateVirtualInterface API operation for AWS Direct Connect.
 //
-// Accepts ownership of a private virtual interface created by another account.
+// Accepts ownership of a private virtual interface created by another Amazon
+// Web Services account.
 //
 // After the virtual interface owner makes this call, the virtual interface
 // is created and attached to the specified virtual private gateway or Direct
@@ -1168,7 +1254,8 @@ func (c *DirectConnect) ConfirmPublicVirtualInterfaceRequest(input *ConfirmPubli
 
 // ConfirmPublicVirtualInterface API operation for AWS Direct Connect.
 //
-// Accepts ownership of a public virtual interface created by another account.
+// Accepts ownership of a public virtual interface created by another Amazon
+// Web Services account.
 //
 // After the virtual interface owner makes this call, the specified virtual
 // interface is created and made available to handle traffic.
@@ -1253,7 +1340,8 @@ func (c *DirectConnect) ConfirmTransitVirtualInterfaceRequest(input *ConfirmTran
 
 // ConfirmTransitVirtualInterface API operation for AWS Direct Connect.
 //
-// Accepts ownership of a transit virtual interface created by another account.
+// Accepts ownership of a transit virtual interface created by another Amazon
+// Web Services account.
 //
 // After the owner of the transit virtual interface makes this call, the specified
 // transit virtual interface is created and made available to handle traffic.
@@ -1538,11 +1626,12 @@ func (c *DirectConnect) CreateDirectConnectGatewayRequest(input *CreateDirectCon
 //
 // Creates a Direct Connect gateway, which is an intermediate object that enables
 // you to connect a set of virtual interfaces and virtual private gateways.
-// A Direct Connect gateway is global and visible in any Region after it is
-// created. The virtual interfaces and virtual private gateways that are connected
-// through a Direct Connect gateway can be in different Regions. This enables
-// you to connect to a VPC in any Region, regardless of the Region in which
-// the virtual interfaces are located, and pass traffic between them.
+// A Direct Connect gateway is global and visible in any Amazon Web Services
+// Region after it is created. The virtual interfaces and virtual private gateways
+// that are connected through a Direct Connect gateway can be in different Amazon
+// Web Services Regions. This enables you to connect to a VPC in any Region,
+// regardless of the Region in which the virtual interfaces are located, and
+// pass traffic between them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1712,7 +1801,7 @@ func (c *DirectConnect) CreateDirectConnectGatewayAssociationProposalRequest(inp
 // transit gateway with the specified Direct Connect gateway.
 //
 // You can associate a Direct Connect gateway and virtual private gateway or
-// transit gateway that is owned by any account.
+// transit gateway that is owned by any Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1925,9 +2014,10 @@ func (c *DirectConnect) CreateLagRequest(input *CreateLagInput) (req *request.Re
 // associated with the dedicated connection are automatically disassociated
 // and re-associated with the LAG. The connection ID does not change.
 //
-// If the account used to create a LAG is a registered Direct Connect Partner,
-// the LAG is automatically enabled to host sub-connections. For a LAG owned
-// by a partner, any associated virtual interfaces cannot be directly configured.
+// If the Amazon Web Services account used to create a LAG is a registered Direct
+// Connect Partner, the LAG is automatically enabled to host sub-connections.
+// For a LAG owned by a partner, any associated virtual interfaces cannot be
+// directly configured.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2019,9 +2109,9 @@ func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivat
 // transports Direct Connect traffic. A private virtual interface can be connected
 // to either a Direct Connect gateway or a Virtual Private Gateway (VGW). Connecting
 // the private virtual interface to a Direct Connect gateway enables the possibility
-// for connecting to multiple VPCs, including VPCs in different Regions. Connecting
-// the private virtual interface to a VGW only provides access to a single VPC
-// within the same Region.
+// for connecting to multiple VPCs, including VPCs in different Amazon Web Services
+// Regions. Connecting the private virtual interface to a VGW only provides
+// access to a single VPC within the same Region.
 //
 // Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an
 // update to the underlying physical connection if it wasn't updated to support
@@ -3222,6 +3312,89 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnectWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opDescribeCustomerMetadata = "DescribeCustomerMetadata"
+
+// DescribeCustomerMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCustomerMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCustomerMetadata for more information on using the DescribeCustomerMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeCustomerMetadataRequest method.
+//    req, resp := client.DescribeCustomerMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeCustomerMetadata
+func (c *DirectConnect) DescribeCustomerMetadataRequest(input *DescribeCustomerMetadataInput) (req *request.Request, output *DescribeCustomerMetadataOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCustomerMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeCustomerMetadataInput{}
+	}
+
+	output = &DescribeCustomerMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCustomerMetadata API operation for AWS Direct Connect.
+//
+// Get and view a list of customer agreements, along with their signed status
+// and whether the customer is an NNIPartner, NNIPartnerV2, or a nonPartner.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DescribeCustomerMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * ServerException
+//   A server-side error occurred.
+//
+//   * ClientException
+//   One or more parameters are not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeCustomerMetadata
+func (c *DirectConnect) DescribeCustomerMetadata(input *DescribeCustomerMetadataInput) (*DescribeCustomerMetadataOutput, error) {
+	req, out := c.DescribeCustomerMetadataRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCustomerMetadataWithContext is the same as DescribeCustomerMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCustomerMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectConnect) DescribeCustomerMetadataWithContext(ctx aws.Context, input *DescribeCustomerMetadataInput, opts ...request.Option) (*DescribeCustomerMetadataOutput, error) {
+	req, out := c.DescribeCustomerMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDirectConnectGatewayAssociationProposals = "DescribeDirectConnectGatewayAssociationProposals"
 
 // DescribeDirectConnectGatewayAssociationProposalsRequest generates a "aws/request.Request" representing the
@@ -3801,7 +3974,8 @@ func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnect
 
 // DescribeInterconnects API operation for AWS Direct Connect.
 //
-// Lists the interconnects owned by the account or only the specified interconnect.
+// Lists the interconnects owned by the Amazon Web Services account or only
+// the specified interconnect.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4054,8 +4228,9 @@ func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) 
 
 // DescribeLocations API operation for AWS Direct Connect.
 //
-// Lists the Direct Connect locations in the current Region. These are the locations
-// that can be selected when calling CreateConnection or CreateInterconnect.
+// Lists the Direct Connect locations in the current Amazon Web Services Region.
+// These are the locations that can be selected when calling CreateConnection
+// or CreateInterconnect.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4088,6 +4263,88 @@ func (c *DirectConnect) DescribeLocations(input *DescribeLocationsInput) (*Descr
 // for more information on using Contexts.
 func (c *DirectConnect) DescribeLocationsWithContext(ctx aws.Context, input *DescribeLocationsInput, opts ...request.Option) (*DescribeLocationsOutput, error) {
 	req, out := c.DescribeLocationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeRouterConfiguration = "DescribeRouterConfiguration"
+
+// DescribeRouterConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRouterConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRouterConfiguration for more information on using the DescribeRouterConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeRouterConfigurationRequest method.
+//    req, resp := client.DescribeRouterConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeRouterConfiguration
+func (c *DirectConnect) DescribeRouterConfigurationRequest(input *DescribeRouterConfigurationInput) (req *request.Request, output *DescribeRouterConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRouterConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeRouterConfigurationInput{}
+	}
+
+	output = &DescribeRouterConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRouterConfiguration API operation for AWS Direct Connect.
+//
+// Details about the router.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DescribeRouterConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ServerException
+//   A server-side error occurred.
+//
+//   * ClientException
+//   One or more parameters are not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DescribeRouterConfiguration
+func (c *DirectConnect) DescribeRouterConfiguration(input *DescribeRouterConfigurationInput) (*DescribeRouterConfigurationOutput, error) {
+	req, out := c.DescribeRouterConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRouterConfigurationWithContext is the same as DescribeRouterConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRouterConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectConnect) DescribeRouterConfigurationWithContext(ctx aws.Context, input *DescribeRouterConfigurationInput, opts ...request.Option) (*DescribeRouterConfigurationOutput, error) {
+	req, out := c.DescribeRouterConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4219,7 +4476,7 @@ func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGat
 
 // DescribeVirtualGateways API operation for AWS Direct Connect.
 //
-// Lists the virtual private gateways owned by the account.
+// Lists the virtual private gateways owned by the Amazon Web Services account.
 //
 // You can create one or more Direct Connect private virtual interfaces linked
 // to a virtual private gateway.
@@ -4304,11 +4561,11 @@ func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualI
 
 // DescribeVirtualInterfaces API operation for AWS Direct Connect.
 //
-// Displays all virtual interfaces for an account. Virtual interfaces deleted
-// fewer than 15 minutes before you make the request are also returned. If you
-// specify a connection ID, only the virtual interfaces associated with the
-// connection are returned. If you specify a virtual interface ID, then only
-// a single virtual interface is returned.
+// Displays all virtual interfaces for an Amazon Web Services account. Virtual
+// interfaces deleted fewer than 15 minutes before you make the request are
+// also returned. If you specify a connection ID, only the virtual interfaces
+// associated with the connection are returned. If you specify a virtual interface
+// ID, then only a single virtual interface is returned.
 //
 // A virtual interface (VLAN) transmits the traffic between the Direct Connect
 // location and the customer network.
@@ -5044,6 +5301,88 @@ func (c *DirectConnect) UpdateConnectionWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
+const opUpdateDirectConnectGateway = "UpdateDirectConnectGateway"
+
+// UpdateDirectConnectGatewayRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDirectConnectGateway operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDirectConnectGateway for more information on using the UpdateDirectConnectGateway
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateDirectConnectGatewayRequest method.
+//    req, resp := client.UpdateDirectConnectGatewayRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/UpdateDirectConnectGateway
+func (c *DirectConnect) UpdateDirectConnectGatewayRequest(input *UpdateDirectConnectGatewayInput) (req *request.Request, output *UpdateDirectConnectGatewayOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDirectConnectGateway,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateDirectConnectGatewayInput{}
+	}
+
+	output = &UpdateDirectConnectGatewayOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateDirectConnectGateway API operation for AWS Direct Connect.
+//
+// Updates the name of a current Direct Connect gateway.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation UpdateDirectConnectGateway for usage and error information.
+//
+// Returned Error Types:
+//   * ServerException
+//   A server-side error occurred.
+//
+//   * ClientException
+//   One or more parameters are not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/UpdateDirectConnectGateway
+func (c *DirectConnect) UpdateDirectConnectGateway(input *UpdateDirectConnectGatewayInput) (*UpdateDirectConnectGatewayOutput, error) {
+	req, out := c.UpdateDirectConnectGatewayRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDirectConnectGatewayWithContext is the same as UpdateDirectConnectGateway with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDirectConnectGateway for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectConnect) UpdateDirectConnectGatewayWithContext(ctx aws.Context, input *UpdateDirectConnectGatewayInput, opts ...request.Option) (*UpdateDirectConnectGatewayOutput, error) {
+	req, out := c.UpdateDirectConnectGatewayRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateDirectConnectGatewayAssociation = "UpdateDirectConnectGatewayAssociation"
 
 // UpdateDirectConnectGatewayAssociationRequest generates a "aws/request.Request" representing the
@@ -5318,7 +5657,8 @@ func (c *DirectConnect) UpdateVirtualInterfaceAttributesWithContext(ctx aws.Cont
 type AcceptDirectConnectGatewayAssociationProposalInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the account that owns the virtual private gateway or transit gateway.
+	// The ID of the Amazon Web Services account that owns the virtual private gateway
+	// or transit gateway.
 	//
 	// AssociatedGatewayOwnerAccount is a required field
 	AssociatedGatewayOwnerAccount *string `locationName:"associatedGatewayOwnerAccount" type:"string" required:"true"`
@@ -5340,12 +5680,20 @@ type AcceptDirectConnectGatewayAssociationProposalInput struct {
 	ProposalId *string `locationName:"proposalId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptDirectConnectGatewayAssociationProposalInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptDirectConnectGatewayAssociationProposalInput) GoString() string {
 	return s.String()
 }
@@ -5401,12 +5749,20 @@ type AcceptDirectConnectGatewayAssociationProposalOutput struct {
 	DirectConnectGatewayAssociation *GatewayAssociation `locationName:"directConnectGatewayAssociation" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptDirectConnectGatewayAssociationProposalOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AcceptDirectConnectGatewayAssociationProposalOutput) GoString() string {
 	return s.String()
 }
@@ -5438,7 +5794,8 @@ type AllocateConnectionOnInterconnectInput struct {
 	// InterconnectId is a required field
 	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 
-	// The ID of the account of the customer for whom the connection will be provisioned.
+	// The ID of the Amazon Web Services account of the customer for whom the connection
+	// will be provisioned.
 	//
 	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
@@ -5449,12 +5806,20 @@ type AllocateConnectionOnInterconnectInput struct {
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllocateConnectionOnInterconnectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllocateConnectionOnInterconnectInput) GoString() string {
 	return s.String()
 }
@@ -5535,7 +5900,7 @@ type AllocateHostedConnectionInput struct {
 	// ConnectionName is a required field
 	ConnectionName *string `locationName:"connectionName" type:"string" required:"true"`
 
-	// The ID of the account ID of the customer for the connection.
+	// The ID of the Amazon Web Services account ID of the customer for the connection.
 	//
 	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
@@ -5549,12 +5914,20 @@ type AllocateHostedConnectionInput struct {
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllocateHostedConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllocateHostedConnectionInput) GoString() string {
 	return s.String()
 }
@@ -5646,18 +6019,26 @@ type AllocatePrivateVirtualInterfaceInput struct {
 	// NewPrivateVirtualInterfaceAllocation is a required field
 	NewPrivateVirtualInterfaceAllocation *NewPrivateVirtualInterfaceAllocation `locationName:"newPrivateVirtualInterfaceAllocation" type:"structure" required:"true"`
 
-	// The ID of the account that owns the virtual private interface.
+	// The ID of the Amazon Web Services account that owns the virtual private interface.
 	//
 	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllocatePrivateVirtualInterfaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllocatePrivateVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
@@ -5717,18 +6098,26 @@ type AllocatePublicVirtualInterfaceInput struct {
 	// NewPublicVirtualInterfaceAllocation is a required field
 	NewPublicVirtualInterfaceAllocation *NewPublicVirtualInterfaceAllocation `locationName:"newPublicVirtualInterfaceAllocation" type:"structure" required:"true"`
 
-	// The ID of the account that owns the public virtual interface.
+	// The ID of the Amazon Web Services account that owns the public virtual interface.
 	//
 	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllocatePublicVirtualInterfaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllocatePublicVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
@@ -5788,18 +6177,26 @@ type AllocateTransitVirtualInterfaceInput struct {
 	// NewTransitVirtualInterfaceAllocation is a required field
 	NewTransitVirtualInterfaceAllocation *NewTransitVirtualInterfaceAllocation `locationName:"newTransitVirtualInterfaceAllocation" type:"structure" required:"true"`
 
-	// The ID of the account that owns the transit virtual interface.
+	// The ID of the Amazon Web Services account that owns the transit virtual interface.
 	//
 	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllocateTransitVirtualInterfaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllocateTransitVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
@@ -5853,12 +6250,20 @@ type AllocateTransitVirtualInterfaceOutput struct {
 	VirtualInterface *VirtualInterface `locationName:"virtualInterface" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllocateTransitVirtualInterfaceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AllocateTransitVirtualInterfaceOutput) GoString() string {
 	return s.String()
 }
@@ -5883,12 +6288,20 @@ type AssociateConnectionWithLagInput struct {
 	LagId *string `locationName:"lagId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateConnectionWithLagInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateConnectionWithLagInput) GoString() string {
 	return s.String()
 }
@@ -5935,12 +6348,20 @@ type AssociateHostedConnectionInput struct {
 	ParentConnectionId *string `locationName:"parentConnectionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateHostedConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateHostedConnectionInput) GoString() string {
 	return s.String()
 }
@@ -6014,12 +6435,20 @@ type AssociateMacSecKeyInput struct {
 	SecretARN *string `locationName:"secretARN" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateMacSecKeyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateMacSecKeyInput) GoString() string {
 	return s.String()
 }
@@ -6071,12 +6500,20 @@ type AssociateMacSecKeyOutput struct {
 	MacSecKeys []*MacSecKey `locationName:"macSecKeys" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateMacSecKeyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateMacSecKeyOutput) GoString() string {
 	return s.String()
 }
@@ -6107,12 +6544,20 @@ type AssociateVirtualInterfaceInput struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateVirtualInterfaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
@@ -6152,8 +6597,8 @@ type AssociatedGateway struct {
 	// The ID of the associated gateway.
 	Id *string `locationName:"id" type:"string"`
 
-	// The ID of the account that owns the associated virtual private gateway or
-	// transit gateway.
+	// The ID of the Amazon Web Services account that owns the associated virtual
+	// private gateway or transit gateway.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
 	// The Region where the associated gateway is located.
@@ -6163,12 +6608,20 @@ type AssociatedGateway struct {
 	Type *string `locationName:"type" type:"string" enum:"GatewayType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociatedGateway) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociatedGateway) GoString() string {
 	return s.String()
 }
@@ -6255,12 +6708,20 @@ type BGPPeer struct {
 	CustomerAddress *string `locationName:"customerAddress" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BGPPeer) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BGPPeer) GoString() string {
 	return s.String()
 }
@@ -6333,12 +6794,20 @@ type ClientException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ClientException) GoString() string {
 	return s.String()
 }
@@ -6390,12 +6859,20 @@ type ConfirmConnectionInput struct {
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmConnectionInput) GoString() string {
 	return s.String()
 }
@@ -6449,12 +6926,20 @@ type ConfirmConnectionOutput struct {
 	ConnectionState *string `locationName:"connectionState" type:"string" enum:"ConnectionState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -6462,6 +6947,69 @@ func (s ConfirmConnectionOutput) GoString() string {
 // SetConnectionState sets the ConnectionState field's value.
 func (s *ConfirmConnectionOutput) SetConnectionState(v string) *ConfirmConnectionOutput {
 	s.ConnectionState = &v
+	return s
+}
+
+type ConfirmCustomerAgreementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the customer agreement.
+	AgreementName *string `locationName:"agreementName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfirmCustomerAgreementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfirmCustomerAgreementInput) GoString() string {
+	return s.String()
+}
+
+// SetAgreementName sets the AgreementName field's value.
+func (s *ConfirmCustomerAgreementInput) SetAgreementName(v string) *ConfirmCustomerAgreementInput {
+	s.AgreementName = &v
+	return s
+}
+
+type ConfirmCustomerAgreementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the customer agreement when the connection was created. This
+	// will be either signed or unsigned.
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfirmCustomerAgreementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfirmCustomerAgreementOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *ConfirmCustomerAgreementOutput) SetStatus(v string) *ConfirmCustomerAgreementOutput {
+	s.Status = &v
 	return s
 }
 
@@ -6480,12 +7028,20 @@ type ConfirmPrivateVirtualInterfaceInput struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmPrivateVirtualInterfaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmPrivateVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
@@ -6557,12 +7113,20 @@ type ConfirmPrivateVirtualInterfaceOutput struct {
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmPrivateVirtualInterfaceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmPrivateVirtualInterfaceOutput) GoString() string {
 	return s.String()
 }
@@ -6582,12 +7146,20 @@ type ConfirmPublicVirtualInterfaceInput struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmPublicVirtualInterfaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmPublicVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
@@ -6647,12 +7219,20 @@ type ConfirmPublicVirtualInterfaceOutput struct {
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmPublicVirtualInterfaceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmPublicVirtualInterfaceOutput) GoString() string {
 	return s.String()
 }
@@ -6677,12 +7257,20 @@ type ConfirmTransitVirtualInterfaceInput struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmTransitVirtualInterfaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmTransitVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
@@ -6751,12 +7339,20 @@ type ConfirmTransitVirtualInterfaceOutput struct {
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmTransitVirtualInterfaceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConfirmTransitVirtualInterfaceOutput) GoString() string {
 	return s.String()
 }
@@ -6843,7 +7439,7 @@ type Connection struct {
 	// The MAC Security (MACsec) security keys associated with the connection.
 	MacSecKeys []*MacSecKey `locationName:"macSecKeys" type:"list"`
 
-	// The ID of the account that owns the connection.
+	// The ID of the Amazon Web Services account that owns the connection.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
 	// The name of the Direct Connect service provider associated with the connection.
@@ -6858,7 +7454,7 @@ type Connection struct {
 	// The name of the service provider associated with the connection.
 	ProviderName *string `locationName:"providerName" type:"string"`
 
-	// The Region where the connection is located.
+	// The Amazon Web Services Region where the connection is located.
 	Region *string `locationName:"region" type:"string"`
 
 	// The tags associated with the connection.
@@ -6868,12 +7464,20 @@ type Connection struct {
 	Vlan *int64 `locationName:"vlan" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Connection) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Connection) GoString() string {
 	return s.String()
 }
@@ -7017,12 +7621,20 @@ type Connections struct {
 	Connections []*Connection `locationName:"connections" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Connections) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Connections) GoString() string {
 	return s.String()
 }
@@ -7043,12 +7655,20 @@ type CreateBGPPeerInput struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBGPPeerInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBGPPeerInput) GoString() string {
 	return s.String()
 }
@@ -7072,12 +7692,20 @@ type CreateBGPPeerOutput struct {
 	VirtualInterface *VirtualInterface `locationName:"virtualInterface" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBGPPeerOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBGPPeerOutput) GoString() string {
 	return s.String()
 }
@@ -7123,12 +7751,20 @@ type CreateConnectionInput struct {
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectionInput) GoString() string {
 	return s.String()
 }
@@ -7230,12 +7866,20 @@ type CreateDirectConnectGatewayAssociationInput struct {
 	VirtualGatewayId *string `locationName:"virtualGatewayId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectConnectGatewayAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectConnectGatewayAssociationInput) GoString() string {
 	return s.String()
 }
@@ -7284,12 +7928,20 @@ type CreateDirectConnectGatewayAssociationOutput struct {
 	DirectConnectGatewayAssociation *GatewayAssociation `locationName:"directConnectGatewayAssociation" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectConnectGatewayAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectConnectGatewayAssociationOutput) GoString() string {
 	return s.String()
 }
@@ -7311,7 +7963,7 @@ type CreateDirectConnectGatewayAssociationProposalInput struct {
 	// DirectConnectGatewayId is a required field
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string" required:"true"`
 
-	// The ID of the account that owns the Direct Connect gateway.
+	// The ID of the Amazon Web Services account that owns the Direct Connect gateway.
 	//
 	// DirectConnectGatewayOwnerAccount is a required field
 	DirectConnectGatewayOwnerAccount *string `locationName:"directConnectGatewayOwnerAccount" type:"string" required:"true"`
@@ -7325,12 +7977,20 @@ type CreateDirectConnectGatewayAssociationProposalInput struct {
 	RemoveAllowedPrefixesToDirectConnectGateway []*RouteFilterPrefix `locationName:"removeAllowedPrefixesToDirectConnectGateway" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectConnectGatewayAssociationProposalInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectConnectGatewayAssociationProposalInput) GoString() string {
 	return s.String()
 }
@@ -7391,12 +8051,20 @@ type CreateDirectConnectGatewayAssociationProposalOutput struct {
 	DirectConnectGatewayAssociationProposal *GatewayAssociationProposal `locationName:"directConnectGatewayAssociationProposal" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectConnectGatewayAssociationProposalOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectConnectGatewayAssociationProposalOutput) GoString() string {
 	return s.String()
 }
@@ -7422,12 +8090,20 @@ type CreateDirectConnectGatewayInput struct {
 	DirectConnectGatewayName *string `locationName:"directConnectGatewayName" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectConnectGatewayInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectConnectGatewayInput) GoString() string {
 	return s.String()
 }
@@ -7464,12 +8140,20 @@ type CreateDirectConnectGatewayOutput struct {
 	DirectConnectGateway *Gateway `locationName:"directConnectGateway" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectConnectGatewayOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDirectConnectGatewayOutput) GoString() string {
 	return s.String()
 }
@@ -7508,12 +8192,20 @@ type CreateInterconnectInput struct {
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInterconnectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateInterconnectInput) GoString() string {
 	return s.String()
 }
@@ -7632,12 +8324,20 @@ type CreateLagInput struct {
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLagInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLagInput) GoString() string {
 	return s.String()
 }
@@ -7758,12 +8458,20 @@ type CreatePrivateVirtualInterfaceInput struct {
 	NewPrivateVirtualInterface *NewPrivateVirtualInterface `locationName:"newPrivateVirtualInterface" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePrivateVirtualInterfaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePrivateVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
@@ -7815,12 +8523,20 @@ type CreatePublicVirtualInterfaceInput struct {
 	NewPublicVirtualInterface *NewPublicVirtualInterface `locationName:"newPublicVirtualInterface" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePublicVirtualInterfaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreatePublicVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
@@ -7872,12 +8588,20 @@ type CreateTransitVirtualInterfaceInput struct {
 	NewTransitVirtualInterface *NewTransitVirtualInterface `locationName:"newTransitVirtualInterface" type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTransitVirtualInterfaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTransitVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
@@ -7922,12 +8646,20 @@ type CreateTransitVirtualInterfaceOutput struct {
 	VirtualInterface *VirtualInterface `locationName:"virtualInterface" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTransitVirtualInterfaceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTransitVirtualInterfaceOutput) GoString() string {
 	return s.String()
 }
@@ -7935,6 +8667,47 @@ func (s CreateTransitVirtualInterfaceOutput) GoString() string {
 // SetVirtualInterface sets the VirtualInterface field's value.
 func (s *CreateTransitVirtualInterfaceOutput) SetVirtualInterface(v *VirtualInterface) *CreateTransitVirtualInterfaceOutput {
 	s.VirtualInterface = v
+	return s
+}
+
+// The name and status of a customer agreement.
+type CustomerAgreement struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the agreement.
+	AgreementName *string `locationName:"agreementName" type:"string"`
+
+	// The status of the customer agreement. This will be either signed or unsigned
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomerAgreement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomerAgreement) GoString() string {
+	return s.String()
+}
+
+// SetAgreementName sets the AgreementName field's value.
+func (s *CustomerAgreement) SetAgreementName(v string) *CustomerAgreement {
+	s.AgreementName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CustomerAgreement) SetStatus(v string) *CustomerAgreement {
+	s.Status = &v
 	return s
 }
 
@@ -7954,12 +8727,20 @@ type DeleteBGPPeerInput struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBGPPeerInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBGPPeerInput) GoString() string {
 	return s.String()
 }
@@ -7995,12 +8776,20 @@ type DeleteBGPPeerOutput struct {
 	VirtualInterface *VirtualInterface `locationName:"virtualInterface" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBGPPeerOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBGPPeerOutput) GoString() string {
 	return s.String()
 }
@@ -8020,12 +8809,20 @@ type DeleteConnectionInput struct {
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionInput) GoString() string {
 	return s.String()
 }
@@ -8062,12 +8859,20 @@ type DeleteDirectConnectGatewayAssociationInput struct {
 	VirtualGatewayId *string `locationName:"virtualGatewayId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectConnectGatewayAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectConnectGatewayAssociationInput) GoString() string {
 	return s.String()
 }
@@ -8097,12 +8902,20 @@ type DeleteDirectConnectGatewayAssociationOutput struct {
 	DirectConnectGatewayAssociation *GatewayAssociation `locationName:"directConnectGatewayAssociation" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectConnectGatewayAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectConnectGatewayAssociationOutput) GoString() string {
 	return s.String()
 }
@@ -8122,12 +8935,20 @@ type DeleteDirectConnectGatewayAssociationProposalInput struct {
 	ProposalId *string `locationName:"proposalId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectConnectGatewayAssociationProposalInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectConnectGatewayAssociationProposalInput) GoString() string {
 	return s.String()
 }
@@ -8158,12 +8979,20 @@ type DeleteDirectConnectGatewayAssociationProposalOutput struct {
 	DirectConnectGatewayAssociationProposal *GatewayAssociationProposal `locationName:"directConnectGatewayAssociationProposal" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectConnectGatewayAssociationProposalOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectConnectGatewayAssociationProposalOutput) GoString() string {
 	return s.String()
 }
@@ -8183,12 +9012,20 @@ type DeleteDirectConnectGatewayInput struct {
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectConnectGatewayInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectConnectGatewayInput) GoString() string {
 	return s.String()
 }
@@ -8219,12 +9056,20 @@ type DeleteDirectConnectGatewayOutput struct {
 	DirectConnectGateway *Gateway `locationName:"directConnectGateway" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectConnectGatewayOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDirectConnectGatewayOutput) GoString() string {
 	return s.String()
 }
@@ -8244,12 +9089,20 @@ type DeleteInterconnectInput struct {
 	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInterconnectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInterconnectInput) GoString() string {
 	return s.String()
 }
@@ -8297,12 +9150,20 @@ type DeleteInterconnectOutput struct {
 	InterconnectState *string `locationName:"interconnectState" type:"string" enum:"InterconnectState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInterconnectOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteInterconnectOutput) GoString() string {
 	return s.String()
 }
@@ -8322,12 +9183,20 @@ type DeleteLagInput struct {
 	LagId *string `locationName:"lagId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLagInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLagInput) GoString() string {
 	return s.String()
 }
@@ -8360,12 +9229,20 @@ type DeleteVirtualInterfaceInput struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualInterfaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualInterfaceInput) GoString() string {
 	return s.String()
 }
@@ -8425,12 +9302,20 @@ type DeleteVirtualInterfaceOutput struct {
 	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualInterfaceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteVirtualInterfaceOutput) GoString() string {
 	return s.String()
 }
@@ -8459,12 +9344,20 @@ type DescribeConnectionLoaInput struct {
 	ProviderName *string `locationName:"providerName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConnectionLoaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConnectionLoaInput) GoString() string {
 	return s.String()
 }
@@ -8507,12 +9400,20 @@ type DescribeConnectionLoaOutput struct {
 	Loa *Loa `locationName:"loa" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConnectionLoaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConnectionLoaOutput) GoString() string {
 	return s.String()
 }
@@ -8530,12 +9431,20 @@ type DescribeConnectionsInput struct {
 	ConnectionId *string `locationName:"connectionId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConnectionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConnectionsInput) GoString() string {
 	return s.String()
 }
@@ -8555,12 +9464,20 @@ type DescribeConnectionsOnInterconnectInput struct {
 	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConnectionsOnInterconnectInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeConnectionsOnInterconnectInput) GoString() string {
 	return s.String()
 }
@@ -8581,6 +9498,76 @@ func (s *DescribeConnectionsOnInterconnectInput) Validate() error {
 // SetInterconnectId sets the InterconnectId field's value.
 func (s *DescribeConnectionsOnInterconnectInput) SetInterconnectId(v string) *DescribeConnectionsOnInterconnectInput {
 	s.InterconnectId = &v
+	return s
+}
+
+type DescribeCustomerMetadataInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCustomerMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCustomerMetadataInput) GoString() string {
+	return s.String()
+}
+
+type DescribeCustomerMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of customer agreements.
+	Agreements []*CustomerAgreement `locationName:"agreements" type:"list"`
+
+	// The type of network-to-network interface (NNI) partner. The partner type
+	// will be one of the following:
+	//
+	//    * V1: This partner can only allocate 50Mbps, 100Mbps, 200Mbps, 300Mbps,
+	//    400Mbps, or 500Mbps subgigabit connections.
+	//
+	//    * V2: This partner can only allocate 1GB, 2GB, 5GB, or 10GB hosted connections.
+	//
+	//    * nonPartner: The customer is not a partner.
+	NniPartnerType *string `locationName:"nniPartnerType" type:"string" enum:"NniPartnerType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCustomerMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeCustomerMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgreements sets the Agreements field's value.
+func (s *DescribeCustomerMetadataOutput) SetAgreements(v []*CustomerAgreement) *DescribeCustomerMetadataOutput {
+	s.Agreements = v
+	return s
+}
+
+// SetNniPartnerType sets the NniPartnerType field's value.
+func (s *DescribeCustomerMetadataOutput) SetNniPartnerType(v string) *DescribeCustomerMetadataOutput {
+	s.NniPartnerType = &v
 	return s
 }
 
@@ -8606,12 +9593,20 @@ type DescribeDirectConnectGatewayAssociationProposalsInput struct {
 	ProposalId *string `locationName:"proposalId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewayAssociationProposalsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewayAssociationProposalsInput) GoString() string {
 	return s.String()
 }
@@ -8657,12 +9652,20 @@ type DescribeDirectConnectGatewayAssociationProposalsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewayAssociationProposalsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewayAssociationProposalsOutput) GoString() string {
 	return s.String()
 }
@@ -8704,12 +9707,20 @@ type DescribeDirectConnectGatewayAssociationsInput struct {
 	VirtualGatewayId *string `locationName:"virtualGatewayId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewayAssociationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewayAssociationsInput) GoString() string {
 	return s.String()
 }
@@ -8760,12 +9771,20 @@ type DescribeDirectConnectGatewayAssociationsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewayAssociationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewayAssociationsOutput) GoString() string {
 	return s.String()
 }
@@ -8801,12 +9820,20 @@ type DescribeDirectConnectGatewayAttachmentsInput struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewayAttachmentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewayAttachmentsInput) GoString() string {
 	return s.String()
 }
@@ -8845,12 +9872,20 @@ type DescribeDirectConnectGatewayAttachmentsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewayAttachmentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewayAttachmentsOutput) GoString() string {
 	return s.String()
 }
@@ -8883,12 +9918,20 @@ type DescribeDirectConnectGatewaysInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewaysInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewaysInput) GoString() string {
 	return s.String()
 }
@@ -8921,12 +9964,20 @@ type DescribeDirectConnectGatewaysOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewaysOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDirectConnectGatewaysOutput) GoString() string {
 	return s.String()
 }
@@ -8952,12 +10003,20 @@ type DescribeHostedConnectionsInput struct {
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeHostedConnectionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeHostedConnectionsInput) GoString() string {
 	return s.String()
 }
@@ -8999,12 +10058,20 @@ type DescribeInterconnectLoaInput struct {
 	ProviderName *string `locationName:"providerName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInterconnectLoaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInterconnectLoaInput) GoString() string {
 	return s.String()
 }
@@ -9047,12 +10114,20 @@ type DescribeInterconnectLoaOutput struct {
 	Loa *Loa `locationName:"loa" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInterconnectLoaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInterconnectLoaOutput) GoString() string {
 	return s.String()
 }
@@ -9070,12 +10145,20 @@ type DescribeInterconnectsInput struct {
 	InterconnectId *string `locationName:"interconnectId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInterconnectsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInterconnectsInput) GoString() string {
 	return s.String()
 }
@@ -9093,12 +10176,20 @@ type DescribeInterconnectsOutput struct {
 	Interconnects []*Interconnect `locationName:"interconnects" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInterconnectsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeInterconnectsOutput) GoString() string {
 	return s.String()
 }
@@ -9116,12 +10207,20 @@ type DescribeLagsInput struct {
 	LagId *string `locationName:"lagId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLagsInput) GoString() string {
 	return s.String()
 }
@@ -9139,12 +10238,20 @@ type DescribeLagsOutput struct {
 	Lags []*Lag `locationName:"lags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLagsOutput) GoString() string {
 	return s.String()
 }
@@ -9173,12 +10280,20 @@ type DescribeLoaInput struct {
 	ProviderName *string `locationName:"providerName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLoaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLoaInput) GoString() string {
 	return s.String()
 }
@@ -9218,12 +10333,20 @@ type DescribeLocationsInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationsInput) GoString() string {
 	return s.String()
 }
@@ -9235,12 +10358,20 @@ type DescribeLocationsOutput struct {
 	Locations []*Location `locationName:"locations" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeLocationsOutput) GoString() string {
 	return s.String()
 }
@@ -9248,6 +10379,121 @@ func (s DescribeLocationsOutput) GoString() string {
 // SetLocations sets the Locations field's value.
 func (s *DescribeLocationsOutput) SetLocations(v []*Location) *DescribeLocationsOutput {
 	s.Locations = v
+	return s
+}
+
+// Provides the details about a virtual interface's router.
+type DescribeRouterConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the router by a combination of vendor, platform, and software
+	// version. For example, CiscoSystemsInc-2900SeriesRouters-IOS124.
+	RouterTypeIdentifier *string `locationName:"routerTypeIdentifier" type:"string"`
+
+	// The ID of the virtual interface.
+	//
+	// VirtualInterfaceId is a required field
+	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRouterConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRouterConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRouterConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRouterConfigurationInput"}
+	if s.VirtualInterfaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VirtualInterfaceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRouterTypeIdentifier sets the RouterTypeIdentifier field's value.
+func (s *DescribeRouterConfigurationInput) SetRouterTypeIdentifier(v string) *DescribeRouterConfigurationInput {
+	s.RouterTypeIdentifier = &v
+	return s
+}
+
+// SetVirtualInterfaceId sets the VirtualInterfaceId field's value.
+func (s *DescribeRouterConfigurationInput) SetVirtualInterfaceId(v string) *DescribeRouterConfigurationInput {
+	s.VirtualInterfaceId = &v
+	return s
+}
+
+type DescribeRouterConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The customer router configuration.
+	CustomerRouterConfig *string `locationName:"customerRouterConfig" type:"string"`
+
+	// The details about the router.
+	Router *RouterType `locationName:"router" type:"structure"`
+
+	// The ID assigned to the virtual interface.
+	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
+
+	// Provides the details about a virtual interface's router.
+	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRouterConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRouterConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCustomerRouterConfig sets the CustomerRouterConfig field's value.
+func (s *DescribeRouterConfigurationOutput) SetCustomerRouterConfig(v string) *DescribeRouterConfigurationOutput {
+	s.CustomerRouterConfig = &v
+	return s
+}
+
+// SetRouter sets the Router field's value.
+func (s *DescribeRouterConfigurationOutput) SetRouter(v *RouterType) *DescribeRouterConfigurationOutput {
+	s.Router = v
+	return s
+}
+
+// SetVirtualInterfaceId sets the VirtualInterfaceId field's value.
+func (s *DescribeRouterConfigurationOutput) SetVirtualInterfaceId(v string) *DescribeRouterConfigurationOutput {
+	s.VirtualInterfaceId = &v
+	return s
+}
+
+// SetVirtualInterfaceName sets the VirtualInterfaceName field's value.
+func (s *DescribeRouterConfigurationOutput) SetVirtualInterfaceName(v string) *DescribeRouterConfigurationOutput {
+	s.VirtualInterfaceName = &v
 	return s
 }
 
@@ -9260,12 +10506,20 @@ type DescribeTagsInput struct {
 	ResourceArns []*string `locationName:"resourceArns" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTagsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTagsInput) GoString() string {
 	return s.String()
 }
@@ -9296,12 +10550,20 @@ type DescribeTagsOutput struct {
 	ResourceTags []*ResourceTag `locationName:"resourceTags" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTagsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTagsOutput) GoString() string {
 	return s.String()
 }
@@ -9316,12 +10578,20 @@ type DescribeVirtualGatewaysInput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualGatewaysInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualGatewaysInput) GoString() string {
 	return s.String()
 }
@@ -9333,12 +10603,20 @@ type DescribeVirtualGatewaysOutput struct {
 	VirtualGateways []*VirtualGateway `locationName:"virtualGateways" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualGatewaysOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualGatewaysOutput) GoString() string {
 	return s.String()
 }
@@ -9359,12 +10637,20 @@ type DescribeVirtualInterfacesInput struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualInterfacesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualInterfacesInput) GoString() string {
 	return s.String()
 }
@@ -9388,12 +10674,20 @@ type DescribeVirtualInterfacesOutput struct {
 	VirtualInterfaces []*VirtualInterface `locationName:"virtualInterfaces" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualInterfacesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeVirtualInterfacesOutput) GoString() string {
 	return s.String()
 }
@@ -9418,12 +10712,20 @@ type DisassociateConnectionFromLagInput struct {
 	LagId *string `locationName:"lagId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateConnectionFromLagInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateConnectionFromLagInput) GoString() string {
 	return s.String()
 }
@@ -9475,12 +10777,20 @@ type DisassociateMacSecKeyInput struct {
 	SecretARN *string `locationName:"secretARN" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateMacSecKeyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateMacSecKeyInput) GoString() string {
 	return s.String()
 }
@@ -9524,12 +10834,20 @@ type DisassociateMacSecKeyOutput struct {
 	MacSecKeys []*MacSecKey `locationName:"macSecKeys" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateMacSecKeyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateMacSecKeyOutput) GoString() string {
 	return s.String()
 }
@@ -9554,12 +10872,20 @@ type DuplicateTagKeysException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DuplicateTagKeysException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DuplicateTagKeysException) GoString() string {
 	return s.String()
 }
@@ -9627,19 +10953,27 @@ type Gateway struct {
 	//    * deleted: The Direct Connect gateway is deleted and cannot pass traffic.
 	DirectConnectGatewayState *string `locationName:"directConnectGatewayState" type:"string" enum:"GatewayState"`
 
-	// The ID of the account that owns the Direct Connect gateway.
+	// The ID of the Amazon Web Services account that owns the Direct Connect gateway.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
 	// The error message if the state of an object failed to advance.
 	StateChangeError *string `locationName:"stateChangeError" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Gateway) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Gateway) GoString() string {
 	return s.String()
 }
@@ -9711,7 +11045,7 @@ type GatewayAssociation struct {
 	// The ID of the Direct Connect gateway.
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string"`
 
-	// The ID of the account that owns the associated gateway.
+	// The ID of the Amazon Web Services account that owns the associated gateway.
 	DirectConnectGatewayOwnerAccount *string `locationName:"directConnectGatewayOwnerAccount" type:"string"`
 
 	// The error message if the state of an object failed to advance.
@@ -9720,19 +11054,27 @@ type GatewayAssociation struct {
 	// The ID of the virtual private gateway. Applies only to private virtual interfaces.
 	VirtualGatewayId *string `locationName:"virtualGatewayId" type:"string"`
 
-	// The ID of the account that owns the virtual private gateway.
+	// The ID of the Amazon Web Services account that owns the virtual private gateway.
 	VirtualGatewayOwnerAccount *string `locationName:"virtualGatewayOwnerAccount" type:"string"`
 
-	// The Region where the virtual private gateway is located.
+	// The Amazon Web Services Region where the virtual private gateway is located.
 	VirtualGatewayRegion *string `locationName:"virtualGatewayRegion" deprecated:"true" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayAssociation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayAssociation) GoString() string {
 	return s.String()
 }
@@ -9808,7 +11150,7 @@ type GatewayAssociationProposal struct {
 	// The ID of the Direct Connect gateway.
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string"`
 
-	// The ID of the account that owns the Direct Connect gateway.
+	// The ID of the Amazon Web Services account that owns the Direct Connect gateway.
 	DirectConnectGatewayOwnerAccount *string `locationName:"directConnectGatewayOwnerAccount" type:"string"`
 
 	// The existing Amazon VPC prefixes advertised to the Direct Connect gateway.
@@ -9833,12 +11175,20 @@ type GatewayAssociationProposal struct {
 	RequestedAllowedPrefixesToDirectConnectGateway []*RouteFilterPrefix `locationName:"requestedAllowedPrefixesToDirectConnectGateway" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayAssociationProposal) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayAssociationProposal) GoString() string {
 	return s.String()
 }
@@ -9917,19 +11267,27 @@ type GatewayAttachment struct {
 	// The ID of the virtual interface.
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
 
-	// The ID of the account that owns the virtual interface.
+	// The ID of the Amazon Web Services account that owns the virtual interface.
 	VirtualInterfaceOwnerAccount *string `locationName:"virtualInterfaceOwnerAccount" type:"string"`
 
-	// The Region where the virtual interface is located.
+	// The Amazon Web Services Region where the virtual interface is located.
 	VirtualInterfaceRegion *string `locationName:"virtualInterfaceRegion" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayAttachment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GatewayAttachment) GoString() string {
 	return s.String()
 }
@@ -10038,19 +11396,27 @@ type Interconnect struct {
 	// The name of the service provider associated with the interconnect.
 	ProviderName *string `locationName:"providerName" type:"string"`
 
-	// The Region where the connection is located.
+	// The Amazon Web Services Region where the connection is located.
 	Region *string `locationName:"region" type:"string"`
 
 	// The tags associated with the interconnect.
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Interconnect) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Interconnect) GoString() string {
 	return s.String()
 }
@@ -10223,25 +11589,33 @@ type Lag struct {
 	// maximum of 10.
 	NumberOfConnections *int64 `locationName:"numberOfConnections" type:"integer"`
 
-	// The ID of the account that owns the LAG.
+	// The ID of the Amazon Web Services account that owns the LAG.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
 	// The name of the service provider associated with the LAG.
 	ProviderName *string `locationName:"providerName" type:"string"`
 
-	// The Region where the connection is located.
+	// The Amazon Web Services Region where the connection is located.
 	Region *string `locationName:"region" type:"string"`
 
 	// The tags associated with the LAG.
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Lag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Lag) GoString() string {
 	return s.String()
 }
@@ -10398,12 +11772,20 @@ type ListVirtualInterfaceTestHistoryInput struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualInterfaceTestHistoryInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualInterfaceTestHistoryInput) GoString() string {
 	return s.String()
 }
@@ -10455,12 +11837,20 @@ type ListVirtualInterfaceTestHistoryOutput struct {
 	VirtualInterfaceTestHistory []*VirtualInterfaceTestHistory `locationName:"virtualInterfaceTestHistory" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualInterfaceTestHistoryOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListVirtualInterfaceTestHistoryOutput) GoString() string {
 	return s.String()
 }
@@ -10483,7 +11873,6 @@ type Loa struct {
 	_ struct{} `type:"structure"`
 
 	// The binary contents of the LOA-CFA document.
-	//
 	// LoaContent is automatically base64 encoded/decoded by the SDK.
 	LoaContent []byte `locationName:"loaContent" type:"blob"`
 
@@ -10492,12 +11881,20 @@ type Loa struct {
 	LoaContentType *string `locationName:"loaContentType" type:"string" enum:"LoaContentType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Loa) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Loa) GoString() string {
 	return s.String()
 }
@@ -10534,16 +11931,24 @@ type Location struct {
 	// and the physical site of the building.
 	LocationName *string `locationName:"locationName" type:"string"`
 
-	// The Region for the location.
+	// The Amazon Web Services Region for the location.
 	Region *string `locationName:"region" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Location) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Location) GoString() string {
 	return s.String()
 }
@@ -10616,12 +12021,20 @@ type MacSecKey struct {
 	State *string `locationName:"state" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MacSecKey) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MacSecKey) GoString() string {
 	return s.String()
 }
@@ -10671,12 +12084,20 @@ type NewBGPPeer struct {
 	CustomerAddress *string `locationName:"customerAddress" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewBGPPeer) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewBGPPeer) GoString() string {
 	return s.String()
 }
@@ -10738,6 +12159,9 @@ type NewPrivateVirtualInterface struct {
 	// The ID of the Direct Connect gateway.
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string"`
 
+	// Indicates whether to enable or disable SiteLink.
+	EnableSiteLink *bool `locationName:"enableSiteLink" type:"boolean"`
+
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
 	// and 9001. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
@@ -10761,12 +12185,20 @@ type NewPrivateVirtualInterface struct {
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewPrivateVirtualInterface) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewPrivateVirtualInterface) GoString() string {
 	return s.String()
 }
@@ -10836,6 +12268,12 @@ func (s *NewPrivateVirtualInterface) SetCustomerAddress(v string) *NewPrivateVir
 // SetDirectConnectGatewayId sets the DirectConnectGatewayId field's value.
 func (s *NewPrivateVirtualInterface) SetDirectConnectGatewayId(v string) *NewPrivateVirtualInterface {
 	s.DirectConnectGatewayId = &v
+	return s
+}
+
+// SetEnableSiteLink sets the EnableSiteLink field's value.
+func (s *NewPrivateVirtualInterface) SetEnableSiteLink(v bool) *NewPrivateVirtualInterface {
+	s.EnableSiteLink = &v
 	return s
 }
 
@@ -10913,12 +12351,20 @@ type NewPrivateVirtualInterfaceAllocation struct {
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewPrivateVirtualInterfaceAllocation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewPrivateVirtualInterfaceAllocation) GoString() string {
 	return s.String()
 }
@@ -11053,12 +12499,20 @@ type NewPublicVirtualInterface struct {
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewPublicVirtualInterface) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewPublicVirtualInterface) GoString() string {
 	return s.String()
 }
@@ -11193,12 +12647,20 @@ type NewPublicVirtualInterfaceAllocation struct {
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewPublicVirtualInterfaceAllocation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewPublicVirtualInterfaceAllocation) GoString() string {
 	return s.String()
 }
@@ -11314,6 +12776,9 @@ type NewTransitVirtualInterface struct {
 	// The ID of the Direct Connect gateway.
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string"`
 
+	// Indicates whether to enable or disable SiteLink.
+	EnableSiteLink *bool `locationName:"enableSiteLink" type:"boolean"`
+
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
 	// and 9001. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
@@ -11330,12 +12795,20 @@ type NewTransitVirtualInterface struct {
 	Vlan *int64 `locationName:"vlan" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewTransitVirtualInterface) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewTransitVirtualInterface) GoString() string {
 	return s.String()
 }
@@ -11396,6 +12869,12 @@ func (s *NewTransitVirtualInterface) SetCustomerAddress(v string) *NewTransitVir
 // SetDirectConnectGatewayId sets the DirectConnectGatewayId field's value.
 func (s *NewTransitVirtualInterface) SetDirectConnectGatewayId(v string) *NewTransitVirtualInterface {
 	s.DirectConnectGatewayId = &v
+	return s
+}
+
+// SetEnableSiteLink sets the EnableSiteLink field's value.
+func (s *NewTransitVirtualInterface) SetEnableSiteLink(v bool) *NewTransitVirtualInterface {
+	s.EnableSiteLink = &v
 	return s
 }
 
@@ -11461,12 +12940,20 @@ type NewTransitVirtualInterfaceAllocation struct {
 	Vlan *int64 `locationName:"vlan" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewTransitVirtualInterfaceAllocation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NewTransitVirtualInterfaceAllocation) GoString() string {
 	return s.String()
 }
@@ -11559,12 +13046,20 @@ type ResourceTag struct {
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceTag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceTag) GoString() string {
 	return s.String()
 }
@@ -11591,12 +13086,20 @@ type RouteFilterPrefix struct {
 	Cidr *string `locationName:"cidr" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RouteFilterPrefix) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RouteFilterPrefix) GoString() string {
 	return s.String()
 }
@@ -11604,6 +13107,84 @@ func (s RouteFilterPrefix) GoString() string {
 // SetCidr sets the Cidr field's value.
 func (s *RouteFilterPrefix) SetCidr(v string) *RouteFilterPrefix {
 	s.Cidr = &v
+	return s
+}
+
+// Information about the virtual router.
+type RouterType struct {
+	_ struct{} `type:"structure"`
+
+	// The virtual interface router platform.
+	Platform *string `locationName:"platform" type:"string"`
+
+	// Identifies the router by a combination of vendor, platform, and software
+	// version. For example, CiscoSystemsInc-2900SeriesRouters-IOS124.
+	RouterTypeIdentifier *string `locationName:"routerTypeIdentifier" type:"string"`
+
+	// The router software.
+	Software *string `locationName:"software" type:"string"`
+
+	// The vendor for the virtual interface's router.
+	Vendor *string `locationName:"vendor" type:"string"`
+
+	// The template for the virtual interface's router.
+	XsltTemplateName *string `locationName:"xsltTemplateName" type:"string"`
+
+	// The MAC Security (MACsec) template for the virtual interface's router.
+	XsltTemplateNameForMacSec *string `locationName:"xsltTemplateNameForMacSec" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouterType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouterType) GoString() string {
+	return s.String()
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *RouterType) SetPlatform(v string) *RouterType {
+	s.Platform = &v
+	return s
+}
+
+// SetRouterTypeIdentifier sets the RouterTypeIdentifier field's value.
+func (s *RouterType) SetRouterTypeIdentifier(v string) *RouterType {
+	s.RouterTypeIdentifier = &v
+	return s
+}
+
+// SetSoftware sets the Software field's value.
+func (s *RouterType) SetSoftware(v string) *RouterType {
+	s.Software = &v
+	return s
+}
+
+// SetVendor sets the Vendor field's value.
+func (s *RouterType) SetVendor(v string) *RouterType {
+	s.Vendor = &v
+	return s
+}
+
+// SetXsltTemplateName sets the XsltTemplateName field's value.
+func (s *RouterType) SetXsltTemplateName(v string) *RouterType {
+	s.XsltTemplateName = &v
+	return s
+}
+
+// SetXsltTemplateNameForMacSec sets the XsltTemplateNameForMacSec field's value.
+func (s *RouterType) SetXsltTemplateNameForMacSec(v string) *RouterType {
+	s.XsltTemplateNameForMacSec = &v
 	return s
 }
 
@@ -11615,12 +13196,20 @@ type ServerException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServerException) GoString() string {
 	return s.String()
 }
@@ -11682,12 +13271,20 @@ type StartBgpFailoverTestInput struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartBgpFailoverTestInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartBgpFailoverTestInput) GoString() string {
 	return s.String()
 }
@@ -11730,12 +13327,20 @@ type StartBgpFailoverTestOutput struct {
 	VirtualInterfaceTest *VirtualInterfaceTestHistory `locationName:"virtualInterfaceTest" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartBgpFailoverTestOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartBgpFailoverTestOutput) GoString() string {
 	return s.String()
 }
@@ -11755,12 +13360,20 @@ type StopBgpFailoverTestInput struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopBgpFailoverTestInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopBgpFailoverTestInput) GoString() string {
 	return s.String()
 }
@@ -11791,12 +13404,20 @@ type StopBgpFailoverTestOutput struct {
 	VirtualInterfaceTest *VirtualInterfaceTestHistory `locationName:"virtualInterfaceTest" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopBgpFailoverTestOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StopBgpFailoverTestOutput) GoString() string {
 	return s.String()
 }
@@ -11820,12 +13441,20 @@ type Tag struct {
 	Value *string `locationName:"value" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -11872,12 +13501,20 @@ type TagResourceInput struct {
 	Tags []*Tag `locationName:"tags" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -11927,12 +13564,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -11945,12 +13590,20 @@ type TooManyTagsException struct {
 	Message_ *string `locationName:"message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TooManyTagsException) GoString() string {
 	return s.String()
 }
@@ -12007,12 +13660,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -12049,12 +13710,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -12078,12 +13747,20 @@ type UpdateConnectionInput struct {
 	EncryptionMode *string `locationName:"encryptionMode" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConnectionInput) GoString() string {
 	return s.String()
 }
@@ -12195,7 +13872,7 @@ type UpdateConnectionOutput struct {
 	// The MAC Security (MACsec) security keys associated with the connection.
 	MacSecKeys []*MacSecKey `locationName:"macSecKeys" type:"list"`
 
-	// The ID of the account that owns the connection.
+	// The ID of the Amazon Web Services account that owns the connection.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
 	// The name of the Direct Connect service provider associated with the connection.
@@ -12210,7 +13887,7 @@ type UpdateConnectionOutput struct {
 	// The name of the service provider associated with the connection.
 	ProviderName *string `locationName:"providerName" type:"string"`
 
-	// The Region where the connection is located.
+	// The Amazon Web Services Region where the connection is located.
 	Region *string `locationName:"region" type:"string"`
 
 	// The tags associated with the connection.
@@ -12220,12 +13897,20 @@ type UpdateConnectionOutput struct {
 	Vlan *int64 `locationName:"vlan" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -12375,12 +14060,20 @@ type UpdateDirectConnectGatewayAssociationInput struct {
 	RemoveAllowedPrefixesToDirectConnectGateway []*RouteFilterPrefix `locationName:"removeAllowedPrefixesToDirectConnectGateway" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDirectConnectGatewayAssociationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDirectConnectGatewayAssociationInput) GoString() string {
 	return s.String()
 }
@@ -12411,12 +14104,20 @@ type UpdateDirectConnectGatewayAssociationOutput struct {
 	DirectConnectGatewayAssociation *GatewayAssociation `locationName:"directConnectGatewayAssociation" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDirectConnectGatewayAssociationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDirectConnectGatewayAssociationOutput) GoString() string {
 	return s.String()
 }
@@ -12424,6 +14125,98 @@ func (s UpdateDirectConnectGatewayAssociationOutput) GoString() string {
 // SetDirectConnectGatewayAssociation sets the DirectConnectGatewayAssociation field's value.
 func (s *UpdateDirectConnectGatewayAssociationOutput) SetDirectConnectGatewayAssociation(v *GatewayAssociation) *UpdateDirectConnectGatewayAssociationOutput {
 	s.DirectConnectGatewayAssociation = v
+	return s
+}
+
+type UpdateDirectConnectGatewayInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Direct Connect gateway to update.
+	//
+	// DirectConnectGatewayId is a required field
+	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string" required:"true"`
+
+	// The new name for the Direct Connect gateway.
+	//
+	// NewDirectConnectGatewayName is a required field
+	NewDirectConnectGatewayName *string `locationName:"newDirectConnectGatewayName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDirectConnectGatewayInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDirectConnectGatewayInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDirectConnectGatewayInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDirectConnectGatewayInput"}
+	if s.DirectConnectGatewayId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectConnectGatewayId"))
+	}
+	if s.NewDirectConnectGatewayName == nil {
+		invalidParams.Add(request.NewErrParamRequired("NewDirectConnectGatewayName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectConnectGatewayId sets the DirectConnectGatewayId field's value.
+func (s *UpdateDirectConnectGatewayInput) SetDirectConnectGatewayId(v string) *UpdateDirectConnectGatewayInput {
+	s.DirectConnectGatewayId = &v
+	return s
+}
+
+// SetNewDirectConnectGatewayName sets the NewDirectConnectGatewayName field's value.
+func (s *UpdateDirectConnectGatewayInput) SetNewDirectConnectGatewayName(v string) *UpdateDirectConnectGatewayInput {
+	s.NewDirectConnectGatewayName = &v
+	return s
+}
+
+type UpdateDirectConnectGatewayOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a Direct Connect gateway, which enables you to connect
+	// virtual interfaces and virtual private gateway or transit gateways.
+	DirectConnectGateway *Gateway `locationName:"directConnectGateway" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDirectConnectGatewayOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDirectConnectGatewayOutput) GoString() string {
+	return s.String()
+}
+
+// SetDirectConnectGateway sets the DirectConnectGateway field's value.
+func (s *UpdateDirectConnectGatewayOutput) SetDirectConnectGateway(v *Gateway) *UpdateDirectConnectGatewayOutput {
+	s.DirectConnectGateway = v
 	return s
 }
 
@@ -12449,12 +14242,20 @@ type UpdateLagInput struct {
 	MinimumLinks *int64 `locationName:"minimumLinks" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLagInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLagInput) GoString() string {
 	return s.String()
 }
@@ -12499,6 +14300,9 @@ func (s *UpdateLagInput) SetMinimumLinks(v int64) *UpdateLagInput {
 type UpdateVirtualInterfaceAttributesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether to enable or disable SiteLink.
+	EnableSiteLink *bool `locationName:"enableSiteLink" type:"boolean"`
+
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
 	// and 9001. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
@@ -12507,14 +14311,25 @@ type UpdateVirtualInterfaceAttributesInput struct {
 	//
 	// VirtualInterfaceId is a required field
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
+
+	// The name of the virtual private interface.
+	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualInterfaceAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualInterfaceAttributesInput) GoString() string {
 	return s.String()
 }
@@ -12532,6 +14347,12 @@ func (s *UpdateVirtualInterfaceAttributesInput) Validate() error {
 	return nil
 }
 
+// SetEnableSiteLink sets the EnableSiteLink field's value.
+func (s *UpdateVirtualInterfaceAttributesInput) SetEnableSiteLink(v bool) *UpdateVirtualInterfaceAttributesInput {
+	s.EnableSiteLink = &v
+	return s
+}
+
 // SetMtu sets the Mtu field's value.
 func (s *UpdateVirtualInterfaceAttributesInput) SetMtu(v int64) *UpdateVirtualInterfaceAttributesInput {
 	s.Mtu = &v
@@ -12541,6 +14362,12 @@ func (s *UpdateVirtualInterfaceAttributesInput) SetMtu(v int64) *UpdateVirtualIn
 // SetVirtualInterfaceId sets the VirtualInterfaceId field's value.
 func (s *UpdateVirtualInterfaceAttributesInput) SetVirtualInterfaceId(v string) *UpdateVirtualInterfaceAttributesInput {
 	s.VirtualInterfaceId = &v
+	return s
+}
+
+// SetVirtualInterfaceName sets the VirtualInterfaceName field's value.
+func (s *UpdateVirtualInterfaceAttributesInput) SetVirtualInterfaceName(v string) *UpdateVirtualInterfaceAttributesInput {
+	s.VirtualInterfaceName = &v
 	return s
 }
 
@@ -12598,15 +14425,18 @@ type UpdateVirtualInterfaceAttributesOutput struct {
 	// and 9001. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
 
-	// The ID of the account that owns the virtual interface.
+	// The ID of the Amazon Web Services account that owns the virtual interface.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
-	// The Region where the virtual interface is located.
+	// The Amazon Web Services Region where the virtual interface is located.
 	Region *string `locationName:"region" type:"string"`
 
 	// The routes to be advertised to the Amazon Web Services network in this Region.
 	// Applies to public virtual interfaces.
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list"`
+
+	// Indicates whether SiteLink is enabled.
+	SiteLinkEnabled *bool `locationName:"siteLinkEnabled" type:"boolean"`
 
 	// The tags associated with the virtual interface.
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
@@ -12661,12 +14491,20 @@ type UpdateVirtualInterfaceAttributesOutput struct {
 	Vlan *int64 `locationName:"vlan" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualInterfaceAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateVirtualInterfaceAttributesOutput) GoString() string {
 	return s.String()
 }
@@ -12779,6 +14617,12 @@ func (s *UpdateVirtualInterfaceAttributesOutput) SetRouteFilterPrefixes(v []*Rou
 	return s
 }
 
+// SetSiteLinkEnabled sets the SiteLinkEnabled field's value.
+func (s *UpdateVirtualInterfaceAttributesOutput) SetSiteLinkEnabled(v bool) *UpdateVirtualInterfaceAttributesOutput {
+	s.SiteLinkEnabled = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *UpdateVirtualInterfaceAttributesOutput) SetTags(v []*Tag) *UpdateVirtualInterfaceAttributesOutput {
 	s.Tags = v
@@ -12842,12 +14686,20 @@ type VirtualGateway struct {
 	VirtualGatewayState *string `locationName:"virtualGatewayState" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGateway) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualGateway) GoString() string {
 	return s.String()
 }
@@ -12918,15 +14770,18 @@ type VirtualInterface struct {
 	// and 9001. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
 
-	// The ID of the account that owns the virtual interface.
+	// The ID of the Amazon Web Services account that owns the virtual interface.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
-	// The Region where the virtual interface is located.
+	// The Amazon Web Services Region where the virtual interface is located.
 	Region *string `locationName:"region" type:"string"`
 
 	// The routes to be advertised to the Amazon Web Services network in this Region.
 	// Applies to public virtual interfaces.
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list"`
+
+	// Indicates whether SiteLink is enabled.
+	SiteLinkEnabled *bool `locationName:"siteLinkEnabled" type:"boolean"`
 
 	// The tags associated with the virtual interface.
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
@@ -12981,12 +14836,20 @@ type VirtualInterface struct {
 	Vlan *int64 `locationName:"vlan" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualInterface) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualInterface) GoString() string {
 	return s.String()
 }
@@ -13099,6 +14962,12 @@ func (s *VirtualInterface) SetRouteFilterPrefixes(v []*RouteFilterPrefix) *Virtu
 	return s
 }
 
+// SetSiteLinkEnabled sets the SiteLinkEnabled field's value.
+func (s *VirtualInterface) SetSiteLinkEnabled(v bool) *VirtualInterface {
+	s.SiteLinkEnabled = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *VirtualInterface) SetTags(v []*Tag) *VirtualInterface {
 	s.Tags = v
@@ -13171,12 +15040,20 @@ type VirtualInterfaceTestHistory struct {
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualInterfaceTestHistory) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VirtualInterfaceTestHistory) GoString() string {
 	return s.String()
 }
@@ -13566,6 +15443,26 @@ const (
 func LoaContentType_Values() []string {
 	return []string{
 		LoaContentTypeApplicationPdf,
+	}
+}
+
+const (
+	// NniPartnerTypeV1 is a NniPartnerType enum value
+	NniPartnerTypeV1 = "v1"
+
+	// NniPartnerTypeV2 is a NniPartnerType enum value
+	NniPartnerTypeV2 = "v2"
+
+	// NniPartnerTypeNonPartner is a NniPartnerType enum value
+	NniPartnerTypeNonPartner = "nonPartner"
+)
+
+// NniPartnerType_Values returns all elements of the NniPartnerType enum
+func NniPartnerType_Values() []string {
+	return []string{
+		NniPartnerTypeV1,
+		NniPartnerTypeV2,
+		NniPartnerTypeNonPartner,
 	}
 }
 

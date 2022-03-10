@@ -155,16 +155,16 @@ func (c *QuickSight) CreateAccountCustomizationRequest(input *CreateAccountCusto
 // CreateAccountCustomization API operation for Amazon QuickSight.
 //
 // Creates Amazon QuickSight customizations the current Amazon Web Services
-// Region;. Currently, you can add a custom default theme by using the CreateAccountCustomization
-// or UpdateAccountCustomization API operation. To further customize QuickSight
-// by removing QuickSight sample assets and videos for all new users, see Customizing
-// QuickSight (https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html)
+// Region. Currently, you can add a custom default theme by using the CreateAccountCustomization
+// or UpdateAccountCustomization API operation. To further customize Amazon
+// QuickSight by removing Amazon QuickSight sample assets and videos for all
+// new users, see Customizing Amazon QuickSight (https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html)
 // in the Amazon QuickSight User Guide.
 //
-// You can create customizations for your Amazon Web Services account; or, if
+// You can create customizations for your Amazon Web Services account or, if
 // you specify a namespace, for a QuickSight namespace instead. Customizations
 // that apply to a namespace always override customizations that apply to an
-// Amazon Web Services account;. To find out which customizations apply, use
+// Amazon Web Services account. To find out which customizations apply, use
 // the DescribeAccountCustomization API operation.
 //
 // Before you use the CreateAccountCustomization API operation to add a theme
@@ -172,7 +172,9 @@ func (c *QuickSight) CreateAccountCustomizationRequest(input *CreateAccountCusto
 // namespace. If you don't share it with the namespace, the theme isn't visible
 // to your users even if you make it the default theme. To check if the theme
 // is shared, view the current permissions by using the DescribeThemePermissions
+// (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeThemePermissions.html)
 // API operation. To share the theme, grant permissions by using the UpdateThemePermissions
+// (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateThemePermissions.html)
 // API operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -189,6 +191,9 @@ func (c *QuickSight) CreateAccountCustomizationRequest(input *CreateAccountCusto
 //   that your account is authorized to use the Amazon QuickSight service, that
 //   your policies have the correct permissions, and that you are using the correct
 //   access keys.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
 //
 //   * InvalidParameterValueException
 //   One or more parameters has a value that isn't valid.
@@ -302,7 +307,7 @@ func (c *QuickSight) CreateAnalysisRequest(input *CreateAnalysisInput) (req *req
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -375,13 +380,14 @@ func (c *QuickSight) CreateDashboardRequest(input *CreateDashboardInput) (req *r
 // CreateDashboard API operation for Amazon QuickSight.
 //
 // Creates a dashboard from a template. To first create a template, see the
-// CreateTemplate API operation.
+// CreateTemplate (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html)
+// API operation.
 //
-// A dashboard is an entity in QuickSight that identifies QuickSight reports,
-// created from analyses. You can share QuickSight dashboards. With the right
-// permissions, you can create scheduled email reports from them. If you have
-// the correct permissions, you can create a dashboard from a template that
-// exists in a different Amazon Web Services account;.
+// A dashboard is an entity in Amazon QuickSight that identifies Amazon QuickSight
+// reports, created from analyses. You can share Amazon QuickSight dashboards.
+// With the right permissions, you can create scheduled email reports from them.
+// If you have the correct permissions, you can create a dashboard from a template
+// that exists in a different Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -409,7 +415,7 @@ func (c *QuickSight) CreateDashboardRequest(input *CreateDashboardInput) (req *r
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -481,7 +487,8 @@ func (c *QuickSight) CreateDataSetRequest(input *CreateDataSetInput) (req *reque
 
 // CreateDataSet API operation for Amazon QuickSight.
 //
-// Creates a dataset.
+// Creates a dataset. This operation doesn't support datasets that include uploaded
+// files as a source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -519,7 +526,7 @@ func (c *QuickSight) CreateDataSetRequest(input *CreateDataSetInput) (req *reque
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -723,7 +730,7 @@ func (c *QuickSight) CreateFolderRequest(input *CreateFolderInput) (req *request
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * AccessDeniedException
@@ -840,7 +847,7 @@ func (c *QuickSight) CreateFolderMembershipRequest(input *CreateFolderMembership
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -1127,7 +1134,7 @@ func (c *QuickSight) CreateIAMPolicyAssignmentRequest(input *CreateIAMPolicyAssi
 // Creates an assignment with one specified IAM policy, identified by its Amazon
 // Resource Name (ARN). This policy assignment is attached to the specified
 // groups or users of Amazon QuickSight. Assignment names are unique per Amazon
-// Web Services account;. To avoid overwriting rules in other namespaces, use
+// Web Services account. To avoid overwriting rules in other namespaces, use
 // assignment names that are unique.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1230,7 +1237,11 @@ func (c *QuickSight) CreateIngestionRequest(input *CreateIngestionInput) (req *r
 
 // CreateIngestion API operation for Amazon QuickSight.
 //
-// Creates and starts a new SPICE ingestion on a dataset
+// Creates and starts a new SPICE ingestion for a dataset. You can manually
+// refresh datasets in an Enterprise edition account 32 times in a 24-hour period.
+// You can manually refresh datasets in a Standard edition account 8 times in
+// a 24-hour period. Each 24-hour period is measured starting 24 hours before
+// the current date and time.
 //
 // Any ingestions operating on tagged datasets inherit the same tags automatically
 // for use in access control. For an example, see How do I create an IAM policy
@@ -1340,13 +1351,13 @@ func (c *QuickSight) CreateNamespaceRequest(input *CreateNamespaceInput) (req *r
 // (Enterprise edition only) Creates a new namespace for you to use with Amazon
 // QuickSight.
 //
-// A namespace allows you to isolate the QuickSight users and groups that are
-// registered for that namespace. Users that access the namespace can share
-// assets only with other users or groups in the same namespace. They can't
-// see users and groups in other namespaces. You can create a namespace after
-// your Amazon Web Services account; is subscribed to QuickSight. The namespace
-// must be unique within the Amazon Web Services account;. By default, there
-// is a limit of 100 namespaces per Amazon Web Services account;. To increase
+// A namespace allows you to isolate the Amazon QuickSight users and groups
+// that are registered for that namespace. Users that access the namespace can
+// share assets only with other users or groups in the same namespace. They
+// can't see users and groups in other namespaces. You can create a namespace
+// after your Amazon Web Services account is subscribed to Amazon QuickSight.
+// The namespace must be unique within the Amazon Web Services account. By default,
+// there is a limit of 100 namespaces per Amazon Web Services account. To increase
 // your limit, create a ticket with Amazon Web Services Support.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1460,10 +1471,10 @@ func (c *QuickSight) CreateTemplateRequest(input *CreateTemplateInput) (req *req
 // Creates a template from an existing Amazon QuickSight analysis or template.
 // You can use the resulting template to create a dashboard.
 //
-// A template is an entity in QuickSight that encapsulates the metadata required
-// to create an analysis and that you can use to create s dashboard. A template
-// adds a layer of abstraction by using placeholders to replace the dataset
-// associated with the analysis. You can use templates to create dashboards
+// A template is an entity in Amazon QuickSight that encapsulates the metadata
+// required to create an analysis and that you can use to create s dashboard.
+// A template adds a layer of abstraction by using placeholders to replace the
+// dataset associated with the analysis. You can use templates to create dashboards
 // by replacing dataset placeholders with datasets that follow the same schema
 // that was used to create the source analysis and template.
 //
@@ -1500,7 +1511,7 @@ func (c *QuickSight) CreateTemplateRequest(input *CreateTemplateInput) (req *req
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * ConflictException
@@ -1603,7 +1614,7 @@ func (c *QuickSight) CreateTemplateAliasRequest(input *CreateTemplateAliasInput)
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * ConflictException
@@ -1715,7 +1726,7 @@ func (c *QuickSight) CreateThemeRequest(input *CreateThemeInput) (req *request.R
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * LimitExceededException
@@ -1821,7 +1832,7 @@ func (c *QuickSight) CreateThemeAliasRequest(input *CreateThemeAliasInput) (req 
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -1894,7 +1905,8 @@ func (c *QuickSight) DeleteAccountCustomizationRequest(input *DeleteAccountCusto
 // DeleteAccountCustomization API operation for Amazon QuickSight.
 //
 // Deletes all Amazon QuickSight customizations in this Amazon Web Services
-// Region; for the specified Amazon Web Services account; and QuickSight namespace.
+// Region for the specified Amazon Web Services account and Amazon QuickSight
+// namespace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1910,6 +1922,9 @@ func (c *QuickSight) DeleteAccountCustomizationRequest(input *DeleteAccountCusto
 //   that your account is authorized to use the Amazon QuickSight service, that
 //   your policies have the correct permissions, and that you are using the correct
 //   access keys.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
 //
 //   * InvalidParameterValueException
 //   One or more parameters has a value that isn't valid.
@@ -1994,19 +2009,19 @@ func (c *QuickSight) DeleteAnalysisRequest(input *DeleteAnalysisInput) (req *req
 //
 // Deletes an analysis from Amazon QuickSight. You can optionally include a
 // recovery window during which you can restore the analysis. If you don't specify
-// a recovery window value, the operation defaults to 30 days. QuickSight attaches
-// a DeletionTime stamp to the response that specifies the end of the recovery
-// window. At the end of the recovery window, QuickSight deletes the analysis
-// permanently.
+// a recovery window value, the operation defaults to 30 days. Amazon QuickSight
+// attaches a DeletionTime stamp to the response that specifies the end of the
+// recovery window. At the end of the recovery window, Amazon QuickSight deletes
+// the analysis permanently.
 //
 // At any time before recovery window ends, you can use the RestoreAnalysis
 // API operation to remove the DeletionTime stamp and cancel the deletion of
 // the analysis. The analysis remains visible in the API until it's deleted,
 // so you can describe it but you can't make a template from it.
 //
-// An analysis that's scheduled for deletion isn't accessible in the QuickSight
-// console. To access it in the console, restore it. Deleting an analysis doesn't
-// delete the dashboards that you publish from it.
+// An analysis that's scheduled for deletion isn't accessible in the Amazon
+// QuickSight console. To access it in the console, restore it. Deleting an
+// analysis doesn't delete the dashboards that you publish from it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2031,7 +2046,7 @@ func (c *QuickSight) DeleteAnalysisRequest(input *DeleteAnalysisInput) (req *req
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -2128,7 +2143,7 @@ func (c *QuickSight) DeleteDashboardRequest(input *DeleteDashboardInput) (req *r
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -2426,7 +2441,7 @@ func (c *QuickSight) DeleteFolderRequest(input *DeleteFolderInput) (req *request
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -2527,7 +2542,7 @@ func (c *QuickSight) DeleteFolderMembershipRequest(input *DeleteFolderMembership
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -3036,7 +3051,7 @@ func (c *QuickSight) DeleteTemplateRequest(input *DeleteTemplateInput) (req *req
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -3129,7 +3144,7 @@ func (c *QuickSight) DeleteTemplateAliasRequest(input *DeleteTemplateAliasInput)
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * ConflictException
@@ -3236,7 +3251,7 @@ func (c *QuickSight) DeleteThemeRequest(input *DeleteThemeInput) (req *request.R
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -3335,7 +3350,7 @@ func (c *QuickSight) DeleteThemeAliasRequest(input *DeleteThemeAliasInput) (req 
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -3612,48 +3627,49 @@ func (c *QuickSight) DescribeAccountCustomizationRequest(input *DescribeAccountC
 // DescribeAccountCustomization API operation for Amazon QuickSight.
 //
 // Describes the customizations associated with the provided Amazon Web Services
-// account; and Amazon QuickSight namespace in an Amazon Web Services Region;.
-// The QuickSight console evaluates which customizations to apply by running
-// this API operation with the Resolved flag included.
+// account and Amazon Amazon QuickSight namespace in an Amazon Web Services
+// Region. The Amazon QuickSight console evaluates which customizations to apply
+// by running this API operation with the Resolved flag included.
 //
 // To determine what customizations display when you run this command, it can
 // help to visualize the relationship of the entities involved.
 //
-//    * Amazon Web Services account; - The Amazon Web Services account; exists
+//    * Amazon Web Services account - The Amazon Web Services account exists
 //    at the top of the hierarchy. It has the potential to use all of the Amazon
-//    Web Services Regions; and AWS Services. When you subscribe to QuickSight,
-//    you choose one Amazon Web Services Region; to use as your home Region.
-//    That's where your free SPICE capacity is located. You can use QuickSight
-//    in any supported Amazon Web Services Region;.
+//    Web Services Regions and Amazon Web Services Services. When you subscribe
+//    to Amazon QuickSight, you choose one Amazon Web Services Region to use
+//    as your home Region. That's where your free SPICE capacity is located.
+//    You can use Amazon QuickSight in any supported Amazon Web Services Region.
 //
-//    * Amazon Web Services Region; - In each Amazon Web Services Region; where
-//    you sign in to QuickSight at least once, QuickSight acts as a separate
-//    instance of the same service. If you have a user directory, it resides
-//    in us-east-1, which is the US East (N. Virginia). Generally speaking,
-//    these users have access to QuickSight in any Amazon Web Services Region;,
-//    unless they are constrained to a namespace. To run the command in a different
-//    Amazon Web Services Region;, you change your Region settings. If you're
-//    using the AWS CLI, you can use one of the following options: Use command
-//    line options (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html).
+//    * Amazon Web Services Region - In each Amazon Web Services Region where
+//    you sign in to Amazon QuickSight at least once, Amazon QuickSight acts
+//    as a separate instance of the same service. If you have a user directory,
+//    it resides in us-east-1, which is the US East (N. Virginia). Generally
+//    speaking, these users have access to Amazon QuickSight in any Amazon Web
+//    Services Region, unless they are constrained to a namespace. To run the
+//    command in a different Amazon Web Services Region, you change your Region
+//    settings. If you're using the CLI, you can use one of the following options:
+//    Use command line options (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html).
 //    Use named profiles (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
-//    Run aws configure to change your default Amazon Web Services Region;.
-//    Use Enter to key the same settings for your keys. For more information,
-//    see Configuring the AWS CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
+//    Run aws configure to change your default Amazon Web Services Region. Use
+//    Enter to key the same settings for your keys. For more information, see
+//    Configuring the CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
 //
 //    * Namespace - A QuickSight namespace is a partition that contains users
 //    and assets (data sources, datasets, dashboards, and so on). To access
 //    assets that are in a specific namespace, users and groups must also be
 //    part of the same namespace. People who share a namespace are completely
 //    isolated from users and assets in other namespaces, even if they are in
-//    the same Amazon Web Services account; and Amazon Web Services Region;.
+//    the same Amazon Web Services account and Amazon Web Services Region.
 //
-//    * Applied customizations - Within an Amazon Web Services Region;, a set
-//    of QuickSight customizations can apply to an Amazon Web Services account;
-//    or to a namespace. Settings that you apply to a namespace override settings
-//    that you apply to an Amazon Web Services account;. All settings are isolated
-//    to a single Amazon Web Services Region;. To apply them in other Amazon
-//    Web Services Regions;, run the CreateAccountCustomization command in each
-//    Amazon Web Services Region; where you want to apply the same customizations.
+//    * Applied customizations - Within an Amazon Web Services Region, a set
+//    of Amazon QuickSight customizations can apply to an Amazon Web Services
+//    account or to a namespace. Settings that you apply to a namespace override
+//    settings that you apply to an Amazon Web Services account. All settings
+//    are isolated to a single Amazon Web Services Region. To apply them in
+//    other Amazon Web Services Regions, run the CreateAccountCustomization
+//    command in each Amazon Web Services Region where you want to apply the
+//    same customizations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3751,8 +3767,8 @@ func (c *QuickSight) DescribeAccountSettingsRequest(input *DescribeAccountSettin
 
 // DescribeAccountSettings API operation for Amazon QuickSight.
 //
-// Describes the settings that were used when your QuickSight subscription was
-// first created in this Amazon Web Services account;.
+// Describes the settings that were used when your Amazon QuickSight subscription
+// was first created in this Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3879,7 +3895,7 @@ func (c *QuickSight) DescribeAnalysisRequest(input *DescribeAnalysisInput) (req 
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -3973,7 +3989,7 @@ func (c *QuickSight) DescribeAnalysisPermissionsRequest(input *DescribeAnalysisP
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -4074,7 +4090,7 @@ func (c *QuickSight) DescribeDashboardRequest(input *DescribeDashboardInput) (re
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -4168,7 +4184,7 @@ func (c *QuickSight) DescribeDashboardPermissionsRequest(input *DescribeDashboar
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -4240,7 +4256,8 @@ func (c *QuickSight) DescribeDataSetRequest(input *DescribeDataSetInput) (req *r
 
 // DescribeDataSet API operation for Amazon QuickSight.
 //
-// Describes a dataset.
+// Describes a dataset. This operation doesn't support datasets that include
+// uploaded files as a source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4651,7 +4668,7 @@ func (c *QuickSight) DescribeFolderRequest(input *DescribeFolderInput) (req *req
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -4752,7 +4769,7 @@ func (c *QuickSight) DescribeFolderPermissionsRequest(input *DescribeFolderPermi
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -4854,7 +4871,7 @@ func (c *QuickSight) DescribeFolderResolvedPermissionsRequest(input *DescribeFol
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -5181,6 +5198,101 @@ func (c *QuickSight) DescribeIngestionWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
+const opDescribeIpRestriction = "DescribeIpRestriction"
+
+// DescribeIpRestrictionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeIpRestriction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeIpRestriction for more information on using the DescribeIpRestriction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeIpRestrictionRequest method.
+//    req, resp := client.DescribeIpRestrictionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeIpRestriction
+func (c *QuickSight) DescribeIpRestrictionRequest(input *DescribeIpRestrictionInput) (req *request.Request, output *DescribeIpRestrictionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeIpRestriction,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/ip-restriction",
+	}
+
+	if input == nil {
+		input = &DescribeIpRestrictionInput{}
+	}
+
+	output = &DescribeIpRestrictionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeIpRestriction API operation for Amazon QuickSight.
+//
+// Provides a summary and status of IP rules.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeIpRestriction for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeIpRestriction
+func (c *QuickSight) DescribeIpRestriction(input *DescribeIpRestrictionInput) (*DescribeIpRestrictionOutput, error) {
+	req, out := c.DescribeIpRestrictionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeIpRestrictionWithContext is the same as DescribeIpRestriction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeIpRestriction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeIpRestrictionWithContext(ctx aws.Context, input *DescribeIpRestrictionInput, opts ...request.Option) (*DescribeIpRestrictionOutput, error) {
+	req, out := c.DescribeIpRestrictionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeNamespace = "DescribeNamespace"
 
 // DescribeNamespaceRequest generates a "aws/request.Request" representing the
@@ -5358,7 +5470,7 @@ func (c *QuickSight) DescribeTemplateRequest(input *DescribeTemplateInput) (req 
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -5449,7 +5561,7 @@ func (c *QuickSight) DescribeTemplateAliasRequest(input *DescribeTemplateAliasIn
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -5546,7 +5658,7 @@ func (c *QuickSight) DescribeTemplatePermissionsRequest(input *DescribeTemplateP
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -5650,7 +5762,7 @@ func (c *QuickSight) DescribeThemeRequest(input *DescribeThemeInput) (req *reque
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -5747,7 +5859,7 @@ func (c *QuickSight) DescribeThemeAliasRequest(input *DescribeThemeAliasInput) (
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -5848,7 +5960,7 @@ func (c *QuickSight) DescribeThemePermissionsRequest(input *DescribeThemePermiss
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -6077,18 +6189,18 @@ func (c *QuickSight) GenerateEmbedUrlForAnonymousUserRequest(input *GenerateEmbe
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * UnsupportedPricingPlanException
 //   This error indicates that you are calling an embedding operation in Amazon
 //   QuickSight without the required pricing plan on your Amazon Web Services
-//   account;. Before you can use embedding for anonymous users, a QuickSight
-//   administrator needs to add capacity pricing to QuickSight. You can do this
-//   on the Manage QuickSight page.
+//   account. Before you can use embedding for anonymous users, a QuickSight administrator
+//   needs to add capacity pricing to Amazon QuickSight. You can do this on the
+//   Manage Amazon QuickSight page.
 //
-//   After capacity pricing is added, you can use the GetDashboardEmbedUrl API
-//   operation with the --identity-type ANONYMOUS option.
+//   After capacity pricing is added, you can use the GetDashboardEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GetDashboardEmbedUrl.html)
+//   API operation with the --identity-type ANONYMOUS option.
 //
 //   * InternalFailureException
 //   An internal failure occurred.
@@ -6221,18 +6333,18 @@ func (c *QuickSight) GenerateEmbedUrlForRegisteredUserRequest(input *GenerateEmb
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * UnsupportedPricingPlanException
 //   This error indicates that you are calling an embedding operation in Amazon
 //   QuickSight without the required pricing plan on your Amazon Web Services
-//   account;. Before you can use embedding for anonymous users, a QuickSight
-//   administrator needs to add capacity pricing to QuickSight. You can do this
-//   on the Manage QuickSight page.
+//   account. Before you can use embedding for anonymous users, a QuickSight administrator
+//   needs to add capacity pricing to Amazon QuickSight. You can do this on the
+//   Manage Amazon QuickSight page.
 //
-//   After capacity pricing is added, you can use the GetDashboardEmbedUrl API
-//   operation with the --identity-type ANONYMOUS option.
+//   After capacity pricing is added, you can use the GetDashboardEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GetDashboardEmbedUrl.html)
+//   API operation with the --identity-type ANONYMOUS option.
 //
 //   * InternalFailureException
 //   An internal failure occurred.
@@ -6304,9 +6416,9 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 // GetDashboardEmbedUrl API operation for Amazon QuickSight.
 //
 // Generates a session URL and authorization code that you can use to embed
-// an Amazon QuickSight read-only dashboard in your web server code. Before
-// you use this command, make sure that you have configured the dashboards and
-// permissions.
+// an Amazon Amazon QuickSight read-only dashboard in your web server code.
+// Before you use this command, make sure that you have configured the dashboards
+// and permissions.
 //
 // Currently, you can use GetDashboardEmbedURL only from the server, not from
 // the user's browser. The following rules apply to the combination of URL and
@@ -6375,18 +6487,18 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * UnsupportedPricingPlanException
 //   This error indicates that you are calling an embedding operation in Amazon
 //   QuickSight without the required pricing plan on your Amazon Web Services
-//   account;. Before you can use embedding for anonymous users, a QuickSight
-//   administrator needs to add capacity pricing to QuickSight. You can do this
-//   on the Manage QuickSight page.
+//   account. Before you can use embedding for anonymous users, a QuickSight administrator
+//   needs to add capacity pricing to Amazon QuickSight. You can do this on the
+//   Manage Amazon QuickSight page.
 //
-//   After capacity pricing is added, you can use the GetDashboardEmbedUrl API
-//   operation with the --identity-type ANONYMOUS option.
+//   After capacity pricing is added, you can use the GetDashboardEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GetDashboardEmbedUrl.html)
+//   API operation with the --identity-type ANONYMOUS option.
 //
 //   * InternalFailureException
 //   An internal failure occurred.
@@ -6458,17 +6570,18 @@ func (c *QuickSight) GetSessionEmbedUrlRequest(input *GetSessionEmbedUrlInput) (
 // GetSessionEmbedUrl API operation for Amazon QuickSight.
 //
 // Generates a session URL and authorization code that you can use to embed
-// the Amazon QuickSight console in your web server code. Use GetSessionEmbedUrl
+// the Amazon Amazon QuickSight console in your web server code. Use GetSessionEmbedUrl
 // where you want to provide an authoring portal that allows users to create
 // data sources, datasets, analyses, and dashboards. The users who access an
-// embedded QuickSight console need belong to the author or admin security cohort.
-// If you want to restrict permissions to some of these features, add a custom
-// permissions profile to the user with the UpdateUser API operation. Use RegisterUser
+// embedded Amazon QuickSight console need belong to the author or admin security
+// cohort. If you want to restrict permissions to some of these features, add
+// a custom permissions profile to the user with the UpdateUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html)
+// API operation. Use RegisterUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_RegisterUser.html)
 // API operation to add a new user with a custom permission profile attached.
 // For more information, see the following sections in the Amazon QuickSight
 // User Guide:
 //
-//    * Embedding the Amazon QuickSight Console Using GetSessionEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-full-console-for-authenticated-users-get.html)
+//    * Embedding Analytics (https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html)
 //
 //    * Customizing Access to the Amazon QuickSight Console (https://docs.aws.amazon.com/quicksight/latest/user/customizing-permissions-to-the-quicksight-console.html)
 //
@@ -6511,7 +6624,7 @@ func (c *QuickSight) GetSessionEmbedUrlRequest(input *GetSessionEmbedUrlInput) (
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -6590,7 +6703,7 @@ func (c *QuickSight) ListAnalysesRequest(input *ListAnalysesInput) (req *request
 // ListAnalyses API operation for Amazon QuickSight.
 //
 // Lists Amazon QuickSight analyses that exist in the specified Amazon Web Services
-// account;.
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6609,7 +6722,7 @@ func (c *QuickSight) ListAnalysesRequest(input *ListAnalysesInput) (req *request
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -6739,7 +6852,7 @@ func (c *QuickSight) ListDashboardVersionsRequest(input *ListDashboardVersionsIn
 
 // ListDashboardVersions API operation for Amazon QuickSight.
 //
-// Lists all the versions of the dashboards in the QuickSight subscription.
+// Lists all the versions of the dashboards in the Amazon QuickSight subscription.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6764,7 +6877,7 @@ func (c *QuickSight) ListDashboardVersionsRequest(input *ListDashboardVersionsIn
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -6894,7 +7007,7 @@ func (c *QuickSight) ListDashboardsRequest(input *ListDashboardsInput) (req *req
 
 // ListDashboards API operation for Amazon QuickSight.
 //
-// Lists dashboards in an Amazon Web Services account;.
+// Lists dashboards in an Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6913,7 +7026,7 @@ func (c *QuickSight) ListDashboardsRequest(input *ListDashboardsInput) (req *req
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -7043,8 +7156,8 @@ func (c *QuickSight) ListDataSetsRequest(input *ListDataSetsInput) (req *request
 
 // ListDataSets API operation for Amazon QuickSight.
 //
-// Lists all of the datasets belonging to the current Amazon Web Services account;
-// in an Amazon Web Services Region;.
+// Lists all of the datasets belonging to the current Amazon Web Services account
+// in an Amazon Web Services Region.
 //
 // The permissions resource is arn:aws:quicksight:region:aws-account-id:dataset/*.
 //
@@ -7199,8 +7312,8 @@ func (c *QuickSight) ListDataSourcesRequest(input *ListDataSourcesInput) (req *r
 
 // ListDataSources API operation for Amazon QuickSight.
 //
-// Lists data sources in current Amazon Web Services Region; that belong to
-// this Amazon Web Services account;.
+// Lists data sources in current Amazon Web Services Region that belong to this
+// Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7379,7 +7492,7 @@ func (c *QuickSight) ListFolderMembersRequest(input *ListFolderMembersInput) (re
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -7483,7 +7596,7 @@ func (c *QuickSight) ListFoldersRequest(input *ListFoldersInput) (req *request.R
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -8130,7 +8243,7 @@ func (c *QuickSight) ListNamespacesRequest(input *ListNamespacesInput) (req *req
 
 // ListNamespaces API operation for Amazon QuickSight.
 //
-// Lists the namespaces for the specified Amazon Web Services account;.
+// Lists the namespaces for the specified Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8409,7 +8522,7 @@ func (c *QuickSight) ListTemplateAliasesRequest(input *ListTemplateAliasesInput)
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -8565,7 +8678,7 @@ func (c *QuickSight) ListTemplateVersionsRequest(input *ListTemplateVersionsInpu
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -8720,7 +8833,7 @@ func (c *QuickSight) ListTemplatesRequest(input *ListTemplatesInput) (req *reque
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -8872,7 +8985,7 @@ func (c *QuickSight) ListThemeAliasesRequest(input *ListThemeAliasesInput) (req 
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -8950,7 +9063,7 @@ func (c *QuickSight) ListThemeVersionsRequest(input *ListThemeVersionsInput) (re
 
 // ListThemeVersions API operation for Amazon QuickSight.
 //
-// Lists all the versions of the themes in the current Amazon Web Services account;.
+// Lists all the versions of the themes in the current Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8982,7 +9095,7 @@ func (c *QuickSight) ListThemeVersionsRequest(input *ListThemeVersionsInput) (re
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -9112,7 +9225,7 @@ func (c *QuickSight) ListThemesRequest(input *ListThemesInput) (req *request.Req
 
 // ListThemes API operation for Amazon QuickSight.
 //
-// Lists all the themes in the current Amazon Web Services account;.
+// Lists all the themes in the current Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9144,7 +9257,7 @@ func (c *QuickSight) ListThemesRequest(input *ListThemesInput) (req *request.Req
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -9475,8 +9588,7 @@ func (c *QuickSight) RegisterUserRequest(input *RegisterUserInput) (req *request
 // RegisterUser API operation for Amazon QuickSight.
 //
 // Creates an Amazon QuickSight user, whose identity is associated with the
-// AWS Identity and Access Management (IAM) identity or role specified in the
-// request.
+// Identity and Access Management (IAM) identity or role specified in the request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9608,7 +9720,7 @@ func (c *QuickSight) RestoreAnalysisRequest(input *RestoreAnalysisInput) (req *r
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -9711,7 +9823,7 @@ func (c *QuickSight) SearchAnalysesRequest(input *SearchAnalysesInput) (req *req
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InvalidNextTokenException
@@ -9869,7 +9981,7 @@ func (c *QuickSight) SearchDashboardsRequest(input *SearchDashboardsInput) (req 
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InvalidNextTokenException
@@ -10028,7 +10140,7 @@ func (c *QuickSight) SearchFoldersRequest(input *SearchFoldersInput) (req *reque
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -10100,7 +10212,8 @@ func (c *QuickSight) TagResourceRequest(input *TagResourceInput) (req *request.R
 
 // TagResource API operation for Amazon QuickSight.
 //
-// Assigns one or more tags (key-value pairs) to the specified QuickSight resource.
+// Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight
+// resource.
 //
 // Tags can help you organize and categorize your resources. You can also use
 // them to scope user permissions, by granting a user permission to access or
@@ -10111,17 +10224,19 @@ func (c *QuickSight) TagResourceRequest(input *TagResourceInput) (req *request.R
 // the resource, the new tag value that you specify replaces the previous value
 // for that tag.
 //
-// You can associate as many as 50 tags with a resource. QuickSight supports
+// You can associate as many as 50 tags with a resource. Amazon QuickSight supports
 // tagging on data set, data source, dashboard, and template.
 //
-// Tagging for QuickSight works in a similar way to tagging for other AWS services,
-// except for the following:
+// Tagging for Amazon QuickSight works in a similar way to tagging for other
+// Amazon Web Services services, except for the following:
 //
-//    * You can't use tags to track AWS costs for QuickSight. This restriction
-//    is because QuickSight costs are based on users and SPICE capacity, which
-//    aren't taggable resources.
+//    * You can't use tags to track costs for Amazon QuickSight. This isn't
+//    possible because you can't tag the resources that Amazon QuickSight costs
+//    are based on, for example Amazon QuickSight storage capacity (SPICE),
+//    number of users, type of users, and usage metrics.
 //
-//    * QuickSight doesn't currently support the Tag Editor for Resource Groups.
+//    * Amazon QuickSight doesn't currently support the tag editor for Resource
+//    Groups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10315,12 +10430,12 @@ func (c *QuickSight) UpdateAccountCustomizationRequest(input *UpdateAccountCusto
 // UpdateAccountCustomization API operation for Amazon QuickSight.
 //
 // Updates Amazon QuickSight customizations the current Amazon Web Services
-// Region;. Currently, the only customization you can use is a theme.
+// Region. Currently, the only customization you can use is a theme.
 //
-// You can use customizations for your Amazon Web Services account; or, if you
-// specify a namespace, for a QuickSight namespace instead. Customizations that
-// apply to a namespace override customizations that apply to an Amazon Web
-// Services account;. To find out which customizations apply, use the DescribeAccountCustomization
+// You can use customizations for your Amazon Web Services account or, if you
+// specify a namespace, for a Amazon QuickSight namespace instead. Customizations
+// that apply to a namespace override customizations that apply to an Amazon
+// Web Services account. To find out which customizations apply, use the DescribeAccountCustomization
 // API operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10337,6 +10452,9 @@ func (c *QuickSight) UpdateAccountCustomizationRequest(input *UpdateAccountCusto
 //   that your account is authorized to use the Amazon QuickSight service, that
 //   your policies have the correct permissions, and that you are using the correct
 //   access keys.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
 //
 //   * InvalidParameterValueException
 //   One or more parameters has a value that isn't valid.
@@ -10419,7 +10537,7 @@ func (c *QuickSight) UpdateAccountSettingsRequest(input *UpdateAccountSettingsIn
 
 // UpdateAccountSettings API operation for Amazon QuickSight.
 //
-// Updates the Amazon QuickSight settings in your Amazon Web Services account;.
+// Updates the Amazon QuickSight settings in your Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10545,7 +10663,7 @@ func (c *QuickSight) UpdateAnalysisRequest(input *UpdateAnalysisInput) (req *req
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -10639,7 +10757,7 @@ func (c *QuickSight) UpdateAnalysisPermissionsRequest(input *UpdateAnalysisPermi
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * ConflictException
@@ -10714,11 +10832,12 @@ func (c *QuickSight) UpdateDashboardRequest(input *UpdateDashboardInput) (req *r
 
 // UpdateDashboard API operation for Amazon QuickSight.
 //
-// Updates a dashboard in an Amazon Web Services account;.
+// Updates a dashboard in an Amazon Web Services account.
 //
 // Updating a Dashboard creates a new dashboard version but does not immediately
 // publish the new version. You can update the published version of a dashboard
-// by using the UpdateDashboardPublishedVersion API operation.
+// by using the UpdateDashboardPublishedVersion (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateDashboardPublishedVersion.html)
+// API operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10746,7 +10865,7 @@ func (c *QuickSight) UpdateDashboardRequest(input *UpdateDashboardInput) (req *r
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -10840,7 +10959,7 @@ func (c *QuickSight) UpdateDashboardPermissionsRequest(input *UpdateDashboardPer
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * ConflictException
@@ -10940,7 +11059,7 @@ func (c *QuickSight) UpdateDashboardPublishedVersionRequest(input *UpdateDashboa
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -11012,7 +11131,8 @@ func (c *QuickSight) UpdateDataSetRequest(input *UpdateDataSetInput) (req *reque
 
 // UpdateDataSet API operation for Amazon QuickSight.
 //
-// Updates a dataset.
+// Updates a dataset. This operation doesn't support datasets that include uploaded
+// files as a source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11047,7 +11167,7 @@ func (c *QuickSight) UpdateDataSetRequest(input *UpdateDataSetInput) (req *reque
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -11450,7 +11570,7 @@ func (c *QuickSight) UpdateFolderRequest(input *UpdateFolderInput) (req *request
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -11554,7 +11674,7 @@ func (c *QuickSight) UpdateFolderPermissionsRequest(input *UpdateFolderPermissio
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -11787,6 +11907,106 @@ func (c *QuickSight) UpdateIAMPolicyAssignmentWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opUpdateIpRestriction = "UpdateIpRestriction"
+
+// UpdateIpRestrictionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateIpRestriction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateIpRestriction for more information on using the UpdateIpRestriction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateIpRestrictionRequest method.
+//    req, resp := client.UpdateIpRestrictionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateIpRestriction
+func (c *QuickSight) UpdateIpRestrictionRequest(input *UpdateIpRestrictionInput) (req *request.Request, output *UpdateIpRestrictionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateIpRestriction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/ip-restriction",
+	}
+
+	if input == nil {
+		input = &UpdateIpRestrictionInput{}
+	}
+
+	output = &UpdateIpRestrictionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateIpRestriction API operation for Amazon QuickSight.
+//
+// Updates the content and status of IP rules. To use this operation, you need
+// to provide the entire map of rules. You can use the DescribeIpRestriction
+// operation to get the current rule map.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateIpRestriction for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   A limit is exceeded.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateIpRestriction
+func (c *QuickSight) UpdateIpRestriction(input *UpdateIpRestrictionInput) (*UpdateIpRestrictionOutput, error) {
+	req, out := c.UpdateIpRestrictionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateIpRestrictionWithContext is the same as UpdateIpRestriction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateIpRestriction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateIpRestrictionWithContext(ctx aws.Context, input *UpdateIpRestrictionInput, opts ...request.Option) (*UpdateIpRestrictionOutput, error) {
+	req, out := c.UpdateIpRestrictionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTemplate = "UpdateTemplate"
 
 // UpdateTemplateRequest generates a "aws/request.Request" representing the
@@ -11863,7 +12083,7 @@ func (c *QuickSight) UpdateTemplateRequest(input *UpdateTemplateInput) (req *req
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -11957,7 +12177,7 @@ func (c *QuickSight) UpdateTemplateAliasRequest(input *UpdateTemplateAliasInput)
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * ConflictException
@@ -12057,7 +12277,7 @@ func (c *QuickSight) UpdateTemplatePermissionsRequest(input *UpdateTemplatePermi
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -12164,7 +12384,7 @@ func (c *QuickSight) UpdateThemeRequest(input *UpdateThemeInput) (req *request.R
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -12264,7 +12484,7 @@ func (c *QuickSight) UpdateThemeAliasRequest(input *UpdateThemeAliasInput) (req 
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -12379,7 +12599,7 @@ func (c *QuickSight) UpdateThemePermissionsRequest(input *UpdateThemePermissions
 //   * UnsupportedUserEditionException
 //   This error indicates that you are calling an operation on an Amazon QuickSight
 //   subscription where the edition doesn't include support for that operation.
-//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
 //   * InternalFailureException
@@ -12523,12 +12743,20 @@ type AccessDeniedException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessDeniedException) GoString() string {
 	return s.String()
 }
@@ -12572,22 +12800,39 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 // The Amazon QuickSight customizations associated with your Amazon Web Services
-// account; or a QuickSight namespace in a specific Amazon Web Services Region;.
+// account or a QuickSight namespace in a specific Amazon Web Services Region.
 type AccountCustomization struct {
 	_ struct{} `type:"structure"`
 
-	// The default theme for this QuickSight subscription.
+	// The default email customization template.
+	DefaultEmailCustomizationTemplate *string `type:"string"`
+
+	// The default theme for this Amazon QuickSight subscription.
 	DefaultTheme *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountCustomization) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountCustomization) GoString() string {
 	return s.String()
+}
+
+// SetDefaultEmailCustomizationTemplate sets the DefaultEmailCustomizationTemplate field's value.
+func (s *AccountCustomization) SetDefaultEmailCustomizationTemplate(v string) *AccountCustomization {
+	s.DefaultEmailCustomizationTemplate = &v
+	return s
 }
 
 // SetDefaultTheme sets the DefaultTheme field's value.
@@ -12596,33 +12841,41 @@ func (s *AccountCustomization) SetDefaultTheme(v string) *AccountCustomization {
 	return s
 }
 
-// The QuickSight settings associated with your Amazon Web Services account;.
+// The Amazon QuickSight settings associated with your Amazon Web Services account.
 type AccountSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The "account name" you provided for the QuickSight subscription in your Amazon
-	// Web Services account;. You create this name when you sign up for QuickSight.
-	// It is unique in all of Amazon Web Services and it appears only when users
-	// sign in.
+	// The "account name" you provided for the Amazon QuickSight subscription in
+	// your Amazon Web Services account. You create this name when you sign up for
+	// Amazon QuickSight. It is unique in all of Amazon Web Services and it appears
+	// only when users sign in.
 	AccountName *string `type:"string"`
 
-	// The default QuickSight namespace for your Amazon Web Services account;.
+	// The default Amazon QuickSight namespace for your Amazon Web Services account.
 	DefaultNamespace *string `type:"string"`
 
-	// The edition of QuickSight that you're currently subscribed to: Enterprise
+	// The edition of Amazon QuickSight that you're currently subscribed to: Enterprise
 	// edition or Standard edition.
 	Edition *string `type:"string" enum:"Edition"`
 
-	// The main notification email for your QuickSight subscription.
+	// The main notification email for your Amazon QuickSight subscription.
 	NotificationEmail *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountSettings) GoString() string {
 	return s.String()
 }
@@ -12662,12 +12915,20 @@ type ActiveIAMPolicyAssignment struct {
 	PolicyArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActiveIAMPolicyAssignment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActiveIAMPolicyAssignment) GoString() string {
 	return s.String()
 }
@@ -12692,12 +12953,20 @@ type AdHocFilteringOption struct {
 	AvailabilityStatus *string `type:"string" enum:"DashboardBehavior"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdHocFilteringOption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AdHocFilteringOption) GoString() string {
 	return s.String()
 }
@@ -12708,22 +12977,30 @@ func (s *AdHocFilteringOption) SetAvailabilityStatus(v string) *AdHocFilteringOp
 	return s
 }
 
-// Amazon Elasticsearch Service parameters.
+// The parameters for OpenSearch.
 type AmazonElasticsearchParameters struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Elasticsearch Service domain.
+	// The OpenSearch domain.
 	//
 	// Domain is a required field
 	Domain *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AmazonElasticsearchParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AmazonElasticsearchParameters) GoString() string {
 	return s.String()
 }
@@ -12746,6 +13023,56 @@ func (s *AmazonElasticsearchParameters) Validate() error {
 
 // SetDomain sets the Domain field's value.
 func (s *AmazonElasticsearchParameters) SetDomain(v string) *AmazonElasticsearchParameters {
+	s.Domain = &v
+	return s
+}
+
+// The parameters for OpenSearch.
+type AmazonOpenSearchParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The OpenSearch domain.
+	//
+	// Domain is a required field
+	Domain *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonOpenSearchParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonOpenSearchParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmazonOpenSearchParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmazonOpenSearchParameters"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *AmazonOpenSearchParameters) SetDomain(v string) *AmazonOpenSearchParameters {
 	s.Domain = &v
 	return s
 }
@@ -12786,12 +13113,20 @@ type Analysis struct {
 	ThemeArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Analysis) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Analysis) GoString() string {
 	return s.String()
 }
@@ -12856,7 +13191,7 @@ func (s *Analysis) SetThemeArn(v string) *Analysis {
 	return s
 }
 
-// A metadata error structure for an analysis.
+// Analysis error.
 type AnalysisError struct {
 	_ struct{} `type:"structure"`
 
@@ -12867,12 +13202,20 @@ type AnalysisError struct {
 	Type *string `type:"string" enum:"AnalysisErrorType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisError) GoString() string {
 	return s.String()
 }
@@ -12906,12 +13249,20 @@ type AnalysisSearchFilter struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisSearchFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisSearchFilter) GoString() string {
 	return s.String()
 }
@@ -12942,12 +13293,20 @@ type AnalysisSourceEntity struct {
 	SourceTemplate *AnalysisSourceTemplate `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisSourceEntity) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisSourceEntity) GoString() string {
 	return s.String()
 }
@@ -12988,12 +13347,20 @@ type AnalysisSourceTemplate struct {
 	DataSetReferences []*DataSetReference `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisSourceTemplate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisSourceTemplate) GoString() string {
 	return s.String()
 }
@@ -13055,19 +13422,28 @@ type AnalysisSummary struct {
 	// The time that the analysis was last updated.
 	LastUpdatedTime *time.Time `type:"timestamp"`
 
-	// The name of the analysis. This name is displayed in the QuickSight console.
+	// The name of the analysis. This name is displayed in the Amazon QuickSight
+	// console.
 	Name *string `min:"1" type:"string"`
 
 	// The last known status for the analysis.
 	Status *string `type:"string" enum:"ResourceStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnalysisSummary) GoString() string {
 	return s.String()
 }
@@ -13123,12 +13499,20 @@ type AnonymousUserDashboardEmbeddingConfiguration struct {
 	InitialDashboardId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnonymousUserDashboardEmbeddingConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnonymousUserDashboardEmbeddingConfiguration) GoString() string {
 	return s.String()
 }
@@ -13156,20 +13540,28 @@ func (s *AnonymousUserDashboardEmbeddingConfiguration) SetInitialDashboardId(v s
 }
 
 // The type of experience you want to embed. For anonymous users, you can embed
-// an Amazon QuickSight dashboard.
+// Amazon QuickSight dashboards.
 type AnonymousUserEmbeddingExperienceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The type of embedding experience. In this case, an Amazon QuickSight dashboard.
+	// The type of embedding experience. In this case, Amazon QuickSight dashboards.
 	Dashboard *AnonymousUserDashboardEmbeddingConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnonymousUserEmbeddingExperienceConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AnonymousUserEmbeddingExperienceConfiguration) GoString() string {
 	return s.String()
 }
@@ -13195,7 +13587,7 @@ func (s *AnonymousUserEmbeddingExperienceConfiguration) SetDashboard(v *Anonymou
 	return s
 }
 
-// Amazon Athena parameters.
+// Parameters for Amazon Athena.
 type AthenaParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -13203,12 +13595,20 @@ type AthenaParameters struct {
 	WorkGroup *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AthenaParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AthenaParameters) GoString() string {
 	return s.String()
 }
@@ -13232,7 +13632,7 @@ func (s *AthenaParameters) SetWorkGroup(v string) *AthenaParameters {
 	return s
 }
 
-// Amazon Aurora parameters.
+// Parameters for Amazon Aurora.
 type AuroraParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -13252,12 +13652,20 @@ type AuroraParameters struct {
 	Port *int64 `min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AuroraParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AuroraParameters) GoString() string {
 	return s.String()
 }
@@ -13308,32 +13716,40 @@ func (s *AuroraParameters) SetPort(v int64) *AuroraParameters {
 	return s
 }
 
-// Amazon Aurora with PostgreSQL compatibility parameters.
+// Parameters for Amazon Aurora PostgreSQL-Compatible Edition.
 type AuroraPostgreSqlParameters struct {
 	_ struct{} `type:"structure"`
 
-	// Database.
+	// The Amazon Aurora PostgreSQL database to connect to.
 	//
 	// Database is a required field
 	Database *string `min:"1" type:"string" required:"true"`
 
-	// Host.
+	// The Amazon Aurora PostgreSQL-Compatible host to connect to.
 	//
 	// Host is a required field
 	Host *string `min:"1" type:"string" required:"true"`
 
-	// Port.
+	// The port that Amazon Aurora PostgreSQL is listening on.
 	//
 	// Port is a required field
 	Port *int64 `min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AuroraPostgreSqlParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AuroraPostgreSqlParameters) GoString() string {
 	return s.String()
 }
@@ -13384,7 +13800,7 @@ func (s *AuroraPostgreSqlParameters) SetPort(v int64) *AuroraPostgreSqlParameter
 	return s
 }
 
-// Amazon Web Services IoT Analytics parameters.
+// The parameters for IoT Analytics.
 type AwsIotAnalyticsParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -13394,12 +13810,20 @@ type AwsIotAnalyticsParameters struct {
 	DataSetName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AwsIotAnalyticsParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AwsIotAnalyticsParameters) GoString() string {
 	return s.String()
 }
@@ -13434,12 +13858,20 @@ type BorderStyle struct {
 	Show *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BorderStyle) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BorderStyle) GoString() string {
 	return s.String()
 }
@@ -13472,12 +13904,20 @@ type CalculatedColumn struct {
 	Expression *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CalculatedColumn) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CalculatedColumn) GoString() string {
 	return s.String()
 }
@@ -13529,9 +13969,9 @@ func (s *CalculatedColumn) SetExpression(v string) *CalculatedColumn {
 }
 
 type CancelIngestionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -13547,12 +13987,20 @@ type CancelIngestionInput struct {
 	IngestionId *string `location:"uri" locationName:"IngestionId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelIngestionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelIngestionInput) GoString() string {
 	return s.String()
 }
@@ -13619,12 +14067,20 @@ type CancelIngestionOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelIngestionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CancelIngestionOutput) GoString() string {
 	return s.String()
 }
@@ -13672,12 +14128,20 @@ type CastColumnTypeOperation struct {
 	NewColumnType *string `type:"string" required:"true" enum:"ColumnDataType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CastColumnTypeOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CastColumnTypeOperation) GoString() string {
 	return s.String()
 }
@@ -13727,12 +14191,20 @@ type ColumnDescription struct {
 	Text *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnDescription) GoString() string {
 	return s.String()
 }
@@ -13753,12 +14225,20 @@ type ColumnGroup struct {
 	GeoSpatialColumnGroup *GeoSpatialColumnGroup `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnGroup) GoString() string {
 	return s.String()
 }
@@ -13792,12 +14272,20 @@ type ColumnGroupColumnSchema struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnGroupColumnSchema) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnGroupColumnSchema) GoString() string {
 	return s.String()
 }
@@ -13819,12 +14307,20 @@ type ColumnGroupSchema struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnGroupSchema) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnGroupSchema) GoString() string {
 	return s.String()
 }
@@ -13852,16 +14348,24 @@ type ColumnLevelPermissionRule struct {
 	// An array of column names.
 	ColumnNames []*string `min:"1" type:"list"`
 
-	// An array of Amazon Resource Names (ARNs) for QuickSight users or groups.
+	// An array of Amazon Resource Names (ARNs) for Amazon QuickSight users or groups.
 	Principals []*string `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnLevelPermissionRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnLevelPermissionRule) GoString() string {
 	return s.String()
 }
@@ -13908,12 +14412,20 @@ type ColumnSchema struct {
 	Name *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnSchema) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnSchema) GoString() string {
 	return s.String()
 }
@@ -13936,9 +14448,9 @@ func (s *ColumnSchema) SetName(v string) *ColumnSchema {
 	return s
 }
 
-// A tag for a column in a TagColumnOperation structure. This is a variant type
-// structure. For this structure to be valid, only one of the attributes can
-// be non-null.
+// A tag for a column in a TagColumnOperation (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_TagColumnOperation.html)
+// structure. This is a variant type structure. For this structure to be valid,
+// only one of the attributes can be non-null.
 type ColumnTag struct {
 	_ struct{} `type:"structure"`
 
@@ -13949,12 +14461,20 @@ type ColumnTag struct {
 	ColumnGeographicRole *string `type:"string" enum:"GeoSpatialDataRole"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnTag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ColumnTag) GoString() string {
 	return s.String()
 }
@@ -13982,12 +14502,20 @@ type ConcurrentUpdatingException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentUpdatingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConcurrentUpdatingException) GoString() string {
 	return s.String()
 }
@@ -14041,12 +14569,20 @@ type ConflictException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConflictException) GoString() string {
 	return s.String()
 }
@@ -14092,9 +14628,9 @@ func (s *ConflictException) RequestID() string {
 type CreateAccountCustomizationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The QuickSight customizations you're adding in the current Amazon Web Services
-	// Region;. You can add these to an Amazon Web Services account; and a QuickSight
-	// namespace.
+	// The Amazon QuickSight customizations you're adding in the current Amazon
+	// Web Services Region. You can add these to an Amazon Web Services account
+	// and a QuickSight namespace.
 	//
 	// For example, you can add a default theme by setting AccountCustomization
 	// to the midnight theme: "AccountCustomization": { "DefaultTheme": "arn:aws:quicksight::aws:theme/MIDNIGHT"
@@ -14105,25 +14641,33 @@ type CreateAccountCustomizationInput struct {
 	// AccountCustomization is a required field
 	AccountCustomization *AccountCustomization `type:"structure" required:"true"`
 
-	// The ID for the Amazon Web Services account; that you want to customize QuickSight
-	// for.
+	// The ID for the Amazon Web Services account that you want to customize Amazon
+	// QuickSight for.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The QuickSight namespace that you want to add customizations to.
+	// The Amazon QuickSight namespace that you want to add customizations to.
 	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
 
 	// A list of the tags that you want to attach to this resource.
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccountCustomizationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccountCustomizationInput) GoString() string {
 	return s.String()
 }
@@ -14187,16 +14731,16 @@ func (s *CreateAccountCustomizationInput) SetTags(v []*Tag) *CreateAccountCustom
 type CreateAccountCustomizationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The QuickSight customizations you're adding in the current Amazon Web Services
-	// Region;.
+	// The Amazon QuickSight customizations you're adding in the current Amazon
+	// Web Services Region.
 	AccountCustomization *AccountCustomization `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for the customization that you created for
-	// this Amazon Web Services account;.
+	// this Amazon Web Services account.
 	Arn *string `type:"string"`
 
-	// The ID for the Amazon Web Services account; that you want to customize QuickSight
-	// for.
+	// The ID for the Amazon Web Services account that you want to customize Amazon
+	// QuickSight for.
 	AwsAccountId *string `min:"12" type:"string"`
 
 	// The namespace associated with the customization you're creating.
@@ -14209,12 +14753,20 @@ type CreateAccountCustomizationOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccountCustomizationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccountCustomizationOutput) GoString() string {
 	return s.String()
 }
@@ -14264,13 +14816,13 @@ type CreateAnalysisInput struct {
 	// AnalysisId is a required field
 	AnalysisId *string `location:"uri" locationName:"AnalysisId" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; where you are creating an analysis.
+	// The ID of the Amazon Web Services account where you are creating an analysis.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// A descriptive name for the analysis that you're creating. This name displays
-	// for the analysis in the QuickSight console.
+	// for the analysis in the Amazon QuickSight console.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -14299,16 +14851,25 @@ type CreateAnalysisInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 
 	// The ARN for the theme to apply to the analysis that you're creating. To see
-	// the theme in the QuickSight console, make sure that you have access to it.
+	// the theme in the Amazon QuickSight console, make sure that you have access
+	// to it.
 	ThemeArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAnalysisInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAnalysisInput) GoString() string {
 	return s.String()
 }
@@ -14447,12 +15008,20 @@ type CreateAnalysisOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAnalysisOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAnalysisOutput) GoString() string {
 	return s.String()
 }
@@ -14498,12 +15067,20 @@ type CreateColumnsOperation struct {
 	Columns []*CalculatedColumn `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateColumnsOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateColumnsOperation) GoString() string {
 	return s.String()
 }
@@ -14543,7 +15120,7 @@ func (s *CreateColumnsOperation) SetColumns(v []*CalculatedColumn) *CreateColumn
 type CreateDashboardInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Web Services account; where you want to create the dashboard.
+	// The ID of the Amazon Web Services account where you want to create the dashboard.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -14556,7 +15133,7 @@ type CreateDashboardInput struct {
 	// Options for publishing the dashboard when you create it:
 	//
 	//    * AvailabilityStatus for AdHocFilteringOption - This status can be either
-	//    ENABLED or DISABLED. When this is set to DISABLED, QuickSight disables
+	//    ENABLED or DISABLED. When this is set to DISABLED, Amazon QuickSight disables
 	//    the left filter pane on the published dashboard, which can be used for
 	//    ad hoc (one-time) filtering. This option is ENABLED by default.
 	//
@@ -14589,10 +15166,11 @@ type CreateDashboardInput struct {
 	// In SourceEntity, you specify the type of object you're using as source. You
 	// can only create a dashboard from a template, so you use a SourceTemplate
 	// entity. If you need to create a dashboard from an analysis, first convert
-	// the analysis to a template by using the CreateTemplate API operation. For
-	// SourceTemplate, specify the Amazon Resource Name (ARN) of the source template.
-	// The SourceTemplateARN can contain any Amazon Web Services account; and any
-	// QuickSight-supported Amazon Web Services Region;.
+	// the analysis to a template by using the CreateTemplate (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html)
+	// API operation. For SourceTemplate, specify the Amazon Resource Name (ARN)
+	// of the source template. The SourceTemplateARN can contain any Amazon Web
+	// Services account and any Amazon QuickSight-supported Amazon Web Services
+	// Region.
 	//
 	// Use the DataSetReferences entity within SourceTemplate to list the replacement
 	// datasets for the placeholders listed in the original. The schema in each
@@ -14608,19 +15186,27 @@ type CreateDashboardInput struct {
 	// The Amazon Resource Name (ARN) of the theme that is being used for this dashboard.
 	// If you add a value for this field, it overrides the value that is used in
 	// the source entity. The theme ARN must exist in the same Amazon Web Services
-	// account; where you create the dashboard.
+	// account where you create the dashboard.
 	ThemeArn *string `type:"string"`
 
 	// A description for the first version of the dashboard being created.
 	VersionDescription *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDashboardInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDashboardInput) GoString() string {
 	return s.String()
 }
@@ -14778,12 +15364,20 @@ type CreateDashboardOutput struct {
 	VersionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDashboardOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDashboardOutput) GoString() string {
 	return s.String()
 }
@@ -14827,23 +15421,27 @@ func (s *CreateDashboardOutput) SetVersionArn(v string) *CreateDashboardOutput {
 type CreateDataSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// Groupings of columns that work together in certain QuickSight features. Currently,
-	// only geospatial hierarchy is supported.
+	// Groupings of columns that work together in certain Amazon QuickSight features.
+	// Currently, only geospatial hierarchy is supported.
 	ColumnGroups []*ColumnGroup `min:"1" type:"list"`
 
-	// A set of one or more definitions of a ColumnLevelPermissionRule .
+	// A set of one or more definitions of a ColumnLevelPermissionRule (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html) .
 	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
 
 	// An ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account;.
+	// Web Services Region for each Amazon Web Services account.
 	//
 	// DataSetId is a required field
 	DataSetId *string `type:"string" required:"true"`
+
+	// The usage configuration to apply to child datasets that reference this dataset
+	// as a source.
+	DataSetUsageConfiguration *DataSetUsageConfiguration `type:"structure"`
 
 	// The folder that contains fields and nested subfolders for your dataset.
 	FieldFolders map[string]*FieldFolder `type:"map"`
@@ -14868,7 +15466,7 @@ type CreateDataSetInput struct {
 	// Declares the physical tables that are available in the underlying data sources.
 	//
 	// PhysicalTableMap is a required field
-	PhysicalTableMap map[string]*PhysicalTable `min:"1" type:"map" required:"true"`
+	PhysicalTableMap map[string]*PhysicalTable `type:"map" required:"true"`
 
 	// The row-level security configuration for the data that you want to create.
 	RowLevelPermissionDataSet *RowLevelPermissionDataSet `type:"structure"`
@@ -14882,12 +15480,20 @@ type CreateDataSetInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataSetInput) GoString() string {
 	return s.String()
 }
@@ -14927,9 +15533,6 @@ func (s *CreateDataSetInput) Validate() error {
 	}
 	if s.PhysicalTableMap == nil {
 		invalidParams.Add(request.NewErrParamRequired("PhysicalTableMap"))
-	}
-	if s.PhysicalTableMap != nil && len(s.PhysicalTableMap) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("PhysicalTableMap", 1))
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
@@ -15035,6 +15638,12 @@ func (s *CreateDataSetInput) SetDataSetId(v string) *CreateDataSetInput {
 	return s
 }
 
+// SetDataSetUsageConfiguration sets the DataSetUsageConfiguration field's value.
+func (s *CreateDataSetInput) SetDataSetUsageConfiguration(v *DataSetUsageConfiguration) *CreateDataSetInput {
+	s.DataSetUsageConfiguration = v
+	return s
+}
+
 // SetFieldFolders sets the FieldFolders field's value.
 func (s *CreateDataSetInput) SetFieldFolders(v map[string]*FieldFolder) *CreateDataSetInput {
 	s.FieldFolders = v
@@ -15096,7 +15705,7 @@ type CreateDataSetOutput struct {
 	Arn *string `type:"string"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account;.
+	// Web Services Region for each Amazon Web Services account.
 	DataSetId *string `type:"string"`
 
 	// The ARN for the ingestion, which is triggered as a result of dataset creation
@@ -15114,12 +15723,20 @@ type CreateDataSetOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataSetOutput) GoString() string {
 	return s.String()
 }
@@ -15163,22 +15780,27 @@ func (s *CreateDataSetOutput) SetStatus(v int64) *CreateDataSetOutput {
 type CreateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The credentials QuickSight that uses to connect to your underlying source.
-	// Currently, only credentials based on user name and password are supported.
+	// The credentials Amazon QuickSight that uses to connect to your underlying
+	// source. Currently, only credentials based on user name and password are supported.
+	//
+	// Credentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateDataSourceInput's
+	// String and GoString methods.
 	Credentials *DataSourceCredentials `type:"structure" sensitive:"true"`
 
-	// An ID for the data source. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// An ID for the data source. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `type:"string" required:"true"`
 
-	// The parameters that QuickSight uses to connect to your underlying source.
+	// The parameters that Amazon QuickSight uses to connect to your underlying
+	// source.
 	DataSourceParameters *DataSourceParameters `type:"structure"`
 
 	// A display name for the data source.
@@ -15189,7 +15811,7 @@ type CreateDataSourceInput struct {
 	// A list of resource permissions on the data source.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
 
-	// Secure Socket Layer (SSL) properties that apply when QuickSight connects
+	// Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects
 	// to your underlying source.
 	SslProperties *SslProperties `type:"structure"`
 
@@ -15197,27 +15819,32 @@ type CreateDataSourceInput struct {
 	// to the data source.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// The type of the data source. Currently, the supported types for this operation
-	// are: ATHENA, AURORA, AURORA_POSTGRESQL, AMAZON_ELASTICSEARCH, MARIADB, MYSQL,
-	// POSTGRESQL, PRESTO, REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA.
-	// Use ListDataSources to return a list of all data sources.
+	// The type of the data source. To return a list of all data sources, use ListDataSources.
 	//
-	// AMAZON_ELASTICSEARCH is for Amazon managed Elasticsearch Service.
+	// Use AMAZON_ELASTICSEARCH for Amazon OpenSearch Service.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataSourceType"`
 
-	// Use this parameter only when you want QuickSight to use a VPC connection
+	// Use this parameter only when you want Amazon QuickSight to use a VPC connection
 	// when connecting to your underlying source.
 	VpcConnectionProperties *VpcConnectionProperties `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataSourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataSourceInput) GoString() string {
 	return s.String()
 }
@@ -15360,8 +15987,8 @@ type CreateDataSourceOutput struct {
 	// The status of creating the data source.
 	CreationStatus *string `type:"string" enum:"ResourceStatus"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	DataSourceId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -15371,12 +15998,20 @@ type CreateDataSourceOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataSourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateDataSourceOutput) GoString() string {
 	return s.String()
 }
@@ -15414,12 +16049,12 @@ func (s *CreateDataSourceOutput) SetStatus(v int64) *CreateDataSourceOutput {
 type CreateFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Account ID.
+	// The ID for the Amazon Web Services account where you want to create the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -15446,12 +16081,20 @@ type CreateFolderInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFolderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFolderInput) GoString() string {
 	return s.String()
 }
@@ -15550,14 +16193,14 @@ func (s *CreateFolderInput) SetTags(v []*Tag) *CreateFolderInput {
 }
 
 type CreateFolderMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS Account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -15573,12 +16216,20 @@ type CreateFolderMembershipInput struct {
 	MemberType *string `location:"uri" locationName:"MemberType" type:"string" required:"true" enum:"MemberType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFolderMembershipInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFolderMembershipInput) GoString() string {
 	return s.String()
 }
@@ -15647,19 +16298,27 @@ type CreateFolderMembershipOutput struct {
 	// Information about the member in the folder.
 	FolderMember *FolderMember `type:"structure"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status of the folder membership. If succeeded, the status is SC_OK (200).
+	// The HTTP status of the request.
 	Status *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFolderMembershipOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFolderMembershipOutput) GoString() string {
 	return s.String()
 }
@@ -15694,17 +16353,24 @@ type CreateFolderOutput struct {
 	// The request ID for the newly created folder.
 	RequestId *string `type:"string"`
 
-	// The status of the newly created folder. If succeeded, the status is SC_OK
-	// (200).
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFolderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateFolderOutput) GoString() string {
 	return s.String()
 }
@@ -15737,8 +16403,8 @@ func (s *CreateFolderOutput) SetStatus(v int64) *CreateFolderOutput {
 type CreateGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for the Amazon Web Services account; that the group is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the group is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
@@ -15758,12 +16424,20 @@ type CreateGroupInput struct {
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupInput) GoString() string {
 	return s.String()
 }
@@ -15824,10 +16498,10 @@ func (s *CreateGroupInput) SetNamespace(v string) *CreateGroupInput {
 }
 
 type CreateGroupMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that the group is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the group is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
@@ -15849,12 +16523,20 @@ type CreateGroupMembershipInput struct {
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupMembershipInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupMembershipInput) GoString() string {
 	return s.String()
 }
@@ -15930,12 +16612,20 @@ type CreateGroupMembershipOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupMembershipOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupMembershipOutput) GoString() string {
 	return s.String()
 }
@@ -15972,12 +16662,20 @@ type CreateGroupOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateGroupOutput) GoString() string {
 	return s.String()
 }
@@ -16004,7 +16702,7 @@ type CreateIAMPolicyAssignmentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the assignment, also called a rule. It must be unique within
-	// an Amazon Web Services account;.
+	// an Amazon Web Services account.
 	//
 	// AssignmentName is a required field
 	AssignmentName *string `min:"1" type:"string" required:"true"`
@@ -16022,14 +16720,14 @@ type CreateIAMPolicyAssignmentInput struct {
 	// AssignmentStatus is a required field
 	AssignmentStatus *string `type:"string" required:"true" enum:"AssignmentStatus"`
 
-	// The ID of the Amazon Web Services account; where you want to assign an IAM
-	// policy to QuickSight users or groups.
+	// The ID of the Amazon Web Services account where you want to assign an IAM
+	// policy to Amazon QuickSight users or groups.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The QuickSight users, groups, or both that you want to assign the policy
-	// to.
+	// The Amazon QuickSight users, groups, or both that you want to assign the
+	// policy to.
 	Identities map[string][]*string `type:"map"`
 
 	// The namespace that contains the assignment.
@@ -16037,17 +16735,25 @@ type CreateIAMPolicyAssignmentInput struct {
 	// Namespace is a required field
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 
-	// The ARN for the IAM policy to apply to the QuickSight users and groups specified
-	// in this assignment.
+	// The ARN for the IAM policy to apply to the Amazon QuickSight users and groups
+	// specified in this assignment.
 	PolicyArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIAMPolicyAssignmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIAMPolicyAssignmentInput) GoString() string {
 	return s.String()
 }
@@ -16126,7 +16832,7 @@ type CreateIAMPolicyAssignmentOutput struct {
 	AssignmentId *string `type:"string"`
 
 	// The name of the assignment. This name must be unique within the Amazon Web
-	// Services account;.
+	// Services account.
 	AssignmentName *string `min:"1" type:"string"`
 
 	// The status of the assignment. Possible values are as follows:
@@ -16140,11 +16846,12 @@ type CreateIAMPolicyAssignmentOutput struct {
 	//    the data source.
 	AssignmentStatus *string `type:"string" enum:"AssignmentStatus"`
 
-	// The QuickSight users, groups, or both that the IAM policy is assigned to.
+	// The Amazon QuickSight users, groups, or both that the IAM policy is assigned
+	// to.
 	Identities map[string][]*string `type:"map"`
 
-	// The ARN for the IAM policy that is applied to the QuickSight users and groups
-	// specified in this assignment.
+	// The ARN for the IAM policy that is applied to the Amazon QuickSight users
+	// and groups specified in this assignment.
 	PolicyArn *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -16154,12 +16861,20 @@ type CreateIAMPolicyAssignmentOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIAMPolicyAssignmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIAMPolicyAssignmentOutput) GoString() string {
 	return s.String()
 }
@@ -16209,7 +16924,7 @@ func (s *CreateIAMPolicyAssignmentOutput) SetStatus(v int64) *CreateIAMPolicyAss
 type CreateIngestionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -16223,14 +16938,25 @@ type CreateIngestionInput struct {
 	//
 	// IngestionId is a required field
 	IngestionId *string `location:"uri" locationName:"IngestionId" min:"1" type:"string" required:"true"`
+
+	// The type of ingestion that you want to create.
+	IngestionType *string `type:"string" enum:"IngestionType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIngestionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIngestionInput) GoString() string {
 	return s.String()
 }
@@ -16281,6 +17007,12 @@ func (s *CreateIngestionInput) SetIngestionId(v string) *CreateIngestionInput {
 	return s
 }
 
+// SetIngestionType sets the IngestionType field's value.
+func (s *CreateIngestionInput) SetIngestionType(v string) *CreateIngestionInput {
+	s.IngestionType = &v
+	return s
+}
+
 type CreateIngestionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16300,12 +17032,20 @@ type CreateIngestionOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIngestionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateIngestionOutput) GoString() string {
 	return s.String()
 }
@@ -16343,8 +17083,8 @@ func (s *CreateIngestionOutput) SetStatus(v int64) *CreateIngestionOutput {
 type CreateNamespaceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for the Amazon Web Services account; that you want to create the QuickSight
-	// namespace in.
+	// The ID for the Amazon Web Services account that you want to create the Amazon
+	// QuickSight namespace in.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -16364,12 +17104,20 @@ type CreateNamespaceInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateNamespaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateNamespaceInput) GoString() string {
 	return s.String()
 }
@@ -16436,7 +17184,7 @@ func (s *CreateNamespaceInput) SetTags(v []*Tag) *CreateNamespaceInput {
 type CreateNamespaceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the QuickSight namespace you created.
+	// The ARN of the Amazon QuickSight namespace you created.
 	Arn *string `type:"string"`
 
 	// The Amazon Web Services Region; that you want to use for the free SPICE capacity
@@ -16464,12 +17212,20 @@ type CreateNamespaceOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateNamespaceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateNamespaceOutput) GoString() string {
 	return s.String()
 }
@@ -16526,7 +17282,7 @@ type CreateTemplateAliasInput struct {
 	// AliasName is a required field
 	AliasName *string `location:"uri" locationName:"AliasName" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the template that
+	// The ID of the Amazon Web Services account that contains the template that
 	// you creating an alias for.
 	//
 	// AwsAccountId is a required field
@@ -16543,12 +17299,20 @@ type CreateTemplateAliasInput struct {
 	TemplateVersionNumber *int64 `min:"1" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTemplateAliasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTemplateAliasInput) GoString() string {
 	return s.String()
 }
@@ -16624,12 +17388,20 @@ type CreateTemplateAliasOutput struct {
 	TemplateAlias *TemplateAlias `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTemplateAliasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTemplateAliasOutput) GoString() string {
 	return s.String()
 }
@@ -16655,9 +17427,9 @@ func (s *CreateTemplateAliasOutput) SetTemplateAlias(v *TemplateAlias) *CreateTe
 type CreateTemplateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for the Amazon Web Services account; that the group is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
-	// QuickSight account.
+	// The ID for the Amazon Web Services account that the group is in. You use
+	// the ID for the Amazon Web Services account that contains your Amazon QuickSight
+	// account.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -16673,8 +17445,8 @@ type CreateTemplateInput struct {
 	// for a template or SourceAnalysis for an analysis. Both of these require an
 	// Amazon Resource Name (ARN). For SourceTemplate, specify the ARN of the source
 	// template. For SourceAnalysis, specify the ARN of the source analysis. The
-	// SourceTemplate ARN can contain any Amazon Web Services account; and any QuickSight-supported
-	// Amazon Web Services Region;.
+	// SourceTemplate ARN can contain any Amazon Web Services account and any Amazon
+	// QuickSight-supported Amazon Web Services Region.
 	//
 	// Use the DataSetReferences entity within SourceTemplate or SourceAnalysis
 	// to list the replacement datasets for the placeholders listed in the original.
@@ -16688,7 +17460,7 @@ type CreateTemplateInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 
 	// An ID for the template that you want to create. This template is unique per
-	// Amazon Web Services Region; in each Amazon Web Services account;.
+	// Amazon Web Services Region; in each Amazon Web Services account.
 	//
 	// TemplateId is a required field
 	TemplateId *string `location:"uri" locationName:"TemplateId" min:"1" type:"string" required:"true"`
@@ -16700,12 +17472,20 @@ type CreateTemplateInput struct {
 	VersionDescription *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTemplateInput) GoString() string {
 	return s.String()
 }
@@ -16837,12 +17617,20 @@ type CreateTemplateOutput struct {
 	VersionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -16893,7 +17681,7 @@ type CreateThemeAliasInput struct {
 	// AliasName is a required field
 	AliasName *string `location:"uri" locationName:"AliasName" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the theme for the
+	// The ID of the Amazon Web Services account that contains the theme for the
 	// new theme alias.
 	//
 	// AwsAccountId is a required field
@@ -16910,12 +17698,20 @@ type CreateThemeAliasInput struct {
 	ThemeVersionNumber *int64 `min:"1" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateThemeAliasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateThemeAliasInput) GoString() string {
 	return s.String()
 }
@@ -16991,12 +17787,20 @@ type CreateThemeAliasOutput struct {
 	ThemeAlias *ThemeAlias `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateThemeAliasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateThemeAliasOutput) GoString() string {
 	return s.String()
 }
@@ -17022,7 +17826,7 @@ func (s *CreateThemeAliasOutput) SetThemeAlias(v *ThemeAlias) *CreateThemeAliasO
 type CreateThemeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Web Services account; where you want to store the new
+	// The ID of the Amazon Web Services account where you want to store the new
 	// theme.
 	//
 	// AwsAccountId is a required field
@@ -17030,8 +17834,7 @@ type CreateThemeInput struct {
 
 	// The ID of the theme that a custom theme will inherit from. All themes inherit
 	// from one of the starting themes defined by Amazon QuickSight. For a list
-	// of the starting themes, use ListThemes or choose Themes from within a QuickSight
-	// analysis.
+	// of the starting themes, use ListThemes or choose Themes from within an analysis.
 	//
 	// BaseThemeId is a required field
 	BaseThemeId *string `min:"1" type:"string" required:"true"`
@@ -17054,7 +17857,7 @@ type CreateThemeInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 
 	// An ID for the theme that you want to create. The theme ID is unique per Amazon
-	// Web Services Region; in each Amazon Web Services account;.
+	// Web Services Region in each Amazon Web Services account.
 	//
 	// ThemeId is a required field
 	ThemeId *string `location:"uri" locationName:"ThemeId" min:"1" type:"string" required:"true"`
@@ -17065,12 +17868,20 @@ type CreateThemeInput struct {
 	VersionDescription *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateThemeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateThemeInput) GoString() string {
 	return s.String()
 }
@@ -17211,12 +18022,20 @@ type CreateThemeOutput struct {
 	VersionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateThemeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateThemeOutput) GoString() string {
 	return s.String()
 }
@@ -17283,12 +18102,20 @@ type CredentialPair struct {
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CredentialPair) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CredentialPair) GoString() string {
 	return s.String()
 }
@@ -17369,12 +18196,20 @@ type CustomSql struct {
 	SqlQuery *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomSql) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomSql) GoString() string {
 	return s.String()
 }
@@ -17467,12 +18302,20 @@ type Dashboard struct {
 	Version *DashboardVersion `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Dashboard) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Dashboard) GoString() string {
 	return s.String()
 }
@@ -17530,12 +18373,20 @@ type DashboardError struct {
 	Type *string `type:"string" enum:"DashboardErrorType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardError) GoString() string {
 	return s.String()
 }
@@ -17566,12 +18417,20 @@ type DashboardPublishOptions struct {
 	SheetControlsOption *SheetControlsOption `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardPublishOptions) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardPublishOptions) GoString() string {
 	return s.String()
 }
@@ -17613,12 +18472,20 @@ type DashboardSearchFilter struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardSearchFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardSearchFilter) GoString() string {
 	return s.String()
 }
@@ -17662,12 +18529,20 @@ type DashboardSourceEntity struct {
 	SourceTemplate *DashboardSourceTemplate `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardSourceEntity) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardSourceEntity) GoString() string {
 	return s.String()
 }
@@ -17708,12 +18583,20 @@ type DashboardSourceTemplate struct {
 	DataSetReferences []*DataSetReference `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardSourceTemplate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardSourceTemplate) GoString() string {
 	return s.String()
 }
@@ -17785,12 +18668,20 @@ type DashboardSummary struct {
 	PublishedVersionNumber *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardSummary) GoString() string {
 	return s.String()
 }
@@ -17874,12 +18765,20 @@ type DashboardVersion struct {
 	VersionNumber *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardVersion) GoString() string {
 	return s.String()
 }
@@ -17967,12 +18866,20 @@ type DashboardVersionSummary struct {
 	VersionNumber *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardVersionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DashboardVersionSummary) GoString() string {
 	return s.String()
 }
@@ -18030,12 +18937,20 @@ type DataColorPalette struct {
 	MinMaxGradient []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataColorPalette) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataColorPalette) GoString() string {
 	return s.String()
 }
@@ -18069,7 +18984,7 @@ type DataSet struct {
 	// Currently, only geospatial hierarchy is supported.
 	ColumnGroups []*ColumnGroup `min:"1" type:"list"`
 
-	// A set of one or more definitions of a ColumnLevelPermissionRule .
+	// A set of one or more definitions of a ColumnLevelPermissionRule (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html) .
 	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
 
 	// The amount of SPICE capacity used by this dataset. This is 0 if the dataset
@@ -18081,6 +18996,10 @@ type DataSet struct {
 
 	// The ID of the dataset.
 	DataSetId *string `type:"string"`
+
+	// The usage configuration to apply to child datasets that reference this dataset
+	// as a source.
+	DataSetUsageConfiguration *DataSetUsageConfiguration `type:"structure"`
 
 	// The folder that contains fields and nested subfolders for your dataset.
 	FieldFolders map[string]*FieldFolder `type:"map"`
@@ -18103,7 +19022,7 @@ type DataSet struct {
 	OutputColumns []*OutputColumn `type:"list"`
 
 	// Declares the physical tables that are available in the underlying data sources.
-	PhysicalTableMap map[string]*PhysicalTable `min:"1" type:"map"`
+	PhysicalTableMap map[string]*PhysicalTable `type:"map"`
 
 	// The row-level security configuration for the dataset.
 	RowLevelPermissionDataSet *RowLevelPermissionDataSet `type:"structure"`
@@ -18112,12 +19031,20 @@ type DataSet struct {
 	RowLevelPermissionTagConfiguration *RowLevelPermissionTagConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSet) GoString() string {
 	return s.String()
 }
@@ -18155,6 +19082,12 @@ func (s *DataSet) SetCreatedTime(v time.Time) *DataSet {
 // SetDataSetId sets the DataSetId field's value.
 func (s *DataSet) SetDataSetId(v string) *DataSet {
 	s.DataSetId = &v
+	return s
+}
+
+// SetDataSetUsageConfiguration sets the DataSetUsageConfiguration field's value.
+func (s *DataSet) SetDataSetUsageConfiguration(v *DataSetUsageConfiguration) *DataSet {
+	s.DataSetUsageConfiguration = v
 	return s
 }
 
@@ -18226,12 +19159,20 @@ type DataSetConfiguration struct {
 	Placeholder *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSetConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSetConfiguration) GoString() string {
 	return s.String()
 }
@@ -18269,12 +19210,20 @@ type DataSetReference struct {
 	DataSetPlaceholder *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSetReference) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSetReference) GoString() string {
 	return s.String()
 }
@@ -18315,12 +19264,20 @@ type DataSetSchema struct {
 	ColumnSchemaList []*ColumnSchema `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSetSchema) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSetSchema) GoString() string {
 	return s.String()
 }
@@ -18363,12 +19320,20 @@ type DataSetSummary struct {
 	RowLevelPermissionTagConfigurationApplied *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSetSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSetSummary) GoString() string {
 	return s.String()
 }
@@ -18427,6 +19392,50 @@ func (s *DataSetSummary) SetRowLevelPermissionTagConfigurationApplied(v bool) *D
 	return s
 }
 
+// The usage configuration to apply to child datasets that reference this dataset
+// as a source.
+type DataSetUsageConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// An option that controls whether a child dataset of a direct query can use
+	// this dataset as a source.
+	DisableUseAsDirectQuerySource *bool `type:"boolean"`
+
+	// An option that controls whether a child dataset that's stored in QuickSight
+	// can use this dataset as a source.
+	DisableUseAsImportedSource *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSetUsageConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataSetUsageConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDisableUseAsDirectQuerySource sets the DisableUseAsDirectQuerySource field's value.
+func (s *DataSetUsageConfiguration) SetDisableUseAsDirectQuerySource(v bool) *DataSetUsageConfiguration {
+	s.DisableUseAsDirectQuerySource = &v
+	return s
+}
+
+// SetDisableUseAsImportedSource sets the DisableUseAsImportedSource field's value.
+func (s *DataSetUsageConfiguration) SetDisableUseAsImportedSource(v bool) *DataSetUsageConfiguration {
+	s.DisableUseAsImportedSource = &v
+	return s
+}
+
 // The structure of a data source.
 type DataSource struct {
 	_ struct{} `type:"structure"`
@@ -18448,8 +19457,8 @@ type DataSource struct {
 	// The time that this data source was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	DataSourceId *string `type:"string"`
 
 	// The parameters that Amazon QuickSight uses to connect to your underlying
@@ -18466,7 +19475,7 @@ type DataSource struct {
 	// A display name for the data source.
 	Name *string `min:"1" type:"string"`
 
-	// Secure Socket Layer (SSL) properties that apply when QuickSight connects
+	// Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects
 	// to your underlying source.
 	SslProperties *SslProperties `type:"structure"`
 
@@ -18478,17 +19487,25 @@ type DataSource struct {
 	Type *string `type:"string" enum:"DataSourceType"`
 
 	// The VPC connection information. You need to use this parameter only when
-	// you want QuickSight to use a VPC connection when connecting to your underlying
-	// source.
+	// you want Amazon QuickSight to use a VPC connection when connecting to your
+	// underlying source.
 	VpcConnectionProperties *VpcConnectionProperties `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSource) GoString() string {
 	return s.String()
 }
@@ -18576,16 +19593,24 @@ type DataSourceCredentials struct {
 	// structure.
 	CopySourceArn *string `type:"string"`
 
-	// Credential pair. For more information, see CredentialPair.
+	// Credential pair. For more information, see CredentialPair (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CredentialPair.html) .
 	CredentialPair *CredentialPair `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSourceCredentials) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSourceCredentials) GoString() string {
 	return s.String()
 }
@@ -18628,12 +19653,20 @@ type DataSourceErrorInfo struct {
 	Type *string `type:"string" enum:"DataSourceErrorInfoType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSourceErrorInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSourceErrorInfo) GoString() string {
 	return s.String()
 }
@@ -18656,73 +19689,87 @@ func (s *DataSourceErrorInfo) SetType(v string) *DataSourceErrorInfo {
 type DataSourceParameters struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Elasticsearch Service parameters.
+	// The parameters for OpenSearch.
 	AmazonElasticsearchParameters *AmazonElasticsearchParameters `type:"structure"`
 
-	// Amazon Athena parameters.
+	// The parameters for OpenSearch.
+	AmazonOpenSearchParameters *AmazonOpenSearchParameters `type:"structure"`
+
+	// The parameters for Amazon Athena.
 	AthenaParameters *AthenaParameters `type:"structure"`
 
-	// Amazon Aurora MySQL parameters.
+	// The parameters for Amazon Aurora MySQL.
 	AuroraParameters *AuroraParameters `type:"structure"`
 
-	// Aurora PostgreSQL parameters.
+	// The parameters for Amazon Aurora.
 	AuroraPostgreSqlParameters *AuroraPostgreSqlParameters `type:"structure"`
 
-	// Amazon Web Services IoT Analytics parameters.
+	// The parameters for IoT Analytics.
 	AwsIotAnalyticsParameters *AwsIotAnalyticsParameters `type:"structure"`
 
-	// Jira parameters.
+	// The parameters for Exasol.
+	ExasolParameters *ExasolParameters `type:"structure"`
+
+	// The parameters for Jira.
 	JiraParameters *JiraParameters `type:"structure"`
 
-	// MariaDB parameters.
+	// The parameters for MariaDB.
 	MariaDbParameters *MariaDbParameters `type:"structure"`
 
-	// MySQL parameters.
+	// The parameters for MySQL.
 	MySqlParameters *MySqlParameters `type:"structure"`
 
-	// Oracle parameters.
+	// The parameters for Oracle.
 	OracleParameters *OracleParameters `type:"structure"`
 
-	// PostgreSQL parameters.
+	// The parameters for PostgreSQL.
 	PostgreSqlParameters *PostgreSqlParameters `type:"structure"`
 
-	// Presto parameters.
+	// The parameters for Presto.
 	PrestoParameters *PrestoParameters `type:"structure"`
 
-	// Amazon RDS parameters.
+	// The parameters for Amazon RDS.
 	RdsParameters *RdsParameters `type:"structure"`
 
-	// Amazon Redshift parameters.
+	// The parameters for Amazon Redshift.
 	RedshiftParameters *RedshiftParameters `type:"structure"`
 
-	// S3 parameters.
+	// The parameters for S3.
 	S3Parameters *S3Parameters `type:"structure"`
 
-	// ServiceNow parameters.
+	// The parameters for ServiceNow.
 	ServiceNowParameters *ServiceNowParameters `type:"structure"`
 
-	// Snowflake parameters.
+	// The parameters for Snowflake.
 	SnowflakeParameters *SnowflakeParameters `type:"structure"`
 
-	// Spark parameters.
+	// The parameters for Spark.
 	SparkParameters *SparkParameters `type:"structure"`
 
-	// SQL Server parameters.
+	// The parameters for SQL Server.
 	SqlServerParameters *SqlServerParameters `type:"structure"`
 
-	// Teradata parameters.
+	// The parameters for Teradata.
 	TeradataParameters *TeradataParameters `type:"structure"`
 
-	// Twitter parameters.
+	// The parameters for Twitter.
 	TwitterParameters *TwitterParameters `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSourceParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DataSourceParameters) GoString() string {
 	return s.String()
 }
@@ -18733,6 +19780,11 @@ func (s *DataSourceParameters) Validate() error {
 	if s.AmazonElasticsearchParameters != nil {
 		if err := s.AmazonElasticsearchParameters.Validate(); err != nil {
 			invalidParams.AddNested("AmazonElasticsearchParameters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.AmazonOpenSearchParameters != nil {
+		if err := s.AmazonOpenSearchParameters.Validate(); err != nil {
+			invalidParams.AddNested("AmazonOpenSearchParameters", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.AthenaParameters != nil {
@@ -18753,6 +19805,11 @@ func (s *DataSourceParameters) Validate() error {
 	if s.AwsIotAnalyticsParameters != nil {
 		if err := s.AwsIotAnalyticsParameters.Validate(); err != nil {
 			invalidParams.AddNested("AwsIotAnalyticsParameters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ExasolParameters != nil {
+		if err := s.ExasolParameters.Validate(); err != nil {
+			invalidParams.AddNested("ExasolParameters", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.JiraParameters != nil {
@@ -18843,6 +19900,12 @@ func (s *DataSourceParameters) SetAmazonElasticsearchParameters(v *AmazonElastic
 	return s
 }
 
+// SetAmazonOpenSearchParameters sets the AmazonOpenSearchParameters field's value.
+func (s *DataSourceParameters) SetAmazonOpenSearchParameters(v *AmazonOpenSearchParameters) *DataSourceParameters {
+	s.AmazonOpenSearchParameters = v
+	return s
+}
+
 // SetAthenaParameters sets the AthenaParameters field's value.
 func (s *DataSourceParameters) SetAthenaParameters(v *AthenaParameters) *DataSourceParameters {
 	s.AthenaParameters = v
@@ -18864,6 +19927,12 @@ func (s *DataSourceParameters) SetAuroraPostgreSqlParameters(v *AuroraPostgreSql
 // SetAwsIotAnalyticsParameters sets the AwsIotAnalyticsParameters field's value.
 func (s *DataSourceParameters) SetAwsIotAnalyticsParameters(v *AwsIotAnalyticsParameters) *DataSourceParameters {
 	s.AwsIotAnalyticsParameters = v
+	return s
+}
+
+// SetExasolParameters sets the ExasolParameters field's value.
+func (s *DataSourceParameters) SetExasolParameters(v *ExasolParameters) *DataSourceParameters {
+	s.ExasolParameters = v
 	return s
 }
 
@@ -18972,12 +20041,20 @@ type DateTimeParameter struct {
 	Values []*time.Time `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DateTimeParameter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DateTimeParameter) GoString() string {
 	return s.String()
 }
@@ -19025,12 +20102,20 @@ type DecimalParameter struct {
 	Values []*float64 `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DecimalParameter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DecimalParameter) GoString() string {
 	return s.String()
 }
@@ -19064,24 +20149,32 @@ func (s *DecimalParameter) SetValues(v []*float64) *DecimalParameter {
 }
 
 type DeleteAccountCustomizationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that you want to delete QuickSight
-	// customizations from in this Amazon Web Services Region;.
+	// The ID for the Amazon Web Services account that you want to delete Amazon
+	// QuickSight customizations from in this Amazon Web Services Region.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The QuickSight namespace that you're deleting the customizations from.
+	// The Amazon QuickSight namespace that you're deleting the customizations from.
 	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccountCustomizationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccountCustomizationInput) GoString() string {
 	return s.String()
 }
@@ -19124,12 +20217,20 @@ type DeleteAccountCustomizationOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccountCustomizationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccountCustomizationOutput) GoString() string {
 	return s.String()
 }
@@ -19147,14 +20248,14 @@ func (s *DeleteAccountCustomizationOutput) SetStatus(v int64) *DeleteAccountCust
 }
 
 type DeleteAnalysisInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the analysis that you're deleting.
 	//
 	// AnalysisId is a required field
 	AnalysisId *string `location:"uri" locationName:"AnalysisId" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; where you want to delete an analysis.
+	// The ID of the Amazon Web Services account where you want to delete an analysis.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -19164,18 +20265,26 @@ type DeleteAnalysisInput struct {
 	// restore an analysis after it's deleted.
 	ForceDeleteWithoutRecovery *bool `location:"querystring" locationName:"force-delete-without-recovery" type:"boolean"`
 
-	// A value that specifies the number of days that QuickSight waits before it
-	// deletes the analysis. You can't use this parameter with the ForceDeleteWithoutRecovery
+	// A value that specifies the number of days that Amazon QuickSight waits before
+	// it deletes the analysis. You can't use this parameter with the ForceDeleteWithoutRecovery
 	// option in the same API call. The default value is 30.
 	RecoveryWindowInDays *int64 `location:"querystring" locationName:"recovery-window-in-days" min:"7" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAnalysisInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAnalysisInput) GoString() string {
 	return s.String()
 }
@@ -19248,12 +20357,20 @@ type DeleteAnalysisOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAnalysisOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAnalysisOutput) GoString() string {
 	return s.String()
 }
@@ -19289,9 +20406,9 @@ func (s *DeleteAnalysisOutput) SetStatus(v int64) *DeleteAnalysisOutput {
 }
 
 type DeleteDashboardInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the dashboard that
+	// The ID of the Amazon Web Services account that contains the dashboard that
 	// you're deleting.
 	//
 	// AwsAccountId is a required field
@@ -19307,12 +20424,20 @@ type DeleteDashboardInput struct {
 	VersionNumber *int64 `location:"querystring" locationName:"version-number" min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDashboardInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDashboardInput) GoString() string {
 	return s.String()
 }
@@ -19376,12 +20501,20 @@ type DeleteDashboardOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDashboardOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDashboardOutput) GoString() string {
 	return s.String()
 }
@@ -19411,26 +20544,34 @@ func (s *DeleteDashboardOutput) SetStatus(v int64) *DeleteDashboardOutput {
 }
 
 type DeleteDataSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account;.
+	// Web Services Region for each Amazon Web Services account.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDataSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDataSetInput) GoString() string {
 	return s.String()
 }
@@ -19476,7 +20617,7 @@ type DeleteDataSetOutput struct {
 	Arn *string `type:"string"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account;.
+	// Web Services Region for each Amazon Web Services account.
 	DataSetId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -19486,12 +20627,20 @@ type DeleteDataSetOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDataSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDataSetOutput) GoString() string {
 	return s.String()
 }
@@ -19521,26 +20670,34 @@ func (s *DeleteDataSetOutput) SetStatus(v int64) *DeleteDataSetOutput {
 }
 
 type DeleteDataSourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"DataSourceId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDataSourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDataSourceInput) GoString() string {
 	return s.String()
 }
@@ -19585,8 +20742,8 @@ type DeleteDataSourceOutput struct {
 	// The Amazon Resource Name (ARN) of the data source that you deleted.
 	Arn *string `type:"string"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	DataSourceId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -19596,12 +20753,20 @@ type DeleteDataSourceOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDataSourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteDataSourceOutput) GoString() string {
 	return s.String()
 }
@@ -19631,25 +20796,33 @@ func (s *DeleteDataSourceOutput) SetStatus(v int64) *DeleteDataSourceOutput {
 }
 
 type DeleteFolderInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS Account ID for the folder.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFolderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFolderInput) GoString() string {
 	return s.String()
 }
@@ -19689,9 +20862,9 @@ func (s *DeleteFolderInput) SetFolderId(v string) *DeleteFolderInput {
 }
 
 type DeleteFolderMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS Account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -19713,12 +20886,20 @@ type DeleteFolderMembershipInput struct {
 	MemberType *string `location:"uri" locationName:"MemberType" type:"string" required:"true" enum:"MemberType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFolderMembershipInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFolderMembershipInput) GoString() string {
 	return s.String()
 }
@@ -19784,19 +20965,27 @@ func (s *DeleteFolderMembershipInput) SetMemberType(v string) *DeleteFolderMembe
 type DeleteFolderMembershipOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status of deleting the asset. If succeeded, the status is SC_OK (200).
+	// The HTTP status of the request.
 	Status *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFolderMembershipOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFolderMembershipOutput) GoString() string {
 	return s.String()
 }
@@ -19819,22 +21008,30 @@ type DeleteFolderOutput struct {
 	// The Amazon Resource Name of the deleted folder.
 	Arn *string `type:"string"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status of deleting the folder. If succeeded, the status is SC_OK (200).
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFolderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteFolderOutput) GoString() string {
 	return s.String()
 }
@@ -19864,10 +21061,10 @@ func (s *DeleteFolderOutput) SetStatus(v int64) *DeleteFolderOutput {
 }
 
 type DeleteGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that the group is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the group is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
@@ -19884,12 +21081,20 @@ type DeleteGroupInput struct {
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupInput) GoString() string {
 	return s.String()
 }
@@ -19941,10 +21146,10 @@ func (s *DeleteGroupInput) SetNamespace(v string) *DeleteGroupInput {
 }
 
 type DeleteGroupMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that the group is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the group is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
@@ -19966,12 +21171,20 @@ type DeleteGroupMembershipInput struct {
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupMembershipInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupMembershipInput) GoString() string {
 	return s.String()
 }
@@ -20044,12 +21257,20 @@ type DeleteGroupMembershipOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupMembershipOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupMembershipOutput) GoString() string {
 	return s.String()
 }
@@ -20076,12 +21297,20 @@ type DeleteGroupOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteGroupOutput) GoString() string {
 	return s.String()
 }
@@ -20099,14 +21328,14 @@ func (s *DeleteGroupOutput) SetStatus(v int64) *DeleteGroupOutput {
 }
 
 type DeleteIAMPolicyAssignmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the assignment.
 	//
 	// AssignmentName is a required field
 	AssignmentName *string `location:"uri" locationName:"AssignmentName" min:"1" type:"string" required:"true"`
 
-	// The Amazon Web Services account; ID where you want to delete the IAM policy
+	// The Amazon Web Services account ID where you want to delete the IAM policy
 	// assignment.
 	//
 	// AwsAccountId is a required field
@@ -20118,12 +21347,20 @@ type DeleteIAMPolicyAssignmentInput struct {
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIAMPolicyAssignmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIAMPolicyAssignmentInput) GoString() string {
 	return s.String()
 }
@@ -20187,12 +21424,20 @@ type DeleteIAMPolicyAssignmentOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIAMPolicyAssignmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteIAMPolicyAssignmentOutput) GoString() string {
 	return s.String()
 }
@@ -20216,10 +21461,10 @@ func (s *DeleteIAMPolicyAssignmentOutput) SetStatus(v int64) *DeleteIAMPolicyAss
 }
 
 type DeleteNamespaceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that you want to delete the QuickSight
-	// namespace from.
+	// The ID for the Amazon Web Services account that you want to delete the Amazon
+	// QuickSight namespace from.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -20230,12 +21475,20 @@ type DeleteNamespaceInput struct {
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteNamespaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteNamespaceInput) GoString() string {
 	return s.String()
 }
@@ -20284,12 +21537,20 @@ type DeleteNamespaceOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteNamespaceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteNamespaceOutput) GoString() string {
 	return s.String()
 }
@@ -20307,7 +21568,7 @@ func (s *DeleteNamespaceOutput) SetStatus(v int64) *DeleteNamespaceOutput {
 }
 
 type DeleteTemplateAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name for the template alias. To delete a specific alias, you delete the
 	// version that the alias points to. You can specify the alias name, or specify
@@ -20317,7 +21578,7 @@ type DeleteTemplateAliasInput struct {
 	// AliasName is a required field
 	AliasName *string `location:"uri" locationName:"AliasName" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the item to delete.
+	// The ID of the Amazon Web Services account that contains the item to delete.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -20328,12 +21589,20 @@ type DeleteTemplateAliasInput struct {
 	TemplateId *string `location:"uri" locationName:"TemplateId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTemplateAliasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTemplateAliasInput) GoString() string {
 	return s.String()
 }
@@ -20403,12 +21672,20 @@ type DeleteTemplateAliasOutput struct {
 	TemplateId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTemplateAliasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTemplateAliasOutput) GoString() string {
 	return s.String()
 }
@@ -20444,9 +21721,9 @@ func (s *DeleteTemplateAliasOutput) SetTemplateId(v string) *DeleteTemplateAlias
 }
 
 type DeleteTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the template that
+	// The ID of the Amazon Web Services account that contains the template that
 	// you're deleting.
 	//
 	// AwsAccountId is a required field
@@ -20462,12 +21739,20 @@ type DeleteTemplateInput struct {
 	VersionNumber *int64 `location:"querystring" locationName:"version-number" min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTemplateInput) GoString() string {
 	return s.String()
 }
@@ -20531,12 +21816,20 @@ type DeleteTemplateOutput struct {
 	TemplateId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -20566,15 +21859,15 @@ func (s *DeleteTemplateOutput) SetTemplateId(v string) *DeleteTemplateOutput {
 }
 
 type DeleteThemeAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name for the theme alias to delete.
 	//
 	// AliasName is a required field
 	AliasName *string `location:"uri" locationName:"AliasName" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the theme alias
-	// to delete.
+	// The ID of the Amazon Web Services account that contains the theme alias to
+	// delete.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -20585,12 +21878,20 @@ type DeleteThemeAliasInput struct {
 	ThemeId *string `location:"uri" locationName:"ThemeId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteThemeAliasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteThemeAliasInput) GoString() string {
 	return s.String()
 }
@@ -20660,12 +21961,20 @@ type DeleteThemeAliasOutput struct {
 	ThemeId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteThemeAliasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteThemeAliasOutput) GoString() string {
 	return s.String()
 }
@@ -20701,9 +22010,9 @@ func (s *DeleteThemeAliasOutput) SetThemeId(v string) *DeleteThemeAliasOutput {
 }
 
 type DeleteThemeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the theme that you're
+	// The ID of the Amazon Web Services account that contains the theme that you're
 	// deleting.
 	//
 	// AwsAccountId is a required field
@@ -20721,12 +22030,20 @@ type DeleteThemeInput struct {
 	VersionNumber *int64 `location:"querystring" locationName:"version-number" min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteThemeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteThemeInput) GoString() string {
 	return s.String()
 }
@@ -20790,12 +22107,20 @@ type DeleteThemeOutput struct {
 	ThemeId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteThemeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteThemeOutput) GoString() string {
 	return s.String()
 }
@@ -20825,10 +22150,10 @@ func (s *DeleteThemeOutput) SetThemeId(v string) *DeleteThemeOutput {
 }
 
 type DeleteUserByPrincipalIdInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that the user is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the user is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
@@ -20845,12 +22170,20 @@ type DeleteUserByPrincipalIdInput struct {
 	PrincipalId *string `location:"uri" locationName:"PrincipalId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserByPrincipalIdInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserByPrincipalIdInput) GoString() string {
 	return s.String()
 }
@@ -20911,12 +22244,20 @@ type DeleteUserByPrincipalIdOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserByPrincipalIdOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserByPrincipalIdOutput) GoString() string {
 	return s.String()
 }
@@ -20934,10 +22275,10 @@ func (s *DeleteUserByPrincipalIdOutput) SetStatus(v int64) *DeleteUserByPrincipa
 }
 
 type DeleteUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that the user is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the user is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
@@ -20954,12 +22295,20 @@ type DeleteUserInput struct {
 	UserName *string `location:"uri" locationName:"UserName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserInput) GoString() string {
 	return s.String()
 }
@@ -21020,12 +22369,20 @@ type DeleteUserOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteUserOutput) GoString() string {
 	return s.String()
 }
@@ -21043,32 +22400,40 @@ func (s *DeleteUserOutput) SetStatus(v int64) *DeleteUserOutput {
 }
 
 type DescribeAccountCustomizationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that you want to describe QuickSight
-	// customizations for.
+	// The ID for the Amazon Web Services account that you want to describe Amazon
+	// QuickSight customizations for.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The QuickSight namespace that you want to describe QuickSight customizations
-	// for.
+	// The Amazon QuickSight namespace that you want to describe Amazon QuickSight
+	// customizations for.
 	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
 
 	// The Resolved flag works with the other parameters to determine which view
-	// of QuickSight customizations is returned. You can add this flag to your command
-	// to use the same view that QuickSight uses to identify which customizations
-	// to apply to the console. Omit this flag, or set it to no-resolved, to reveal
-	// customizations that are configured at different levels.
+	// of Amazon QuickSight customizations is returned. You can add this flag to
+	// your command to use the same view that Amazon QuickSight uses to identify
+	// which customizations to apply to the console. Omit this flag, or set it to
+	// no-resolved, to reveal customizations that are configured at different levels.
 	Resolved *bool `location:"querystring" locationName:"resolved" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountCustomizationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountCustomizationInput) GoString() string {
 	return s.String()
 }
@@ -21110,18 +22475,18 @@ func (s *DescribeAccountCustomizationInput) SetResolved(v bool) *DescribeAccount
 type DescribeAccountCustomizationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The QuickSight customizations that exist in the current Amazon Web Services
-	// Region;.
+	// The Amazon QuickSight customizations that exist in the current Amazon Web
+	// Services Region.
 	AccountCustomization *AccountCustomization `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the customization that's associated with
-	// this Amazon Web Services account;.
+	// this Amazon Web Services account.
 	Arn *string `type:"string"`
 
-	// The ID for the Amazon Web Services account; that you're describing.
+	// The ID for the Amazon Web Services account that you're describing.
 	AwsAccountId *string `min:"12" type:"string"`
 
-	// The QuickSight namespace that you're describing.
+	// The Amazon QuickSight namespace that you're describing.
 	Namespace *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -21131,12 +22496,20 @@ type DescribeAccountCustomizationOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountCustomizationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountCustomizationOutput) GoString() string {
 	return s.String()
 }
@@ -21178,21 +22551,29 @@ func (s *DescribeAccountCustomizationOutput) SetStatus(v int64) *DescribeAccount
 }
 
 type DescribeAccountSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that contains the settings that
+	// The ID for the Amazon Web Services account that contains the settings that
 	// you want to list.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountSettingsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountSettingsInput) GoString() string {
 	return s.String()
 }
@@ -21222,14 +22603,15 @@ func (s *DescribeAccountSettingsInput) SetAwsAccountId(v string) *DescribeAccoun
 type DescribeAccountSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The QuickSight settings for this Amazon Web Services account;. This information
-	// includes the edition of Amazon QuickSight that you subscribed to (Standard
-	// or Enterprise) and the notification email for the QuickSight subscription.
-	// In the QuickSight console, the QuickSight subscription is sometimes referred
-	// to as a QuickSight "account" even though it's technically not an account
-	// by itself. Instead, it's a subscription to the QuickSight service for your
-	// Amazon Web Services account;. The edition that you subscribe to applies to
-	// QuickSight in every Amazon Web Services Region; where you use it.
+	// The Amazon QuickSight settings for this Amazon Web Services account. This
+	// information includes the edition of Amazon Amazon QuickSight that you subscribed
+	// to (Standard or Enterprise) and the notification email for the Amazon QuickSight
+	// subscription. In the QuickSight console, the Amazon QuickSight subscription
+	// is sometimes referred to as a QuickSight "account" even though it's technically
+	// not an account by itself. Instead, it's a subscription to the Amazon QuickSight
+	// service for your Amazon Web Services account. The edition that you subscribe
+	// to applies to Amazon QuickSight in every Amazon Web Services Region where
+	// you use it.
 	AccountSettings *AccountSettings `type:"structure"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -21239,12 +22621,20 @@ type DescribeAccountSettingsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountSettingsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAccountSettingsOutput) GoString() string {
 	return s.String()
 }
@@ -21268,7 +22658,7 @@ func (s *DescribeAccountSettingsOutput) SetStatus(v int64) *DescribeAccountSetti
 }
 
 type DescribeAnalysisInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the analysis that you're describing. The ID is part of the URL
 	// of the analysis.
@@ -21276,19 +22666,27 @@ type DescribeAnalysisInput struct {
 	// AnalysisId is a required field
 	AnalysisId *string `location:"uri" locationName:"AnalysisId" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the analysis. You
-	// must be using the Amazon Web Services account; that the analysis is in.
+	// The ID of the Amazon Web Services account that contains the analysis. You
+	// must be using the Amazon Web Services account that the analysis is in.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAnalysisInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAnalysisInput) GoString() string {
 	return s.String()
 }
@@ -21341,12 +22739,20 @@ type DescribeAnalysisOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAnalysisOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAnalysisOutput) GoString() string {
 	return s.String()
 }
@@ -21370,7 +22776,7 @@ func (s *DescribeAnalysisOutput) SetStatus(v int64) *DescribeAnalysisOutput {
 }
 
 type DescribeAnalysisPermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the analysis whose permissions you're describing. The ID is part
 	// of the analysis URL.
@@ -21378,20 +22784,28 @@ type DescribeAnalysisPermissionsInput struct {
 	// AnalysisId is a required field
 	AnalysisId *string `location:"uri" locationName:"AnalysisId" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the analysis whose
+	// The ID of the Amazon Web Services account that contains the analysis whose
 	// permissions you're describing. You must be using the Amazon Web Services
-	// account; that the analysis is in.
+	// account that the analysis is in.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAnalysisPermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAnalysisPermissionsInput) GoString() string {
 	return s.String()
 }
@@ -21450,12 +22864,20 @@ type DescribeAnalysisPermissionsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAnalysisPermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAnalysisPermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -21491,12 +22913,12 @@ func (s *DescribeAnalysisPermissionsOutput) SetStatus(v int64) *DescribeAnalysis
 }
 
 type DescribeDashboardInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias name.
 	AliasName *string `location:"querystring" locationName:"alias-name" min:"1" type:"string"`
 
-	// The ID of the Amazon Web Services account; that contains the dashboard that
+	// The ID of the Amazon Web Services account that contains the dashboard that
 	// you're describing.
 	//
 	// AwsAccountId is a required field
@@ -21512,12 +22934,20 @@ type DescribeDashboardInput struct {
 	VersionNumber *int64 `location:"querystring" locationName:"version-number" min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDashboardInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDashboardInput) GoString() string {
 	return s.String()
 }
@@ -21587,12 +23017,20 @@ type DescribeDashboardOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDashboardOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDashboardOutput) GoString() string {
 	return s.String()
 }
@@ -21616,9 +23054,9 @@ func (s *DescribeDashboardOutput) SetStatus(v int64) *DescribeDashboardOutput {
 }
 
 type DescribeDashboardPermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the dashboard that
+	// The ID of the Amazon Web Services account that contains the dashboard that
 	// you're describing permissions for.
 	//
 	// AwsAccountId is a required field
@@ -21630,12 +23068,20 @@ type DescribeDashboardPermissionsInput struct {
 	DashboardId *string `location:"uri" locationName:"DashboardId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDashboardPermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDashboardPermissionsInput) GoString() string {
 	return s.String()
 }
@@ -21683,6 +23129,12 @@ type DescribeDashboardPermissionsOutput struct {
 	// The ID for the dashboard.
 	DashboardId *string `min:"1" type:"string"`
 
+	// A structure that contains the configuration of a shareable link that grants
+	// access to the dashboard. Your users can use the link to view and interact
+	// with the dashboard, if the dashboard has been shared with them. For more
+	// information about sharing dashboards, see Sharing Dashboards (https://docs.aws.amazon.com/quicksight/latest/user/sharing-a-dashboard.html).
+	LinkSharingConfiguration *LinkSharingConfiguration `type:"structure"`
+
 	// A structure that contains the permissions for the dashboard.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
 
@@ -21693,12 +23145,20 @@ type DescribeDashboardPermissionsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDashboardPermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDashboardPermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -21712,6 +23172,12 @@ func (s *DescribeDashboardPermissionsOutput) SetDashboardArn(v string) *Describe
 // SetDashboardId sets the DashboardId field's value.
 func (s *DescribeDashboardPermissionsOutput) SetDashboardId(v string) *DescribeDashboardPermissionsOutput {
 	s.DashboardId = &v
+	return s
+}
+
+// SetLinkSharingConfiguration sets the LinkSharingConfiguration field's value.
+func (s *DescribeDashboardPermissionsOutput) SetLinkSharingConfiguration(v *LinkSharingConfiguration) *DescribeDashboardPermissionsOutput {
+	s.LinkSharingConfiguration = v
 	return s
 }
 
@@ -21734,26 +23200,34 @@ func (s *DescribeDashboardPermissionsOutput) SetStatus(v int64) *DescribeDashboa
 }
 
 type DescribeDataSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account;.
+	// Web Services Region for each Amazon Web Services account.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSetInput) GoString() string {
 	return s.String()
 }
@@ -21805,12 +23279,20 @@ type DescribeDataSetOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSetOutput) GoString() string {
 	return s.String()
 }
@@ -21834,26 +23316,34 @@ func (s *DescribeDataSetOutput) SetStatus(v int64) *DescribeDataSetOutput {
 }
 
 type DescribeDataSetPermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account;.
+	// Web Services Region for each Amazon Web Services account.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSetPermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSetPermissionsInput) GoString() string {
 	return s.String()
 }
@@ -21899,7 +23389,7 @@ type DescribeDataSetPermissionsOutput struct {
 	DataSetArn *string `type:"string"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account;.
+	// Web Services Region for each Amazon Web Services account.
 	DataSetId *string `type:"string"`
 
 	// A list of resource permissions on the dataset.
@@ -21912,12 +23402,20 @@ type DescribeDataSetPermissionsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSetPermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSetPermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -21953,26 +23451,34 @@ func (s *DescribeDataSetPermissionsOutput) SetStatus(v int64) *DescribeDataSetPe
 }
 
 type DescribeDataSourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"DataSourceId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSourceInput) GoString() string {
 	return s.String()
 }
@@ -22024,12 +23530,20 @@ type DescribeDataSourceOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSourceOutput) GoString() string {
 	return s.String()
 }
@@ -22053,26 +23567,34 @@ func (s *DescribeDataSourceOutput) SetStatus(v int64) *DescribeDataSourceOutput 
 }
 
 type DescribeDataSourcePermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"DataSourceId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSourcePermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSourcePermissionsInput) GoString() string {
 	return s.String()
 }
@@ -22117,8 +23639,8 @@ type DescribeDataSourcePermissionsOutput struct {
 	// The Amazon Resource Name (ARN) of the data source.
 	DataSourceArn *string `type:"string"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	DataSourceId *string `type:"string"`
 
 	// A list of resource permissions on the data source.
@@ -22131,12 +23653,20 @@ type DescribeDataSourcePermissionsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSourcePermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeDataSourcePermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -22172,25 +23702,33 @@ func (s *DescribeDataSourcePermissionsOutput) SetStatus(v int64) *DescribeDataSo
 }
 
 type DescribeFolderInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFolderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFolderInput) GoString() string {
 	return s.String()
 }
@@ -22235,19 +23773,27 @@ type DescribeFolderOutput struct {
 	// Information about the folder.
 	Folder *Folder `type:"structure"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK (200).
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFolderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFolderOutput) GoString() string {
 	return s.String()
 }
@@ -22271,25 +23817,33 @@ func (s *DescribeFolderOutput) SetStatus(v int64) *DescribeFolderOutput {
 }
 
 type DescribeFolderPermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS Account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFolderPermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFolderPermissionsInput) GoString() string {
 	return s.String()
 }
@@ -22334,25 +23888,33 @@ type DescribeFolderPermissionsOutput struct {
 	// The Amazon Resource Name (ARN) for the folder.
 	Arn *string `type:"string"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
 	// Information about the permissions on the folder.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK.
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFolderPermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFolderPermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -22388,25 +23950,33 @@ func (s *DescribeFolderPermissionsOutput) SetStatus(v int64) *DescribeFolderPerm
 }
 
 type DescribeFolderResolvedPermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFolderResolvedPermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFolderResolvedPermissionsInput) GoString() string {
 	return s.String()
 }
@@ -22448,28 +24018,36 @@ func (s *DescribeFolderResolvedPermissionsInput) SetFolderId(v string) *Describe
 type DescribeFolderResolvedPermissionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of the folder.
 	Arn *string `type:"string"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
-	// Information about the permissions on the dashboard.
+	// Information about the permissions for the folder.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFolderResolvedPermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeFolderResolvedPermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -22505,10 +24083,10 @@ func (s *DescribeFolderResolvedPermissionsOutput) SetStatus(v int64) *DescribeFo
 }
 
 type DescribeGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that the group is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the group is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
@@ -22525,12 +24103,20 @@ type DescribeGroupInput struct {
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeGroupInput) GoString() string {
 	return s.String()
 }
@@ -22594,12 +24180,20 @@ type DescribeGroupOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeGroupOutput) GoString() string {
 	return s.String()
 }
@@ -22623,14 +24217,14 @@ func (s *DescribeGroupOutput) SetStatus(v int64) *DescribeGroupOutput {
 }
 
 type DescribeIAMPolicyAssignmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the assignment, also called a rule.
 	//
 	// AssignmentName is a required field
 	AssignmentName *string `location:"uri" locationName:"AssignmentName" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the assignment that
+	// The ID of the Amazon Web Services account that contains the assignment that
 	// you want to describe.
 	//
 	// AwsAccountId is a required field
@@ -22642,12 +24236,20 @@ type DescribeIAMPolicyAssignmentInput struct {
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeIAMPolicyAssignmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeIAMPolicyAssignmentInput) GoString() string {
 	return s.String()
 }
@@ -22711,12 +24313,20 @@ type DescribeIAMPolicyAssignmentOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeIAMPolicyAssignmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeIAMPolicyAssignmentOutput) GoString() string {
 	return s.String()
 }
@@ -22740,9 +24350,9 @@ func (s *DescribeIAMPolicyAssignmentOutput) SetStatus(v int64) *DescribeIAMPolic
 }
 
 type DescribeIngestionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -22758,12 +24368,20 @@ type DescribeIngestionInput struct {
 	IngestionId *string `location:"uri" locationName:"IngestionId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeIngestionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeIngestionInput) GoString() string {
 	return s.String()
 }
@@ -22827,12 +24445,20 @@ type DescribeIngestionOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeIngestionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeIngestionOutput) GoString() string {
 	return s.String()
 }
@@ -22855,10 +24481,126 @@ func (s *DescribeIngestionOutput) SetStatus(v int64) *DescribeIngestionOutput {
 	return s
 }
 
-type DescribeNamespaceInput struct {
+type DescribeIpRestrictionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that contains the IP rules.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeIpRestrictionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeIpRestrictionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeIpRestrictionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeIpRestrictionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeIpRestrictionInput) SetAwsAccountId(v string) *DescribeIpRestrictionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+type DescribeIpRestrictionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for the Amazon Web Services account; that contains the QuickSight
+	// The ID of the Amazon Web Services account that contains the IP rules.
+	AwsAccountId *string `min:"12" type:"string"`
+
+	// A value that specifies whether IP rules are turned on.
+	Enabled *bool `type:"boolean"`
+
+	// A map that describes the IP rules with CIDR range and description.
+	IpRestrictionRuleMap map[string]*string `type:"map"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeIpRestrictionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeIpRestrictionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeIpRestrictionOutput) SetAwsAccountId(v string) *DescribeIpRestrictionOutput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *DescribeIpRestrictionOutput) SetEnabled(v bool) *DescribeIpRestrictionOutput {
+	s.Enabled = &v
+	return s
+}
+
+// SetIpRestrictionRuleMap sets the IpRestrictionRuleMap field's value.
+func (s *DescribeIpRestrictionOutput) SetIpRestrictionRuleMap(v map[string]*string) *DescribeIpRestrictionOutput {
+	s.IpRestrictionRuleMap = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeIpRestrictionOutput) SetRequestId(v string) *DescribeIpRestrictionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeIpRestrictionOutput) SetStatus(v int64) *DescribeIpRestrictionOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeNamespaceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID for the Amazon Web Services account that contains the Amazon QuickSight
 	// namespace that you want to describe.
 	//
 	// AwsAccountId is a required field
@@ -22870,12 +24612,20 @@ type DescribeNamespaceInput struct {
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeNamespaceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeNamespaceInput) GoString() string {
 	return s.String()
 }
@@ -22918,7 +24668,7 @@ type DescribeNamespaceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The information about the namespace that you're describing. The response
-	// includes the namespace ARN, name, Amazon Web Services Region;, creation status,
+	// includes the namespace ARN, name, Amazon Web Services Region, creation status,
 	// and identity store. DescribeNamespace also works for namespaces that are
 	// in the process of being created. For incomplete namespaces, this API operation
 	// lists the namespace error types and messages associated with the creation
@@ -22932,12 +24682,20 @@ type DescribeNamespaceOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeNamespaceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeNamespaceOutput) GoString() string {
 	return s.String()
 }
@@ -22961,7 +24719,7 @@ func (s *DescribeNamespaceOutput) SetStatus(v int64) *DescribeNamespaceOutput {
 }
 
 type DescribeTemplateAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the template alias that you want to describe. If you name a specific
 	// alias, you describe the version that the alias points to. You can specify
@@ -22971,7 +24729,7 @@ type DescribeTemplateAliasInput struct {
 	// AliasName is a required field
 	AliasName *string `location:"uri" locationName:"AliasName" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the template alias
+	// The ID of the Amazon Web Services account that contains the template alias
 	// that you're describing.
 	//
 	// AwsAccountId is a required field
@@ -22983,12 +24741,20 @@ type DescribeTemplateAliasInput struct {
 	TemplateId *string `location:"uri" locationName:"TemplateId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTemplateAliasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTemplateAliasInput) GoString() string {
 	return s.String()
 }
@@ -23052,12 +24818,20 @@ type DescribeTemplateAliasOutput struct {
 	TemplateAlias *TemplateAlias `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTemplateAliasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTemplateAliasOutput) GoString() string {
 	return s.String()
 }
@@ -23081,7 +24855,7 @@ func (s *DescribeTemplateAliasOutput) SetTemplateAlias(v *TemplateAlias) *Descri
 }
 
 type DescribeTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias of the template that you want to describe. If you name a specific
 	// alias, you describe the version that the alias points to. You can specify
@@ -23089,7 +24863,7 @@ type DescribeTemplateInput struct {
 	// AliasName parameter. The keyword $PUBLISHED doesn't apply to templates.
 	AliasName *string `location:"querystring" locationName:"alias-name" min:"1" type:"string"`
 
-	// The ID of the Amazon Web Services account; that contains the template that
+	// The ID of the Amazon Web Services account that contains the template that
 	// you're describing.
 	//
 	// AwsAccountId is a required field
@@ -23105,12 +24879,20 @@ type DescribeTemplateInput struct {
 	VersionNumber *int64 `location:"querystring" locationName:"version-number" min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTemplateInput) GoString() string {
 	return s.String()
 }
@@ -23180,12 +24962,20 @@ type DescribeTemplateOutput struct {
 	Template *Template `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -23209,9 +24999,9 @@ func (s *DescribeTemplateOutput) SetTemplate(v *Template) *DescribeTemplateOutpu
 }
 
 type DescribeTemplatePermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the template that
+	// The ID of the Amazon Web Services account that contains the template that
 	// you're describing.
 	//
 	// AwsAccountId is a required field
@@ -23223,12 +25013,20 @@ type DescribeTemplatePermissionsInput struct {
 	TemplateId *string `location:"uri" locationName:"TemplateId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTemplatePermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTemplatePermissionsInput) GoString() string {
 	return s.String()
 }
@@ -23286,12 +25084,20 @@ type DescribeTemplatePermissionsOutput struct {
 	TemplateId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTemplatePermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeTemplatePermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -23327,15 +25133,15 @@ func (s *DescribeTemplatePermissionsOutput) SetTemplateId(v string) *DescribeTem
 }
 
 type DescribeThemeAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the theme alias that you want to describe.
 	//
 	// AliasName is a required field
 	AliasName *string `location:"uri" locationName:"AliasName" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the theme alias
-	// that you're describing.
+	// The ID of the Amazon Web Services account that contains the theme alias that
+	// you're describing.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -23346,12 +25152,20 @@ type DescribeThemeAliasInput struct {
 	ThemeId *string `location:"uri" locationName:"ThemeId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeThemeAliasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeThemeAliasInput) GoString() string {
 	return s.String()
 }
@@ -23415,12 +25229,20 @@ type DescribeThemeAliasOutput struct {
 	ThemeAlias *ThemeAlias `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeThemeAliasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeThemeAliasOutput) GoString() string {
 	return s.String()
 }
@@ -23444,7 +25266,7 @@ func (s *DescribeThemeAliasOutput) SetThemeAlias(v *ThemeAlias) *DescribeThemeAl
 }
 
 type DescribeThemeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias of the theme that you want to describe. If you name a specific
 	// alias, you describe the version that the alias points to. You can specify
@@ -23452,7 +25274,7 @@ type DescribeThemeInput struct {
 	// parameter. The keyword $PUBLISHED doesn't apply to themes.
 	AliasName *string `location:"querystring" locationName:"alias-name" min:"1" type:"string"`
 
-	// The ID of the Amazon Web Services account; that contains the theme that you're
+	// The ID of the Amazon Web Services account that contains the theme that you're
 	// describing.
 	//
 	// AwsAccountId is a required field
@@ -23468,12 +25290,20 @@ type DescribeThemeInput struct {
 	VersionNumber *int64 `location:"querystring" locationName:"version-number" min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeThemeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeThemeInput) GoString() string {
 	return s.String()
 }
@@ -23543,12 +25373,20 @@ type DescribeThemeOutput struct {
 	Theme *Theme `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeThemeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeThemeOutput) GoString() string {
 	return s.String()
 }
@@ -23572,9 +25410,9 @@ func (s *DescribeThemeOutput) SetTheme(v *Theme) *DescribeThemeOutput {
 }
 
 type DescribeThemePermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the theme that you're
+	// The ID of the Amazon Web Services account that contains the theme that you're
 	// describing.
 	//
 	// AwsAccountId is a required field
@@ -23586,12 +25424,20 @@ type DescribeThemePermissionsInput struct {
 	ThemeId *string `location:"uri" locationName:"ThemeId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeThemePermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeThemePermissionsInput) GoString() string {
 	return s.String()
 }
@@ -23649,12 +25495,20 @@ type DescribeThemePermissionsOutput struct {
 	ThemeId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeThemePermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeThemePermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -23690,10 +25544,10 @@ func (s *DescribeThemePermissionsOutput) SetThemeId(v string) *DescribeThemePerm
 }
 
 type DescribeUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that the user is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the user is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
@@ -23710,12 +25564,20 @@ type DescribeUserInput struct {
 	UserName *string `location:"uri" locationName:"UserName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserInput) GoString() string {
 	return s.String()
 }
@@ -23779,12 +25641,20 @@ type DescribeUserOutput struct {
 	User *User `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeUserOutput) GoString() string {
 	return s.String()
 }
@@ -23819,12 +25689,20 @@ type DomainNotWhitelistedException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainNotWhitelistedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DomainNotWhitelistedException) GoString() string {
 	return s.String()
 }
@@ -23878,12 +25756,20 @@ type ErrorInfo struct {
 	Type *string `type:"string" enum:"IngestionErrorType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ErrorInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ErrorInfo) GoString() string {
 	return s.String()
 }
@@ -23900,6 +25786,73 @@ func (s *ErrorInfo) SetType(v string) *ErrorInfo {
 	return s
 }
 
+// The required parameters for connecting to an Exasol data source.
+type ExasolParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The hostname or IP address of the Exasol data source.
+	//
+	// Host is a required field
+	Host *string `min:"1" type:"string" required:"true"`
+
+	// The port for the Exasol data source.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExasolParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExasolParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExasolParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExasolParameters"}
+	if s.Host == nil {
+		invalidParams.Add(request.NewErrParamRequired("Host"))
+	}
+	if s.Host != nil && len(*s.Host) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Host", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHost sets the Host field's value.
+func (s *ExasolParameters) SetHost(v string) *ExasolParameters {
+	s.Host = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *ExasolParameters) SetPort(v int64) *ExasolParameters {
+	s.Port = &v
+	return s
+}
+
 // Export to .csv option.
 type ExportToCSVOption struct {
 	_ struct{} `type:"structure"`
@@ -23908,12 +25861,20 @@ type ExportToCSVOption struct {
 	AvailabilityStatus *string `type:"string" enum:"DashboardBehavior"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportToCSVOption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ExportToCSVOption) GoString() string {
 	return s.String()
 }
@@ -23935,12 +25896,20 @@ type FieldFolder struct {
 	Description *string `locationName:"description" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FieldFolder) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FieldFolder) GoString() string {
 	return s.String()
 }
@@ -23968,12 +25937,20 @@ type FilterOperation struct {
 	ConditionExpression *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FilterOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FilterOperation) GoString() string {
 	return s.String()
 }
@@ -24000,23 +25977,23 @@ func (s *FilterOperation) SetConditionExpression(v string) *FilterOperation {
 	return s
 }
 
-// A folder.
+// A folder in Amazon QuickSight.
 type Folder struct {
 	_ struct{} `type:"structure"`
 
-	// The folder Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) for the folder.
 	Arn *string `type:"string"`
 
 	// The time that the folder was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
-	// An array of ancestor folder ARN strings.
+	// An array of ancestor ARN strings for the folder.
 	FolderPath []*string `min:"1" type:"list"`
 
-	// The type of the folder.
+	// The type of folder it is.
 	FolderType *string `type:"string" enum:"FolderType"`
 
 	// The time that the folder was last updated.
@@ -24026,12 +26003,20 @@ type Folder struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Folder) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Folder) GoString() string {
 	return s.String()
 }
@@ -24078,23 +26063,32 @@ func (s *Folder) SetName(v string) *Folder {
 	return s
 }
 
-// An asset in a folder, such as a dashboard, analysis, or dataset.
+// An asset in a Amazon QuickSight folder, such as a dashboard, analysis, or
+// dataset.
 type FolderMember struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the asset.
+	// The ID of an asset in the folder.
 	MemberId *string `min:"1" type:"string"`
 
-	// The type of the asset.
+	// The type of asset that it is.
 	MemberType *string `type:"string" enum:"MemberType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FolderMember) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FolderMember) GoString() string {
 	return s.String()
 }
@@ -24111,16 +26105,16 @@ func (s *FolderMember) SetMemberType(v string) *FolderMember {
 	return s
 }
 
-// Searches a folder by a filter.
+// A filter to use to search a Amazon QuickSight folder.
 type FolderSearchFilter struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the value that you want to use as a filter. For example, "Name":
+	// The name of a value that you want to use in the filter. For example, "Name":
 	// "PARENT_FOLDER_ARN".
 	Name *string `type:"string" enum:"FolderFilterAttribute"`
 
-	// The comparison operator that you want to use as a filter. For example, "Operator":
-	// "StringEquals".
+	// The comparison operator that you want to use in the filter. For example,
+	// "Operator": "StringEquals".
 	Operator *string `type:"string" enum:"FilterOperator"`
 
 	// The value of the named item (in this example, PARENT_FOLDER_ARN), that you
@@ -24128,12 +26122,20 @@ type FolderSearchFilter struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FolderSearchFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FolderSearchFilter) GoString() string {
 	return s.String()
 }
@@ -24156,17 +26158,17 @@ func (s *FolderSearchFilter) SetValue(v string) *FolderSearchFilter {
 	return s
 }
 
-// A summary of the folder.
+// A summary of information about an existing Amazon QuickSight folder.
 type FolderSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of the folder.
 	Arn *string `type:"string"`
 
 	// The time that the folder was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
 	// The type of folder.
@@ -24179,12 +26181,20 @@ type FolderSummary struct {
 	Name *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FolderSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FolderSummary) GoString() string {
 	return s.String()
 }
@@ -24268,12 +26278,20 @@ type GenerateEmbedUrlForAnonymousUserInput struct {
 	SessionTags []*SessionTag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateEmbedUrlForAnonymousUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateEmbedUrlForAnonymousUserInput) GoString() string {
 	return s.String()
 }
@@ -24365,6 +26383,10 @@ type GenerateEmbedUrlForAnonymousUserOutput struct {
 
 	// The embed URL for the dashboard.
 	//
+	// EmbedUrl is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GenerateEmbedUrlForAnonymousUserOutput's
+	// String and GoString methods.
+	//
 	// EmbedUrl is a required field
 	EmbedUrl *string `type:"string" required:"true" sensitive:"true"`
 
@@ -24379,12 +26401,20 @@ type GenerateEmbedUrlForAnonymousUserOutput struct {
 	Status *int64 `location:"statusCode" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateEmbedUrlForAnonymousUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateEmbedUrlForAnonymousUserOutput) GoString() string {
 	return s.String()
 }
@@ -24432,12 +26462,20 @@ type GenerateEmbedUrlForRegisteredUserInput struct {
 	UserArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateEmbedUrlForRegisteredUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateEmbedUrlForRegisteredUserInput) GoString() string {
 	return s.String()
 }
@@ -24501,6 +26539,10 @@ type GenerateEmbedUrlForRegisteredUserOutput struct {
 
 	// The embed URL for the Amazon QuickSight dashboard or console.
 	//
+	// EmbedUrl is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GenerateEmbedUrlForRegisteredUserOutput's
+	// String and GoString methods.
+	//
 	// EmbedUrl is a required field
 	EmbedUrl *string `type:"string" required:"true" sensitive:"true"`
 
@@ -24515,12 +26557,20 @@ type GenerateEmbedUrlForRegisteredUserOutput struct {
 	Status *int64 `location:"statusCode" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateEmbedUrlForRegisteredUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GenerateEmbedUrlForRegisteredUserOutput) GoString() string {
 	return s.String()
 }
@@ -24563,12 +26613,20 @@ type GeoSpatialColumnGroup struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GeoSpatialColumnGroup) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GeoSpatialColumnGroup) GoString() string {
 	return s.String()
 }
@@ -24617,17 +26675,17 @@ func (s *GeoSpatialColumnGroup) SetName(v string) *GeoSpatialColumnGroup {
 }
 
 type GetDashboardEmbedUrlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A list of one or more dashboard IDs that you want to add to a session that
 	// includes anonymous users. The IdentityType parameter must be set to ANONYMOUS
-	// for this to work, because other identity types authenticate as QuickSight
+	// for this to work, because other identity types authenticate as Amazon QuickSight
 	// or IAM users. For example, if you set "--dashboard-id dash_id1 --dashboard-id
 	// dash_id2 dash_id3 identity-type ANONYMOUS", the session can access all three
 	// dashboards.
 	AdditionalDashboardIds []*string `location:"querystring" locationName:"additional-dashboard-ids" min:"1" type:"list"`
 
-	// The ID for the Amazon Web Services account; that contains the dashboard that
+	// The ID for the Amazon Web Services account that contains the dashboard that
 	// you're embedding.
 	//
 	// AwsAccountId is a required field
@@ -24644,8 +26702,8 @@ type GetDashboardEmbedUrlInput struct {
 	// IdentityType is a required field
 	IdentityType *string `location:"querystring" locationName:"creds-type" type:"string" required:"true" enum:"EmbeddingIdentityType"`
 
-	// The Amazon QuickSight namespace that the user virtually belongs to. If you
-	// are not using an Amazon QuickSight custom namespace, set this to default.
+	// The Amazon QuickSight namespace that contains the dashboard IDs in this request.
+	// If you're not using a custom namespace, set Namespace = default.
 	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
 
 	// Remove the reset button on the embedded dashboard. The default is FALSE,
@@ -24658,11 +26716,11 @@ type GetDashboardEmbedUrlInput struct {
 
 	// Adds persistence of state for the user session in an embedded dashboard.
 	// Persistence applies to the sheet and the parameter settings. These are control
-	// settings that the dashboard subscriber (QuickSight reader) chooses while
-	// viewing the dashboard. If this is set to TRUE, the settings are the same
-	// when the subscriber reopens the same dashboard URL. The state is stored in
-	// QuickSight, not in a browser cookie. If this is set to FALSE, the state of
-	// the user session is not persisted. The default is FALSE.
+	// settings that the dashboard subscriber (Amazon QuickSight reader) chooses
+	// while viewing the dashboard. If this is set to TRUE, the settings are the
+	// same when the subscriber reopens the same dashboard URL. The state is stored
+	// in Amazon QuickSight, not in a browser cookie. If this is set to FALSE, the
+	// state of the user session is not persisted. The default is FALSE.
 	StatePersistenceEnabled *bool `location:"querystring" locationName:"state-persistence-enabled" type:"boolean"`
 
 	// Remove the undo/redo button on the embedded dashboard. The default is FALSE,
@@ -24685,12 +26743,20 @@ type GetDashboardEmbedUrlInput struct {
 	UserArn *string `location:"querystring" locationName:"user-arn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDashboardEmbedUrlInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDashboardEmbedUrlInput) GoString() string {
 	return s.String()
 }
@@ -24794,6 +26860,10 @@ type GetDashboardEmbedUrlOutput struct {
 	// your dashboard. This URL is valid for 5 minutes. The API operation provides
 	// the URL with an auth_code value that enables one (and only one) sign-on to
 	// a user session that is valid for 10 hours.
+	//
+	// EmbedUrl is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetDashboardEmbedUrlOutput's
+	// String and GoString methods.
 	EmbedUrl *string `type:"string" sensitive:"true"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -24803,12 +26873,20 @@ type GetDashboardEmbedUrlOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDashboardEmbedUrlOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetDashboardEmbedUrlOutput) GoString() string {
 	return s.String()
 }
@@ -24832,9 +26910,9 @@ func (s *GetDashboardEmbedUrlOutput) SetStatus(v int64) *GetDashboardEmbedUrlOut
 }
 
 type GetSessionEmbedUrlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; associated with your QuickSight
+	// The ID for the Amazon Web Services account associated with your Amazon QuickSight
 	// subscription.
 	//
 	// AwsAccountId is a required field
@@ -24852,10 +26930,10 @@ type GetSessionEmbedUrlInput struct {
 	//    * /start/favorites
 	//
 	//    * /dashboards/DashboardId - where DashboardId is the actual ID key from
-	//    the QuickSight console URL of the dashboard
+	//    the Amazon QuickSight console URL of the dashboard
 	//
 	//    * /analyses/AnalysisId - where AnalysisId is the actual ID key from the
-	//    QuickSight console URL of the analysis
+	//    Amazon QuickSight console URL of the analysis
 	EntryPoint *string `location:"querystring" locationName:"entry-point" min:"1" type:"string"`
 
 	// How many minutes the session is valid. The session lifetime must be 15-600
@@ -24879,12 +26957,20 @@ type GetSessionEmbedUrlInput struct {
 	UserArn *string `location:"querystring" locationName:"user-arn" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSessionEmbedUrlInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSessionEmbedUrlInput) GoString() string {
 	return s.String()
 }
@@ -24939,9 +27025,13 @@ type GetSessionEmbedUrlOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A single-use URL that you can put into your server-side web page to embed
-	// your QuickSight session. This URL is valid for 5 minutes. The API operation
-	// provides the URL with an auth_code value that enables one (and only one)
-	// sign-on to a user session that is valid for 10 hours.
+	// your Amazon QuickSight session. This URL is valid for 5 minutes. The API
+	// operation provides the URL with an auth_code value that enables one (and
+	// only one) sign-on to a user session that is valid for 10 hours.
+	//
+	// EmbedUrl is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetSessionEmbedUrlOutput's
+	// String and GoString methods.
 	EmbedUrl *string `type:"string" sensitive:"true"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -24951,12 +27041,20 @@ type GetSessionEmbedUrlOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSessionEmbedUrlOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetSessionEmbedUrlOutput) GoString() string {
 	return s.String()
 }
@@ -24997,12 +27095,20 @@ type Group struct {
 	PrincipalId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Group) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Group) GoString() string {
 	return s.String()
 }
@@ -25043,12 +27149,20 @@ type GroupMember struct {
 	MemberName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupMember) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GroupMember) GoString() string {
 	return s.String()
 }
@@ -25074,12 +27188,20 @@ type GutterStyle struct {
 	Show *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GutterStyle) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GutterStyle) GoString() string {
 	return s.String()
 }
@@ -25103,7 +27225,7 @@ type IAMPolicyAssignment struct {
 	// Assignment status.
 	AssignmentStatus *string `type:"string" enum:"AssignmentStatus"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	AwsAccountId *string `min:"12" type:"string"`
 
 	// Identities.
@@ -25113,12 +27235,20 @@ type IAMPolicyAssignment struct {
 	PolicyArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IAMPolicyAssignment) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IAMPolicyAssignment) GoString() string {
 	return s.String()
 }
@@ -25170,12 +27300,20 @@ type IAMPolicyAssignmentSummary struct {
 	AssignmentStatus *string `type:"string" enum:"AssignmentStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IAMPolicyAssignmentSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IAMPolicyAssignmentSummary) GoString() string {
 	return s.String()
 }
@@ -25204,12 +27342,20 @@ type IdentityTypeNotSupportedException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityTypeNotSupportedException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IdentityTypeNotSupportedException) GoString() string {
 	return s.String()
 }
@@ -25296,12 +27442,20 @@ type Ingestion struct {
 	RowInfo *RowInfo `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Ingestion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Ingestion) GoString() string {
 	return s.String()
 }
@@ -25387,12 +27541,20 @@ type InputColumn struct {
 	Type *string `type:"string" required:"true" enum:"InputColumnDataType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputColumn) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InputColumn) GoString() string {
 	return s.String()
 }
@@ -25443,12 +27605,20 @@ type IntegerParameter struct {
 	Values []*int64 `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IntegerParameter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s IntegerParameter) GoString() string {
 	return s.String()
 }
@@ -25492,12 +27662,20 @@ type InternalFailureException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalFailureException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalFailureException) GoString() string {
 	return s.String()
 }
@@ -25551,12 +27729,20 @@ type InvalidNextTokenException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidNextTokenException) GoString() string {
 	return s.String()
 }
@@ -25610,12 +27796,20 @@ type InvalidParameterValueException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterValueException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidParameterValueException) GoString() string {
 	return s.String()
 }
@@ -25658,7 +27852,7 @@ func (s *InvalidParameterValueException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Jira parameters.
+// The parameters for Jira.
 type JiraParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -25668,12 +27862,20 @@ type JiraParameters struct {
 	SiteBaseUrl *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JiraParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JiraParameters) GoString() string {
 	return s.String()
 }
@@ -25731,12 +27933,20 @@ type JoinInstruction struct {
 	Type *string `type:"string" required:"true" enum:"JoinType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JoinInstruction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JoinInstruction) GoString() string {
 	return s.String()
 }
@@ -25813,16 +28023,25 @@ type JoinKeyProperties struct {
 	_ struct{} `type:"structure"`
 
 	// A value that indicates that a row in a table is uniquely identified by the
-	// columns in a join key. This is used by QuickSight to optimize query performance.
+	// columns in a join key. This is used by Amazon QuickSight to optimize query
+	// performance.
 	UniqueKey *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JoinKeyProperties) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JoinKeyProperties) GoString() string {
 	return s.String()
 }
@@ -25847,12 +28066,20 @@ type LimitExceededException struct {
 	ResourceType *string `type:"string" enum:"ExceptionResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -25895,10 +28122,42 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-type ListAnalysesInput struct {
+// A structure that contains the configuration of a shareable link to the dashboard.
+type LinkSharingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Web Services account; that contains the analyses.
+	// A structure that contains the permissions of a shareable link.
+	Permissions []*ResourcePermission `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LinkSharingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LinkSharingConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *LinkSharingConfiguration) SetPermissions(v []*ResourcePermission) *LinkSharingConfiguration {
+	s.Permissions = v
+	return s
+}
+
+type ListAnalysesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the Amazon Web Services account that contains the analyses.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -25910,12 +28169,20 @@ type ListAnalysesInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAnalysesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAnalysesInput) GoString() string {
 	return s.String()
 }
@@ -25973,12 +28240,20 @@ type ListAnalysesOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAnalysesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAnalysesOutput) GoString() string {
 	return s.String()
 }
@@ -26008,9 +28283,9 @@ func (s *ListAnalysesOutput) SetStatus(v int64) *ListAnalysesOutput {
 }
 
 type ListDashboardVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the dashboard that
+	// The ID of the Amazon Web Services account that contains the dashboard that
 	// you're listing versions for.
 	//
 	// AwsAccountId is a required field
@@ -26028,12 +28303,20 @@ type ListDashboardVersionsInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDashboardVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDashboardVersionsInput) GoString() string {
 	return s.String()
 }
@@ -26103,12 +28386,20 @@ type ListDashboardVersionsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDashboardVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDashboardVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -26138,9 +28429,9 @@ func (s *ListDashboardVersionsOutput) SetStatus(v int64) *ListDashboardVersionsO
 }
 
 type ListDashboardsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the dashboards that
+	// The ID of the Amazon Web Services account that contains the dashboards that
 	// you're listing.
 	//
 	// AwsAccountId is a required field
@@ -26153,12 +28444,20 @@ type ListDashboardsInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDashboardsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDashboardsInput) GoString() string {
 	return s.String()
 }
@@ -26204,7 +28503,7 @@ type ListDashboardsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure that contains all of the dashboards in your Amazon Web Services
-	// account;. This structure provides basic information about the dashboards.
+	// account. This structure provides basic information about the dashboards.
 	DashboardSummaryList []*DashboardSummary `type:"list"`
 
 	// The token for the next set of results, or null if there are no more results.
@@ -26217,12 +28516,20 @@ type ListDashboardsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDashboardsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDashboardsOutput) GoString() string {
 	return s.String()
 }
@@ -26252,9 +28559,9 @@ func (s *ListDashboardsOutput) SetStatus(v int64) *ListDashboardsOutput {
 }
 
 type ListDataSetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -26266,12 +28573,20 @@ type ListDataSetsInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSetsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSetsInput) GoString() string {
 	return s.String()
 }
@@ -26329,12 +28644,20 @@ type ListDataSetsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSetsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSetsOutput) GoString() string {
 	return s.String()
 }
@@ -26364,9 +28687,9 @@ func (s *ListDataSetsOutput) SetStatus(v int64) *ListDataSetsOutput {
 }
 
 type ListDataSourcesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -26378,12 +28701,20 @@ type ListDataSourcesInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSourcesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSourcesInput) GoString() string {
 	return s.String()
 }
@@ -26441,12 +28772,20 @@ type ListDataSourcesOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSourcesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListDataSourcesOutput) GoString() string {
 	return s.String()
 }
@@ -26476,14 +28815,14 @@ func (s *ListDataSourcesOutput) SetStatus(v int64) *ListDataSourcesOutput {
 }
 
 type ListFolderMembersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -26495,12 +28834,20 @@ type ListFolderMembersInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFolderMembersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFolderMembersInput) GoString() string {
 	return s.String()
 }
@@ -26564,19 +28911,27 @@ type ListFolderMembersOutput struct {
 	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `type:"string"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFolderMembersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFolderMembersOutput) GoString() string {
 	return s.String()
 }
@@ -26606,9 +28961,9 @@ func (s *ListFolderMembersOutput) SetStatus(v int64) *ListFolderMembersOutput {
 }
 
 type ListFoldersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -26620,12 +28975,20 @@ type ListFoldersInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFoldersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFoldersInput) GoString() string {
 	return s.String()
 }
@@ -26670,26 +29033,34 @@ func (s *ListFoldersInput) SetNextToken(v string) *ListFoldersInput {
 type ListFoldersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A structure that contains all of the folders in your AWS account. This structure
-	// provides basic information about the folders.
+	// A structure that contains all of the folders in the Amazon Web Services account.
+	// This structure provides basic information about the folders.
 	FolderSummaryList []*FolderSummary `type:"list"`
 
 	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `type:"string"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFoldersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListFoldersOutput) GoString() string {
 	return s.String()
 }
@@ -26719,10 +29090,10 @@ func (s *ListFoldersOutput) SetStatus(v int64) *ListFoldersOutput {
 }
 
 type ListGroupMembershipsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that the group is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the group is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
@@ -26745,12 +29116,20 @@ type ListGroupMembershipsInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupMembershipsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupMembershipsInput) GoString() string {
 	return s.String()
 }
@@ -26832,12 +29211,20 @@ type ListGroupMembershipsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupMembershipsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupMembershipsOutput) GoString() string {
 	return s.String()
 }
@@ -26867,10 +29254,10 @@ func (s *ListGroupMembershipsOutput) SetStatus(v int64) *ListGroupMembershipsOut
 }
 
 type ListGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that the group is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the group is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
@@ -26888,12 +29275,20 @@ type ListGroupsInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupsInput) GoString() string {
 	return s.String()
 }
@@ -26963,12 +29358,20 @@ type ListGroupsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -26998,9 +29401,9 @@ func (s *ListGroupsOutput) SetStatus(v int64) *ListGroupsOutput {
 }
 
 type ListIAMPolicyAssignmentsForUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the assignments.
+	// The ID of the Amazon Web Services account that contains the assignments.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -27022,12 +29425,20 @@ type ListIAMPolicyAssignmentsForUserInput struct {
 	UserName *string `location:"uri" locationName:"UserName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIAMPolicyAssignmentsForUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIAMPolicyAssignmentsForUserInput) GoString() string {
 	return s.String()
 }
@@ -27109,12 +29520,20 @@ type ListIAMPolicyAssignmentsForUserOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIAMPolicyAssignmentsForUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIAMPolicyAssignmentsForUserOutput) GoString() string {
 	return s.String()
 }
@@ -27149,7 +29568,7 @@ type ListIAMPolicyAssignmentsInput struct {
 	// The status of the assignments.
 	AssignmentStatus *string `type:"string" enum:"AssignmentStatus"`
 
-	// The ID of the Amazon Web Services account; that contains these IAM policy
+	// The ID of the Amazon Web Services account that contains these IAM policy
 	// assignments.
 	//
 	// AwsAccountId is a required field
@@ -27167,12 +29586,20 @@ type ListIAMPolicyAssignmentsInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIAMPolicyAssignmentsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIAMPolicyAssignmentsInput) GoString() string {
 	return s.String()
 }
@@ -27248,12 +29675,20 @@ type ListIAMPolicyAssignmentsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIAMPolicyAssignmentsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIAMPolicyAssignmentsOutput) GoString() string {
 	return s.String()
 }
@@ -27283,9 +29718,9 @@ func (s *ListIAMPolicyAssignmentsOutput) SetStatus(v int64) *ListIAMPolicyAssign
 }
 
 type ListIngestionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -27302,12 +29737,20 @@ type ListIngestionsInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIngestionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIngestionsInput) GoString() string {
 	return s.String()
 }
@@ -27377,12 +29820,20 @@ type ListIngestionsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIngestionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListIngestionsOutput) GoString() string {
 	return s.String()
 }
@@ -27412,9 +29863,9 @@ func (s *ListIngestionsOutput) SetStatus(v int64) *ListIngestionsOutput {
 }
 
 type ListNamespacesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that contains the QuickSight
+	// The ID for the Amazon Web Services account that contains the Amazon QuickSight
 	// namespaces that you want to list.
 	//
 	// AwsAccountId is a required field
@@ -27427,12 +29878,20 @@ type ListNamespacesInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListNamespacesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListNamespacesInput) GoString() string {
 	return s.String()
 }
@@ -27477,8 +29936,8 @@ func (s *ListNamespacesInput) SetNextToken(v string) *ListNamespacesInput {
 type ListNamespacesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The information about the namespaces in this Amazon Web Services account;.
-	// The response includes the namespace ARN, name, Amazon Web Services Region;,
+	// The information about the namespaces in this Amazon Web Services account.
+	// The response includes the namespace ARN, name, Amazon Web Services Region,
 	// notification email address, creation status, and identity store.
 	Namespaces []*NamespaceInfoV2 `type:"list"`
 
@@ -27492,12 +29951,20 @@ type ListNamespacesOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListNamespacesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListNamespacesOutput) GoString() string {
 	return s.String()
 }
@@ -27527,7 +29994,7 @@ func (s *ListNamespacesOutput) SetStatus(v int64) *ListNamespacesOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that you want a list of tags
 	// for.
@@ -27536,12 +30003,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -27582,12 +30057,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -27611,9 +30094,9 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 }
 
 type ListTemplateAliasesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the template aliases
+	// The ID of the Amazon Web Services account that contains the template aliases
 	// that you're listing.
 	//
 	// AwsAccountId is a required field
@@ -27631,12 +30114,20 @@ type ListTemplateAliasesInput struct {
 	TemplateId *string `location:"uri" locationName:"TemplateId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplateAliasesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplateAliasesInput) GoString() string {
 	return s.String()
 }
@@ -27706,12 +30197,20 @@ type ListTemplateAliasesOutput struct {
 	TemplateAliasList []*TemplateAlias `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplateAliasesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplateAliasesOutput) GoString() string {
 	return s.String()
 }
@@ -27741,9 +30240,9 @@ func (s *ListTemplateAliasesOutput) SetTemplateAliasList(v []*TemplateAlias) *Li
 }
 
 type ListTemplateVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the templates that
+	// The ID of the Amazon Web Services account that contains the templates that
 	// you're listing.
 	//
 	// AwsAccountId is a required field
@@ -27761,12 +30260,20 @@ type ListTemplateVersionsInput struct {
 	TemplateId *string `location:"uri" locationName:"TemplateId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplateVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplateVersionsInput) GoString() string {
 	return s.String()
 }
@@ -27836,12 +30343,20 @@ type ListTemplateVersionsOutput struct {
 	TemplateVersionSummaryList []*TemplateVersionSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplateVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplateVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -27871,9 +30386,9 @@ func (s *ListTemplateVersionsOutput) SetTemplateVersionSummaryList(v []*Template
 }
 
 type ListTemplatesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the templates that
+	// The ID of the Amazon Web Services account that contains the templates that
 	// you're listing.
 	//
 	// AwsAccountId is a required field
@@ -27886,12 +30401,20 @@ type ListTemplatesInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplatesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplatesInput) GoString() string {
 	return s.String()
 }
@@ -27949,12 +30472,20 @@ type ListTemplatesOutput struct {
 	TemplateSummaryList []*TemplateSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplatesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTemplatesOutput) GoString() string {
 	return s.String()
 }
@@ -27984,9 +30515,9 @@ func (s *ListTemplatesOutput) SetTemplateSummaryList(v []*TemplateSummary) *List
 }
 
 type ListThemeAliasesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the theme aliases
+	// The ID of the Amazon Web Services account that contains the theme aliases
 	// that you're listing.
 	//
 	// AwsAccountId is a required field
@@ -28004,12 +30535,20 @@ type ListThemeAliasesInput struct {
 	ThemeId *string `location:"uri" locationName:"ThemeId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListThemeAliasesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListThemeAliasesInput) GoString() string {
 	return s.String()
 }
@@ -28079,12 +30618,20 @@ type ListThemeAliasesOutput struct {
 	ThemeAliasList []*ThemeAlias `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListThemeAliasesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListThemeAliasesOutput) GoString() string {
 	return s.String()
 }
@@ -28114,10 +30661,10 @@ func (s *ListThemeAliasesOutput) SetThemeAliasList(v []*ThemeAlias) *ListThemeAl
 }
 
 type ListThemeVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the themes that
-	// you're listing.
+	// The ID of the Amazon Web Services account that contains the themes that you're
+	// listing.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -28134,12 +30681,20 @@ type ListThemeVersionsInput struct {
 	ThemeId *string `location:"uri" locationName:"ThemeId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListThemeVersionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListThemeVersionsInput) GoString() string {
 	return s.String()
 }
@@ -28209,12 +30764,20 @@ type ListThemeVersionsOutput struct {
 	ThemeVersionSummaryList []*ThemeVersionSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListThemeVersionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListThemeVersionsOutput) GoString() string {
 	return s.String()
 }
@@ -28244,10 +30807,10 @@ func (s *ListThemeVersionsOutput) SetThemeVersionSummaryList(v []*ThemeVersionSu
 }
 
 type ListThemesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the themes that
-	// you're listing.
+	// The ID of the Amazon Web Services account that contains the themes that you're
+	// listing.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -28268,12 +30831,20 @@ type ListThemesInput struct {
 	Type *string `location:"querystring" locationName:"type" type:"string" enum:"ThemeType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListThemesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListThemesInput) GoString() string {
 	return s.String()
 }
@@ -28337,12 +30908,20 @@ type ListThemesOutput struct {
 	ThemeSummaryList []*ThemeSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListThemesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListThemesOutput) GoString() string {
 	return s.String()
 }
@@ -28372,10 +30951,10 @@ func (s *ListThemesOutput) SetThemeSummaryList(v []*ThemeSummary) *ListThemesOut
 }
 
 type ListUserGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Web Services account; ID that the user is in. Currently, you use
-	// the ID for the Amazon Web Services account; that contains your Amazon QuickSight
+	// The Amazon Web Services account ID that the user is in. Currently, you use
+	// the ID for the Amazon Web Services account that contains your Amazon QuickSight
 	// account.
 	//
 	// AwsAccountId is a required field
@@ -28398,12 +30977,20 @@ type ListUserGroupsInput struct {
 	UserName *string `location:"uri" locationName:"UserName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUserGroupsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUserGroupsInput) GoString() string {
 	return s.String()
 }
@@ -28485,12 +31072,20 @@ type ListUserGroupsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUserGroupsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUserGroupsOutput) GoString() string {
 	return s.String()
 }
@@ -28520,10 +31115,10 @@ func (s *ListUserGroupsOutput) SetStatus(v int64) *ListUserGroupsOutput {
 }
 
 type ListUsersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID for the Amazon Web Services account; that the user is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the user is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
@@ -28541,12 +31136,20 @@ type ListUsersInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsersInput) GoString() string {
 	return s.String()
 }
@@ -28616,12 +31219,20 @@ type ListUsersOutput struct {
 	UserList []*User `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListUsersOutput) GoString() string {
 	return s.String()
 }
@@ -28671,12 +31282,20 @@ type LogicalTable struct {
 	Source *LogicalTableSource `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LogicalTable) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LogicalTable) GoString() string {
 	return s.String()
 }
@@ -28741,6 +31360,9 @@ func (s *LogicalTable) SetSource(v *LogicalTableSource) *LogicalTable {
 type LogicalTableSource struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Number (ARN) of the parent dataset.
+	DataSetArn *string `type:"string"`
+
 	// Specifies the result of a join of two logical tables.
 	JoinInstruction *JoinInstruction `type:"structure"`
 
@@ -28748,12 +31370,20 @@ type LogicalTableSource struct {
 	PhysicalTableId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LogicalTableSource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LogicalTableSource) GoString() string {
 	return s.String()
 }
@@ -28774,6 +31404,12 @@ func (s *LogicalTableSource) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataSetArn sets the DataSetArn field's value.
+func (s *LogicalTableSource) SetDataSetArn(v string) *LogicalTableSource {
+	s.DataSetArn = &v
+	return s
 }
 
 // SetJoinInstruction sets the JoinInstruction field's value.
@@ -28803,12 +31439,20 @@ type ManifestFileLocation struct {
 	Key *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManifestFileLocation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ManifestFileLocation) GoString() string {
 	return s.String()
 }
@@ -28855,12 +31499,20 @@ type MarginStyle struct {
 	Show *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MarginStyle) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MarginStyle) GoString() string {
 	return s.String()
 }
@@ -28871,7 +31523,7 @@ func (s *MarginStyle) SetShow(v bool) *MarginStyle {
 	return s
 }
 
-// MariaDB parameters.
+// The parameters for MariaDB.
 type MariaDbParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -28891,12 +31543,20 @@ type MariaDbParameters struct {
 	Port *int64 `min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MariaDbParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MariaDbParameters) GoString() string {
 	return s.String()
 }
@@ -28947,7 +31607,7 @@ func (s *MariaDbParameters) SetPort(v int64) *MariaDbParameters {
 	return s
 }
 
-// An object that consists of the member Amazon Resource Name (ARN) and member
+// An object that consists of a member Amazon Resource Name (ARN) and a member
 // ID.
 type MemberIdArnPair struct {
 	_ struct{} `type:"structure"`
@@ -28959,12 +31619,20 @@ type MemberIdArnPair struct {
 	MemberId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MemberIdArnPair) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MemberIdArnPair) GoString() string {
 	return s.String()
 }
@@ -28981,7 +31649,7 @@ func (s *MemberIdArnPair) SetMemberId(v string) *MemberIdArnPair {
 	return s
 }
 
-// MySQL parameters.
+// The parameters for MySQL.
 type MySqlParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -29001,12 +31669,20 @@ type MySqlParameters struct {
 	Port *int64 `min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MySqlParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s MySqlParameters) GoString() string {
 	return s.String()
 }
@@ -29068,12 +31744,20 @@ type NamespaceError struct {
 	Type *string `type:"string" enum:"NamespaceErrorType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NamespaceError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NamespaceError) GoString() string {
 	return s.String()
 }
@@ -29097,7 +31781,7 @@ type NamespaceInfoV2 struct {
 	// The namespace ARN.
 	Arn *string `type:"string"`
 
-	// The namespace Amazon Web Services Region;.
+	// The namespace Amazon Web Services Region.
 	CapacityRegion *string `type:"string"`
 
 	// The creation status of a namespace that is not yet completely created.
@@ -29113,12 +31797,20 @@ type NamespaceInfoV2 struct {
 	NamespaceError *NamespaceError `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NamespaceInfoV2) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NamespaceInfoV2) GoString() string {
 	return s.String()
 }
@@ -29159,7 +31851,7 @@ func (s *NamespaceInfoV2) SetNamespaceError(v *NamespaceError) *NamespaceInfoV2 
 	return s
 }
 
-// Oracle parameters.
+// The parameters for Oracle.
 type OracleParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -29179,12 +31871,20 @@ type OracleParameters struct {
 	Port *int64 `min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OracleParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OracleParameters) GoString() string {
 	return s.String()
 }
@@ -29249,12 +31949,20 @@ type OutputColumn struct {
 	Type *string `type:"string" enum:"ColumnDataType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutputColumn) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OutputColumn) GoString() string {
 	return s.String()
 }
@@ -29277,29 +31985,37 @@ func (s *OutputColumn) SetType(v string) *OutputColumn {
 	return s
 }
 
-// A list of QuickSight parameters and the list's override values.
+// A list of Amazon QuickSight parameters and the list's override values.
 type Parameters struct {
 	_ struct{} `type:"structure"`
 
-	// Date-time parameters.
+	// The parameters that have a data type of date-time.
 	DateTimeParameters []*DateTimeParameter `type:"list"`
 
-	// Decimal parameters.
+	// The parameters that have a data type of decimal.
 	DecimalParameters []*DecimalParameter `type:"list"`
 
-	// Integer parameters.
+	// The parameters that have a data type of integer.
 	IntegerParameters []*IntegerParameter `type:"list"`
 
-	// String parameters.
+	// The parameters that have a data type of string.
 	StringParameters []*StringParameter `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Parameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Parameters) GoString() string {
 	return s.String()
 }
@@ -29394,12 +32110,20 @@ type PhysicalTable struct {
 	S3Source *S3Source `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PhysicalTable) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PhysicalTable) GoString() string {
 	return s.String()
 }
@@ -29447,7 +32171,7 @@ func (s *PhysicalTable) SetS3Source(v *S3Source) *PhysicalTable {
 	return s
 }
 
-// PostgreSQL parameters.
+// The parameters for PostgreSQL.
 type PostgreSqlParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -29467,12 +32191,20 @@ type PostgreSqlParameters struct {
 	Port *int64 `min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostgreSqlParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PostgreSqlParameters) GoString() string {
 	return s.String()
 }
@@ -29534,12 +32266,20 @@ type PreconditionNotMetException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PreconditionNotMetException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PreconditionNotMetException) GoString() string {
 	return s.String()
 }
@@ -29582,7 +32322,7 @@ func (s *PreconditionNotMetException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Presto parameters.
+// The parameters for Presto.
 type PrestoParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -29602,12 +32342,20 @@ type PrestoParameters struct {
 	Port *int64 `min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PrestoParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PrestoParameters) GoString() string {
 	return s.String()
 }
@@ -29666,12 +32414,20 @@ type ProjectOperation struct {
 	ProjectedColumns []*string `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProjectOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ProjectOperation) GoString() string {
 	return s.String()
 }
@@ -29714,12 +32470,20 @@ type QueueInfo struct {
 	WaitingOnIngestion *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueueInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s QueueInfo) GoString() string {
 	return s.String()
 }
@@ -29736,7 +32500,7 @@ func (s *QueueInfo) SetWaitingOnIngestion(v string) *QueueInfo {
 	return s
 }
 
-// Amazon RDS parameters.
+// The parameters for Amazon RDS.
 type RdsParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -29751,12 +32515,20 @@ type RdsParameters struct {
 	InstanceId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RdsParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RdsParameters) GoString() string {
 	return s.String()
 }
@@ -29795,8 +32567,8 @@ func (s *RdsParameters) SetInstanceId(v string) *RdsParameters {
 	return s
 }
 
-// Amazon Redshift parameters. The ClusterId field can be blank if Host and
-// Port are both set. The Host and Port fields can be blank if the ClusterId
+// The parameters for Amazon Redshift. The ClusterId field can be blank if Host
+// and Port are both set. The Host and Port fields can be blank if the ClusterId
 // field is set.
 type RedshiftParameters struct {
 	_ struct{} `type:"structure"`
@@ -29816,12 +32588,20 @@ type RedshiftParameters struct {
 	Port *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RedshiftParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RedshiftParameters) GoString() string {
 	return s.String()
 }
@@ -29875,17 +32655,17 @@ func (s *RedshiftParameters) SetPort(v int64) *RedshiftParameters {
 type RegisterUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for the Amazon Web Services account; that the user is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the user is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The URL of the custom OpenID Connect (OIDC) provider that provides identity
-	// to let a user federate into QuickSight with an associated AWS Identity and
-	// Access Management (IAM) role. This parameter should only be used when ExternalLoginFederationProviderType
-	// parameter is set to CUSTOM_OIDC.
+	// to let a user federate into Amazon QuickSight with an associated Identity
+	// and Access Management(IAM) role. This parameter should only be used when
+	// ExternalLoginFederationProviderType parameter is set to CUSTOM_OIDC.
 	CustomFederationProviderUrl *string `type:"string"`
 
 	// (Enterprise edition only) The name of the custom permissions profile that
@@ -29900,18 +32680,20 @@ type RegisterUserInput struct {
 	//
 	//    * Subscribe to email reports
 	//
-	// To add custom permissions to an existing user, use UpdateUser instead.
+	// To add custom permissions to an existing user, use UpdateUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html)
+	// instead.
 	//
 	// A set of custom permissions includes any combination of these restrictions.
 	// Currently, you need to create the profile names for custom permission sets
-	// by using the QuickSight console. Then, you use the RegisterUser API operation
-	// to assign the named set of permissions to a QuickSight user.
+	// by using the Amazon QuickSight console. Then, you use the RegisterUser API
+	// operation to assign the named set of permissions to a QuickSight user.
 	//
-	// QuickSight custom permissions are applied through IAM policies. Therefore,
-	// they override the permissions typically granted by assigning QuickSight users
-	// to one of the default security cohorts in QuickSight (admin, author, reader).
+	// Amazon QuickSight custom permissions are applied through IAM policies. Therefore,
+	// they override the permissions typically granted by assigning Amazon QuickSight
+	// users to one of the default security cohorts in Amazon QuickSight (admin,
+	// author, reader).
 	//
-	// This feature is available only to QuickSight Enterprise edition subscriptions.
+	// This feature is available only to Amazon QuickSight Enterprise edition subscriptions.
 	CustomPermissionsName *string `min:"1" type:"string"`
 
 	// The email address of the user that you want to register.
@@ -29920,9 +32702,9 @@ type RegisterUserInput struct {
 	Email *string `type:"string" required:"true"`
 
 	// The type of supported external login provider that provides identity to let
-	// a user federate into Amazon QuickSight with an associated AWS Identity and
-	// Access Management (IAM) role. The type of supported external login provider
-	// can be one of the following.
+	// a user federate into Amazon QuickSight with an associated Identity and Access
+	// Management(IAM) role. The type of supported external login provider can be
+	// one of the following.
 	//
 	//    * COGNITO: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com.
 	//    When choosing the COGNITO provider type, don’t use the "CustomFederationProviderUrl"
@@ -29961,7 +32743,7 @@ type RegisterUserInput struct {
 	// QuickSight user. You can register multiple users using the same IAM role
 	// if each user has a different session name. For more information on assuming
 	// IAM roles, see assume-role (https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html)
-	// in the AWS CLI Reference.
+	// in the CLI Reference.
 	SessionName *string `min:"2" type:"string"`
 
 	// The Amazon QuickSight user name that you want to create for the user you
@@ -29987,12 +32769,20 @@ type RegisterUserInput struct {
 	UserRole *string `type:"string" required:"true" enum:"UserRole"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterUserInput) GoString() string {
 	return s.String()
 }
@@ -30126,12 +32916,20 @@ type RegisterUserOutput struct {
 	UserInvitationUrl *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisterUserOutput) GoString() string {
 	return s.String()
 }
@@ -30175,12 +32973,20 @@ type RegisteredUserDashboardEmbeddingConfiguration struct {
 	InitialDashboardId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisteredUserDashboardEmbeddingConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisteredUserDashboardEmbeddingConfiguration) GoString() string {
 	return s.String()
 }
@@ -30208,31 +33014,39 @@ func (s *RegisteredUserDashboardEmbeddingConfiguration) SetInitialDashboardId(v 
 }
 
 // The type of experience you want to embed. For registered users, you can embed
-// an Amazon QuickSight dashboard or the Amazon QuickSight console.
+// Amazon QuickSight dashboards or the Amazon QuickSight console.
 //
 // Exactly one of the experience configurations is required. You can choose
 // Dashboard or QuickSightConsole. You cannot choose more than one experience
-// configuraton.
+// configuration.
 type RegisteredUserEmbeddingExperienceConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The configuration details for providing a dashboard embedding experience.
 	Dashboard *RegisteredUserDashboardEmbeddingConfiguration `type:"structure"`
 
-	// The configuration details for providing an Amazon QuickSight console embedding
+	// The configuration details for embedding the Q search bar.
+	//
+	// For more information about embedding the Q search bar, see Embedding Overview
+	// (https://docs.aws.amazon.com/quicksight/latest/user/embedding-overview.html).
+	QSearchBar *RegisteredUserQSearchBarEmbeddingConfiguration `type:"structure"`
+
+	// The configuration details for providing each Amazon QuickSight console embedding
 	// experience. This can be used along with custom permissions to restrict access
 	// to certain features. For more information, see Customizing Access to the
 	// Amazon QuickSight Console (https://docs.aws.amazon.com/quicksight/latest/user/customizing-permissions-to-the-quicksight-console.html)
 	// in the Amazon QuickSight User Guide.
 	//
-	// Use GenerateEmbedUrlForRegisteredUser where you want to provide an authoring
-	// portal that allows users to create data sources, datasets, analyses, and
-	// dashboards. The users who accesses an embedded Amazon QuickSight console
-	// needs to belong to the author or admin security cohort. If you want to restrict
-	// permissions to some of these features, add a custom permissions profile to
-	// the user with the UpdateUser API operation. Use RegisterUser API operation
-	// to add a new user with a custom permission profile attached. For more information,
-	// see the following sections in the Amazon QuickSight User Guide:
+	// Use GenerateEmbedUrlForRegisteredUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForRegisteredUser.html)
+	// where you want to provide an authoring portal that allows users to create
+	// data sources, datasets, analyses, and dashboards. The users who accesses
+	// an embedded Amazon QuickSight console needs to belong to the author or admin
+	// security cohort. If you want to restrict permissions to some of these features,
+	// add a custom permissions profile to the user with the UpdateUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html)
+	// API operation. Use the RegisterUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_RegisterUser.html)
+	// API operation to add a new user with a custom permission profile attached.
+	// For more information, see the following sections in the Amazon QuickSight
+	// User Guide:
 	//
 	//    * Embedding the Full Functionality of the Amazon QuickSight Console for
 	//    Authenticated Users (https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-full-console-for-authenticated-users.html)
@@ -30245,12 +33059,20 @@ type RegisteredUserEmbeddingExperienceConfiguration struct {
 	QuickSightConsole *RegisteredUserQuickSightConsoleEmbeddingConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisteredUserEmbeddingExperienceConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisteredUserEmbeddingExperienceConfiguration) GoString() string {
 	return s.String()
 }
@@ -30261,6 +33083,11 @@ func (s *RegisteredUserEmbeddingExperienceConfiguration) Validate() error {
 	if s.Dashboard != nil {
 		if err := s.Dashboard.Validate(); err != nil {
 			invalidParams.AddNested("Dashboard", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.QSearchBar != nil {
+		if err := s.QSearchBar.Validate(); err != nil {
+			invalidParams.AddNested("QSearchBar", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.QuickSightConsole != nil {
@@ -30281,9 +33108,68 @@ func (s *RegisteredUserEmbeddingExperienceConfiguration) SetDashboard(v *Registe
 	return s
 }
 
+// SetQSearchBar sets the QSearchBar field's value.
+func (s *RegisteredUserEmbeddingExperienceConfiguration) SetQSearchBar(v *RegisteredUserQSearchBarEmbeddingConfiguration) *RegisteredUserEmbeddingExperienceConfiguration {
+	s.QSearchBar = v
+	return s
+}
+
 // SetQuickSightConsole sets the QuickSightConsole field's value.
 func (s *RegisteredUserEmbeddingExperienceConfiguration) SetQuickSightConsole(v *RegisteredUserQuickSightConsoleEmbeddingConfiguration) *RegisteredUserEmbeddingExperienceConfiguration {
 	s.QuickSightConsole = v
+	return s
+}
+
+// Information about the Q search bar embedding experience.
+type RegisteredUserQSearchBarEmbeddingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Q topic that you want to make the starting topic in the Q search
+	// bar. You can find a topic ID by navigating to the Topics pane in the Amazon
+	// QuickSight application and opening a topic. The ID is in the URL for the
+	// topic that you open.
+	//
+	// If you don't specify an initial topic, a list of all shared topics is shown
+	// in the Q bar for your readers. When you select an initial topic, you can
+	// specify whether or not readers are allowed to select other topics from the
+	// available ones in the list.
+	InitialTopicId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredUserQSearchBarEmbeddingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredUserQSearchBarEmbeddingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisteredUserQSearchBarEmbeddingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisteredUserQSearchBarEmbeddingConfiguration"}
+	if s.InitialTopicId != nil && len(*s.InitialTopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitialTopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInitialTopicId sets the InitialTopicId field's value.
+func (s *RegisteredUserQSearchBarEmbeddingConfiguration) SetInitialTopicId(v string) *RegisteredUserQSearchBarEmbeddingConfiguration {
+	s.InitialTopicId = &v
 	return s
 }
 
@@ -30311,12 +33197,20 @@ type RegisteredUserQuickSightConsoleEmbeddingConfiguration struct {
 	InitialPath *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisteredUserQuickSightConsoleEmbeddingConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegisteredUserQuickSightConsoleEmbeddingConfiguration) GoString() string {
 	return s.String()
 }
@@ -30366,12 +33260,20 @@ type RelationalTable struct {
 	Schema *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RelationalTable) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RelationalTable) GoString() string {
 	return s.String()
 }
@@ -30456,12 +33358,20 @@ type RenameColumnOperation struct {
 	NewColumnName *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RenameColumnOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RenameColumnOperation) GoString() string {
 	return s.String()
 }
@@ -30514,12 +33424,20 @@ type ResourceExistsException struct {
 	ResourceType *string `type:"string" enum:"ExceptionResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceExistsException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceExistsException) GoString() string {
 	return s.String()
 }
@@ -30576,12 +33494,20 @@ type ResourceNotFoundException struct {
 	ResourceType *string `type:"string" enum:"ExceptionResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -30641,20 +33567,28 @@ type ResourcePermission struct {
 	//    * The ARN of an Amazon QuickSight user, group, or namespace associated
 	//    with an analysis, dashboard, template, or theme. (This is common.)
 	//
-	//    * The ARN of an Amazon Web Services account; root: This is an IAM ARN
-	//    rather than a QuickSight ARN. Use this option only to share resources
-	//    (templates) across Amazon Web Services accounts. (This is less common.)
+	//    * The ARN of an Amazon Web Services account root: This is an IAM ARN rather
+	//    than a QuickSight ARN. Use this option only to share resources (templates)
+	//    across Amazon Web Services accounts. (This is less common.)
 	//
 	// Principal is a required field
 	Principal *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourcePermission) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourcePermission) GoString() string {
 	return s.String()
 }
@@ -30707,12 +33641,20 @@ type ResourceUnavailableException struct {
 	ResourceType *string `type:"string" enum:"ExceptionResourceType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceUnavailableException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceUnavailableException) GoString() string {
 	return s.String()
 }
@@ -30756,25 +33698,33 @@ func (s *ResourceUnavailableException) RequestID() string {
 }
 
 type RestoreAnalysisInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the analysis that you're restoring.
 	//
 	// AnalysisId is a required field
 	AnalysisId *string `location:"uri" locationName:"AnalysisId" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the analysis.
+	// The ID of the Amazon Web Services account that contains the analysis.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestoreAnalysisInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestoreAnalysisInput) GoString() string {
 	return s.String()
 }
@@ -30829,12 +33779,20 @@ type RestoreAnalysisOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestoreAnalysisOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RestoreAnalysisOutput) GoString() string {
 	return s.String()
 }
@@ -30872,14 +33830,25 @@ type RowInfo struct {
 
 	// The number of rows that were ingested.
 	RowsIngested *int64 `type:"long"`
+
+	// The total number of rows in the dataset.
+	TotalRowsInDataset *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RowInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RowInfo) GoString() string {
 	return s.String()
 }
@@ -30893,6 +33862,12 @@ func (s *RowInfo) SetRowsDropped(v int64) *RowInfo {
 // SetRowsIngested sets the RowsIngested field's value.
 func (s *RowInfo) SetRowsIngested(v int64) *RowInfo {
 	s.RowsIngested = &v
+	return s
+}
+
+// SetTotalRowsInDataset sets the TotalRowsInDataset field's value.
+func (s *RowInfo) SetTotalRowsInDataset(v int64) *RowInfo {
+	s.TotalRowsInDataset = &v
 	return s
 }
 
@@ -30923,7 +33898,7 @@ type RowLevelPermissionDataSet struct {
 	// The namespace associated with the dataset that contains permissions for RLS.
 	Namespace *string `type:"string"`
 
-	// The type of permissions to use when interpretting the permissions for RLS.
+	// The type of permissions to use when interpreting the permissions for RLS.
 	// DENY_ACCESS is included for backward compatibility only.
 	//
 	// PermissionPolicy is a required field
@@ -30934,12 +33909,20 @@ type RowLevelPermissionDataSet struct {
 	Status *string `type:"string" enum:"Status"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RowLevelPermissionDataSet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RowLevelPermissionDataSet) GoString() string {
 	return s.String()
 }
@@ -31005,12 +33988,20 @@ type RowLevelPermissionTagConfiguration struct {
 	TagRules []*RowLevelPermissionTagRule `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RowLevelPermissionTagConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RowLevelPermissionTagConfiguration) GoString() string {
 	return s.String()
 }
@@ -31065,6 +34056,10 @@ type RowLevelPermissionTagRule struct {
 	// A string that you want to use to filter by all the values in a column in
 	// the dataset and don’t want to list the values one by one. For example,
 	// you can use an asterisk as your match all value.
+	//
+	// MatchAllValue is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RowLevelPermissionTagRule's
+	// String and GoString methods.
 	MatchAllValue *string `min:"1" type:"string" sensitive:"true"`
 
 	// The unique key for a tag.
@@ -31077,12 +34072,20 @@ type RowLevelPermissionTagRule struct {
 	TagMultiValueDelimiter *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RowLevelPermissionTagRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RowLevelPermissionTagRule) GoString() string {
 	return s.String()
 }
@@ -31133,23 +34136,31 @@ func (s *RowLevelPermissionTagRule) SetTagMultiValueDelimiter(v string) *RowLeve
 	return s
 }
 
-// S3 parameters.
+// The parameters for S3.
 type S3Parameters struct {
 	_ struct{} `type:"structure"`
 
 	// Location of the Amazon S3 manifest file. This is NULL if the manifest file
-	// was uploaded into QuickSight.
+	// was uploaded into Amazon QuickSight.
 	//
 	// ManifestFileLocation is a required field
 	ManifestFileLocation *ManifestFileLocation `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Parameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Parameters) GoString() string {
 	return s.String()
 }
@@ -31189,7 +34200,8 @@ type S3Source struct {
 
 	// A physical table type for an S3 data source.
 	//
-	// For non-JSON files, only STRING data types are supported in input columns.
+	// For files that aren't JSON, only STRING data types are supported in input
+	// columns.
 	//
 	// InputColumns is a required field
 	InputColumns []*InputColumn `min:"1" type:"list" required:"true"`
@@ -31198,12 +34210,20 @@ type S3Source struct {
 	UploadSettings *UploadSettings `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Source) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Source) GoString() string {
 	return s.String()
 }
@@ -31263,7 +34283,7 @@ func (s *S3Source) SetUploadSettings(v *UploadSettings) *S3Source {
 type SearchAnalysesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Web Services account; that contains the analyses that
+	// The ID of the Amazon Web Services account that contains the analyses that
 	// you're searching for.
 	//
 	// AwsAccountId is a required field
@@ -31281,12 +34301,20 @@ type SearchAnalysesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchAnalysesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchAnalysesInput) GoString() string {
 	return s.String()
 }
@@ -31356,12 +34384,20 @@ type SearchAnalysesOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchAnalysesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchAnalysesOutput) GoString() string {
 	return s.String()
 }
@@ -31393,7 +34429,7 @@ func (s *SearchAnalysesOutput) SetStatus(v int64) *SearchAnalysesOutput {
 type SearchDashboardsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Web Services account; that contains the user whose dashboards
+	// The ID of the Amazon Web Services account that contains the user whose dashboards
 	// you're searching for.
 	//
 	// AwsAccountId is a required field
@@ -31414,12 +34450,20 @@ type SearchDashboardsInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchDashboardsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchDashboardsInput) GoString() string {
 	return s.String()
 }
@@ -31499,12 +34543,20 @@ type SearchDashboardsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchDashboardsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchDashboardsOutput) GoString() string {
 	return s.String()
 }
@@ -31536,7 +34588,7 @@ func (s *SearchDashboardsOutput) SetStatus(v int64) *SearchDashboardsOutput {
 type SearchFoldersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -31556,12 +34608,20 @@ type SearchFoldersInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchFoldersInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchFoldersInput) GoString() string {
 	return s.String()
 }
@@ -31615,26 +34675,34 @@ func (s *SearchFoldersInput) SetNextToken(v string) *SearchFoldersInput {
 type SearchFoldersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A structure that contains all of the folders in your AWS account. This structure
-	// provides basic information about the folders.
+	// A structure that contains all of the folders in the Amazon Web Services account.
+	// This structure provides basic information about the folders.
 	FolderSummaryList []*FolderSummary `type:"list"`
 
 	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `type:"string"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK.
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchFoldersOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SearchFoldersOutput) GoString() string {
 	return s.String()
 }
@@ -31663,7 +34731,7 @@ func (s *SearchFoldersOutput) SetStatus(v int64) *SearchFoldersOutput {
 	return s
 }
 
-// ServiceNow parameters.
+// The parameters for ServiceNow.
 type ServiceNowParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -31673,12 +34741,20 @@ type ServiceNowParameters struct {
 	SiteBaseUrl *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceNowParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceNowParameters) GoString() string {
 	return s.String()
 }
@@ -31717,12 +34793,20 @@ type SessionLifetimeInMinutesInvalidException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SessionLifetimeInMinutesInvalidException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SessionLifetimeInMinutesInvalidException) GoString() string {
 	return s.String()
 }
@@ -31776,16 +34860,28 @@ type SessionTag struct {
 
 	// The value that you want to assign the tag.
 	//
+	// Value is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SessionTag's
+	// String and GoString methods.
+	//
 	// Value is a required field
 	Value *string `min:"1" type:"string" required:"true" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SessionTag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SessionTag) GoString() string {
 	return s.String()
 }
@@ -31832,20 +34928,28 @@ func (s *SessionTag) SetValue(v string) *SessionTag {
 type Sheet struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a sheet. This name is displayed on the sheet's tab in the QuickSight
-	// console.
+	// The name of a sheet. This name is displayed on the sheet's tab in the Amazon
+	// QuickSight console.
 	Name *string `type:"string"`
 
 	// The unique identifier associated with a sheet.
 	SheetId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Sheet) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Sheet) GoString() string {
 	return s.String()
 }
@@ -31870,12 +34974,20 @@ type SheetControlsOption struct {
 	VisibilityState *string `type:"string" enum:"DashboardUIState"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SheetControlsOption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SheetControlsOption) GoString() string {
 	return s.String()
 }
@@ -31897,12 +35009,20 @@ type SheetStyle struct {
 	TileLayout *TileLayoutStyle `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SheetStyle) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SheetStyle) GoString() string {
 	return s.String()
 }
@@ -31919,7 +35039,7 @@ func (s *SheetStyle) SetTileLayout(v *TileLayoutStyle) *SheetStyle {
 	return s
 }
 
-// Snowflake parameters.
+// The parameters for Snowflake.
 type SnowflakeParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -31939,12 +35059,20 @@ type SnowflakeParameters struct {
 	Warehouse *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnowflakeParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SnowflakeParameters) GoString() string {
 	return s.String()
 }
@@ -31992,7 +35120,7 @@ func (s *SnowflakeParameters) SetWarehouse(v string) *SnowflakeParameters {
 	return s
 }
 
-// Spark parameters.
+// The parameters for Spark.
 type SparkParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -32007,12 +35135,20 @@ type SparkParameters struct {
 	Port *int64 `min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SparkParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SparkParameters) GoString() string {
 	return s.String()
 }
@@ -32051,7 +35187,7 @@ func (s *SparkParameters) SetPort(v int64) *SparkParameters {
 	return s
 }
 
-// SQL Server parameters.
+// The parameters for SQL Server.
 type SqlServerParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -32071,12 +35207,20 @@ type SqlServerParameters struct {
 	Port *int64 `min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SqlServerParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SqlServerParameters) GoString() string {
 	return s.String()
 }
@@ -32127,7 +35271,7 @@ func (s *SqlServerParameters) SetPort(v int64) *SqlServerParameters {
 	return s
 }
 
-// Secure Socket Layer (SSL) properties that apply when QuickSight connects
+// Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects
 // to your underlying data source.
 type SslProperties struct {
 	_ struct{} `type:"structure"`
@@ -32136,12 +35280,20 @@ type SslProperties struct {
 	DisableSsl *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SslProperties) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SslProperties) GoString() string {
 	return s.String()
 }
@@ -32167,12 +35319,20 @@ type StringParameter struct {
 	Values []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StringParameter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StringParameter) GoString() string {
 	return s.String()
 }
@@ -32221,12 +35381,20 @@ type Tag struct {
 	Value *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -32282,12 +35450,20 @@ type TagColumnOperation struct {
 	Tags []*ColumnTag `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagColumnOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagColumnOperation) GoString() string {
 	return s.String()
 }
@@ -32341,12 +35517,20 @@ type TagResourceInput struct {
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -32405,12 +35589,20 @@ type TagResourceOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -32427,7 +35619,7 @@ func (s *TagResourceOutput) SetStatus(v int64) *TagResourceOutput {
 	return s
 }
 
-// A template object. A template is an entity in QuickSight that encapsulates
+// A template object. A template is an entity in Amazon QuickSight that encapsulates
 // the metadata required to create an analysis and that you can use to create
 // a dashboard. A template adds a layer of abstraction by using placeholders
 // to replace the dataset associated with an analysis. You can use templates
@@ -32452,20 +35644,28 @@ type Template struct {
 	// The display name of the template.
 	Name *string `min:"1" type:"string"`
 
-	// The ID for the template. This is unique per Amazon Web Services Region; for
-	// each Amazon Web Services account;.
+	// The ID for the template. This is unique per Amazon Web Services Region for
+	// each Amazon Web Services account.
 	TemplateId *string `min:"1" type:"string"`
 
 	// A structure describing the versions of the template.
 	Version *TemplateVersion `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Template) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Template) GoString() string {
 	return s.String()
 }
@@ -32520,12 +35720,20 @@ type TemplateAlias struct {
 	TemplateVersionNumber *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateAlias) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateAlias) GoString() string {
 	return s.String()
 }
@@ -32559,12 +35767,20 @@ type TemplateError struct {
 	Type *string `type:"string" enum:"TemplateErrorType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateError) GoString() string {
 	return s.String()
 }
@@ -32597,12 +35813,20 @@ type TemplateSourceAnalysis struct {
 	DataSetReferences []*DataSetReference `min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateSourceAnalysis) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateSourceAnalysis) GoString() string {
 	return s.String()
 }
@@ -32659,12 +35883,20 @@ type TemplateSourceEntity struct {
 	SourceTemplate *TemplateSourceTemplate `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateSourceEntity) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateSourceEntity) GoString() string {
 	return s.String()
 }
@@ -32711,12 +35943,20 @@ type TemplateSourceTemplate struct {
 	Arn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateSourceTemplate) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateSourceTemplate) GoString() string {
 	return s.String()
 }
@@ -32759,17 +35999,25 @@ type TemplateSummary struct {
 	// A display name for the template.
 	Name *string `min:"1" type:"string"`
 
-	// The ID of the template. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// The ID of the template. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	TemplateId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateSummary) GoString() string {
 	return s.String()
 }
@@ -32846,12 +36094,20 @@ type TemplateVersion struct {
 	VersionNumber *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateVersion) GoString() string {
 	return s.String()
 }
@@ -32930,12 +36186,20 @@ type TemplateVersionSummary struct {
 	VersionNumber *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateVersionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TemplateVersionSummary) GoString() string {
 	return s.String()
 }
@@ -32970,7 +36234,7 @@ func (s *TemplateVersionSummary) SetVersionNumber(v int64) *TemplateVersionSumma
 	return s
 }
 
-// Teradata parameters.
+// The parameters for Teradata.
 type TeradataParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -32990,12 +36254,20 @@ type TeradataParameters struct {
 	Port *int64 `min:"1" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TeradataParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TeradataParameters) GoString() string {
 	return s.String()
 }
@@ -33073,12 +36345,20 @@ type Theme struct {
 	Version *ThemeVersion `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Theme) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Theme) GoString() string {
 	return s.String()
 }
@@ -33139,12 +36419,20 @@ type ThemeAlias struct {
 	ThemeVersionNumber *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThemeAlias) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThemeAlias) GoString() string {
 	return s.String()
 }
@@ -33183,12 +36471,20 @@ type ThemeConfiguration struct {
 	UIColorPalette *UIColorPalette `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThemeConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThemeConfiguration) GoString() string {
 	return s.String()
 }
@@ -33222,12 +36518,20 @@ type ThemeError struct {
 	Type *string `type:"string" enum:"ThemeErrorType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThemeError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThemeError) GoString() string {
 	return s.String()
 }
@@ -33263,17 +36567,25 @@ type ThemeSummary struct {
 	// the display name for the theme.
 	Name *string `min:"1" type:"string"`
 
-	// The ID of the theme. This ID is unique per Amazon Web Services Region; for
-	// each Amazon Web Services account;.
+	// The ID of the theme. This ID is unique per Amazon Web Services Region for
+	// each Amazon Web Services account.
 	ThemeId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThemeSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThemeSummary) GoString() string {
 	return s.String()
 }
@@ -33322,7 +36634,7 @@ type ThemeVersion struct {
 	Arn *string `type:"string"`
 
 	// The Amazon QuickSight-defined ID of the theme that a custom theme inherits
-	// from. All themes initially inherit from a default QuickSight theme.
+	// from. All themes initially inherit from a default Amazon QuickSight theme.
 	BaseThemeId *string `min:"1" type:"string"`
 
 	// The theme configuration, which contains all the theme display properties.
@@ -33344,12 +36656,20 @@ type ThemeVersion struct {
 	VersionNumber *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThemeVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThemeVersion) GoString() string {
 	return s.String()
 }
@@ -33422,12 +36742,20 @@ type ThemeVersionSummary struct {
 	VersionNumber *int64 `min:"1" type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThemeVersionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThemeVersionSummary) GoString() string {
 	return s.String()
 }
@@ -33473,12 +36801,20 @@ type ThrottlingException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ThrottlingException) GoString() string {
 	return s.String()
 }
@@ -33532,12 +36868,20 @@ type TileLayoutStyle struct {
 	Margin *MarginStyle `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TileLayoutStyle) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TileLayoutStyle) GoString() string {
 	return s.String()
 }
@@ -33562,12 +36906,20 @@ type TileStyle struct {
 	Border *BorderStyle `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TileStyle) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TileStyle) GoString() string {
 	return s.String()
 }
@@ -33602,14 +36954,25 @@ type TransformOperation struct {
 
 	// An operation that tags a column with additional information.
 	TagColumnOperation *TagColumnOperation `type:"structure"`
+
+	// A transform operation that removes tags associated with a column.
+	UntagColumnOperation *UntagColumnOperation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TransformOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TransformOperation) GoString() string {
 	return s.String()
 }
@@ -33645,6 +37008,11 @@ func (s *TransformOperation) Validate() error {
 	if s.TagColumnOperation != nil {
 		if err := s.TagColumnOperation.Validate(); err != nil {
 			invalidParams.AddNested("TagColumnOperation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UntagColumnOperation != nil {
+		if err := s.UntagColumnOperation.Validate(); err != nil {
+			invalidParams.AddNested("UntagColumnOperation", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -33690,7 +37058,13 @@ func (s *TransformOperation) SetTagColumnOperation(v *TagColumnOperation) *Trans
 	return s
 }
 
-// Twitter parameters.
+// SetUntagColumnOperation sets the UntagColumnOperation field's value.
+func (s *TransformOperation) SetUntagColumnOperation(v *UntagColumnOperation) *TransformOperation {
+	s.UntagColumnOperation = v
+	return s
+}
+
+// The parameters for Twitter.
 type TwitterParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -33705,12 +37079,20 @@ type TwitterParameters struct {
 	Query *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TwitterParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TwitterParameters) GoString() string {
 	return s.String()
 }
@@ -33816,12 +37198,20 @@ type UIColorPalette struct {
 	WarningForeground *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UIColorPalette) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UIColorPalette) GoString() string {
 	return s.String()
 }
@@ -33924,12 +37314,12 @@ func (s *UIColorPalette) SetWarningForeground(v string) *UIColorPalette {
 
 // This error indicates that you are calling an embedding operation in Amazon
 // QuickSight without the required pricing plan on your Amazon Web Services
-// account;. Before you can use embedding for anonymous users, a QuickSight
-// administrator needs to add capacity pricing to QuickSight. You can do this
-// on the Manage QuickSight page.
+// account. Before you can use embedding for anonymous users, a QuickSight administrator
+// needs to add capacity pricing to Amazon QuickSight. You can do this on the
+// Manage Amazon QuickSight page.
 //
-// After capacity pricing is added, you can use the GetDashboardEmbedUrl API
-// operation with the --identity-type ANONYMOUS option.
+// After capacity pricing is added, you can use the GetDashboardEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GetDashboardEmbedUrl.html)
+// API operation with the --identity-type ANONYMOUS option.
 type UnsupportedPricingPlanException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -33940,12 +37330,20 @@ type UnsupportedPricingPlanException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnsupportedPricingPlanException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnsupportedPricingPlanException) GoString() string {
 	return s.String()
 }
@@ -33990,7 +37388,7 @@ func (s *UnsupportedPricingPlanException) RequestID() string {
 
 // This error indicates that you are calling an operation on an Amazon QuickSight
 // subscription where the edition doesn't include support for that operation.
-// Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+// Amazon Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 // Not every operation and capability is available in every edition.
 type UnsupportedUserEditionException struct {
 	_            struct{}                  `type:"structure"`
@@ -34002,12 +37400,20 @@ type UnsupportedUserEditionException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnsupportedUserEditionException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UnsupportedUserEditionException) GoString() string {
 	return s.String()
 }
@@ -34050,8 +37456,72 @@ func (s *UnsupportedUserEditionException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-type UntagResourceInput struct {
+// A transform operation that removes tags associated with a column.
+type UntagColumnOperation struct {
 	_ struct{} `type:"structure"`
+
+	// The column that this operation acts on.
+	//
+	// ColumnName is a required field
+	ColumnName *string `min:"1" type:"string" required:"true"`
+
+	// The column tags to remove from this column.
+	//
+	// TagNames is a required field
+	TagNames []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagColumnOperation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagColumnOperation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagColumnOperation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagColumnOperation"}
+	if s.ColumnName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ColumnName"))
+	}
+	if s.ColumnName != nil && len(*s.ColumnName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ColumnName", 1))
+	}
+	if s.TagNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagNames"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumnName sets the ColumnName field's value.
+func (s *UntagColumnOperation) SetColumnName(v string) *UntagColumnOperation {
+	s.ColumnName = &v
+	return s
+}
+
+// SetTagNames sets the TagNames field's value.
+func (s *UntagColumnOperation) SetTagNames(v []*string) *UntagColumnOperation {
+	s.TagNames = v
+	return s
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that you want to untag.
 	//
@@ -34065,12 +37535,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"keys" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -34119,12 +37597,20 @@ type UntagResourceOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -34144,28 +37630,36 @@ func (s *UntagResourceOutput) SetStatus(v int64) *UntagResourceOutput {
 type UpdateAccountCustomizationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The QuickSight customizations you're updating in the current Amazon Web Services
-	// Region;.
+	// The Amazon QuickSight customizations you're updating in the current Amazon
+	// Web Services Region.
 	//
 	// AccountCustomization is a required field
 	AccountCustomization *AccountCustomization `type:"structure" required:"true"`
 
-	// The ID for the Amazon Web Services account; that you want to update QuickSight
-	// customizations for.
+	// The ID for the Amazon Web Services account that you want to update Amazon
+	// QuickSight customizations for.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The namespace that you want to update QuickSight customizations for.
+	// The namespace that you want to update Amazon QuickSight customizations for.
 	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAccountCustomizationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAccountCustomizationInput) GoString() string {
 	return s.String()
 }
@@ -34210,16 +37704,16 @@ func (s *UpdateAccountCustomizationInput) SetNamespace(v string) *UpdateAccountC
 type UpdateAccountCustomizationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The QuickSight customizations you're updating in the current Amazon Web Services
-	// Region;.
+	// The Amazon QuickSight customizations you're updating in the current Amazon
+	// Web Services Region.
 	AccountCustomization *AccountCustomization `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for the updated customization for this Amazon
-	// Web Services account;.
+	// Web Services account.
 	Arn *string `type:"string"`
 
-	// The ID for the Amazon Web Services account; that you want to update QuickSight
-	// customizations for.
+	// The ID for the Amazon Web Services account that you want to update Amazon
+	// QuickSight customizations for.
 	AwsAccountId *string `min:"12" type:"string"`
 
 	// The namespace associated with the customization that you're updating.
@@ -34232,12 +37726,20 @@ type UpdateAccountCustomizationOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAccountCustomizationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAccountCustomizationOutput) GoString() string {
 	return s.String()
 }
@@ -34281,31 +37783,39 @@ func (s *UpdateAccountCustomizationOutput) SetStatus(v int64) *UpdateAccountCust
 type UpdateAccountSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for the Amazon Web Services account; that contains the QuickSight
+	// The ID for the Amazon Web Services account that contains the Amazon QuickSight
 	// settings that you want to list.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The default namespace for this Amazon Web Services account;. Currently, the
+	// The default namespace for this Amazon Web Services account. Currently, the
 	// default is default. Identity and Access Management (IAM) users that register
-	// for the first time with QuickSight provide an email that becomes associated
+	// for the first time with Amazon QuickSight provide an email that becomes associated
 	// with the default namespace.
 	//
 	// DefaultNamespace is a required field
 	DefaultNamespace *string `type:"string" required:"true"`
 
-	// The email address that you want QuickSight to send notifications to regarding
-	// your Amazon Web Services account; or QuickSight subscription.
+	// The email address that you want Amazon QuickSight to send notifications to
+	// regarding your Amazon Web Services account or Amazon QuickSight subscription.
 	NotificationEmail *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAccountSettingsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAccountSettingsInput) GoString() string {
 	return s.String()
 }
@@ -34357,12 +37867,20 @@ type UpdateAccountSettingsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAccountSettingsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAccountSettingsOutput) GoString() string {
 	return s.String()
 }
@@ -34388,14 +37906,14 @@ type UpdateAnalysisInput struct {
 	// AnalysisId is a required field
 	AnalysisId *string `location:"uri" locationName:"AnalysisId" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the analysis that
+	// The ID of the Amazon Web Services account that contains the analysis that
 	// you're updating.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// A descriptive name for the analysis that you're updating. This name displays
-	// for the analysis in the QuickSight console.
+	// for the analysis in the Amazon QuickSight console.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -34412,17 +37930,25 @@ type UpdateAnalysisInput struct {
 	SourceEntity *AnalysisSourceEntity `type:"structure" required:"true"`
 
 	// The Amazon Resource Name (ARN) for the theme to apply to the analysis that
-	// you're creating. To see the theme in the QuickSight console, make sure that
-	// you have access to it.
+	// you're creating. To see the theme in the Amazon QuickSight console, make
+	// sure that you have access to it.
 	ThemeArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAnalysisInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAnalysisInput) GoString() string {
 	return s.String()
 }
@@ -34523,12 +38049,20 @@ type UpdateAnalysisOutput struct {
 	UpdateStatus *string `type:"string" enum:"ResourceStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAnalysisOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAnalysisOutput) GoString() string {
 	return s.String()
 }
@@ -34572,8 +38106,8 @@ type UpdateAnalysisPermissionsInput struct {
 	// AnalysisId is a required field
 	AnalysisId *string `location:"uri" locationName:"AnalysisId" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the analysis whose
-	// permissions you're updating. You must be using the Amazon Web Services account;
+	// The ID of the Amazon Web Services account that contains the analysis whose
+	// permissions you're updating. You must be using the Amazon Web Services account
 	// that the analysis is in.
 	//
 	// AwsAccountId is a required field
@@ -34588,12 +38122,20 @@ type UpdateAnalysisPermissionsInput struct {
 	RevokePermissions []*ResourcePermission `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAnalysisPermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAnalysisPermissionsInput) GoString() string {
 	return s.String()
 }
@@ -34684,12 +38226,20 @@ type UpdateAnalysisPermissionsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAnalysisPermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateAnalysisPermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -34727,7 +38277,7 @@ func (s *UpdateAnalysisPermissionsOutput) SetStatus(v int64) *UpdateAnalysisPerm
 type UpdateDashboardInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Web Services account; that contains the dashboard that
+	// The ID of the Amazon Web Services account that contains the dashboard that
 	// you're updating.
 	//
 	// AwsAccountId is a required field
@@ -34741,7 +38291,7 @@ type UpdateDashboardInput struct {
 	// Options for publishing the dashboard when you create it:
 	//
 	//    * AvailabilityStatus for AdHocFilteringOption - This status can be either
-	//    ENABLED or DISABLED. When this is set to DISABLED, QuickSight disables
+	//    ENABLED or DISABLED. When this is set to DISABLED, Amazon QuickSight disables
 	//    the left filter pane on the published dashboard, which can be used for
 	//    ad hoc (one-time) filtering. This option is ENABLED by default.
 	//
@@ -34767,10 +38317,11 @@ type UpdateDashboardInput struct {
 	// In SourceEntity, you specify the type of object you're using as source. You
 	// can only update a dashboard from a template, so you use a SourceTemplate
 	// entity. If you need to update a dashboard from an analysis, first convert
-	// the analysis to a template by using the CreateTemplate API operation. For
-	// SourceTemplate, specify the Amazon Resource Name (ARN) of the source template.
-	// The SourceTemplate ARN can contain any Amazon Web Services account; and any
-	// QuickSight-supported Amazon Web Services Region;.
+	// the analysis to a template by using the CreateTemplate (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html)
+	// API operation. For SourceTemplate, specify the Amazon Resource Name (ARN)
+	// of the source template. The SourceTemplate ARN can contain any Amazon Web
+	// Services account and any Amazon QuickSight-supported Amazon Web Services
+	// Region.
 	//
 	// Use the DataSetReferences entity within SourceTemplate to list the replacement
 	// datasets for the placeholders listed in the original. The schema in each
@@ -34782,19 +38333,27 @@ type UpdateDashboardInput struct {
 	// The Amazon Resource Name (ARN) of the theme that is being used for this dashboard.
 	// If you add a value for this field, it overrides the value that was originally
 	// associated with the entity. The theme ARN must exist in the same Amazon Web
-	// Services account; where you create the dashboard.
+	// Services account where you create the dashboard.
 	ThemeArn *string `type:"string"`
 
 	// A description for the first version of the dashboard being created.
 	VersionDescription *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDashboardInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDashboardInput) GoString() string {
 	return s.String()
 }
@@ -34913,12 +38472,20 @@ type UpdateDashboardOutput struct {
 	VersionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDashboardOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDashboardOutput) GoString() string {
 	return s.String()
 }
@@ -34962,7 +38529,7 @@ func (s *UpdateDashboardOutput) SetVersionArn(v string) *UpdateDashboardOutput {
 type UpdateDashboardPermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Web Services account; that contains the dashboard whose
+	// The ID of the Amazon Web Services account that contains the dashboard whose
 	// permissions you're updating.
 	//
 	// AwsAccountId is a required field
@@ -34973,19 +38540,33 @@ type UpdateDashboardPermissionsInput struct {
 	// DashboardId is a required field
 	DashboardId *string `location:"uri" locationName:"DashboardId" min:"1" type:"string" required:"true"`
 
+	// Grants link permissions to all users in a defined namespace.
+	GrantLinkPermissions []*ResourcePermission `type:"list"`
+
 	// The permissions that you want to grant on this resource.
 	GrantPermissions []*ResourcePermission `type:"list"`
+
+	// Revokes link permissions from all users in a defined namespace.
+	RevokeLinkPermissions []*ResourcePermission `type:"list"`
 
 	// The permissions that you want to revoke from this resource.
 	RevokePermissions []*ResourcePermission `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDashboardPermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDashboardPermissionsInput) GoString() string {
 	return s.String()
 }
@@ -35005,6 +38586,16 @@ func (s *UpdateDashboardPermissionsInput) Validate() error {
 	if s.DashboardId != nil && len(*s.DashboardId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DashboardId", 1))
 	}
+	if s.GrantLinkPermissions != nil {
+		for i, v := range s.GrantLinkPermissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GrantLinkPermissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.GrantPermissions != nil {
 		for i, v := range s.GrantPermissions {
 			if v == nil {
@@ -35012,6 +38603,16 @@ func (s *UpdateDashboardPermissionsInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GrantPermissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RevokeLinkPermissions != nil {
+		for i, v := range s.RevokeLinkPermissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RevokeLinkPermissions", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -35044,9 +38645,21 @@ func (s *UpdateDashboardPermissionsInput) SetDashboardId(v string) *UpdateDashbo
 	return s
 }
 
+// SetGrantLinkPermissions sets the GrantLinkPermissions field's value.
+func (s *UpdateDashboardPermissionsInput) SetGrantLinkPermissions(v []*ResourcePermission) *UpdateDashboardPermissionsInput {
+	s.GrantLinkPermissions = v
+	return s
+}
+
 // SetGrantPermissions sets the GrantPermissions field's value.
 func (s *UpdateDashboardPermissionsInput) SetGrantPermissions(v []*ResourcePermission) *UpdateDashboardPermissionsInput {
 	s.GrantPermissions = v
+	return s
+}
+
+// SetRevokeLinkPermissions sets the RevokeLinkPermissions field's value.
+func (s *UpdateDashboardPermissionsInput) SetRevokeLinkPermissions(v []*ResourcePermission) *UpdateDashboardPermissionsInput {
+	s.RevokeLinkPermissions = v
 	return s
 }
 
@@ -35065,6 +38678,9 @@ type UpdateDashboardPermissionsOutput struct {
 	// The ID for the dashboard.
 	DashboardId *string `min:"1" type:"string"`
 
+	// Updates the permissions of a shared link to an Amazon QuickSight dashboard.
+	LinkSharingConfiguration *LinkSharingConfiguration `type:"structure"`
+
 	// Information about the permissions on the dashboard.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
 
@@ -35075,12 +38691,20 @@ type UpdateDashboardPermissionsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDashboardPermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDashboardPermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -35094,6 +38718,12 @@ func (s *UpdateDashboardPermissionsOutput) SetDashboardArn(v string) *UpdateDash
 // SetDashboardId sets the DashboardId field's value.
 func (s *UpdateDashboardPermissionsOutput) SetDashboardId(v string) *UpdateDashboardPermissionsOutput {
 	s.DashboardId = &v
+	return s
+}
+
+// SetLinkSharingConfiguration sets the LinkSharingConfiguration field's value.
+func (s *UpdateDashboardPermissionsOutput) SetLinkSharingConfiguration(v *LinkSharingConfiguration) *UpdateDashboardPermissionsOutput {
+	s.LinkSharingConfiguration = v
 	return s
 }
 
@@ -35116,9 +38746,9 @@ func (s *UpdateDashboardPermissionsOutput) SetStatus(v int64) *UpdateDashboardPe
 }
 
 type UpdateDashboardPublishedVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the dashboard that
+	// The ID of the Amazon Web Services account that contains the dashboard that
 	// you're updating.
 	//
 	// AwsAccountId is a required field
@@ -35135,12 +38765,20 @@ type UpdateDashboardPublishedVersionInput struct {
 	VersionNumber *int64 `location:"uri" locationName:"VersionNumber" min:"1" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDashboardPublishedVersionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDashboardPublishedVersionInput) GoString() string {
 	return s.String()
 }
@@ -35207,12 +38845,20 @@ type UpdateDashboardPublishedVersionOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDashboardPublishedVersionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDashboardPublishedVersionOutput) GoString() string {
 	return s.String()
 }
@@ -35244,23 +38890,27 @@ func (s *UpdateDashboardPublishedVersionOutput) SetStatus(v int64) *UpdateDashbo
 type UpdateDataSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// Groupings of columns that work together in certain QuickSight features. Currently,
-	// only geospatial hierarchy is supported.
+	// Groupings of columns that work together in certain Amazon QuickSight features.
+	// Currently, only geospatial hierarchy is supported.
 	ColumnGroups []*ColumnGroup `min:"1" type:"list"`
 
-	// A set of one or more definitions of a ColumnLevelPermissionRule .
+	// A set of one or more definitions of a ColumnLevelPermissionRule (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html) .
 	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
 
 	// The ID for the dataset that you want to update. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account;.
+	// Web Services Region for each Amazon Web Services account.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
+
+	// The usage configuration to apply to child datasets that reference this dataset
+	// as a source.
+	DataSetUsageConfiguration *DataSetUsageConfiguration `type:"structure"`
 
 	// The folder that contains fields and nested subfolders for your dataset.
 	FieldFolders map[string]*FieldFolder `type:"map"`
@@ -35282,7 +38932,7 @@ type UpdateDataSetInput struct {
 	// Declares the physical tables that are available in the underlying data sources.
 	//
 	// PhysicalTableMap is a required field
-	PhysicalTableMap map[string]*PhysicalTable `min:"1" type:"map" required:"true"`
+	PhysicalTableMap map[string]*PhysicalTable `type:"map" required:"true"`
 
 	// The row-level security configuration for the data you want to create.
 	RowLevelPermissionDataSet *RowLevelPermissionDataSet `type:"structure"`
@@ -35292,12 +38942,20 @@ type UpdateDataSetInput struct {
 	RowLevelPermissionTagConfiguration *RowLevelPermissionTagConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSetInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSetInput) GoString() string {
 	return s.String()
 }
@@ -35337,9 +38995,6 @@ func (s *UpdateDataSetInput) Validate() error {
 	}
 	if s.PhysicalTableMap == nil {
 		invalidParams.Add(request.NewErrParamRequired("PhysicalTableMap"))
-	}
-	if s.PhysicalTableMap != nil && len(s.PhysicalTableMap) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("PhysicalTableMap", 1))
 	}
 	if s.ColumnGroups != nil {
 		for i, v := range s.ColumnGroups {
@@ -35422,6 +39077,12 @@ func (s *UpdateDataSetInput) SetDataSetId(v string) *UpdateDataSetInput {
 	return s
 }
 
+// SetDataSetUsageConfiguration sets the DataSetUsageConfiguration field's value.
+func (s *UpdateDataSetInput) SetDataSetUsageConfiguration(v *DataSetUsageConfiguration) *UpdateDataSetInput {
+	s.DataSetUsageConfiguration = v
+	return s
+}
+
 // SetFieldFolders sets the FieldFolders field's value.
 func (s *UpdateDataSetInput) SetFieldFolders(v map[string]*FieldFolder) *UpdateDataSetInput {
 	s.FieldFolders = v
@@ -35471,7 +39132,7 @@ type UpdateDataSetOutput struct {
 	Arn *string `type:"string"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account;.
+	// Web Services Region for each Amazon Web Services account.
 	DataSetId *string `type:"string"`
 
 	// The ARN for the ingestion, which is triggered as a result of dataset creation
@@ -35489,12 +39150,20 @@ type UpdateDataSetOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSetOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSetOutput) GoString() string {
 	return s.String()
 }
@@ -35538,13 +39207,13 @@ func (s *UpdateDataSetOutput) SetStatus(v int64) *UpdateDataSetOutput {
 type UpdateDataSetPermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The ID for the dataset whose permissions you want to update. This ID is unique
-	// per Amazon Web Services Region; for each Amazon Web Services account;.
+	// per Amazon Web Services Region for each Amazon Web Services account.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -35556,12 +39225,20 @@ type UpdateDataSetPermissionsInput struct {
 	RevokePermissions []*ResourcePermission `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSetPermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSetPermissionsInput) GoString() string {
 	return s.String()
 }
@@ -35645,7 +39322,7 @@ type UpdateDataSetPermissionsOutput struct {
 	DataSetArn *string `type:"string"`
 
 	// The ID for the dataset whose permissions you want to update. This ID is unique
-	// per Amazon Web Services Region; for each Amazon Web Services account;.
+	// per Amazon Web Services Region for each Amazon Web Services account.
 	DataSetId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -35655,12 +39332,20 @@ type UpdateDataSetPermissionsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSetPermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSetPermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -35692,22 +39377,27 @@ func (s *UpdateDataSetPermissionsOutput) SetStatus(v int64) *UpdateDataSetPermis
 type UpdateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The credentials that QuickSight that uses to connect to your underlying source.
-	// Currently, only credentials based on user name and password are supported.
+	// The credentials that Amazon QuickSight that uses to connect to your underlying
+	// source. Currently, only credentials based on user name and password are supported.
+	//
+	// Credentials is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateDataSourceInput's
+	// String and GoString methods.
 	Credentials *DataSourceCredentials `type:"structure" sensitive:"true"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"DataSourceId" type:"string" required:"true"`
 
-	// The parameters that QuickSight uses to connect to your underlying source.
+	// The parameters that Amazon QuickSight uses to connect to your underlying
+	// source.
 	DataSourceParameters *DataSourceParameters `type:"structure"`
 
 	// A display name for the data source.
@@ -35715,21 +39405,29 @@ type UpdateDataSourceInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// Secure Socket Layer (SSL) properties that apply when QuickSight connects
+	// Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects
 	// to your underlying source.
 	SslProperties *SslProperties `type:"structure"`
 
-	// Use this parameter only when you want QuickSight to use a VPC connection
+	// Use this parameter only when you want Amazon QuickSight to use a VPC connection
 	// when connecting to your underlying source.
 	VpcConnectionProperties *VpcConnectionProperties `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSourceInput) GoString() string {
 	return s.String()
 }
@@ -35825,8 +39523,8 @@ type UpdateDataSourceOutput struct {
 	// The Amazon Resource Name (ARN) of the data source.
 	Arn *string `type:"string"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	DataSourceId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -35839,12 +39537,20 @@ type UpdateDataSourceOutput struct {
 	UpdateStatus *string `type:"string" enum:"ResourceStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSourceOutput) GoString() string {
 	return s.String()
 }
@@ -35882,13 +39588,13 @@ func (s *UpdateDataSourceOutput) SetUpdateStatus(v string) *UpdateDataSourceOutp
 type UpdateDataSourcePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services account; ID.
+	// The Amazon Web Services account ID.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"DataSourceId" type:"string" required:"true"`
@@ -35900,12 +39606,20 @@ type UpdateDataSourcePermissionsInput struct {
 	RevokePermissions []*ResourcePermission `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSourcePermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSourcePermissionsInput) GoString() string {
 	return s.String()
 }
@@ -35988,8 +39702,8 @@ type UpdateDataSourcePermissionsOutput struct {
 	// The Amazon Resource Name (ARN) of the data source.
 	DataSourceArn *string `type:"string"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
-	// for each Amazon Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
+	// for each Amazon Web Services account.
 	DataSourceId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -35999,12 +39713,20 @@ type UpdateDataSourcePermissionsOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSourcePermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateDataSourcePermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -36036,12 +39758,12 @@ func (s *UpdateDataSourcePermissionsOutput) SetStatus(v int64) *UpdateDataSource
 type UpdateFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder to update.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -36052,12 +39774,20 @@ type UpdateFolderInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFolderInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFolderInput) GoString() string {
 	return s.String()
 }
@@ -36111,25 +39841,33 @@ func (s *UpdateFolderInput) SetName(v string) *UpdateFolderInput {
 type UpdateFolderOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of the folder.
 	Arn *string `type:"string"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK.
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFolderOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFolderOutput) GoString() string {
 	return s.String()
 }
@@ -36161,12 +39899,12 @@ func (s *UpdateFolderOutput) SetStatus(v int64) *UpdateFolderOutput {
 type UpdateFolderPermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder to update.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -36178,12 +39916,20 @@ type UpdateFolderPermissionsInput struct {
 	RevokePermissions []*ResourcePermission `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFolderPermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFolderPermissionsInput) GoString() string {
 	return s.String()
 }
@@ -36263,28 +40009,36 @@ func (s *UpdateFolderPermissionsInput) SetRevokePermissions(v []*ResourcePermiss
 type UpdateFolderPermissionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of the folder.
 	Arn *string `type:"string"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
-	// Information about the permissions on the dashboard.
+	// Information about the permissions for the folder.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK.
+	// The HTTP status of the request.
 	Status *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFolderPermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateFolderPermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -36322,8 +40076,8 @@ func (s *UpdateFolderPermissionsOutput) SetStatus(v int64) *UpdateFolderPermissi
 type UpdateGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for the Amazon Web Services account; that the group is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the group is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
@@ -36343,12 +40097,20 @@ type UpdateGroupInput struct {
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupInput) GoString() string {
 	return s.String()
 }
@@ -36421,12 +40183,20 @@ type UpdateGroupOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateGroupOutput) GoString() string {
 	return s.String()
 }
@@ -36453,7 +40223,7 @@ type UpdateIAMPolicyAssignmentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the assignment, also called a rule. This name must be unique
-	// within an Amazon Web Services account;.
+	// within an Amazon Web Services account.
 	//
 	// AssignmentName is a required field
 	AssignmentName *string `location:"uri" locationName:"AssignmentName" min:"1" type:"string" required:"true"`
@@ -36469,13 +40239,13 @@ type UpdateIAMPolicyAssignmentInput struct {
 	//    the data source.
 	AssignmentStatus *string `type:"string" enum:"AssignmentStatus"`
 
-	// The ID of the Amazon Web Services account; that contains the IAM policy assignment.
+	// The ID of the Amazon Web Services account that contains the IAM policy assignment.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The QuickSight users, groups, or both that you want to assign the policy
-	// to.
+	// The Amazon QuickSight users, groups, or both that you want to assign the
+	// policy to.
 	Identities map[string][]*string `type:"map"`
 
 	// The namespace of the assignment.
@@ -36483,17 +40253,25 @@ type UpdateIAMPolicyAssignmentInput struct {
 	// Namespace is a required field
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 
-	// The ARN for the IAM policy to apply to the QuickSight users and groups specified
-	// in this assignment.
+	// The ARN for the IAM policy to apply to the Amazon QuickSight users and groups
+	// specified in this assignment.
 	PolicyArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIAMPolicyAssignmentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIAMPolicyAssignmentInput) GoString() string {
 	return s.String()
 }
@@ -36582,11 +40360,12 @@ type UpdateIAMPolicyAssignmentOutput struct {
 	//    the data source.
 	AssignmentStatus *string `type:"string" enum:"AssignmentStatus"`
 
-	// The QuickSight users, groups, or both that the IAM policy is assigned to.
+	// The Amazon QuickSight users, groups, or both that the IAM policy is assigned
+	// to.
 	Identities map[string][]*string `type:"map"`
 
-	// The ARN for the IAM policy applied to the QuickSight users and groups specified
-	// in this assignment.
+	// The ARN for the IAM policy applied to the Amazon QuickSight users and groups
+	// specified in this assignment.
 	PolicyArn *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -36596,12 +40375,20 @@ type UpdateIAMPolicyAssignmentOutput struct {
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIAMPolicyAssignmentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateIAMPolicyAssignmentOutput) GoString() string {
 	return s.String()
 }
@@ -36648,6 +40435,122 @@ func (s *UpdateIAMPolicyAssignmentOutput) SetStatus(v int64) *UpdateIAMPolicyAss
 	return s
 }
 
+type UpdateIpRestrictionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that contains the IP rules.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// A value that specifies whether IP rules are turned on.
+	Enabled *bool `type:"boolean"`
+
+	// A map that describes the updated IP rules with CIDR ranges and descriptions.
+	IpRestrictionRuleMap map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpRestrictionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpRestrictionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateIpRestrictionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateIpRestrictionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateIpRestrictionInput) SetAwsAccountId(v string) *UpdateIpRestrictionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *UpdateIpRestrictionInput) SetEnabled(v bool) *UpdateIpRestrictionInput {
+	s.Enabled = &v
+	return s
+}
+
+// SetIpRestrictionRuleMap sets the IpRestrictionRuleMap field's value.
+func (s *UpdateIpRestrictionInput) SetIpRestrictionRuleMap(v map[string]*string) *UpdateIpRestrictionInput {
+	s.IpRestrictionRuleMap = v
+	return s
+}
+
+type UpdateIpRestrictionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that contains the IP rules.
+	AwsAccountId *string `min:"12" type:"string"`
+
+	// The Amazon Web Services request ID for this operation.
+	RequestId *string `type:"string"`
+
+	// The HTTP status of the request.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpRestrictionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpRestrictionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateIpRestrictionOutput) SetAwsAccountId(v string) *UpdateIpRestrictionOutput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateIpRestrictionOutput) SetRequestId(v string) *UpdateIpRestrictionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateIpRestrictionOutput) SetStatus(v int64) *UpdateIpRestrictionOutput {
+	s.Status = &v
+	return s
+}
+
 type UpdateTemplateAliasInput struct {
 	_ struct{} `type:"structure"`
 
@@ -36659,7 +40562,7 @@ type UpdateTemplateAliasInput struct {
 	// AliasName is a required field
 	AliasName *string `location:"uri" locationName:"AliasName" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the template alias
+	// The ID of the Amazon Web Services account that contains the template alias
 	// that you're updating.
 	//
 	// AwsAccountId is a required field
@@ -36676,12 +40579,20 @@ type UpdateTemplateAliasInput struct {
 	TemplateVersionNumber *int64 `min:"1" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplateAliasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplateAliasInput) GoString() string {
 	return s.String()
 }
@@ -36757,12 +40668,20 @@ type UpdateTemplateAliasOutput struct {
 	TemplateAlias *TemplateAlias `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplateAliasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplateAliasOutput) GoString() string {
 	return s.String()
 }
@@ -36788,7 +40707,7 @@ func (s *UpdateTemplateAliasOutput) SetTemplateAlias(v *TemplateAlias) *UpdateTe
 type UpdateTemplateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Web Services account; that contains the template that
+	// The ID of the Amazon Web Services account that contains the template that
 	// you're updating.
 	//
 	// AwsAccountId is a required field
@@ -36802,8 +40721,8 @@ type UpdateTemplateInput struct {
 	// for a template or SourceAnalysis for an analysis. Both of these require an
 	// Amazon Resource Name (ARN). For SourceTemplate, specify the ARN of the source
 	// template. For SourceAnalysis, specify the ARN of the source analysis. The
-	// SourceTemplate ARN can contain any Amazon Web Services account; and any QuickSight-supported
-	// Amazon Web Services Region;.
+	// SourceTemplate ARN can contain any Amazon Web Services account and any Amazon
+	// QuickSight-supported Amazon Web Services Region;.
 	//
 	// Use the DataSetReferences entity within SourceTemplate or SourceAnalysis
 	// to list the replacement datasets for the placeholders listed in the original.
@@ -36824,12 +40743,20 @@ type UpdateTemplateInput struct {
 	VersionDescription *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplateInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplateInput) GoString() string {
 	return s.String()
 }
@@ -36923,12 +40850,20 @@ type UpdateTemplateOutput struct {
 	VersionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplateOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplateOutput) GoString() string {
 	return s.String()
 }
@@ -36972,7 +40907,7 @@ func (s *UpdateTemplateOutput) SetVersionArn(v string) *UpdateTemplateOutput {
 type UpdateTemplatePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Web Services account; that contains the template.
+	// The ID of the Amazon Web Services account that contains the template.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -36989,12 +40924,20 @@ type UpdateTemplatePermissionsInput struct {
 	TemplateId *string `location:"uri" locationName:"TemplateId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplatePermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplatePermissionsInput) GoString() string {
 	return s.String()
 }
@@ -37084,12 +41027,20 @@ type UpdateTemplatePermissionsOutput struct {
 	TemplateId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplatePermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateTemplatePermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -37132,8 +41083,8 @@ type UpdateThemeAliasInput struct {
 	// AliasName is a required field
 	AliasName *string `location:"uri" locationName:"AliasName" min:"1" type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services account; that contains the theme alias
-	// that you're updating.
+	// The ID of the Amazon Web Services account that contains the theme alias that
+	// you're updating.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -37149,12 +41100,20 @@ type UpdateThemeAliasInput struct {
 	ThemeVersionNumber *int64 `min:"1" type:"long" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateThemeAliasInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateThemeAliasInput) GoString() string {
 	return s.String()
 }
@@ -37230,12 +41189,20 @@ type UpdateThemeAliasOutput struct {
 	ThemeAlias *ThemeAlias `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateThemeAliasOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateThemeAliasOutput) GoString() string {
 	return s.String()
 }
@@ -37261,7 +41228,7 @@ func (s *UpdateThemeAliasOutput) SetThemeAlias(v *ThemeAlias) *UpdateThemeAliasO
 type UpdateThemeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Web Services account; that contains the theme that you're
+	// The ID of the Amazon Web Services account that contains the theme that you're
 	// updating.
 	//
 	// AwsAccountId is a required field
@@ -37290,12 +41257,20 @@ type UpdateThemeInput struct {
 	VersionDescription *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateThemeInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateThemeInput) GoString() string {
 	return s.String()
 }
@@ -37392,12 +41367,20 @@ type UpdateThemeOutput struct {
 	VersionArn *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateThemeOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateThemeOutput) GoString() string {
 	return s.String()
 }
@@ -37441,7 +41424,7 @@ func (s *UpdateThemeOutput) SetVersionArn(v string) *UpdateThemeOutput {
 type UpdateThemePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon Web Services account; that contains the theme.
+	// The ID of the Amazon Web Services account that contains the theme.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -37458,12 +41441,20 @@ type UpdateThemePermissionsInput struct {
 	ThemeId *string `location:"uri" locationName:"ThemeId" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateThemePermissionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateThemePermissionsInput) GoString() string {
 	return s.String()
 }
@@ -37553,12 +41544,20 @@ type UpdateThemePermissionsOutput struct {
 	ThemeId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateThemePermissionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateThemePermissionsOutput) GoString() string {
 	return s.String()
 }
@@ -37596,17 +41595,17 @@ func (s *UpdateThemePermissionsOutput) SetThemeId(v string) *UpdateThemePermissi
 type UpdateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for the Amazon Web Services account; that the user is in. Currently,
-	// you use the ID for the Amazon Web Services account; that contains your Amazon
+	// The ID for the Amazon Web Services account that the user is in. Currently,
+	// you use the ID for the Amazon Web Services account that contains your Amazon
 	// QuickSight account.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The URL of the custom OpenID Connect (OIDC) provider that provides identity
-	// to let a user federate into QuickSight with an associated AWS Identity and
-	// Access Management (IAM) role. This parameter should only be used when ExternalLoginFederationProviderType
-	// parameter is set to CUSTOM_OIDC.
+	// to let a user federate into Amazon QuickSight with an associated Identity
+	// and Access Management(IAM) role. This parameter should only be used when
+	// ExternalLoginFederationProviderType parameter is set to CUSTOM_OIDC.
 	CustomFederationProviderUrl *string `type:"string"`
 
 	// (Enterprise edition only) The name of the custom permissions profile that
@@ -37623,14 +41622,15 @@ type UpdateUserInput struct {
 	//
 	// A set of custom permissions includes any combination of these restrictions.
 	// Currently, you need to create the profile names for custom permission sets
-	// by using the QuickSight console. Then, you use the RegisterUser API operation
-	// to assign the named set of permissions to a QuickSight user.
+	// by using the Amazon QuickSight console. Then, you use the RegisterUser API
+	// operation to assign the named set of permissions to a QuickSight user.
 	//
-	// QuickSight custom permissions are applied through IAM policies. Therefore,
-	// they override the permissions typically granted by assigning QuickSight users
-	// to one of the default security cohorts in QuickSight (admin, author, reader).
+	// Amazon QuickSight custom permissions are applied through IAM policies. Therefore,
+	// they override the permissions typically granted by assigning Amazon QuickSight
+	// users to one of the default security cohorts in Amazon QuickSight (admin,
+	// author, reader).
 	//
-	// This feature is available only to QuickSight Enterprise edition subscriptions.
+	// This feature is available only to Amazon QuickSight Enterprise edition subscriptions.
 	CustomPermissionsName *string `min:"1" type:"string"`
 
 	// The email address of the user that you want to update.
@@ -37639,9 +41639,9 @@ type UpdateUserInput struct {
 	Email *string `type:"string" required:"true"`
 
 	// The type of supported external login provider that provides identity to let
-	// a user federate into QuickSight with an associated AWS Identity and Access
-	// Management (IAM) role. The type of supported external login provider can
-	// be one of the following.
+	// a user federate into Amazon QuickSight with an associated Identity and Access
+	// Management(IAM) role. The type of supported external login provider can be
+	// one of the following.
 	//
 	//    * COGNITO: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com.
 	//    When choosing the COGNITO provider type, don’t use the "CustomFederationProviderUrl"
@@ -37652,7 +41652,8 @@ type UpdateUserInput struct {
 	//    OIDC provider URL.
 	//
 	//    * NONE: This clears all the previously saved external login information
-	//    for a user. Use DescribeUser API to check the external login information.
+	//    for a user. Use the DescribeUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeUser.html)
+	//    API operation to check the external login information.
 	ExternalLoginFederationProviderType *string `type:"string"`
 
 	// The identity ID for a user in the external login provider.
@@ -37674,8 +41675,8 @@ type UpdateUserInput struct {
 	//    * ADMIN: A user who is an author, who can also manage Amazon QuickSight
 	//    settings.
 	//
-	// The name of the QuickSight role is invisible to the user except for the console
-	// screens dealing with permissions.
+	// The name of the Amazon QuickSight role is invisible to the user except for
+	// the console screens dealing with permissions.
 	//
 	// Role is a required field
 	Role *string `type:"string" required:"true" enum:"UserRole"`
@@ -37692,12 +41693,20 @@ type UpdateUserInput struct {
 	UserName *string `location:"uri" locationName:"UserName" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserInput) GoString() string {
 	return s.String()
 }
@@ -37812,12 +41821,20 @@ type UpdateUserOutput struct {
 	User *User `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateUserOutput) GoString() string {
 	return s.String()
 }
@@ -37860,12 +41877,20 @@ type UploadSettings struct {
 	TextQualifier *string `type:"string" enum:"TextQualifier"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UploadSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UploadSettings) GoString() string {
 	return s.String()
 }
@@ -37963,7 +41988,7 @@ type User struct {
 	//    * AUTHOR: A user who can create data sources, datasets, analyses, and
 	//    dashboards.
 	//
-	//    * ADMIN: A user who is an author, who can also manage Amazon QuickSight
+	//    * ADMIN: A user who is an author, who can also manage Amazon Amazon QuickSight
 	//    settings.
 	//
 	//    * RESTRICTED_READER: This role isn't currently available for use.
@@ -37971,16 +41996,25 @@ type User struct {
 	//    * RESTRICTED_AUTHOR: This role isn't currently available for use.
 	Role *string `type:"string" enum:"UserRole"`
 
-	// The user's user name.
+	// The user's user name. In the output, the value for UserName is N/A when the
+	// value for IdentityType is IAM and the corresponding IAM user is deleted.
 	UserName *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s User) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s User) GoString() string {
 	return s.String()
 }
@@ -38064,12 +42098,20 @@ type UserNotFoundException struct {
 	RequestId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UserNotFoundException) GoString() string {
 	return s.String()
 }
@@ -38122,12 +42164,20 @@ type VpcConnectionProperties struct {
 	VpcConnectionArn *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VpcConnectionProperties) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VpcConnectionProperties) GoString() string {
 	return s.String()
 }
@@ -38252,6 +42302,22 @@ func ColumnDataType_Values() []string {
 		ColumnDataTypeInteger,
 		ColumnDataTypeDecimal,
 		ColumnDataTypeDatetime,
+	}
+}
+
+const (
+	// ColumnTagNameColumnGeographicRole is a ColumnTagName enum value
+	ColumnTagNameColumnGeographicRole = "COLUMN_GEOGRAPHIC_ROLE"
+
+	// ColumnTagNameColumnDescription is a ColumnTagName enum value
+	ColumnTagNameColumnDescription = "COLUMN_DESCRIPTION"
+)
+
+// ColumnTagName_Values returns all elements of the ColumnTagName enum
+func ColumnTagName_Values() []string {
+	return []string{
+		ColumnTagNameColumnGeographicRole,
+		ColumnTagNameColumnDescription,
 	}
 }
 
@@ -38472,6 +42538,12 @@ const (
 
 	// DataSourceTypeTimestream is a DataSourceType enum value
 	DataSourceTypeTimestream = "TIMESTREAM"
+
+	// DataSourceTypeAmazonOpensearch is a DataSourceType enum value
+	DataSourceTypeAmazonOpensearch = "AMAZON_OPENSEARCH"
+
+	// DataSourceTypeExasol is a DataSourceType enum value
+	DataSourceTypeExasol = "EXASOL"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -38500,6 +42572,8 @@ func DataSourceType_Values() []string {
 		DataSourceTypeTeradata,
 		DataSourceTypeTwitter,
 		DataSourceTypeTimestream,
+		DataSourceTypeAmazonOpensearch,
+		DataSourceTypeExasol,
 	}
 }
 
@@ -38847,6 +42921,18 @@ const (
 
 	// IngestionErrorTypeInternalServiceError is a IngestionErrorType enum value
 	IngestionErrorTypeInternalServiceError = "INTERNAL_SERVICE_ERROR"
+
+	// IngestionErrorTypeRefreshSuppressedByEdit is a IngestionErrorType enum value
+	IngestionErrorTypeRefreshSuppressedByEdit = "REFRESH_SUPPRESSED_BY_EDIT"
+
+	// IngestionErrorTypePermissionNotFound is a IngestionErrorType enum value
+	IngestionErrorTypePermissionNotFound = "PERMISSION_NOT_FOUND"
+
+	// IngestionErrorTypeElasticsearchCursorNotEnabled is a IngestionErrorType enum value
+	IngestionErrorTypeElasticsearchCursorNotEnabled = "ELASTICSEARCH_CURSOR_NOT_ENABLED"
+
+	// IngestionErrorTypeCursorNotEnabled is a IngestionErrorType enum value
+	IngestionErrorTypeCursorNotEnabled = "CURSOR_NOT_ENABLED"
 )
 
 // IngestionErrorType_Values returns all elements of the IngestionErrorType enum
@@ -38892,6 +42978,10 @@ func IngestionErrorType_Values() []string {
 		IngestionErrorTypeDataSourceConnectionFailed,
 		IngestionErrorTypeFailureToProcessJsonFile,
 		IngestionErrorTypeInternalServiceError,
+		IngestionErrorTypeRefreshSuppressedByEdit,
+		IngestionErrorTypePermissionNotFound,
+		IngestionErrorTypeElasticsearchCursorNotEnabled,
+		IngestionErrorTypeCursorNotEnabled,
 	}
 }
 
@@ -38911,6 +43001,8 @@ func IngestionRequestSource_Values() []string {
 	}
 }
 
+// This defines the type of ingestion request. This is returned as part of create
+// ingestion response.
 const (
 	// IngestionRequestTypeInitialIngestion is a IngestionRequestType enum value
 	IngestionRequestTypeInitialIngestion = "INITIAL_INGESTION"
@@ -38964,6 +43056,24 @@ func IngestionStatus_Values() []string {
 		IngestionStatusFailed,
 		IngestionStatusCompleted,
 		IngestionStatusCancelled,
+	}
+}
+
+// This defines the type of ingestion user wants to trigger. This is part of
+// create ingestion request.
+const (
+	// IngestionTypeIncrementalRefresh is a IngestionType enum value
+	IngestionTypeIncrementalRefresh = "INCREMENTAL_REFRESH"
+
+	// IngestionTypeFullRefresh is a IngestionType enum value
+	IngestionTypeFullRefresh = "FULL_REFRESH"
+)
+
+// IngestionType_Values returns all elements of the IngestionType enum
+func IngestionType_Values() []string {
+	return []string{
+		IngestionTypeIncrementalRefresh,
+		IngestionTypeFullRefresh,
 	}
 }
 

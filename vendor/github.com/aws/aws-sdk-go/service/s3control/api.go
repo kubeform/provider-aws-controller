@@ -377,7 +377,7 @@ func (c *S3Control) CreateJobRequest(input *CreateJobInput) (req *request.Reques
 //
 // You can use S3 Batch Operations to perform large-scale batch actions on Amazon
 // S3 objects. Batch Operations can run a single action on lists of Amazon S3
-// objects that you specify. For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// objects that you specify. For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
 // This action creates a S3 Batch Operations job.
@@ -427,6 +427,108 @@ func (c *S3Control) CreateJob(input *CreateJobInput) (*CreateJobOutput, error) {
 // for more information on using Contexts.
 func (c *S3Control) CreateJobWithContext(ctx aws.Context, input *CreateJobInput, opts ...request.Option) (*CreateJobOutput, error) {
 	req, out := c.CreateJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateMultiRegionAccessPoint = "CreateMultiRegionAccessPoint"
+
+// CreateMultiRegionAccessPointRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMultiRegionAccessPoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMultiRegionAccessPoint for more information on using the CreateMultiRegionAccessPoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateMultiRegionAccessPointRequest method.
+//    req, resp := client.CreateMultiRegionAccessPointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateMultiRegionAccessPoint
+func (c *S3Control) CreateMultiRegionAccessPointRequest(input *CreateMultiRegionAccessPointInput) (req *request.Request, output *CreateMultiRegionAccessPointOutput) {
+	op := &request.Operation{
+		Name:       opCreateMultiRegionAccessPoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20180820/async-requests/mrap/create",
+	}
+
+	if input == nil {
+		input = &CreateMultiRegionAccessPointInput{}
+	}
+
+	output = &CreateMultiRegionAccessPointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// CreateMultiRegionAccessPoint API operation for AWS S3 Control.
+//
+// Creates a Multi-Region Access Point and associates it with the specified
+// buckets. For more information about creating Multi-Region Access Points,
+// see Creating Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// This request is asynchronous, meaning that you might receive a response before
+// the command has completed. When this request provides a response, it provides
+// a token that you can use to monitor the status of the request with DescribeMultiRegionAccessPointOperation.
+//
+// The following actions are related to CreateMultiRegionAccessPoint:
+//
+//    * DeleteMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html)
+//
+//    * DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+//
+//    * GetMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html)
+//
+//    * ListMultiRegionAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation CreateMultiRegionAccessPoint for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateMultiRegionAccessPoint
+func (c *S3Control) CreateMultiRegionAccessPoint(input *CreateMultiRegionAccessPointInput) (*CreateMultiRegionAccessPointOutput, error) {
+	req, out := c.CreateMultiRegionAccessPointRequest(input)
+	return out, req.Send()
+}
+
+// CreateMultiRegionAccessPointWithContext is the same as CreateMultiRegionAccessPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMultiRegionAccessPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) CreateMultiRegionAccessPointWithContext(ctx aws.Context, input *CreateMultiRegionAccessPointInput, opts ...request.Option) (*CreateMultiRegionAccessPointOutput, error) {
+	req, out := c.CreateMultiRegionAccessPointRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1065,11 +1167,11 @@ func (c *S3Control) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (r
 //
 // This implementation of the DELETE action uses the policy subresource to delete
 // the policy of a specified Amazon S3 on Outposts bucket. If you are using
-// an identity other than the root user of the account that owns the bucket,
-// the calling identity must have the s3-outposts:DeleteBucketPolicy permissions
-// on the specified Outposts bucket and belong to the bucket owner's account
-// to use this action. For more information, see Using Amazon S3 on Outposts
-// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+// an identity other than the root user of the Amazon Web Services account that
+// owns the bucket, the calling identity must have the s3-outposts:DeleteBucketPolicy
+// permissions on the specified Outposts bucket and belong to the bucket owner's
+// account to use this action. For more information, see Using Amazon S3 on
+// Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in Amazon S3 User Guide.
 //
 // If you don't have DeleteBucketPolicy permissions, Amazon S3 returns a 403
@@ -1077,9 +1179,9 @@ func (c *S3Control) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (r
 // using an identity that belongs to the bucket owner's account, Amazon S3 returns
 // a 405 Method Not Allowed error.
 //
-// As a security precaution, the root user of the account that owns a bucket
-// can always use this action, even if the policy explicitly denies the root
-// user the ability to perform this action.
+// As a security precaution, the root user of the Amazon Web Services account
+// that owns a bucket can always use this action, even if the policy explicitly
+// denies the root user the ability to perform this action.
 //
 // For more information about bucket policies, see Using Bucket Policies and
 // User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
@@ -1328,6 +1430,107 @@ func (c *S3Control) DeleteJobTaggingWithContext(ctx aws.Context, input *DeleteJo
 	return out, req.Send()
 }
 
+const opDeleteMultiRegionAccessPoint = "DeleteMultiRegionAccessPoint"
+
+// DeleteMultiRegionAccessPointRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMultiRegionAccessPoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMultiRegionAccessPoint for more information on using the DeleteMultiRegionAccessPoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteMultiRegionAccessPointRequest method.
+//    req, resp := client.DeleteMultiRegionAccessPointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteMultiRegionAccessPoint
+func (c *S3Control) DeleteMultiRegionAccessPointRequest(input *DeleteMultiRegionAccessPointInput) (req *request.Request, output *DeleteMultiRegionAccessPointOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMultiRegionAccessPoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20180820/async-requests/mrap/delete",
+	}
+
+	if input == nil {
+		input = &DeleteMultiRegionAccessPointInput{}
+	}
+
+	output = &DeleteMultiRegionAccessPointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// DeleteMultiRegionAccessPoint API operation for AWS S3 Control.
+//
+// Deletes a Multi-Region Access Point. This action does not delete the buckets
+// associated with the Multi-Region Access Point, only the Multi-Region Access
+// Point itself.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// This request is asynchronous, meaning that you might receive a response before
+// the command has completed. When this request provides a response, it provides
+// a token that you can use to monitor the status of the request with DescribeMultiRegionAccessPointOperation.
+//
+// The following actions are related to DeleteMultiRegionAccessPoint:
+//
+//    * CreateMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html)
+//
+//    * DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+//
+//    * GetMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html)
+//
+//    * ListMultiRegionAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteMultiRegionAccessPoint for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteMultiRegionAccessPoint
+func (c *S3Control) DeleteMultiRegionAccessPoint(input *DeleteMultiRegionAccessPointInput) (*DeleteMultiRegionAccessPointOutput, error) {
+	req, out := c.DeleteMultiRegionAccessPointRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMultiRegionAccessPointWithContext is the same as DeleteMultiRegionAccessPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMultiRegionAccessPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteMultiRegionAccessPointWithContext(ctx aws.Context, input *DeleteMultiRegionAccessPointInput, opts ...request.Option) (*DeleteMultiRegionAccessPointOutput, error) {
+	req, out := c.DeleteMultiRegionAccessPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeletePublicAccessBlock = "DeletePublicAccessBlock"
 
 // DeletePublicAccessBlockRequest generates a "aws/request.Request" representing the
@@ -1375,8 +1578,8 @@ func (c *S3Control) DeletePublicAccessBlockRequest(input *DeletePublicAccessBloc
 
 // DeletePublicAccessBlock API operation for AWS S3 Control.
 //
-// Removes the PublicAccessBlock configuration for an account. For more information,
-// see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+// Removes the PublicAccessBlock configuration for an Amazon Web Services account.
+// For more information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
 // Related actions include:
 //
@@ -1629,7 +1832,7 @@ func (c *S3Control) DescribeJobRequest(input *DescribeJobInput) (req *request.Re
 // DescribeJob API operation for AWS S3 Control.
 //
 // Retrieves the configuration parameters and status for a Batch Operations
-// job. For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// job. For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -1675,6 +1878,100 @@ func (c *S3Control) DescribeJob(input *DescribeJobInput) (*DescribeJobOutput, er
 // for more information on using Contexts.
 func (c *S3Control) DescribeJobWithContext(ctx aws.Context, input *DescribeJobInput, opts ...request.Option) (*DescribeJobOutput, error) {
 	req, out := c.DescribeJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeMultiRegionAccessPointOperation = "DescribeMultiRegionAccessPointOperation"
+
+// DescribeMultiRegionAccessPointOperationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMultiRegionAccessPointOperation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeMultiRegionAccessPointOperation for more information on using the DescribeMultiRegionAccessPointOperation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeMultiRegionAccessPointOperationRequest method.
+//    req, resp := client.DescribeMultiRegionAccessPointOperationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DescribeMultiRegionAccessPointOperation
+func (c *S3Control) DescribeMultiRegionAccessPointOperationRequest(input *DescribeMultiRegionAccessPointOperationInput) (req *request.Request, output *DescribeMultiRegionAccessPointOperationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeMultiRegionAccessPointOperation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/async-requests/mrap/{request_token+}",
+	}
+
+	if input == nil {
+		input = &DescribeMultiRegionAccessPointOperationInput{}
+	}
+
+	output = &DescribeMultiRegionAccessPointOperationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// DescribeMultiRegionAccessPointOperation API operation for AWS S3 Control.
+//
+// Retrieves the status of an asynchronous request to manage a Multi-Region
+// Access Point. For more information about managing Multi-Region Access Points
+// and how asynchronous requests work, see Managing Multi-Region Access Points
+// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// The following actions are related to GetMultiRegionAccessPoint:
+//
+//    * CreateMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html)
+//
+//    * DeleteMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html)
+//
+//    * GetMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html)
+//
+//    * ListMultiRegionAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DescribeMultiRegionAccessPointOperation for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DescribeMultiRegionAccessPointOperation
+func (c *S3Control) DescribeMultiRegionAccessPointOperation(input *DescribeMultiRegionAccessPointOperationInput) (*DescribeMultiRegionAccessPointOperationOutput, error) {
+	req, out := c.DescribeMultiRegionAccessPointOperationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeMultiRegionAccessPointOperationWithContext is the same as DescribeMultiRegionAccessPointOperation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeMultiRegionAccessPointOperation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DescribeMultiRegionAccessPointOperationWithContext(ctx aws.Context, input *DescribeMultiRegionAccessPointOperationInput, opts ...request.Option) (*DescribeMultiRegionAccessPointOperationOutput, error) {
+	req, out := c.DescribeMultiRegionAccessPointOperationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2316,12 +2613,12 @@ func (c *S3Control) GetBucketRequest(input *GetBucketInput) (req *request.Reques
 // S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon S3 User Guide.
 //
-// If you are using an identity other than the root user of the account that
-// owns the Outposts bucket, the calling identity must have the s3-outposts:GetBucket
-// permissions on the specified Outposts bucket and belong to the Outposts bucket
-// owner's account in order to use this action. Only users from Outposts bucket
-// owner account with the right permissions can perform actions on an Outposts
-// bucket.
+// If you are using an identity other than the root user of the Amazon Web Services
+// account that owns the Outposts bucket, the calling identity must have the
+// s3-outposts:GetBucket permissions on the specified Outposts bucket and belong
+// to the Outposts bucket owner's account in order to use this action. Only
+// users from Outposts bucket owner account with the right permissions can perform
+// actions on an Outposts bucket.
 //
 // If you don't have s3-outposts:GetBucket permissions or you're not using an
 // identity that belongs to the bucket owner's account, Amazon S3 returns a
@@ -2544,19 +2841,19 @@ func (c *S3Control) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *re
 // see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon S3 User Guide.
 //
-// If you are using an identity other than the root user of the account that
-// owns the bucket, the calling identity must have the GetBucketPolicy permissions
-// on the specified bucket and belong to the bucket owner's account in order
-// to use this action.
+// If you are using an identity other than the root user of the Amazon Web Services
+// account that owns the bucket, the calling identity must have the GetBucketPolicy
+// permissions on the specified bucket and belong to the bucket owner's account
+// in order to use this action.
 //
 // Only users from Outposts bucket owner account with the right permissions
 // can perform actions on an Outposts bucket. If you don't have s3-outposts:GetBucketPolicy
 // permissions or you're not using an identity that belongs to the bucket owner's
 // account, Amazon S3 returns a 403 Access Denied error.
 //
-// As a security precaution, the root user of the account that owns a bucket
-// can always use this action, even if the policy explicitly denies the root
-// user the ability to perform this action.
+// As a security precaution, the root user of the Amazon Web Services account
+// that owns a bucket can always use this action, even if the policy explicitly
+// denies the root user the ability to perform this action.
 //
 // For more information about bucket policies, see Using Bucket Policies and
 // User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
@@ -2809,6 +3106,285 @@ func (c *S3Control) GetJobTaggingWithContext(ctx aws.Context, input *GetJobTaggi
 	return out, req.Send()
 }
 
+const opGetMultiRegionAccessPoint = "GetMultiRegionAccessPoint"
+
+// GetMultiRegionAccessPointRequest generates a "aws/request.Request" representing the
+// client's request for the GetMultiRegionAccessPoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMultiRegionAccessPoint for more information on using the GetMultiRegionAccessPoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMultiRegionAccessPointRequest method.
+//    req, resp := client.GetMultiRegionAccessPointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPoint
+func (c *S3Control) GetMultiRegionAccessPointRequest(input *GetMultiRegionAccessPointInput) (req *request.Request, output *GetMultiRegionAccessPointOutput) {
+	op := &request.Operation{
+		Name:       opGetMultiRegionAccessPoint,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/mrap/instances/{name}",
+	}
+
+	if input == nil {
+		input = &GetMultiRegionAccessPointInput{}
+	}
+
+	output = &GetMultiRegionAccessPointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetMultiRegionAccessPoint API operation for AWS S3 Control.
+//
+// Returns configuration information about the specified Multi-Region Access
+// Point.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// The following actions are related to GetMultiRegionAccessPoint:
+//
+//    * CreateMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html)
+//
+//    * DeleteMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html)
+//
+//    * DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+//
+//    * ListMultiRegionAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetMultiRegionAccessPoint for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPoint
+func (c *S3Control) GetMultiRegionAccessPoint(input *GetMultiRegionAccessPointInput) (*GetMultiRegionAccessPointOutput, error) {
+	req, out := c.GetMultiRegionAccessPointRequest(input)
+	return out, req.Send()
+}
+
+// GetMultiRegionAccessPointWithContext is the same as GetMultiRegionAccessPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMultiRegionAccessPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetMultiRegionAccessPointWithContext(ctx aws.Context, input *GetMultiRegionAccessPointInput, opts ...request.Option) (*GetMultiRegionAccessPointOutput, error) {
+	req, out := c.GetMultiRegionAccessPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMultiRegionAccessPointPolicy = "GetMultiRegionAccessPointPolicy"
+
+// GetMultiRegionAccessPointPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetMultiRegionAccessPointPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMultiRegionAccessPointPolicy for more information on using the GetMultiRegionAccessPointPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMultiRegionAccessPointPolicyRequest method.
+//    req, resp := client.GetMultiRegionAccessPointPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPointPolicy
+func (c *S3Control) GetMultiRegionAccessPointPolicyRequest(input *GetMultiRegionAccessPointPolicyInput) (req *request.Request, output *GetMultiRegionAccessPointPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetMultiRegionAccessPointPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/mrap/instances/{name}/policy",
+	}
+
+	if input == nil {
+		input = &GetMultiRegionAccessPointPolicyInput{}
+	}
+
+	output = &GetMultiRegionAccessPointPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetMultiRegionAccessPointPolicy API operation for AWS S3 Control.
+//
+// Returns the access control policy of the specified Multi-Region Access Point.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// The following actions are related to GetMultiRegionAccessPointPolicy:
+//
+//    * GetMultiRegionAccessPointPolicyStatus (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPointPolicyStatus.html)
+//
+//    * PutMultiRegionAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutMultiRegionAccessPointPolicy.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetMultiRegionAccessPointPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPointPolicy
+func (c *S3Control) GetMultiRegionAccessPointPolicy(input *GetMultiRegionAccessPointPolicyInput) (*GetMultiRegionAccessPointPolicyOutput, error) {
+	req, out := c.GetMultiRegionAccessPointPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetMultiRegionAccessPointPolicyWithContext is the same as GetMultiRegionAccessPointPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMultiRegionAccessPointPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetMultiRegionAccessPointPolicyWithContext(ctx aws.Context, input *GetMultiRegionAccessPointPolicyInput, opts ...request.Option) (*GetMultiRegionAccessPointPolicyOutput, error) {
+	req, out := c.GetMultiRegionAccessPointPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMultiRegionAccessPointPolicyStatus = "GetMultiRegionAccessPointPolicyStatus"
+
+// GetMultiRegionAccessPointPolicyStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetMultiRegionAccessPointPolicyStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMultiRegionAccessPointPolicyStatus for more information on using the GetMultiRegionAccessPointPolicyStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMultiRegionAccessPointPolicyStatusRequest method.
+//    req, resp := client.GetMultiRegionAccessPointPolicyStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPointPolicyStatus
+func (c *S3Control) GetMultiRegionAccessPointPolicyStatusRequest(input *GetMultiRegionAccessPointPolicyStatusInput) (req *request.Request, output *GetMultiRegionAccessPointPolicyStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetMultiRegionAccessPointPolicyStatus,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/mrap/instances/{name}/policystatus",
+	}
+
+	if input == nil {
+		input = &GetMultiRegionAccessPointPolicyStatusInput{}
+	}
+
+	output = &GetMultiRegionAccessPointPolicyStatusOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetMultiRegionAccessPointPolicyStatus API operation for AWS S3 Control.
+//
+// Indicates whether the specified Multi-Region Access Point has an access control
+// policy that allows public access.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// The following actions are related to GetMultiRegionAccessPointPolicyStatus:
+//
+//    * GetMultiRegionAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPointPolicy.html)
+//
+//    * PutMultiRegionAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutMultiRegionAccessPointPolicy.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetMultiRegionAccessPointPolicyStatus for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPointPolicyStatus
+func (c *S3Control) GetMultiRegionAccessPointPolicyStatus(input *GetMultiRegionAccessPointPolicyStatusInput) (*GetMultiRegionAccessPointPolicyStatusOutput, error) {
+	req, out := c.GetMultiRegionAccessPointPolicyStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetMultiRegionAccessPointPolicyStatusWithContext is the same as GetMultiRegionAccessPointPolicyStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMultiRegionAccessPointPolicyStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetMultiRegionAccessPointPolicyStatusWithContext(ctx aws.Context, input *GetMultiRegionAccessPointPolicyStatusInput, opts ...request.Option) (*GetMultiRegionAccessPointPolicyStatusOutput, error) {
+	req, out := c.GetMultiRegionAccessPointPolicyStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPublicAccessBlock = "GetPublicAccessBlock"
 
 // GetPublicAccessBlockRequest generates a "aws/request.Request" representing the
@@ -2855,8 +3431,8 @@ func (c *S3Control) GetPublicAccessBlockRequest(input *GetPublicAccessBlockInput
 
 // GetPublicAccessBlock API operation for AWS S3 Control.
 //
-// Retrieves the PublicAccessBlock configuration for an account. For more information,
-// see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+// Retrieves the PublicAccessBlock configuration for an Amazon Web Services
+// account. For more information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
 // Related actions include:
 //
@@ -3274,11 +3850,10 @@ func (c *S3Control) ListAccessPointsForObjectLambdaRequest(input *ListAccessPoin
 
 // ListAccessPointsForObjectLambda API operation for AWS S3 Control.
 //
-// Returns a list of the access points associated with the Object Lambda Access
-// Point. You can retrieve up to 1000 access points per call. If there are more
-// than 1,000 access points (or the number specified in maxResults, whichever
-// is less), the response will include a continuation token that you can use
-// to list the additional access points.
+// Returns some or all (up to 1,000) access points associated with the Object
+// Lambda Access Point per call. If there are more access points than what can
+// be returned in one call, the response will include a continuation token that
+// you can use to list the additional access points.
 //
 // The following actions are related to ListAccessPointsForObjectLambda:
 //
@@ -3421,8 +3996,8 @@ func (c *S3Control) ListJobsRequest(input *ListJobsInput) (req *request.Request,
 // ListJobs API operation for AWS S3 Control.
 //
 // Lists current S3 Batch Operations jobs and jobs that have ended within the
-// last 30 days for the account making the request. For more information, see
-// S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// last 30 days for the Amazon Web Services account making the request. For
+// more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -3516,6 +4091,162 @@ func (c *S3Control) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInp
 
 	for p.Next() {
 		if !fn(p.Page().(*ListJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMultiRegionAccessPoints = "ListMultiRegionAccessPoints"
+
+// ListMultiRegionAccessPointsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMultiRegionAccessPoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMultiRegionAccessPoints for more information on using the ListMultiRegionAccessPoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMultiRegionAccessPointsRequest method.
+//    req, resp := client.ListMultiRegionAccessPointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListMultiRegionAccessPoints
+func (c *S3Control) ListMultiRegionAccessPointsRequest(input *ListMultiRegionAccessPointsInput) (req *request.Request, output *ListMultiRegionAccessPointsOutput) {
+	op := &request.Operation{
+		Name:       opListMultiRegionAccessPoints,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/mrap/instances",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMultiRegionAccessPointsInput{}
+	}
+
+	output = &ListMultiRegionAccessPointsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// ListMultiRegionAccessPoints API operation for AWS S3 Control.
+//
+// Returns a list of the Multi-Region Access Points currently associated with
+// the specified Amazon Web Services account. Each call can return up to 100
+// Multi-Region Access Points, the maximum number of Multi-Region Access Points
+// that can be associated with a single account.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// The following actions are related to ListMultiRegionAccessPoint:
+//
+//    * CreateMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html)
+//
+//    * DeleteMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html)
+//
+//    * DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+//
+//    * GetMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation ListMultiRegionAccessPoints for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListMultiRegionAccessPoints
+func (c *S3Control) ListMultiRegionAccessPoints(input *ListMultiRegionAccessPointsInput) (*ListMultiRegionAccessPointsOutput, error) {
+	req, out := c.ListMultiRegionAccessPointsRequest(input)
+	return out, req.Send()
+}
+
+// ListMultiRegionAccessPointsWithContext is the same as ListMultiRegionAccessPoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMultiRegionAccessPoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListMultiRegionAccessPointsWithContext(ctx aws.Context, input *ListMultiRegionAccessPointsInput, opts ...request.Option) (*ListMultiRegionAccessPointsOutput, error) {
+	req, out := c.ListMultiRegionAccessPointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMultiRegionAccessPointsPages iterates over the pages of a ListMultiRegionAccessPoints operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMultiRegionAccessPoints method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMultiRegionAccessPoints operation.
+//    pageNum := 0
+//    err := client.ListMultiRegionAccessPointsPages(params,
+//        func(page *s3control.ListMultiRegionAccessPointsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *S3Control) ListMultiRegionAccessPointsPages(input *ListMultiRegionAccessPointsInput, fn func(*ListMultiRegionAccessPointsOutput, bool) bool) error {
+	return c.ListMultiRegionAccessPointsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMultiRegionAccessPointsPagesWithContext same as ListMultiRegionAccessPointsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListMultiRegionAccessPointsPagesWithContext(ctx aws.Context, input *ListMultiRegionAccessPointsInput, fn func(*ListMultiRegionAccessPointsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMultiRegionAccessPointsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMultiRegionAccessPointsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMultiRegionAccessPointsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4239,19 +4970,19 @@ func (c *S3Control) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *re
 // see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon S3 User Guide.
 //
-// If you are using an identity other than the root user of the account that
-// owns the Outposts bucket, the calling identity must have the PutBucketPolicy
-// permissions on the specified Outposts bucket and belong to the bucket owner's
-// account in order to use this action.
+// If you are using an identity other than the root user of the Amazon Web Services
+// account that owns the Outposts bucket, the calling identity must have the
+// PutBucketPolicy permissions on the specified Outposts bucket and belong to
+// the bucket owner's account in order to use this action.
 //
 // If you don't have PutBucketPolicy permissions, Amazon S3 returns a 403 Access
 // Denied error. If you have the correct permissions, but you're not using an
 // identity that belongs to the bucket owner's account, Amazon S3 returns a
 // 405 Method Not Allowed error.
 //
-// As a security precaution, the root user of the account that owns a bucket
-// can always use this action, even if the policy explicitly denies the root
-// user the ability to perform this action.
+// As a security precaution, the root user of the Amazon Web Services account
+// that owns a bucket can always use this action, even if the policy explicitly
+// denies the root user the ability to perform this action.
 //
 // For more information about bucket policies, see Using Bucket Policies and
 // User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
@@ -4362,13 +5093,13 @@ func (c *S3Control) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *
 // in the Amazon S3 User Guide.
 //
 // Use tags to organize your Amazon Web Services bill to reflect your own cost
-// structure. To do this, sign up to get your account bill with tag key values
-// included. Then, to see the cost of combined resources, organize your billing
-// information according to resources with the same tag key values. For example,
-// you can tag several resources with a specific application name, and then
-// organize your billing information to see the total cost of that application
-// across several services. For more information, see Cost allocation and tagging
-// (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html).
+// structure. To do this, sign up to get your Amazon Web Services account bill
+// with tag key values included. Then, to see the cost of combined resources,
+// organize your billing information according to resources with the same tag
+// key values. For example, you can tag several resources with a specific application
+// name, and then organize your billing information to see the total cost of
+// that application across several services. For more information, see Cost
+// allocation and tagging (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html).
 //
 // Within a bucket, if you add a tag that has the same key as an existing tag,
 // the new value overwrites the old value. For more information, see Using cost
@@ -4567,6 +5298,100 @@ func (c *S3Control) PutJobTaggingWithContext(ctx aws.Context, input *PutJobTaggi
 	return out, req.Send()
 }
 
+const opPutMultiRegionAccessPointPolicy = "PutMultiRegionAccessPointPolicy"
+
+// PutMultiRegionAccessPointPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutMultiRegionAccessPointPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutMultiRegionAccessPointPolicy for more information on using the PutMultiRegionAccessPointPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutMultiRegionAccessPointPolicyRequest method.
+//    req, resp := client.PutMultiRegionAccessPointPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutMultiRegionAccessPointPolicy
+func (c *S3Control) PutMultiRegionAccessPointPolicyRequest(input *PutMultiRegionAccessPointPolicyInput) (req *request.Request, output *PutMultiRegionAccessPointPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutMultiRegionAccessPointPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20180820/async-requests/mrap/put-policy",
+	}
+
+	if input == nil {
+		input = &PutMultiRegionAccessPointPolicyInput{}
+	}
+
+	output = &PutMultiRegionAccessPointPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// PutMultiRegionAccessPointPolicy API operation for AWS S3 Control.
+//
+// Associates an access control policy with the specified Multi-Region Access
+// Point. Each Multi-Region Access Point can have only one policy, so a request
+// made to this action replaces any existing policy that is associated with
+// the specified Multi-Region Access Point.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// The following actions are related to PutMultiRegionAccessPointPolicy:
+//
+//    * GetMultiRegionAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPointPolicy.html)
+//
+//    * GetMultiRegionAccessPointPolicyStatus (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPointPolicyStatus.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutMultiRegionAccessPointPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutMultiRegionAccessPointPolicy
+func (c *S3Control) PutMultiRegionAccessPointPolicy(input *PutMultiRegionAccessPointPolicyInput) (*PutMultiRegionAccessPointPolicyOutput, error) {
+	req, out := c.PutMultiRegionAccessPointPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutMultiRegionAccessPointPolicyWithContext is the same as PutMultiRegionAccessPointPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutMultiRegionAccessPointPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutMultiRegionAccessPointPolicyWithContext(ctx aws.Context, input *PutMultiRegionAccessPointPolicyInput, opts ...request.Option) (*PutMultiRegionAccessPointPolicyOutput, error) {
+	req, out := c.PutMultiRegionAccessPointPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutPublicAccessBlock = "PutPublicAccessBlock"
 
 // PutPublicAccessBlockRequest generates a "aws/request.Request" representing the
@@ -4614,8 +5439,10 @@ func (c *S3Control) PutPublicAccessBlockRequest(input *PutPublicAccessBlockInput
 
 // PutPublicAccessBlock API operation for AWS S3 Control.
 //
-// Creates or modifies the PublicAccessBlock configuration for an account. For
-// more information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+// Creates or modifies the PublicAccessBlock configuration for an Amazon Web
+// Services account. For this operation, users must have the s3:PutBucketPublicAccessBlock
+// permission. For more information, see Using Amazon S3 block public access
+// (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
 // Related actions include:
 //
@@ -4867,7 +5694,7 @@ func (c *S3Control) UpdateJobPriorityRequest(input *UpdateJobPriorityInput) (req
 // UpdateJobPriority API operation for AWS S3 Control.
 //
 // Updates an existing S3 Batch Operations job's priority. For more information,
-// see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -4966,7 +5793,7 @@ func (c *S3Control) UpdateJobStatusRequest(input *UpdateJobStatusInput) (req *re
 //
 // Updates the status for the specified job. Use this action to confirm that
 // you want to run a job or to cancel an existing job. For more information,
-// see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -5028,12 +5855,20 @@ type AbortIncompleteMultipartUpload struct {
 	DaysAfterInitiation *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AbortIncompleteMultipartUpload) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AbortIncompleteMultipartUpload) GoString() string {
 	return s.String()
 }
@@ -5081,12 +5916,20 @@ type AccessPoint struct {
 	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessPoint) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccessPoint) GoString() string {
 	return s.String()
 }
@@ -5140,12 +5983,20 @@ type AccountLevel struct {
 	BucketLevel *BucketLevel `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountLevel) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AccountLevel) GoString() string {
 	return s.String()
 }
@@ -5188,12 +6039,20 @@ type ActivityMetrics struct {
 	IsEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActivityMetrics) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ActivityMetrics) GoString() string {
 	return s.String()
 }
@@ -5201,6 +6060,237 @@ func (s ActivityMetrics) GoString() string {
 // SetIsEnabled sets the IsEnabled field's value.
 func (s *ActivityMetrics) SetIsEnabled(v bool) *ActivityMetrics {
 	s.IsEnabled = &v
+	return s
+}
+
+// Error details for the failed asynchronous operation.
+type AsyncErrorDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A string that uniquely identifies the error condition.
+	Code *string `type:"string"`
+
+	// A generic descritpion of the error condition in English.
+	Message *string `type:"string"`
+
+	// The ID of the request associated with the error.
+	RequestId *string `type:"string"`
+
+	// The identifier of the resource associated with the error.
+	Resource *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AsyncErrorDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AsyncErrorDetails) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *AsyncErrorDetails) SetCode(v string) *AsyncErrorDetails {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AsyncErrorDetails) SetMessage(v string) *AsyncErrorDetails {
+	s.Message = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *AsyncErrorDetails) SetRequestId(v string) *AsyncErrorDetails {
+	s.RequestId = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *AsyncErrorDetails) SetResource(v string) *AsyncErrorDetails {
+	s.Resource = &v
+	return s
+}
+
+// A container for the information about an asynchronous operation.
+type AsyncOperation struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the request was sent to the service.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The specific operation for the asynchronous request.
+	Operation *string `type:"string" enum:"AsyncOperationName"`
+
+	// The parameters associated with the request.
+	RequestParameters *AsyncRequestParameters `type:"structure"`
+
+	// The current status of the request.
+	RequestStatus *string `type:"string"`
+
+	// The request token associated with the request.
+	RequestTokenARN *string `min:"1" type:"string"`
+
+	// The details of the response.
+	ResponseDetails *AsyncResponseDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AsyncOperation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AsyncOperation) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *AsyncOperation) SetCreationTime(v time.Time) *AsyncOperation {
+	s.CreationTime = &v
+	return s
+}
+
+// SetOperation sets the Operation field's value.
+func (s *AsyncOperation) SetOperation(v string) *AsyncOperation {
+	s.Operation = &v
+	return s
+}
+
+// SetRequestParameters sets the RequestParameters field's value.
+func (s *AsyncOperation) SetRequestParameters(v *AsyncRequestParameters) *AsyncOperation {
+	s.RequestParameters = v
+	return s
+}
+
+// SetRequestStatus sets the RequestStatus field's value.
+func (s *AsyncOperation) SetRequestStatus(v string) *AsyncOperation {
+	s.RequestStatus = &v
+	return s
+}
+
+// SetRequestTokenARN sets the RequestTokenARN field's value.
+func (s *AsyncOperation) SetRequestTokenARN(v string) *AsyncOperation {
+	s.RequestTokenARN = &v
+	return s
+}
+
+// SetResponseDetails sets the ResponseDetails field's value.
+func (s *AsyncOperation) SetResponseDetails(v *AsyncResponseDetails) *AsyncOperation {
+	s.ResponseDetails = v
+	return s
+}
+
+// A container for the request parameters associated with an asynchronous request.
+type AsyncRequestParameters struct {
+	_ struct{} `type:"structure"`
+
+	// A container of the parameters for a CreateMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html)
+	// request.
+	CreateMultiRegionAccessPointRequest *CreateMultiRegionAccessPointInput_ `type:"structure"`
+
+	// A container of the parameters for a DeleteMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html)
+	// request.
+	DeleteMultiRegionAccessPointRequest *DeleteMultiRegionAccessPointInput_ `type:"structure"`
+
+	// A container of the parameters for a PutMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutMultiRegionAccessPoint.html)
+	// request.
+	PutMultiRegionAccessPointPolicyRequest *PutMultiRegionAccessPointPolicyInput_ `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AsyncRequestParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AsyncRequestParameters) GoString() string {
+	return s.String()
+}
+
+// SetCreateMultiRegionAccessPointRequest sets the CreateMultiRegionAccessPointRequest field's value.
+func (s *AsyncRequestParameters) SetCreateMultiRegionAccessPointRequest(v *CreateMultiRegionAccessPointInput_) *AsyncRequestParameters {
+	s.CreateMultiRegionAccessPointRequest = v
+	return s
+}
+
+// SetDeleteMultiRegionAccessPointRequest sets the DeleteMultiRegionAccessPointRequest field's value.
+func (s *AsyncRequestParameters) SetDeleteMultiRegionAccessPointRequest(v *DeleteMultiRegionAccessPointInput_) *AsyncRequestParameters {
+	s.DeleteMultiRegionAccessPointRequest = v
+	return s
+}
+
+// SetPutMultiRegionAccessPointPolicyRequest sets the PutMultiRegionAccessPointPolicyRequest field's value.
+func (s *AsyncRequestParameters) SetPutMultiRegionAccessPointPolicyRequest(v *PutMultiRegionAccessPointPolicyInput_) *AsyncRequestParameters {
+	s.PutMultiRegionAccessPointPolicyRequest = v
+	return s
+}
+
+// A container for the response details that are returned when querying about
+// an asynchronous request.
+type AsyncResponseDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Error details for an asynchronous request.
+	ErrorDetails *AsyncErrorDetails `type:"structure"`
+
+	// The details for the Multi-Region Access Point.
+	MultiRegionAccessPointDetails *MultiRegionAccessPointsAsyncResponse `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AsyncResponseDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AsyncResponseDetails) GoString() string {
+	return s.String()
+}
+
+// SetErrorDetails sets the ErrorDetails field's value.
+func (s *AsyncResponseDetails) SetErrorDetails(v *AsyncErrorDetails) *AsyncResponseDetails {
+	s.ErrorDetails = v
+	return s
+}
+
+// SetMultiRegionAccessPointDetails sets the MultiRegionAccessPointDetails field's value.
+func (s *AsyncResponseDetails) SetMultiRegionAccessPointDetails(v *MultiRegionAccessPointsAsyncResponse) *AsyncResponseDetails {
+	s.MultiRegionAccessPointDetails = v
 	return s
 }
 
@@ -5219,12 +6309,20 @@ type AwsLambdaTransformation struct {
 	FunctionPayload *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AwsLambdaTransformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AwsLambdaTransformation) GoString() string {
 	return s.String()
 }
@@ -5268,12 +6366,20 @@ type BucketLevel struct {
 	PrefixLevel *PrefixLevel `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BucketLevel) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s BucketLevel) GoString() string {
 	return s.String()
 }
@@ -5305,10 +6411,65 @@ func (s *BucketLevel) SetPrefixLevel(v *PrefixLevel) *BucketLevel {
 	return s
 }
 
+// A container for enabling Amazon CloudWatch publishing for S3 Storage Lens
+// metrics.
+//
+// For more information about publishing S3 Storage Lens metrics to CloudWatch,
+// see Monitor S3 Storage Lens metrics in CloudWatch (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_view_metrics_cloudwatch.html)
+// in the Amazon S3 User Guide.
+type CloudWatchMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// A container that indicates whether CloudWatch publishing for S3 Storage Lens
+	// metrics is enabled. A value of true indicates that CloudWatch publishing
+	// for S3 Storage Lens metrics is enabled.
+	//
+	// IsEnabled is a required field
+	IsEnabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchMetrics) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloudWatchMetrics) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloudWatchMetrics"}
+	if s.IsEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("IsEnabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIsEnabled sets the IsEnabled field's value.
+func (s *CloudWatchMetrics) SetIsEnabled(v bool) *CloudWatchMetrics {
+	s.IsEnabled = &v
+	return s
+}
+
 type CreateAccessPointForObjectLambdaInput struct {
 	_ struct{} `locationName:"CreateAccessPointForObjectLambdaRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The account ID for owner of the specified Object Lambda Access Point.
+	// The Amazon Web Services account ID for owner of the specified Object Lambda
+	// Access Point.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -5324,12 +6485,20 @@ type CreateAccessPointForObjectLambdaInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccessPointForObjectLambdaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccessPointForObjectLambdaInput) GoString() string {
 	return s.String()
 }
@@ -5395,12 +6564,20 @@ type CreateAccessPointForObjectLambdaOutput struct {
 	ObjectLambdaAccessPointArn *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccessPointForObjectLambdaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccessPointForObjectLambdaOutput) GoString() string {
 	return s.String()
 }
@@ -5414,8 +6591,8 @@ func (s *CreateAccessPointForObjectLambdaOutput) SetObjectLambdaAccessPointArn(v
 type CreateAccessPointInput struct {
 	_ struct{} `locationName:"CreateAccessPointRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The account ID for the owner of the bucket for which you want to create an
-	// access point.
+	// The Amazon Web Services account ID for the owner of the bucket for which
+	// you want to create an access point.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -5451,12 +6628,20 @@ type CreateAccessPointInput struct {
 	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccessPointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccessPointInput) GoString() string {
 	return s.String()
 }
@@ -5583,12 +6768,20 @@ type CreateAccessPointOutput struct {
 	Alias *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccessPointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAccessPointOutput) GoString() string {
 	return s.String()
 }
@@ -5619,12 +6812,20 @@ type CreateBucketConfiguration struct {
 	LocationConstraint *string `type:"string" enum:"BucketLocationConstraint"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBucketConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBucketConfiguration) GoString() string {
 	return s.String()
 }
@@ -5690,12 +6891,20 @@ type CreateBucketInput struct {
 	OutpostId *string `location:"header" locationName:"x-amz-outpost-id" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBucketInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBucketInput) GoString() string {
 	return s.String()
 }
@@ -5813,12 +7022,20 @@ type CreateBucketOutput struct {
 	Location *string `location:"header" locationName:"Location" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBucketOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateBucketOutput) GoString() string {
 	return s.String()
 }
@@ -5838,7 +7055,7 @@ func (s *CreateBucketOutput) SetLocation(v string) *CreateBucketOutput {
 type CreateJobInput struct {
 	_ struct{} `locationName:"CreateJobRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The account ID that creates the job.
+	// The Amazon Web Services account ID that creates the job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -5856,9 +7073,11 @@ type CreateJobInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// Configuration parameters for the manifest.
-	//
-	// Manifest is a required field
-	Manifest *JobManifest `type:"structure" required:"true"`
+	Manifest *JobManifest `type:"structure"`
+
+	// The attribute container for the ManifestGenerator details. Jobs must be created
+	// with either a manifest file or a ManifestGenerator, but not both.
+	ManifestGenerator *JobManifestGenerator `type:"structure"`
 
 	// The action that you want this job to perform on every object listed in the
 	// manifest. For more information about the available actions, see Operations
@@ -5890,12 +7109,20 @@ type CreateJobInput struct {
 	Tags []*S3Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateJobInput) GoString() string {
 	return s.String()
 }
@@ -5915,9 +7142,6 @@ func (s *CreateJobInput) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
-	if s.Manifest == nil {
-		invalidParams.Add(request.NewErrParamRequired("Manifest"))
-	}
 	if s.Operation == nil {
 		invalidParams.Add(request.NewErrParamRequired("Operation"))
 	}
@@ -5936,6 +7160,11 @@ func (s *CreateJobInput) Validate() error {
 	if s.Manifest != nil {
 		if err := s.Manifest.Validate(); err != nil {
 			invalidParams.AddNested("Manifest", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ManifestGenerator != nil {
+		if err := s.ManifestGenerator.Validate(); err != nil {
+			invalidParams.AddNested("ManifestGenerator", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Operation != nil {
@@ -5995,6 +7224,12 @@ func (s *CreateJobInput) SetManifest(v *JobManifest) *CreateJobInput {
 	return s
 }
 
+// SetManifestGenerator sets the ManifestGenerator field's value.
+func (s *CreateJobInput) SetManifestGenerator(v *JobManifestGenerator) *CreateJobInput {
+	s.ManifestGenerator = v
+	return s
+}
+
 // SetOperation sets the Operation field's value.
 func (s *CreateJobInput) SetOperation(v *JobOperation) *CreateJobInput {
 	s.Operation = v
@@ -6039,12 +7274,20 @@ type CreateJobOutput struct {
 	JobId *string `min:"5" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateJobOutput) GoString() string {
 	return s.String()
 }
@@ -6052,6 +7295,214 @@ func (s CreateJobOutput) GoString() string {
 // SetJobId sets the JobId field's value.
 func (s *CreateJobOutput) SetJobId(v string) *CreateJobOutput {
 	s.JobId = &v
+	return s
+}
+
+type CreateMultiRegionAccessPointInput struct {
+	_ struct{} `locationName:"CreateMultiRegionAccessPointRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point. The owner of the Multi-Region Access Point also must own the underlying
+	// buckets.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// An idempotency token used to identify the request and guarantee that requests
+	// are unique.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// A container element containing details about the Multi-Region Access Point.
+	//
+	// Details is a required field
+	Details *CreateMultiRegionAccessPointInput_ `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMultiRegionAccessPointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMultiRegionAccessPointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMultiRegionAccessPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMultiRegionAccessPointInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Details == nil {
+		invalidParams.Add(request.NewErrParamRequired("Details"))
+	}
+	if s.Details != nil {
+		if err := s.Details.Validate(); err != nil {
+			invalidParams.AddNested("Details", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateMultiRegionAccessPointInput) SetAccountId(v string) *CreateMultiRegionAccessPointInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateMultiRegionAccessPointInput) SetClientToken(v string) *CreateMultiRegionAccessPointInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *CreateMultiRegionAccessPointInput) SetDetails(v *CreateMultiRegionAccessPointInput_) *CreateMultiRegionAccessPointInput {
+	s.Details = v
+	return s
+}
+
+func (s *CreateMultiRegionAccessPointInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+// A container for the information associated with a CreateMultiRegionAccessPoint
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html)
+// request.
+type CreateMultiRegionAccessPointInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Multi-Region Access Point associated with this request.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The PublicAccessBlock configuration that you want to apply to this Amazon
+	// S3 account. You can enable the configuration options in any combination.
+	// For more information about when Amazon S3 considers a bucket or object public,
+	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
+	// in the Amazon S3 User Guide.
+	//
+	// This is not supported for Amazon S3 on Outposts.
+	PublicAccessBlock *PublicAccessBlockConfiguration `type:"structure"`
+
+	// The buckets in different Regions that are associated with the Multi-Region
+	// Access Point.
+	//
+	// Regions is a required field
+	Regions []*Region `locationNameList:"Region" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMultiRegionAccessPointInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMultiRegionAccessPointInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMultiRegionAccessPointInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMultiRegionAccessPointInput_"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Regions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Regions"))
+	}
+	if s.Regions != nil {
+		for i, v := range s.Regions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Regions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CreateMultiRegionAccessPointInput_) SetName(v string) *CreateMultiRegionAccessPointInput_ {
+	s.Name = &v
+	return s
+}
+
+// SetPublicAccessBlock sets the PublicAccessBlock field's value.
+func (s *CreateMultiRegionAccessPointInput_) SetPublicAccessBlock(v *PublicAccessBlockConfiguration) *CreateMultiRegionAccessPointInput_ {
+	s.PublicAccessBlock = v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *CreateMultiRegionAccessPointInput_) SetRegions(v []*Region) *CreateMultiRegionAccessPointInput_ {
+	s.Regions = v
+	return s
+}
+
+type CreateMultiRegionAccessPointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The request token associated with the request. You can use this token with
+	// DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+	// to determine the status of asynchronous requests.
+	RequestTokenARN *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMultiRegionAccessPointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMultiRegionAccessPointOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestTokenARN sets the RequestTokenARN field's value.
+func (s *CreateMultiRegionAccessPointOutput) SetRequestTokenARN(v string) *CreateMultiRegionAccessPointOutput {
+	s.RequestTokenARN = &v
 	return s
 }
 
@@ -6070,12 +7521,20 @@ type DeleteAccessPointForObjectLambdaInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointForObjectLambdaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointForObjectLambdaInput) GoString() string {
 	return s.String()
 }
@@ -6124,12 +7583,20 @@ type DeleteAccessPointForObjectLambdaOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointForObjectLambdaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointForObjectLambdaOutput) GoString() string {
 	return s.String()
 }
@@ -6159,12 +7626,20 @@ type DeleteAccessPointInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointInput) GoString() string {
 	return s.String()
 }
@@ -6254,12 +7729,20 @@ type DeleteAccessPointOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointOutput) GoString() string {
 	return s.String()
 }
@@ -6280,12 +7763,20 @@ type DeleteAccessPointPolicyForObjectLambdaInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointPolicyForObjectLambdaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointPolicyForObjectLambdaInput) GoString() string {
 	return s.String()
 }
@@ -6334,12 +7825,20 @@ type DeleteAccessPointPolicyForObjectLambdaOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointPolicyForObjectLambdaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointPolicyForObjectLambdaOutput) GoString() string {
 	return s.String()
 }
@@ -6369,12 +7868,20 @@ type DeleteAccessPointPolicyInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointPolicyInput) GoString() string {
 	return s.String()
 }
@@ -6464,12 +7971,20 @@ type DeleteAccessPointPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAccessPointPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -6498,12 +8013,20 @@ type DeleteBucketInput struct {
 	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketInput) GoString() string {
 	return s.String()
 }
@@ -6613,12 +8136,20 @@ type DeleteBucketLifecycleConfigurationInput struct {
 	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketLifecycleConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketLifecycleConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -6708,12 +8239,20 @@ type DeleteBucketLifecycleConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketLifecycleConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketLifecycleConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -6722,12 +8261,20 @@ type DeleteBucketOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketOutput) GoString() string {
 	return s.String()
 }
@@ -6756,12 +8303,20 @@ type DeleteBucketPolicyInput struct {
 	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketPolicyInput) GoString() string {
 	return s.String()
 }
@@ -6851,12 +8406,20 @@ type DeleteBucketPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -6864,7 +8427,7 @@ func (s DeleteBucketPolicyOutput) GoString() string {
 type DeleteBucketTaggingInput struct {
 	_ struct{} `locationName:"DeleteBucketTaggingRequest" type:"structure"`
 
-	// The account ID of the Outposts bucket tag set to be removed.
+	// The Amazon Web Services account ID of the Outposts bucket tag set to be removed.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -6885,12 +8448,20 @@ type DeleteBucketTaggingInput struct {
 	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketTaggingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketTaggingInput) GoString() string {
 	return s.String()
 }
@@ -6980,12 +8551,20 @@ type DeleteBucketTaggingOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketTaggingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteBucketTaggingOutput) GoString() string {
 	return s.String()
 }
@@ -6993,7 +8572,8 @@ func (s DeleteBucketTaggingOutput) GoString() string {
 type DeleteJobTaggingInput struct {
 	_ struct{} `locationName:"DeleteJobTaggingRequest" type:"structure"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -7004,12 +8584,20 @@ type DeleteJobTaggingInput struct {
 	JobId *string `location:"uri" locationName:"id" min:"5" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteJobTaggingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteJobTaggingInput) GoString() string {
 	return s.String()
 }
@@ -7058,32 +8646,215 @@ type DeleteJobTaggingOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteJobTaggingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteJobTaggingOutput) GoString() string {
 	return s.String()
+}
+
+type DeleteMultiRegionAccessPointInput struct {
+	_ struct{} `locationName:"DeleteMultiRegionAccessPointRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// An idempotency token used to identify the request and guarantee that requests
+	// are unique.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// A container element containing details about the Multi-Region Access Point.
+	//
+	// Details is a required field
+	Details *DeleteMultiRegionAccessPointInput_ `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMultiRegionAccessPointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMultiRegionAccessPointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMultiRegionAccessPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMultiRegionAccessPointInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Details == nil {
+		invalidParams.Add(request.NewErrParamRequired("Details"))
+	}
+	if s.Details != nil {
+		if err := s.Details.Validate(); err != nil {
+			invalidParams.AddNested("Details", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteMultiRegionAccessPointInput) SetAccountId(v string) *DeleteMultiRegionAccessPointInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DeleteMultiRegionAccessPointInput) SetClientToken(v string) *DeleteMultiRegionAccessPointInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *DeleteMultiRegionAccessPointInput) SetDetails(v *DeleteMultiRegionAccessPointInput_) *DeleteMultiRegionAccessPointInput {
+	s.Details = v
+	return s
+}
+
+func (s *DeleteMultiRegionAccessPointInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+// A container for the information associated with a DeleteMultiRegionAccessPoint
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html)
+// request.
+type DeleteMultiRegionAccessPointInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Multi-Region Access Point associated with this request.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMultiRegionAccessPointInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMultiRegionAccessPointInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMultiRegionAccessPointInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMultiRegionAccessPointInput_"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteMultiRegionAccessPointInput_) SetName(v string) *DeleteMultiRegionAccessPointInput_ {
+	s.Name = &v
+	return s
+}
+
+type DeleteMultiRegionAccessPointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The request token associated with the request. You can use this token with
+	// DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+	// to determine the status of asynchronous requests.
+	RequestTokenARN *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMultiRegionAccessPointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMultiRegionAccessPointOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestTokenARN sets the RequestTokenARN field's value.
+func (s *DeleteMultiRegionAccessPointOutput) SetRequestTokenARN(v string) *DeleteMultiRegionAccessPointOutput {
+	s.RequestTokenARN = &v
+	return s
 }
 
 type DeletePublicAccessBlockInput struct {
 	_ struct{} `locationName:"DeletePublicAccessBlockRequest" type:"structure"`
 
-	// The account ID for the account whose PublicAccessBlock configuration you
-	// want to remove.
+	// The account ID for the Amazon Web Services account whose PublicAccessBlock
+	// configuration you want to remove.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePublicAccessBlockInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePublicAccessBlockInput) GoString() string {
 	return s.String()
 }
@@ -7120,12 +8891,20 @@ type DeletePublicAccessBlockOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePublicAccessBlockOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeletePublicAccessBlockOutput) GoString() string {
 	return s.String()
 }
@@ -7144,12 +8923,20 @@ type DeleteStorageLensConfigurationInput struct {
 	ConfigId *string `location:"uri" locationName:"storagelensid" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStorageLensConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStorageLensConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -7198,12 +8985,20 @@ type DeleteStorageLensConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStorageLensConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStorageLensConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -7222,12 +9017,20 @@ type DeleteStorageLensConfigurationTaggingInput struct {
 	ConfigId *string `location:"uri" locationName:"storagelensid" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStorageLensConfigurationTaggingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStorageLensConfigurationTaggingInput) GoString() string {
 	return s.String()
 }
@@ -7276,12 +9079,20 @@ type DeleteStorageLensConfigurationTaggingOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStorageLensConfigurationTaggingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteStorageLensConfigurationTaggingOutput) GoString() string {
 	return s.String()
 }
@@ -7289,7 +9100,8 @@ func (s DeleteStorageLensConfigurationTaggingOutput) GoString() string {
 type DescribeJobInput struct {
 	_ struct{} `locationName:"DescribeJobRequest" type:"structure"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -7300,12 +9112,20 @@ type DescribeJobInput struct {
 	JobId *string `location:"uri" locationName:"id" min:"5" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeJobInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeJobInput) GoString() string {
 	return s.String()
 }
@@ -7358,12 +9178,20 @@ type DescribeJobOutput struct {
 	Job *JobDescriptor `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeJobOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeJobOutput) GoString() string {
 	return s.String()
 }
@@ -7371,6 +9199,150 @@ func (s DescribeJobOutput) GoString() string {
 // SetJob sets the Job field's value.
 func (s *DescribeJobOutput) SetJob(v *JobDescriptor) *DescribeJobOutput {
 	s.Job = v
+	return s
+}
+
+type DescribeMultiRegionAccessPointOperationInput struct {
+	_ struct{} `locationName:"DescribeMultiRegionAccessPointOperationRequest" type:"structure"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The request token associated with the request you want to know about. This
+	// request token is returned as part of the response when you make an asynchronous
+	// request. You provide this token to query about the status of the asynchronous
+	// action.
+	//
+	// RequestTokenARN is a required field
+	RequestTokenARN *string `location:"uri" locationName:"request_token" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMultiRegionAccessPointOperationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMultiRegionAccessPointOperationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMultiRegionAccessPointOperationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMultiRegionAccessPointOperationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.RequestTokenARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("RequestTokenARN"))
+	}
+	if s.RequestTokenARN != nil && len(*s.RequestTokenARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestTokenARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeMultiRegionAccessPointOperationInput) SetAccountId(v string) *DescribeMultiRegionAccessPointOperationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetRequestTokenARN sets the RequestTokenARN field's value.
+func (s *DescribeMultiRegionAccessPointOperationInput) SetRequestTokenARN(v string) *DescribeMultiRegionAccessPointOperationInput {
+	s.RequestTokenARN = &v
+	return s
+}
+
+func (s *DescribeMultiRegionAccessPointOperationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DescribeMultiRegionAccessPointOperationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A container element containing the details of the asynchronous operation.
+	AsyncOperation *AsyncOperation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMultiRegionAccessPointOperationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeMultiRegionAccessPointOperationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAsyncOperation sets the AsyncOperation field's value.
+func (s *DescribeMultiRegionAccessPointOperationOutput) SetAsyncOperation(v *AsyncOperation) *DescribeMultiRegionAccessPointOperationOutput {
+	s.AsyncOperation = v
+	return s
+}
+
+// The last established access control policy for a Multi-Region Access Point.
+//
+// When you update the policy, the update is first listed as the proposed policy.
+// After the update is finished and all Regions have been updated, the proposed
+// policy is listed as the established policy. If both policies have the same
+// version number, the proposed policy is the established policy.
+type EstablishedMultiRegionAccessPointPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the last established policy.
+	Policy *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EstablishedMultiRegionAccessPointPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EstablishedMultiRegionAccessPointPolicy) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *EstablishedMultiRegionAccessPointPolicy) SetPolicy(v string) *EstablishedMultiRegionAccessPointPolicy {
+	s.Policy = &v
 	return s
 }
 
@@ -7385,12 +9357,20 @@ type Exclude struct {
 	Regions []*string `locationNameList:"Region" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Exclude) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Exclude) GoString() string {
 	return s.String()
 }
@@ -7404,6 +9384,63 @@ func (s *Exclude) SetBuckets(v []*string) *Exclude {
 // SetRegions sets the Regions field's value.
 func (s *Exclude) SetRegions(v []*string) *Exclude {
 	s.Regions = v
+	return s
+}
+
+// The encryption configuration to use when storing the generated manifest.
+type GeneratedManifestEncryption struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration details on how SSE-KMS is used to encrypt generated manifest
+	// objects.
+	SSEKMS *SSEKMSEncryption `locationName:"SSE-KMS" type:"structure"`
+
+	// Specifies the use of SSE-S3 to encrypt generated manifest objects.
+	SSES3 *SSES3Encryption `locationName:"SSE-S3" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeneratedManifestEncryption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GeneratedManifestEncryption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GeneratedManifestEncryption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GeneratedManifestEncryption"}
+	if s.SSEKMS != nil {
+		if err := s.SSEKMS.Validate(); err != nil {
+			invalidParams.AddNested("SSEKMS", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSSEKMS sets the SSEKMS field's value.
+func (s *GeneratedManifestEncryption) SetSSEKMS(v *SSEKMSEncryption) *GeneratedManifestEncryption {
+	s.SSEKMS = v
+	return s
+}
+
+// SetSSES3 sets the SSES3 field's value.
+func (s *GeneratedManifestEncryption) SetSSES3(v *SSES3Encryption) *GeneratedManifestEncryption {
+	s.SSES3 = v
 	return s
 }
 
@@ -7423,12 +9460,20 @@ type GetAccessPointConfigurationForObjectLambdaInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointConfigurationForObjectLambdaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointConfigurationForObjectLambdaInput) GoString() string {
 	return s.String()
 }
@@ -7480,12 +9525,20 @@ type GetAccessPointConfigurationForObjectLambdaOutput struct {
 	Configuration *ObjectLambdaConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointConfigurationForObjectLambdaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointConfigurationForObjectLambdaOutput) GoString() string {
 	return s.String()
 }
@@ -7511,12 +9564,20 @@ type GetAccessPointForObjectLambdaInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointForObjectLambdaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointForObjectLambdaInput) GoString() string {
 	return s.String()
 }
@@ -7575,12 +9636,20 @@ type GetAccessPointForObjectLambdaOutput struct {
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointForObjectLambdaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointForObjectLambdaOutput) GoString() string {
 	return s.String()
 }
@@ -7629,12 +9698,20 @@ type GetAccessPointInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointInput) GoString() string {
 	return s.String()
 }
@@ -7767,12 +9844,20 @@ type GetAccessPointOutput struct {
 	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointOutput) GoString() string {
 	return s.String()
 }
@@ -7846,12 +9931,20 @@ type GetAccessPointPolicyForObjectLambdaInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyForObjectLambdaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyForObjectLambdaInput) GoString() string {
 	return s.String()
 }
@@ -7903,12 +9996,20 @@ type GetAccessPointPolicyForObjectLambdaOutput struct {
 	Policy *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyForObjectLambdaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyForObjectLambdaOutput) GoString() string {
 	return s.String()
 }
@@ -7944,12 +10045,20 @@ type GetAccessPointPolicyInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyInput) GoString() string {
 	return s.String()
 }
@@ -8042,12 +10151,20 @@ type GetAccessPointPolicyOutput struct {
 	Policy *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -8073,12 +10190,20 @@ type GetAccessPointPolicyStatusForObjectLambdaInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyStatusForObjectLambdaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyStatusForObjectLambdaInput) GoString() string {
 	return s.String()
 }
@@ -8133,12 +10258,20 @@ type GetAccessPointPolicyStatusForObjectLambdaOutput struct {
 	PolicyStatus *PolicyStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyStatusForObjectLambdaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyStatusForObjectLambdaOutput) GoString() string {
 	return s.String()
 }
@@ -8163,12 +10296,20 @@ type GetAccessPointPolicyStatusInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyStatusInput) GoString() string {
 	return s.String()
 }
@@ -8220,12 +10361,20 @@ type GetAccessPointPolicyStatusOutput struct {
 	PolicyStatus *PolicyStatus `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetAccessPointPolicyStatusOutput) GoString() string {
 	return s.String()
 }
@@ -8239,7 +10388,7 @@ func (s *GetAccessPointPolicyStatusOutput) SetPolicyStatus(v *PolicyStatus) *Get
 type GetBucketInput struct {
 	_ struct{} `locationName:"GetBucketRequest" type:"structure"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8260,12 +10409,20 @@ type GetBucketInput struct {
 	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketInput) GoString() string {
 	return s.String()
 }
@@ -8354,7 +10511,7 @@ func (s GetBucketInput) updateAccountID(accountId string) (interface{}, error) {
 type GetBucketLifecycleConfigurationInput struct {
 	_ struct{} `locationName:"GetBucketLifecycleConfigurationRequest" type:"structure"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8375,12 +10532,20 @@ type GetBucketLifecycleConfigurationInput struct {
 	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketLifecycleConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketLifecycleConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -8473,12 +10638,20 @@ type GetBucketLifecycleConfigurationOutput struct {
 	Rules []*LifecycleRule `locationNameList:"Rule" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketLifecycleConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketLifecycleConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -8501,12 +10674,20 @@ type GetBucketOutput struct {
 	PublicAccessBlockEnabled *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketOutput) GoString() string {
 	return s.String()
 }
@@ -8532,7 +10713,7 @@ func (s *GetBucketOutput) SetPublicAccessBlockEnabled(v bool) *GetBucketOutput {
 type GetBucketPolicyInput struct {
 	_ struct{} `locationName:"GetBucketPolicyRequest" type:"structure"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8553,12 +10734,20 @@ type GetBucketPolicyInput struct {
 	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketPolicyInput) GoString() string {
 	return s.String()
 }
@@ -8651,12 +10840,20 @@ type GetBucketPolicyOutput struct {
 	Policy *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -8670,7 +10867,7 @@ func (s *GetBucketPolicyOutput) SetPolicy(v string) *GetBucketPolicyOutput {
 type GetBucketTaggingInput struct {
 	_ struct{} `locationName:"GetBucketTaggingRequest" type:"structure"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8691,12 +10888,20 @@ type GetBucketTaggingInput struct {
 	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketTaggingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketTaggingInput) GoString() string {
 	return s.String()
 }
@@ -8791,12 +10996,20 @@ type GetBucketTaggingOutput struct {
 	TagSet []*S3Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketTaggingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetBucketTaggingOutput) GoString() string {
 	return s.String()
 }
@@ -8810,7 +11023,8 @@ func (s *GetBucketTaggingOutput) SetTagSet(v []*S3Tag) *GetBucketTaggingOutput {
 type GetJobTaggingInput struct {
 	_ struct{} `locationName:"GetJobTaggingRequest" type:"structure"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8821,12 +11035,20 @@ type GetJobTaggingInput struct {
 	JobId *string `location:"uri" locationName:"id" min:"5" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobTaggingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobTaggingInput) GoString() string {
 	return s.String()
 }
@@ -8878,12 +11100,20 @@ type GetJobTaggingOutput struct {
 	Tags []*S3Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobTaggingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetJobTaggingOutput) GoString() string {
 	return s.String()
 }
@@ -8894,22 +11124,359 @@ func (s *GetJobTaggingOutput) SetTags(v []*S3Tag) *GetJobTaggingOutput {
 	return s
 }
 
+type GetMultiRegionAccessPointInput struct {
+	_ struct{} `locationName:"GetMultiRegionAccessPointRequest" type:"structure"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The name of the Multi-Region Access Point whose configuration information
+	// you want to receive. The name of the Multi-Region Access Point is different
+	// from the alias. For more information about the distinction between the name
+	// and the alias of an Multi-Region Access Point, see Managing Multi-Region
+	// Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming)
+	// in the Amazon S3 User Guide.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMultiRegionAccessPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMultiRegionAccessPointInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetMultiRegionAccessPointInput) SetAccountId(v string) *GetMultiRegionAccessPointInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetMultiRegionAccessPointInput) SetName(v string) *GetMultiRegionAccessPointInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetMultiRegionAccessPointInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetMultiRegionAccessPointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A container element containing the details of the requested Multi-Region
+	// Access Point.
+	AccessPoint *MultiRegionAccessPointReport `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessPoint sets the AccessPoint field's value.
+func (s *GetMultiRegionAccessPointOutput) SetAccessPoint(v *MultiRegionAccessPointReport) *GetMultiRegionAccessPointOutput {
+	s.AccessPoint = v
+	return s
+}
+
+type GetMultiRegionAccessPointPolicyInput struct {
+	_ struct{} `locationName:"GetMultiRegionAccessPointPolicyRequest" type:"structure"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Specifies the Multi-Region Access Point. The name of the Multi-Region Access
+	// Point is different from the alias. For more information about the distinction
+	// between the name and the alias of an Multi-Region Access Point, see Managing
+	// Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming)
+	// in the Amazon S3 User Guide.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMultiRegionAccessPointPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMultiRegionAccessPointPolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetMultiRegionAccessPointPolicyInput) SetAccountId(v string) *GetMultiRegionAccessPointPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetMultiRegionAccessPointPolicyInput) SetName(v string) *GetMultiRegionAccessPointPolicyInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetMultiRegionAccessPointPolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetMultiRegionAccessPointPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The policy associated with the specified Multi-Region Access Point.
+	Policy *MultiRegionAccessPointPolicyDocument `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetMultiRegionAccessPointPolicyOutput) SetPolicy(v *MultiRegionAccessPointPolicyDocument) *GetMultiRegionAccessPointPolicyOutput {
+	s.Policy = v
+	return s
+}
+
+type GetMultiRegionAccessPointPolicyStatusInput struct {
+	_ struct{} `locationName:"GetMultiRegionAccessPointPolicyStatusRequest" type:"structure"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Specifies the Multi-Region Access Point. The name of the Multi-Region Access
+	// Point is different from the alias. For more information about the distinction
+	// between the name and the alias of an Multi-Region Access Point, see Managing
+	// Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming)
+	// in the Amazon S3 User Guide.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointPolicyStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointPolicyStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMultiRegionAccessPointPolicyStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMultiRegionAccessPointPolicyStatusInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetMultiRegionAccessPointPolicyStatusInput) SetAccountId(v string) *GetMultiRegionAccessPointPolicyStatusInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetMultiRegionAccessPointPolicyStatusInput) SetName(v string) *GetMultiRegionAccessPointPolicyStatusInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetMultiRegionAccessPointPolicyStatusInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetMultiRegionAccessPointPolicyStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether this access point policy is public. For more information
+	// about how Amazon S3 evaluates policies to determine whether they are public,
+	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
+	// in the Amazon S3 User Guide.
+	Established *PolicyStatus `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointPolicyStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMultiRegionAccessPointPolicyStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetEstablished sets the Established field's value.
+func (s *GetMultiRegionAccessPointPolicyStatusOutput) SetEstablished(v *PolicyStatus) *GetMultiRegionAccessPointPolicyStatusOutput {
+	s.Established = v
+	return s
+}
+
 type GetPublicAccessBlockInput struct {
 	_ struct{} `locationName:"GetPublicAccessBlockRequest" type:"structure"`
 
-	// The account ID for the account whose PublicAccessBlock configuration you
-	// want to retrieve.
+	// The account ID for the Amazon Web Services account whose PublicAccessBlock
+	// configuration you want to retrieve.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPublicAccessBlockInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPublicAccessBlockInput) GoString() string {
 	return s.String()
 }
@@ -8945,16 +11512,25 @@ func (s *GetPublicAccessBlockInput) hostLabels() map[string]string {
 type GetPublicAccessBlockOutput struct {
 	_ struct{} `type:"structure" payload:"PublicAccessBlockConfiguration"`
 
-	// The PublicAccessBlock configuration currently in effect for this account.
+	// The PublicAccessBlock configuration currently in effect for this Amazon Web
+	// Services account.
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPublicAccessBlockOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetPublicAccessBlockOutput) GoString() string {
 	return s.String()
 }
@@ -8979,12 +11555,20 @@ type GetStorageLensConfigurationInput struct {
 	ConfigId *string `location:"uri" locationName:"storagelensid" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStorageLensConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStorageLensConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -9036,12 +11620,20 @@ type GetStorageLensConfigurationOutput struct {
 	StorageLensConfiguration *StorageLensConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStorageLensConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStorageLensConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -9066,12 +11658,20 @@ type GetStorageLensConfigurationTaggingInput struct {
 	ConfigId *string `location:"uri" locationName:"storagelensid" min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStorageLensConfigurationTaggingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStorageLensConfigurationTaggingInput) GoString() string {
 	return s.String()
 }
@@ -9123,12 +11723,20 @@ type GetStorageLensConfigurationTaggingOutput struct {
 	Tags []*StorageLensTag `locationNameList:"Tag" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStorageLensConfigurationTaggingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetStorageLensConfigurationTaggingOutput) GoString() string {
 	return s.String()
 }
@@ -9150,12 +11758,20 @@ type Include struct {
 	Regions []*string `locationNameList:"Region" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Include) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Include) GoString() string {
 	return s.String()
 }
@@ -9193,6 +11809,10 @@ type JobDescriptor struct {
 	// failure.
 	FailureReasons []*JobFailure `type:"list"`
 
+	// The attribute of the JobDescriptor containing details about the job's generated
+	// manifest.
+	GeneratedManifestDescriptor *S3GeneratedManifestDescriptor `type:"structure"`
+
 	// The Amazon Resource Name (ARN) for this job.
 	JobArn *string `min:"1" type:"string"`
 
@@ -9201,6 +11821,10 @@ type JobDescriptor struct {
 
 	// The configuration information for the specified job's manifest object.
 	Manifest *JobManifest `type:"structure"`
+
+	// The manifest generator that was used to generate a job manifest for this
+	// job.
+	ManifestGenerator *JobManifestGenerator `type:"structure"`
 
 	// The operation that the specified job is configured to run on the objects
 	// listed in the manifest.
@@ -9241,12 +11865,20 @@ type JobDescriptor struct {
 	TerminationDate *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobDescriptor) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobDescriptor) GoString() string {
 	return s.String()
 }
@@ -9275,6 +11907,12 @@ func (s *JobDescriptor) SetFailureReasons(v []*JobFailure) *JobDescriptor {
 	return s
 }
 
+// SetGeneratedManifestDescriptor sets the GeneratedManifestDescriptor field's value.
+func (s *JobDescriptor) SetGeneratedManifestDescriptor(v *S3GeneratedManifestDescriptor) *JobDescriptor {
+	s.GeneratedManifestDescriptor = v
+	return s
+}
+
 // SetJobArn sets the JobArn field's value.
 func (s *JobDescriptor) SetJobArn(v string) *JobDescriptor {
 	s.JobArn = &v
@@ -9290,6 +11928,12 @@ func (s *JobDescriptor) SetJobId(v string) *JobDescriptor {
 // SetManifest sets the Manifest field's value.
 func (s *JobDescriptor) SetManifest(v *JobManifest) *JobDescriptor {
 	s.Manifest = v
+	return s
+}
+
+// SetManifestGenerator sets the ManifestGenerator field's value.
+func (s *JobDescriptor) SetManifestGenerator(v *JobManifestGenerator) *JobDescriptor {
+	s.ManifestGenerator = v
 	return s
 }
 
@@ -9364,12 +12008,20 @@ type JobFailure struct {
 	FailureReason *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobFailure) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobFailure) GoString() string {
 	return s.String()
 }
@@ -9420,12 +12072,20 @@ type JobListDescriptor struct {
 	TerminationDate *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobListDescriptor) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobListDescriptor) GoString() string {
 	return s.String()
 }
@@ -9494,12 +12154,20 @@ type JobManifest struct {
 	Spec *JobManifestSpec `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobManifest) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobManifest) GoString() string {
 	return s.String()
 }
@@ -9542,6 +12210,116 @@ func (s *JobManifest) SetSpec(v *JobManifestSpec) *JobManifest {
 	return s
 }
 
+// Configures the type of the job's ManifestGenerator.
+type JobManifestGenerator struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 job ManifestGenerator's configuration details.
+	S3JobManifestGenerator *S3JobManifestGenerator `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobManifestGenerator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobManifestGenerator) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JobManifestGenerator) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JobManifestGenerator"}
+	if s.S3JobManifestGenerator != nil {
+		if err := s.S3JobManifestGenerator.Validate(); err != nil {
+			invalidParams.AddNested("S3JobManifestGenerator", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3JobManifestGenerator sets the S3JobManifestGenerator field's value.
+func (s *JobManifestGenerator) SetS3JobManifestGenerator(v *S3JobManifestGenerator) *JobManifestGenerator {
+	s.S3JobManifestGenerator = v
+	return s
+}
+
+// The filter used to describe a set of objects for the job's manifest.
+type JobManifestGeneratorFilter struct {
+	_ struct{} `type:"structure"`
+
+	// If provided, the generated manifest should include only source bucket objects
+	// that were created after this time.
+	CreatedAfter *time.Time `type:"timestamp"`
+
+	// If provided, the generated manifest should include only source bucket objects
+	// that were created before this time.
+	CreatedBefore *time.Time `type:"timestamp"`
+
+	// Include objects in the generated manifest only if they are eligible for replication
+	// according to the Replication configuration on the source bucket.
+	EligibleForReplication *bool `type:"boolean"`
+
+	// If provided, the generated manifest should include only source bucket objects
+	// that have one of the specified Replication statuses.
+	ObjectReplicationStatuses []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobManifestGeneratorFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobManifestGeneratorFilter) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAfter sets the CreatedAfter field's value.
+func (s *JobManifestGeneratorFilter) SetCreatedAfter(v time.Time) *JobManifestGeneratorFilter {
+	s.CreatedAfter = &v
+	return s
+}
+
+// SetCreatedBefore sets the CreatedBefore field's value.
+func (s *JobManifestGeneratorFilter) SetCreatedBefore(v time.Time) *JobManifestGeneratorFilter {
+	s.CreatedBefore = &v
+	return s
+}
+
+// SetEligibleForReplication sets the EligibleForReplication field's value.
+func (s *JobManifestGeneratorFilter) SetEligibleForReplication(v bool) *JobManifestGeneratorFilter {
+	s.EligibleForReplication = &v
+	return s
+}
+
+// SetObjectReplicationStatuses sets the ObjectReplicationStatuses field's value.
+func (s *JobManifestGeneratorFilter) SetObjectReplicationStatuses(v []*string) *JobManifestGeneratorFilter {
+	s.ObjectReplicationStatuses = v
+	return s
+}
+
 // Contains the information required to locate a manifest object.
 type JobManifestLocation struct {
 	_ struct{} `type:"structure"`
@@ -9564,12 +12342,20 @@ type JobManifestLocation struct {
 	ObjectVersionId *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobManifestLocation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobManifestLocation) GoString() string {
 	return s.String()
 }
@@ -9632,12 +12418,20 @@ type JobManifestSpec struct {
 	Format *string `type:"string" required:"true" enum:"JobManifestFormat"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobManifestSpec) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobManifestSpec) GoString() string {
 	return s.String()
 }
@@ -9711,14 +12505,26 @@ type JobOperation struct {
 	// Directs the specified job to run a PUT Object tagging call on every object
 	// in the manifest.
 	S3PutObjectTagging *S3SetObjectTaggingOperation `type:"structure"`
+
+	// Directs the specified job to invoke ReplicateObject on every object in the
+	// job's manifest.
+	S3ReplicateObject *S3ReplicateObjectOperation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobOperation) GoString() string {
 	return s.String()
 }
@@ -9811,6 +12617,12 @@ func (s *JobOperation) SetS3PutObjectTagging(v *S3SetObjectTaggingOperation) *Jo
 	return s
 }
 
+// SetS3ReplicateObject sets the S3ReplicateObject field's value.
+func (s *JobOperation) SetS3ReplicateObject(v *S3ReplicateObjectOperation) *JobOperation {
+	s.S3ReplicateObject = v
+	return s
+}
+
 // Describes the total number of tasks that the specified job has started, the
 // number of tasks that succeeded, and the number of tasks that failed.
 type JobProgressSummary struct {
@@ -9820,15 +12632,26 @@ type JobProgressSummary struct {
 
 	NumberOfTasksSucceeded *int64 `type:"long"`
 
+	// The JobTimers attribute of a job's progress summary.
+	Timers *JobTimers `type:"structure"`
+
 	TotalNumberOfTasks *int64 `type:"long"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobProgressSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobProgressSummary) GoString() string {
 	return s.String()
 }
@@ -9842,6 +12665,12 @@ func (s *JobProgressSummary) SetNumberOfTasksFailed(v int64) *JobProgressSummary
 // SetNumberOfTasksSucceeded sets the NumberOfTasksSucceeded field's value.
 func (s *JobProgressSummary) SetNumberOfTasksSucceeded(v int64) *JobProgressSummary {
 	s.NumberOfTasksSucceeded = &v
+	return s
+}
+
+// SetTimers sets the Timers field's value.
+func (s *JobProgressSummary) SetTimers(v *JobTimers) *JobProgressSummary {
+	s.Timers = v
 	return s
 }
 
@@ -9876,12 +12705,20 @@ type JobReport struct {
 	ReportScope *string `type:"string" enum:"JobReportScope"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobReport) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s JobReport) GoString() string {
 	return s.String()
 }
@@ -9935,6 +12772,39 @@ func (s *JobReport) SetReportScope(v string) *JobReport {
 	return s
 }
 
+// Provides timing details for the job.
+type JobTimers struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the elapsed time in seconds the job has been in the Active job
+	// state.
+	ElapsedTimeInActiveSeconds *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobTimers) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JobTimers) GoString() string {
+	return s.String()
+}
+
+// SetElapsedTimeInActiveSeconds sets the ElapsedTimeInActiveSeconds field's value.
+func (s *JobTimers) SetElapsedTimeInActiveSeconds(v int64) *JobTimers {
+	s.ElapsedTimeInActiveSeconds = &v
+	return s
+}
+
 // Contains the configuration parameters for a Lambda Invoke operation.
 type LambdaInvokeOperation struct {
 	_ struct{} `type:"structure"`
@@ -9944,12 +12814,20 @@ type LambdaInvokeOperation struct {
 	FunctionArn *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LambdaInvokeOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LambdaInvokeOperation) GoString() string {
 	return s.String()
 }
@@ -9981,12 +12859,20 @@ type LifecycleConfiguration struct {
 	Rules []*LifecycleRule `locationNameList:"Rule" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecycleConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecycleConfiguration) GoString() string {
 	return s.String()
 }
@@ -10036,12 +12922,20 @@ type LifecycleExpiration struct {
 	ExpiredObjectDeleteMarker *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecycleExpiration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecycleExpiration) GoString() string {
 	return s.String()
 }
@@ -10111,12 +13005,20 @@ type LifecycleRule struct {
 	Transitions []*Transition `locationNameList:"Transition" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecycleRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecycleRule) GoString() string {
 	return s.String()
 }
@@ -10199,12 +13101,20 @@ type LifecycleRuleAndOperator struct {
 	Tags []*S3Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecycleRuleAndOperator) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecycleRuleAndOperator) GoString() string {
 	return s.String()
 }
@@ -10258,12 +13168,20 @@ type LifecycleRuleFilter struct {
 	Tag *S3Tag `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecycleRuleFilter) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecycleRuleFilter) GoString() string {
 	return s.String()
 }
@@ -10316,6 +13234,7 @@ type ListAccessPointsForObjectLambdaInput struct {
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
 	// The maximum number of access points that you want to include in the list.
+	// The response may contain fewer access points but will never contain more.
 	// If there are more than this number of access points, then the response will
 	// include a continuation token in the NextToken field that you can use to retrieve
 	// the next page of access points.
@@ -10327,12 +13246,20 @@ type ListAccessPointsForObjectLambdaInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAccessPointsForObjectLambdaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAccessPointsForObjectLambdaInput) GoString() string {
 	return s.String()
 }
@@ -10392,12 +13319,20 @@ type ListAccessPointsForObjectLambdaOutput struct {
 	ObjectLambdaAccessPointList []*ObjectLambdaAccessPoint `locationNameList:"ObjectLambdaAccessPoint" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAccessPointsForObjectLambdaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAccessPointsForObjectLambdaOutput) GoString() string {
 	return s.String()
 }
@@ -10417,7 +13352,8 @@ func (s *ListAccessPointsForObjectLambdaOutput) SetObjectLambdaAccessPointList(v
 type ListAccessPointsInput struct {
 	_ struct{} `locationName:"ListAccessPointsRequest" type:"structure"`
 
-	// The account ID for owner of the bucket whose access points you want to list.
+	// The Amazon Web Services account ID for owner of the bucket whose access points
+	// you want to list.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -10447,12 +13383,20 @@ type ListAccessPointsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAccessPointsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAccessPointsInput) GoString() string {
 	return s.String()
 }
@@ -10563,12 +13507,20 @@ type ListAccessPointsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAccessPointsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAccessPointsOutput) GoString() string {
 	return s.String()
 }
@@ -10588,7 +13540,8 @@ func (s *ListAccessPointsOutput) SetNextToken(v string) *ListAccessPointsOutput 
 type ListJobsInput struct {
 	_ struct{} `locationName:"ListJobsRequest" type:"structure"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -10608,12 +13561,20 @@ type ListJobsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsInput) GoString() string {
 	return s.String()
 }
@@ -10679,12 +13640,20 @@ type ListJobsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListJobsOutput) GoString() string {
 	return s.String()
 }
@@ -10701,10 +13670,130 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 	return s
 }
 
+type ListMultiRegionAccessPointsInput struct {
+	_ struct{} `locationName:"ListMultiRegionAccessPointsRequest" type:"structure"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Not currently used. Do not use this parameter.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// Not currently used. Do not use this parameter.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMultiRegionAccessPointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMultiRegionAccessPointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMultiRegionAccessPointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMultiRegionAccessPointsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListMultiRegionAccessPointsInput) SetAccountId(v string) *ListMultiRegionAccessPointsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMultiRegionAccessPointsInput) SetMaxResults(v int64) *ListMultiRegionAccessPointsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMultiRegionAccessPointsInput) SetNextToken(v string) *ListMultiRegionAccessPointsInput {
+	s.NextToken = &v
+	return s
+}
+
+func (s *ListMultiRegionAccessPointsInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type ListMultiRegionAccessPointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of Multi-Region Access Points associated with the user.
+	AccessPoints []*MultiRegionAccessPointReport `locationNameList:"AccessPoint" type:"list"`
+
+	// If the specified bucket has more Multi-Region Access Points than can be returned
+	// in one call to this action, this field contains a continuation token. You
+	// can use this token tin subsequent calls to this action to retrieve additional
+	// Multi-Region Access Points.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMultiRegionAccessPointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMultiRegionAccessPointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessPoints sets the AccessPoints field's value.
+func (s *ListMultiRegionAccessPointsOutput) SetAccessPoints(v []*MultiRegionAccessPointReport) *ListMultiRegionAccessPointsOutput {
+	s.AccessPoints = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMultiRegionAccessPointsOutput) SetNextToken(v string) *ListMultiRegionAccessPointsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListRegionalBucketsInput struct {
 	_ struct{} `locationName:"ListRegionalBucketsRequest" type:"structure"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -10719,12 +13808,20 @@ type ListRegionalBucketsInput struct {
 	OutpostId *string `location:"header" locationName:"x-amz-outpost-id" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegionalBucketsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegionalBucketsInput) GoString() string {
 	return s.String()
 }
@@ -10806,12 +13903,20 @@ type ListRegionalBucketsOutput struct {
 	RegionalBucketList []*RegionalBucket `locationNameList:"RegionalBucket" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegionalBucketsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListRegionalBucketsOutput) GoString() string {
 	return s.String()
 }
@@ -10855,12 +13960,20 @@ type ListStorageLensConfigurationEntry struct {
 	StorageLensArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStorageLensConfigurationEntry) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStorageLensConfigurationEntry) GoString() string {
 	return s.String()
 }
@@ -10901,12 +14014,20 @@ type ListStorageLensConfigurationsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStorageLensConfigurationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStorageLensConfigurationsInput) GoString() string {
 	return s.String()
 }
@@ -10957,12 +14078,20 @@ type ListStorageLensConfigurationsOutput struct {
 	StorageLensConfigurationList []*ListStorageLensConfigurationEntry `locationNameList:"StorageLensConfiguration" type:"list" flattened:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStorageLensConfigurationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListStorageLensConfigurationsOutput) GoString() string {
 	return s.String()
 }
@@ -10979,6 +14108,221 @@ func (s *ListStorageLensConfigurationsOutput) SetStorageLensConfigurationList(v 
 	return s
 }
 
+// The Multi-Region Access Point access control policy.
+//
+// When you update the policy, the update is first listed as the proposed policy.
+// After the update is finished and all Regions have been updated, the proposed
+// policy is listed as the established policy. If both policies have the same
+// version number, the proposed policy is the established policy.
+type MultiRegionAccessPointPolicyDocument struct {
+	_ struct{} `type:"structure"`
+
+	// The last established policy for the Multi-Region Access Point.
+	Established *EstablishedMultiRegionAccessPointPolicy `type:"structure"`
+
+	// The proposed policy for the Multi-Region Access Point.
+	Proposed *ProposedMultiRegionAccessPointPolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiRegionAccessPointPolicyDocument) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiRegionAccessPointPolicyDocument) GoString() string {
+	return s.String()
+}
+
+// SetEstablished sets the Established field's value.
+func (s *MultiRegionAccessPointPolicyDocument) SetEstablished(v *EstablishedMultiRegionAccessPointPolicy) *MultiRegionAccessPointPolicyDocument {
+	s.Established = v
+	return s
+}
+
+// SetProposed sets the Proposed field's value.
+func (s *MultiRegionAccessPointPolicyDocument) SetProposed(v *ProposedMultiRegionAccessPointPolicy) *MultiRegionAccessPointPolicyDocument {
+	s.Proposed = v
+	return s
+}
+
+// Status information for a single Multi-Region Access Point Region.
+type MultiRegionAccessPointRegionalResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Region in the Multi-Region Access Point.
+	Name *string `min:"1" type:"string"`
+
+	// The current status of the Multi-Region Access Point in this Region.
+	RequestStatus *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiRegionAccessPointRegionalResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiRegionAccessPointRegionalResponse) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *MultiRegionAccessPointRegionalResponse) SetName(v string) *MultiRegionAccessPointRegionalResponse {
+	s.Name = &v
+	return s
+}
+
+// SetRequestStatus sets the RequestStatus field's value.
+func (s *MultiRegionAccessPointRegionalResponse) SetRequestStatus(v string) *MultiRegionAccessPointRegionalResponse {
+	s.RequestStatus = &v
+	return s
+}
+
+// A collection of statuses for a Multi-Region Access Point in the various Regions
+// it supports.
+type MultiRegionAccessPointReport struct {
+	_ struct{} `type:"structure"`
+
+	// The alias for the Multi-Region Access Point. For more information about the
+	// distinction between the name and the alias of an Multi-Region Access Point,
+	// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming).
+	Alias *string `type:"string"`
+
+	// When the Multi-Region Access Point create request was received.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The name of the Multi-Region Access Point.
+	Name *string `type:"string"`
+
+	// The PublicAccessBlock configuration that you want to apply to this Amazon
+	// S3 account. You can enable the configuration options in any combination.
+	// For more information about when Amazon S3 considers a bucket or object public,
+	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
+	// in the Amazon S3 User Guide.
+	//
+	// This is not supported for Amazon S3 on Outposts.
+	PublicAccessBlock *PublicAccessBlockConfiguration `type:"structure"`
+
+	// A collection of the Regions and buckets associated with the Multi-Region
+	// Access Point.
+	Regions []*RegionReport `locationNameList:"Region" type:"list"`
+
+	// The current status of the Multi-Region Access Point.
+	//
+	// CREATING and DELETING are temporary states that exist while the request is
+	// propogating and being completed. If a Multi-Region Access Point has a status
+	// of PARTIALLY_CREATED, you can retry creation or send a request to delete
+	// the Multi-Region Access Point. If a Multi-Region Access Point has a status
+	// of PARTIALLY_DELETED, you can retry a delete request to finish the deletion
+	// of the Multi-Region Access Point.
+	Status *string `type:"string" enum:"MultiRegionAccessPointStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiRegionAccessPointReport) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiRegionAccessPointReport) GoString() string {
+	return s.String()
+}
+
+// SetAlias sets the Alias field's value.
+func (s *MultiRegionAccessPointReport) SetAlias(v string) *MultiRegionAccessPointReport {
+	s.Alias = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *MultiRegionAccessPointReport) SetCreatedAt(v time.Time) *MultiRegionAccessPointReport {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MultiRegionAccessPointReport) SetName(v string) *MultiRegionAccessPointReport {
+	s.Name = &v
+	return s
+}
+
+// SetPublicAccessBlock sets the PublicAccessBlock field's value.
+func (s *MultiRegionAccessPointReport) SetPublicAccessBlock(v *PublicAccessBlockConfiguration) *MultiRegionAccessPointReport {
+	s.PublicAccessBlock = v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *MultiRegionAccessPointReport) SetRegions(v []*RegionReport) *MultiRegionAccessPointReport {
+	s.Regions = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MultiRegionAccessPointReport) SetStatus(v string) *MultiRegionAccessPointReport {
+	s.Status = &v
+	return s
+}
+
+// The Multi-Region Access Point details that are returned when querying about
+// an asynchronous request.
+type MultiRegionAccessPointsAsyncResponse struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of status information for the different Regions that a Multi-Region
+	// Access Point supports.
+	Regions []*MultiRegionAccessPointRegionalResponse `locationNameList:"Region" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiRegionAccessPointsAsyncResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MultiRegionAccessPointsAsyncResponse) GoString() string {
+	return s.String()
+}
+
+// SetRegions sets the Regions field's value.
+func (s *MultiRegionAccessPointsAsyncResponse) SetRegions(v []*MultiRegionAccessPointRegionalResponse) *MultiRegionAccessPointsAsyncResponse {
+	s.Regions = v
+	return s
+}
+
 // The container of the noncurrent version expiration.
 type NoncurrentVersionExpiration struct {
 	_ struct{} `type:"structure"`
@@ -10991,12 +14335,20 @@ type NoncurrentVersionExpiration struct {
 	NoncurrentDays *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoncurrentVersionExpiration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoncurrentVersionExpiration) GoString() string {
 	return s.String()
 }
@@ -11022,12 +14374,20 @@ type NoncurrentVersionTransition struct {
 	StorageClass *string `type:"string" enum:"TransitionStorageClass"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoncurrentVersionTransition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s NoncurrentVersionTransition) GoString() string {
 	return s.String()
 }
@@ -11058,12 +14418,20 @@ type ObjectLambdaAccessPoint struct {
 	ObjectLambdaAccessPointArn *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectLambdaAccessPoint) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectLambdaAccessPoint) GoString() string {
 	return s.String()
 }
@@ -11102,12 +14470,20 @@ type ObjectLambdaConfiguration struct {
 	TransformationConfigurations []*ObjectLambdaTransformationConfiguration `locationNameList:"TransformationConfiguration" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectLambdaConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectLambdaConfiguration) GoString() string {
 	return s.String()
 }
@@ -11173,12 +14549,20 @@ type ObjectLambdaContentTransformation struct {
 	AwsLambda *AwsLambdaTransformation `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectLambdaContentTransformation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectLambdaContentTransformation) GoString() string {
 	return s.String()
 }
@@ -11221,12 +14605,20 @@ type ObjectLambdaTransformationConfiguration struct {
 	ContentTransformation *ObjectLambdaContentTransformation `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectLambdaTransformationConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ObjectLambdaTransformationConfiguration) GoString() string {
 	return s.String()
 }
@@ -11274,12 +14666,20 @@ type PolicyStatus struct {
 	IsPublic *bool `locationName:"IsPublic" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PolicyStatus) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PolicyStatus) GoString() string {
 	return s.String()
 }
@@ -11300,12 +14700,20 @@ type PrefixLevel struct {
 	StorageMetrics *PrefixLevelStorageMetrics `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PrefixLevel) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PrefixLevel) GoString() string {
 	return s.String()
 }
@@ -11344,12 +14752,20 @@ type PrefixLevelStorageMetrics struct {
 	SelectionCriteria *SelectionCriteria `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PrefixLevelStorageMetrics) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PrefixLevelStorageMetrics) GoString() string {
 	return s.String()
 }
@@ -11378,6 +14794,43 @@ func (s *PrefixLevelStorageMetrics) SetIsEnabled(v bool) *PrefixLevelStorageMetr
 // SetSelectionCriteria sets the SelectionCriteria field's value.
 func (s *PrefixLevelStorageMetrics) SetSelectionCriteria(v *SelectionCriteria) *PrefixLevelStorageMetrics {
 	s.SelectionCriteria = v
+	return s
+}
+
+// The proposed access control policy for the Multi-Region Access Point.
+//
+// When you update the policy, the update is first listed as the proposed policy.
+// After the update is finished and all Regions have been updated, the proposed
+// policy is listed as the established policy. If both policies have the same
+// version number, the proposed policy is the established policy.
+type ProposedMultiRegionAccessPointPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the proposed policy.
+	Policy *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProposedMultiRegionAccessPointPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProposedMultiRegionAccessPointPolicy) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *ProposedMultiRegionAccessPointPolicy) SetPolicy(v string) *ProposedMultiRegionAccessPointPolicy {
+	s.Policy = &v
 	return s
 }
 
@@ -11439,12 +14892,20 @@ type PublicAccessBlockConfiguration struct {
 	RestrictPublicBuckets *bool `locationName:"RestrictPublicBuckets" type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PublicAccessBlockConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PublicAccessBlockConfiguration) GoString() string {
 	return s.String()
 }
@@ -11493,12 +14954,20 @@ type PutAccessPointConfigurationForObjectLambdaInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccessPointConfigurationForObjectLambdaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccessPointConfigurationForObjectLambdaInput) GoString() string {
 	return s.String()
 }
@@ -11561,12 +15030,20 @@ type PutAccessPointConfigurationForObjectLambdaOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccessPointConfigurationForObjectLambdaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccessPointConfigurationForObjectLambdaOutput) GoString() string {
 	return s.String()
 }
@@ -11591,12 +15068,20 @@ type PutAccessPointPolicyForObjectLambdaInput struct {
 	Policy *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccessPointPolicyForObjectLambdaInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccessPointPolicyForObjectLambdaInput) GoString() string {
 	return s.String()
 }
@@ -11654,12 +15139,20 @@ type PutAccessPointPolicyForObjectLambdaOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccessPointPolicyForObjectLambdaOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccessPointPolicyForObjectLambdaOutput) GoString() string {
 	return s.String()
 }
@@ -11667,8 +15160,8 @@ func (s PutAccessPointPolicyForObjectLambdaOutput) GoString() string {
 type PutAccessPointPolicyInput struct {
 	_ struct{} `locationName:"PutAccessPointPolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The account ID for owner of the bucket associated with the specified access
-	// point.
+	// The Amazon Web Services account ID for owner of the bucket associated with
+	// the specified access point.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -11699,12 +15192,20 @@ type PutAccessPointPolicyInput struct {
 	Policy *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccessPointPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccessPointPolicyInput) GoString() string {
 	return s.String()
 }
@@ -11803,12 +15304,20 @@ type PutAccessPointPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccessPointPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutAccessPointPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -11816,7 +15325,7 @@ func (s PutAccessPointPolicyOutput) GoString() string {
 type PutBucketLifecycleConfigurationInput struct {
 	_ struct{} `locationName:"PutBucketLifecycleConfigurationRequest" type:"structure" payload:"LifecycleConfiguration"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -11830,12 +15339,20 @@ type PutBucketLifecycleConfigurationInput struct {
 	LifecycleConfiguration *LifecycleConfiguration `locationName:"LifecycleConfiguration" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBucketLifecycleConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBucketLifecycleConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -11936,12 +15453,20 @@ type PutBucketLifecycleConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBucketLifecycleConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBucketLifecycleConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -11949,7 +15474,7 @@ func (s PutBucketLifecycleConfigurationOutput) GoString() string {
 type PutBucketPolicyInput struct {
 	_ struct{} `locationName:"PutBucketPolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -11981,12 +15506,20 @@ type PutBucketPolicyInput struct {
 	Policy *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBucketPolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBucketPolicyInput) GoString() string {
 	return s.String()
 }
@@ -12091,12 +15624,20 @@ type PutBucketPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBucketPolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBucketPolicyOutput) GoString() string {
 	return s.String()
 }
@@ -12104,7 +15645,7 @@ func (s PutBucketPolicyOutput) GoString() string {
 type PutBucketTaggingInput struct {
 	_ struct{} `locationName:"PutBucketTaggingRequest" type:"structure" payload:"Tagging"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -12128,12 +15669,20 @@ type PutBucketTaggingInput struct {
 	Tagging *Tagging `locationName:"Tagging" type:"structure" required:"true" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBucketTaggingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBucketTaggingInput) GoString() string {
 	return s.String()
 }
@@ -12237,12 +15786,20 @@ type PutBucketTaggingOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBucketTaggingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutBucketTaggingOutput) GoString() string {
 	return s.String()
 }
@@ -12250,7 +15807,8 @@ func (s PutBucketTaggingOutput) GoString() string {
 type PutJobTaggingInput struct {
 	_ struct{} `locationName:"PutJobTaggingRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -12266,12 +15824,20 @@ type PutJobTaggingInput struct {
 	Tags []*S3Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutJobTaggingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutJobTaggingInput) GoString() string {
 	return s.String()
 }
@@ -12339,38 +15905,236 @@ type PutJobTaggingOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutJobTaggingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutJobTaggingOutput) GoString() string {
 	return s.String()
+}
+
+type PutMultiRegionAccessPointPolicyInput struct {
+	_ struct{} `locationName:"PutMultiRegionAccessPointPolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// An idempotency token used to identify the request and guarantee that requests
+	// are unique.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// A container element containing the details of the policy for the Multi-Region
+	// Access Point.
+	//
+	// Details is a required field
+	Details *PutMultiRegionAccessPointPolicyInput_ `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMultiRegionAccessPointPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMultiRegionAccessPointPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutMultiRegionAccessPointPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutMultiRegionAccessPointPolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Details == nil {
+		invalidParams.Add(request.NewErrParamRequired("Details"))
+	}
+	if s.Details != nil {
+		if err := s.Details.Validate(); err != nil {
+			invalidParams.AddNested("Details", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutMultiRegionAccessPointPolicyInput) SetAccountId(v string) *PutMultiRegionAccessPointPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *PutMultiRegionAccessPointPolicyInput) SetClientToken(v string) *PutMultiRegionAccessPointPolicyInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *PutMultiRegionAccessPointPolicyInput) SetDetails(v *PutMultiRegionAccessPointPolicyInput_) *PutMultiRegionAccessPointPolicyInput {
+	s.Details = v
+	return s
+}
+
+func (s *PutMultiRegionAccessPointPolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+// A container for the information associated with a PutMultiRegionAccessPoint
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutMultiRegionAccessPoint.html)
+// request.
+type PutMultiRegionAccessPointPolicyInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Multi-Region Access Point associated with the request.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The policy details for the PutMultiRegionAccessPoint request.
+	//
+	// Policy is a required field
+	Policy *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMultiRegionAccessPointPolicyInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMultiRegionAccessPointPolicyInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutMultiRegionAccessPointPolicyInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutMultiRegionAccessPointPolicyInput_"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *PutMultiRegionAccessPointPolicyInput_) SetName(v string) *PutMultiRegionAccessPointPolicyInput_ {
+	s.Name = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutMultiRegionAccessPointPolicyInput_) SetPolicy(v string) *PutMultiRegionAccessPointPolicyInput_ {
+	s.Policy = &v
+	return s
+}
+
+type PutMultiRegionAccessPointPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The request token associated with the request. You can use this token with
+	// DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+	// to determine the status of asynchronous requests.
+	RequestTokenARN *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMultiRegionAccessPointPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMultiRegionAccessPointPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestTokenARN sets the RequestTokenARN field's value.
+func (s *PutMultiRegionAccessPointPolicyOutput) SetRequestTokenARN(v string) *PutMultiRegionAccessPointPolicyOutput {
+	s.RequestTokenARN = &v
+	return s
 }
 
 type PutPublicAccessBlockInput struct {
 	_ struct{} `locationName:"PutPublicAccessBlockRequest" type:"structure" payload:"PublicAccessBlockConfiguration"`
 
-	// The account ID for the account whose PublicAccessBlock configuration you
-	// want to set.
+	// The account ID for the Amazon Web Services account whose PublicAccessBlock
+	// configuration you want to set.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
 	// The PublicAccessBlock configuration that you want to apply to the specified
-	// account.
+	// Amazon Web Services account.
 	//
 	// PublicAccessBlockConfiguration is a required field
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `locationName:"PublicAccessBlockConfiguration" type:"structure" required:"true" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPublicAccessBlockInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPublicAccessBlockInput) GoString() string {
 	return s.String()
 }
@@ -12416,12 +16180,20 @@ type PutPublicAccessBlockOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPublicAccessBlockOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutPublicAccessBlockOutput) GoString() string {
 	return s.String()
 }
@@ -12450,12 +16222,20 @@ type PutStorageLensConfigurationInput struct {
 	Tags []*StorageLensTag `locationNameList:"Tag" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutStorageLensConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutStorageLensConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -12534,12 +16314,20 @@ type PutStorageLensConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutStorageLensConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutStorageLensConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -12565,12 +16353,20 @@ type PutStorageLensConfigurationTaggingInput struct {
 	Tags []*StorageLensTag `locationNameList:"Tag" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutStorageLensConfigurationTaggingInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutStorageLensConfigurationTaggingInput) GoString() string {
 	return s.String()
 }
@@ -12638,14 +16434,115 @@ type PutStorageLensConfigurationTaggingOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutStorageLensConfigurationTaggingOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PutStorageLensConfigurationTaggingOutput) GoString() string {
 	return s.String()
+}
+
+// A Region that supports a Multi-Region Access Point as well as the associated
+// bucket for the Region.
+type Region struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the associated bucket for the Region.
+	//
+	// Bucket is a required field
+	Bucket *string `min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Region) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Region) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Region) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Region"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *Region) SetBucket(v string) *Region {
+	s.Bucket = &v
+	return s
+}
+
+// A combination of a bucket and Region that's part of a Multi-Region Access
+// Point.
+type RegionReport struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the bucket.
+	Bucket *string `min:"3" type:"string"`
+
+	// The name of the Region.
+	Region *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegionReport) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegionReport) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *RegionReport) SetBucket(v string) *RegionReport {
+	s.Bucket = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *RegionReport) SetRegion(v string) *RegionReport {
+	s.Region = &v
+	return s
 }
 
 // The container for the regional bucket.
@@ -12670,12 +16567,20 @@ type RegionalBucket struct {
 	PublicAccessBlockEnabled *bool `type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegionalBucket) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RegionalBucket) GoString() string {
 	return s.String()
 }
@@ -12719,12 +16624,20 @@ type S3AccessControlList struct {
 	Owner *S3ObjectOwner `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3AccessControlList) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3AccessControlList) GoString() string {
 	return s.String()
 }
@@ -12777,12 +16690,20 @@ type S3AccessControlPolicy struct {
 	CannedAccessControlList *string `type:"string" enum:"S3CannedAccessControlList"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3AccessControlPolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3AccessControlPolicy) GoString() string {
 	return s.String()
 }
@@ -12845,12 +16766,20 @@ type S3BucketDestination struct {
 	Prefix *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3BucketDestination) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3BucketDestination) GoString() string {
 	return s.String()
 }
@@ -12941,10 +16870,18 @@ type S3CopyObjectOperation struct {
 
 	CannedAccessControlList *string `type:"string" enum:"S3CannedAccessControlList"`
 
+	// Indicates the algorithm you want Amazon S3 to use to create the checksum.
+	// For more information see Checking object integrity (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CheckingObjectIntegrity.xml)
+	// in the Amazon S3 User Guide.
+	ChecksumAlgorithm *string `type:"string" enum:"S3ChecksumAlgorithm"`
+
 	MetadataDirective *string `type:"string" enum:"S3MetadataDirective"`
 
 	ModifiedSinceConstraint *time.Time `type:"timestamp"`
 
+	// If you don't provide this parameter, Amazon S3 copies all the metadata from
+	// the original objects. If you specify an empty set, the new objects will have
+	// no tags. Otherwise, Amazon S3 assigns the supplied tags to the new objects.
 	NewObjectMetadata *S3ObjectMetadata `type:"structure"`
 
 	NewObjectTagging []*S3Tag `type:"list"`
@@ -12983,12 +16920,20 @@ type S3CopyObjectOperation struct {
 	UnModifiedSinceConstraint *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3CopyObjectOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3CopyObjectOperation) GoString() string {
 	return s.String()
 }
@@ -13055,6 +17000,12 @@ func (s *S3CopyObjectOperation) SetBucketKeyEnabled(v bool) *S3CopyObjectOperati
 // SetCannedAccessControlList sets the CannedAccessControlList field's value.
 func (s *S3CopyObjectOperation) SetCannedAccessControlList(v string) *S3CopyObjectOperation {
 	s.CannedAccessControlList = &v
+	return s
+}
+
+// SetChecksumAlgorithm sets the ChecksumAlgorithm field's value.
+func (s *S3CopyObjectOperation) SetChecksumAlgorithm(v string) *S3CopyObjectOperation {
+	s.ChecksumAlgorithm = &v
 	return s
 }
 
@@ -13149,14 +17100,65 @@ type S3DeleteObjectTaggingOperation struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3DeleteObjectTaggingOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3DeleteObjectTaggingOperation) GoString() string {
 	return s.String()
+}
+
+// Describes the specified job's generated manifest. Batch Operations jobs created
+// with a ManifestGenerator populate details of this descriptor after execution
+// of the ManifestGenerator.
+type S3GeneratedManifestDescriptor struct {
+	_ struct{} `type:"structure"`
+
+	// The format of the generated manifest.
+	Format *string `type:"string" enum:"GeneratedManifestFormat"`
+
+	// Contains the information required to locate a manifest object.
+	Location *JobManifestLocation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3GeneratedManifestDescriptor) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3GeneratedManifestDescriptor) GoString() string {
+	return s.String()
+}
+
+// SetFormat sets the Format field's value.
+func (s *S3GeneratedManifestDescriptor) SetFormat(v string) *S3GeneratedManifestDescriptor {
+	s.Format = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *S3GeneratedManifestDescriptor) SetLocation(v *JobManifestLocation) *S3GeneratedManifestDescriptor {
+	s.Location = v
+	return s
 }
 
 type S3Grant struct {
@@ -13167,12 +17169,20 @@ type S3Grant struct {
 	Permission *string `type:"string" enum:"S3Permission"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Grant) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Grant) GoString() string {
 	return s.String()
 }
@@ -13214,12 +17224,20 @@ type S3Grantee struct {
 	TypeIdentifier *string `type:"string" enum:"S3GranteeTypeIdentifier"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Grantee) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Grantee) GoString() string {
 	return s.String()
 }
@@ -13288,12 +17306,20 @@ type S3InitiateRestoreObjectOperation struct {
 	GlacierJobTier *string `type:"string" enum:"S3GlacierJobTier"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3InitiateRestoreObjectOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3InitiateRestoreObjectOperation) GoString() string {
 	return s.String()
 }
@@ -13310,6 +17336,206 @@ func (s *S3InitiateRestoreObjectOperation) SetGlacierJobTier(v string) *S3Initia
 	return s
 }
 
+// The container for the service that will create the S3 manifest.
+type S3JobManifestGenerator struct {
+	_ struct{} `type:"structure"`
+
+	// Determines whether or not to write the job's generated manifest to a bucket.
+	//
+	// EnableManifestOutput is a required field
+	EnableManifestOutput *bool `type:"boolean" required:"true"`
+
+	// The Amazon Web Services account ID that owns the bucket the generated manifest
+	// is written to. If provided the generated manifest bucket's owner Amazon Web
+	// Services account ID must match this value, else the job fails.
+	ExpectedBucketOwner *string `type:"string"`
+
+	// Specifies rules the S3JobManifestGenerator should use to use to decide whether
+	// an object in the source bucket should or should not be included in the generated
+	// job manifest.
+	Filter *JobManifestGeneratorFilter `type:"structure"`
+
+	// Specifies the location the generated manifest will be written to.
+	ManifestOutputLocation *S3ManifestOutputLocation `type:"structure"`
+
+	// The source bucket used by the ManifestGenerator.
+	//
+	// SourceBucket is a required field
+	SourceBucket *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3JobManifestGenerator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3JobManifestGenerator) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3JobManifestGenerator) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3JobManifestGenerator"}
+	if s.EnableManifestOutput == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnableManifestOutput"))
+	}
+	if s.SourceBucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceBucket"))
+	}
+	if s.SourceBucket != nil && len(*s.SourceBucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceBucket", 1))
+	}
+	if s.ManifestOutputLocation != nil {
+		if err := s.ManifestOutputLocation.Validate(); err != nil {
+			invalidParams.AddNested("ManifestOutputLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnableManifestOutput sets the EnableManifestOutput field's value.
+func (s *S3JobManifestGenerator) SetEnableManifestOutput(v bool) *S3JobManifestGenerator {
+	s.EnableManifestOutput = &v
+	return s
+}
+
+// SetExpectedBucketOwner sets the ExpectedBucketOwner field's value.
+func (s *S3JobManifestGenerator) SetExpectedBucketOwner(v string) *S3JobManifestGenerator {
+	s.ExpectedBucketOwner = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *S3JobManifestGenerator) SetFilter(v *JobManifestGeneratorFilter) *S3JobManifestGenerator {
+	s.Filter = v
+	return s
+}
+
+// SetManifestOutputLocation sets the ManifestOutputLocation field's value.
+func (s *S3JobManifestGenerator) SetManifestOutputLocation(v *S3ManifestOutputLocation) *S3JobManifestGenerator {
+	s.ManifestOutputLocation = v
+	return s
+}
+
+// SetSourceBucket sets the SourceBucket field's value.
+func (s *S3JobManifestGenerator) SetSourceBucket(v string) *S3JobManifestGenerator {
+	s.SourceBucket = &v
+	return s
+}
+
+// Location details for where the generated manifest should be written.
+type S3ManifestOutputLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The bucket ARN the generated manifest should be written to.
+	//
+	// Bucket is a required field
+	Bucket *string `min:"1" type:"string" required:"true"`
+
+	// The Account ID that owns the bucket the generated manifest is written to.
+	ExpectedManifestBucketOwner *string `type:"string"`
+
+	// Specifies what encryption should be used when the generated manifest objects
+	// are written.
+	ManifestEncryption *GeneratedManifestEncryption `type:"structure"`
+
+	// The format of the generated manifest.
+	//
+	// ManifestFormat is a required field
+	ManifestFormat *string `type:"string" required:"true" enum:"GeneratedManifestFormat"`
+
+	// Prefix identifying one or more objects to which the manifest applies.
+	ManifestPrefix *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ManifestOutputLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ManifestOutputLocation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3ManifestOutputLocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3ManifestOutputLocation"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
+	}
+	if s.ManifestFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("ManifestFormat"))
+	}
+	if s.ManifestPrefix != nil && len(*s.ManifestPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ManifestPrefix", 1))
+	}
+	if s.ManifestEncryption != nil {
+		if err := s.ManifestEncryption.Validate(); err != nil {
+			invalidParams.AddNested("ManifestEncryption", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3ManifestOutputLocation) SetBucket(v string) *S3ManifestOutputLocation {
+	s.Bucket = &v
+	return s
+}
+
+// SetExpectedManifestBucketOwner sets the ExpectedManifestBucketOwner field's value.
+func (s *S3ManifestOutputLocation) SetExpectedManifestBucketOwner(v string) *S3ManifestOutputLocation {
+	s.ExpectedManifestBucketOwner = &v
+	return s
+}
+
+// SetManifestEncryption sets the ManifestEncryption field's value.
+func (s *S3ManifestOutputLocation) SetManifestEncryption(v *GeneratedManifestEncryption) *S3ManifestOutputLocation {
+	s.ManifestEncryption = v
+	return s
+}
+
+// SetManifestFormat sets the ManifestFormat field's value.
+func (s *S3ManifestOutputLocation) SetManifestFormat(v string) *S3ManifestOutputLocation {
+	s.ManifestFormat = &v
+	return s
+}
+
+// SetManifestPrefix sets the ManifestPrefix field's value.
+func (s *S3ManifestOutputLocation) SetManifestPrefix(v string) *S3ManifestOutputLocation {
+	s.ManifestPrefix = &v
+	return s
+}
+
 // Whether S3 Object Lock legal hold will be applied to objects in an S3 Batch
 // Operations job.
 type S3ObjectLockLegalHold struct {
@@ -13322,12 +17548,20 @@ type S3ObjectLockLegalHold struct {
 	Status *string `type:"string" required:"true" enum:"S3ObjectLockLegalHoldStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3ObjectLockLegalHold) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3ObjectLockLegalHold) GoString() string {
 	return s.String()
 }
@@ -13377,12 +17611,20 @@ type S3ObjectMetadata struct {
 	UserMetadata map[string]*string `type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3ObjectMetadata) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3ObjectMetadata) GoString() string {
 	return s.String()
 }
@@ -13489,12 +17731,20 @@ type S3ObjectOwner struct {
 	ID *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3ObjectOwner) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3ObjectOwner) GoString() string {
 	return s.String()
 }
@@ -13527,6 +17777,30 @@ func (s *S3ObjectOwner) SetID(v string) *S3ObjectOwner {
 	return s
 }
 
+// Directs the specified job to invoke ReplicateObject on every object in the
+// job's manifest.
+type S3ReplicateObjectOperation struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ReplicateObjectOperation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3ReplicateObjectOperation) GoString() string {
+	return s.String()
+}
+
 // Contains the S3 Object Lock retention mode to be applied to all objects in
 // the S3 Batch Operations job. If you don't provide Mode and RetainUntilDate
 // data types in your operation, you will remove the retention from your objects.
@@ -13545,12 +17819,20 @@ type S3Retention struct {
 	RetainUntilDate *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Retention) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Retention) GoString() string {
 	return s.String()
 }
@@ -13577,12 +17859,20 @@ type S3SetObjectAclOperation struct {
 	AccessControlPolicy *S3AccessControlPolicy `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3SetObjectAclOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3SetObjectAclOperation) GoString() string {
 	return s.String()
 }
@@ -13623,12 +17913,20 @@ type S3SetObjectLegalHoldOperation struct {
 	LegalHold *S3ObjectLockLegalHold `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3SetObjectLegalHoldOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3SetObjectLegalHoldOperation) GoString() string {
 	return s.String()
 }
@@ -13678,12 +17976,20 @@ type S3SetObjectRetentionOperation struct {
 	Retention *S3Retention `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3SetObjectRetentionOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3SetObjectRetentionOperation) GoString() string {
 	return s.String()
 }
@@ -13723,12 +18029,20 @@ type S3SetObjectTaggingOperation struct {
 	TagSet []*S3Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3SetObjectTaggingOperation) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3SetObjectTaggingOperation) GoString() string {
 	return s.String()
 }
@@ -13769,12 +18083,20 @@ type S3Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s S3Tag) GoString() string {
 	return s.String()
 }
@@ -13820,12 +18142,20 @@ type SSEKMS struct {
 	KeyId *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SSEKMS) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SSEKMS) GoString() string {
 	return s.String()
 }
@@ -13849,17 +18179,100 @@ func (s *SSEKMS) SetKeyId(v string) *SSEKMS {
 	return s
 }
 
+// Configuration for the use of SSE-KMS to encrypt generated manifest objects.
+type SSEKMSEncryption struct {
+	_ struct{} `locationName:"SSE-KMS" type:"structure"`
+
+	// Specifies the ID of the Amazon Web Services Key Management Service (Amazon
+	// Web Services KMS) symmetric customer managed key to use for encrypting generated
+	// manifest objects.
+	//
+	// KeyId is a required field
+	KeyId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SSEKMSEncryption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SSEKMSEncryption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SSEKMSEncryption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SSEKMSEncryption"}
+	if s.KeyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyId"))
+	}
+	if s.KeyId != nil && len(*s.KeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyId sets the KeyId field's value.
+func (s *SSEKMSEncryption) SetKeyId(v string) *SSEKMSEncryption {
+	s.KeyId = &v
+	return s
+}
+
 type SSES3 struct {
 	_ struct{} `locationName:"SSE-S3" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SSES3) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SSES3) GoString() string {
+	return s.String()
+}
+
+// Configuration for the use of SSE-S3 to encrypt generated manifest objects.
+type SSES3Encryption struct {
+	_ struct{} `locationName:"SSE-S3" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SSES3Encryption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SSES3Encryption) GoString() string {
 	return s.String()
 }
 
@@ -13878,12 +18291,20 @@ type SelectionCriteria struct {
 	MinStorageBytesPercentage *float64 `min:"0.1" type:"double"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelectionCriteria) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SelectionCriteria) GoString() string {
 	return s.String()
 }
@@ -13934,12 +18355,20 @@ type StorageLensAwsOrg struct {
 	Arn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageLensAwsOrg) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageLensAwsOrg) GoString() string {
 	return s.String()
 }
@@ -14007,12 +18436,20 @@ type StorageLensConfiguration struct {
 	StorageLensArn *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageLensConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageLensConfiguration) GoString() string {
 	return s.String()
 }
@@ -14110,21 +18547,31 @@ func (s *StorageLensConfiguration) SetStorageLensArn(v string) *StorageLensConfi
 type StorageLensDataExport struct {
 	_ struct{} `type:"structure"`
 
+	// A container for enabling Amazon CloudWatch publishing for S3 Storage Lens
+	// metrics.
+	CloudWatchMetrics *CloudWatchMetrics `type:"structure"`
+
 	// A container for the bucket where the S3 Storage Lens metrics export will
 	// be located.
 	//
 	// This bucket must be located in the same Region as the storage lens configuration.
-	//
-	// S3BucketDestination is a required field
-	S3BucketDestination *S3BucketDestination `type:"structure" required:"true"`
+	S3BucketDestination *S3BucketDestination `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageLensDataExport) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageLensDataExport) GoString() string {
 	return s.String()
 }
@@ -14132,8 +18579,10 @@ func (s StorageLensDataExport) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StorageLensDataExport) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StorageLensDataExport"}
-	if s.S3BucketDestination == nil {
-		invalidParams.Add(request.NewErrParamRequired("S3BucketDestination"))
+	if s.CloudWatchMetrics != nil {
+		if err := s.CloudWatchMetrics.Validate(); err != nil {
+			invalidParams.AddNested("CloudWatchMetrics", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.S3BucketDestination != nil {
 		if err := s.S3BucketDestination.Validate(); err != nil {
@@ -14145,6 +18594,12 @@ func (s *StorageLensDataExport) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCloudWatchMetrics sets the CloudWatchMetrics field's value.
+func (s *StorageLensDataExport) SetCloudWatchMetrics(v *CloudWatchMetrics) *StorageLensDataExport {
+	s.CloudWatchMetrics = v
+	return s
 }
 
 // SetS3BucketDestination sets the S3BucketDestination field's value.
@@ -14162,12 +18617,20 @@ type StorageLensDataExportEncryption struct {
 	SSES3 *SSES3 `locationName:"SSE-S3" type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageLensDataExportEncryption) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageLensDataExportEncryption) GoString() string {
 	return s.String()
 }
@@ -14209,12 +18672,20 @@ type StorageLensTag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageLensTag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StorageLensTag) GoString() string {
 	return s.String()
 }
@@ -14259,12 +18730,20 @@ type Tagging struct {
 	TagSet []*S3Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tagging) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tagging) GoString() string {
 	return s.String()
 }
@@ -14317,12 +18796,20 @@ type Transition struct {
 	StorageClass *string `type:"string" enum:"TransitionStorageClass"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Transition) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Transition) GoString() string {
 	return s.String()
 }
@@ -14348,7 +18835,8 @@ func (s *Transition) SetStorageClass(v string) *Transition {
 type UpdateJobPriorityInput struct {
 	_ struct{} `locationName:"UpdateJobPriorityRequest" type:"structure"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -14364,12 +18852,20 @@ type UpdateJobPriorityInput struct {
 	Priority *int64 `location:"querystring" locationName:"priority" type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateJobPriorityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateJobPriorityInput) GoString() string {
 	return s.String()
 }
@@ -14437,12 +18933,20 @@ type UpdateJobPriorityOutput struct {
 	Priority *int64 `type:"integer" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateJobPriorityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateJobPriorityOutput) GoString() string {
 	return s.String()
 }
@@ -14462,7 +18966,8 @@ func (s *UpdateJobPriorityOutput) SetPriority(v int64) *UpdateJobPriorityOutput 
 type UpdateJobStatusInput struct {
 	_ struct{} `locationName:"UpdateJobStatusRequest" type:"structure"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -14482,12 +18987,20 @@ type UpdateJobStatusInput struct {
 	StatusUpdateReason *string `location:"querystring" locationName:"statusUpdateReason" min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateJobStatusInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateJobStatusInput) GoString() string {
 	return s.String()
 }
@@ -14563,12 +19076,20 @@ type UpdateJobStatusOutput struct {
 	StatusUpdateReason *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateJobStatusOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateJobStatusOutput) GoString() string {
 	return s.String()
 }
@@ -14602,12 +19123,20 @@ type VpcConfiguration struct {
 	VpcId *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VpcConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s VpcConfiguration) GoString() string {
 	return s.String()
 }
@@ -14632,6 +19161,26 @@ func (s *VpcConfiguration) Validate() error {
 func (s *VpcConfiguration) SetVpcId(v string) *VpcConfiguration {
 	s.VpcId = &v
 	return s
+}
+
+const (
+	// AsyncOperationNameCreateMultiRegionAccessPoint is a AsyncOperationName enum value
+	AsyncOperationNameCreateMultiRegionAccessPoint = "CreateMultiRegionAccessPoint"
+
+	// AsyncOperationNameDeleteMultiRegionAccessPoint is a AsyncOperationName enum value
+	AsyncOperationNameDeleteMultiRegionAccessPoint = "DeleteMultiRegionAccessPoint"
+
+	// AsyncOperationNamePutMultiRegionAccessPointPolicy is a AsyncOperationName enum value
+	AsyncOperationNamePutMultiRegionAccessPointPolicy = "PutMultiRegionAccessPointPolicy"
+)
+
+// AsyncOperationName_Values returns all elements of the AsyncOperationName enum
+func AsyncOperationName_Values() []string {
+	return []string{
+		AsyncOperationNameCreateMultiRegionAccessPoint,
+		AsyncOperationNameDeleteMultiRegionAccessPoint,
+		AsyncOperationNamePutMultiRegionAccessPointPolicy,
+	}
 }
 
 const (
@@ -14739,6 +19288,18 @@ func Format_Values() []string {
 	return []string{
 		FormatCsv,
 		FormatParquet,
+	}
+}
+
+const (
+	// GeneratedManifestFormatS3inventoryReportCsv20211130 is a GeneratedManifestFormat enum value
+	GeneratedManifestFormatS3inventoryReportCsv20211130 = "S3InventoryReport_CSV_20211130"
+)
+
+// GeneratedManifestFormat_Values returns all elements of the GeneratedManifestFormat enum
+func GeneratedManifestFormat_Values() []string {
+	return []string{
+		GeneratedManifestFormatS3inventoryReportCsv20211130,
 	}
 }
 
@@ -14871,6 +19432,38 @@ func JobStatus_Values() []string {
 }
 
 const (
+	// MultiRegionAccessPointStatusReady is a MultiRegionAccessPointStatus enum value
+	MultiRegionAccessPointStatusReady = "READY"
+
+	// MultiRegionAccessPointStatusInconsistentAcrossRegions is a MultiRegionAccessPointStatus enum value
+	MultiRegionAccessPointStatusInconsistentAcrossRegions = "INCONSISTENT_ACROSS_REGIONS"
+
+	// MultiRegionAccessPointStatusCreating is a MultiRegionAccessPointStatus enum value
+	MultiRegionAccessPointStatusCreating = "CREATING"
+
+	// MultiRegionAccessPointStatusPartiallyCreated is a MultiRegionAccessPointStatus enum value
+	MultiRegionAccessPointStatusPartiallyCreated = "PARTIALLY_CREATED"
+
+	// MultiRegionAccessPointStatusPartiallyDeleted is a MultiRegionAccessPointStatus enum value
+	MultiRegionAccessPointStatusPartiallyDeleted = "PARTIALLY_DELETED"
+
+	// MultiRegionAccessPointStatusDeleting is a MultiRegionAccessPointStatus enum value
+	MultiRegionAccessPointStatusDeleting = "DELETING"
+)
+
+// MultiRegionAccessPointStatus_Values returns all elements of the MultiRegionAccessPointStatus enum
+func MultiRegionAccessPointStatus_Values() []string {
+	return []string{
+		MultiRegionAccessPointStatusReady,
+		MultiRegionAccessPointStatusInconsistentAcrossRegions,
+		MultiRegionAccessPointStatusCreating,
+		MultiRegionAccessPointStatusPartiallyCreated,
+		MultiRegionAccessPointStatusPartiallyDeleted,
+		MultiRegionAccessPointStatusDeleting,
+	}
+}
+
+const (
 	// NetworkOriginInternet is a NetworkOrigin enum value
 	NetworkOriginInternet = "Internet"
 
@@ -14938,6 +19531,9 @@ const (
 
 	// OperationNameS3putObjectRetention is a OperationName enum value
 	OperationNameS3putObjectRetention = "S3PutObjectRetention"
+
+	// OperationNameS3replicateObject is a OperationName enum value
+	OperationNameS3replicateObject = "S3ReplicateObject"
 )
 
 // OperationName_Values returns all elements of the OperationName enum
@@ -14951,6 +19547,7 @@ func OperationName_Values() []string {
 		OperationNameS3initiateRestoreObject,
 		OperationNameS3putObjectLegalHold,
 		OperationNameS3putObjectRetention,
+		OperationNameS3replicateObject,
 	}
 }
 
@@ -14963,6 +19560,30 @@ const (
 func OutputSchemaVersion_Values() []string {
 	return []string{
 		OutputSchemaVersionV1,
+	}
+}
+
+const (
+	// ReplicationStatusCompleted is a ReplicationStatus enum value
+	ReplicationStatusCompleted = "COMPLETED"
+
+	// ReplicationStatusFailed is a ReplicationStatus enum value
+	ReplicationStatusFailed = "FAILED"
+
+	// ReplicationStatusReplica is a ReplicationStatus enum value
+	ReplicationStatusReplica = "REPLICA"
+
+	// ReplicationStatusNone is a ReplicationStatus enum value
+	ReplicationStatusNone = "NONE"
+)
+
+// ReplicationStatus_Values returns all elements of the ReplicationStatus enum
+func ReplicationStatus_Values() []string {
+	return []string{
+		ReplicationStatusCompleted,
+		ReplicationStatusFailed,
+		ReplicationStatusReplica,
+		ReplicationStatusNone,
 	}
 }
 
@@ -15015,6 +19636,30 @@ func S3CannedAccessControlList_Values() []string {
 		S3CannedAccessControlListAuthenticatedRead,
 		S3CannedAccessControlListBucketOwnerRead,
 		S3CannedAccessControlListBucketOwnerFullControl,
+	}
+}
+
+const (
+	// S3ChecksumAlgorithmCrc32 is a S3ChecksumAlgorithm enum value
+	S3ChecksumAlgorithmCrc32 = "CRC32"
+
+	// S3ChecksumAlgorithmCrc32c is a S3ChecksumAlgorithm enum value
+	S3ChecksumAlgorithmCrc32c = "CRC32C"
+
+	// S3ChecksumAlgorithmSha1 is a S3ChecksumAlgorithm enum value
+	S3ChecksumAlgorithmSha1 = "SHA1"
+
+	// S3ChecksumAlgorithmSha256 is a S3ChecksumAlgorithm enum value
+	S3ChecksumAlgorithmSha256 = "SHA256"
+)
+
+// S3ChecksumAlgorithm_Values returns all elements of the S3ChecksumAlgorithm enum
+func S3ChecksumAlgorithm_Values() []string {
+	return []string{
+		S3ChecksumAlgorithmCrc32,
+		S3ChecksumAlgorithmCrc32c,
+		S3ChecksumAlgorithmSha1,
+		S3ChecksumAlgorithmSha256,
 	}
 }
 
@@ -15180,6 +19825,9 @@ const (
 
 	// S3StorageClassDeepArchive is a S3StorageClass enum value
 	S3StorageClassDeepArchive = "DEEP_ARCHIVE"
+
+	// S3StorageClassGlacierIr is a S3StorageClass enum value
+	S3StorageClassGlacierIr = "GLACIER_IR"
 )
 
 // S3StorageClass_Values returns all elements of the S3StorageClass enum
@@ -15191,6 +19839,7 @@ func S3StorageClass_Values() []string {
 		S3StorageClassGlacier,
 		S3StorageClassIntelligentTiering,
 		S3StorageClassDeepArchive,
+		S3StorageClassGlacierIr,
 	}
 }
 

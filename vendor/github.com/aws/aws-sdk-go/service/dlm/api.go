@@ -57,8 +57,8 @@ func (c *DLM) CreateLifecyclePolicyRequest(input *CreateLifecyclePolicyInput) (r
 
 // CreateLifecyclePolicy API operation for Amazon Data Lifecycle Manager.
 //
-// Creates a policy to manage the lifecycle of the specified AWS resources.
-// You can create up to 100 lifecycle policies.
+// Creates a policy to manage the lifecycle of the specified Amazon Web Services
+// resources. You can create up to 100 lifecycle policies.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -722,12 +722,20 @@ type Action struct {
 	Name *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Action) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Action) GoString() string {
 	return s.String()
 }
@@ -799,12 +807,20 @@ type CreateLifecyclePolicyInput struct {
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLifecyclePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLifecyclePolicyInput) GoString() string {
 	return s.String()
 }
@@ -876,12 +892,20 @@ type CreateLifecyclePolicyOutput struct {
 	PolicyId *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLifecyclePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateLifecyclePolicyOutput) GoString() string {
 	return s.String()
 }
@@ -916,8 +940,8 @@ type CreateRule struct {
 	// snapshots on the same Outpost as the source resource, specify OUTPOST_LOCAL.
 	// If you omit this parameter, CLOUD is used by default.
 	//
-	// If the policy targets resources in an AWS Region, then you must create snapshots
-	// in the same Region as the source resource.
+	// If the policy targets resources in an Amazon Web Services Region, then you
+	// must create snapshots in the same Region as the source resource.
 	//
 	// If the policy targets resources on an Outpost, then you can create snapshots
 	// on the same Outpost as the source resource, or in the Region of that Outpost.
@@ -931,12 +955,20 @@ type CreateRule struct {
 	Times []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateRule) GoString() string {
 	return s.String()
 }
@@ -1005,12 +1037,20 @@ type CrossRegionCopyAction struct {
 	Target *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CrossRegionCopyAction) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CrossRegionCopyAction) GoString() string {
 	return s.String()
 }
@@ -1059,6 +1099,64 @@ func (s *CrossRegionCopyAction) SetTarget(v string) *CrossRegionCopyAction {
 	return s
 }
 
+// Specifies an AMI deprecation rule for cross-Region AMI copies created by
+// a cross-Region copy rule.
+type CrossRegionCopyDeprecateRule struct {
+	_ struct{} `type:"structure"`
+
+	// The period after which to deprecate the cross-Region AMI copies. The period
+	// must be less than or equal to the cross-Region AMI copy retention period,
+	// and it can't be greater than 10 years. This is equivalent to 120 months,
+	// 520 weeks, or 3650 days.
+	Interval *int64 `min:"1" type:"integer"`
+
+	// The unit of time in which to measure the Interval.
+	IntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrossRegionCopyDeprecateRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CrossRegionCopyDeprecateRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CrossRegionCopyDeprecateRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CrossRegionCopyDeprecateRule"}
+	if s.Interval != nil && *s.Interval < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Interval", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInterval sets the Interval field's value.
+func (s *CrossRegionCopyDeprecateRule) SetInterval(v int64) *CrossRegionCopyDeprecateRule {
+	s.Interval = &v
+	return s
+}
+
+// SetIntervalUnit sets the IntervalUnit field's value.
+func (s *CrossRegionCopyDeprecateRule) SetIntervalUnit(v string) *CrossRegionCopyDeprecateRule {
+	s.IntervalUnit = &v
+	return s
+}
+
 // Specifies the retention rule for cross-Region snapshot copies.
 type CrossRegionCopyRetainRule struct {
 	_ struct{} `type:"structure"`
@@ -1071,12 +1169,20 @@ type CrossRegionCopyRetainRule struct {
 	IntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CrossRegionCopyRetainRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CrossRegionCopyRetainRule) GoString() string {
 	return s.String()
 }
@@ -1110,13 +1216,17 @@ func (s *CrossRegionCopyRetainRule) SetIntervalUnit(v string) *CrossRegionCopyRe
 type CrossRegionCopyRule struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS KMS customer master key (CMK) to
-	// use for EBS encryption. If this parameter is not specified, your AWS managed
-	// CMK for EBS is used.
+	// The Amazon Resource Name (ARN) of the KMS key to use for EBS encryption.
+	// If this parameter is not specified, the default KMS key for the account is
+	// used.
 	CmkArn *string `type:"string"`
 
-	// Copy all user-defined tags from the source snapshot to the copied snapshot.
+	// Indicates whether to copy all user-defined tags from the source snapshot
+	// to the cross-Region snapshot copy.
 	CopyTags *bool `type:"boolean"`
+
+	// The AMI deprecation rule for cross-Region AMI copies created by the rule.
+	DeprecateRule *CrossRegionCopyDeprecateRule `type:"structure"`
 
 	// To encrypt a copy of an unencrypted snapshot if encryption by default is
 	// not enabled, enable encryption using this parameter. Copies of encrypted
@@ -1126,29 +1236,38 @@ type CrossRegionCopyRule struct {
 	// Encrypted is a required field
 	Encrypted *bool `type:"boolean" required:"true"`
 
-	// The retention rule.
+	// The retention rule that indicates how long snapshot copies are to be retained
+	// in the destination Region.
 	RetainRule *CrossRegionCopyRetainRule `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the target AWS Outpost for the snapshot
-	// copies.
+	// The target Region or the Amazon Resource Name (ARN) of the target Outpost
+	// for the snapshot copies.
 	//
-	// If you specify an ARN, you must omit TargetRegion. You cannot specify a target
-	// Region and a target Outpost in the same rule.
+	// Use this parameter instead of TargetRegion. Do not specify both.
 	Target *string `type:"string"`
 
-	// The target Region for the snapshot copies.
+	// Avoid using this parameter when creating new policies. Instead, use Target
+	// to specify a target Region or a target Outpost for snapshot copies.
 	//
-	// If you specify a target Region, you must omit Target. You cannot specify
-	// a target Region and a target Outpost in the same rule.
+	// For policies created before the Target parameter was introduced, this parameter
+	// indicates the target Region for snapshot copies.
 	TargetRegion *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CrossRegionCopyRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CrossRegionCopyRule) GoString() string {
 	return s.String()
 }
@@ -1158,6 +1277,11 @@ func (s *CrossRegionCopyRule) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CrossRegionCopyRule"}
 	if s.Encrypted == nil {
 		invalidParams.Add(request.NewErrParamRequired("Encrypted"))
+	}
+	if s.DeprecateRule != nil {
+		if err := s.DeprecateRule.Validate(); err != nil {
+			invalidParams.AddNested("DeprecateRule", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.RetainRule != nil {
 		if err := s.RetainRule.Validate(); err != nil {
@@ -1180,6 +1304,12 @@ func (s *CrossRegionCopyRule) SetCmkArn(v string) *CrossRegionCopyRule {
 // SetCopyTags sets the CopyTags field's value.
 func (s *CrossRegionCopyRule) SetCopyTags(v bool) *CrossRegionCopyRule {
 	s.CopyTags = &v
+	return s
+}
+
+// SetDeprecateRule sets the DeprecateRule field's value.
+func (s *CrossRegionCopyRule) SetDeprecateRule(v *CrossRegionCopyDeprecateRule) *CrossRegionCopyRule {
+	s.DeprecateRule = v
 	return s
 }
 
@@ -1208,7 +1338,7 @@ func (s *CrossRegionCopyRule) SetTargetRegion(v string) *CrossRegionCopyRule {
 }
 
 type DeleteLifecyclePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the lifecycle policy.
 	//
@@ -1216,12 +1346,20 @@ type DeleteLifecyclePolicyInput struct {
 	PolicyId *string `location:"uri" locationName:"policyId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLifecyclePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLifecyclePolicyInput) GoString() string {
 	return s.String()
 }
@@ -1252,14 +1390,94 @@ type DeleteLifecyclePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLifecyclePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteLifecyclePolicyOutput) GoString() string {
 	return s.String()
+}
+
+// Specifies an AMI deprecation rule for a schedule.
+type DeprecateRule struct {
+	_ struct{} `type:"structure"`
+
+	// If the schedule has a count-based retention rule, this parameter specifies
+	// the number of oldest AMIs to deprecate. The count must be less than or equal
+	// to the schedule's retention count, and it can't be greater than 1000.
+	Count *int64 `min:"1" type:"integer"`
+
+	// If the schedule has an age-based retention rule, this parameter specifies
+	// the period after which to deprecate AMIs created by the schedule. The period
+	// must be less than or equal to the schedule's retention period, and it can't
+	// be greater than 10 years. This is equivalent to 120 months, 520 weeks, or
+	// 3650 days.
+	Interval *int64 `min:"1" type:"integer"`
+
+	// The unit of time in which to measure the Interval.
+	IntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeprecateRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeprecateRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeprecateRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeprecateRule"}
+	if s.Count != nil && *s.Count < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Count", 1))
+	}
+	if s.Interval != nil && *s.Interval < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Interval", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCount sets the Count field's value.
+func (s *DeprecateRule) SetCount(v int64) *DeprecateRule {
+	s.Count = &v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *DeprecateRule) SetInterval(v int64) *DeprecateRule {
+	s.Interval = &v
+	return s
+}
+
+// SetIntervalUnit sets the IntervalUnit field's value.
+func (s *DeprecateRule) SetIntervalUnit(v string) *DeprecateRule {
+	s.IntervalUnit = &v
+	return s
 }
 
 // Specifies the encryption settings for shared snapshots that are copied across
@@ -1267,9 +1485,9 @@ func (s DeleteLifecyclePolicyOutput) GoString() string {
 type EncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS KMS customer master key (CMK) to
-	// use for EBS encryption. If this parameter is not specified, your AWS managed
-	// CMK for EBS is used.
+	// The Amazon Resource Name (ARN) of the KMS key to use for EBS encryption.
+	// If this parameter is not specified, the default KMS key for the account is
+	// used.
 	CmkArn *string `type:"string"`
 
 	// To encrypt a copy of an unencrypted snapshot when encryption by default is
@@ -1281,12 +1499,20 @@ type EncryptionConfiguration struct {
 	Encrypted *bool `type:"boolean" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionConfiguration) GoString() string {
 	return s.String()
 }
@@ -1337,20 +1563,28 @@ type EventParameters struct {
 	// EventType is a required field
 	EventType *string `type:"string" required:"true" enum:"EventTypeValues"`
 
-	// The IDs of the AWS accounts that can trigger policy by sharing snapshots
-	// with your account. The policy only runs if one of the specified AWS accounts
-	// shares a snapshot with your account.
+	// The IDs of the Amazon Web Services accounts that can trigger policy by sharing
+	// snapshots with your account. The policy only runs if one of the specified
+	// Amazon Web Services accounts shares a snapshot with your account.
 	//
 	// SnapshotOwner is a required field
 	SnapshotOwner []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventParameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventParameters) GoString() string {
 	return s.String()
 }
@@ -1399,19 +1633,27 @@ type EventSource struct {
 	// Information about the event.
 	Parameters *EventParameters `type:"structure"`
 
-	// The source of the event. Currently only managed AWS CloudWatch Events rules
-	// are supported.
+	// The source of the event. Currently only managed CloudWatch Events rules are
+	// supported.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"EventSourceValues"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventSource) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EventSource) GoString() string {
 	return s.String()
 }
@@ -1467,12 +1709,20 @@ type FastRestoreRule struct {
 	IntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FastRestoreRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s FastRestoreRule) GoString() string {
 	return s.String()
 }
@@ -1524,7 +1774,7 @@ func (s *FastRestoreRule) SetIntervalUnit(v string) *FastRestoreRule {
 }
 
 type GetLifecyclePoliciesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifiers of the data lifecycle policies.
 	PolicyIds []*string `location:"querystring" locationName:"policyIds" type:"list"`
@@ -1539,8 +1789,8 @@ type GetLifecyclePoliciesInput struct {
 	//
 	// Tags are strings in the format key=value.
 	//
-	// These user-defined tags are added in addition to the AWS-added lifecycle
-	// tags.
+	// These user-defined tags are added in addition to the Amazon Web Services-added
+	// lifecycle tags.
 	TagsToAdd []*string `location:"querystring" locationName:"tagsToAdd" type:"list"`
 
 	// The target tag for a policy.
@@ -1549,12 +1799,20 @@ type GetLifecyclePoliciesInput struct {
 	TargetTags []*string `location:"querystring" locationName:"targetTags" min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLifecyclePoliciesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLifecyclePoliciesInput) GoString() string {
 	return s.String()
 }
@@ -1612,12 +1870,20 @@ type GetLifecyclePoliciesOutput struct {
 	Policies []*LifecyclePolicySummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLifecyclePoliciesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLifecyclePoliciesOutput) GoString() string {
 	return s.String()
 }
@@ -1629,7 +1895,7 @@ func (s *GetLifecyclePoliciesOutput) SetPolicies(v []*LifecyclePolicySummary) *G
 }
 
 type GetLifecyclePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the lifecycle policy.
 	//
@@ -1637,12 +1903,20 @@ type GetLifecyclePolicyInput struct {
 	PolicyId *string `location:"uri" locationName:"policyId" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLifecyclePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLifecyclePolicyInput) GoString() string {
 	return s.String()
 }
@@ -1676,12 +1950,20 @@ type GetLifecyclePolicyOutput struct {
 	Policy *LifecyclePolicy `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLifecyclePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s GetLifecyclePolicyOutput) GoString() string {
 	return s.String()
 }
@@ -1702,12 +1984,20 @@ type InternalServerException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServerException) GoString() string {
 	return s.String()
 }
@@ -1766,12 +2056,20 @@ type InvalidRequestException struct {
 	RequiredParameters []*string `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -1850,12 +2148,20 @@ type LifecyclePolicy struct {
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecyclePolicy) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecyclePolicy) GoString() string {
 	return s.String()
 }
@@ -1942,12 +2248,20 @@ type LifecyclePolicySummary struct {
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecyclePolicySummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LifecyclePolicySummary) GoString() string {
 	return s.String()
 }
@@ -1995,12 +2309,20 @@ type LimitExceededException struct {
 	ResourceType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s LimitExceededException) GoString() string {
 	return s.String()
 }
@@ -2044,7 +2366,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -2052,12 +2374,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -2091,12 +2421,20 @@ type ListTagsForResourceOutput struct {
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -2125,12 +2463,20 @@ type Parameters struct {
 	NoReboot *bool `type:"boolean"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Parameters) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Parameters) GoString() string {
 	return s.String()
 }
@@ -2175,14 +2521,14 @@ type PolicyDetails struct {
 	// of Amazon EBS snapshots. Specify IMAGE_MANAGEMENT to create a lifecycle policy
 	// that manages the lifecycle of EBS-backed AMIs. Specify EVENT_BASED_POLICY
 	// to create an event-based policy that performs specific actions when a defined
-	// event occurs in your AWS account.
+	// event occurs in your Amazon Web Services account.
 	//
 	// The default is EBS_SNAPSHOT_MANAGEMENT.
 	PolicyType *string `type:"string" enum:"PolicyTypeValues"`
 
 	// The location of the resources to backup. If the source resources are located
-	// in an AWS Region, specify CLOUD. If the source resources are located on an
-	// AWS Outpost in your account, specify OUTPOST.
+	// in an Amazon Web Services Region, specify CLOUD. If the source resources
+	// are located on an Outpost in your account, specify OUTPOST.
 	//
 	// If you specify OUTPOST, Amazon Data Lifecycle Manager backs up all resources
 	// of the specified type with matching target tags across all of the Outposts
@@ -2212,12 +2558,20 @@ type PolicyDetails struct {
 	TargetTags []*Tag `min:"1" type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PolicyDetails) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PolicyDetails) GoString() string {
 	return s.String()
 }
@@ -2346,12 +2700,20 @@ type ResourceNotFoundException struct {
 	ResourceType *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -2410,12 +2772,20 @@ type RetainRule struct {
 	IntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetainRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s RetainRule) GoString() string {
 	return s.String()
 }
@@ -2473,6 +2843,9 @@ type Schedule struct {
 	// in a Region, then snapshots can be copied to up to three Regions or Outposts.
 	CrossRegionCopyRules []*CrossRegionCopyRule `type:"list"`
 
+	// The AMI deprecation rule for the schedule.
+	DeprecateRule *DeprecateRule `type:"structure"`
+
 	// The rule for enabling fast snapshot restore.
 	FastRestoreRule *FastRestoreRule `type:"structure"`
 
@@ -2482,11 +2855,11 @@ type Schedule struct {
 	// The retention rule.
 	RetainRule *RetainRule `type:"structure"`
 
-	// The rule for sharing snapshots with other AWS accounts.
+	// The rule for sharing snapshots with other Amazon Web Services accounts.
 	ShareRules []*ShareRule `type:"list"`
 
 	// The tags to apply to policy-created resources. These user-defined tags are
-	// in addition to the AWS-added lifecycle tags.
+	// in addition to the Amazon Web Services-added lifecycle tags.
 	TagsToAdd []*Tag `type:"list"`
 
 	// A collection of key/value pairs with values determined dynamically when the
@@ -2496,12 +2869,20 @@ type Schedule struct {
 	VariableTags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Schedule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Schedule) GoString() string {
 	return s.String()
 }
@@ -2522,6 +2903,11 @@ func (s *Schedule) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CrossRegionCopyRules", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.DeprecateRule != nil {
+		if err := s.DeprecateRule.Validate(); err != nil {
+			invalidParams.AddNested("DeprecateRule", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.FastRestoreRule != nil {
@@ -2589,6 +2975,12 @@ func (s *Schedule) SetCrossRegionCopyRules(v []*CrossRegionCopyRule) *Schedule {
 	return s
 }
 
+// SetDeprecateRule sets the DeprecateRule field's value.
+func (s *Schedule) SetDeprecateRule(v *DeprecateRule) *Schedule {
+	s.DeprecateRule = v
+	return s
+}
+
 // SetFastRestoreRule sets the FastRestoreRule field's value.
 func (s *Schedule) SetFastRestoreRule(v *FastRestoreRule) *Schedule {
 	s.FastRestoreRule = v
@@ -2625,29 +3017,37 @@ func (s *Schedule) SetVariableTags(v []*Tag) *Schedule {
 	return s
 }
 
-// Specifies a rule for sharing snapshots across AWS accounts.
+// Specifies a rule for sharing snapshots across Amazon Web Services accounts.
 type ShareRule struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the AWS accounts with which to share the snapshots.
+	// The IDs of the Amazon Web Services accounts with which to share the snapshots.
 	//
 	// TargetAccounts is a required field
 	TargetAccounts []*string `min:"1" type:"list" required:"true"`
 
-	// The period after which snapshots that are shared with other AWS accounts
-	// are automatically unshared.
+	// The period after which snapshots that are shared with other Amazon Web Services
+	// accounts are automatically unshared.
 	UnshareInterval *int64 `min:"1" type:"integer"`
 
 	// The unit of time for the automatic unsharing interval.
 	UnshareIntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ShareRule) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ShareRule) GoString() string {
 	return s.String()
 }
@@ -2704,12 +3104,20 @@ type Tag struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -2756,12 +3164,20 @@ type TagResourceInput struct {
 	Tags map[string]*string `min:"1" type:"map" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -2804,18 +3220,26 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -2828,12 +3252,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -2876,12 +3308,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -2909,12 +3349,20 @@ type UpdateLifecyclePolicyInput struct {
 	State *string `type:"string" enum:"SettablePolicyStateValues"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLifecyclePolicyInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLifecyclePolicyInput) GoString() string {
 	return s.String()
 }
@@ -2974,12 +3422,20 @@ type UpdateLifecyclePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLifecyclePolicyOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateLifecyclePolicyOutput) GoString() string {
 	return s.String()
 }

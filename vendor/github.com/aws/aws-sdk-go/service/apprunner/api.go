@@ -57,7 +57,7 @@ func (c *AppRunner) AssociateCustomDomainRequest(input *AssociateCustomDomainInp
 
 // AssociateCustomDomain API operation for AWS App Runner.
 //
-// Associate your own domain name with the AWS App Runner subdomain URL of your
+// Associate your own domain name with the App Runner subdomain URL of your
 // App Runner service.
 //
 // After you call AssociateCustomDomain and receive a successful response, use
@@ -152,19 +152,20 @@ func (c *AppRunner) CreateAutoScalingConfigurationRequest(input *CreateAutoScali
 
 // CreateAutoScalingConfiguration API operation for AWS App Runner.
 //
-// Create an AWS App Runner automatic scaling configuration resource. App Runner
+// Create an App Runner automatic scaling configuration resource. App Runner
 // requires this resource when you create App Runner services that require non-default
 // auto scaling settings. You can share an auto scaling configuration across
 // multiple services.
 //
-// Create multiple revisions of a configuration by using the same AutoScalingConfigurationName
-// and different AutoScalingConfigurationRevision values. When you create a
-// service, you can set it to use the latest active revision of an auto scaling
-// configuration or a specific revision.
+// Create multiple revisions of a configuration by calling this action multiple
+// times using the same AutoScalingConfigurationName. The call returns incremental
+// AutoScalingConfigurationRevision values. When you create a service, you can
+// set it to use the latest active revision of an auto scaling configuration
+// or a specific revision.
 //
 // Configure a higher MinSize to increase the spread of your App Runner service
-// over more Availability Zones in the AWS Region. The tradeoff is a higher
-// minimal cost.
+// over more Availability Zones in the Amazon Web Services Region. The tradeoff
+// is a higher minimal cost.
 //
 // Configure a lower MaxSize to control your cost. The tradeoff is lower responsiveness
 // during peak demand.
@@ -188,9 +189,8 @@ func (c *AppRunner) CreateAutoScalingConfigurationRequest(input *CreateAutoScali
 //   App Runner can't create this resource. You've reached your account quota
 //   for this resource type.
 //
-//   For App Runner per-resource quotas, see AWS App Runner endpoints and quotas
-//   (https://docs.aws.amazon.com/general/latest/gr/apprunner.html) in the AWS
-//   General Reference.
+//   For App Runner per-resource quotas, see App Runner endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/apprunner.html)
+//   in the Amazon Web Services General Reference.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/CreateAutoScalingConfiguration
 func (c *AppRunner) CreateAutoScalingConfiguration(input *CreateAutoScalingConfigurationInput) (*CreateAutoScalingConfigurationOutput, error) {
@@ -258,7 +258,7 @@ func (c *AppRunner) CreateConnectionRequest(input *CreateConnectionInput) (req *
 
 // CreateConnection API operation for AWS App Runner.
 //
-// Create an AWS App Runner connection resource. App Runner requires a connection
+// Create an App Runner connection resource. App Runner requires a connection
 // resource when you create App Runner services that access private repositories
 // from certain third-party providers. You can share a connection across multiple
 // services.
@@ -286,9 +286,8 @@ func (c *AppRunner) CreateConnectionRequest(input *CreateConnectionInput) (req *
 //   App Runner can't create this resource. You've reached your account quota
 //   for this resource type.
 //
-//   For App Runner per-resource quotas, see AWS App Runner endpoints and quotas
-//   (https://docs.aws.amazon.com/general/latest/gr/apprunner.html) in the AWS
-//   General Reference.
+//   For App Runner per-resource quotas, see App Runner endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/apprunner.html)
+//   in the Amazon Web Services General Reference.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/CreateConnection
 func (c *AppRunner) CreateConnection(input *CreateConnectionInput) (*CreateConnectionOutput, error) {
@@ -356,8 +355,8 @@ func (c *AppRunner) CreateServiceRequest(input *CreateServiceInput) (req *reques
 
 // CreateService API operation for AWS App Runner.
 //
-// Create an AWS App Runner service. After the service is created, the action
-// also automatically starts a deployment.
+// Create an App Runner service. After the service is created, the action also
+// automatically starts a deployment.
 //
 // This is an asynchronous operation. On a successful call, you can use the
 // returned OperationId and the ListOperations (https://docs.aws.amazon.com/apprunner/latest/api/API_ListOperations.html)
@@ -382,9 +381,8 @@ func (c *AppRunner) CreateServiceRequest(input *CreateServiceInput) (req *reques
 //   App Runner can't create this resource. You've reached your account quota
 //   for this resource type.
 //
-//   For App Runner per-resource quotas, see AWS App Runner endpoints and quotas
-//   (https://docs.aws.amazon.com/general/latest/gr/apprunner.html) in the AWS
-//   General Reference.
+//   For App Runner per-resource quotas, see App Runner endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/apprunner.html)
+//   in the Amazon Web Services General Reference.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/CreateService
 func (c *AppRunner) CreateService(input *CreateServiceInput) (*CreateServiceOutput, error) {
@@ -403,6 +401,98 @@ func (c *AppRunner) CreateService(input *CreateServiceInput) (*CreateServiceOutp
 // for more information on using Contexts.
 func (c *AppRunner) CreateServiceWithContext(ctx aws.Context, input *CreateServiceInput, opts ...request.Option) (*CreateServiceOutput, error) {
 	req, out := c.CreateServiceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateVpcConnector = "CreateVpcConnector"
+
+// CreateVpcConnectorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVpcConnector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVpcConnector for more information on using the CreateVpcConnector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateVpcConnectorRequest method.
+//    req, resp := client.CreateVpcConnectorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/CreateVpcConnector
+func (c *AppRunner) CreateVpcConnectorRequest(input *CreateVpcConnectorInput) (req *request.Request, output *CreateVpcConnectorOutput) {
+	op := &request.Operation{
+		Name:       opCreateVpcConnector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateVpcConnectorInput{}
+	}
+
+	output = &CreateVpcConnectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVpcConnector API operation for AWS App Runner.
+//
+// Create an App Runner VPC connector resource. App Runner requires this resource
+// when you want to associate your App Runner service to a custom Amazon Virtual
+// Private Cloud (Amazon VPC).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS App Runner's
+// API operation CreateVpcConnector for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   One or more input parameters aren't valid. Refer to the API action's document
+//   page, correct the input parameters, and try the action again.
+//
+//   * InternalServiceErrorException
+//   An unexpected service exception occurred.
+//
+//   * ServiceQuotaExceededException
+//   App Runner can't create this resource. You've reached your account quota
+//   for this resource type.
+//
+//   For App Runner per-resource quotas, see App Runner endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/apprunner.html)
+//   in the Amazon Web Services General Reference.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/CreateVpcConnector
+func (c *AppRunner) CreateVpcConnector(input *CreateVpcConnectorInput) (*CreateVpcConnectorOutput, error) {
+	req, out := c.CreateVpcConnectorRequest(input)
+	return out, req.Send()
+}
+
+// CreateVpcConnectorWithContext is the same as CreateVpcConnector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVpcConnector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) CreateVpcConnectorWithContext(ctx aws.Context, input *CreateVpcConnectorInput, opts ...request.Option) (*CreateVpcConnectorOutput, error) {
+	req, out := c.CreateVpcConnectorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -452,9 +542,9 @@ func (c *AppRunner) DeleteAutoScalingConfigurationRequest(input *DeleteAutoScali
 
 // DeleteAutoScalingConfiguration API operation for AWS App Runner.
 //
-// Delete an AWS App Runner automatic scaling configuration resource. You can
-// delete a specific revision or the latest active revision. You can't delete
-// a configuration that's used by one or more App Runner services.
+// Delete an App Runner automatic scaling configuration resource. You can delete
+// a specific revision or the latest active revision. You can't delete a configuration
+// that's used by one or more App Runner services.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -473,7 +563,7 @@ func (c *AppRunner) DeleteAutoScalingConfigurationRequest(input *DeleteAutoScali
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DeleteAutoScalingConfiguration
 func (c *AppRunner) DeleteAutoScalingConfiguration(input *DeleteAutoScalingConfigurationInput) (*DeleteAutoScalingConfigurationOutput, error) {
@@ -541,9 +631,9 @@ func (c *AppRunner) DeleteConnectionRequest(input *DeleteConnectionInput) (req *
 
 // DeleteConnection API operation for AWS App Runner.
 //
-// Delete an AWS App Runner connection. You must first ensure that there are
-// no running App Runner services that use this connection. If there are any,
-// the DeleteConnection action fails.
+// Delete an App Runner connection. You must first ensure that there are no
+// running App Runner services that use this connection. If there are any, the
+// DeleteConnection action fails.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -559,7 +649,7 @@ func (c *AppRunner) DeleteConnectionRequest(input *DeleteConnectionInput) (req *
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -630,7 +720,7 @@ func (c *AppRunner) DeleteServiceRequest(input *DeleteServiceInput) (req *reques
 
 // DeleteService API operation for AWS App Runner.
 //
-// Delete an AWS App Runner service.
+// Delete an App Runner service.
 //
 // This is an asynchronous operation. On a successful call, you can use the
 // returned OperationId and the ListOperations call to track the operation's
@@ -650,7 +740,7 @@ func (c *AppRunner) DeleteServiceRequest(input *DeleteServiceInput) (req *reques
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InvalidStateException
 //   You can't perform this action when the resource is in its current state.
@@ -675,6 +765,94 @@ func (c *AppRunner) DeleteService(input *DeleteServiceInput) (*DeleteServiceOutp
 // for more information on using Contexts.
 func (c *AppRunner) DeleteServiceWithContext(ctx aws.Context, input *DeleteServiceInput, opts ...request.Option) (*DeleteServiceOutput, error) {
 	req, out := c.DeleteServiceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteVpcConnector = "DeleteVpcConnector"
+
+// DeleteVpcConnectorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVpcConnector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVpcConnector for more information on using the DeleteVpcConnector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteVpcConnectorRequest method.
+//    req, resp := client.DeleteVpcConnectorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DeleteVpcConnector
+func (c *AppRunner) DeleteVpcConnectorRequest(input *DeleteVpcConnectorInput) (req *request.Request, output *DeleteVpcConnectorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVpcConnector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteVpcConnectorInput{}
+	}
+
+	output = &DeleteVpcConnectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteVpcConnector API operation for AWS App Runner.
+//
+// Delete an App Runner VPC connector resource. You can't delete a connector
+// that's used by one or more App Runner services.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS App Runner's
+// API operation DeleteVpcConnector for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   One or more input parameters aren't valid. Refer to the API action's document
+//   page, correct the input parameters, and try the action again.
+//
+//   * InternalServiceErrorException
+//   An unexpected service exception occurred.
+//
+//   * ResourceNotFoundException
+//   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
+//   your Amazon Web Services account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DeleteVpcConnector
+func (c *AppRunner) DeleteVpcConnector(input *DeleteVpcConnectorInput) (*DeleteVpcConnectorOutput, error) {
+	req, out := c.DeleteVpcConnectorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVpcConnectorWithContext is the same as DeleteVpcConnector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVpcConnector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) DeleteVpcConnectorWithContext(ctx aws.Context, input *DeleteVpcConnectorInput, opts ...request.Option) (*DeleteVpcConnectorOutput, error) {
+	req, out := c.DeleteVpcConnectorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -724,7 +902,7 @@ func (c *AppRunner) DescribeAutoScalingConfigurationRequest(input *DescribeAutoS
 
 // DescribeAutoScalingConfiguration API operation for AWS App Runner.
 //
-// Return a full description of an AWS App Runner automatic scaling configuration
+// Return a full description of an App Runner automatic scaling configuration
 // resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -744,7 +922,7 @@ func (c *AppRunner) DescribeAutoScalingConfigurationRequest(input *DescribeAutoS
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DescribeAutoScalingConfiguration
 func (c *AppRunner) DescribeAutoScalingConfiguration(input *DescribeAutoScalingConfigurationInput) (*DescribeAutoScalingConfigurationOutput, error) {
@@ -818,8 +996,8 @@ func (c *AppRunner) DescribeCustomDomainsRequest(input *DescribeCustomDomainsInp
 
 // DescribeCustomDomains API operation for AWS App Runner.
 //
-// Return a description of custom domain names that are associated with an AWS
-// App Runner service.
+// Return a description of custom domain names that are associated with an App
+// Runner service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -838,7 +1016,7 @@ func (c *AppRunner) DescribeCustomDomainsRequest(input *DescribeCustomDomainsInp
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DescribeCustomDomains
 func (c *AppRunner) DescribeCustomDomains(input *DescribeCustomDomainsInput) (*DescribeCustomDomainsOutput, error) {
@@ -958,7 +1136,7 @@ func (c *AppRunner) DescribeServiceRequest(input *DescribeServiceInput) (req *re
 
 // DescribeService API operation for AWS App Runner.
 //
-// Return a full description of an AWS App Runner service.
+// Return a full description of an App Runner service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -974,7 +1152,7 @@ func (c *AppRunner) DescribeServiceRequest(input *DescribeServiceInput) (req *re
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -996,6 +1174,93 @@ func (c *AppRunner) DescribeService(input *DescribeServiceInput) (*DescribeServi
 // for more information on using Contexts.
 func (c *AppRunner) DescribeServiceWithContext(ctx aws.Context, input *DescribeServiceInput, opts ...request.Option) (*DescribeServiceOutput, error) {
 	req, out := c.DescribeServiceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeVpcConnector = "DescribeVpcConnector"
+
+// DescribeVpcConnectorRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVpcConnector operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeVpcConnector for more information on using the DescribeVpcConnector
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeVpcConnectorRequest method.
+//    req, resp := client.DescribeVpcConnectorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DescribeVpcConnector
+func (c *AppRunner) DescribeVpcConnectorRequest(input *DescribeVpcConnectorInput) (req *request.Request, output *DescribeVpcConnectorOutput) {
+	op := &request.Operation{
+		Name:       opDescribeVpcConnector,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeVpcConnectorInput{}
+	}
+
+	output = &DescribeVpcConnectorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeVpcConnector API operation for AWS App Runner.
+//
+// Return a description of an App Runner VPC connector resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS App Runner's
+// API operation DescribeVpcConnector for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   One or more input parameters aren't valid. Refer to the API action's document
+//   page, correct the input parameters, and try the action again.
+//
+//   * InternalServiceErrorException
+//   An unexpected service exception occurred.
+//
+//   * ResourceNotFoundException
+//   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
+//   your Amazon Web Services account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DescribeVpcConnector
+func (c *AppRunner) DescribeVpcConnector(input *DescribeVpcConnectorInput) (*DescribeVpcConnectorOutput, error) {
+	req, out := c.DescribeVpcConnectorRequest(input)
+	return out, req.Send()
+}
+
+// DescribeVpcConnectorWithContext is the same as DescribeVpcConnector with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeVpcConnector for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) DescribeVpcConnectorWithContext(ctx aws.Context, input *DescribeVpcConnectorInput, opts ...request.Option) (*DescribeVpcConnectorOutput, error) {
+	req, out := c.DescribeVpcConnectorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1045,7 +1310,7 @@ func (c *AppRunner) DisassociateCustomDomainRequest(input *DisassociateCustomDom
 
 // DisassociateCustomDomain API operation for AWS App Runner.
 //
-// Disassociate a custom domain name from an AWS App Runner service.
+// Disassociate a custom domain name from an App Runner service.
 //
 // Certificates tracking domain validity are associated with a custom domain
 // and are stored in AWS Certificate Manager (ACM) (https://docs.aws.amazon.com/acm/latest/userguide).
@@ -1070,7 +1335,7 @@ func (c *AppRunner) DisassociateCustomDomainRequest(input *DisassociateCustomDom
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InvalidStateException
 //   You can't perform this action when the resource is in its current state.
@@ -1147,9 +1412,9 @@ func (c *AppRunner) ListAutoScalingConfigurationsRequest(input *ListAutoScalingC
 
 // ListAutoScalingConfigurations API operation for AWS App Runner.
 //
-// Returns a list of AWS App Runner automatic scaling configurations in your
-// AWS account. You can query the revisions for a specific configuration name
-// or the revisions for all configurations in your account. You can optionally
+// Returns a list of App Runner automatic scaling configurations in your Amazon
+// Web Services account. You can query the revisions for a specific configuration
+// name or the revisions for all configurations in your account. You can optionally
 // query only the latest revision of each requested name.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1291,8 +1556,8 @@ func (c *AppRunner) ListConnectionsRequest(input *ListConnectionsInput) (req *re
 
 // ListConnections API operation for AWS App Runner.
 //
-// Returns a list of AWS App Runner connections that are associated with your
-// AWS account.
+// Returns a list of App Runner connections that are associated with your Amazon
+// Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1433,7 +1698,7 @@ func (c *AppRunner) ListOperationsRequest(input *ListOperationsInput) (req *requ
 
 // ListOperations API operation for AWS App Runner.
 //
-// Return a list of operations that occurred on an AWS App Runner service.
+// Return a list of operations that occurred on an App Runner service.
 //
 // The resulting list of OperationSummary objects is sorted in reverse chronological
 // order. The first object on the list represents the last started operation.
@@ -1455,7 +1720,7 @@ func (c *AppRunner) ListOperationsRequest(input *ListOperationsInput) (req *requ
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/ListOperations
 func (c *AppRunner) ListOperations(input *ListOperationsInput) (*ListOperationsOutput, error) {
@@ -1581,7 +1846,8 @@ func (c *AppRunner) ListServicesRequest(input *ListServicesInput) (req *request.
 
 // ListServices API operation for AWS App Runner.
 //
-// Returns a list of running AWS App Runner services in your AWS account.
+// Returns a list of running App Runner services in your Amazon Web Services
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1716,7 +1982,7 @@ func (c *AppRunner) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 
 // ListTagsForResource API operation for AWS App Runner.
 //
-// List tags that are associated with for an AWS App Runner resource. The response
+// List tags that are associated with for an App Runner resource. The response
 // contains a list of tag key-value pairs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1729,7 +1995,7 @@ func (c *AppRunner) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 // Returned Error Types:
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -1761,6 +2027,147 @@ func (c *AppRunner) ListTagsForResourceWithContext(ctx aws.Context, input *ListT
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListVpcConnectors = "ListVpcConnectors"
+
+// ListVpcConnectorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListVpcConnectors operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListVpcConnectors for more information on using the ListVpcConnectors
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListVpcConnectorsRequest method.
+//    req, resp := client.ListVpcConnectorsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/ListVpcConnectors
+func (c *AppRunner) ListVpcConnectorsRequest(input *ListVpcConnectorsInput) (req *request.Request, output *ListVpcConnectorsOutput) {
+	op := &request.Operation{
+		Name:       opListVpcConnectors,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListVpcConnectorsInput{}
+	}
+
+	output = &ListVpcConnectorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListVpcConnectors API operation for AWS App Runner.
+//
+// Returns a list of App Runner VPC connectors in your Amazon Web Services account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS App Runner's
+// API operation ListVpcConnectors for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   One or more input parameters aren't valid. Refer to the API action's document
+//   page, correct the input parameters, and try the action again.
+//
+//   * InternalServiceErrorException
+//   An unexpected service exception occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/ListVpcConnectors
+func (c *AppRunner) ListVpcConnectors(input *ListVpcConnectorsInput) (*ListVpcConnectorsOutput, error) {
+	req, out := c.ListVpcConnectorsRequest(input)
+	return out, req.Send()
+}
+
+// ListVpcConnectorsWithContext is the same as ListVpcConnectors with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVpcConnectors for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) ListVpcConnectorsWithContext(ctx aws.Context, input *ListVpcConnectorsInput, opts ...request.Option) (*ListVpcConnectorsOutput, error) {
+	req, out := c.ListVpcConnectorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListVpcConnectorsPages iterates over the pages of a ListVpcConnectors operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListVpcConnectors method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListVpcConnectors operation.
+//    pageNum := 0
+//    err := client.ListVpcConnectorsPages(params,
+//        func(page *apprunner.ListVpcConnectorsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AppRunner) ListVpcConnectorsPages(input *ListVpcConnectorsInput, fn func(*ListVpcConnectorsOutput, bool) bool) error {
+	return c.ListVpcConnectorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListVpcConnectorsPagesWithContext same as ListVpcConnectorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRunner) ListVpcConnectorsPagesWithContext(ctx aws.Context, input *ListVpcConnectorsInput, fn func(*ListVpcConnectorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListVpcConnectorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListVpcConnectorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListVpcConnectorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opPauseService = "PauseService"
@@ -1807,9 +2214,8 @@ func (c *AppRunner) PauseServiceRequest(input *PauseServiceInput) (req *request.
 
 // PauseService API operation for AWS App Runner.
 //
-// Pause an active AWS App Runner service. App Runner reduces compute capacity
-// for the service to zero and loses state (for example, ephemeral storage is
-// removed).
+// Pause an active App Runner service. App Runner reduces compute capacity for
+// the service to zero and loses state (for example, ephemeral storage is removed).
 //
 // This is an asynchronous operation. On a successful call, you can use the
 // returned OperationId and the ListOperations call to track the operation's
@@ -1829,7 +2235,7 @@ func (c *AppRunner) PauseServiceRequest(input *PauseServiceInput) (req *request.
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -1903,7 +2309,7 @@ func (c *AppRunner) ResumeServiceRequest(input *ResumeServiceInput) (req *reques
 
 // ResumeService API operation for AWS App Runner.
 //
-// Resume an active AWS App Runner service. App Runner provisions compute capacity
+// Resume an active App Runner service. App Runner provisions compute capacity
 // for the service.
 //
 // This is an asynchronous operation. On a successful call, you can use the
@@ -1924,7 +2330,7 @@ func (c *AppRunner) ResumeServiceRequest(input *ResumeServiceInput) (req *reques
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -1999,7 +2405,7 @@ func (c *AppRunner) StartDeploymentRequest(input *StartDeploymentInput) (req *re
 // StartDeployment API operation for AWS App Runner.
 //
 // Initiate a manual deployment of the latest commit in a source code repository
-// or the latest image in a source image repository to an AWS App Runner service.
+// or the latest image in a source image repository to an App Runner service.
 //
 // For a source code repository, App Runner retrieves the commit and builds
 // a Docker image. For a source image repository, App Runner retrieves the latest
@@ -2024,7 +2430,7 @@ func (c *AppRunner) StartDeploymentRequest(input *StartDeploymentInput) (req *re
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -2109,7 +2515,7 @@ func (c *AppRunner) TagResourceRequest(input *TagResourceInput) (req *request.Re
 // Returned Error Types:
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -2200,7 +2606,7 @@ func (c *AppRunner) UntagResourceRequest(input *UntagResourceInput) (req *reques
 // Returned Error Types:
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -2278,11 +2684,11 @@ func (c *AppRunner) UpdateServiceRequest(input *UpdateServiceInput) (req *reques
 
 // UpdateService API operation for AWS App Runner.
 //
-// Update an AWS App Runner service. You can update the source configuration
-// and instance configuration of the service. You can also update the ARN of
-// the auto scaling configuration resource that's associated with the service.
-// However, you can't change the name or the encryption configuration of the
-// service. These can be set only when you create the service.
+// Update an App Runner service. You can update the source configuration and
+// instance configuration of the service. You can also update the ARN of the
+// auto scaling configuration resource that's associated with the service. However,
+// you can't change the name or the encryption configuration of the service.
+// These can be set only when you create the service.
 //
 // To update the tags applied to your service, use the separate actions TagResource
 // and UntagResource.
@@ -2305,7 +2711,7 @@ func (c *AppRunner) UpdateServiceRequest(input *UpdateServiceInput) (req *reques
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InvalidStateException
 //   You can't perform this action when the resource is in its current state.
@@ -2358,12 +2764,20 @@ type AssociateCustomDomainInput struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateCustomDomainInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateCustomDomainInput) GoString() string {
 	return s.String()
 }
@@ -2429,12 +2843,20 @@ type AssociateCustomDomainOutput struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateCustomDomainOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AssociateCustomDomainOutput) GoString() string {
 	return s.String()
 }
@@ -2473,12 +2895,20 @@ type AuthenticationConfiguration struct {
 	ConnectionArn *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AuthenticationConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AuthenticationConfiguration) GoString() string {
 	return s.String()
 }
@@ -2511,15 +2941,17 @@ func (s *AuthenticationConfiguration) SetConnectionArn(v string) *Authentication
 	return s
 }
 
-// Describes an AWS App Runner automatic scaling configuration resource. Multiple
-// revisions of a configuration have the same AutoScalingConfigurationName and
-// different AutoScalingConfigurationRevision values.
+// Describes an App Runner automatic scaling configuration resource.
 //
 // A higher MinSize increases the spread of your App Runner service over more
-// Availability Zones in the AWS Region. The tradeoff is a higher minimal cost.
+// Availability Zones in the Amazon Web Services Region. The tradeoff is a higher
+// minimal cost.
 //
 // A lower MaxSize controls your cost. The tradeoff is lower responsiveness
 // during peak demand.
+//
+// Multiple revisions of a configuration might have the same AutoScalingConfigurationName
+// and different AutoScalingConfigurationRevision values.
 type AutoScalingConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -2572,12 +3004,20 @@ type AutoScalingConfiguration struct {
 	Status *string `type:"string" enum:"AutoScalingConfigurationStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingConfiguration) GoString() string {
 	return s.String()
 }
@@ -2642,7 +3082,7 @@ func (s *AutoScalingConfiguration) SetStatus(v string) *AutoScalingConfiguration
 	return s
 }
 
-// Provides summary information about an AWS App Runner automatic scaling configuration
+// Provides summary information about an App Runner automatic scaling configuration
 // resource.
 //
 // This type contains limited information about an auto scaling configuration.
@@ -2666,12 +3106,20 @@ type AutoScalingConfigurationSummary struct {
 	AutoScalingConfigurationRevision *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingConfigurationSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s AutoScalingConfigurationSummary) GoString() string {
 	return s.String()
 }
@@ -2713,12 +3161,20 @@ type CertificateValidationRecord struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CertificateValidationRecord) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CertificateValidationRecord) GoString() string {
 	return s.String()
 }
@@ -2747,8 +3203,8 @@ func (s *CertificateValidationRecord) SetValue(v string) *CertificateValidationR
 	return s
 }
 
-// Describes the configuration that AWS App Runner uses to build and run an
-// App Runner service from a source code repository.
+// Describes the configuration that App Runner uses to build and run an App
+// Runner service from a source code repository.
 type CodeConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -2769,12 +3225,20 @@ type CodeConfiguration struct {
 	ConfigurationSource *string `type:"string" required:"true" enum:"ConfigurationSource"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CodeConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CodeConfiguration) GoString() string {
 	return s.String()
 }
@@ -2809,14 +3273,18 @@ func (s *CodeConfiguration) SetConfigurationSource(v string) *CodeConfiguration 
 	return s
 }
 
-// Describes the basic configuration needed for building and running an AWS
-// App Runner service. This type doesn't support the full set of possible configuration
+// Describes the basic configuration needed for building and running an App
+// Runner service. This type doesn't support the full set of possible configuration
 // options. Fur full configuration capabilities, use a apprunner.yaml file in
 // the source code repository.
 type CodeConfigurationValues struct {
 	_ struct{} `type:"structure"`
 
 	// The command App Runner runs to build your application.
+	//
+	// BuildCommand is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CodeConfigurationValues's
+	// String and GoString methods.
 	BuildCommand *string `type:"string" sensitive:"true"`
 
 	// The port that your application listens to in the container.
@@ -2836,15 +3304,27 @@ type CodeConfigurationValues struct {
 	RuntimeEnvironmentVariables map[string]*string `type:"map"`
 
 	// The command App Runner runs to start your application.
+	//
+	// StartCommand is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CodeConfigurationValues's
+	// String and GoString methods.
 	StartCommand *string `type:"string" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CodeConfigurationValues) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CodeConfigurationValues) GoString() string {
 	return s.String()
 }
@@ -2910,12 +3390,20 @@ type CodeRepository struct {
 	SourceCodeVersion *SourceCodeVersion `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CodeRepository) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CodeRepository) GoString() string {
 	return s.String()
 }
@@ -2964,7 +3452,7 @@ func (s *CodeRepository) SetSourceCodeVersion(v *SourceCodeVersion) *CodeReposit
 	return s
 }
 
-// Describes an AWS App Runner connection resource.
+// Describes an App Runner connection resource.
 type Connection struct {
 	_ struct{} `type:"structure"`
 
@@ -2985,12 +3473,20 @@ type Connection struct {
 	Status *string `type:"string" enum:"ConnectionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Connection) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Connection) GoString() string {
 	return s.String()
 }
@@ -3025,7 +3521,7 @@ func (s *Connection) SetStatus(v string) *Connection {
 	return s
 }
 
-// Provides summary information about an AWS App Runner connection resource.
+// Provides summary information about an App Runner connection resource.
 type ConnectionSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3046,12 +3542,20 @@ type ConnectionSummary struct {
 	Status *string `type:"string" enum:"ConnectionStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConnectionSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ConnectionSummary) GoString() string {
 	return s.String()
 }
@@ -3090,9 +3594,17 @@ type CreateAutoScalingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// A name for the auto scaling configuration. When you use it for the first
-	// time in an AWS Region, App Runner creates revision number 1 of this name.
-	// When you use the same name in subsequent calls, App Runner creates incremental
-	// revisions of the configuration.
+	// time in an Amazon Web Services Region, App Runner creates revision number
+	// 1 of this name. When you use the same name in subsequent calls, App Runner
+	// creates incremental revisions of the configuration.
+	//
+	// The name DefaultConfiguration is reserved (it's the configuration that App
+	// Runner uses if you don't provide a custome one). You can't use it to create
+	// a new auto scaling configuration, and you can't create a revision of it.
+	//
+	// When you want to use your own auto scaling configuration for your App Runner
+	// service, create a configuration with a different name, and then provide it
+	// when you create or update your service.
 	//
 	// AutoScalingConfigurationName is a required field
 	AutoScalingConfigurationName *string `min:"4" type:"string" required:"true"`
@@ -3128,12 +3640,20 @@ type CreateAutoScalingConfigurationInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAutoScalingConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAutoScalingConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -3213,12 +3733,20 @@ type CreateAutoScalingConfigurationOutput struct {
 	AutoScalingConfiguration *AutoScalingConfiguration `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAutoScalingConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateAutoScalingConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -3233,7 +3761,7 @@ type CreateConnectionInput struct {
 	_ struct{} `type:"structure"`
 
 	// A name for the new connection. It must be unique across all App Runner connections
-	// for the AWS account in the AWS Region.
+	// for the Amazon Web Services account in the Amazon Web Services Region.
 	//
 	// ConnectionName is a required field
 	ConnectionName *string `min:"4" type:"string" required:"true"`
@@ -3248,12 +3776,20 @@ type CreateConnectionInput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectionInput) GoString() string {
 	return s.String()
 }
@@ -3314,12 +3850,20 @@ type CreateConnectionOutput struct {
 	Connection *Connection `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -3334,25 +3878,30 @@ type CreateServiceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of an App Runner automatic scaling configuration
-	// resource that you want to associate with your service. If not provided, App
-	// Runner associates the latest revision of a default auto scaling configuration.
+	// resource that you want to associate with the App Runner service. If not provided,
+	// App Runner associates the latest revision of a default auto scaling configuration.
 	AutoScalingConfigurationArn *string `min:"1" type:"string"`
 
 	// An optional custom encryption key that App Runner uses to encrypt the copy
 	// of your source repository that it maintains and your service logs. By default,
-	// App Runner uses an AWS managed CMK.
+	// App Runner uses an Amazon Web Services managed key.
 	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
 
-	// The settings for the health check that AWS App Runner performs to monitor
-	// the health of your service.
+	// The settings for the health check that App Runner performs to monitor the
+	// health of the App Runner service.
 	HealthCheckConfiguration *HealthCheckConfiguration `type:"structure"`
 
 	// The runtime configuration of instances (scaling units) of the App Runner
 	// service.
 	InstanceConfiguration *InstanceConfiguration `type:"structure"`
 
-	// A name for the new service. It must be unique across all the running App
-	// Runner services in your AWS account in the AWS Region.
+	// Configuration settings related to network traffic of the web application
+	// that the App Runner service runs.
+	NetworkConfiguration *NetworkConfiguration `type:"structure"`
+
+	// A name for the App Runner service. It must be unique across all the running
+	// App Runner services in your Amazon Web Services account in the Amazon Web
+	// Services Region.
 	//
 	// ServiceName is a required field
 	ServiceName *string `min:"4" type:"string" required:"true"`
@@ -3363,17 +3912,25 @@ type CreateServiceInput struct {
 	// SourceConfiguration is a required field
 	SourceConfiguration *SourceConfiguration `type:"structure" required:"true"`
 
-	// An optional list of metadata items that you can associate with your service
-	// resource. A tag is a key-value pair.
+	// An optional list of metadata items that you can associate with the App Runner
+	// service resource. A tag is a key-value pair.
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateServiceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateServiceInput) GoString() string {
 	return s.String()
 }
@@ -3406,6 +3963,11 @@ func (s *CreateServiceInput) Validate() error {
 	if s.InstanceConfiguration != nil {
 		if err := s.InstanceConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("InstanceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NetworkConfiguration != nil {
+		if err := s.NetworkConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("NetworkConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SourceConfiguration != nil {
@@ -3454,6 +4016,12 @@ func (s *CreateServiceInput) SetInstanceConfiguration(v *InstanceConfiguration) 
 	return s
 }
 
+// SetNetworkConfiguration sets the NetworkConfiguration field's value.
+func (s *CreateServiceInput) SetNetworkConfiguration(v *NetworkConfiguration) *CreateServiceInput {
+	s.NetworkConfiguration = v
+	return s
+}
+
 // SetServiceName sets the ServiceName field's value.
 func (s *CreateServiceInput) SetServiceName(v string) *CreateServiceInput {
 	s.ServiceName = &v
@@ -3488,12 +4056,20 @@ type CreateServiceOutput struct {
 	Service *Service `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateServiceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CreateServiceOutput) GoString() string {
 	return s.String()
 }
@@ -3510,7 +4086,137 @@ func (s *CreateServiceOutput) SetService(v *Service) *CreateServiceOutput {
 	return s
 }
 
-// Describes a custom domain that's associated with an AWS App Runner service.
+type CreateVpcConnectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of IDs of security groups that App Runner should use for access to
+	// Amazon Web Services resources under the specified subnets. If not specified,
+	// App Runner uses the default security group of the Amazon VPC. The default
+	// security group allows all outbound traffic.
+	SecurityGroups []*string `type:"list"`
+
+	// A list of IDs of subnets that App Runner should use when it associates your
+	// service with a custom Amazon VPC. Specify IDs of subnets of a single Amazon
+	// VPC. App Runner determines the Amazon VPC from the subnets you specify.
+	//
+	// Subnets is a required field
+	Subnets []*string `type:"list" required:"true"`
+
+	// A list of metadata items that you can associate with your VPC connector resource.
+	// A tag is a key-value pair.
+	Tags []*Tag `type:"list"`
+
+	// A name for the VPC connector.
+	//
+	// VpcConnectorName is a required field
+	VpcConnectorName *string `min:"4" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcConnectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcConnectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVpcConnectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVpcConnectorInput"}
+	if s.Subnets == nil {
+		invalidParams.Add(request.NewErrParamRequired("Subnets"))
+	}
+	if s.VpcConnectorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcConnectorName"))
+	}
+	if s.VpcConnectorName != nil && len(*s.VpcConnectorName) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcConnectorName", 4))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *CreateVpcConnectorInput) SetSecurityGroups(v []*string) *CreateVpcConnectorInput {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSubnets sets the Subnets field's value.
+func (s *CreateVpcConnectorInput) SetSubnets(v []*string) *CreateVpcConnectorInput {
+	s.Subnets = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVpcConnectorInput) SetTags(v []*Tag) *CreateVpcConnectorInput {
+	s.Tags = v
+	return s
+}
+
+// SetVpcConnectorName sets the VpcConnectorName field's value.
+func (s *CreateVpcConnectorInput) SetVpcConnectorName(v string) *CreateVpcConnectorInput {
+	s.VpcConnectorName = &v
+	return s
+}
+
+type CreateVpcConnectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the App Runner VPC connector that's created by this request.
+	//
+	// VpcConnector is a required field
+	VpcConnector *VpcConnector `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcConnectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateVpcConnectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpcConnector sets the VpcConnector field's value.
+func (s *CreateVpcConnectorOutput) SetVpcConnector(v *VpcConnector) *CreateVpcConnectorOutput {
+	s.VpcConnector = v
+	return s
+}
+
+// Describes a custom domain that's associated with an App Runner service.
 type CustomDomain struct {
 	_ struct{} `type:"structure"`
 
@@ -3536,12 +4242,20 @@ type CustomDomain struct {
 	Status *string `type:"string" required:"true" enum:"CustomDomainAssociationStatus"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomDomain) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s CustomDomain) GoString() string {
 	return s.String()
 }
@@ -3584,12 +4298,20 @@ type DeleteAutoScalingConfigurationInput struct {
 	AutoScalingConfigurationArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAutoScalingConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAutoScalingConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -3626,12 +4348,20 @@ type DeleteAutoScalingConfigurationOutput struct {
 	AutoScalingConfiguration *AutoScalingConfiguration `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAutoScalingConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteAutoScalingConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -3652,12 +4382,20 @@ type DeleteConnectionInput struct {
 	ConnectionArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionInput) GoString() string {
 	return s.String()
 }
@@ -3691,12 +4429,20 @@ type DeleteConnectionOutput struct {
 	Connection *Connection `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteConnectionOutput) GoString() string {
 	return s.String()
 }
@@ -3717,12 +4463,20 @@ type DeleteServiceInput struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteServiceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteServiceInput) GoString() string {
 	return s.String()
 }
@@ -3765,12 +4519,20 @@ type DeleteServiceOutput struct {
 	Service *Service `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteServiceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DeleteServiceOutput) GoString() string {
 	return s.String()
 }
@@ -3784,6 +4546,91 @@ func (s *DeleteServiceOutput) SetOperationId(v string) *DeleteServiceOutput {
 // SetService sets the Service field's value.
 func (s *DeleteServiceOutput) SetService(v *Service) *DeleteServiceOutput {
 	s.Service = v
+	return s
+}
+
+type DeleteVpcConnectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the App Runner VPC connector that you want
+	// to delete.
+	//
+	// The ARN must be a full VPC connector ARN.
+	//
+	// VpcConnectorArn is a required field
+	VpcConnectorArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcConnectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcConnectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVpcConnectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVpcConnectorInput"}
+	if s.VpcConnectorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcConnectorArn"))
+	}
+	if s.VpcConnectorArn != nil && len(*s.VpcConnectorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcConnectorArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVpcConnectorArn sets the VpcConnectorArn field's value.
+func (s *DeleteVpcConnectorInput) SetVpcConnectorArn(v string) *DeleteVpcConnectorInput {
+	s.VpcConnectorArn = &v
+	return s
+}
+
+type DeleteVpcConnectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the App Runner VPC connector that this request just deleted.
+	//
+	// VpcConnector is a required field
+	VpcConnector *VpcConnector `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcConnectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVpcConnectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpcConnector sets the VpcConnector field's value.
+func (s *DeleteVpcConnectorOutput) SetVpcConnector(v *VpcConnector) *DeleteVpcConnectorOutput {
+	s.VpcConnector = v
 	return s
 }
 
@@ -3801,12 +4648,20 @@ type DescribeAutoScalingConfigurationInput struct {
 	AutoScalingConfigurationArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAutoScalingConfigurationInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAutoScalingConfigurationInput) GoString() string {
 	return s.String()
 }
@@ -3843,12 +4698,20 @@ type DescribeAutoScalingConfigurationOutput struct {
 	AutoScalingConfiguration *AutoScalingConfiguration `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAutoScalingConfigurationOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeAutoScalingConfigurationOutput) GoString() string {
 	return s.String()
 }
@@ -3883,12 +4746,20 @@ type DescribeCustomDomainsInput struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCustomDomainsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCustomDomainsInput) GoString() string {
 	return s.String()
 }
@@ -3957,12 +4828,20 @@ type DescribeCustomDomainsOutput struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCustomDomainsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeCustomDomainsOutput) GoString() string {
 	return s.String()
 }
@@ -4001,12 +4880,20 @@ type DescribeServiceInput struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceInput) GoString() string {
 	return s.String()
 }
@@ -4042,12 +4929,20 @@ type DescribeServiceOutput struct {
 	Service *Service `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DescribeServiceOutput) GoString() string {
 	return s.String()
 }
@@ -4055,6 +4950,92 @@ func (s DescribeServiceOutput) GoString() string {
 // SetService sets the Service field's value.
 func (s *DescribeServiceOutput) SetService(v *Service) *DescribeServiceOutput {
 	s.Service = v
+	return s
+}
+
+type DescribeVpcConnectorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the App Runner VPC connector that you want
+	// a description for.
+	//
+	// The ARN must be a full VPC connector ARN.
+	//
+	// VpcConnectorArn is a required field
+	VpcConnectorArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcConnectorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcConnectorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVpcConnectorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVpcConnectorInput"}
+	if s.VpcConnectorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcConnectorArn"))
+	}
+	if s.VpcConnectorArn != nil && len(*s.VpcConnectorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcConnectorArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVpcConnectorArn sets the VpcConnectorArn field's value.
+func (s *DescribeVpcConnectorInput) SetVpcConnectorArn(v string) *DescribeVpcConnectorInput {
+	s.VpcConnectorArn = &v
+	return s
+}
+
+type DescribeVpcConnectorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the App Runner VPC connector that you specified in this
+	// request.
+	//
+	// VpcConnector is a required field
+	VpcConnector *VpcConnector `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcConnectorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVpcConnectorOutput) GoString() string {
+	return s.String()
+}
+
+// SetVpcConnector sets the VpcConnector field's value.
+func (s *DescribeVpcConnectorOutput) SetVpcConnector(v *VpcConnector) *DescribeVpcConnectorOutput {
+	s.VpcConnector = v
 	return s
 }
 
@@ -4073,12 +5054,20 @@ type DisassociateCustomDomainInput struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateCustomDomainInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateCustomDomainInput) GoString() string {
 	return s.String()
 }
@@ -4138,12 +5127,20 @@ type DisassociateCustomDomainOutput struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateCustomDomainOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s DisassociateCustomDomainOutput) GoString() string {
 	return s.String()
 }
@@ -4166,7 +5163,67 @@ func (s *DisassociateCustomDomainOutput) SetServiceArn(v string) *DisassociateCu
 	return s
 }
 
-// Describes a custom encryption key that AWS App Runner uses to encrypt copies
+// Describes configuration settings related to outbound network traffic of an
+// App Runner service.
+type EgressConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The type of egress configuration.
+	//
+	// Set to DEFAULT for access to resources hosted on public networks.
+	//
+	// Set to VPC to associate your service to a custom VPC specified by VpcConnectorArn.
+	EgressType *string `type:"string" enum:"EgressType"`
+
+	// The Amazon Resource Name (ARN) of the App Runner VPC connector that you want
+	// to associate with your App Runner service. Only valid when EgressType = VPC.
+	VpcConnectorArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EgressConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EgressConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EgressConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EgressConfiguration"}
+	if s.VpcConnectorArn != nil && len(*s.VpcConnectorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcConnectorArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEgressType sets the EgressType field's value.
+func (s *EgressConfiguration) SetEgressType(v string) *EgressConfiguration {
+	s.EgressType = &v
+	return s
+}
+
+// SetVpcConnectorArn sets the VpcConnectorArn field's value.
+func (s *EgressConfiguration) SetVpcConnectorArn(v string) *EgressConfiguration {
+	s.VpcConnectorArn = &v
+	return s
+}
+
+// Describes a custom encryption key that App Runner uses to encrypt copies
 // of the source repository and service logs.
 type EncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -4177,12 +5234,20 @@ type EncryptionConfiguration struct {
 	KmsKey *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s EncryptionConfiguration) GoString() string {
 	return s.String()
 }
@@ -4206,15 +5271,15 @@ func (s *EncryptionConfiguration) SetKmsKey(v string) *EncryptionConfiguration {
 	return s
 }
 
-// Describes the settings for the health check that AWS App Runner performs
-// to monitor the health of a service.
+// Describes the settings for the health check that App Runner performs to monitor
+// the health of a service.
 type HealthCheckConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The number of consecutive checks that must succeed before App Runner decides
 	// that the service is healthy.
 	//
-	// Default: 3
+	// Default: 1
 	HealthyThreshold *int64 `min:"1" type:"integer"`
 
 	// The time interval, in seconds, between health checks.
@@ -4227,7 +5292,7 @@ type HealthCheckConfiguration struct {
 	// Path is only applicable when you set Protocol to HTTP.
 	//
 	// Default: "/"
-	Path *string `type:"string"`
+	Path *string `min:"1" type:"string"`
 
 	// The IP protocol that App Runner uses to perform health checks for your service.
 	//
@@ -4246,16 +5311,24 @@ type HealthCheckConfiguration struct {
 	// The number of consecutive checks that must fail before App Runner decides
 	// that the service is unhealthy.
 	//
-	// Default: 3
+	// Default: 5
 	UnhealthyThreshold *int64 `min:"1" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HealthCheckConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s HealthCheckConfiguration) GoString() string {
 	return s.String()
 }
@@ -4268,6 +5341,9 @@ func (s *HealthCheckConfiguration) Validate() error {
 	}
 	if s.Interval != nil && *s.Interval < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Interval", 1))
+	}
+	if s.Path != nil && len(*s.Path) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Path", 1))
 	}
 	if s.Timeout != nil && *s.Timeout < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Timeout", 1))
@@ -4318,8 +5394,8 @@ func (s *HealthCheckConfiguration) SetUnhealthyThreshold(v int64) *HealthCheckCo
 	return s
 }
 
-// Describes the configuration that AWS App Runner uses to run an App Runner
-// service using an image pulled from a source image repository.
+// Describes the configuration that App Runner uses to run an App Runner service
+// using an image pulled from a source image repository.
 type ImageConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4336,15 +5412,27 @@ type ImageConfiguration struct {
 	// An optional command that App Runner runs to start the application in the
 	// source image. If specified, this command overrides the Docker image’s default
 	// start command.
-	StartCommand *string `type:"string"`
+	//
+	// StartCommand is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ImageConfiguration's
+	// String and GoString methods.
+	StartCommand *string `type:"string" sensitive:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImageConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImageConfiguration) GoString() string {
 	return s.String()
 }
@@ -4390,12 +5478,20 @@ type ImageRepository struct {
 	ImageRepositoryType *string `type:"string" required:"true" enum:"ImageRepositoryType"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImageRepository) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ImageRepository) GoString() string {
 	return s.String()
 }
@@ -4437,8 +5533,8 @@ func (s *ImageRepository) SetImageRepositoryType(v string) *ImageRepository {
 	return s
 }
 
-// Describes the runtime configuration of an AWS App Runner service instance
-// (scaling unit).
+// Describes the runtime configuration of an App Runner service instance (scaling
+// unit).
 type InstanceConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4449,7 +5545,7 @@ type InstanceConfiguration struct {
 
 	// The Amazon Resource Name (ARN) of an IAM role that provides permissions to
 	// your App Runner service. These are permissions that your code needs when
-	// it calls any AWS APIs.
+	// it calls any Amazon Web Services APIs.
 	InstanceRoleArn *string `min:"29" type:"string"`
 
 	// The amount of memory, in MB or GB, reserved for each instance of your App
@@ -4459,12 +5555,20 @@ type InstanceConfiguration struct {
 	Memory *string `min:"4" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InstanceConfiguration) GoString() string {
 	return s.String()
 }
@@ -4514,12 +5618,20 @@ type InternalServiceErrorException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceErrorException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalServiceErrorException) GoString() string {
 	return s.String()
 }
@@ -4571,12 +5683,20 @@ type InvalidRequestException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidRequestException) GoString() string {
 	return s.String()
 }
@@ -4627,12 +5747,20 @@ type InvalidStateException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidStateException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvalidStateException) GoString() string {
 	return s.String()
 }
@@ -4706,12 +5834,20 @@ type ListAutoScalingConfigurationsInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAutoScalingConfigurationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAutoScalingConfigurationsInput) GoString() string {
 	return s.String()
 }
@@ -4774,12 +5910,20 @@ type ListAutoScalingConfigurationsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAutoScalingConfigurationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListAutoScalingConfigurationsOutput) GoString() string {
 	return s.String()
 }
@@ -4818,12 +5962,20 @@ type ListConnectionsInput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConnectionsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConnectionsInput) GoString() string {
 	return s.String()
 }
@@ -4879,12 +6031,20 @@ type ListConnectionsOutput struct {
 	NextToken *string `min:"1" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConnectionsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListConnectionsOutput) GoString() string {
 	return s.String()
 }
@@ -4925,12 +6085,20 @@ type ListOperationsInput struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOperationsInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOperationsInput) GoString() string {
 	return s.String()
 }
@@ -4984,12 +6152,20 @@ type ListOperationsOutput struct {
 	OperationSummaryList []*OperationSummary `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOperationsOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListOperationsOutput) GoString() string {
 	return s.String()
 }
@@ -5024,12 +6200,20 @@ type ListServicesInput struct {
 	NextToken *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListServicesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListServicesInput) GoString() string {
 	return s.String()
 }
@@ -5073,12 +6257,20 @@ type ListServicesOutput struct {
 	ServiceSummaryList []*ServiceSummary `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListServicesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListServicesOutput) GoString() string {
 	return s.String()
 }
@@ -5107,12 +6299,20 @@ type ListTagsForResourceInput struct {
 	ResourceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
@@ -5146,12 +6346,20 @@ type ListTagsForResourceOutput struct {
 	Tags []*Tag `type:"list"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
@@ -5162,8 +6370,164 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
-// Provides summary information for an operation that occurred on an AWS App
-// Runner service.
+type ListVpcConnectorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to include in each response (result page).
+	// It's used for a paginated request.
+	//
+	// If you don't specify MaxResults, the request retrieves all available results
+	// in a single response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token from a previous result page. It's used for a paginated request. The
+	// request retrieves the next result page. All other parameter values must be
+	// identical to the ones that are specified in the initial request.
+	//
+	// If you don't specify NextToken, the request retrieves the first result page.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcConnectorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcConnectorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVpcConnectorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVpcConnectorsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListVpcConnectorsInput) SetMaxResults(v int64) *ListVpcConnectorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVpcConnectorsInput) SetNextToken(v string) *ListVpcConnectorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListVpcConnectorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token that you can pass in a subsequent request to get the next result
+	// page. It's returned in a paginated request.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list of information records for VPC connectors. In a paginated request,
+	// the request returns up to MaxResults records for each call.
+	//
+	// VpcConnectors is a required field
+	VpcConnectors []*VpcConnector `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcConnectorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListVpcConnectorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVpcConnectorsOutput) SetNextToken(v string) *ListVpcConnectorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVpcConnectors sets the VpcConnectors field's value.
+func (s *ListVpcConnectorsOutput) SetVpcConnectors(v []*VpcConnector) *ListVpcConnectorsOutput {
+	s.VpcConnectors = v
+	return s
+}
+
+// Describes configuration settings related to network traffic of an App Runner
+// service. Consists of embedded objects for each configurable network feature.
+type NetworkConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Network configuration settings for outbound message traffic.
+	EgressConfiguration *EgressConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NetworkConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NetworkConfiguration"}
+	if s.EgressConfiguration != nil {
+		if err := s.EgressConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EgressConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEgressConfiguration sets the EgressConfiguration field's value.
+func (s *NetworkConfiguration) SetEgressConfiguration(v *EgressConfiguration) *NetworkConfiguration {
+	s.EgressConfiguration = v
+	return s
+}
+
+// Provides summary information for an operation that occurred on an App Runner
+// service.
 type OperationSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -5192,12 +6556,20 @@ type OperationSummary struct {
 	UpdatedAt *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OperationSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s OperationSummary) GoString() string {
 	return s.String()
 }
@@ -5254,12 +6626,20 @@ type PauseServiceInput struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PauseServiceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PauseServiceInput) GoString() string {
 	return s.String()
 }
@@ -5300,12 +6680,20 @@ type PauseServiceOutput struct {
 	Service *Service `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PauseServiceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s PauseServiceOutput) GoString() string {
 	return s.String()
 }
@@ -5323,7 +6711,7 @@ func (s *PauseServiceOutput) SetService(v *Service) *PauseServiceOutput {
 }
 
 // A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-// your AWS account.
+// your Amazon Web Services account.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5331,12 +6719,20 @@ type ResourceNotFoundException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResourceNotFoundException) GoString() string {
 	return s.String()
 }
@@ -5389,12 +6785,20 @@ type ResumeServiceInput struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResumeServiceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResumeServiceInput) GoString() string {
 	return s.String()
 }
@@ -5435,12 +6839,20 @@ type ResumeServiceOutput struct {
 	Service *Service `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResumeServiceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ResumeServiceOutput) GoString() string {
 	return s.String()
 }
@@ -5457,7 +6869,7 @@ func (s *ResumeServiceOutput) SetService(v *Service) *ResumeServiceOutput {
 	return s
 }
 
-// Describes an AWS App Runner service. It can describe a service in any state,
+// Describes an App Runner service. It can describe a service in any state,
 // including deleted services.
 //
 // This type contains the full information about a service, including configuration
@@ -5488,7 +6900,8 @@ type Service struct {
 
 	// The encryption key that App Runner uses to encrypt the service logs and the
 	// copy of the source repository that App Runner maintains for the service.
-	// It can be either a customer-provided encryption key or an AWS managed CMK.
+	// It can be either a customer-provided encryption key or an Amazon Web Services
+	// managed key.
 	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
 
 	// The settings for the health check that App Runner performs to monitor the
@@ -5500,13 +6913,19 @@ type Service struct {
 	// InstanceConfiguration is a required field
 	InstanceConfiguration *InstanceConfiguration `type:"structure" required:"true"`
 
+	// Configuration settings related to network traffic of the web application
+	// that this service runs.
+	//
+	// NetworkConfiguration is a required field
+	NetworkConfiguration *NetworkConfiguration `type:"structure" required:"true"`
+
 	// The Amazon Resource Name (ARN) of this service.
 	//
 	// ServiceArn is a required field
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 
 	// An ID that App Runner generated for this service. It's unique within the
-	// AWS Region.
+	// Amazon Web Services Region.
 	//
 	// ServiceId is a required field
 	ServiceId *string `min:"32" type:"string" required:"true"`
@@ -5551,12 +6970,20 @@ type Service struct {
 	UpdatedAt *time.Time `type:"timestamp" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Service) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Service) GoString() string {
 	return s.String()
 }
@@ -5594,6 +7021,12 @@ func (s *Service) SetHealthCheckConfiguration(v *HealthCheckConfiguration) *Serv
 // SetInstanceConfiguration sets the InstanceConfiguration field's value.
 func (s *Service) SetInstanceConfiguration(v *InstanceConfiguration) *Service {
 	s.InstanceConfiguration = v
+	return s
+}
+
+// SetNetworkConfiguration sets the NetworkConfiguration field's value.
+func (s *Service) SetNetworkConfiguration(v *NetworkConfiguration) *Service {
+	s.NetworkConfiguration = v
 	return s
 }
 
@@ -5642,9 +7075,8 @@ func (s *Service) SetUpdatedAt(v time.Time) *Service {
 // App Runner can't create this resource. You've reached your account quota
 // for this resource type.
 //
-// For App Runner per-resource quotas, see AWS App Runner endpoints and quotas
-// (https://docs.aws.amazon.com/general/latest/gr/apprunner.html) in the AWS
-// General Reference.
+// For App Runner per-resource quotas, see App Runner endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/apprunner.html)
+// in the Amazon Web Services General Reference.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5652,12 +7084,20 @@ type ServiceQuotaExceededException struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceQuotaExceededException) GoString() string {
 	return s.String()
 }
@@ -5700,7 +7140,7 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Provides summary information for an AWS App Runner service.
+// Provides summary information for an App Runner service.
 //
 // This type contains limited information about a service. It doesn't include
 // configuration details. It's returned by the ListServices (https://docs.aws.amazon.com/apprunner/latest/api/API_ListServices.html)
@@ -5720,7 +7160,7 @@ type ServiceSummary struct {
 	ServiceArn *string `min:"1" type:"string"`
 
 	// An ID that App Runner generated for this service. It's unique within the
-	// AWS Region.
+	// Amazon Web Services Region.
 	ServiceId *string `min:"32" type:"string"`
 
 	// The customer-provided service name.
@@ -5749,12 +7189,20 @@ type ServiceSummary struct {
 	UpdatedAt *time.Time `type:"timestamp"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceSummary) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceSummary) GoString() string {
 	return s.String()
 }
@@ -5801,8 +7249,8 @@ func (s *ServiceSummary) SetUpdatedAt(v time.Time) *ServiceSummary {
 	return s
 }
 
-// Identifies a version of code that AWS App Runner refers to within a source
-// code repository.
+// Identifies a version of code that App Runner refers to within a source code
+// repository.
 type SourceCodeVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -5822,12 +7270,20 @@ type SourceCodeVersion struct {
 	Value *string `type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceCodeVersion) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceCodeVersion) GoString() string {
 	return s.String()
 }
@@ -5860,7 +7316,7 @@ func (s *SourceCodeVersion) SetValue(v string) *SourceCodeVersion {
 	return s
 }
 
-// Describes the source deployed to an AWS App Runner service. It can be a code
+// Describes the source deployed to an App Runner service. It can be a code
 // or an image repository.
 type SourceConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -5870,10 +7326,14 @@ type SourceConfiguration struct {
 	AuthenticationConfiguration *AuthenticationConfiguration `type:"structure"`
 
 	// If true, continuous integration from the source repository is enabled for
-	// the App Runner service. Each repository change (source code commit or new
-	// image version) starts a deployment.
+	// the App Runner service. Each repository change (including any source code
+	// commit or new image version) starts a deployment.
 	//
-	// Default: true
+	// Default: App Runner sets to false for a source image that uses an ECR Public
+	// repository or an ECR repository that's in an Amazon Web Services account
+	// other than the one that the service is in. App Runner sets to true in all
+	// other cases (which currently include a source code repository or a source
+	// image using a same-account ECR repository).
 	AutoDeploymentsEnabled *bool `type:"boolean"`
 
 	// The description of a source code repository.
@@ -5887,12 +7347,20 @@ type SourceConfiguration struct {
 	ImageRepository *ImageRepository `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceConfiguration) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s SourceConfiguration) GoString() string {
 	return s.String()
 }
@@ -5956,12 +7424,20 @@ type StartDeploymentInput struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDeploymentInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDeploymentInput) GoString() string {
 	return s.String()
 }
@@ -5999,12 +7475,20 @@ type StartDeploymentOutput struct {
 	OperationId *string `min:"36" type:"string" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDeploymentOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s StartDeploymentOutput) GoString() string {
 	return s.String()
 }
@@ -6015,8 +7499,8 @@ func (s *StartDeploymentOutput) SetOperationId(v string) *StartDeploymentOutput 
 	return s
 }
 
-// Describes a tag that is applied to an AWS App Runner resource. A tag is a
-// metadata item consisting of a key-value pair.
+// Describes a tag that is applied to an App Runner resource. A tag is a metadata
+// item consisting of a key-value pair.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -6027,12 +7511,20 @@ type Tag struct {
 	Value *string `type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s Tag) GoString() string {
 	return s.String()
 }
@@ -6081,12 +7573,20 @@ type TagResourceInput struct {
 	Tags []*Tag `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceInput) GoString() string {
 	return s.String()
 }
@@ -6136,12 +7636,20 @@ type TagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -6163,12 +7671,20 @@ type UntagResourceInput struct {
 	TagKeys []*string `type:"list" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceInput) GoString() string {
 	return s.String()
 }
@@ -6208,12 +7724,20 @@ type UntagResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
@@ -6222,16 +7746,20 @@ type UpdateServiceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of an App Runner automatic scaling configuration
-	// resource that you want to associate with your service.
+	// resource that you want to associate with the App Runner service.
 	AutoScalingConfigurationArn *string `min:"1" type:"string"`
 
-	// The settings for the health check that AWS App Runner performs to monitor
-	// the health of your service.
+	// The settings for the health check that App Runner performs to monitor the
+	// health of the App Runner service.
 	HealthCheckConfiguration *HealthCheckConfiguration `type:"structure"`
 
 	// The runtime configuration to apply to instances (scaling units) of the App
 	// Runner service.
 	InstanceConfiguration *InstanceConfiguration `type:"structure"`
+
+	// Configuration settings related to network traffic of the web application
+	// that the App Runner service runs.
+	NetworkConfiguration *NetworkConfiguration `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the App Runner service that you want to
 	// update.
@@ -6250,12 +7778,20 @@ type UpdateServiceInput struct {
 	SourceConfiguration *SourceConfiguration `type:"structure"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceInput) GoString() string {
 	return s.String()
 }
@@ -6280,6 +7816,11 @@ func (s *UpdateServiceInput) Validate() error {
 	if s.InstanceConfiguration != nil {
 		if err := s.InstanceConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("InstanceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NetworkConfiguration != nil {
+		if err := s.NetworkConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("NetworkConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.SourceConfiguration != nil {
@@ -6309,6 +7850,12 @@ func (s *UpdateServiceInput) SetHealthCheckConfiguration(v *HealthCheckConfigura
 // SetInstanceConfiguration sets the InstanceConfiguration field's value.
 func (s *UpdateServiceInput) SetInstanceConfiguration(v *InstanceConfiguration) *UpdateServiceInput {
 	s.InstanceConfiguration = v
+	return s
+}
+
+// SetNetworkConfiguration sets the NetworkConfiguration field's value.
+func (s *UpdateServiceInput) SetNetworkConfiguration(v *NetworkConfiguration) *UpdateServiceInput {
+	s.NetworkConfiguration = v
 	return s
 }
 
@@ -6342,12 +7889,20 @@ type UpdateServiceOutput struct {
 	Service *Service `type:"structure" required:"true"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s UpdateServiceOutput) GoString() string {
 	return s.String()
 }
@@ -6361,6 +7916,117 @@ func (s *UpdateServiceOutput) SetOperationId(v string) *UpdateServiceOutput {
 // SetService sets the Service field's value.
 func (s *UpdateServiceOutput) SetService(v *Service) *UpdateServiceOutput {
 	s.Service = v
+	return s
+}
+
+// Describes an App Runner VPC connector resource. A VPC connector describes
+// the Amazon Virtual Private Cloud (Amazon VPC) that an App Runner service
+// is associated with, and the subnets and security group that are used.
+//
+// Multiple revisions of a connector might have the same Name and different
+// Revision values.
+//
+// At this time, App Runner supports only one revision per name.
+type VpcConnector struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the VPC connector was created. It's in Unix time stamp format.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The time when the VPC connector was deleted. It's in Unix time stamp format.
+	DeletedAt *time.Time `type:"timestamp"`
+
+	// A list of IDs of security groups that App Runner uses for access to Amazon
+	// Web Services resources under the specified subnets. If not specified, App
+	// Runner uses the default security group of the Amazon VPC. The default security
+	// group allows all outbound traffic.
+	SecurityGroups []*string `type:"list"`
+
+	// The current state of the VPC connector. If the status of a connector revision
+	// is INACTIVE, it was deleted and can't be used. Inactive connector revisions
+	// are permanently removed some time after they are deleted.
+	Status *string `type:"string" enum:"VpcConnectorStatus"`
+
+	// A list of IDs of subnets that App Runner uses for your service. All IDs are
+	// of subnets of a single Amazon VPC.
+	Subnets []*string `type:"list"`
+
+	// The Amazon Resource Name (ARN) of this VPC connector.
+	VpcConnectorArn *string `min:"1" type:"string"`
+
+	// The customer-provided VPC connector name.
+	VpcConnectorName *string `min:"4" type:"string"`
+
+	// The revision of this VPC connector. It's unique among all the active connectors
+	// ("Status": "ACTIVE") that share the same Name.
+	//
+	// At this time, App Runner supports only one revision per name.
+	VpcConnectorRevision *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConnector) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *VpcConnector) SetCreatedAt(v time.Time) *VpcConnector {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDeletedAt sets the DeletedAt field's value.
+func (s *VpcConnector) SetDeletedAt(v time.Time) *VpcConnector {
+	s.DeletedAt = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *VpcConnector) SetSecurityGroups(v []*string) *VpcConnector {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *VpcConnector) SetStatus(v string) *VpcConnector {
+	s.Status = &v
+	return s
+}
+
+// SetSubnets sets the Subnets field's value.
+func (s *VpcConnector) SetSubnets(v []*string) *VpcConnector {
+	s.Subnets = v
+	return s
+}
+
+// SetVpcConnectorArn sets the VpcConnectorArn field's value.
+func (s *VpcConnector) SetVpcConnectorArn(v string) *VpcConnector {
+	s.VpcConnectorArn = &v
+	return s
+}
+
+// SetVpcConnectorName sets the VpcConnectorName field's value.
+func (s *VpcConnector) SetVpcConnectorName(v string) *VpcConnector {
+	s.VpcConnectorName = &v
+	return s
+}
+
+// SetVpcConnectorRevision sets the VpcConnectorRevision field's value.
+func (s *VpcConnector) SetVpcConnectorRevision(v int64) *VpcConnector {
+	s.VpcConnectorRevision = &v
 	return s
 }
 
@@ -6473,6 +8139,22 @@ func CustomDomainAssociationStatus_Values() []string {
 		CustomDomainAssociationStatusDeleteFailed,
 		CustomDomainAssociationStatusPendingCertificateDnsValidation,
 		CustomDomainAssociationStatusBindingCertificate,
+	}
+}
+
+const (
+	// EgressTypeDefault is a EgressType enum value
+	EgressTypeDefault = "DEFAULT"
+
+	// EgressTypeVpc is a EgressType enum value
+	EgressTypeVpc = "VPC"
+)
+
+// EgressType_Values returns all elements of the EgressType enum
+func EgressType_Values() []string {
+	return []string{
+		EgressTypeDefault,
+		EgressTypeVpc,
 	}
 }
 
@@ -6590,6 +8272,15 @@ const (
 
 	// RuntimeNodejs12 is a Runtime enum value
 	RuntimeNodejs12 = "NODEJS_12"
+
+	// RuntimeNodejs14 is a Runtime enum value
+	RuntimeNodejs14 = "NODEJS_14"
+
+	// RuntimeCorretto8 is a Runtime enum value
+	RuntimeCorretto8 = "CORRETTO_8"
+
+	// RuntimeCorretto11 is a Runtime enum value
+	RuntimeCorretto11 = "CORRETTO_11"
 )
 
 // Runtime_Values returns all elements of the Runtime enum
@@ -6597,6 +8288,9 @@ func Runtime_Values() []string {
 	return []string{
 		RuntimePython3,
 		RuntimeNodejs12,
+		RuntimeNodejs14,
+		RuntimeCorretto8,
+		RuntimeCorretto11,
 	}
 }
 
@@ -6641,5 +8335,21 @@ const (
 func SourceCodeVersionType_Values() []string {
 	return []string{
 		SourceCodeVersionTypeBranch,
+	}
+}
+
+const (
+	// VpcConnectorStatusActive is a VpcConnectorStatus enum value
+	VpcConnectorStatusActive = "ACTIVE"
+
+	// VpcConnectorStatusInactive is a VpcConnectorStatus enum value
+	VpcConnectorStatusInactive = "INACTIVE"
+)
+
+// VpcConnectorStatus_Values returns all elements of the VpcConnectorStatus enum
+func VpcConnectorStatus_Values() []string {
+	return []string{
+		VpcConnectorStatusActive,
+		VpcConnectorStatusInactive,
 	}
 }

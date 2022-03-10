@@ -22,6 +22,7 @@ import (
 	jsoniter "github.com/json-iterator/go"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	accessanalyzerv1alpha1 "kubeform.dev/provider-aws-api/apis/accessanalyzer/v1alpha1"
+	accountv1alpha1 "kubeform.dev/provider-aws-api/apis/account/v1alpha1"
 	acmv1alpha1 "kubeform.dev/provider-aws-api/apis/acm/v1alpha1"
 	acmpcav1alpha1 "kubeform.dev/provider-aws-api/apis/acmpca/v1alpha1"
 	albv1alpha1 "kubeform.dev/provider-aws-api/apis/alb/v1alpha1"
@@ -31,8 +32,10 @@ import (
 	apigatewayv2v1alpha1 "kubeform.dev/provider-aws-api/apis/apigatewayv2/v1alpha1"
 	appv1alpha1 "kubeform.dev/provider-aws-api/apis/app/v1alpha1"
 	appautoscalingv1alpha1 "kubeform.dev/provider-aws-api/apis/appautoscaling/v1alpha1"
+	appconfigv1alpha1 "kubeform.dev/provider-aws-api/apis/appconfig/v1alpha1"
 	appmeshv1alpha1 "kubeform.dev/provider-aws-api/apis/appmesh/v1alpha1"
 	apprunnerv1alpha1 "kubeform.dev/provider-aws-api/apis/apprunner/v1alpha1"
+	appstreamv1alpha1 "kubeform.dev/provider-aws-api/apis/appstream/v1alpha1"
 	appsyncv1alpha1 "kubeform.dev/provider-aws-api/apis/appsync/v1alpha1"
 	athenav1alpha1 "kubeform.dev/provider-aws-api/apis/athena/v1alpha1"
 	autoscalingv1alpha1 "kubeform.dev/provider-aws-api/apis/autoscaling/v1alpha1"
@@ -40,11 +43,14 @@ import (
 	backupv1alpha1 "kubeform.dev/provider-aws-api/apis/backup/v1alpha1"
 	batchv1alpha1 "kubeform.dev/provider-aws-api/apis/batch/v1alpha1"
 	budgetsv1alpha1 "kubeform.dev/provider-aws-api/apis/budgets/v1alpha1"
+	chimev1alpha1 "kubeform.dev/provider-aws-api/apis/chime/v1alpha1"
 	cloud9v1alpha1 "kubeform.dev/provider-aws-api/apis/cloud9/v1alpha1"
+	cloudcontrolapiv1alpha1 "kubeform.dev/provider-aws-api/apis/cloudcontrolapi/v1alpha1"
 	cloudformationstackv1alpha1 "kubeform.dev/provider-aws-api/apis/cloudformationstack/v1alpha1"
 	cloudformationtypev1alpha1 "kubeform.dev/provider-aws-api/apis/cloudformationtype/v1alpha1"
 	cloudfrontv1alpha1 "kubeform.dev/provider-aws-api/apis/cloudfront/v1alpha1"
 	cloudhsmv2v1alpha1 "kubeform.dev/provider-aws-api/apis/cloudhsmv2/v1alpha1"
+	cloudsearchv1alpha1 "kubeform.dev/provider-aws-api/apis/cloudsearch/v1alpha1"
 	cloudtrailv1alpha1 "kubeform.dev/provider-aws-api/apis/cloudtrail/v1alpha1"
 	cloudwatchv1alpha1 "kubeform.dev/provider-aws-api/apis/cloudwatch/v1alpha1"
 	codeartifactv1alpha1 "kubeform.dev/provider-aws-api/apis/codeartifact/v1alpha1"
@@ -56,13 +62,16 @@ import (
 	codestarnotificationsv1alpha1 "kubeform.dev/provider-aws-api/apis/codestarnotifications/v1alpha1"
 	cognitov1alpha1 "kubeform.dev/provider-aws-api/apis/cognito/v1alpha1"
 	configv1alpha1 "kubeform.dev/provider-aws-api/apis/config/v1alpha1"
+	connectv1alpha1 "kubeform.dev/provider-aws-api/apis/connect/v1alpha1"
 	curv1alpha1 "kubeform.dev/provider-aws-api/apis/cur/v1alpha1"
 	customerv1alpha1 "kubeform.dev/provider-aws-api/apis/customer/v1alpha1"
+	dataexchangev1alpha1 "kubeform.dev/provider-aws-api/apis/dataexchange/v1alpha1"
 	datapipelinev1alpha1 "kubeform.dev/provider-aws-api/apis/datapipeline/v1alpha1"
 	datasyncv1alpha1 "kubeform.dev/provider-aws-api/apis/datasync/v1alpha1"
 	daxv1alpha1 "kubeform.dev/provider-aws-api/apis/dax/v1alpha1"
 	dbv1alpha1 "kubeform.dev/provider-aws-api/apis/db/v1alpha1"
 	defaultv1alpha1 "kubeform.dev/provider-aws-api/apis/default/v1alpha1"
+	detectivev1alpha1 "kubeform.dev/provider-aws-api/apis/detective/v1alpha1"
 	devicefarmv1alpha1 "kubeform.dev/provider-aws-api/apis/devicefarm/v1alpha1"
 	directoryservicev1alpha1 "kubeform.dev/provider-aws-api/apis/directoryservice/v1alpha1"
 	dlmv1alpha1 "kubeform.dev/provider-aws-api/apis/dlm/v1alpha1"
@@ -92,6 +101,7 @@ import (
 	glaciervaultv1alpha1 "kubeform.dev/provider-aws-api/apis/glaciervault/v1alpha1"
 	globalacceleratorv1alpha1 "kubeform.dev/provider-aws-api/apis/globalaccelerator/v1alpha1"
 	gluev1alpha1 "kubeform.dev/provider-aws-api/apis/glue/v1alpha1"
+	grafanav1alpha1 "kubeform.dev/provider-aws-api/apis/grafana/v1alpha1"
 	guarddutyv1alpha1 "kubeform.dev/provider-aws-api/apis/guardduty/v1alpha1"
 	iamv1alpha1 "kubeform.dev/provider-aws-api/apis/iam/v1alpha1"
 	imagebuilderv1alpha1 "kubeform.dev/provider-aws-api/apis/imagebuilder/v1alpha1"
@@ -115,8 +125,10 @@ import (
 	macie2v1alpha1 "kubeform.dev/provider-aws-api/apis/macie2/v1alpha1"
 	mainv1alpha1 "kubeform.dev/provider-aws-api/apis/main/v1alpha1"
 	mediav1alpha1 "kubeform.dev/provider-aws-api/apis/media/v1alpha1"
+	memorydbv1alpha1 "kubeform.dev/provider-aws-api/apis/memorydb/v1alpha1"
 	mqv1alpha1 "kubeform.dev/provider-aws-api/apis/mq/v1alpha1"
 	mskv1alpha1 "kubeform.dev/provider-aws-api/apis/msk/v1alpha1"
+	mskconnectv1alpha1 "kubeform.dev/provider-aws-api/apis/mskconnect/v1alpha1"
 	mwaav1alpha1 "kubeform.dev/provider-aws-api/apis/mwaa/v1alpha1"
 	natv1alpha1 "kubeform.dev/provider-aws-api/apis/nat/v1alpha1"
 	neptunev1alpha1 "kubeform.dev/provider-aws-api/apis/neptune/v1alpha1"
@@ -136,6 +148,9 @@ import (
 	resourcegroupsv1alpha1 "kubeform.dev/provider-aws-api/apis/resourcegroups/v1alpha1"
 	routev1alpha1 "kubeform.dev/provider-aws-api/apis/route/v1alpha1"
 	route53v1alpha1 "kubeform.dev/provider-aws-api/apis/route53/v1alpha1"
+	route53domainsv1alpha1 "kubeform.dev/provider-aws-api/apis/route53domains/v1alpha1"
+	route53recoverycontrolconfigv1alpha1 "kubeform.dev/provider-aws-api/apis/route53recoverycontrolconfig/v1alpha1"
+	route53recoveryreadinessv1alpha1 "kubeform.dev/provider-aws-api/apis/route53recoveryreadiness/v1alpha1"
 	s3v1alpha1 "kubeform.dev/provider-aws-api/apis/s3/v1alpha1"
 	s3controlv1alpha1 "kubeform.dev/provider-aws-api/apis/s3control/v1alpha1"
 	s3outpostsv1alpha1 "kubeform.dev/provider-aws-api/apis/s3outposts/v1alpha1"
@@ -190,6 +205,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(accessanalyzerv1alpha1.GetEncoder(), accessanalyzerv1alpha1.GetDecoder()),
 		ResourceType: "aws_accessanalyzer_analyzer",
+	},
+	{
+		Group:    "account.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "alternatecontacts",
+	}: {
+		JsonIt:       controllers.GetJSONItr(accountv1alpha1.GetEncoder(), accountv1alpha1.GetDecoder()),
+		ResourceType: "aws_account_alternate_contact",
 	},
 	{
 		Group:    "acm.aws.kubeform.com",
@@ -672,6 +695,54 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_appautoscaling_target",
 	},
 	{
+		Group:    "appconfig.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "applications",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appconfigv1alpha1.GetEncoder(), appconfigv1alpha1.GetDecoder()),
+		ResourceType: "aws_appconfig_application",
+	},
+	{
+		Group:    "appconfig.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "configurationprofiles",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appconfigv1alpha1.GetEncoder(), appconfigv1alpha1.GetDecoder()),
+		ResourceType: "aws_appconfig_configuration_profile",
+	},
+	{
+		Group:    "appconfig.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "deployments",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appconfigv1alpha1.GetEncoder(), appconfigv1alpha1.GetDecoder()),
+		ResourceType: "aws_appconfig_deployment",
+	},
+	{
+		Group:    "appconfig.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "deploymentstrategies",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appconfigv1alpha1.GetEncoder(), appconfigv1alpha1.GetDecoder()),
+		ResourceType: "aws_appconfig_deployment_strategy",
+	},
+	{
+		Group:    "appconfig.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "environments",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appconfigv1alpha1.GetEncoder(), appconfigv1alpha1.GetDecoder()),
+		ResourceType: "aws_appconfig_environment",
+	},
+	{
+		Group:    "appconfig.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "hostedconfigurationversions",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appconfigv1alpha1.GetEncoder(), appconfigv1alpha1.GetDecoder()),
+		ResourceType: "aws_appconfig_hosted_configuration_version",
+	},
+	{
 		Group:    "appmesh.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "gatewayroutes",
@@ -760,6 +831,78 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_apprunner_service",
 	},
 	{
+		Group:    "apprunner.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "vpcconnectors",
+	}: {
+		JsonIt:       controllers.GetJSONItr(apprunnerv1alpha1.GetEncoder(), apprunnerv1alpha1.GetDecoder()),
+		ResourceType: "aws_apprunner_vpc_connector",
+	},
+	{
+		Group:    "appstream.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "directoryconfigs",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appstreamv1alpha1.GetEncoder(), appstreamv1alpha1.GetDecoder()),
+		ResourceType: "aws_appstream_directory_config",
+	},
+	{
+		Group:    "appstream.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "fleet",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appstreamv1alpha1.GetEncoder(), appstreamv1alpha1.GetDecoder()),
+		ResourceType: "aws_appstream_fleet",
+	},
+	{
+		Group:    "appstream.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "fleetstackassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appstreamv1alpha1.GetEncoder(), appstreamv1alpha1.GetDecoder()),
+		ResourceType: "aws_appstream_fleet_stack_association",
+	},
+	{
+		Group:    "appstream.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "imagebuilders",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appstreamv1alpha1.GetEncoder(), appstreamv1alpha1.GetDecoder()),
+		ResourceType: "aws_appstream_image_builder",
+	},
+	{
+		Group:    "appstream.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "stacks",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appstreamv1alpha1.GetEncoder(), appstreamv1alpha1.GetDecoder()),
+		ResourceType: "aws_appstream_stack",
+	},
+	{
+		Group:    "appstream.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "users",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appstreamv1alpha1.GetEncoder(), appstreamv1alpha1.GetDecoder()),
+		ResourceType: "aws_appstream_user",
+	},
+	{
+		Group:    "appstream.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "userstackassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appstreamv1alpha1.GetEncoder(), appstreamv1alpha1.GetDecoder()),
+		ResourceType: "aws_appstream_user_stack_association",
+	},
+	{
+		Group:    "appsync.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "apicaches",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appsyncv1alpha1.GetEncoder(), appsyncv1alpha1.GetDecoder()),
+		ResourceType: "aws_appsync_api_cache",
+	},
+	{
 		Group:    "appsync.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "apikeys",
@@ -774,6 +917,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(appsyncv1alpha1.GetEncoder(), appsyncv1alpha1.GetDecoder()),
 		ResourceType: "aws_appsync_datasource",
+	},
+	{
+		Group:    "appsync.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "domainnames",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appsyncv1alpha1.GetEncoder(), appsyncv1alpha1.GetDecoder()),
+		ResourceType: "aws_appsync_domain_name",
+	},
+	{
+		Group:    "appsync.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "domainnameapiassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(appsyncv1alpha1.GetEncoder(), appsyncv1alpha1.GetDecoder()),
+		ResourceType: "aws_appsync_domain_name_api_association",
 	},
 	{
 		Group:    "appsync.aws.kubeform.com",
@@ -842,6 +1001,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "autoscaling.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "grouptags",
+	}: {
+		JsonIt:       controllers.GetJSONItr(autoscalingv1alpha1.GetEncoder(), autoscalingv1alpha1.GetDecoder()),
+		ResourceType: "aws_autoscaling_group_tag",
+	},
+	{
+		Group:    "autoscaling.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "lifecyclehooks",
 	}: {
 		JsonIt:       controllers.GetJSONItr(autoscalingv1alpha1.GetEncoder(), autoscalingv1alpha1.GetDecoder()),
@@ -882,6 +1049,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "backup.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "frameworks",
+	}: {
+		JsonIt:       controllers.GetJSONItr(backupv1alpha1.GetEncoder(), backupv1alpha1.GetDecoder()),
+		ResourceType: "aws_backup_framework",
+	},
+	{
+		Group:    "backup.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "globalsettings",
 	}: {
 		JsonIt:       controllers.GetJSONItr(backupv1alpha1.GetEncoder(), backupv1alpha1.GetDecoder()),
@@ -906,6 +1081,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "backup.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "reportplans",
+	}: {
+		JsonIt:       controllers.GetJSONItr(backupv1alpha1.GetEncoder(), backupv1alpha1.GetDecoder()),
+		ResourceType: "aws_backup_report_plan",
+	},
+	{
+		Group:    "backup.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "selections",
 	}: {
 		JsonIt:       controllers.GetJSONItr(backupv1alpha1.GetEncoder(), backupv1alpha1.GetDecoder()),
@@ -918,6 +1101,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(backupv1alpha1.GetEncoder(), backupv1alpha1.GetDecoder()),
 		ResourceType: "aws_backup_vault",
+	},
+	{
+		Group:    "backup.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "vaultlockconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(backupv1alpha1.GetEncoder(), backupv1alpha1.GetDecoder()),
+		ResourceType: "aws_backup_vault_lock_configuration",
 	},
 	{
 		Group:    "backup.aws.kubeform.com",
@@ -960,6 +1151,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_batch_job_queue",
 	},
 	{
+		Group:    "batch.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "schedulingpolicies",
+	}: {
+		JsonIt:       controllers.GetJSONItr(batchv1alpha1.GetEncoder(), batchv1alpha1.GetDecoder()),
+		ResourceType: "aws_batch_scheduling_policy",
+	},
+	{
 		Group:    "budgets.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "budgets",
@@ -976,12 +1175,84 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_budgets_budget_action",
 	},
 	{
+		Group:    "chime.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "voiceconnectors",
+	}: {
+		JsonIt:       controllers.GetJSONItr(chimev1alpha1.GetEncoder(), chimev1alpha1.GetDecoder()),
+		ResourceType: "aws_chime_voice_connector",
+	},
+	{
+		Group:    "chime.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "voiceconnectorgroups",
+	}: {
+		JsonIt:       controllers.GetJSONItr(chimev1alpha1.GetEncoder(), chimev1alpha1.GetDecoder()),
+		ResourceType: "aws_chime_voice_connector_group",
+	},
+	{
+		Group:    "chime.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "voiceconnectorloggings",
+	}: {
+		JsonIt:       controllers.GetJSONItr(chimev1alpha1.GetEncoder(), chimev1alpha1.GetDecoder()),
+		ResourceType: "aws_chime_voice_connector_logging",
+	},
+	{
+		Group:    "chime.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "voiceconnectororiginations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(chimev1alpha1.GetEncoder(), chimev1alpha1.GetDecoder()),
+		ResourceType: "aws_chime_voice_connector_origination",
+	},
+	{
+		Group:    "chime.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "voiceconnectorstreamings",
+	}: {
+		JsonIt:       controllers.GetJSONItr(chimev1alpha1.GetEncoder(), chimev1alpha1.GetDecoder()),
+		ResourceType: "aws_chime_voice_connector_streaming",
+	},
+	{
+		Group:    "chime.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "voiceconnectorterminations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(chimev1alpha1.GetEncoder(), chimev1alpha1.GetDecoder()),
+		ResourceType: "aws_chime_voice_connector_termination",
+	},
+	{
+		Group:    "chime.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "voiceconnectorterminationcredentials",
+	}: {
+		JsonIt:       controllers.GetJSONItr(chimev1alpha1.GetEncoder(), chimev1alpha1.GetDecoder()),
+		ResourceType: "aws_chime_voice_connector_termination_credentials",
+	},
+	{
 		Group:    "cloud9.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "environmentec2s",
 	}: {
 		JsonIt:       controllers.GetJSONItr(cloud9v1alpha1.GetEncoder(), cloud9v1alpha1.GetDecoder()),
 		ResourceType: "aws_cloud9_environment_ec2",
+	},
+	{
+		Group:    "cloud9.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "environmentmemberships",
+	}: {
+		JsonIt:       controllers.GetJSONItr(cloud9v1alpha1.GetEncoder(), cloud9v1alpha1.GetDecoder()),
+		ResourceType: "aws_cloud9_environment_membership",
+	},
+	{
+		Group:    "cloudcontrolapi.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "cloudcontrolapiresources",
+	}: {
+		JsonIt:       controllers.GetJSONItr(cloudcontrolapiv1alpha1.GetEncoder(), cloudcontrolapiv1alpha1.GetDecoder()),
+		ResourceType: "aws_cloudcontrolapi_resource",
 	},
 	{
 		Group:    "cloudformationstack.aws.kubeform.com",
@@ -1034,6 +1305,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "cloudfront.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "fieldlevelencryptionconfigs",
+	}: {
+		JsonIt:       controllers.GetJSONItr(cloudfrontv1alpha1.GetEncoder(), cloudfrontv1alpha1.GetDecoder()),
+		ResourceType: "aws_cloudfront_field_level_encryption_config",
+	},
+	{
+		Group:    "cloudfront.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "fieldlevelencryptionprofiles",
+	}: {
+		JsonIt:       controllers.GetJSONItr(cloudfrontv1alpha1.GetEncoder(), cloudfrontv1alpha1.GetDecoder()),
+		ResourceType: "aws_cloudfront_field_level_encryption_profile",
+	},
+	{
+		Group:    "cloudfront.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "functions",
 	}: {
 		JsonIt:       controllers.GetJSONItr(cloudfrontv1alpha1.GetEncoder(), cloudfrontv1alpha1.GetDecoder()),
@@ -1046,6 +1333,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(cloudfrontv1alpha1.GetEncoder(), cloudfrontv1alpha1.GetDecoder()),
 		ResourceType: "aws_cloudfront_key_group",
+	},
+	{
+		Group:    "cloudfront.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "monitoringsubscriptions",
+	}: {
+		JsonIt:       controllers.GetJSONItr(cloudfrontv1alpha1.GetEncoder(), cloudfrontv1alpha1.GetDecoder()),
+		ResourceType: "aws_cloudfront_monitoring_subscription",
 	},
 	{
 		Group:    "cloudfront.aws.kubeform.com",
@@ -1080,6 +1375,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_cloudfront_realtime_log_config",
 	},
 	{
+		Group:    "cloudfront.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "responseheaderspolicies",
+	}: {
+		JsonIt:       controllers.GetJSONItr(cloudfrontv1alpha1.GetEncoder(), cloudfrontv1alpha1.GetDecoder()),
+		ResourceType: "aws_cloudfront_response_headers_policy",
+	},
+	{
 		Group:    "cloudhsmv2.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "clusters",
@@ -1096,12 +1399,36 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_cloudhsm_v2_hsm",
 	},
 	{
+		Group:    "cloudsearch.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "domains",
+	}: {
+		JsonIt:       controllers.GetJSONItr(cloudsearchv1alpha1.GetEncoder(), cloudsearchv1alpha1.GetDecoder()),
+		ResourceType: "aws_cloudsearch_domain",
+	},
+	{
+		Group:    "cloudsearch.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "domainserviceaccesspolicies",
+	}: {
+		JsonIt:       controllers.GetJSONItr(cloudsearchv1alpha1.GetEncoder(), cloudsearchv1alpha1.GetDecoder()),
+		ResourceType: "aws_cloudsearch_domain_service_access_policy",
+	},
+	{
 		Group:    "cloudtrail.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "cloudtrails",
 	}: {
 		JsonIt:       controllers.GetJSONItr(cloudtrailv1alpha1.GetEncoder(), cloudtrailv1alpha1.GetDecoder()),
 		ResourceType: "aws_cloudtrail",
+	},
+	{
+		Group:    "cloudtrail.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "eventdatastores",
+	}: {
+		JsonIt:       controllers.GetJSONItr(cloudtrailv1alpha1.GetEncoder(), cloudtrailv1alpha1.GetDecoder()),
+		ResourceType: "aws_cloudtrail_event_data_store",
 	},
 	{
 		Group:    "cloudwatch.aws.kubeform.com",
@@ -1314,6 +1641,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "codebuild.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "resourcepolicies",
+	}: {
+		JsonIt:       controllers.GetJSONItr(codebuildv1alpha1.GetEncoder(), codebuildv1alpha1.GetDecoder()),
+		ResourceType: "aws_codebuild_resource_policy",
+	},
+	{
+		Group:    "codebuild.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "sourcecredentials",
 	}: {
 		JsonIt:       controllers.GetJSONItr(codebuildv1alpha1.GetEncoder(), codebuildv1alpha1.GetDecoder()),
@@ -1326,6 +1661,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(codebuildv1alpha1.GetEncoder(), codebuildv1alpha1.GetDecoder()),
 		ResourceType: "aws_codebuild_webhook",
+	},
+	{
+		Group:    "codecommit.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "approvalruletemplates",
+	}: {
+		JsonIt:       controllers.GetJSONItr(codecommitv1alpha1.GetEncoder(), codecommitv1alpha1.GetDecoder()),
+		ResourceType: "aws_codecommit_approval_rule_template",
+	},
+	{
+		Group:    "codecommit.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "approvalruletemplateassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(codecommitv1alpha1.GetEncoder(), codecommitv1alpha1.GetDecoder()),
+		ResourceType: "aws_codecommit_approval_rule_template_association",
 	},
 	{
 		Group:    "codecommit.aws.kubeform.com",
@@ -1418,6 +1769,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "cognito.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "identitypoolproviderprincipaltags",
+	}: {
+		JsonIt:       controllers.GetJSONItr(cognitov1alpha1.GetEncoder(), cognitov1alpha1.GetDecoder()),
+		ResourceType: "aws_cognito_identity_pool_provider_principal_tag",
+	},
+	{
+		Group:    "cognito.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "identitypoolrolesattachments",
 	}: {
 		JsonIt:       controllers.GetJSONItr(cognitov1alpha1.GetEncoder(), cognitov1alpha1.GetDecoder()),
@@ -1438,6 +1797,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(cognitov1alpha1.GetEncoder(), cognitov1alpha1.GetDecoder()),
 		ResourceType: "aws_cognito_resource_server",
+	},
+	{
+		Group:    "cognito.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "users",
+	}: {
+		JsonIt:       controllers.GetJSONItr(cognitov1alpha1.GetEncoder(), cognitov1alpha1.GetDecoder()),
+		ResourceType: "aws_cognito_user",
 	},
 	{
 		Group:    "cognito.aws.kubeform.com",
@@ -1538,6 +1905,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "config.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "organizationconformancepacks",
+	}: {
+		JsonIt:       controllers.GetJSONItr(configv1alpha1.GetEncoder(), configv1alpha1.GetDecoder()),
+		ResourceType: "aws_config_organization_conformance_pack",
+	},
+	{
+		Group:    "config.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "organizationcustomrules",
 	}: {
 		JsonIt:       controllers.GetJSONItr(configv1alpha1.GetEncoder(), configv1alpha1.GetDecoder()),
@@ -1560,6 +1935,94 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_config_remediation_configuration",
 	},
 	{
+		Group:    "connect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "botassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(connectv1alpha1.GetEncoder(), connectv1alpha1.GetDecoder()),
+		ResourceType: "aws_connect_bot_association",
+	},
+	{
+		Group:    "connect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "contactflows",
+	}: {
+		JsonIt:       controllers.GetJSONItr(connectv1alpha1.GetEncoder(), connectv1alpha1.GetDecoder()),
+		ResourceType: "aws_connect_contact_flow",
+	},
+	{
+		Group:    "connect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "contactflowmodules",
+	}: {
+		JsonIt:       controllers.GetJSONItr(connectv1alpha1.GetEncoder(), connectv1alpha1.GetDecoder()),
+		ResourceType: "aws_connect_contact_flow_module",
+	},
+	{
+		Group:    "connect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "hoursofoperations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(connectv1alpha1.GetEncoder(), connectv1alpha1.GetDecoder()),
+		ResourceType: "aws_connect_hours_of_operation",
+	},
+	{
+		Group:    "connect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "instances",
+	}: {
+		JsonIt:       controllers.GetJSONItr(connectv1alpha1.GetEncoder(), connectv1alpha1.GetDecoder()),
+		ResourceType: "aws_connect_instance",
+	},
+	{
+		Group:    "connect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "lambdafunctionassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(connectv1alpha1.GetEncoder(), connectv1alpha1.GetDecoder()),
+		ResourceType: "aws_connect_lambda_function_association",
+	},
+	{
+		Group:    "connect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "queues",
+	}: {
+		JsonIt:       controllers.GetJSONItr(connectv1alpha1.GetEncoder(), connectv1alpha1.GetDecoder()),
+		ResourceType: "aws_connect_queue",
+	},
+	{
+		Group:    "connect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "quickconnects",
+	}: {
+		JsonIt:       controllers.GetJSONItr(connectv1alpha1.GetEncoder(), connectv1alpha1.GetDecoder()),
+		ResourceType: "aws_connect_quick_connect",
+	},
+	{
+		Group:    "connect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "routingprofiles",
+	}: {
+		JsonIt:       controllers.GetJSONItr(connectv1alpha1.GetEncoder(), connectv1alpha1.GetDecoder()),
+		ResourceType: "aws_connect_routing_profile",
+	},
+	{
+		Group:    "connect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "securityprofiles",
+	}: {
+		JsonIt:       controllers.GetJSONItr(connectv1alpha1.GetEncoder(), connectv1alpha1.GetDecoder()),
+		ResourceType: "aws_connect_security_profile",
+	},
+	{
+		Group:    "connect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "userhierarchystructures",
+	}: {
+		JsonIt:       controllers.GetJSONItr(connectv1alpha1.GetEncoder(), connectv1alpha1.GetDecoder()),
+		ResourceType: "aws_connect_user_hierarchy_structure",
+	},
+	{
 		Group:    "cur.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "reportdefinitions",
@@ -1576,12 +2039,36 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_customer_gateway",
 	},
 	{
+		Group:    "dataexchange.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "datasets",
+	}: {
+		JsonIt:       controllers.GetJSONItr(dataexchangev1alpha1.GetEncoder(), dataexchangev1alpha1.GetDecoder()),
+		ResourceType: "aws_dataexchange_data_set",
+	},
+	{
+		Group:    "dataexchange.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "revisions",
+	}: {
+		JsonIt:       controllers.GetJSONItr(dataexchangev1alpha1.GetEncoder(), dataexchangev1alpha1.GetDecoder()),
+		ResourceType: "aws_dataexchange_revision",
+	},
+	{
 		Group:    "datapipeline.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "pipelines",
 	}: {
 		JsonIt:       controllers.GetJSONItr(datapipelinev1alpha1.GetEncoder(), datapipelinev1alpha1.GetDecoder()),
 		ResourceType: "aws_datapipeline_pipeline",
+	},
+	{
+		Group:    "datapipeline.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "pipelinedefinitions",
+	}: {
+		JsonIt:       controllers.GetJSONItr(datapipelinev1alpha1.GetEncoder(), datapipelinev1alpha1.GetDecoder()),
+		ResourceType: "aws_datapipeline_pipeline_definition",
 	},
 	{
 		Group:    "datasync.aws.kubeform.com",
@@ -1602,10 +2089,26 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "datasync.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "locationfsxlustrefilesystems",
+	}: {
+		JsonIt:       controllers.GetJSONItr(datasyncv1alpha1.GetEncoder(), datasyncv1alpha1.GetDecoder()),
+		ResourceType: "aws_datasync_location_fsx_lustre_file_system",
+	},
+	{
+		Group:    "datasync.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "locationfsxwindowsfilesystems",
 	}: {
 		JsonIt:       controllers.GetJSONItr(datasyncv1alpha1.GetEncoder(), datasyncv1alpha1.GetDecoder()),
 		ResourceType: "aws_datasync_location_fsx_windows_file_system",
+	},
+	{
+		Group:    "datasync.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "locationhdfs",
+	}: {
+		JsonIt:       controllers.GetJSONItr(datasyncv1alpha1.GetEncoder(), datasyncv1alpha1.GetDecoder()),
+		ResourceType: "aws_datasync_location_hdfs",
 	},
 	{
 		Group:    "datasync.aws.kubeform.com",
@@ -1816,12 +2319,76 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_default_vpc_dhcp_options",
 	},
 	{
+		Group:    "detective.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "graphs",
+	}: {
+		JsonIt:       controllers.GetJSONItr(detectivev1alpha1.GetEncoder(), detectivev1alpha1.GetDecoder()),
+		ResourceType: "aws_detective_graph",
+	},
+	{
+		Group:    "detective.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "invitationaccepters",
+	}: {
+		JsonIt:       controllers.GetJSONItr(detectivev1alpha1.GetEncoder(), detectivev1alpha1.GetDecoder()),
+		ResourceType: "aws_detective_invitation_accepter",
+	},
+	{
+		Group:    "detective.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "members",
+	}: {
+		JsonIt:       controllers.GetJSONItr(detectivev1alpha1.GetEncoder(), detectivev1alpha1.GetDecoder()),
+		ResourceType: "aws_detective_member",
+	},
+	{
+		Group:    "devicefarm.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "devicepools",
+	}: {
+		JsonIt:       controllers.GetJSONItr(devicefarmv1alpha1.GetEncoder(), devicefarmv1alpha1.GetDecoder()),
+		ResourceType: "aws_devicefarm_device_pool",
+	},
+	{
+		Group:    "devicefarm.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "instanceprofiles",
+	}: {
+		JsonIt:       controllers.GetJSONItr(devicefarmv1alpha1.GetEncoder(), devicefarmv1alpha1.GetDecoder()),
+		ResourceType: "aws_devicefarm_instance_profile",
+	},
+	{
+		Group:    "devicefarm.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "networkprofiles",
+	}: {
+		JsonIt:       controllers.GetJSONItr(devicefarmv1alpha1.GetEncoder(), devicefarmv1alpha1.GetDecoder()),
+		ResourceType: "aws_devicefarm_network_profile",
+	},
+	{
 		Group:    "devicefarm.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "projects",
 	}: {
 		JsonIt:       controllers.GetJSONItr(devicefarmv1alpha1.GetEncoder(), devicefarmv1alpha1.GetDecoder()),
 		ResourceType: "aws_devicefarm_project",
+	},
+	{
+		Group:    "devicefarm.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "testgridprojects",
+	}: {
+		JsonIt:       controllers.GetJSONItr(devicefarmv1alpha1.GetEncoder(), devicefarmv1alpha1.GetDecoder()),
+		ResourceType: "aws_devicefarm_test_grid_project",
+	},
+	{
+		Group:    "devicefarm.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "uploads",
+	}: {
+		JsonIt:       controllers.GetJSONItr(devicefarmv1alpha1.GetEncoder(), devicefarmv1alpha1.GetDecoder()),
+		ResourceType: "aws_devicefarm_upload",
 	},
 	{
 		Group:    "directoryservice.aws.kubeform.com",
@@ -1938,6 +2505,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "docdb.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "globalclusters",
+	}: {
+		JsonIt:       controllers.GetJSONItr(docdbv1alpha1.GetEncoder(), docdbv1alpha1.GetDecoder()),
+		ResourceType: "aws_docdb_global_cluster",
+	},
+	{
+		Group:    "docdb.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "subnetgroups",
 	}: {
 		JsonIt:       controllers.GetJSONItr(docdbv1alpha1.GetEncoder(), docdbv1alpha1.GetDecoder()),
@@ -1970,6 +2545,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "dx.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "connectionconfirmations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(dxv1alpha1.GetEncoder(), dxv1alpha1.GetDecoder()),
+		ResourceType: "aws_dx_connection_confirmation",
+	},
+	{
+		Group:    "dx.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "gateways",
 	}: {
 		JsonIt:       controllers.GetJSONItr(dxv1alpha1.GetEncoder(), dxv1alpha1.GetDecoder()),
@@ -1990,6 +2573,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(dxv1alpha1.GetEncoder(), dxv1alpha1.GetDecoder()),
 		ResourceType: "aws_dx_gateway_association_proposal",
+	},
+	{
+		Group:    "dx.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "hostedconnections",
+	}: {
+		JsonIt:       controllers.GetJSONItr(dxv1alpha1.GetEncoder(), dxv1alpha1.GetDecoder()),
+		ResourceType: "aws_dx_hosted_connection",
 	},
 	{
 		Group:    "dx.aws.kubeform.com",
@@ -2104,6 +2695,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_dynamodb_table_item",
 	},
 	{
+		Group:    "dynamodb.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "tags",
+	}: {
+		JsonIt:       controllers.GetJSONItr(dynamodbv1alpha1.GetEncoder(), dynamodbv1alpha1.GetDecoder()),
+		ResourceType: "aws_dynamodb_tag",
+	},
+	{
 		Group:    "ebs.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "defaultkmskeys",
@@ -2134,6 +2733,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(ebsv1alpha1.GetEncoder(), ebsv1alpha1.GetDecoder()),
 		ResourceType: "aws_ebs_snapshot_copy",
+	},
+	{
+		Group:    "ebs.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "snapshotimports",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ebsv1alpha1.GetEncoder(), ebsv1alpha1.GetDecoder()),
+		ResourceType: "aws_ebs_snapshot_import",
 	},
 	{
 		Group:    "ebs.aws.kubeform.com",
@@ -2210,6 +2817,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "ec2.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "hosts",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
+		ResourceType: "aws_ec2_host",
+	},
+	{
+		Group:    "ec2.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "localgatewayroutes",
 	}: {
 		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
@@ -2230,6 +2845,38 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
 		ResourceType: "aws_ec2_managed_prefix_list",
+	},
+	{
+		Group:    "ec2.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "managedprefixlistentries",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
+		ResourceType: "aws_ec2_managed_prefix_list_entry",
+	},
+	{
+		Group:    "ec2.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "networkinsightspaths",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
+		ResourceType: "aws_ec2_network_insights_path",
+	},
+	{
+		Group:    "ec2.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "serialconsoleaccesses",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
+		ResourceType: "aws_ec2_serial_console_access",
+	},
+	{
+		Group:    "ec2.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "subnetcidrreservations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
+		ResourceType: "aws_ec2_subnet_cidr_reservation",
 	},
 	{
 		Group:    "ec2.aws.kubeform.com",
@@ -2278,6 +2925,54 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
 		ResourceType: "aws_ec2_transit_gateway",
+	},
+	{
+		Group:    "ec2.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "transitgatewayconnects",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
+		ResourceType: "aws_ec2_transit_gateway_connect",
+	},
+	{
+		Group:    "ec2.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "transitgatewayconnectpeers",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
+		ResourceType: "aws_ec2_transit_gateway_connect_peer",
+	},
+	{
+		Group:    "ec2.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "transitgatewaymulticastdomains",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
+		ResourceType: "aws_ec2_transit_gateway_multicast_domain",
+	},
+	{
+		Group:    "ec2.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "transitgatewaymulticastdomainassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
+		ResourceType: "aws_ec2_transit_gateway_multicast_domain_association",
+	},
+	{
+		Group:    "ec2.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "transitgatewaymulticastgroupmembers",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
+		ResourceType: "aws_ec2_transit_gateway_multicast_group_member",
+	},
+	{
+		Group:    "ec2.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "transitgatewaymulticastgroupsources",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ec2v1alpha1.GetEncoder(), ec2v1alpha1.GetDecoder()),
+		ResourceType: "aws_ec2_transit_gateway_multicast_group_source",
 	},
 	{
 		Group:    "ec2.aws.kubeform.com",
@@ -2362,10 +3057,26 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "ecr.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "pullthroughcacherules",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ecrv1alpha1.GetEncoder(), ecrv1alpha1.GetDecoder()),
+		ResourceType: "aws_ecr_pull_through_cache_rule",
+	},
+	{
+		Group:    "ecr.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "registrypolicies",
 	}: {
 		JsonIt:       controllers.GetJSONItr(ecrv1alpha1.GetEncoder(), ecrv1alpha1.GetDecoder()),
 		ResourceType: "aws_ecr_registry_policy",
+	},
+	{
+		Group:    "ecr.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "registryscanningconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ecrv1alpha1.GetEncoder(), ecrv1alpha1.GetDecoder()),
+		ResourceType: "aws_ecr_registry_scanning_configuration",
 	},
 	{
 		Group:    "ecr.aws.kubeform.com",
@@ -2400,6 +3111,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_ecrpublic_repository",
 	},
 	{
+		Group:    "ecrpublic.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "repositorypolicies",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ecrpublicv1alpha1.GetEncoder(), ecrpublicv1alpha1.GetDecoder()),
+		ResourceType: "aws_ecrpublic_repository_policy",
+	},
+	{
+		Group:    "ecs.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "accountsettingdefaults",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ecsv1alpha1.GetEncoder(), ecsv1alpha1.GetDecoder()),
+		ResourceType: "aws_ecs_account_setting_default",
+	},
+	{
 		Group:    "ecs.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "capacityproviders",
@@ -2418,6 +3145,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "ecs.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "clustercapacityproviders",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ecsv1alpha1.GetEncoder(), ecsv1alpha1.GetDecoder()),
+		ResourceType: "aws_ecs_cluster_capacity_providers",
+	},
+	{
+		Group:    "ecs.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "services",
 	}: {
 		JsonIt:       controllers.GetJSONItr(ecsv1alpha1.GetEncoder(), ecsv1alpha1.GetDecoder()),
@@ -2426,10 +3161,26 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "ecs.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "tags",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ecsv1alpha1.GetEncoder(), ecsv1alpha1.GetDecoder()),
+		ResourceType: "aws_ecs_tag",
+	},
+	{
+		Group:    "ecs.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "taskdefinitions",
 	}: {
 		JsonIt:       controllers.GetJSONItr(ecsv1alpha1.GetEncoder(), ecsv1alpha1.GetDecoder()),
 		ResourceType: "aws_ecs_task_definition",
+	},
+	{
+		Group:    "ecs.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "tasksets",
+	}: {
+		JsonIt:       controllers.GetJSONItr(ecsv1alpha1.GetEncoder(), ecsv1alpha1.GetDecoder()),
+		ResourceType: "aws_ecs_task_set",
 	},
 	{
 		Group:    "efs.aws.kubeform.com",
@@ -2522,6 +3273,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "eks.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "identityproviderconfigs",
+	}: {
+		JsonIt:       controllers.GetJSONItr(eksv1alpha1.GetEncoder(), eksv1alpha1.GetDecoder()),
+		ResourceType: "aws_eks_identity_provider_config",
+	},
+	{
+		Group:    "eks.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "nodegroups",
 	}: {
 		JsonIt:       controllers.GetJSONItr(eksv1alpha1.GetEncoder(), eksv1alpha1.GetDecoder()),
@@ -2606,6 +3365,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(elasticachev1alpha1.GetEncoder(), elasticachev1alpha1.GetDecoder()),
 		ResourceType: "aws_elasticache_subnet_group",
+	},
+	{
+		Group:    "elasticache.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "users",
+	}: {
+		JsonIt:       controllers.GetJSONItr(elasticachev1alpha1.GetEncoder(), elasticachev1alpha1.GetDecoder()),
+		ResourceType: "aws_elasticache_user",
+	},
+	{
+		Group:    "elasticache.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "usergroups",
+	}: {
+		JsonIt:       controllers.GetJSONItr(elasticachev1alpha1.GetEncoder(), elasticachev1alpha1.GetDecoder()),
+		ResourceType: "aws_elasticache_user_group",
 	},
 	{
 		Group:    "elasticsearchdomain.aws.kubeform.com",
@@ -2704,6 +3479,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_emr_security_configuration",
 	},
 	{
+		Group:    "emr.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "studios",
+	}: {
+		JsonIt:       controllers.GetJSONItr(emrv1alpha1.GetEncoder(), emrv1alpha1.GetDecoder()),
+		ResourceType: "aws_emr_studio",
+	},
+	{
+		Group:    "emr.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "studiosessionmappings",
+	}: {
+		JsonIt:       controllers.GetJSONItr(emrv1alpha1.GetEncoder(), emrv1alpha1.GetDecoder()),
+		ResourceType: "aws_emr_studio_session_mapping",
+	},
+	{
 		Group:    "flow.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "logs",
@@ -2730,10 +3521,74 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "fsx.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "backups",
+	}: {
+		JsonIt:       controllers.GetJSONItr(fsxv1alpha1.GetEncoder(), fsxv1alpha1.GetDecoder()),
+		ResourceType: "aws_fsx_backup",
+	},
+	{
+		Group:    "fsx.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "datarepositoryassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(fsxv1alpha1.GetEncoder(), fsxv1alpha1.GetDecoder()),
+		ResourceType: "aws_fsx_data_repository_association",
+	},
+	{
+		Group:    "fsx.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "lustrefilesystems",
 	}: {
 		JsonIt:       controllers.GetJSONItr(fsxv1alpha1.GetEncoder(), fsxv1alpha1.GetDecoder()),
 		ResourceType: "aws_fsx_lustre_file_system",
+	},
+	{
+		Group:    "fsx.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "ontapfilesystems",
+	}: {
+		JsonIt:       controllers.GetJSONItr(fsxv1alpha1.GetEncoder(), fsxv1alpha1.GetDecoder()),
+		ResourceType: "aws_fsx_ontap_file_system",
+	},
+	{
+		Group:    "fsx.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "ontapstoragevirtualmachines",
+	}: {
+		JsonIt:       controllers.GetJSONItr(fsxv1alpha1.GetEncoder(), fsxv1alpha1.GetDecoder()),
+		ResourceType: "aws_fsx_ontap_storage_virtual_machine",
+	},
+	{
+		Group:    "fsx.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "ontapvolumes",
+	}: {
+		JsonIt:       controllers.GetJSONItr(fsxv1alpha1.GetEncoder(), fsxv1alpha1.GetDecoder()),
+		ResourceType: "aws_fsx_ontap_volume",
+	},
+	{
+		Group:    "fsx.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "openzfsfilesystems",
+	}: {
+		JsonIt:       controllers.GetJSONItr(fsxv1alpha1.GetEncoder(), fsxv1alpha1.GetDecoder()),
+		ResourceType: "aws_fsx_openzfs_file_system",
+	},
+	{
+		Group:    "fsx.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "openzfssnapshots",
+	}: {
+		JsonIt:       controllers.GetJSONItr(fsxv1alpha1.GetEncoder(), fsxv1alpha1.GetDecoder()),
+		ResourceType: "aws_fsx_openzfs_snapshot",
+	},
+	{
+		Group:    "fsx.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "openzfsvolumes",
+	}: {
+		JsonIt:       controllers.GetJSONItr(fsxv1alpha1.GetEncoder(), fsxv1alpha1.GetDecoder()),
+		ResourceType: "aws_fsx_openzfs_volume",
 	},
 	{
 		Group:    "fsx.aws.kubeform.com",
@@ -2774,6 +3629,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(gameliftv1alpha1.GetEncoder(), gameliftv1alpha1.GetDecoder()),
 		ResourceType: "aws_gamelift_game_session_queue",
+	},
+	{
+		Group:    "gamelift.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "scripts",
+	}: {
+		JsonIt:       controllers.GetJSONItr(gameliftv1alpha1.GetEncoder(), gameliftv1alpha1.GetDecoder()),
+		ResourceType: "aws_gamelift_script",
 	},
 	{
 		Group:    "glaciervault.aws.kubeform.com",
@@ -2898,6 +3761,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "glue.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "partitionindices",
+	}: {
+		JsonIt:       controllers.GetJSONItr(gluev1alpha1.GetEncoder(), gluev1alpha1.GetDecoder()),
+		ResourceType: "aws_glue_partition_index",
+	},
+	{
+		Group:    "glue.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "registries",
 	}: {
 		JsonIt:       controllers.GetJSONItr(gluev1alpha1.GetEncoder(), gluev1alpha1.GetDecoder()),
@@ -2950,6 +3821,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(gluev1alpha1.GetEncoder(), gluev1alpha1.GetDecoder()),
 		ResourceType: "aws_glue_workflow",
+	},
+	{
+		Group:    "grafana.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "licenseassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(grafanav1alpha1.GetEncoder(), grafanav1alpha1.GetDecoder()),
+		ResourceType: "aws_grafana_license_association",
+	},
+	{
+		Group:    "grafana.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "workspaces",
+	}: {
+		JsonIt:       controllers.GetJSONItr(grafanav1alpha1.GetEncoder(), grafanav1alpha1.GetDecoder()),
+		ResourceType: "aws_grafana_workspace",
 	},
 	{
 		Group:    "guardduty.aws.kubeform.com",
@@ -3162,6 +4049,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "iam.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "servicespecificcredentials",
+	}: {
+		JsonIt:       controllers.GetJSONItr(iamv1alpha1.GetEncoder(), iamv1alpha1.GetDecoder()),
+		ResourceType: "aws_iam_service_specific_credential",
+	},
+	{
+		Group:    "iam.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "signingcertificates",
+	}: {
+		JsonIt:       controllers.GetJSONItr(iamv1alpha1.GetEncoder(), iamv1alpha1.GetDecoder()),
+		ResourceType: "aws_iam_signing_certificate",
+	},
+	{
+		Group:    "iam.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "users",
 	}: {
 		JsonIt:       controllers.GetJSONItr(iamv1alpha1.GetEncoder(), iamv1alpha1.GetDecoder()),
@@ -3208,12 +4111,28 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_iam_user_ssh_key",
 	},
 	{
+		Group:    "iam.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "virtualmfadevices",
+	}: {
+		JsonIt:       controllers.GetJSONItr(iamv1alpha1.GetEncoder(), iamv1alpha1.GetDecoder()),
+		ResourceType: "aws_iam_virtual_mfa_device",
+	},
+	{
 		Group:    "imagebuilder.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "components",
 	}: {
 		JsonIt:       controllers.GetJSONItr(imagebuilderv1alpha1.GetEncoder(), imagebuilderv1alpha1.GetDecoder()),
 		ResourceType: "aws_imagebuilder_component",
+	},
+	{
+		Group:    "imagebuilder.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "containerrecipes",
+	}: {
+		JsonIt:       controllers.GetJSONItr(imagebuilderv1alpha1.GetEncoder(), imagebuilderv1alpha1.GetDecoder()),
+		ResourceType: "aws_imagebuilder_container_recipe",
 	},
 	{
 		Group:    "imagebuilder.aws.kubeform.com",
@@ -3296,6 +4215,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_internet_gateway",
 	},
 	{
+		Group:    "internet.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "gatewayattachments",
+	}: {
+		JsonIt:       controllers.GetJSONItr(internetv1alpha1.GetEncoder(), internetv1alpha1.GetDecoder()),
+		ResourceType: "aws_internet_gateway_attachment",
+	},
+	{
+		Group:    "iot.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "authorizers",
+	}: {
+		JsonIt:       controllers.GetJSONItr(iotv1alpha1.GetEncoder(), iotv1alpha1.GetDecoder()),
+		ResourceType: "aws_iot_authorizer",
+	},
+	{
 		Group:    "iot.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "certificates",
@@ -3334,6 +4269,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(iotv1alpha1.GetEncoder(), iotv1alpha1.GetDecoder()),
 		ResourceType: "aws_iot_thing",
+	},
+	{
+		Group:    "iot.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "thinggroups",
+	}: {
+		JsonIt:       controllers.GetJSONItr(iotv1alpha1.GetEncoder(), iotv1alpha1.GetDecoder()),
+		ResourceType: "aws_iot_thing_group",
+	},
+	{
+		Group:    "iot.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "thinggroupmemberships",
+	}: {
+		JsonIt:       controllers.GetJSONItr(iotv1alpha1.GetEncoder(), iotv1alpha1.GetDecoder()),
+		ResourceType: "aws_iot_thing_group_membership",
 	},
 	{
 		Group:    "iot.aws.kubeform.com",
@@ -3464,6 +4415,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_kms_key",
 	},
 	{
+		Group:    "kms.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "replicaexternalkeys",
+	}: {
+		JsonIt:       controllers.GetJSONItr(kmsv1alpha1.GetEncoder(), kmsv1alpha1.GetDecoder()),
+		ResourceType: "aws_kms_replica_external_key",
+	},
+	{
+		Group:    "kms.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "replicakeys",
+	}: {
+		JsonIt:       controllers.GetJSONItr(kmsv1alpha1.GetEncoder(), kmsv1alpha1.GetDecoder()),
+		ResourceType: "aws_kms_replica_key",
+	},
+	{
 		Group:    "lakeformation.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "datalakesettings",
@@ -3530,10 +4497,26 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "lambda.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "invocations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(lambdav1alpha1.GetEncoder(), lambdav1alpha1.GetDecoder()),
+		ResourceType: "aws_lambda_invocation",
+	},
+	{
+		Group:    "lambda.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "layerversions",
 	}: {
 		JsonIt:       controllers.GetJSONItr(lambdav1alpha1.GetEncoder(), lambdav1alpha1.GetDecoder()),
 		ResourceType: "aws_lambda_layer_version",
+	},
+	{
+		Group:    "lambda.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "layerversionpermissions",
+	}: {
+		JsonIt:       controllers.GetJSONItr(lambdav1alpha1.GetEncoder(), lambdav1alpha1.GetDecoder()),
+		ResourceType: "aws_lambda_layer_version_permission",
 	},
 	{
 		Group:    "lambda.aws.kubeform.com",
@@ -3864,6 +4847,54 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_media_store_container_policy",
 	},
 	{
+		Group:    "memorydb.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "acls",
+	}: {
+		JsonIt:       controllers.GetJSONItr(memorydbv1alpha1.GetEncoder(), memorydbv1alpha1.GetDecoder()),
+		ResourceType: "aws_memorydb_acl",
+	},
+	{
+		Group:    "memorydb.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "clusters",
+	}: {
+		JsonIt:       controllers.GetJSONItr(memorydbv1alpha1.GetEncoder(), memorydbv1alpha1.GetDecoder()),
+		ResourceType: "aws_memorydb_cluster",
+	},
+	{
+		Group:    "memorydb.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "parametergroups",
+	}: {
+		JsonIt:       controllers.GetJSONItr(memorydbv1alpha1.GetEncoder(), memorydbv1alpha1.GetDecoder()),
+		ResourceType: "aws_memorydb_parameter_group",
+	},
+	{
+		Group:    "memorydb.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "snapshots",
+	}: {
+		JsonIt:       controllers.GetJSONItr(memorydbv1alpha1.GetEncoder(), memorydbv1alpha1.GetDecoder()),
+		ResourceType: "aws_memorydb_snapshot",
+	},
+	{
+		Group:    "memorydb.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "subnetgroups",
+	}: {
+		JsonIt:       controllers.GetJSONItr(memorydbv1alpha1.GetEncoder(), memorydbv1alpha1.GetDecoder()),
+		ResourceType: "aws_memorydb_subnet_group",
+	},
+	{
+		Group:    "memorydb.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "users",
+	}: {
+		JsonIt:       controllers.GetJSONItr(memorydbv1alpha1.GetEncoder(), memorydbv1alpha1.GetDecoder()),
+		ResourceType: "aws_memorydb_user",
+	},
+	{
 		Group:    "mq.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "brokers",
@@ -3902,6 +4933,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(mskv1alpha1.GetEncoder(), mskv1alpha1.GetDecoder()),
 		ResourceType: "aws_msk_scram_secret_association",
+	},
+	{
+		Group:    "mskconnect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "customplugins",
+	}: {
+		JsonIt:       controllers.GetJSONItr(mskconnectv1alpha1.GetEncoder(), mskconnectv1alpha1.GetDecoder()),
+		ResourceType: "aws_mskconnect_custom_plugin",
+	},
+	{
+		Group:    "mskconnect.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "workerconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(mskconnectv1alpha1.GetEncoder(), mskconnectv1alpha1.GetDecoder()),
+		ResourceType: "aws_mskconnect_worker_configuration",
 	},
 	{
 		Group:    "mwaa.aws.kubeform.com",
@@ -3994,6 +5041,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "network.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "aclassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(networkv1alpha1.GetEncoder(), networkv1alpha1.GetDecoder()),
+		ResourceType: "aws_network_acl_association",
+	},
+	{
+		Group:    "network.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "aclrules",
 	}: {
 		JsonIt:       controllers.GetJSONItr(networkv1alpha1.GetEncoder(), networkv1alpha1.GetDecoder()),
@@ -4078,6 +5133,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(opsworksv1alpha1.GetEncoder(), opsworksv1alpha1.GetDecoder()),
 		ResourceType: "aws_opsworks_custom_layer",
+	},
+	{
+		Group:    "opsworks.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "ecsclusterlayers",
+	}: {
+		JsonIt:       controllers.GetJSONItr(opsworksv1alpha1.GetEncoder(), opsworksv1alpha1.GetDecoder()),
+		ResourceType: "aws_opsworks_ecs_cluster_layer",
 	},
 	{
 		Group:    "opsworks.aws.kubeform.com",
@@ -4338,6 +5401,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "prometheus.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "alertmanagerdefinitions",
+	}: {
+		JsonIt:       controllers.GetJSONItr(prometheusv1alpha1.GetEncoder(), prometheusv1alpha1.GetDecoder()),
+		ResourceType: "aws_prometheus_alert_manager_definition",
+	},
+	{
+		Group:    "prometheus.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "rulegroupnamespaces",
+	}: {
+		JsonIt:       controllers.GetJSONItr(prometheusv1alpha1.GetEncoder(), prometheusv1alpha1.GetDecoder()),
+		ResourceType: "aws_prometheus_rule_group_namespace",
+	},
+	{
+		Group:    "prometheus.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "workspaces",
 	}: {
 		JsonIt:       controllers.GetJSONItr(prometheusv1alpha1.GetEncoder(), prometheusv1alpha1.GetDecoder()),
@@ -4362,10 +5441,26 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "quicksight.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "datasources",
+	}: {
+		JsonIt:       controllers.GetJSONItr(quicksightv1alpha1.GetEncoder(), quicksightv1alpha1.GetDecoder()),
+		ResourceType: "aws_quicksight_data_source",
+	},
+	{
+		Group:    "quicksight.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "groups",
 	}: {
 		JsonIt:       controllers.GetJSONItr(quicksightv1alpha1.GetEncoder(), quicksightv1alpha1.GetDecoder()),
 		ResourceType: "aws_quicksight_group",
+	},
+	{
+		Group:    "quicksight.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "groupmemberships",
+	}: {
+		JsonIt:       controllers.GetJSONItr(quicksightv1alpha1.GetEncoder(), quicksightv1alpha1.GetDecoder()),
+		ResourceType: "aws_quicksight_group_membership",
 	},
 	{
 		Group:    "quicksight.aws.kubeform.com",
@@ -4442,6 +5537,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "rds.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "clusterroleassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(rdsv1alpha1.GetEncoder(), rdsv1alpha1.GetDecoder()),
+		ResourceType: "aws_rds_cluster_role_association",
+	},
+	{
+		Group:    "rds.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "globalclusters",
 	}: {
 		JsonIt:       controllers.GetJSONItr(rdsv1alpha1.GetEncoder(), rdsv1alpha1.GetDecoder()),
@@ -4470,6 +5573,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(redshiftv1alpha1.GetEncoder(), redshiftv1alpha1.GetDecoder()),
 		ResourceType: "aws_redshift_parameter_group",
+	},
+	{
+		Group:    "redshift.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "scheduledactions",
+	}: {
+		JsonIt:       controllers.GetJSONItr(redshiftv1alpha1.GetEncoder(), redshiftv1alpha1.GetDecoder()),
+		ResourceType: "aws_redshift_scheduled_action",
 	},
 	{
 		Group:    "redshift.aws.kubeform.com",
@@ -4688,6 +5799,78 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 		ResourceType: "aws_route53_zone_association",
 	},
 	{
+		Group:    "route53domains.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "registereddomains",
+	}: {
+		JsonIt:       controllers.GetJSONItr(route53domainsv1alpha1.GetEncoder(), route53domainsv1alpha1.GetDecoder()),
+		ResourceType: "aws_route53domains_registered_domain",
+	},
+	{
+		Group:    "route53recoverycontrolconfig.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "clusters",
+	}: {
+		JsonIt:       controllers.GetJSONItr(route53recoverycontrolconfigv1alpha1.GetEncoder(), route53recoverycontrolconfigv1alpha1.GetDecoder()),
+		ResourceType: "aws_route53recoverycontrolconfig_cluster",
+	},
+	{
+		Group:    "route53recoverycontrolconfig.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "controlpanels",
+	}: {
+		JsonIt:       controllers.GetJSONItr(route53recoverycontrolconfigv1alpha1.GetEncoder(), route53recoverycontrolconfigv1alpha1.GetDecoder()),
+		ResourceType: "aws_route53recoverycontrolconfig_control_panel",
+	},
+	{
+		Group:    "route53recoverycontrolconfig.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "routingcontrols",
+	}: {
+		JsonIt:       controllers.GetJSONItr(route53recoverycontrolconfigv1alpha1.GetEncoder(), route53recoverycontrolconfigv1alpha1.GetDecoder()),
+		ResourceType: "aws_route53recoverycontrolconfig_routing_control",
+	},
+	{
+		Group:    "route53recoverycontrolconfig.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "safetyrules",
+	}: {
+		JsonIt:       controllers.GetJSONItr(route53recoverycontrolconfigv1alpha1.GetEncoder(), route53recoverycontrolconfigv1alpha1.GetDecoder()),
+		ResourceType: "aws_route53recoverycontrolconfig_safety_rule",
+	},
+	{
+		Group:    "route53recoveryreadiness.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "cells",
+	}: {
+		JsonIt:       controllers.GetJSONItr(route53recoveryreadinessv1alpha1.GetEncoder(), route53recoveryreadinessv1alpha1.GetDecoder()),
+		ResourceType: "aws_route53recoveryreadiness_cell",
+	},
+	{
+		Group:    "route53recoveryreadiness.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "readinesschecks",
+	}: {
+		JsonIt:       controllers.GetJSONItr(route53recoveryreadinessv1alpha1.GetEncoder(), route53recoveryreadinessv1alpha1.GetDecoder()),
+		ResourceType: "aws_route53recoveryreadiness_readiness_check",
+	},
+	{
+		Group:    "route53recoveryreadiness.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "recoverygroups",
+	}: {
+		JsonIt:       controllers.GetJSONItr(route53recoveryreadinessv1alpha1.GetEncoder(), route53recoveryreadinessv1alpha1.GetDecoder()),
+		ResourceType: "aws_route53recoveryreadiness_recovery_group",
+	},
+	{
+		Group:    "route53recoveryreadiness.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "resourcesets",
+	}: {
+		JsonIt:       controllers.GetJSONItr(route53recoveryreadinessv1alpha1.GetEncoder(), route53recoveryreadinessv1alpha1.GetDecoder()),
+		ResourceType: "aws_route53recoveryreadiness_resource_set",
+	},
+	{
 		Group:    "route.aws.kubeform.com",
 		Version:  "v1alpha1",
 		Resource: "tables",
@@ -4730,6 +5913,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "s3.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "bucketaccelerateconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_bucket_accelerate_configuration",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "bucketacls",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_bucket_acl",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "bucketanalyticsconfigurations",
 	}: {
 		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
@@ -4738,10 +5937,42 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "s3.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "bucketcorsconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_bucket_cors_configuration",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "bucketintelligenttieringconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_bucket_intelligent_tiering_configuration",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "bucketinventories",
 	}: {
 		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
 		ResourceType: "aws_s3_bucket_inventory",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "bucketlifecycleconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_bucket_lifecycle_configuration",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "bucketloggings",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_bucket_logging",
 	},
 	{
 		Group:    "s3.aws.kubeform.com",
@@ -4770,6 +6001,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "s3.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "bucketobjectlockconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_bucket_object_lock_configuration",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "bucketownershipcontrols",
 	}: {
 		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
@@ -4794,10 +6033,66 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "s3.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "bucketreplicationconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_bucket_replication_configuration",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "bucketrequestpaymentconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_bucket_request_payment_configuration",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "bucketserversideencryptionconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_bucket_server_side_encryption_configuration",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "bucketversionings",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_bucket_versioning",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "bucketwebsiteconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_bucket_website_configuration",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "objects",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
+		ResourceType: "aws_s3_object",
+	},
+	{
+		Group:    "s3.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "objectcopies",
 	}: {
 		JsonIt:       controllers.GetJSONItr(s3v1alpha1.GetEncoder(), s3v1alpha1.GetDecoder()),
 		ResourceType: "aws_s3_object_copy",
+	},
+	{
+		Group:    "s3control.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "accesspointpolicies",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3controlv1alpha1.GetEncoder(), s3controlv1alpha1.GetDecoder()),
+		ResourceType: "aws_s3control_access_point_policy",
 	},
 	{
 		Group:    "s3control.aws.kubeform.com",
@@ -4822,6 +6117,38 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(s3controlv1alpha1.GetEncoder(), s3controlv1alpha1.GetDecoder()),
 		ResourceType: "aws_s3control_bucket_policy",
+	},
+	{
+		Group:    "s3control.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "multiregionaccesspoints",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3controlv1alpha1.GetEncoder(), s3controlv1alpha1.GetDecoder()),
+		ResourceType: "aws_s3control_multi_region_access_point",
+	},
+	{
+		Group:    "s3control.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "multiregionaccesspointpolicies",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3controlv1alpha1.GetEncoder(), s3controlv1alpha1.GetDecoder()),
+		ResourceType: "aws_s3control_multi_region_access_point_policy",
+	},
+	{
+		Group:    "s3control.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "objectlambdaaccesspoints",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3controlv1alpha1.GetEncoder(), s3controlv1alpha1.GetDecoder()),
+		ResourceType: "aws_s3control_object_lambda_access_point",
+	},
+	{
+		Group:    "s3control.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "objectlambdaaccesspointpolicies",
+	}: {
+		JsonIt:       controllers.GetJSONItr(s3controlv1alpha1.GetEncoder(), s3controlv1alpha1.GetDecoder()),
+		ResourceType: "aws_s3control_object_lambda_access_point_policy",
 	},
 	{
 		Group:    "s3outposts.aws.kubeform.com",
@@ -4858,6 +6185,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "sagemaker.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "devices",
+	}: {
+		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
+		ResourceType: "aws_sagemaker_device",
+	},
+	{
+		Group:    "sagemaker.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "devicefleet",
+	}: {
+		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
+		ResourceType: "aws_sagemaker_device_fleet",
+	},
+	{
+		Group:    "sagemaker.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "domains",
 	}: {
 		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
@@ -4886,6 +6229,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
 		ResourceType: "aws_sagemaker_feature_group",
+	},
+	{
+		Group:    "sagemaker.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "flowdefinitions",
+	}: {
+		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
+		ResourceType: "aws_sagemaker_flow_definition",
+	},
+	{
+		Group:    "sagemaker.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "humantaskuis",
+	}: {
+		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
+		ResourceType: "aws_sagemaker_human_task_ui",
 	},
 	{
 		Group:    "sagemaker.aws.kubeform.com",
@@ -4922,6 +6281,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "sagemaker.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "modelpackagegrouppolicies",
+	}: {
+		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
+		ResourceType: "aws_sagemaker_model_package_group_policy",
+	},
+	{
+		Group:    "sagemaker.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "notebookinstances",
 	}: {
 		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
@@ -4938,10 +6305,42 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "sagemaker.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "projects",
+	}: {
+		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
+		ResourceType: "aws_sagemaker_project",
+	},
+	{
+		Group:    "sagemaker.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "studiolifecycleconfigs",
+	}: {
+		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
+		ResourceType: "aws_sagemaker_studio_lifecycle_config",
+	},
+	{
+		Group:    "sagemaker.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "userprofiles",
 	}: {
 		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
 		ResourceType: "aws_sagemaker_user_profile",
+	},
+	{
+		Group:    "sagemaker.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "workforces",
+	}: {
+		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
+		ResourceType: "aws_sagemaker_workforce",
+	},
+	{
+		Group:    "sagemaker.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "workteams",
+	}: {
+		JsonIt:       controllers.GetJSONItr(sagemakerv1alpha1.GetEncoder(), sagemakerv1alpha1.GetDecoder()),
+		ResourceType: "aws_sagemaker_workteam",
 	},
 	{
 		Group:    "schemas.aws.kubeform.com",
@@ -5034,6 +6433,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "securityhub.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "findingaggregators",
+	}: {
+		JsonIt:       controllers.GetJSONItr(securityhubv1alpha1.GetEncoder(), securityhubv1alpha1.GetDecoder()),
+		ResourceType: "aws_securityhub_finding_aggregator",
+	},
+	{
+		Group:    "securityhub.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "insights",
 	}: {
 		JsonIt:       controllers.GetJSONItr(securityhubv1alpha1.GetEncoder(), securityhubv1alpha1.GetDecoder()),
@@ -5066,10 +6473,26 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "securityhub.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "organizationconfigurations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(securityhubv1alpha1.GetEncoder(), securityhubv1alpha1.GetDecoder()),
+		ResourceType: "aws_securityhub_organization_configuration",
+	},
+	{
+		Group:    "securityhub.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "productsubscriptions",
 	}: {
 		JsonIt:       controllers.GetJSONItr(securityhubv1alpha1.GetEncoder(), securityhubv1alpha1.GetDecoder()),
 		ResourceType: "aws_securityhub_product_subscription",
+	},
+	{
+		Group:    "securityhub.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "standardscontrols",
+	}: {
+		JsonIt:       controllers.GetJSONItr(securityhubv1alpha1.GetEncoder(), securityhubv1alpha1.GetDecoder()),
+		ResourceType: "aws_securityhub_standards_control",
 	},
 	{
 		Group:    "securityhub.aws.kubeform.com",
@@ -5094,6 +6517,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(servicediscoveryv1alpha1.GetEncoder(), servicediscoveryv1alpha1.GetDecoder()),
 		ResourceType: "aws_service_discovery_http_namespace",
+	},
+	{
+		Group:    "servicediscovery.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "instances",
+	}: {
+		JsonIt:       controllers.GetJSONItr(servicediscoveryv1alpha1.GetEncoder(), servicediscoveryv1alpha1.GetDecoder()),
+		ResourceType: "aws_service_discovery_instance",
 	},
 	{
 		Group:    "servicediscovery.aws.kubeform.com",
@@ -5182,6 +6613,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(servicecatalogv1alpha1.GetEncoder(), servicecatalogv1alpha1.GetDecoder()),
 		ResourceType: "aws_servicecatalog_product_portfolio_association",
+	},
+	{
+		Group:    "servicecatalog.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "provisionedproducts",
+	}: {
+		JsonIt:       controllers.GetJSONItr(servicecatalogv1alpha1.GetEncoder(), servicecatalogv1alpha1.GetDecoder()),
+		ResourceType: "aws_servicecatalog_provisioned_product",
 	},
 	{
 		Group:    "servicecatalog.aws.kubeform.com",
@@ -5358,6 +6797,22 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	}: {
 		JsonIt:       controllers.GetJSONItr(shieldv1alpha1.GetEncoder(), shieldv1alpha1.GetDecoder()),
 		ResourceType: "aws_shield_protection",
+	},
+	{
+		Group:    "shield.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "protectiongroups",
+	}: {
+		JsonIt:       controllers.GetJSONItr(shieldv1alpha1.GetEncoder(), shieldv1alpha1.GetDecoder()),
+		ResourceType: "aws_shield_protection_group",
+	},
+	{
+		Group:    "shield.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "protectionhealthcheckassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(shieldv1alpha1.GetEncoder(), shieldv1alpha1.GetDecoder()),
+		ResourceType: "aws_shield_protection_health_check_association",
 	},
 	{
 		Group:    "signer.aws.kubeform.com",
@@ -5610,6 +7065,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "storagegateway.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "filesystemassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(storagegatewayv1alpha1.GetEncoder(), storagegatewayv1alpha1.GetDecoder()),
+		ResourceType: "aws_storagegateway_file_system_association",
+	},
+	{
+		Group:    "storagegateway.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "gateways",
 	}: {
 		JsonIt:       controllers.GetJSONItr(storagegatewayv1alpha1.GetEncoder(), storagegatewayv1alpha1.GetDecoder()),
@@ -5706,6 +7169,14 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "transfer.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "accesses",
+	}: {
+		JsonIt:       controllers.GetJSONItr(transferv1alpha1.GetEncoder(), transferv1alpha1.GetDecoder()),
+		ResourceType: "aws_transfer_access",
+	},
+	{
+		Group:    "transfer.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "servers",
 	}: {
 		JsonIt:       controllers.GetJSONItr(transferv1alpha1.GetEncoder(), transferv1alpha1.GetDecoder()),
@@ -5770,10 +7241,26 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "vpc.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "endpointconnectionaccepters",
+	}: {
+		JsonIt:       controllers.GetJSONItr(vpcv1alpha1.GetEncoder(), vpcv1alpha1.GetDecoder()),
+		ResourceType: "aws_vpc_endpoint_connection_accepter",
+	},
+	{
+		Group:    "vpc.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "endpointconnectionnotifications",
 	}: {
 		JsonIt:       controllers.GetJSONItr(vpcv1alpha1.GetEncoder(), vpcv1alpha1.GetDecoder()),
 		ResourceType: "aws_vpc_endpoint_connection_notification",
+	},
+	{
+		Group:    "vpc.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "endpointpolicies",
+	}: {
+		JsonIt:       controllers.GetJSONItr(vpcv1alpha1.GetEncoder(), vpcv1alpha1.GetDecoder()),
+		ResourceType: "aws_vpc_endpoint_policy",
 	},
 	{
 		Group:    "vpc.aws.kubeform.com",
@@ -5810,10 +7297,74 @@ var allJsonIt = map[schema.GroupVersionResource]Data{
 	{
 		Group:    "vpc.aws.kubeform.com",
 		Version:  "v1alpha1",
+		Resource: "ipams",
+	}: {
+		JsonIt:       controllers.GetJSONItr(vpcv1alpha1.GetEncoder(), vpcv1alpha1.GetDecoder()),
+		ResourceType: "aws_vpc_ipam",
+	},
+	{
+		Group:    "vpc.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "ipamorganizationadminaccounts",
+	}: {
+		JsonIt:       controllers.GetJSONItr(vpcv1alpha1.GetEncoder(), vpcv1alpha1.GetDecoder()),
+		ResourceType: "aws_vpc_ipam_organization_admin_account",
+	},
+	{
+		Group:    "vpc.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "ipampools",
+	}: {
+		JsonIt:       controllers.GetJSONItr(vpcv1alpha1.GetEncoder(), vpcv1alpha1.GetDecoder()),
+		ResourceType: "aws_vpc_ipam_pool",
+	},
+	{
+		Group:    "vpc.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "ipampoolcidrs",
+	}: {
+		JsonIt:       controllers.GetJSONItr(vpcv1alpha1.GetEncoder(), vpcv1alpha1.GetDecoder()),
+		ResourceType: "aws_vpc_ipam_pool_cidr",
+	},
+	{
+		Group:    "vpc.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "ipampoolcidrallocations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(vpcv1alpha1.GetEncoder(), vpcv1alpha1.GetDecoder()),
+		ResourceType: "aws_vpc_ipam_pool_cidr_allocation",
+	},
+	{
+		Group:    "vpc.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "ipampreviewnextcidrs",
+	}: {
+		JsonIt:       controllers.GetJSONItr(vpcv1alpha1.GetEncoder(), vpcv1alpha1.GetDecoder()),
+		ResourceType: "aws_vpc_ipam_preview_next_cidr",
+	},
+	{
+		Group:    "vpc.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "ipamscopes",
+	}: {
+		JsonIt:       controllers.GetJSONItr(vpcv1alpha1.GetEncoder(), vpcv1alpha1.GetDecoder()),
+		ResourceType: "aws_vpc_ipam_scope",
+	},
+	{
+		Group:    "vpc.aws.kubeform.com",
+		Version:  "v1alpha1",
 		Resource: "ipv4cidrblockassociations",
 	}: {
 		JsonIt:       controllers.GetJSONItr(vpcv1alpha1.GetEncoder(), vpcv1alpha1.GetDecoder()),
 		ResourceType: "aws_vpc_ipv4_cidr_block_association",
+	},
+	{
+		Group:    "vpc.aws.kubeform.com",
+		Version:  "v1alpha1",
+		Resource: "ipv6cidrblockassociations",
+	}: {
+		JsonIt:       controllers.GetJSONItr(vpcv1alpha1.GetEncoder(), vpcv1alpha1.GetDecoder()),
+		ResourceType: "aws_vpc_ipv6_cidr_block_association",
 	},
 	{
 		Group:    "vpc.aws.kubeform.com",

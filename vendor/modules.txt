@@ -43,15 +43,29 @@ github.com/Masterminds/semver
 github.com/Masterminds/semver/v3
 # github.com/Masterminds/sprig v2.22.0+incompatible
 github.com/Masterminds/sprig
+# github.com/ProtonMail/go-crypto v0.0.0-20210428141323-04723f9f07d7
+github.com/ProtonMail/go-crypto/bitcurves
+github.com/ProtonMail/go-crypto/brainpool
+github.com/ProtonMail/go-crypto/eax
+github.com/ProtonMail/go-crypto/internal/byteutil
+github.com/ProtonMail/go-crypto/ocb
+github.com/ProtonMail/go-crypto/openpgp
+github.com/ProtonMail/go-crypto/openpgp/aes/keywrap
+github.com/ProtonMail/go-crypto/openpgp/armor
+github.com/ProtonMail/go-crypto/openpgp/ecdh
+github.com/ProtonMail/go-crypto/openpgp/elgamal
+github.com/ProtonMail/go-crypto/openpgp/errors
+github.com/ProtonMail/go-crypto/openpgp/internal/algorithm
+github.com/ProtonMail/go-crypto/openpgp/internal/ecc
+github.com/ProtonMail/go-crypto/openpgp/internal/encoding
+github.com/ProtonMail/go-crypto/openpgp/packet
+github.com/ProtonMail/go-crypto/openpgp/s2k
 # github.com/PuerkitoBio/purell v1.1.1
 github.com/PuerkitoBio/purell
 # github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
 github.com/PuerkitoBio/urlesc
 # github.com/agext/levenshtein v1.2.2
 github.com/agext/levenshtein
-# github.com/agl/ed25519 v0.0.0-20170116200512-5312a6153412
-github.com/agl/ed25519
-github.com/agl/ed25519/edwards25519
 # github.com/apparentlymart/go-cidr v1.1.0
 github.com/apparentlymart/go-cidr/cidr
 # github.com/apparentlymart/go-textseg/v13 v13.0.0
@@ -63,7 +77,7 @@ github.com/apparentlymart/go-versions/versions/constraints
 github.com/armon/go-metrics
 # github.com/armon/go-radix v1.0.0
 github.com/armon/go-radix
-# github.com/aws/aws-sdk-go v1.40.25
+# github.com/aws/aws-sdk-go v1.43.9
 github.com/aws/aws-sdk-go/aws
 github.com/aws/aws-sdk-go/aws/arn
 github.com/aws/aws-sdk-go/aws/awserr
@@ -112,47 +126,69 @@ github.com/aws/aws-sdk-go/private/protocol/restxml
 github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil
 github.com/aws/aws-sdk-go/private/signer/v2
 github.com/aws/aws-sdk-go/service/accessanalyzer
+github.com/aws/aws-sdk-go/service/account
 github.com/aws/aws-sdk-go/service/acm
 github.com/aws/aws-sdk-go/service/acmpca
+github.com/aws/aws-sdk-go/service/alexaforbusiness
 github.com/aws/aws-sdk-go/service/amplify
+github.com/aws/aws-sdk-go/service/amplifybackend
 github.com/aws/aws-sdk-go/service/apigateway
 github.com/aws/aws-sdk-go/service/apigatewayv2
 github.com/aws/aws-sdk-go/service/appconfig
+github.com/aws/aws-sdk-go/service/appflow
+github.com/aws/aws-sdk-go/service/appintegrationsservice
 github.com/aws/aws-sdk-go/service/applicationautoscaling
+github.com/aws/aws-sdk-go/service/applicationcostprofiler
+github.com/aws/aws-sdk-go/service/applicationdiscoveryservice
 github.com/aws/aws-sdk-go/service/applicationinsights
 github.com/aws/aws-sdk-go/service/appmesh
+github.com/aws/aws-sdk-go/service/appregistry
 github.com/aws/aws-sdk-go/service/apprunner
 github.com/aws/aws-sdk-go/service/appstream
 github.com/aws/aws-sdk-go/service/appsync
 github.com/aws/aws-sdk-go/service/athena
 github.com/aws/aws-sdk-go/service/auditmanager
+github.com/aws/aws-sdk-go/service/augmentedairuntime
 github.com/aws/aws-sdk-go/service/autoscaling
 github.com/aws/aws-sdk-go/service/autoscalingplans
 github.com/aws/aws-sdk-go/service/backup
 github.com/aws/aws-sdk-go/service/batch
+github.com/aws/aws-sdk-go/service/braket
 github.com/aws/aws-sdk-go/service/budgets
 github.com/aws/aws-sdk-go/service/chime
 github.com/aws/aws-sdk-go/service/cloud9
+github.com/aws/aws-sdk-go/service/cloudcontrolapi
+github.com/aws/aws-sdk-go/service/clouddirectory
 github.com/aws/aws-sdk-go/service/cloudformation
 github.com/aws/aws-sdk-go/service/cloudfront
 github.com/aws/aws-sdk-go/service/cloudhsmv2
 github.com/aws/aws-sdk-go/service/cloudsearch
+github.com/aws/aws-sdk-go/service/cloudsearchdomain
 github.com/aws/aws-sdk-go/service/cloudtrail
 github.com/aws/aws-sdk-go/service/cloudwatch
-github.com/aws/aws-sdk-go/service/cloudwatchevents
 github.com/aws/aws-sdk-go/service/cloudwatchlogs
+github.com/aws/aws-sdk-go/service/cloudwatchrum
 github.com/aws/aws-sdk-go/service/codeartifact
 github.com/aws/aws-sdk-go/service/codebuild
 github.com/aws/aws-sdk-go/service/codecommit
 github.com/aws/aws-sdk-go/service/codedeploy
+github.com/aws/aws-sdk-go/service/codeguruprofiler
+github.com/aws/aws-sdk-go/service/codegurureviewer
 github.com/aws/aws-sdk-go/service/codepipeline
+github.com/aws/aws-sdk-go/service/codestar
 github.com/aws/aws-sdk-go/service/codestarconnections
 github.com/aws/aws-sdk-go/service/codestarnotifications
 github.com/aws/aws-sdk-go/service/cognitoidentity
 github.com/aws/aws-sdk-go/service/cognitoidentityprovider
+github.com/aws/aws-sdk-go/service/cognitosync
+github.com/aws/aws-sdk-go/service/comprehend
+github.com/aws/aws-sdk-go/service/comprehendmedical
 github.com/aws/aws-sdk-go/service/configservice
 github.com/aws/aws-sdk-go/service/connect
+github.com/aws/aws-sdk-go/service/connectcontactlens
+github.com/aws/aws-sdk-go/service/connectparticipant
 github.com/aws/aws-sdk-go/service/costandusagereportservice
+github.com/aws/aws-sdk-go/service/costexplorer
 github.com/aws/aws-sdk-go/service/databasemigrationservice
 github.com/aws/aws-sdk-go/service/dataexchange
 github.com/aws/aws-sdk-go/service/datapipeline
@@ -160,12 +196,15 @@ github.com/aws/aws-sdk-go/service/datasync
 github.com/aws/aws-sdk-go/service/dax
 github.com/aws/aws-sdk-go/service/detective
 github.com/aws/aws-sdk-go/service/devicefarm
+github.com/aws/aws-sdk-go/service/devopsguru
 github.com/aws/aws-sdk-go/service/directconnect
 github.com/aws/aws-sdk-go/service/directoryservice
 github.com/aws/aws-sdk-go/service/dlm
 github.com/aws/aws-sdk-go/service/docdb
 github.com/aws/aws-sdk-go/service/dynamodb
+github.com/aws/aws-sdk-go/service/dynamodbstreams
 github.com/aws/aws-sdk-go/service/ec2
+github.com/aws/aws-sdk-go/service/ec2instanceconnect
 github.com/aws/aws-sdk-go/service/ecr
 github.com/aws/aws-sdk-go/service/ecrpublic
 github.com/aws/aws-sdk-go/service/ecs
@@ -173,72 +212,136 @@ github.com/aws/aws-sdk-go/service/efs
 github.com/aws/aws-sdk-go/service/eks
 github.com/aws/aws-sdk-go/service/elasticache
 github.com/aws/aws-sdk-go/service/elasticbeanstalk
+github.com/aws/aws-sdk-go/service/elasticinference
 github.com/aws/aws-sdk-go/service/elasticsearchservice
 github.com/aws/aws-sdk-go/service/elastictranscoder
 github.com/aws/aws-sdk-go/service/elb
 github.com/aws/aws-sdk-go/service/elbv2
 github.com/aws/aws-sdk-go/service/emr
 github.com/aws/aws-sdk-go/service/emrcontainers
+github.com/aws/aws-sdk-go/service/eventbridge
+github.com/aws/aws-sdk-go/service/finspace
+github.com/aws/aws-sdk-go/service/finspacedata
 github.com/aws/aws-sdk-go/service/firehose
+github.com/aws/aws-sdk-go/service/fis
 github.com/aws/aws-sdk-go/service/fms
+github.com/aws/aws-sdk-go/service/forecastqueryservice
 github.com/aws/aws-sdk-go/service/forecastservice
+github.com/aws/aws-sdk-go/service/frauddetector
 github.com/aws/aws-sdk-go/service/fsx
 github.com/aws/aws-sdk-go/service/gamelift
 github.com/aws/aws-sdk-go/service/glacier
 github.com/aws/aws-sdk-go/service/globalaccelerator
 github.com/aws/aws-sdk-go/service/glue
+github.com/aws/aws-sdk-go/service/gluedatabrew
 github.com/aws/aws-sdk-go/service/greengrass
+github.com/aws/aws-sdk-go/service/greengrassv2
+github.com/aws/aws-sdk-go/service/groundstation
 github.com/aws/aws-sdk-go/service/guardduty
+github.com/aws/aws-sdk-go/service/health
+github.com/aws/aws-sdk-go/service/healthlake
+github.com/aws/aws-sdk-go/service/honeycode
 github.com/aws/aws-sdk-go/service/iam
 github.com/aws/aws-sdk-go/service/identitystore
 github.com/aws/aws-sdk-go/service/imagebuilder
 github.com/aws/aws-sdk-go/service/inspector
 github.com/aws/aws-sdk-go/service/iot
+github.com/aws/aws-sdk-go/service/iot1clickdevicesservice
+github.com/aws/aws-sdk-go/service/iot1clickprojects
 github.com/aws/aws-sdk-go/service/iotanalytics
+github.com/aws/aws-sdk-go/service/iotdataplane
+github.com/aws/aws-sdk-go/service/iotdeviceadvisor
 github.com/aws/aws-sdk-go/service/iotevents
+github.com/aws/aws-sdk-go/service/ioteventsdata
+github.com/aws/aws-sdk-go/service/iotfleethub
+github.com/aws/aws-sdk-go/service/iotjobsdataplane
+github.com/aws/aws-sdk-go/service/iotsecuretunneling
+github.com/aws/aws-sdk-go/service/iotsitewise
+github.com/aws/aws-sdk-go/service/iotthingsgraph
+github.com/aws/aws-sdk-go/service/iotwireless
 github.com/aws/aws-sdk-go/service/kafka
+github.com/aws/aws-sdk-go/service/kafkaconnect
+github.com/aws/aws-sdk-go/service/kendra
 github.com/aws/aws-sdk-go/service/kinesis
 github.com/aws/aws-sdk-go/service/kinesisanalytics
 github.com/aws/aws-sdk-go/service/kinesisanalyticsv2
 github.com/aws/aws-sdk-go/service/kinesisvideo
+github.com/aws/aws-sdk-go/service/kinesisvideoarchivedmedia
+github.com/aws/aws-sdk-go/service/kinesisvideomedia
+github.com/aws/aws-sdk-go/service/kinesisvideosignalingchannels
 github.com/aws/aws-sdk-go/service/kms
 github.com/aws/aws-sdk-go/service/lakeformation
 github.com/aws/aws-sdk-go/service/lambda
 github.com/aws/aws-sdk-go/service/lexmodelbuildingservice
+github.com/aws/aws-sdk-go/service/lexmodelsv2
+github.com/aws/aws-sdk-go/service/lexruntimeservice
+github.com/aws/aws-sdk-go/service/lexruntimev2
 github.com/aws/aws-sdk-go/service/licensemanager
 github.com/aws/aws-sdk-go/service/lightsail
 github.com/aws/aws-sdk-go/service/locationservice
+github.com/aws/aws-sdk-go/service/lookoutequipment
+github.com/aws/aws-sdk-go/service/lookoutforvision
+github.com/aws/aws-sdk-go/service/lookoutmetrics
+github.com/aws/aws-sdk-go/service/machinelearning
 github.com/aws/aws-sdk-go/service/macie
 github.com/aws/aws-sdk-go/service/macie2
 github.com/aws/aws-sdk-go/service/managedblockchain
+github.com/aws/aws-sdk-go/service/managedgrafana
 github.com/aws/aws-sdk-go/service/marketplacecatalog
+github.com/aws/aws-sdk-go/service/marketplacecommerceanalytics
+github.com/aws/aws-sdk-go/service/marketplaceentitlementservice
+github.com/aws/aws-sdk-go/service/marketplacemetering
 github.com/aws/aws-sdk-go/service/mediaconnect
 github.com/aws/aws-sdk-go/service/mediaconvert
 github.com/aws/aws-sdk-go/service/medialive
 github.com/aws/aws-sdk-go/service/mediapackage
+github.com/aws/aws-sdk-go/service/mediapackagevod
 github.com/aws/aws-sdk-go/service/mediastore
 github.com/aws/aws-sdk-go/service/mediastoredata
+github.com/aws/aws-sdk-go/service/mediatailor
+github.com/aws/aws-sdk-go/service/memorydb
+github.com/aws/aws-sdk-go/service/mgn
+github.com/aws/aws-sdk-go/service/migrationhub
+github.com/aws/aws-sdk-go/service/migrationhubconfig
+github.com/aws/aws-sdk-go/service/mobile
+github.com/aws/aws-sdk-go/service/mobileanalytics
 github.com/aws/aws-sdk-go/service/mq
+github.com/aws/aws-sdk-go/service/mturk
 github.com/aws/aws-sdk-go/service/mwaa
 github.com/aws/aws-sdk-go/service/neptune
 github.com/aws/aws-sdk-go/service/networkfirewall
 github.com/aws/aws-sdk-go/service/networkmanager
+github.com/aws/aws-sdk-go/service/nimblestudio
 github.com/aws/aws-sdk-go/service/opsworks
+github.com/aws/aws-sdk-go/service/opsworkscm
 github.com/aws/aws-sdk-go/service/organizations
 github.com/aws/aws-sdk-go/service/outposts
 github.com/aws/aws-sdk-go/service/personalize
+github.com/aws/aws-sdk-go/service/personalizeevents
+github.com/aws/aws-sdk-go/service/personalizeruntime
+github.com/aws/aws-sdk-go/service/pi
 github.com/aws/aws-sdk-go/service/pinpoint
+github.com/aws/aws-sdk-go/service/pinpointemail
+github.com/aws/aws-sdk-go/service/pinpointsmsvoice
+github.com/aws/aws-sdk-go/service/polly
 github.com/aws/aws-sdk-go/service/pricing
 github.com/aws/aws-sdk-go/service/prometheusservice
+github.com/aws/aws-sdk-go/service/proton
 github.com/aws/aws-sdk-go/service/qldb
+github.com/aws/aws-sdk-go/service/qldbsession
 github.com/aws/aws-sdk-go/service/quicksight
 github.com/aws/aws-sdk-go/service/ram
 github.com/aws/aws-sdk-go/service/rds
+github.com/aws/aws-sdk-go/service/rdsdataservice
 github.com/aws/aws-sdk-go/service/redshift
+github.com/aws/aws-sdk-go/service/redshiftdataapiservice
+github.com/aws/aws-sdk-go/service/rekognition
 github.com/aws/aws-sdk-go/service/resourcegroups
 github.com/aws/aws-sdk-go/service/resourcegroupstaggingapi
+github.com/aws/aws-sdk-go/service/robomaker
 github.com/aws/aws-sdk-go/service/route53
-github.com/aws/aws-sdk-go/service/route53domains
+github.com/aws/aws-sdk-go/service/route53recoverycontrolconfig
+github.com/aws/aws-sdk-go/service/route53recoveryreadiness
 github.com/aws/aws-sdk-go/service/route53resolver
 github.com/aws/aws-sdk-go/service/s3
 github.com/aws/aws-sdk-go/service/s3/s3iface
@@ -246,6 +349,10 @@ github.com/aws/aws-sdk-go/service/s3/s3manager
 github.com/aws/aws-sdk-go/service/s3control
 github.com/aws/aws-sdk-go/service/s3outposts
 github.com/aws/aws-sdk-go/service/sagemaker
+github.com/aws/aws-sdk-go/service/sagemakeredgemanager
+github.com/aws/aws-sdk-go/service/sagemakerfeaturestoreruntime
+github.com/aws/aws-sdk-go/service/sagemakerruntime
+github.com/aws/aws-sdk-go/service/savingsplans
 github.com/aws/aws-sdk-go/service/schemas
 github.com/aws/aws-sdk-go/service/secretsmanager
 github.com/aws/aws-sdk-go/service/securityhub
@@ -254,30 +361,118 @@ github.com/aws/aws-sdk-go/service/servicecatalog
 github.com/aws/aws-sdk-go/service/servicediscovery
 github.com/aws/aws-sdk-go/service/servicequotas
 github.com/aws/aws-sdk-go/service/ses
+github.com/aws/aws-sdk-go/service/sesv2
 github.com/aws/aws-sdk-go/service/sfn
 github.com/aws/aws-sdk-go/service/shield
 github.com/aws/aws-sdk-go/service/signer
 github.com/aws/aws-sdk-go/service/simpledb
+github.com/aws/aws-sdk-go/service/sms
+github.com/aws/aws-sdk-go/service/snowball
 github.com/aws/aws-sdk-go/service/sns
 github.com/aws/aws-sdk-go/service/sqs
 github.com/aws/aws-sdk-go/service/ssm
+github.com/aws/aws-sdk-go/service/ssmcontacts
+github.com/aws/aws-sdk-go/service/ssmincidents
 github.com/aws/aws-sdk-go/service/sso
 github.com/aws/aws-sdk-go/service/sso/ssoiface
 github.com/aws/aws-sdk-go/service/ssoadmin
+github.com/aws/aws-sdk-go/service/ssooidc
 github.com/aws/aws-sdk-go/service/storagegateway
 github.com/aws/aws-sdk-go/service/sts
 github.com/aws/aws-sdk-go/service/sts/stsiface
+github.com/aws/aws-sdk-go/service/support
 github.com/aws/aws-sdk-go/service/swf
 github.com/aws/aws-sdk-go/service/synthetics
+github.com/aws/aws-sdk-go/service/textract
+github.com/aws/aws-sdk-go/service/timestreamquery
 github.com/aws/aws-sdk-go/service/timestreamwrite
+github.com/aws/aws-sdk-go/service/transcribeservice
+github.com/aws/aws-sdk-go/service/transcribestreamingservice
 github.com/aws/aws-sdk-go/service/transfer
+github.com/aws/aws-sdk-go/service/translate
 github.com/aws/aws-sdk-go/service/waf
 github.com/aws/aws-sdk-go/service/wafregional
 github.com/aws/aws-sdk-go/service/wafv2
+github.com/aws/aws-sdk-go/service/wellarchitected
+github.com/aws/aws-sdk-go/service/workdocs
 github.com/aws/aws-sdk-go/service/worklink
 github.com/aws/aws-sdk-go/service/workmail
+github.com/aws/aws-sdk-go/service/workmailmessageflow
 github.com/aws/aws-sdk-go/service/workspaces
 github.com/aws/aws-sdk-go/service/xray
+# github.com/aws/aws-sdk-go-v2 v1.14.0
+github.com/aws/aws-sdk-go-v2
+github.com/aws/aws-sdk-go-v2/aws
+github.com/aws/aws-sdk-go-v2/aws/arn
+github.com/aws/aws-sdk-go-v2/aws/defaults
+github.com/aws/aws-sdk-go-v2/aws/middleware
+github.com/aws/aws-sdk-go-v2/aws/protocol/query
+github.com/aws/aws-sdk-go-v2/aws/protocol/restjson
+github.com/aws/aws-sdk-go-v2/aws/protocol/xml
+github.com/aws/aws-sdk-go-v2/aws/ratelimit
+github.com/aws/aws-sdk-go-v2/aws/retry
+github.com/aws/aws-sdk-go-v2/aws/signer/internal/v4
+github.com/aws/aws-sdk-go-v2/aws/signer/v4
+github.com/aws/aws-sdk-go-v2/aws/transport/http
+github.com/aws/aws-sdk-go-v2/internal/rand
+github.com/aws/aws-sdk-go-v2/internal/sdk
+github.com/aws/aws-sdk-go-v2/internal/sdkio
+github.com/aws/aws-sdk-go-v2/internal/strings
+github.com/aws/aws-sdk-go-v2/internal/sync/singleflight
+github.com/aws/aws-sdk-go-v2/internal/timeconv
+# github.com/aws/aws-sdk-go-v2/config v1.14.0
+github.com/aws/aws-sdk-go-v2/config
+# github.com/aws/aws-sdk-go-v2/credentials v1.9.0
+github.com/aws/aws-sdk-go-v2/credentials
+github.com/aws/aws-sdk-go-v2/credentials/ec2rolecreds
+github.com/aws/aws-sdk-go-v2/credentials/endpointcreds
+github.com/aws/aws-sdk-go-v2/credentials/endpointcreds/internal/client
+github.com/aws/aws-sdk-go-v2/credentials/processcreds
+github.com/aws/aws-sdk-go-v2/credentials/ssocreds
+github.com/aws/aws-sdk-go-v2/credentials/stscreds
+# github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.11.0
+github.com/aws/aws-sdk-go-v2/feature/ec2/imds
+github.com/aws/aws-sdk-go-v2/feature/ec2/imds/internal/config
+# github.com/aws/aws-sdk-go-v2/internal/configsources v1.1.5
+github.com/aws/aws-sdk-go-v2/internal/configsources
+# github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.3.0
+github.com/aws/aws-sdk-go-v2/internal/endpoints/v2
+# github.com/aws/aws-sdk-go-v2/internal/ini v1.3.6
+github.com/aws/aws-sdk-go-v2/internal/ini
+# github.com/aws/aws-sdk-go-v2/service/iam v1.17.0
+github.com/aws/aws-sdk-go-v2/service/iam
+github.com/aws/aws-sdk-go-v2/service/iam/internal/endpoints
+github.com/aws/aws-sdk-go-v2/service/iam/types
+# github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.8.0
+github.com/aws/aws-sdk-go-v2/service/internal/presigned-url
+# github.com/aws/aws-sdk-go-v2/service/route53domains v1.11.0
+github.com/aws/aws-sdk-go-v2/service/route53domains
+github.com/aws/aws-sdk-go-v2/service/route53domains/internal/endpoints
+github.com/aws/aws-sdk-go-v2/service/route53domains/types
+# github.com/aws/aws-sdk-go-v2/service/sso v1.10.0
+github.com/aws/aws-sdk-go-v2/service/sso
+github.com/aws/aws-sdk-go-v2/service/sso/internal/endpoints
+github.com/aws/aws-sdk-go-v2/service/sso/types
+# github.com/aws/aws-sdk-go-v2/service/sts v1.15.0
+github.com/aws/aws-sdk-go-v2/service/sts
+github.com/aws/aws-sdk-go-v2/service/sts/internal/endpoints
+github.com/aws/aws-sdk-go-v2/service/sts/types
+# github.com/aws/smithy-go v1.11.0
+github.com/aws/smithy-go
+github.com/aws/smithy-go/document
+github.com/aws/smithy-go/encoding
+github.com/aws/smithy-go/encoding/httpbinding
+github.com/aws/smithy-go/encoding/json
+github.com/aws/smithy-go/encoding/xml
+github.com/aws/smithy-go/io
+github.com/aws/smithy-go/logging
+github.com/aws/smithy-go/middleware
+github.com/aws/smithy-go/ptr
+github.com/aws/smithy-go/rand
+github.com/aws/smithy-go/time
+github.com/aws/smithy-go/transport/http
+github.com/aws/smithy-go/transport/http/internal/io
+github.com/aws/smithy-go/waiter
 # github.com/beevik/etree v1.1.0
 github.com/beevik/etree
 # github.com/beorn7/perks v1.0.1
@@ -361,7 +556,7 @@ github.com/golang/protobuf/ptypes/empty
 github.com/golang/protobuf/ptypes/timestamp
 # github.com/google/btree v1.0.0
 github.com/google/btree
-# github.com/google/go-cmp v0.5.6
+# github.com/google/go-cmp v0.5.7
 github.com/google/go-cmp/cmp
 github.com/google/go-cmp/cmp/internal/diff
 github.com/google/go-cmp/cmp/internal/flags
@@ -403,9 +598,23 @@ github.com/gophercloud/utils/terraform/auth
 # github.com/gregjones/httpcache v0.0.0-20180305231024-9cad4c3443a7
 github.com/gregjones/httpcache
 github.com/gregjones/httpcache/diskcache
+# github.com/hashicorp/aws-cloudformation-resource-schema-sdk-go v0.16.0
+github.com/hashicorp/aws-cloudformation-resource-schema-sdk-go
 # github.com/hashicorp/aws-sdk-go-base v0.7.1
 github.com/hashicorp/aws-sdk-go-base
 github.com/hashicorp/aws-sdk-go-base/tfawserr
+# github.com/hashicorp/aws-sdk-go-base/v2 v2.0.0-beta.12
+github.com/hashicorp/aws-sdk-go-base/v2
+github.com/hashicorp/aws-sdk-go-base/v2/internal/awsconfig
+github.com/hashicorp/aws-sdk-go-base/v2/internal/config
+github.com/hashicorp/aws-sdk-go-base/v2/internal/constants
+github.com/hashicorp/aws-sdk-go-base/v2/internal/endpoints
+github.com/hashicorp/aws-sdk-go-base/v2/internal/expand
+# github.com/hashicorp/aws-sdk-go-base/v2/awsv1shim/v2 v2.0.0-beta.13
+github.com/hashicorp/aws-sdk-go-base/v2/awsv1shim/v2
+github.com/hashicorp/aws-sdk-go-base/v2/awsv1shim/v2/tfawserr
+# github.com/hashicorp/awspolicyequivalence v1.5.0
+github.com/hashicorp/awspolicyequivalence
 # github.com/hashicorp/consul/api v1.9.1
 github.com/hashicorp/consul/api
 # github.com/hashicorp/errwrap v1.1.0
@@ -428,7 +637,7 @@ github.com/hashicorp/go-cty/cty/set
 # github.com/hashicorp/go-getter v1.5.3
 github.com/hashicorp/go-getter
 github.com/hashicorp/go-getter/helper/url
-# github.com/hashicorp/go-hclog v0.15.0
+# github.com/hashicorp/go-hclog v0.16.1
 github.com/hashicorp/go-hclog
 # github.com/hashicorp/go-immutable-radix v1.0.0
 github.com/hashicorp/go-immutable-radix
@@ -443,14 +652,29 @@ github.com/hashicorp/go-retryablehttp
 github.com/hashicorp/go-rootcerts
 # github.com/hashicorp/go-safetemp v1.0.0
 github.com/hashicorp/go-safetemp
-# github.com/hashicorp/go-uuid v1.0.1
+# github.com/hashicorp/go-uuid v1.0.2
 ## explicit
 github.com/hashicorp/go-uuid
-# github.com/hashicorp/go-version v1.3.0
+# github.com/hashicorp/go-version v1.4.0
 github.com/hashicorp/go-version
 # github.com/hashicorp/golang-lru v0.5.4
 github.com/hashicorp/golang-lru
 github.com/hashicorp/golang-lru/simplelru
+# github.com/hashicorp/hc-install v0.3.1
+github.com/hashicorp/hc-install
+github.com/hashicorp/hc-install/checkpoint
+github.com/hashicorp/hc-install/errors
+github.com/hashicorp/hc-install/fs
+github.com/hashicorp/hc-install/internal/build
+github.com/hashicorp/hc-install/internal/httpclient
+github.com/hashicorp/hc-install/internal/pubkey
+github.com/hashicorp/hc-install/internal/releasesjson
+github.com/hashicorp/hc-install/internal/src
+github.com/hashicorp/hc-install/internal/validators
+github.com/hashicorp/hc-install/internal/version
+github.com/hashicorp/hc-install/product
+github.com/hashicorp/hc-install/releases
+github.com/hashicorp/hc-install/src
 # github.com/hashicorp/hcl v1.0.0
 ## explicit
 github.com/hashicorp/hcl/hcl/ast
@@ -478,21 +702,29 @@ github.com/hashicorp/hcl/v2/json
 github.com/hashicorp/logutils
 # github.com/hashicorp/serf v0.9.5
 github.com/hashicorp/serf/coordinate
-# github.com/hashicorp/terraform-exec v0.13.3
+# github.com/hashicorp/terraform-exec v0.15.0
 github.com/hashicorp/terraform-exec/internal/version
 github.com/hashicorp/terraform-exec/tfexec
-github.com/hashicorp/terraform-exec/tfinstall
-# github.com/hashicorp/terraform-json v0.10.0
+# github.com/hashicorp/terraform-json v0.13.0
 github.com/hashicorp/terraform-json
-# github.com/hashicorp/terraform-plugin-go v0.3.0
+# github.com/hashicorp/terraform-plugin-go v0.5.0
 ## explicit
 github.com/hashicorp/terraform-plugin-go/tfprotov5
 github.com/hashicorp/terraform-plugin-go/tfprotov5/internal/fromproto
 github.com/hashicorp/terraform-plugin-go/tfprotov5/internal/tfplugin5
 github.com/hashicorp/terraform-plugin-go/tfprotov5/internal/toproto
-github.com/hashicorp/terraform-plugin-go/tfprotov5/server
+github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server
+github.com/hashicorp/terraform-plugin-go/tfprotov6
+github.com/hashicorp/terraform-plugin-go/tfprotov6/internal/fromproto
+github.com/hashicorp/terraform-plugin-go/tfprotov6/internal/tfplugin6
+github.com/hashicorp/terraform-plugin-go/tfprotov6/internal/toproto
+github.com/hashicorp/terraform-plugin-go/tfprotov6/tf6server
 github.com/hashicorp/terraform-plugin-go/tftypes
-# github.com/hashicorp/terraform-plugin-sdk/v2 v2.6.1
+# github.com/hashicorp/terraform-plugin-log v0.2.0
+github.com/hashicorp/terraform-plugin-log/internal/logging
+github.com/hashicorp/terraform-plugin-log/tflog
+github.com/hashicorp/terraform-plugin-log/tfsdklog
+# github.com/hashicorp/terraform-plugin-sdk/v2 v2.10.1
 ## explicit
 github.com/hashicorp/terraform-plugin-sdk/v2/diag
 github.com/hashicorp/terraform-plugin-sdk/v2/helper/customdiff
@@ -512,6 +744,178 @@ github.com/hashicorp/terraform-plugin-sdk/v2/internal/tfdiags
 github.com/hashicorp/terraform-plugin-sdk/v2/meta
 github.com/hashicorp/terraform-plugin-sdk/v2/plugin
 github.com/hashicorp/terraform-plugin-sdk/v2/terraform
+# github.com/hashicorp/terraform-provider-aws v1.60.1-0.20210624223533-7ed5f82d440d => github.com/kubeform/terraform-provider-aws v1.60.1-0.20220307131809-09b3e222c6f1
+## explicit
+github.com/hashicorp/terraform-provider-aws/aws
+github.com/hashicorp/terraform-provider-aws/internal/attrmap
+github.com/hashicorp/terraform-provider-aws/internal/conns
+github.com/hashicorp/terraform-provider-aws/internal/create
+github.com/hashicorp/terraform-provider-aws/internal/experimental/nullable
+github.com/hashicorp/terraform-provider-aws/internal/flex
+github.com/hashicorp/terraform-provider-aws/internal/provider
+github.com/hashicorp/terraform-provider-aws/internal/service/accessanalyzer
+github.com/hashicorp/terraform-provider-aws/internal/service/account
+github.com/hashicorp/terraform-provider-aws/internal/service/acm
+github.com/hashicorp/terraform-provider-aws/internal/service/acmpca
+github.com/hashicorp/terraform-provider-aws/internal/service/amp
+github.com/hashicorp/terraform-provider-aws/internal/service/amplify
+github.com/hashicorp/terraform-provider-aws/internal/service/apigateway
+github.com/hashicorp/terraform-provider-aws/internal/service/apigatewayv2
+github.com/hashicorp/terraform-provider-aws/internal/service/appautoscaling
+github.com/hashicorp/terraform-provider-aws/internal/service/appconfig
+github.com/hashicorp/terraform-provider-aws/internal/service/appmesh
+github.com/hashicorp/terraform-provider-aws/internal/service/apprunner
+github.com/hashicorp/terraform-provider-aws/internal/service/appstream
+github.com/hashicorp/terraform-provider-aws/internal/service/appsync
+github.com/hashicorp/terraform-provider-aws/internal/service/athena
+github.com/hashicorp/terraform-provider-aws/internal/service/autoscaling
+github.com/hashicorp/terraform-provider-aws/internal/service/autoscalingplans
+github.com/hashicorp/terraform-provider-aws/internal/service/backup
+github.com/hashicorp/terraform-provider-aws/internal/service/batch
+github.com/hashicorp/terraform-provider-aws/internal/service/budgets
+github.com/hashicorp/terraform-provider-aws/internal/service/chime
+github.com/hashicorp/terraform-provider-aws/internal/service/cloud9
+github.com/hashicorp/terraform-provider-aws/internal/service/cloudcontrol
+github.com/hashicorp/terraform-provider-aws/internal/service/cloudformation
+github.com/hashicorp/terraform-provider-aws/internal/service/cloudfront
+github.com/hashicorp/terraform-provider-aws/internal/service/cloudhsmv2
+github.com/hashicorp/terraform-provider-aws/internal/service/cloudsearch
+github.com/hashicorp/terraform-provider-aws/internal/service/cloudtrail
+github.com/hashicorp/terraform-provider-aws/internal/service/cloudwatch
+github.com/hashicorp/terraform-provider-aws/internal/service/cloudwatchlogs
+github.com/hashicorp/terraform-provider-aws/internal/service/codeartifact
+github.com/hashicorp/terraform-provider-aws/internal/service/codebuild
+github.com/hashicorp/terraform-provider-aws/internal/service/codecommit
+github.com/hashicorp/terraform-provider-aws/internal/service/codedeploy
+github.com/hashicorp/terraform-provider-aws/internal/service/codepipeline
+github.com/hashicorp/terraform-provider-aws/internal/service/codestarconnections
+github.com/hashicorp/terraform-provider-aws/internal/service/codestarnotifications
+github.com/hashicorp/terraform-provider-aws/internal/service/cognitoidentity
+github.com/hashicorp/terraform-provider-aws/internal/service/cognitoidp
+github.com/hashicorp/terraform-provider-aws/internal/service/configservice
+github.com/hashicorp/terraform-provider-aws/internal/service/connect
+github.com/hashicorp/terraform-provider-aws/internal/service/cur
+github.com/hashicorp/terraform-provider-aws/internal/service/dataexchange
+github.com/hashicorp/terraform-provider-aws/internal/service/datapipeline
+github.com/hashicorp/terraform-provider-aws/internal/service/datasync
+github.com/hashicorp/terraform-provider-aws/internal/service/dax
+github.com/hashicorp/terraform-provider-aws/internal/service/detective
+github.com/hashicorp/terraform-provider-aws/internal/service/devicefarm
+github.com/hashicorp/terraform-provider-aws/internal/service/directconnect
+github.com/hashicorp/terraform-provider-aws/internal/service/dlm
+github.com/hashicorp/terraform-provider-aws/internal/service/dms
+github.com/hashicorp/terraform-provider-aws/internal/service/docdb
+github.com/hashicorp/terraform-provider-aws/internal/service/ds
+github.com/hashicorp/terraform-provider-aws/internal/service/dynamodb
+github.com/hashicorp/terraform-provider-aws/internal/service/ec2
+github.com/hashicorp/terraform-provider-aws/internal/service/ecr
+github.com/hashicorp/terraform-provider-aws/internal/service/ecrpublic
+github.com/hashicorp/terraform-provider-aws/internal/service/ecs
+github.com/hashicorp/terraform-provider-aws/internal/service/efs
+github.com/hashicorp/terraform-provider-aws/internal/service/eks
+github.com/hashicorp/terraform-provider-aws/internal/service/elasticache
+github.com/hashicorp/terraform-provider-aws/internal/service/elasticbeanstalk
+github.com/hashicorp/terraform-provider-aws/internal/service/elasticsearch
+github.com/hashicorp/terraform-provider-aws/internal/service/elastictranscoder
+github.com/hashicorp/terraform-provider-aws/internal/service/elb
+github.com/hashicorp/terraform-provider-aws/internal/service/elbv2
+github.com/hashicorp/terraform-provider-aws/internal/service/emr
+github.com/hashicorp/terraform-provider-aws/internal/service/events
+github.com/hashicorp/terraform-provider-aws/internal/service/firehose
+github.com/hashicorp/terraform-provider-aws/internal/service/fms
+github.com/hashicorp/terraform-provider-aws/internal/service/fsx
+github.com/hashicorp/terraform-provider-aws/internal/service/gamelift
+github.com/hashicorp/terraform-provider-aws/internal/service/glacier
+github.com/hashicorp/terraform-provider-aws/internal/service/globalaccelerator
+github.com/hashicorp/terraform-provider-aws/internal/service/glue
+github.com/hashicorp/terraform-provider-aws/internal/service/grafana
+github.com/hashicorp/terraform-provider-aws/internal/service/guardduty
+github.com/hashicorp/terraform-provider-aws/internal/service/iam
+github.com/hashicorp/terraform-provider-aws/internal/service/identitystore
+github.com/hashicorp/terraform-provider-aws/internal/service/imagebuilder
+github.com/hashicorp/terraform-provider-aws/internal/service/inspector
+github.com/hashicorp/terraform-provider-aws/internal/service/iot
+github.com/hashicorp/terraform-provider-aws/internal/service/kafka
+github.com/hashicorp/terraform-provider-aws/internal/service/kafkaconnect
+github.com/hashicorp/terraform-provider-aws/internal/service/kinesis
+github.com/hashicorp/terraform-provider-aws/internal/service/kinesisanalytics
+github.com/hashicorp/terraform-provider-aws/internal/service/kinesisanalyticsv2
+github.com/hashicorp/terraform-provider-aws/internal/service/kinesisvideo
+github.com/hashicorp/terraform-provider-aws/internal/service/kms
+github.com/hashicorp/terraform-provider-aws/internal/service/lakeformation
+github.com/hashicorp/terraform-provider-aws/internal/service/lambda
+github.com/hashicorp/terraform-provider-aws/internal/service/lexmodels
+github.com/hashicorp/terraform-provider-aws/internal/service/licensemanager
+github.com/hashicorp/terraform-provider-aws/internal/service/lightsail
+github.com/hashicorp/terraform-provider-aws/internal/service/macie
+github.com/hashicorp/terraform-provider-aws/internal/service/macie2
+github.com/hashicorp/terraform-provider-aws/internal/service/mediaconvert
+github.com/hashicorp/terraform-provider-aws/internal/service/mediapackage
+github.com/hashicorp/terraform-provider-aws/internal/service/mediastore
+github.com/hashicorp/terraform-provider-aws/internal/service/memorydb
+github.com/hashicorp/terraform-provider-aws/internal/service/meta
+github.com/hashicorp/terraform-provider-aws/internal/service/mq
+github.com/hashicorp/terraform-provider-aws/internal/service/mwaa
+github.com/hashicorp/terraform-provider-aws/internal/service/neptune
+github.com/hashicorp/terraform-provider-aws/internal/service/networkfirewall
+github.com/hashicorp/terraform-provider-aws/internal/service/opsworks
+github.com/hashicorp/terraform-provider-aws/internal/service/organizations
+github.com/hashicorp/terraform-provider-aws/internal/service/outposts
+github.com/hashicorp/terraform-provider-aws/internal/service/pinpoint
+github.com/hashicorp/terraform-provider-aws/internal/service/pricing
+github.com/hashicorp/terraform-provider-aws/internal/service/qldb
+github.com/hashicorp/terraform-provider-aws/internal/service/quicksight
+github.com/hashicorp/terraform-provider-aws/internal/service/ram
+github.com/hashicorp/terraform-provider-aws/internal/service/rds
+github.com/hashicorp/terraform-provider-aws/internal/service/redshift
+github.com/hashicorp/terraform-provider-aws/internal/service/resourcegroups
+github.com/hashicorp/terraform-provider-aws/internal/service/resourcegroupstaggingapi
+github.com/hashicorp/terraform-provider-aws/internal/service/route53
+github.com/hashicorp/terraform-provider-aws/internal/service/route53domains
+github.com/hashicorp/terraform-provider-aws/internal/service/route53recoverycontrolconfig
+github.com/hashicorp/terraform-provider-aws/internal/service/route53recoveryreadiness
+github.com/hashicorp/terraform-provider-aws/internal/service/route53resolver
+github.com/hashicorp/terraform-provider-aws/internal/service/s3
+github.com/hashicorp/terraform-provider-aws/internal/service/s3control
+github.com/hashicorp/terraform-provider-aws/internal/service/s3outposts
+github.com/hashicorp/terraform-provider-aws/internal/service/sagemaker
+github.com/hashicorp/terraform-provider-aws/internal/service/schemas
+github.com/hashicorp/terraform-provider-aws/internal/service/secretsmanager
+github.com/hashicorp/terraform-provider-aws/internal/service/securityhub
+github.com/hashicorp/terraform-provider-aws/internal/service/serverlessrepo
+github.com/hashicorp/terraform-provider-aws/internal/service/servicecatalog
+github.com/hashicorp/terraform-provider-aws/internal/service/servicediscovery
+github.com/hashicorp/terraform-provider-aws/internal/service/servicequotas
+github.com/hashicorp/terraform-provider-aws/internal/service/ses
+github.com/hashicorp/terraform-provider-aws/internal/service/sfn
+github.com/hashicorp/terraform-provider-aws/internal/service/shield
+github.com/hashicorp/terraform-provider-aws/internal/service/signer
+github.com/hashicorp/terraform-provider-aws/internal/service/simpledb
+github.com/hashicorp/terraform-provider-aws/internal/service/sns
+github.com/hashicorp/terraform-provider-aws/internal/service/sqs
+github.com/hashicorp/terraform-provider-aws/internal/service/ssm
+github.com/hashicorp/terraform-provider-aws/internal/service/ssoadmin
+github.com/hashicorp/terraform-provider-aws/internal/service/storagegateway
+github.com/hashicorp/terraform-provider-aws/internal/service/sts
+github.com/hashicorp/terraform-provider-aws/internal/service/swf
+github.com/hashicorp/terraform-provider-aws/internal/service/synthetics
+github.com/hashicorp/terraform-provider-aws/internal/service/timestreamwrite
+github.com/hashicorp/terraform-provider-aws/internal/service/transfer
+github.com/hashicorp/terraform-provider-aws/internal/service/waf
+github.com/hashicorp/terraform-provider-aws/internal/service/wafregional
+github.com/hashicorp/terraform-provider-aws/internal/service/wafv2
+github.com/hashicorp/terraform-provider-aws/internal/service/worklink
+github.com/hashicorp/terraform-provider-aws/internal/service/workspaces
+github.com/hashicorp/terraform-provider-aws/internal/service/xray
+github.com/hashicorp/terraform-provider-aws/internal/sweep
+github.com/hashicorp/terraform-provider-aws/internal/tags
+github.com/hashicorp/terraform-provider-aws/internal/tfresource
+github.com/hashicorp/terraform-provider-aws/internal/vault/helper/pgpkeys
+github.com/hashicorp/terraform-provider-aws/internal/vault/sdk/helper/jsonutil
+github.com/hashicorp/terraform-provider-aws/internal/verify
+github.com/hashicorp/terraform-provider-aws/version
+# github.com/hashicorp/terraform-registry-address v0.0.0-20210412075316-9b2996cce896
+github.com/hashicorp/terraform-registry-address
 # github.com/hashicorp/terraform-svchost v0.0.0-20200729002733-f050f53b9734
 github.com/hashicorp/terraform-svchost
 github.com/hashicorp/terraform-svchost/auth
@@ -525,8 +929,6 @@ github.com/huandu/xstrings
 github.com/imdario/mergo
 # github.com/inconshreveable/mousetrap v1.0.0
 github.com/inconshreveable/mousetrap
-# github.com/jen20/awspolicyequivalence v1.1.0
-github.com/jen20/awspolicyequivalence
 # github.com/jmespath/go-jmespath v0.4.0
 github.com/jmespath/go-jmespath
 # github.com/joyent/triton-go v0.0.0-20180313100802-d8f9c0314926
@@ -544,16 +946,6 @@ github.com/json-iterator/go
 github.com/jstemmer/go-junit-report
 github.com/jstemmer/go-junit-report/formatter
 github.com/jstemmer/go-junit-report/parser
-# github.com/keybase/go-crypto v0.0.0-20161004153544-93f5b35093ba
-github.com/keybase/go-crypto/brainpool
-github.com/keybase/go-crypto/cast5
-github.com/keybase/go-crypto/openpgp
-github.com/keybase/go-crypto/openpgp/armor
-github.com/keybase/go-crypto/openpgp/elgamal
-github.com/keybase/go-crypto/openpgp/errors
-github.com/keybase/go-crypto/openpgp/packet
-github.com/keybase/go-crypto/openpgp/s2k
-github.com/keybase/go-crypto/rsa
 # github.com/klauspost/compress v1.11.2
 github.com/klauspost/compress/fse
 github.com/klauspost/compress/huff0
@@ -574,6 +966,8 @@ github.com/lusis/go-artifactory/src/artifactory.v401
 github.com/mailru/easyjson/buffer
 github.com/mailru/easyjson/jlexer
 github.com/mailru/easyjson/jwriter
+# github.com/mattbaird/jsonpatch v0.0.0-20200820163806-098863c1fc24
+github.com/mattbaird/jsonpatch
 # github.com/mattn/go-colorable v0.1.8
 github.com/mattn/go-colorable
 # github.com/mattn/go-isatty v0.0.12
@@ -592,7 +986,7 @@ github.com/mitchellh/go-homedir
 github.com/mitchellh/go-testing-interface
 # github.com/mitchellh/go-wordwrap v1.0.0
 github.com/mitchellh/go-wordwrap
-# github.com/mitchellh/mapstructure v1.1.2
+# github.com/mitchellh/mapstructure v1.4.2
 github.com/mitchellh/mapstructure
 # github.com/mitchellh/panicwrap v1.0.0
 github.com/mitchellh/panicwrap
@@ -688,6 +1082,8 @@ github.com/prometheus/procfs/internal/util
 github.com/qri-io/jsonpointer
 # github.com/sergi/go-diff v1.2.0
 github.com/sergi/go-diff/diffmatchpatch
+# github.com/shopspring/decimal v1.3.1
+github.com/shopspring/decimal
 # github.com/spf13/afero v1.2.2
 github.com/spf13/afero
 github.com/spf13/afero/mem
@@ -708,185 +1104,6 @@ github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/regions
 github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tag/v20180813
 # github.com/tencentyun/cos-go-sdk-v5 v0.7.29
 github.com/tencentyun/cos-go-sdk-v5
-# github.com/terraform-providers/terraform-provider-aws v1.60.1-0.20210624223533-7ed5f82d440d
-## explicit
-github.com/terraform-providers/terraform-provider-aws/aws
-github.com/terraform-providers/terraform-provider-aws/aws/internal/attrmap
-github.com/terraform-providers/terraform-provider-aws/aws/internal/encryption
-github.com/terraform-providers/terraform-provider-aws/aws/internal/experimental/nullable
-github.com/terraform-providers/terraform-provider-aws/aws/internal/hashcode
-github.com/terraform-providers/terraform-provider-aws/aws/internal/json
-github.com/terraform-providers/terraform-provider-aws/aws/internal/keyvaluetags
-github.com/terraform-providers/terraform-provider-aws/aws/internal/mutexkv
-github.com/terraform-providers/terraform-provider-aws/aws/internal/naming
-github.com/terraform-providers/terraform-provider-aws/aws/internal/net
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/acmpca/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/acmpca/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/amplify
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/amplify/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/amplify/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/apigatewayv2/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/apigatewayv2/lister
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/apigatewayv2/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/applicationautoscaling/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/appmesh/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/appmesh/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/apprunner
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/apprunner/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/apprunner/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/autoscaling/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/autoscalingplans/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/autoscalingplans/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/backup
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/backup/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/backup/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/batch
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/batch/equivalency
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/batch/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/batch/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/budgets
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/budgets/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/budgets/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudformation
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudformation/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudformation/lister
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudformation/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudfront/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudhsmv2/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudhsmv2/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudwatch/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudwatch/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudwatchevents
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudwatchevents/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudwatchevents/lister
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudwatchevents/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudwatchlogs/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cloudwatchlogs/lister
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/codebuild/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/codebuild/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/codestarconnections/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/codestarconnections/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cognitoidentityprovider/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/cognitoidentityprovider/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/costandusagereportservice/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/datasync/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/datasync/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/dynamodb/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/dynamodb/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/ec2
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/ec2/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/ec2/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/ecr/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/ecs/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/ecs/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/efs/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/efs/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/eks
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/eks/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/eks/token
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/eks/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/elasticache
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/elasticache/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/elasticache/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/elbv2
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/elbv2/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/elbv2/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/globalaccelerator
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/globalaccelerator/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/globalaccelerator/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/glue
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/glue/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/glue/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/guardduty/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/iam
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/iam/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/iam/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/imagebuilder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/imagebuilder/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/kafka/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/kinesis/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/kinesis/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/kinesisanalytics/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/kinesisanalytics/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/kinesisanalyticsv2
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/kinesisanalyticsv2/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/kinesisanalyticsv2/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/kms/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/lakeformation
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/lakeformation/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/lambda/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/lambda/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/lex/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/macie2/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/macie2/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/mq/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/msk/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/msk/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/mwaa/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/mwaa/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/neptune
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/neptune/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/neptune/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/networkfirewall/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/networkfirewall/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/prometheusservice/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/ram/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/ram/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/rds
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/rds/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/rds/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/route53
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/route53/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/route53/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/route53resolver
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/route53resolver/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/route53resolver/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/s3
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/s3/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/s3control
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/s3control/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/s3control/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/s3outposts/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/s3outposts/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/sagemaker/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/sagemaker/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/schemas
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/schemas/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/secretsmanager/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/securityhub/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/securityhub/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/serverlessapplicationrepository/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/serverlessapplicationrepository/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/servicecatalog
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/servicecatalog/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/servicecatalog/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/servicediscovery/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/sfn/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/sfn/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/sns
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/sns/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/sns/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/sqs
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/sqs/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/sqs/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/ssm/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/ssm/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/ssoadmin/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/ssoadmin/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/storagegateway/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/storagegateway/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/synthetics/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/synthetics/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/transfer
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/transfer/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/transfer/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/wafregional/finder
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/workspaces/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/service/xray/waiter
-github.com/terraform-providers/terraform-provider-aws/aws/internal/tfresource
-github.com/terraform-providers/terraform-provider-aws/aws/internal/vault/helper/pgpkeys
-github.com/terraform-providers/terraform-provider-aws/aws/internal/vault/sdk/helper/jsonutil
-github.com/terraform-providers/terraform-provider-aws/version
 # github.com/tombuildsstuff/giovanni v0.15.1
 github.com/tombuildsstuff/giovanni/storage/2018-11-09/blob/blobs
 github.com/tombuildsstuff/giovanni/storage/2018-11-09/blob/containers
@@ -908,6 +1125,12 @@ github.com/vmihailenco/msgpack/v4/codes
 github.com/vmihailenco/tagparser
 github.com/vmihailenco/tagparser/internal
 github.com/vmihailenco/tagparser/internal/parser
+# github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f
+github.com/xeipuuv/gojsonpointer
+# github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415
+github.com/xeipuuv/gojsonreference
+# github.com/xeipuuv/gojsonschema v1.2.0
+github.com/xeipuuv/gojsonschema
 # github.com/xlab/treeprint v0.0.0-20181112141820-a009c3971eca
 github.com/xlab/treeprint
 # github.com/yudai/gojsondiff v1.0.0
@@ -974,12 +1197,13 @@ go.uber.org/zap/internal/bufferpool
 go.uber.org/zap/internal/color
 go.uber.org/zap/internal/exit
 go.uber.org/zap/zapcore
-# golang.org/x/crypto v0.0.0-20210322153248-0c34fe9e7dc2
+# golang.org/x/crypto v0.0.0-20210616213533-5ff15b29337e
 golang.org/x/crypto/bcrypt
 golang.org/x/crypto/blowfish
 golang.org/x/crypto/cast5
 golang.org/x/crypto/chacha20
 golang.org/x/crypto/curve25519
+golang.org/x/crypto/curve25519/internal/field
 golang.org/x/crypto/ed25519
 golang.org/x/crypto/ed25519/internal/edwards25519
 golang.org/x/crypto/internal/subtle
@@ -1000,11 +1224,12 @@ golang.org/x/crypto/ssh/internal/bcrypt_pbkdf
 # golang.org/x/lint v0.0.0-20201208152925-83fdc39ff7b5
 golang.org/x/lint
 golang.org/x/lint/golint
-# golang.org/x/mod v0.4.2
+# golang.org/x/mod v0.5.1
+golang.org/x/mod/internal/lazyregexp
 golang.org/x/mod/module
 golang.org/x/mod/semver
 golang.org/x/mod/sumdb/dirhash
-# golang.org/x/net v0.0.0-20210614182718-04defd469f4e
+# golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd
 golang.org/x/net/context
 golang.org/x/net/context/ctxhttp
 golang.org/x/net/html
@@ -1024,16 +1249,16 @@ golang.org/x/oauth2/google/internal/externalaccount
 golang.org/x/oauth2/internal
 golang.org/x/oauth2/jws
 golang.org/x/oauth2/jwt
-# golang.org/x/sys v0.0.0-20210817190340-bfb29a6856f2
+# golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e
 golang.org/x/sys/cpu
 golang.org/x/sys/execabs
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/plan9
 golang.org/x/sys/unix
 golang.org/x/sys/windows
-# golang.org/x/term v0.0.0-20210220032956-6a3ed077a48d
+# golang.org/x/term v0.0.0-20210927222741-03fcf44c2211
 golang.org/x/term
-# golang.org/x/text v0.3.6
+# golang.org/x/text v0.3.7
 golang.org/x/text/encoding
 golang.org/x/text/encoding/charmap
 golang.org/x/text/encoding/htmlindex
@@ -1058,7 +1283,7 @@ golang.org/x/text/unicode/norm
 golang.org/x/text/width
 # golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac
 golang.org/x/time/rate
-# golang.org/x/tools v0.1.0
+# golang.org/x/tools v0.1.9
 golang.org/x/tools/cmd/goimports
 golang.org/x/tools/go/analysis
 golang.org/x/tools/go/analysis/passes/inspect
@@ -1084,6 +1309,7 @@ golang.org/x/tools/internal/gopathwalk
 golang.org/x/tools/internal/imports
 golang.org/x/tools/internal/lsp/fuzzy
 golang.org/x/tools/internal/packagesinternal
+golang.org/x/tools/internal/typeparams
 golang.org/x/tools/internal/typesinternal
 # golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1
 golang.org/x/xerrors
@@ -1740,11 +1966,13 @@ kmodules.xyz/resource-metrics/api
 ## explicit
 kubeform.dev/apimachinery/api/v1alpha1
 kubeform.dev/apimachinery/pkg/util
-# kubeform.dev/provider-aws-api v0.4.1-0.20220127074657-78200047e1d7
+# kubeform.dev/provider-aws-api v0.4.1-0.20220309102541-78a64ee854bb
 ## explicit
 kubeform.dev/provider-aws-api/api/provider
 kubeform.dev/provider-aws-api/apis/accessanalyzer
 kubeform.dev/provider-aws-api/apis/accessanalyzer/v1alpha1
+kubeform.dev/provider-aws-api/apis/account
+kubeform.dev/provider-aws-api/apis/account/v1alpha1
 kubeform.dev/provider-aws-api/apis/acm
 kubeform.dev/provider-aws-api/apis/acm/v1alpha1
 kubeform.dev/provider-aws-api/apis/acmpca
@@ -1763,10 +1991,14 @@ kubeform.dev/provider-aws-api/apis/app
 kubeform.dev/provider-aws-api/apis/app/v1alpha1
 kubeform.dev/provider-aws-api/apis/appautoscaling
 kubeform.dev/provider-aws-api/apis/appautoscaling/v1alpha1
+kubeform.dev/provider-aws-api/apis/appconfig
+kubeform.dev/provider-aws-api/apis/appconfig/v1alpha1
 kubeform.dev/provider-aws-api/apis/appmesh
 kubeform.dev/provider-aws-api/apis/appmesh/v1alpha1
 kubeform.dev/provider-aws-api/apis/apprunner
 kubeform.dev/provider-aws-api/apis/apprunner/v1alpha1
+kubeform.dev/provider-aws-api/apis/appstream
+kubeform.dev/provider-aws-api/apis/appstream/v1alpha1
 kubeform.dev/provider-aws-api/apis/appsync
 kubeform.dev/provider-aws-api/apis/appsync/v1alpha1
 kubeform.dev/provider-aws-api/apis/athena
@@ -1781,8 +2013,12 @@ kubeform.dev/provider-aws-api/apis/batch
 kubeform.dev/provider-aws-api/apis/batch/v1alpha1
 kubeform.dev/provider-aws-api/apis/budgets
 kubeform.dev/provider-aws-api/apis/budgets/v1alpha1
+kubeform.dev/provider-aws-api/apis/chime
+kubeform.dev/provider-aws-api/apis/chime/v1alpha1
 kubeform.dev/provider-aws-api/apis/cloud9
 kubeform.dev/provider-aws-api/apis/cloud9/v1alpha1
+kubeform.dev/provider-aws-api/apis/cloudcontrolapi
+kubeform.dev/provider-aws-api/apis/cloudcontrolapi/v1alpha1
 kubeform.dev/provider-aws-api/apis/cloudformationstack
 kubeform.dev/provider-aws-api/apis/cloudformationstack/v1alpha1
 kubeform.dev/provider-aws-api/apis/cloudformationtype
@@ -1791,6 +2027,8 @@ kubeform.dev/provider-aws-api/apis/cloudfront
 kubeform.dev/provider-aws-api/apis/cloudfront/v1alpha1
 kubeform.dev/provider-aws-api/apis/cloudhsmv2
 kubeform.dev/provider-aws-api/apis/cloudhsmv2/v1alpha1
+kubeform.dev/provider-aws-api/apis/cloudsearch
+kubeform.dev/provider-aws-api/apis/cloudsearch/v1alpha1
 kubeform.dev/provider-aws-api/apis/cloudtrail
 kubeform.dev/provider-aws-api/apis/cloudtrail/v1alpha1
 kubeform.dev/provider-aws-api/apis/cloudwatch
@@ -1813,10 +2051,14 @@ kubeform.dev/provider-aws-api/apis/cognito
 kubeform.dev/provider-aws-api/apis/cognito/v1alpha1
 kubeform.dev/provider-aws-api/apis/config
 kubeform.dev/provider-aws-api/apis/config/v1alpha1
+kubeform.dev/provider-aws-api/apis/connect
+kubeform.dev/provider-aws-api/apis/connect/v1alpha1
 kubeform.dev/provider-aws-api/apis/cur
 kubeform.dev/provider-aws-api/apis/cur/v1alpha1
 kubeform.dev/provider-aws-api/apis/customer
 kubeform.dev/provider-aws-api/apis/customer/v1alpha1
+kubeform.dev/provider-aws-api/apis/dataexchange
+kubeform.dev/provider-aws-api/apis/dataexchange/v1alpha1
 kubeform.dev/provider-aws-api/apis/datapipeline
 kubeform.dev/provider-aws-api/apis/datapipeline/v1alpha1
 kubeform.dev/provider-aws-api/apis/datasync
@@ -1827,6 +2069,8 @@ kubeform.dev/provider-aws-api/apis/db
 kubeform.dev/provider-aws-api/apis/db/v1alpha1
 kubeform.dev/provider-aws-api/apis/default
 kubeform.dev/provider-aws-api/apis/default/v1alpha1
+kubeform.dev/provider-aws-api/apis/detective
+kubeform.dev/provider-aws-api/apis/detective/v1alpha1
 kubeform.dev/provider-aws-api/apis/devicefarm
 kubeform.dev/provider-aws-api/apis/devicefarm/v1alpha1
 kubeform.dev/provider-aws-api/apis/directoryservice
@@ -1885,6 +2129,8 @@ kubeform.dev/provider-aws-api/apis/globalaccelerator
 kubeform.dev/provider-aws-api/apis/globalaccelerator/v1alpha1
 kubeform.dev/provider-aws-api/apis/glue
 kubeform.dev/provider-aws-api/apis/glue/v1alpha1
+kubeform.dev/provider-aws-api/apis/grafana
+kubeform.dev/provider-aws-api/apis/grafana/v1alpha1
 kubeform.dev/provider-aws-api/apis/guardduty
 kubeform.dev/provider-aws-api/apis/guardduty/v1alpha1
 kubeform.dev/provider-aws-api/apis/iam
@@ -1931,10 +2177,14 @@ kubeform.dev/provider-aws-api/apis/main
 kubeform.dev/provider-aws-api/apis/main/v1alpha1
 kubeform.dev/provider-aws-api/apis/media
 kubeform.dev/provider-aws-api/apis/media/v1alpha1
+kubeform.dev/provider-aws-api/apis/memorydb
+kubeform.dev/provider-aws-api/apis/memorydb/v1alpha1
 kubeform.dev/provider-aws-api/apis/mq
 kubeform.dev/provider-aws-api/apis/mq/v1alpha1
 kubeform.dev/provider-aws-api/apis/msk
 kubeform.dev/provider-aws-api/apis/msk/v1alpha1
+kubeform.dev/provider-aws-api/apis/mskconnect
+kubeform.dev/provider-aws-api/apis/mskconnect/v1alpha1
 kubeform.dev/provider-aws-api/apis/mwaa
 kubeform.dev/provider-aws-api/apis/mwaa/v1alpha1
 kubeform.dev/provider-aws-api/apis/nat
@@ -1973,6 +2223,12 @@ kubeform.dev/provider-aws-api/apis/route
 kubeform.dev/provider-aws-api/apis/route/v1alpha1
 kubeform.dev/provider-aws-api/apis/route53
 kubeform.dev/provider-aws-api/apis/route53/v1alpha1
+kubeform.dev/provider-aws-api/apis/route53domains
+kubeform.dev/provider-aws-api/apis/route53domains/v1alpha1
+kubeform.dev/provider-aws-api/apis/route53recoverycontrolconfig
+kubeform.dev/provider-aws-api/apis/route53recoverycontrolconfig/v1alpha1
+kubeform.dev/provider-aws-api/apis/route53recoveryreadiness
+kubeform.dev/provider-aws-api/apis/route53recoveryreadiness/v1alpha1
 kubeform.dev/provider-aws-api/apis/s3
 kubeform.dev/provider-aws-api/apis/s3/v1alpha1
 kubeform.dev/provider-aws-api/apis/s3control
@@ -2052,6 +2308,7 @@ kubeform.dev/provider-aws-api/apis/xray/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned
 kubeform.dev/provider-aws-api/client/clientset/versioned/scheme
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/accessanalyzer/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/account/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/acm/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/acmpca/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/alb/v1alpha1
@@ -2061,8 +2318,10 @@ kubeform.dev/provider-aws-api/client/clientset/versioned/typed/apigateway/v1alph
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/apigatewayv2/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/app/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/appautoscaling/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/appconfig/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/appmesh/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/apprunner/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/appstream/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/appsync/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/athena/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/autoscaling/v1alpha1
@@ -2070,11 +2329,14 @@ kubeform.dev/provider-aws-api/client/clientset/versioned/typed/autoscalingplans/
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/backup/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/batch/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/budgets/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/chime/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/cloud9/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/cloudcontrolapi/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/cloudformationstack/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/cloudformationtype/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/cloudfront/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/cloudhsmv2/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/cloudsearch/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/cloudtrail/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/cloudwatch/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/codeartifact/v1alpha1
@@ -2086,13 +2348,16 @@ kubeform.dev/provider-aws-api/client/clientset/versioned/typed/codestarconnectio
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/codestarnotifications/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/cognito/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/config/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/connect/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/cur/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/customer/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/dataexchange/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/datapipeline/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/datasync/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/dax/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/db/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/default/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/detective/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/devicefarm/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/directoryservice/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/dlm/v1alpha1
@@ -2122,6 +2387,7 @@ kubeform.dev/provider-aws-api/client/clientset/versioned/typed/gamelift/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/glaciervault/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/globalaccelerator/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/glue/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/grafana/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/guardduty/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/iam/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/imagebuilder/v1alpha1
@@ -2145,8 +2411,10 @@ kubeform.dev/provider-aws-api/client/clientset/versioned/typed/macie/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/macie2/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/main/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/media/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/memorydb/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/mq/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/msk/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/mskconnect/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/mwaa/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/nat/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/neptune/v1alpha1
@@ -2166,6 +2434,9 @@ kubeform.dev/provider-aws-api/client/clientset/versioned/typed/redshift/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/resourcegroups/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/route/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/route53/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/route53domains/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/route53recoverycontrolconfig/v1alpha1
+kubeform.dev/provider-aws-api/client/clientset/versioned/typed/route53recoveryreadiness/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/s3/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/s3control/v1alpha1
 kubeform.dev/provider-aws-api/client/clientset/versioned/typed/s3outposts/v1alpha1
@@ -2436,3 +2707,4 @@ sigs.k8s.io/yaml
 # k8s.io/kubernetes => github.com/kmodules/kubernetes v1.22.0-alpha.0.0.20210617232219-a432af45d932
 # k8s.io/utils => k8s.io/utils v0.0.0-20201110183641-67b214c5f920
 # sigs.k8s.io/application => github.com/kmodules/application v0.8.4-0.20210427030912-90eeee3bc4ad
+# github.com/hashicorp/terraform-provider-aws => github.com/kubeform/terraform-provider-aws v1.60.1-0.20220307131809-09b3e222c6f1
