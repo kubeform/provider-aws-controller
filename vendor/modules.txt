@@ -995,7 +995,6 @@ github.com/mitchellh/reflectwalk
 # github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
 github.com/modern-go/concurrent
 # github.com/modern-go/reflect2 v1.0.2
-## explicit
 github.com/modern-go/reflect2
 # github.com/monochromegane/go-gitignore v0.0.0-20200626010858-205db1a8cc00
 github.com/monochromegane/go-gitignore
@@ -1967,7 +1966,7 @@ kmodules.xyz/resource-metrics/api
 ## explicit
 kubeform.dev/apimachinery/api/v1alpha1
 kubeform.dev/apimachinery/pkg/util
-# kubeform.dev/provider-aws-api v0.4.1-0.20220309102541-78a64ee854bb
+# kubeform.dev/provider-aws-api v0.4.1-0.20220317222552-8ad585f324f0
 ## explicit
 kubeform.dev/provider-aws-api/api/provider
 kubeform.dev/provider-aws-api/apis/accessanalyzer

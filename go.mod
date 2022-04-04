@@ -14,7 +14,6 @@ require (
 	github.com/hashicorp/terraform-provider-aws v1.60.1-0.20210624223533-7ed5f82d440d
 	github.com/imdario/mergo v0.3.12
 	github.com/json-iterator/go v1.1.12
-	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/onsi/ginkgo v1.16.4
 	github.com/onsi/gomega v1.13.0
 	github.com/pkg/errors v0.9.1
@@ -32,7 +31,7 @@ require (
 	kmodules.xyz/client-go v0.0.0-20211028120227-48eb36f92a30
 	kmodules.xyz/constants v0.0.0-20210218100002-2c304bfda278
 	kubeform.dev/apimachinery v0.0.0-20210824104859-ba5604d5a1cc
-	kubeform.dev/provider-aws-api v0.4.1-0.20220309102541-78a64ee854bb
+	kubeform.dev/provider-aws-api v0.4.1-0.20220317222552-8ad585f324f0
 	kubeform.dev/terraform-backend-sdk v0.0.0-20210922115523-21574335f0db
 	sigs.k8s.io/cli-utils v0.25.0
 	sigs.k8s.io/controller-runtime v0.9.0
